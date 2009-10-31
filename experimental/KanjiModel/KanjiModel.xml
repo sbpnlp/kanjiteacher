@@ -1,0 +1,9 @@
+<kanji>
+    <radical name="ki" variant="0" size="full" position="10,15">
+        <stroke name="ki.1" shape="straight" begintime="0" endtime="800">
+            <point sampletime="0" x="3.2" y="2.5" />
+            <point sampletime="500" x="5.4" y="2.5" />
+            <point sampletime="800" x="7.1" y="2.5" />
+        </stroke>
+    </radical>
+</kanji>

@@ -1,0 +1,5 @@
+call clean
+call compileAll
+
+
+

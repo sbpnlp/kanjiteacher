@@ -1,0 +1,33 @@
+Planned DTD for KanjiML
+
+Kanji:
+  Inside a kanji tag there can be multiple radicals and a description of the order of their occurence
+  Attributes:
+    name:      UTF8-encoded character
+    id:        Unicode-# of the kanji
+Radical:
+  Inside the radical tag there can be strokes only
+  Attributes:
+    name:       UTF8-encoded char of the radical
+    variant:    0 = radical in standard variant
+                1 = radical in a well-known alternative variant
+                2 = radical in another variant
+                ...
+    size:       full, half, third, quarter, 1, 1/2, 1/3, 1/4
+    position:   radical centre position on canvas
+    id:         unicode-# of the radical
+  
+Stroke:
+  Inside the stroke tag there can be points only
+  Attributes:
+    name:       stroke-# within radical: as UTF8-encoded char of the radical + number
+    begintime:  time at which first point of this stroke was measured
+    shape:      straight = straight strokes
+                bend     = strokes with a bow
+                cornered = strokes that have a corner
+                multiple = strokes that have multiple corners or bows
+Point:
+  Points are atomic elements and contain only attributes
+  Attributes:
+    sampletime: time at which point sample was taken, relative to first point in character
+    
