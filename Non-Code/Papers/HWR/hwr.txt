@@ -1,0 +1,609 @@
+﻿http://www.jaeger.info/AboutMe.html
+
+#############################################
+
+Online Recognition of Chinese Characters:
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.5.1493&rep=rep1&type=pdf
+C.-L. Liu, S. Jaeger, M. Nakagawa. Online Recognition of Chinese Characters: The State-of-the-Art, IEEE Transactions on Pattern Analysis and Machine Intelligence, volume 26, number 2, pages 198-213, 2004. 
+
+C. -L. Liu, S. Jaeger, and M. Nakagawa, “Online recognition
+of Chinese characters: the state-of-the-art,” IEEE Trans.
+PAMI, vol. 26, no. 2, pp. 198–213, 2004.
+
+
+@article{ LiuJaegeNakagawa2004,
+author = {Chen-Lin Liu, Stefan Jaeger, Masaki Nakagawa.},
+title = {Online Recognition of Chinese Characters: The State-of-the-Art},
+journal ={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+volume = {26},
+year = {2004},
+pages = {198-213},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+
+In this directory: JaegerOnlineReco2004.pdf PRINTED
+
+#############################################
+
+An Overview Of Character Recognition
+Focused On Off-line Handwriting
+Nafiz Arica, Student Member, IEEE and Fatos T. Yarman-Vural, Senior Member, IEEE
+In this directory: AricaVuralAnOverviewOfCharacterRecognitionFocusedOnOfflie.pdf
+
+Arica N, Yarman-Vural F. An overview of character recognition focused
+on off-line handwriting. IEEE Trans Systems, Man and Cybernetics –
+Part C: Applic and Rev 2001; 31(2):216–233
+
+
+@article{ AricaVural2001,
+author = {Arica N, Yarman-Vural F},
+title = {An overview of character recognition focused on off-line handwriting},
+journal ={IEEE Trans Systems, Man and Cybernetics – Part C: Applic and Rev 2001},
+volume = {},
+number = {},
+issn = {},
+year = {2001},
+pages = {216-233},
+doi = {},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+#############################################
+Substroke approach to HMM-based on-line Kanji handwriting recognition
+- ►psu.edu [PDF] 
+M Nakai, N Akira, H Shimodaira, S Sagayama - Proc. ICDAR'01, 2001 - doi.ieeecomputersociety.org
+... has been success- fully applied to European and American on-line character
+recognition[6, 4, 8 ... On the other hand, applying HMMs to Japanese characters is not ...
+
+M. Nakai, N. Akira, H. Shimodaira, and S. Sagayama, “Substroke
+Approach to HMM-Based On-Line Kanji Handwriting Recognition,”
+Prof. Sixth Int’l Conf. Document Analysis and Recognition,
+pp. 491-495, 2001.
+
+	
+@article{ 10.1109/ICDAR.2001.953838,
+author = {Mitsuru Nakai and Naoto Akira and Hiroshi Shimodaira and Shigeki Sagayama},
+title = {Substroke Approach to HMM-Based On-line Kanji Handwriting Recognition},
+journal ={Document Analysis and Recognition, International Conference on},
+volume = {0},
+year = {2001},
+isbn = {0-7695-1263-1},
+pages = {0491},
+doi = {http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953838},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953838
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.150&rep=rep1&type=pdf
+
+In this directory: Nakai2001_10.1.1.63.150.pdf 
+
+#############################################
+M. Nakai, H. Shimodaira, and S. Sagayama, “Generation of
+Hierarchical Dictionary for Stroke-Order Free Kanji Handwriting
+Recognition Based on Substroke HMM,” Proc. Seventh Int’l Conf.
+Document Analysis and Recognition, pp. 514-518, 2003.
+
+[PDF] ►… of hierarchical dictionary for stroke-order free Kanji handwriting recognition based on …
+
+M Nakai, H Shimodaira, S Sagayama - Proc. of Int. Conf. on Document Analysis and …, 2003 - Citeseer
+Generation of Hierarchical Dictionary for Stroke-order Free Kanji Handwriting
+Recognition Based on Substroke HMM Mitsuru NAKAI, Hiroshi SHIMODAIRA and Shigeki ...
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.4029&rep=rep1&type=pdf
+
+In this directory: Nakai_2003_10.1.1.58.4029.pdf PRINTED
+#############################################
+
+http://doi.ieeecomputersociety.org/10.1109/IWFHR.2002.1030888
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.64.8842&rep=rep1&type=pdf
+
+Context-dependent substroke model for HMM-based on-line handwriting recognition
+- ►psu.edu [PDF] 
+… N Inami, S Matsuda, M Nakai, H Shimodaira … - … on Frontiers in Handwriting Recognition (IWFHR-8), 2002 - doi.ieeecomputersociety.org
+... TOKUNO, Nobuhito INAMI, Shigeki MATSUDA, Mitsuru NAKAI, Hiroshi SHIMODAIRA and Shigeki ...
+on-line handwritten recog- nition of cursive Kanji and Hiragana ...
+
+@article{ 10.1109/IWFHR.2002.1030888,
+author = {Junko Tokuno and Nobuhito Inami and Shigeki Matsuda and Mitsuru Nakai and Hiroshi Shimodaira and Shigeki Sagayama},
+title = {Context-Dependent Substroke Model for HMM-Based On-Line Handwriting Recognition},
+journal ={Frontiers in Handwriting Recognition, International Workshop on},
+volume = {0},
+year = {2002},
+isbn = {0-7695-1692-0},
+pages = {78},
+doi = {http://doi.ieeecomputersociety.org/10.1109/IWFHR.2002.1030888},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+J. Tokuno et al., “Context-Dependent Substroke Model for HMMBased
+On-Line Handwriting Recognition,” Proc. Eighth Int’l
+Workshop Frontiers in Handwriting Recognition, pp. 78-83, 2002.
+
+In this directory: Tokuno2002_10.1.1.64.8842.pdf 
+#############################################
+
+H. Shimodaira, T. Sudo, M. Nakai, and S. Sagayama. Online
+Overlaid-Handwriting Recognition Based on Substroke
+HMMs. In Proc. ICDAR, volume 2, pages 10431047, 2003.
+http://doi.ieeecomputersociety.org/10.110910.1109/ICDAR.2003.1227816
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.65.9768&rep=rep1&type=pdf
+
+@article{ 10.1109/ICDAR.2003.1227816,
+author = {Hiroshi Shimodaira and Takashi Sudo and Mitsuru Nakai and Shigeki Sagayama},
+title = {On-line Overlaid-Handwriting Recognition Based on Substroke HMMs},
+journal ={Document Analysis and Recognition, International Conference on},
+volume = {2},
+year = {2003},
+isbn = {0-7695-1960-1},
+pages = {1043},
+doi = {http://doi.ieeecomputersociety.org/10.1109/ICDAR.2003.1227816},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+
+In this directory: Shimo2003_10.1.1.65.9768.pdf
+#############################################
+
+
+Two online japaneses chareacter databases in unipen format.
+
+In this directory: V:\public_html\hwr\jaeger200109a-e.pdf
+
+S. Jaeger and M. Nakagawa, “Two On-Line Japanese Character
+Databases in UNIPEN Format,” Proc. Sixth Int’l Conf. Document
+Analysis and Recognition, pp. 566-570, 2001.
+
+http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953853
+http://www.tuat.jp/~nakagawa/pub/2001/pdf/jaeger0109a-e.pdf
+
+
+@article{ 10.1109/ICDAR.2001.953853,
+author = {Stefan Jaeger and Masaki Nakagawa},
+title = {Two On-Line Japanese Character Databases in Unipen Format},
+journal ={Document Analysis and Recognition, International Conference on},
+volume = {0},
+year = {2001},
+isbn = {0-7695-1263-1},
+pages = {0566},
+doi = {http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953853},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+
+#############################################
+http://doi.ieeecomputersociety.org/10.110910.1109/34.57669
+http://ftp.gunadarma.ac.id/research/HandWriting/pen-tappert_TheStateArtHandWriting.pdf
+cite: see picture tappert1990.png
+
+@article{ Tappert1990,
+author = {C.C. Tappert and C.Y. Suen and T. Wakahara},
+title = {The State of the Art in Online Handwriting Recognition},
+journal ={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+volume = {12},
+number = {8},
+issn = {0162-8828},
+year = {1990},
+pages = {787-808},
+doi = {http://doi.ieeecomputersociety.org/10.1109/34.57669},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+
+In this directory: tappert1990_pen-tappert_TheStateArtHandWriting.pdf PRINTED
+
+
+#############################################
+http://www.tuat.ac.jp/~nakagawa/pub/2002/pdf/velek0208a-e.pdf
+http://doi.ieeecomputersociety.org/10.110910.1109/IWFHR.2002.1030905
+
+O. Velek, S. Jaeger, and M. Nakagawa, “A New Warping
+Technique for Normalizing Likelihood of Multiple Classifiers
+and Its Effectiveness in Combined On-Line/Off-Line Japanese
+Character Recognition,” Proc. Eighth Int’l Workshop Frontiers in
+Handwriting Recognition, pp. 177-182, 2002.
+
+@article{ 10.1109/IWFHR.2002.1030905,
+author = {Ondřej Velek and Stefan Jaeger and Masaki Nakagawa},
+title = {A New Warping Technique for Normalizing Likelihood of Multiple Classifiers and Its Effectiveness in Combined On-line/Off-line Japanese Character Recognition},
+journal ={Frontiers in Handwriting Recognition, International Workshop on},
+volume = {0},
+year = {2002},
+isbn = {0-7695-1692-0},
+pages = {177},
+doi = {http://doi.ieeecomputersociety.org/10.1109/IWFHR.2002.1030905},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+In this directory: velek200208a-e.pdf
+#############################################
+@article{ 10.1109/34.824821,
+author = {Réjean Plamondon and Sargur N. Srihari},
+title = {On-Line and Off-Line Handwriting Recognition: A Comprehensive Survey},
+journal ={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+volume = {22},
+number = {1},
+issn = {0162-8828},
+year = {2000},
+pages = {63-84},
+doi = {http://doi.ieeecomputersociety.org/10.1109/34.824821},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+http://www.computer.org/portal/web/csdl/doi/10.1109/34.824821
+http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070513/viewer/file947.pdf
+
+
+In this directory: plamondon2000_file947.pdf
+
+#############################################
+http://www.springerlink.com/index/y6660w11k18m7637.pdf
+http://www.springerlink.com/content/y6660w11k18m7637/
+
+A hierarchical representation for the reference database of on-line Chinese character …
+
+A hierarchical representation for the reference database of on-line Chinese character recognition
+Buchreihen	Lecture Notes in Computer Science
+Verlag	Springer Berlin / Heidelberg
+ISSN	0302-9743 (Print) 1611-3349 (Online)
+Volume	Volume 1121/1996
+Buch	Advances in Structural and Syntactical Pattern Recognition
+DOI	10.1007/3-540-61577-6
+Copyright	1996
+ISBN	978-3-540-61577-4
+Kategorie	Handwritten and Printed Character Recognition
+DOI	10.1007/3-540-61577-6_36
+Seiten	351-360
+Fachgebiete	Informatik
+SpringerLink Date	Freitag, 20. Januar 2006
+
+
+@incollection{ ChenLee1996,
+author = {Ju-Wei Chen and Suh-Yin Lee},
+title = {A Hierarchical Representation for the Reference Database of On-Line Chinese Character Recognition},
+booktitle = {Advances in Structural and Syntactical Pattern Recognition},
+year = {1996},
+pages = {351-360},
+publisher = {Springer},
+address = {Berlin/Heidelberg, Germany},
+volume = {1121},
+series ={Lecture Notes in Computer Science},
+}
+
+
+
+
+In this directory: ChenLee_1996.pdf PRINTED
+#############################################
+
+An HMM Implementation for On-line Handwriting Recognition
+Based on Pen-Coordinate Feature and Pen-Direction Feature
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.78.8777&rep=rep1&type=pdf
+
+D. Okumura, S. Uchida, and H. Sakoe. An HMM implementation for on-line
+handwriting recognition based on pen-coordinate feature and pen-direction
+feature. In Proceedings of International Conference on Document Analysis
+and Recognition, volume 1, pages 26–30, Seoul, Korea, August 29 –
+September 1 2005.
+
+
+In this directory: Okumura2005_10.1.1.78.8777.pdf
+#############################################
+
+http://hal.archives-ouvertes.fr/inria-00354242/
+http://hal.archives-ouvertes.fr/docs/00/35/42/42/PDF/8_Jan_Santosh_KC_A_COMPREHENSIVE_SURVEY_ON_ON-LINE_HANDWRITING_edited_santosh_.pdf
+
+KC Santosh, C Nattee, 2009 - hal.archives-ouvertes.fr
+KATHMANDU UNIVERSITY JOURNAL OF SCIENCE, ENGINEERING AND TECHNOLGY VOL. 6, No.
+I, JANUARY, 2009, pp 30-54. ... A COMPREHENSIVE SURVEY ON ON-LINE HANDWRITING
+RECOGNITION TECHNOLOGY AND ITS REAL APPLICATION TO THE NEPALESE NATURAL ...
+
+
+In this directory: Santosh2009.pdf PRINTED
+#############################################
+http://www.springerlink.com/index/95142l363060x13k.pdf
+M Nakagawa, J Tokuno, B Zhu, M Onuma, H … - Lecture Notes in Computer Science, 2008 - Springer
+Abstract. This paper discusses online handwriting recognition of Ja- panese
+characters, a mixture of ideographic characters (Kanji) of Chi- nese origin, and
+the phonetic characters made from them. Most Kanji character patterns are ...
+
+Masaki Nakagawa1 Contact Information, Junko Tokuno1, Bilan Zhu1, Motoki Onuma1, Hideto Oda1 and Akihito Kitadai1
+(1)  	Tokyo University of Agriculture and Technology, Naka-cho 2-24-16, Koganei, Tokyo 184-8588, Japan
+Abstract
+
+	
+Recent Results of Online Japanese Handwriting Recognition and Its Applications
+Buchreihen	Lecture Notes in Computer Science
+Verlag	Springer Berlin / Heidelberg
+ISSN	0302-9743 (Print) 1611-3349 (Online)
+Volume	Volume 4768/2008
+Buch	Arabic and Chinese Handwriting Recognition
+DOI	10.1007/978-3-540-78199-8
+Copyright	2008
+ISBN	978-3-540-78198-1
+DOI	10.1007/978-3-540-78199-8_11
+Seiten	170-195
+Fachgebiete	Informatik
+SpringerLink Date	Donnerstag, 13. März 2008
+
+@incollection{ Nakagawa2008,
+     author = {M Nakagawa, J Tokuno, B Zhu, M Onuma, H Oda, A Kitadai},
+     title = {Recent Results of Online Japanese Handwriting Recognition and Its Applications},
+     booktitle = {Arabic and Chinese Handwriting Recognition},
+     year = {2008},
+     editor = {David Doermann, Stefan Jaeger}
+     pages = {170-195},
+     publisher = {Springer},
+     address = {Berlin/Heidelberg, Germany},
+     volume = {4768},
+     series ={Lecture Notes in Computer Science},
+     doi = {10.1007/978-3-540-78199-8_11}
+}
+
+
+
+In this directory: Nakagawa2008.pdf  PRINTED
+#############################################
+http://hal.archives-ouvertes.fr/docs/00/10/47/60/PDF/cr1098192494039.pdf
+
+[PDF] ►Fuzzy relative positioning for on-line handwritten stroke analysis
+
+F Bouteruche, S Macé, E Anquetil - Proceedings of IWFHR, 2006 - hal.archives-ouvertes.fr
+This paper deals with the qualitative and robust mod- elling of the relative
+positioning of on-line handwritten strokes. We exploit the fuzzy approach to
+take the impre- cision of such relations into account. We first transpose a ...
+
+Bouteruche, F., Macé, S., Anquetil, E.: Fuzzy Relative Positioning for On-Line Handwritten
+Stroke Analysis. In: Proceedings of the Tenth International Workshop on Frontier in Handwriting
+Recognition (IWFHR’06) (2006)
+
+
+In this directory: Bouteruche2006.pdf
+#############################################
+S. Jaeger, S. Manke, J. Reichert, A. Waibel. On-Line Handwriting Recognition: The Npen++ Recognizer. International Journal on Document Analysis and Recognition, volume 3, number 3, pages 169-181, 2001. 
+http://www.springerlink.com/index/GE7L6EBCWHJACJ91.pdf
+http://handwritten.net/mv/papers/jaeger01online-handwriting-recgnition-the-npen-recognizer.pdf
+
+Online handwriting recognition: the NPen++ recognizer
+Zeitschrift	International Journal on Document Analysis and Recognition
+Verlag	Springer Berlin / Heidelberg
+ISSN	1433-2833 (Print) 1433-2825 (Online)
+Heft	Volume 3, Number 3 / März 2001
+Kategorie	Original papers
+DOI	10.1007/PL00013559
+Seiten	169-180
+Fachgebiete	Informatik
+SpringerLink Date	Donnerstag, 1. März 2001
+
+S. Jaeger, S. Manke, J. Reichert, and A.Waibel. Online Handwriting Recognition: The Npen++ Recognizer. International Journal on Document Analysis and Recognition, 3:169–180, 2001.
+
+In this directory: Jaeger2001.pdf
+#############################################
+
+Arabic and Chinese Handwriting Recognition
+SACH 2006 Summit College Park, MD, USA, September 27-28, 2006 Selected Papers
+Buchreihen	Lecture Notes in Computer Science
+Verlag	Springer Berlin / Heidelberg
+ISSN	0302-9743 (Print) 1611-3349 (Online)
+Volume	Volume 4768/2008
+DOI	10.1007/978-3-540-78199-8
+Copyright	2008
+ISBN	978-3-540-78198-1
+Fachgebiete	Informatik
+SpringerLink Date	Donnerstag, 13. März 2008
+
+http://www.springerlink.com/content/p821jg623776/
+
+
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+In this directory: 
+#############################################
+Find and download / print:
+http://dx.doi.org/10.1016/S0031-3203(96)00161-6
+On-line recognition of handwritten chinese characters based on hidden markov models 
+Hang Joon Kim, Kyung Hyun Kim, Corresponding Author Contact Information, Sang Kyoon Kim and Jong Kook Lee
+1996
+
+#############################################
+Find and download:
+
+On-Line Handwriting Recognition of Chinese Characters via a Rule-Based Approach
+Vienna, Austria
+August 25-August 29
+ISBN: 0-8186-7282-X
+	
+ASCII Text
+	x	 
+ 	
+J-W. Chen, S-Y. Lee, "On-Line Handwriting Recognition of Chinese Characters via a Rule-Based Approach," Pattern Recognition, International Conference on, vol. 3, pp. 220, 13th International Conference on Pattern Recognition (ICPR'96) - Volume 3, 1996.
+	 
+ 	
+@article{ 10.1109/ICPR.1996.546942,
+author = {J-W. Chen and S-Y. Lee},
+title = {On-Line Handwriting Recognition of Chinese Characters via a Rule-Based Approach},
+journal ={Pattern Recognition, International Conference on},
+volume = {3},
+year = {1996},
+issn = {1051-4651},
+pages = {220},
+doi = {http://doi.ieeecomputersociety.org/10.1109/ICPR.1996.546942},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+@inproceedings{842108,
+ author = {Chen, J-W. and Lee, S-Y.},
+ title = {On-Line Handwriting Recognition of Chinese Characters via a Rule-Based Approach},
+ booktitle = {ICPR '96: Proceedings of the International Conference on Pattern Recognition (ICPR '96) Volume III-Volume 7276},
+ year = {1996},
+ isbn = {0-8186-7282-X},
+ pages = {220},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ }
