@@ -1,4 +1,4 @@
 xelatex KanjiHWR
-bibtex KanjiHWR
+bibtex KanjiHWR >bibtexCompile.txt
 xelatex KanjiHWR
-xelatex KanjiHWR
+xelatex KanjiHWR >xelatexCompile.txt
