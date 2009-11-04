@@ -1,3 +1,7 @@
+%%% Local Variables: 
+%%% mode: latex
+%%% TeX-master: "../KanjiHWR"
+%%% End: 
 
 \chapter{On-Line Handwriting Recognition}
 \label{chap:onlinehwr}
@@ -5,12 +9,12 @@
 \section{General Methods}
 \label{sec:generalmethods}
 
-\begin{itemize}
-\item Warum: Um Ueberblick ueber HWR-Techniken zu verschaffen
-\item Nutzen: Leser kann sich in HWR-Materie eindenken.
-\item Was: Allg. Info ueber HWR. "Wie geht das ueberhaupt?"
-\item Wie: Wiss. Report. / Zusammenfassung. Vergleich.
-\end{itemize}
+%\begin{itemize}
+%\item Warum: Um Ueberblick ueber HWR-Techniken zu verschaffen
+%\item Nutzen: Leser kann sich in HWR-Materie eindenken.
+%\item Was: Allg. Info ueber HWR. "Wie geht das ueberhaupt?"
+%\item Wie: Wiss. Report. / Zusammenfassung. Vergleich.
+%\end{itemize}
 
 Handwriting recognition has been around for many years. The first research
 papers concerned with pattern recognition on computers were published in
@@ -21,35 +25,75 @@ however that was before the times of modern computers,
 therefore the methods he employs are different from the algorithms used
 after the advent of computers, more concretely, computers with screens.
 
+\shortcite{Tappert1990} describe in their review the development of handwriting
+recognition, which was a popular research topic in the early 1970ies and then 
+again in the 1980ies, due to the increased availability of pen-input devices.
 Generally speaking, handwriting recognition (HWR) involves automatic 
 conversion of handwritten text into a machine readable character encoding
 like ASCII or UTF-8. Typical HWR-environments include a pen or stylus that is us
 ed for the handwriting, a touch-sensitive surface, which the user writes on
 and a an application that interprets the strokes of the stylus on the surface
-and converts them into characters.
+and converts them into digital text. Usually, the writing surface captures the 
+x-y coordinates of the styus movement. 
 
+\section{Hardware requirements}
+\label{sec:hardwarerequirements}
 
+Several different hardware commercial products are available in order to
+capture the x-y coordinates of a stylus or pen. Graphics tablet like the
+products of the Wacom Co., Ltd.\footnote{www.wacom.com} are popular input
+devices for hand motions and hand gestures. The use of pen-like input devices 
+has also been recommended, since 42\% of mouse users report feelings of 
+weakness, stiffness and general discomfort in the wrist and hand when 
+using the mouse for long periods \shortcite{Woods2002}. Moreover there are
+PDAs and Tablet PCs, where the writing suface serves as an output device,
+i.e. an display at the same time. New generation mobile phones also contain
+touch-displays, but for those it is more common to be operated without a 
+stylus. Those devices interpret user gestures, however the input is given 
+directly with the users fingers. Another rather new development are real-ink 
+digital pens. With those, a user can write on paper with real ink, and the pen
+stores the movements of the pen-tip on the paper. The movements are transferred 
+to a computer later. It can be expected that with technologies like Bluetooth
+it may be possible to transfer those data in real-time, not delayed.
 
+\section{On-Line vs. Off-Line recogniton}
+\label{sec:onlinevsoffline}
 
+\emph{On-line} HWR means that the input is converted in \emph{real-time}, 
+\emph{dynamically}, while the user is writing. This recognition can lag behind
+the user's writing speed. \shortcite{Tappert1990} report average writing rates 
+of 1.5-2.5 characters/s for English alphanumerics or 0.2-2.5 characters/s for 
+Chinese characters. In online systems, the data usually comes in as a sequence 
+of coordinate points.
 
+\emph{Off-line} HWR is the application of a HWR algorithm after the writing.
+It can be performed at any time after the writing has been completed. That 
+includes recognition of data transferred from the real-ink pens 
+(see \ref{sec:hardwarerequirements}) to a computing device after the writing
+has been completed. The stadard case of off-line HWR, however, is a subset of
+optical character recognition (OCR). An scanner tranfers the physical image 
+on paper into a bitmap, the character recognition is performed on the bitmap.
+An OCR system can recognise several hundred characters per second.
 
+On-line devices have the dynamic information of the writing, since each point 
+coordinate is captured at a specific point of time. Also, the system know the
+input stroke sequence, their direction and speed of writing. All these 
+information can be an advantage for an on-line system, however, off-line systems
+have used algorithms of line-thinning, such that the data consits of point
+coordinates, similar to the input of online systems \shortcite{Tappert1990}.
 
-shortcite: \shortcite{Tappert1990} 
+\section{Typical On-Line HWR application}
+\label{sec:typicalonlinehwrapplication}
 
-shortciteA: \shortciteA{Tappert1990} 
-
-%fullcite: \fullcite{Tappert1990} 
-
-%fullsiteAN: \fullciteA{Tappert1990} 
-
-cite: \cite{Tappert1990} 
-
-citeyear: \citeyear{Tappert1990}
-
-describe in their review the development of handwriting recognition, which was a popular research topic in the early 1970ies and then again in the 1980ies, due to the increased availability of pen-input devices.
-xxx
-
-
+A typical HWR application has several parts that follow up on each other in a
+procedural fashion. 
+\begin{itemize}
+\item \textbf{Data capturing}: The data is captured through an input device 
+  like a writing surface and a stylus.
+\item \textbf{Preprocessing}: The data is segmented, noise reduction like smoothing and filtering are applied.
+\item \textbf{Character Recognition}: Feature analysis, stroke matching, time, 
+direction and curve matching.
+\end{itemize}
 
 \section{HWR of Hanzi and Kanji}
 \begin{itemize}
@@ -78,5 +122,4 @@ bla.  says the opposite. \cite{ChenLee1996} oder auch
 
 \subsection{Overview of a typical OJCCR system}
 
-\subsection{Typical HWR application}
 
