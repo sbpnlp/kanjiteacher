@@ -24,3 +24,20 @@
   bibsource = {DBLP, http://dblp.uni-trier.de}
 }
 
+
+Ergonomics.pdf:
+@InBook{Woods2002,
+  author = 	 {Victoria Woods and Sarah Hastings and Peter Buckle and Roger Haslam},
+  title = 	 {Ergonomics of using a mouse or other non-keyboard input device},
+  chapter = 	 {3},
+  publisher = 	 {Health and Safety Executive},
+  year = 	 {2002},
+  number = 	 {045},
+  series = 	 {HSE research report},
+  address = 	 {London},
+  pages = 	 {23},
+  url =          {http://hdl.handle.net/2134/2559}
+}
+https://dspace.lboro.ac.uk/dspace-jspui/handle/2134/2559
+WOODS, V. et al, 2002. Ergonomics of using a mouse or other non-keyboard input device. HSE research report 045. London : Health and Safety Executive
+

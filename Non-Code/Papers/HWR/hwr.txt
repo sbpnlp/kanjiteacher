@@ -415,11 +415,13 @@ http://www.freepatentsonline.com/1117184.pdf
 
 [GoldbergHE15] (*) Goldberg, Hyman Eli "Controller", United States Patent 1,116,663, December 28, 1915 
 
-
-
 In this directory: Goldberg1915_US1117184.pdf
 #############################################
-In this directory: 
+J Hu, MK Brown, W Turin - IEEE Transactions on pattern analysis and machine …, 1996 - domino.research.ibm.com
+Page 1. 1039 IEEE TRANSACTIONS ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE, VOL. 18, NO. 10, OCTOBER 1996 
+HMM Based On-Line Handwriting Recognition pp. 1,039-1,044
+
+In this directory: 2009-11-04-14-49-07_HandwritingPAMI96.pdf
 #############################################
 In this directory: 
 #############################################
