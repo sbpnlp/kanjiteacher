@@ -1,4 +1,6 @@
-﻿http://www.jaeger.info/AboutMe.html
+﻿
+
+http://www.jaeger.info/AboutMe.html
 
 #############################################
 
@@ -154,7 +156,7 @@ In this directory: Shimo2003_10.1.1.65.9768.pdf
 
 Two online japaneses chareacter databases in unipen format.
 
-In this directory: V:\public_html\hwr\jaeger200109a-e.pdf
+In this directory: jaeger200109a-e.pdf
 
 S. Jaeger and M. Nakagawa, “Two On-Line Japanese Character
 Databases in UNIPEN Format,” Proc. Sixth Int’l Conf. Document
@@ -408,7 +410,14 @@ http://www.springerlink.com/content/p821jg623776/
 
 In this directory: 
 #############################################
-In this directory: 
+http://en.wikipedia.org/wiki/Handwriting_recognition#cite_note-5
+http://www.freepatentsonline.com/1117184.pdf
+
+[GoldbergHE15] (*) Goldberg, Hyman Eli "Controller", United States Patent 1,116,663, December 28, 1915 
+
+
+
+In this directory: Goldberg1915_US1117184.pdf
 #############################################
 In this directory: 
 #############################################
@@ -607,3 +616,5 @@ address = {Los Alamitos, CA, USA},
  publisher = {IEEE Computer Society},
  address = {Washington, DC, USA},
  }
+
+

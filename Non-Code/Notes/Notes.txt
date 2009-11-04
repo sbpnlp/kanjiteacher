@@ -1,0 +1,9 @@
+2009-11-04
+How about doing the full recognition on the mobile device?
+Is the calculating power sufficient?
+What if I put the point coordinates into a byte stream?
+(e.g. Memory stream that is handed over to another module)
+
+
+Bibliography links:
+http://users.erols.com/rwservices/pens/biblio70.html#GoldbergHE15
