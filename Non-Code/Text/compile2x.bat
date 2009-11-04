@@ -1,3 +1,3 @@
-xelatex KanjiHWR
-xelatex KanjiHWR >xelatexCompile.txt
+call compile
+call compile >xelatexCompile.txt
 
