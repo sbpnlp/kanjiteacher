@@ -83,7 +83,7 @@ address = {Los Alamitos, CA, USA},
 http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953838
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.150&rep=rep1&type=pdf
 
-In this directory: Nakai2001_10.1.1.63.150.pdf 
+In this directory: Nakai2001_10.1.1.63.150.pdf COULDN'T BE PRINTED
 
 #############################################
 M. Nakai, H. Shimodaira, and S. Sagayama, “Generation of
@@ -128,7 +128,7 @@ J. Tokuno et al., “Context-Dependent Substroke Model for HMMBased
 On-Line Handwriting Recognition,” Proc. Eighth Int’l
 Workshop Frontiers in Handwriting Recognition, pp. 78-83, 2002.
 
-In this directory: Tokuno2002_10.1.1.64.8842.pdf 
+In this directory: Tokuno2002_10.1.1.64.8842.pdf COULDN'T BE PRINTED
 #############################################
 
 H. Shimodaira, T. Sudo, M. Nakai, and S. Sagayama. Online
@@ -137,7 +137,7 @@ HMMs. In Proc. ICDAR, volume 2, pages 10431047, 2003.
 http://doi.ieeecomputersociety.org/10.110910.1109/ICDAR.2003.1227816
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.65.9768&rep=rep1&type=pdf
 
-@article{ 10.1109/ICDAR.2003.1227816,
+@article{ Shimodaira2003,
 author = {Hiroshi Shimodaira and Takashi Sudo and Mitsuru Nakai and Shigeki Sagayama},
 title = {On-line Overlaid-Handwriting Recognition Based on Substroke HMMs},
 journal ={Document Analysis and Recognition, International Conference on},
@@ -151,13 +151,11 @@ address = {Los Alamitos, CA, USA},
 }
 
 
-In this directory: Shimo2003_10.1.1.65.9768.pdf
+In this directory: Shimo2003_10.1.1.65.9768.pdf PRINTED
 #############################################
 
 
 Two online japaneses chareacter databases in unipen format.
-
-In this directory: jaeger200109a-e.pdf
 
 S. Jaeger and M. Nakagawa, “Two On-Line Japanese Character
 Databases in UNIPEN Format,” Proc. Sixth Int’l Conf. Document
@@ -167,19 +165,20 @@ http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953853
 http://www.tuat.jp/~nakagawa/pub/2001/pdf/jaeger0109a-e.pdf
 
 
-@article{ 10.1109/ICDAR.2001.953853,
-author = {Stefan Jaeger and Masaki Nakagawa},
-title = {Two On-Line Japanese Character Databases in Unipen Format},
-journal ={Document Analysis and Recognition, International Conference on},
-volume = {0},
-year = {2001},
-isbn = {0-7695-1263-1},
-pages = {0566},
-doi = {http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953853},
-publisher = {IEEE Computer Society},
-address = {Los Alamitos, CA, USA},
+@article{ Jaeger2001a,
+    author = {Stefan Jaeger and Masaki Nakagawa},
+    title = {Two On-Line Japanese Character Databases in Unipen Format},
+    journal ={Document Analysis and Recognition, International Conference on},
+    volume = {0},
+    year = {2001},
+    isbn = {0-7695-1263-1},
+    pages = {0566},
+    doi = {http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953853},
+    publisher = {IEEE Computer Society},
+    address = {Los Alamitos, CA, USA}
 }
 
+In this directory: jaeger200109a-e.pdf PRINTED
 
 #############################################
 http://doi.ieeecomputersociety.org/10.110910.1109/34.57669
@@ -214,22 +213,22 @@ and Its Effectiveness in Combined On-Line/Off-Line Japanese
 Character Recognition,” Proc. Eighth Int’l Workshop Frontiers in
 Handwriting Recognition, pp. 177-182, 2002.
 
-@article{ 10.1109/IWFHR.2002.1030905,
-author = {Ondřej Velek and Stefan Jaeger and Masaki Nakagawa},
-title = {A New Warping Technique for Normalizing Likelihood of Multiple Classifiers and Its Effectiveness in Combined On-line/Off-line Japanese Character Recognition},
-journal ={Frontiers in Handwriting Recognition, International Workshop on},
-volume = {0},
-year = {2002},
-isbn = {0-7695-1692-0},
-pages = {177},
-doi = {http://doi.ieeecomputersociety.org/10.1109/IWFHR.2002.1030905},
-publisher = {IEEE Computer Society},
-address = {Los Alamitos, CA, USA},
+@article{ Velek2002a,
+     author = {Ondřej Velek and Stefan Jaeger and Masaki Nakagawa},
+     title = {A New Warping Technique for Normalizing Likelihood of Multiple Classifiers and Its Effectiveness in Combined On-line/Off-line Japanese Character Recognition},
+     journal ={Frontiers in Handwriting Recognition, International Workshop on},
+     volume = {0},
+     year = {2002},
+     isbn = {0-7695-1692-0},
+     pages = {177},
+     doi = {http://doi.ieeecomputersociety.org/10.1109/IWFHR.2002.1030905},
+     publisher = {IEEE Computer Society},
+     address = {Los Alamitos, CA, USA},
 }
 
-In this directory: velek200208a-e.pdf
+In this directory: velek200208a-e.pdf PRINTED
 #############################################
-@article{ 10.1109/34.824821,
+@article{ Plamondon2000,
 author = {Réjean Plamondon and Sargur N. Srihari},
 title = {On-Line and Off-Line Handwriting Recognition: A Comprehensive Survey},
 journal ={IEEE Transactions on Pattern Analysis and Machine Intelligence},
@@ -247,7 +246,7 @@ http://www.computer.org/portal/web/csdl/doi/10.1109/34.824821
 http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070513/viewer/file947.pdf
 
 
-In this directory: plamondon2000_file947.pdf
+In this directory: plamondon2000_file947.pdf PRINTED
 
 #############################################
 http://www.springerlink.com/index/y6660w11k18m7637.pdf
@@ -301,7 +300,19 @@ and Recognition, volume 1, pages 26–30, Seoul, Korea, August 29 –
 September 1 2005.
 
 
-In this directory: Okumura2005_10.1.1.78.8777.pdf
+@inproceedings{Okumura2005,
+     author = {D. Okumura, S. Uchida, and H. Sakoe}, 
+     title = {An HMM implementation for on-line handwriting recognition based on pen-coordinate feature and pen-direction feature}, 
+     booktitle = {Proceedings of International Conference on Document Analysis and Recognition}, 
+     year = {2005},
+     volume = {1},
+     pages = {26-30},
+     address = {Korea},
+     month = {August}
+}
+
+
+In this directory: Okumura2005_10.1.1.78.8777.pdf 
 #############################################
 
 http://hal.archives-ouvertes.fr/inria-00354242/
