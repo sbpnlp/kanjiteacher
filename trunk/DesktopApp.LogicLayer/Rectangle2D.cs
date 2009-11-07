@@ -188,6 +188,17 @@ namespace Kanji.DesktopApp.LogicLayer
             return String.Format("{3}:\n\tAnchor point: {0}\n\tWidth:{1}\n\tHeight{2}", 
                 Anchor, Width, Height, this.GetType().ToString());
         }
+
+        /// <summary>
+        /// Returns a hash code for this instance.
+        /// </summary>
+        /// <returns>
+        /// A hash code for this instance, suitable for use in hashing algorithms and data structures like a hash table. 
+        /// </returns>
+        public override int GetHashCode()
+        {
+            return base.GetHashCode();
+        }
         #endregion
 
         #region IEquatable<Rectangle2D> Members
