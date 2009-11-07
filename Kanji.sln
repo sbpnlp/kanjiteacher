@@ -17,13 +17,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApp.LogicLayer", "De
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApp.DAL", "DesktopApp.DAL\DesktopApp.DAL.csproj", "{7C5ACD82-14D1-4DC1-812A-6EE33E707F67}"
 EndProject
-Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "Kanji.InputArea", "Kanji.InputArea\Kanji.InputArea.vdproj", "{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApp.Interfaces", "DesktopApp.Interfaces\DesktopApp.Interfaces.csproj", "{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}"
 EndProject
 Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Kanji2", "Kanji2\Kanji2.vddproj", "{55BBE1DD-CFFB-4DFD-BC1A-7F148E35B292}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webservice", "WebService\Webservice.csproj", "{68FFEE87-1473-4217-B38C-9749819C1CC3}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanjiService", "KanjiService\KanjiService.csproj", "{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}"
 EndProject
@@ -85,12 +81,6 @@ Global
 		{7C5ACD82-14D1-4DC1-812A-6EE33E707F67}.Discovery|Any CPU.Build.0 = Debug|Any CPU
 		{7C5ACD82-14D1-4DC1-812A-6EE33E707F67}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7C5ACD82-14D1-4DC1-812A-6EE33E707F67}.Release|Any CPU.Build.0 = Release|Any CPU
-		{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}.Debug|Any CPU.ActiveCfg = Debug
-		{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}.Debug|Any CPU.Build.0 = Debug
-		{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}.Discovery|Any CPU.ActiveCfg = Debug
-		{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}.Discovery|Any CPU.Build.0 = Debug
-		{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}.Release|Any CPU.ActiveCfg = Release
-		{41BFAE66-7A46-4B85-9B6E-8EF43902B56D}.Release|Any CPU.Build.0 = Release
 		{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}.Discovery|Any CPU.ActiveCfg = Debug|Any CPU
@@ -101,12 +91,6 @@ Global
 		{55BBE1DD-CFFB-4DFD-BC1A-7F148E35B292}.Discovery|Any CPU.ActiveCfg = Debug
 		{55BBE1DD-CFFB-4DFD-BC1A-7F148E35B292}.Discovery|Any CPU.Build.0 = Debug
 		{55BBE1DD-CFFB-4DFD-BC1A-7F148E35B292}.Release|Any CPU.ActiveCfg = Release
-		{68FFEE87-1473-4217-B38C-9749819C1CC3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68FFEE87-1473-4217-B38C-9749819C1CC3}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68FFEE87-1473-4217-B38C-9749819C1CC3}.Discovery|Any CPU.ActiveCfg = Discovery|Any CPU
-		{68FFEE87-1473-4217-B38C-9749819C1CC3}.Discovery|Any CPU.Build.0 = Discovery|Any CPU
-		{68FFEE87-1473-4217-B38C-9749819C1CC3}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68FFEE87-1473-4217-B38C-9749819C1CC3}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}.Discovery|Any CPU.ActiveCfg = Debug|Any CPU
