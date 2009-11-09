@@ -23,6 +23,8 @@ Project("{B900F1C2-3D47-4FEC-85B3-04AAF18C3634}") = "Kanji2", "Kanji2\Kanji2.vdd
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "KanjiService", "KanjiService\KanjiService.csproj", "{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webservice2", "Webservice2\Webservice2.csproj", "{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -97,6 +99,12 @@ Global
 		{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}.Discovery|Any CPU.Build.0 = Debug|Any CPU
 		{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}.Discovery|Any CPU.ActiveCfg = Debug|Any CPU
+		{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}.Discovery|Any CPU.Build.0 = Debug|Any CPU
+		{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
