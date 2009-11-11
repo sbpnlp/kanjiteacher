@@ -8,9 +8,16 @@ namespace Kanji.KanjiService
 {
     public class Service
     {
-        public void Run(object showmetadata)
+        /// <summary>
+        /// Gets or sets a value indicating whether to [show meta data] or not.
+        /// </summary>
+        /// <value><c>true</c> if [show meta data]; otherwise, <c>false</c>.</value>
+        public bool ShowMetaData { get { return showmdata; } set { showmdata = value; } }
+        private bool showmdata = false;
+
+        public void Run(object anumber)
         {
-            bool showmdata = (bool)showmetadata;
+            int thenumber = (int)anumber;
 
             string hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString();
             //Console.WriteLine(Dns.GetHostName());
@@ -43,7 +50,15 @@ namespace Kanji.KanjiService
                 Console.WriteLine("NOT Discovery mode");
             }
 
-            ServiceHost serviceHost = new ServiceHost(typeof(KanjiService), address);
+            KanjiService knsvc = new KanjiService();
+            knsvc.ANumber = thenumber;
+
+            //ServiceHost serviceHost = new ServiceHost(typeof(KanjiService), address);
+
+            ServiceHost serviceHost = new ServiceHost((object) knsvc, address);
+
+            //if (serviceHost.SingletonInstance is KanjiService)
+            //    Console.WriteLine("is a kanjiservice");
 
             try
             {

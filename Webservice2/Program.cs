@@ -15,7 +15,9 @@ namespace Kanji.Webservice2
             //show meta data
             bool showmetadata = true;
             showmetadata = false;
-            serv.Run((object)showmetadata);
+            serv.ShowMetaData = showmetadata;
+
+            serv.Run((object)17);
         }
     }
 }
