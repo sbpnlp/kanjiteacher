@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("KanjiService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("LTC")]
+[assembly: AssemblyCompany("Steven B. Poggel")]
 [assembly: AssemblyProduct("KanjiService")]
-[assembly: AssemblyCopyright("Copyright © LTC 2009")]
+[assembly: AssemblyCopyright("Copyright © Steven B. Poggel 2009")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

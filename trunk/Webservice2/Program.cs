@@ -11,8 +11,11 @@ namespace Kanji.Webservice2
         static void Main(string[] args)
         {
             KSvc.Service serv = new KSvc.Service();
-            bool b = true;
-            serv.Run((object)b);
+
+            //show meta data
+            bool showmetadata = true;
+            showmetadata = false;
+            serv.Run((object)showmetadata);
         }
     }
 }
