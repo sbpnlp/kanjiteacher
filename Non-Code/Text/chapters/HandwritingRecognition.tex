@@ -1,4 +1,3 @@
-
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../KanjiHWR"
@@ -6,9 +5,6 @@
 
 \chapter{On-Line Handwriting Recognition}
 \label{chap:onlinehwr}
-  
-\section{General Methods}
-\label{sec:generalmethods}
 
 %\begin{itemize}
 %\item Warum: Um Ueberblick ueber HWR-Techniken zu verschaffen
@@ -17,9 +13,14 @@
 %\item Wie: Wiss. Report. / Zusammenfassung. Vergleich.
 %\end{itemize}
 
-Handwriting recognition has been around for many years. The first research
-papers concerned with pattern recognition on computers were published in
-the late 1950ies, Handwriting recognition as an individual subject in 
+xxx: see plamondon2000 intro.
+xxx: see plamondon2000 2: different disciplines
+xxx: see santosh2009: introduction for related stuff
+
+Handwriting recognition has been around for many years. It is the key technology
+to pen-based computer systems. The first research papers concerned with 
+\emph{pattern recognition} on computers were published in the late 1950ies, 
+\emph{Handwriting recognition} as an individual subject in 
 the early 1960ies. \shortcite{Goldberg1915} describes a machine that can
 recognise alphanumeric characters in a US Patent as early as 1915, 
 however that was before the times of modern computers, 
@@ -38,8 +39,17 @@ writes on and a an application that interprets the strokes of the stylus on
 the surface and converts them into digital text. Usually, the writing 
 surface captures the x-y coordinates of the styus movement. 
 
+\section{General Methods}
+\label{sec:generalmethods}
+xxx: see tappert1990 IV handwriting properties and recognition problems
+xxx: was ist das generelle problem?
+xxx: welche probleme treten dabei auf?
+xxx: related problems: see liujaegernakagawa2004 1.1
+xxx: write something about the problems of different scripts here, too, as in tappert1990 IV: problems.
+
 \section{Hardware requirements}
 \label{sec:hardwarerequirements}
+xxx: see santosh2009 basic tools / techniques / digitizer technology, 
 
 Several different hardware commercial products are available in order to
 capture the x-y coordinates of a stylus or pen. Graphics tablet like the
@@ -60,6 +70,9 @@ it may be possible to transfer those data in real-time, not delayed.
 
 \section{On-Line vs. Off-Line recogniton}
 \label{sec:onlinevsoffline}
+
+xxx: see plamondon2000 1.5. blend systems!
+xxx: see santosh2009: off-line / on-line chapter
 
 \emph{On-line} HWR means that the input is converted in \emph{real-time}, 
 \emph{dynamically}, while the user is writing. This recognition can lag behind
@@ -97,6 +110,36 @@ procedural fashion.
 direction and curve matching.
 \end{itemize}
 
+\subsection{Data capturing}
+\label{sec:datacapturing}
+
+how is the data captured? what format?
+hardware?
+xxx: see plamondon2000 1.4.
+xxx: see santosh2009 sampling
+
+\subsection{Preprocessing}
+\label{sec:preprocessing}
+
+xxx: see santosh2009 pre-processing
+xxx: see tappert1990 preprocessing: segmentation, noise reduction.
+xxx: see santosh2009 noise elimination
+xxx: see santosh2009 normalization
+xxx: see santosh2009 repetition removal
+
+\subsection{Character Recognition}
+\label{sec:characterrecognition}
+
+xxx: see tappert1990 VI shape recognition.
+xxx: see plamondon2000: 3.1.1 different models
+xxx: see all the substroke stuff, santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
+
+\subsection{Postprocessing}
+\label{sec:postprocessing}
+
+xxx: what happens after the recognition process?
+xxx: see tappert1990 again in postprocessing chapter.
+
 \section{HWR of Hanzi and Kanji}
 \begin{itemize}
 \item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
@@ -104,13 +147,10 @@ direction and curve matching.
 \item Nutzen: Leser kann sich ein Bild darueber verschaffen,
   in welchem Kontext sich die Applikation bewegt.
 \item Was: research different approaches, see what the focus on, 
-  what their specialty is and report about them
-\item Wie: Wiss. Report. / Zusammenfassung. Vergleich.
+  what their specialty is and report about them. Take different specialist 
+  papers and compare them.
+\item Wie: Wiss. Report. / Zusammenfassung. Vergleich. 
 \end{itemize}
-
-\subparagraph{the only subpara}
-
-and what does this look like?
 
 \subsection{The current State-of-the-Art in Japanese and Chinese Character Recognition}
 From the 1990s onwards, On-Line Japanese and Chinese Character Recognition 
@@ -118,10 +158,41 @@ From the 1990s onwards, On-Line Japanese and Chinese Character Recognition
 the writer when using an OJCCR system. Their focus shifted from recognition 
 of block style script ('regular' script) to fluent style script, 
 which is also called 'cursive' style. Accuracies of up to about 95\% are
-achieved in the different systems. \cite{LiuJaegerNakagawa2004} have said: 
-bla.  says the opposite. \cite{ChenLee1996} oder auch 
-\cite{Nakagawa2008} und \cite{Nakai2003} zu guter letzt: \cite{Santosh2009}
+achieved in the different systems.
+
+
+xxx: bla.  says the opposite. \cite{ChenLee1996} oder auch 
+xxx: \cite{Nakagawa2008} und \cite{Nakai2003} 
+xxx: zu guter letzt: \cite{Santosh2009}
 
 \subsection{Overview of a typical OJCCR system}
+
+xxx:  \cite{LiuJaegerNakagawa2004} have said: 
+
+xxx:  graphic:
+handwritten -> character segmentation -> ... -> character codes
+see fig. 3 of liujaegernakagawa2004
+
+Broadly speaking, from an abstract viewpoint, typical handwriting recognition 
+systems for Chinese and Japanese characters have the same structure like the
+systems for latin-based alphbets. The process begins with \emph{Character 
+segmentation}, goes on with \emph{Preprocessing}, \emph{Pattern descrpition}, 
+\emph{Pattern recognition} and ends with \emph{Contextual processing}, 
+if applicable. However, there are differences to the standard process, due to 
+the nature of the Chinese characters (see \ref{sec:generalmethods}).
+Especially the pattern representation is divers in the different OJCCR systems,
+whereas it is naturally more alike in the systems focussing on latin characters.
+This is due to the fact that the latin alphabet is rather small, but has more
+variation concerning writing style, whereas the Chinese alphabet has a larger 
+inventory of characters, but less variation in how to write a character - at
+least - it is widely agreed upon a 'proper' stroke sequence for a character,
+even across country borders.
+
+xxx: liujaeger2004: 4.1. structural representation. statistical representation.
+
+xxx: liujaeger2004: character classification
+xxx: liujaeger2004: very short: contextual processing.
+
+
 
 
