@@ -45,10 +45,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DummyObserver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DesktopApp.Interfaces\DesktopApp.Interfaces.csproj">
+      <Project>{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}</Project>
+      <Name>DesktopApp.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KanjiService\KanjiService.csproj">
       <Project>{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}</Project>
       <Name>KanjiService</Name>

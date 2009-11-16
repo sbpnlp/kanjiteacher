@@ -16,10 +16,8 @@ namespace Kanji.KanjiService
         public bool ShowMetaData { get { return showmdata; } set { showmdata = value; } }
         private bool showmdata = false;
 
-        public void Run(object iObserver)
+        public void Run(IObserver observer)
         {
-            IObserver observer = (IObserver)iObserver;
-
             string hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString();
             //Console.WriteLine(Dns.GetHostName());
             //Console.WriteLine(Dns.GetHostEntry(Dns.GetHostName()).ToString());
@@ -52,7 +50,7 @@ namespace Kanji.KanjiService
             }
 
             KanjiService knsvc = new KanjiService();
-            knsvc.Observer = observer;
+            knsvc.RegisterObserver(observer);
 
             //ServiceHost serviceHost = new ServiceHost(typeof(KanjiService), address);
 
