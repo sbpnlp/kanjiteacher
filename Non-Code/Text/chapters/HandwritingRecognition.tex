@@ -13,19 +13,56 @@
 %\item Wie: Wiss. Report. / Zusammenfassung. Vergleich.
 %\end{itemize}
 
-xxx: see plamondon2000 intro.
+\section{Introduction}
+\label{sec:onlinehwrintroduction}
+
 xxx: see plamondon2000 2: different disciplines
 xxx: see santosh2009: introduction for related stuff
 
-Handwriting recognition has been around for many years. It is the key technology
-to pen-based computer systems. The first research papers concerned with 
+\subsection{The Art of Handwriting}
+\label{sec:theartofhandwriting}
+
+Handwriting is a very personal skill to individuals. It consists of graphical
+marks on a surface, it can be used to identify a person, it has the main
+purpose of communication. This is achivied by drawing letters or other 
+\emph{graphemes}, which in turn represent parts of a language.
+The characters have a certain basic shape, which must be recognisable
+for a human in order for the communication process to function.
+There are rules for the combination of letters, which have the ability - if
+known to the reader - to help recognise a character or word.
+
+Handwriting was developed as a means of communication and to expand one's own
+memory. With the advent of each new technologies the question arose, 
+if handwriting was going to survive. However, the opposite seems to be the 
+truth: For example, the printing press increased the number of documents
+available and therefore increased the number of people who learned to read
+and write. Through the increased rate of alphabetisation, naturally there was
+an increased use of handwriting as a means of communication.
+
+In various situations handwriting seems much more practical than typing on a
+keyboard. For instance children at school are using notepads and pencils or
+ink pens, which are regarded as a better tool to teach writing by German 
+teachers. Therefore it can be concluded that there is little danger of
+the extinction of handwriting as a communication tool. In fact - it seems, as 
+the length of handwritten messages decreases, the number of people using handwritin increases \shortcite{Plamondon2000}.
+
+\subsection{Automated Recognition of Handwriting}
+\label{sec:autorecoofhandwriting}
+
+Handwriting recognition as a technological discipline performed by machines
+has been around for many years. The quality of the systems recognising 
+handwriting has improved over the decades. It is the key technology to 
+pen-based computer systems. 
+The first research papers concerned with 
 \emph{pattern recognition} on computers were published in the late 1950ies, 
 \emph{Handwriting recognition} as an individual subject in 
-the early 1960ies. \shortcite{Goldberg1915} describes a machine that can
-recognise alphanumeric characters in a US Patent as early as 1915, 
-however that was before the times of modern computers, 
-therefore the methods he employs are different from the algorithms used
-after the advent of computers, more concretely, computers with screens.
+the early 1960ies. \shortcite{Goldberg1915} describes in a US Patent
+a machine that can recognise alphanumeric characters as early as 1915. 
+However, despite the surprise how early such a device was invented,
+it should be taken into consideration that that was before the times 
+of modern computers, therefore the methods he employs are quite different 
+from the algorithms used after the advent of computers, more concretely, 
+computers with screens.
 
 \shortcite{Tappert1990} describe in their review the development of 
 handwriting recognition, which was a popular research topic in the early 
@@ -39,8 +76,8 @@ writes on and a an application that interprets the strokes of the stylus on
 the surface and converts them into digital text. Usually, the writing 
 surface captures the x-y coordinates of the styus movement. 
 
-\section{General Methods}
-\label{sec:generalmethods}
+\section{Methods of Handwriting Recognition Systems}
+\label{sec:methodsofhwrsystems}
 xxx: see tappert1990 IV handwriting properties and recognition problems
 xxx: was ist das generelle problem?
 xxx: welche probleme treten dabei auf?
@@ -179,7 +216,7 @@ systems for latin-based alphbets. The process begins with \emph{Character
 segmentation}, goes on with \emph{Preprocessing}, \emph{Pattern descrpition}, 
 \emph{Pattern recognition} and ends with \emph{Contextual processing}, 
 if applicable. However, there are differences to the standard process, due to 
-the nature of the Chinese characters (see \ref{sec:generalmethods}).
+the nature of the Chinese characters (see \ref{sec:methodsofhwrsystems}).
 Especially the pattern representation is divers in the different OJCCR systems,
 whereas it is naturally more alike in the systems focussing on latin characters.
 This is due to the fact that the latin alphabet is rather small, but has more
