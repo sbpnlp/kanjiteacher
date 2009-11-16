@@ -3,6 +3,7 @@ using System.ServiceModel;
 using System.ServiceModel.Description;
 using System.Net;
 using System.Threading;
+using Kanji.DesktopApp.Interfaces;
 
 namespace Kanji.KanjiService
 {
@@ -15,9 +16,9 @@ namespace Kanji.KanjiService
         public bool ShowMetaData { get { return showmdata; } set { showmdata = value; } }
         private bool showmdata = false;
 
-        public void Run(object anumber)
+        public void Run(object iObserver)
         {
-            int thenumber = (int)anumber;
+            IObserver observer = (IObserver)iObserver;
 
             string hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString();
             //Console.WriteLine(Dns.GetHostName());
@@ -51,7 +52,7 @@ namespace Kanji.KanjiService
             }
 
             KanjiService knsvc = new KanjiService();
-            knsvc.ANumber = thenumber;
+            knsvc.Observer = observer;
 
             //ServiceHost serviceHost = new ServiceHost(typeof(KanjiService), address);
 

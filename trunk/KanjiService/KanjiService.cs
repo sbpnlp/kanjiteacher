@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.ServiceModel;
+using Kanji.DesktopApp.Interfaces;
 
 namespace Kanji.KanjiService
 {
@@ -21,14 +22,14 @@ namespace Kanji.KanjiService
 
         private int DesktopMessages { get; set; }
         
-        public int ANumber { get; set; }
+        public IObserver Observer { get; set; }
 
         #region IKanjiService Members
 
         public bool ReceivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
             Console.WriteLine("Received mouse event: x:{0},y:{1} received datetime: {2}", xcoords[0], ycoords[0], times[0].ToShortDateString());
-            Console.WriteLine("And the data coming from outside is {0}", ANumber);
+            Observer.ReveivePoints(xcoords, ycoords, times);
             return true;
         }
 

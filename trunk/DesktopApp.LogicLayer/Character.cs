@@ -59,7 +59,7 @@ namespace Kanji.DesktopApp.LogicLayer
                     c.RadicalList.Add(r);
                 }
 
-                c.AppController.ReceiveCharacterModels(new List<ICharacter>() { c });
+//xxx                 c.AppController.ReceiveCharacterModels(new List<ICharacter>() { c });
             }
             
         }

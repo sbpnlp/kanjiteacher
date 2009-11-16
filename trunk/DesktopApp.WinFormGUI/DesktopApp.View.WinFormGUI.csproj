@@ -76,6 +76,16 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\DesktopApp.Controller\DesktopApp.Controller.csproj">
+      <Project>{5E241DE8-4261-4215-938F-158680AB9343}</Project>
+      <Name>DesktopApp.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesktopApp.Interfaces\DesktopApp.Interfaces.csproj">
+      <Project>{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}</Project>
+      <Name>DesktopApp.Interfaces</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

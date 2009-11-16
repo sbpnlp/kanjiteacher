@@ -12,6 +12,11 @@ using Kanji.DesktopApp.Interfaces;
 
 namespace Kanji.InputArea.WinFormGUI
 {
+
+    next thing to do: consume webserive just like InputArea.MobileGui
+    added KanjiServiceReference - so maybe the file KanjiService.cs generated
+    by svcutil.exe is not needed at all - let's see.
+
     internal class MouseEventListener : IControlled
     {
         #region Fields

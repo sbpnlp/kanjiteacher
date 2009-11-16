@@ -35,6 +35,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -52,6 +53,7 @@
     <Compile Include="IControlled.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IMouseInputEventArgs.cs" />
+    <Compile Include="IObserver.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IRadical.cs" />
     <Compile Include="IRectangle2D.cs" />

@@ -15,9 +15,10 @@ namespace Kanji.DesktopApp.Interfaces
         /// the view should implement the IControlled interface
         /// </summary>
         /// <param name="view">The view.</param>
-        void SetView(IControlled view);
-        void ReceivePointList(object sender, IMouseInputEventArgs e);
-        void ReceiveCharacterModels(List<ICharacter> cModels);
-        void ReceiveCharacterList(List<ICharacter> cList);
+        //void SetView(IControlled view);
+        //void ReceivePointList(object sender, IMouseInputEventArgs e);
+        //void ReceiveCharacterModels(List<ICharacter> cModels);
+        //void ReceiveCharacterList(List<ICharacter> cList);
+        void ReceiveMessage(List<ICharacter> cList);
     }
 }

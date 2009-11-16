@@ -35,6 +35,7 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -49,9 +50,21 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DesktopApp.Interfaces\DesktopApp.Interfaces.csproj">
+      <Project>{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}</Project>
+      <Name>DesktopApp.Interfaces</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DesktopApp.LogicLayer\DesktopApp.LogicLayer.csproj">
       <Project>{B5F2848B-F62B-4783-BFDB-2B1CB786AA40}</Project>
       <Name>DesktopApp.LogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputArea.WinFormGUI\InputArea.View.WinForm.csproj">
+      <Project>{668D8555-A844-46FE-A9D9-50305AAFF8F6}</Project>
+      <Name>InputArea.View.WinForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KanjiService\KanjiService.csproj">
+      <Project>{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}</Project>
+      <Name>KanjiService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
