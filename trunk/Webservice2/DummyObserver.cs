@@ -2,15 +2,14 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Drawing;
+using Kanji.DesktopApp.Interfaces;
 
-namespace Kanji.DesktopApp.Interfaces
+namespace Kanji.Webservice2
 {
-    /// <summary>
-    /// Interface for the Observer in an Observer design scheme.
-    /// </summary>
-    public interface IObserver
+    class DummyObserver : IObserver
     {
+        #region IObserver Members
+
         /// <summary>
         /// Reveives the points from the observed class.
         /// Whenever the observed class calls the observers ReceivePoints method,
@@ -19,6 +18,12 @@ namespace Kanji.DesktopApp.Interfaces
         /// <param name="xcoords">The xcoords.</param>
         /// <param name="ycoords">The ycoords.</param>
         /// <param name="times">The times.</param>
-        void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times);
+        public void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
+        {
+            Console.WriteLine("This is the Dummy Observer");
+            Console.WriteLine(string.Format("Received a list of points at {0}", times[0].ToLongTimeString()));
+        }
+
+        #endregion
     }
 }

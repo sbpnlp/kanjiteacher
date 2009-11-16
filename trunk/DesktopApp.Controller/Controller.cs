@@ -41,7 +41,7 @@ namespace Kanji.DesktopApp.Controller
             //showmetadata = false;
             serv.ShowMetaData = showmetadata;
 
-            serv.Run((object)this);
+            serv.Run(this);
         }
 
         #region IObserver Members

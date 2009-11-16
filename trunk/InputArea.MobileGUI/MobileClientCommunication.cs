@@ -41,17 +41,17 @@ namespace Kanji.InputArea.MobileGUI
 
         #endregion
 
-        /// <summary>
-        /// Sends the message for the desktop app to the web service.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <returns>
-        /// True if the transmission of the message to web service was successful, false otherwise.
-        /// </returns>
-        public bool SendMessageToDesktop(KanjiMessage message)
-        {
-            return _client.MessageForDesktop((int)message);
-        }
+        ///// <summary>
+        ///// Sends the message for the desktop app to the web service.
+        ///// </summary>
+        ///// <param name="message">The message.</param>
+        ///// <returns>
+        ///// True if the transmission of the message to web service was successful, false otherwise.
+        ///// </returns>
+        //public bool SendMessageToDesktop(KanjiMessage message)
+        //{
+        //    return _client.MessageForDesktop((int)message);
+        //}
 
         /// <summary>
         /// Sends the point list to the web service.
@@ -78,10 +78,10 @@ namespace Kanji.InputArea.MobileGUI
                     ys.Add(mea.Y);
                 }
 
-                MessageForDesktopWrapper((object)KanjiMessage.FinishedStroke);
-                //why doesn't this method want to be called in a thread?
-                //Thread myThread = new Thread(this.MessageForDesktopWrapper);
-                //myThread.Start((object)KanjiMessage.FinishedStroke);
+                //MessageForDesktopWrapper((object)KanjiMessage.FinishedStroke);
+                ////why doesn't this method want to be called in a thread?
+                ////Thread myThread = new Thread(this.MessageForDesktopWrapper);
+                ////myThread.Start((object)KanjiMessage.FinishedStroke);
 
                 return _client.ReceivePoints(xs.ToArray(), ys.ToArray(), activeTimes.ToArray());
             }
@@ -92,38 +92,39 @@ namespace Kanji.InputArea.MobileGUI
             }
         }
 
-        /// <summary>
-        /// Wraps the web service method for threading.
-        /// </summary>
-        /// <param name="message">The message.</param>
-        /// <returns></returns>
-        public void MessageForDesktopWrapper(object message)
-        {
-            _client.MessageForDesktop((int) message);
-        }
-        /// <summary>
-        /// Handles an incoming message from the server appropriately.
-        /// </summary>
-        /// <param name="kanjiMessage">The kanji message.</param>
-        private void HandleMessage(KanjiMessage kanjiMessage)
-        {
-            switch (kanjiMessage)
-            {
-                case KanjiMessage.Nothing:
-                    //System.Windows.Forms.MessageBox.Show(KanjiMessage.Nothing.ToString());
+        ///// <summary>
+        ///// Wraps the web service method for threading.
+        ///// </summary>
+        ///// <param name="message">The message.</param>
+        ///// <returns></returns>
+        //public void MessageForDesktopWrapper(object message)
+        //{
+        //    _client.MessageForDesktop((int) message);
+        //}
+
+        ///// <summary>
+        ///// Handles an incoming message from the server appropriately.
+        ///// </summary>
+        ///// <param name="kanjiMessage">The kanji message.</param>
+        //private void HandleMessage(KanjiMessage kanjiMessage)
+        //{
+        //    switch (kanjiMessage)
+        //    {
+        //        case KanjiMessage.Nothing:
+        //            //System.Windows.Forms.MessageBox.Show(KanjiMessage.Nothing.ToString());
                     
-                    break;
-                case KanjiMessage.InputCharacter:
-                    //System.Windows.Forms.MessageBox.Show(KanjiMessage.InputCharacter.ToString());
-                    break;
-                case KanjiMessage.FinishedStroke:
-                    //System.Windows.Forms.MessageBox.Show(KanjiMessage.FinishedStroke.ToString());
-                    break;
-                case KanjiMessage.ClearData:
-                    //System.Windows.Forms.MessageBox.Show(KanjiMessage.ClearData.ToString());
-                    break;
-            }
-        }
+        //            break;
+        //        case KanjiMessage.InputCharacter:
+        //            //System.Windows.Forms.MessageBox.Show(KanjiMessage.InputCharacter.ToString());
+        //            break;
+        //        case KanjiMessage.FinishedStroke:
+        //            //System.Windows.Forms.MessageBox.Show(KanjiMessage.FinishedStroke.ToString());
+        //            break;
+        //        case KanjiMessage.ClearData:
+        //            //System.Windows.Forms.MessageBox.Show(KanjiMessage.ClearData.ToString());
+        //            break;
+        //    }
+        //}
 
         /// <summary>
         /// Creates the client. Establishes a binding to the web service 

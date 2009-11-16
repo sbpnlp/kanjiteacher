@@ -14,10 +14,13 @@ namespace Kanji.Webservice2
 
             //show meta data
             bool showmetadata = true;
-            showmetadata = false;
+
+            //or don't show metadata
+            //showmetadata = false;
+
             serv.ShowMetaData = showmetadata;
 
-            serv.Run((object)17);
+            serv.Run(new DummyObserver());
         }
     }
 }
