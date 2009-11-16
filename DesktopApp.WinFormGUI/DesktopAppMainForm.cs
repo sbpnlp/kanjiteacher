@@ -10,10 +10,11 @@ namespace Kanji.DesktopApp.WinFormGUI
 {
     public partial class DesktopAppMainForm : Form
     {
+        
         public DesktopAppMainForm()
         {
             InitializeComponent();
-
+            DesktopApp.Controller.Controller controller = new Controller.Controller();
         }
     }
 }

@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
+using System.Diagnostics;
+using System.Threading;
 
 namespace Kanji.InputArea.WinFormGUI
 {
-    static class Program
+    public static class Program
     {
         /// <summary>
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
-        static void Main()
+        public static void Main()
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);

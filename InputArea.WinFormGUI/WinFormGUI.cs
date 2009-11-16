@@ -5,7 +5,6 @@ using System.Data;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
-// using System.Drawing.Imaging;
 
 namespace Kanji.InputArea.WinFormGUI
 {

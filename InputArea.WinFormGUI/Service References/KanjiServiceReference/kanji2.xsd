@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xs:schema xmlns:tns="http://www.japanese-coach.com" elementFormDefault="qualified" targetNamespace="http://www.japanese-coach.com" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:8000/kanji?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+  <xs:element name="ReceivePoints">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="xcoords" nillable="true" type="q1:ArrayOfint" />
+        <xs:element xmlns:q2="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="ycoords" nillable="true" type="q2:ArrayOfint" />
+        <xs:element xmlns:q3="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="times" nillable="true" type="q3:ArrayOfdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="ReceivePointsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="ReceivePointsResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPointsX">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPointsXResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetPointsXResult" nillable="true" type="q4:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPointsY">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPointsYResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q5="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetPointsYResult" nillable="true" type="q5:ArrayOfint" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPointsTime">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetPointsTimeResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q6="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetPointsTimeResult" nillable="true" type="q6:ArrayOfdateTime" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MessageForDesktop">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messages" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MessageForDesktopResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageForDesktopResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MessageForInputArea">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="messages" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="MessageForInputAreaResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="MessageForInputAreaResult" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewMessagesForMobile">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewMessagesForMobileResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNewMessagesForMobileResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewMessagesForDesktop">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetNewMessagesForDesktopResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="GetNewMessagesForDesktopResult" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

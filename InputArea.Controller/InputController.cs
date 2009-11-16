@@ -72,5 +72,14 @@ namespace Kanji.InputArea.Controller
         }
 
         #endregion
+
+        #region IController Members
+
+        public void ReceiveMessage(List<ICharacter> cList)
+        {
+            throw new NotImplementedException();
+        }
+
+        #endregion
     }
 }
