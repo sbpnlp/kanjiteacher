@@ -16,8 +16,9 @@
 \section{Introduction}
 \label{sec:onlinehwrintroduction}
 
-xxx: see plamondon2000 2: different disciplines
-xxx: see santosh2009: introduction for related stuff
+%xxx: see plamondon2000 intro
+%xxx: see plamondon2000 2: different disciplines
+%xxx: see santosh2009: introduction for related stuff
 
 \subsection{The Art of Handwriting}
 \label{sec:theartofhandwriting}
@@ -43,38 +44,89 @@ In various situations handwriting seems much more practical than typing on a
 keyboard. For instance children at school are using notepads and pencils or
 ink pens, which are regarded as a better tool to teach writing by German 
 teachers. Therefore it can be concluded that there is little danger of
-the extinction of handwriting as a communication tool. In fact - it seems, as 
-the length of handwritten messages decreases, the number of people using handwritin increases \shortcite{Plamondon2000}.
+the extinction of handwriting as a communication tool. In fact, as 
+the length of handwritten messages decreases, the number of people using 
+handwriting increases \shortcite{Plamondon2000}.
 
 \subsection{Automated Recognition of Handwriting}
 \label{sec:autorecoofhandwriting}
 
-Handwriting recognition as a technological discipline performed by machines
-has been around for many years. The quality of the systems recognising 
-handwriting has improved over the decades. It is the key technology to 
-pen-based computer systems. 
-The first research papers concerned with 
-\emph{pattern recognition} on computers were published in the late 1950ies, 
-\emph{Handwriting recognition} as an individual subject in 
+\subsubsection{Short History of Handwriting recognition}
+\label{sec:shorthistoryofhwr}
+
+\emph{Handwriting recognition} (HWR) as a technological discipline performed 
+by machines has been around for many years. The quality of the systems 
+recognising handwriting has improved over the decades. It is the key 
+technology to pen-based computer systems. The first research papers 
+concerned with \emph{pattern recognition} on computers were published 
+in the late 1950ies, \emph{Handwriting recognition} as an individual subject in 
 the early 1960ies. \shortcite{Goldberg1915} describes in a US Patent
 a machine that can recognise alphanumeric characters as early as 1915. 
 However, despite the surprise how early such a device was invented,
 it should be taken into consideration that that was before the times 
 of modern computers, therefore the methods he employs are quite different 
 from the algorithms used after the advent of computers, more concretely, 
-computers with screens.
+computers with screens. 
 
 \shortcite{Tappert1990} describe in their review the development of 
 handwriting recognition, which was a popular research topic in the early 
 1970ies and then again in the 1980ies, due to the increased availability 
-of pen-input devices. 
-Generally speaking, handwriting recognition (HWR) involves automatic 
-conversion of handwritten text into a machine readable character encoding
-like ASCII or UTF-8. Typical HWR-environments include a pen or stylus that 
-is us ed for the handwriting, a touch-sensitive surface, which the user 
-writes on and a an application that interprets the strokes of the stylus on
-the surface and converts them into digital text. Usually, the writing 
-surface captures the x-y coordinates of the styus movement. 
+of pen-input devices.  Generally speaking, handwriting recognition (HWR) 
+involves automatic conversion of handwritten text into a machine readable 
+character encoding like ASCII or UTF-8. Typical HWR-environments include 
+a pen or stylus that is used for the handwriting, a touch-sensitive surface, 
+which the user writes on and a an application that interprets the strokes 
+of the stylus on the surface and converts them into digital text. 
+Usually, the writing surface captures the x-y coordinates of the stylus 
+movement.
+
+\subsubsection{Recognition vs Identification}
+\label{sec:recognitionvsidentification}
+
+Handwriting recognition is the task of transforming a spatial language 
+representation into a symbolic representation. In the English language
+(and many others) the symbolic representation is typically 8-bit ASCII.
+However, with \emph{Unicode} being around for more than a decade now,
+storage space on harddisks not being as much of an issue any more and
+\emph{RAM} being readily available to the Gigabytes, it has become more 
+common to use a \emph{UTF-8}  encoding, which is a variable-length character 
+encoding for Unicode \shortcite{Unicode2000}.
+Akin disciplines to handwriting recognition are 
+\emph{handwriting identification}, which is the task of identifying the author
+of a handwritten text sample from a set of writers, assuming that each
+handwriting style can be seen as individual to the person who wrote it.
+The task of \emph{signature verification} is to determine if a given signature
+stems from the person who's name is given in the signature.
+Thus, handwriting identification and verification can be used for 
+analysis in the field of jurisdiction. They determine the individual features
+of a handwritten sample of a specific writer and compare those
+to samples given by a different or the same writer. By analysing those 
+features one can find out the authenticity of a piece of handwritten text.
+
+\subsubsection{Interpretation of Handwriting}
+\label{sec:interpretationofhandwriting}
+
+Handwriting recognition and interpretation are trying to filter out the 
+writer-specific variations and extract the text message only. This conversion
+process can be a hard task, even for a human. Humans use context knowledge
+in order to determine the likeliness of a certain message in a certain context.
+For instance, a handwritten message on a shopping list that could be read
+as \emph{bread} or \emph{broad} due to the similarities of the characters 
+for 'e' and 'o' in some cursive handwriting styles, will be interpreted 
+as \emph{bread}, since it is a much more likely interpretation in the 
+shopping list domain. However, if the next word on the shopping list 
+is \emph{beans}, the likelyhood for the interpretation of the first word
+as \emph{broad} rises, because the collocation \emph{broad beans} is a
+sequence that is likely on a shopping list, at least more likely than
+having the interpretation \emph{bread} and then \emph{beans} without a
+clear separation between the two. 
+Even with non-handwritten, but printed characters, the human mind can be 
+tricked because of the brain's ability to perform these interpretations 
+within miliseconds without conscious thinking.
+An example of that are modern T-Shirt inscriptions, that state things like
+\emph{Pozilei} in a white font on a green ground (the German police colours 
+in most federal states), which German native speakers usually read as
+\emph{Polizei} (police).
 
 \section{Methods of Handwriting Recognition Systems}
 \label{sec:methodsofhwrsystems}
