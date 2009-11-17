@@ -20,9 +20,6 @@
 %xxx: see plamondon2000 2: different disciplines
 %xxx: see santosh2009: introduction for related stuff
 
-\subsection{The Art of Handwriting}
-\label{sec:theartofhandwriting}
-
 Handwriting is a very personal skill to individuals. It consists of graphical
 marks on a surface, it can be used to identify a person, it has the main
 purpose of communication. This is achivied by drawing letters or other 
@@ -48,10 +45,20 @@ the extinction of handwriting as a communication tool. In fact, as
 the length of handwritten messages decreases, the number of people using 
 handwriting increases \shortcite{Plamondon2000}.
 
-\subsection{Automated Recognition of Handwriting}
+\section{Handwriting Features}
+\label{sec:handwritingfeatures}
+
+xxx: see tappert1990 IV handwriting properties and recognition problems
+xxx: was ist das generelle problem?
+xxx: welche probleme treten dabei auf?
+xxx: related problems: see liujaegernakagawa2004 1.1
+xxx: write something about the problems of different scripts here, too, as in tappert1990 IV: problems.
+
+
+\section{Automated Recognition of Handwriting}
 \label{sec:autorecoofhandwriting}
 
-\subsubsection{Short History of Handwriting recognition}
+\subsection{Short History of Handwriting recognition}
 \label{sec:shorthistoryofhwr}
 
 \emph{Handwriting recognition} (HWR) as a technological discipline performed 
@@ -80,7 +87,7 @@ of the stylus on the surface and converts them into digital text.
 Usually, the writing surface captures the x-y coordinates of the stylus 
 movement.
 
-\subsubsection{Recognition vs Identification}
+\subsection{Recognition vs Identification}
 \label{sec:recognitionvsidentification}
 
 Handwriting recognition is the task of transforming a spatial language 
@@ -101,9 +108,9 @@ Thus, handwriting identification and verification can be used for
 analysis in the field of jurisdiction. They determine the individual features
 of a handwritten sample of a specific writer and compare those
 to samples given by a different or the same writer. By analysing those 
-features one can find out the authenticity of a piece of handwritten text.
+features one can find out if a piece of handwritten text is authentic or not.
 
-\subsubsection{Interpretation of Handwriting}
+\subsection{Interpretation of Handwriting}
 \label{sec:interpretationofhandwriting}
 
 Handwriting recognition and interpretation are trying to filter out the 
@@ -119,24 +126,16 @@ is \emph{beans}, the likelyhood for the interpretation of the first word
 as \emph{broad} rises, because the collocation \emph{broad beans} is a
 sequence that is likely on a shopping list, at least more likely than
 having the interpretation \emph{bread} and then \emph{beans} without a
-clear separation between the two. 
-Even with non-handwritten, but printed characters, the human mind can be 
-tricked because of the brain's ability to perform these interpretations 
-within miliseconds without conscious thinking.
-An example of that are modern T-Shirt inscriptions, that state things like
-\emph{Pozilei} in a white font on a green ground (the German police colours 
-in most federal states are green and white), 
-which German native speakers usually read as \emph{Polizei} (police).
+clear separation between the two. Even with non-handwritten, 
+but printed characters, the human mind can be tricked because of the 
+brain's ability to perform these interpretations within miliseconds 
+without conscious thinking. An example of that are modern T-Shirt inscriptions
+that state things like \emph{Pozilei} in a white font on a green ground 
+(the German police colours in most federal states are green and white), 
+which German native speakers usually read as \emph{Polizei} (police),
+because that is the most likely interpretation.
 
-\section{Methods of Handwriting Recognition Systems}
-\label{sec:methodsofhwrsystems}
-xxx: see tappert1990 IV handwriting properties and recognition problems
-xxx: was ist das generelle problem?
-xxx: welche probleme treten dabei auf?
-xxx: related problems: see liujaegernakagawa2004 1.1
-xxx: write something about the problems of different scripts here, too, as in tappert1990 IV: problems.
-
-\section{Hardware requirements}
+\subsection{Hardware requirements}
 \label{sec:hardwarerequirements}
 xxx: see santosh2009 basic tools / techniques / digitizer technology, 
 
@@ -157,7 +156,7 @@ stores the movements of the pen-tip on the paper. The movements are transferred
 to a computer later. It can be expected that with technologies like Bluetooth
 it may be possible to transfer those data in real-time, not delayed.
 
-\section{On-Line vs. Off-Line recogniton}
+\subsection{On-Line vs. Off-Line recogniton}
 \label{sec:onlinevsoffline}
 
 xxx: see plamondon2000 1.5. blend systems!
@@ -186,8 +185,8 @@ information can be an advantage for an on-line system, however, off-line systems
 have used algorithms of line-thinning, such that the data consits of point
 coordinates, similar to the input of online systems \shortcite{Tappert1990}.
 
-\section{Typical On-Line HWR application}
-\label{sec:typicalonlinehwrapplication}
+\section{A Typical On-Line HWR application}
+\label{sec:atypicalonlinehwrapplication}
 
 A typical HWR application has several parts that follow up on each other in a
 procedural fashion. 
@@ -249,6 +248,10 @@ of block style script ('regular' script) to fluent style script,
 which is also called 'cursive' style. Accuracies of up to about 95\% are
 achieved in the different systems.
 
+\cite{Nakagawa2008} report their recent results of online Japanese 
+handwriting recognition and its applications. Their article gives 
+important insights into character modeling, which are employed in 
+this application.
 
 xxx: bla.  says the opposite. \cite{ChenLee1996} oder auch 
 xxx: \cite{Nakagawa2008} und \cite{Nakai2003} 
