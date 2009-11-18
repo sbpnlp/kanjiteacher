@@ -58,6 +58,9 @@ context makes clear which one was intendet by the writer.
 Despite the exception, written communication can only work with that
 fundamental quality \shortcite{Tappert1990}.
 
+\subsection{Handwriting Properties of Latin Script}
+\label{sec:handwritingpropertieslatin}
+
 In the latin script we have 26 letters, each of which has two variants, 
 a capital and a lowercase variant. When writing a character 
 in the latin script, there are four main areas, in which the character 
@@ -79,6 +82,10 @@ the characters of the word are completed.
 
 XXX Graphic with exmaple of expanding cursive letters here.
 
+\subsection{Handwriting Properties of East Asian Scripts}
+\label{sec:handwritingpropertieseastasian}
+
+% xxx: see tappert1990 IV handwriting properties and recognition problems
 Generally, a handwriting is a formed of a number of strokes, that are drawn
 in a time sequence. Opposed to the latin-based alphbets, consider Chinese and
 Japanses script. Chinese has a larger alphabet, up to 50000 characters, 
@@ -97,25 +104,18 @@ mixed and next to each other. They are called \emph{Hiragana} (\cjk{ひらがな
 \emph{Katakana} (\cjk{カタカナ}) and \emph{Kanji} (\cjk{漢字}).
 Hiragana and Katakana are syllabic alphbets, each containing 46 characters
 (see~\ref{sec:kana}), whereas Kanji are essentially the Chinese \emph{Hànzì} 
-characters (\cjk{汉字}) as they were imported into the Japanese language (see~\ref{sec:ahorthistoryofjapanesewritingsystem}).
+characters (\cjk{汉字}) as they were imported into the Japanese language 
+(see~\ref{sec:ahorthistoryofjapanesewritingsystem}).
 
-They can even be blended within one word. Take for instance the verb 
-\emph{taberu} (\cjk{食べる} - \emph{to eat}). The first character is a kanji 
-character, pronounced \emph{/ta/}, which also bears the meaning of the
-word, the second and third characters are the hiragana characters 
-\emph{be} and \emph{ru} which are there mainly for konjugation and 
-phonetic reasons. However, without them, the character \cjk{食} still bears
-the meaning of the concept \emph{eat}, but the character alone doesn't depict 
-the verb.
-
-
-% xxx: see tappert1990 IV handwriting properties and recognition problems
-xxx: was ist das generelle problem?
-xxx: welche probleme treten dabei auf?
-xxx: related problems: see liujaegernakagawa2004 1.1
-xxx: write something about the problems of different scripts here, 
-xxx: too, as in tappert1990 IV: problems.
-
+The different scripts can even be blended with each other within one word. 
+Take for instance the verb \emph{taberu} (\cjk{食べる} - \emph{to eat}). 
+The first character is a kanji character, 
+pronounced \emph{/ta/}, which also bears the meaning of the word, 
+the second and third characters are the hiragana characters 
+\emph{be} and \emph{ru} which are there for konjugation and phonetic reasons. 
+However, without them, the character \cjk{食} still bears the meaning of 
+the concept \emph{eat}, but the character alone does not result in 
+the verb \emph{taberu}.
 
 \section{Automated Recognition of Handwriting}
 \label{sec:autorecoofhandwriting}
@@ -131,7 +131,7 @@ concerned with \emph{pattern recognition} on computers were published
 in the late 1950ies, \emph{Handwriting recognition} as an individual subject in 
 the early 1960ies. \shortcite{Goldberg1915} describes in a US Patent
 a machine that can recognise alphanumeric characters as early as 1915. 
-However, despite the surprise how early such a device was invented,
+However, despite the surprise of how early such a device was invented,
 it should be taken into consideration that that was before the times 
 of modern computers, therefore the methods he employs are quite different 
 from the algorithms used after the advent of computers, more concretely, 
@@ -148,6 +148,50 @@ which the user writes on and a an application that interprets the strokes
 of the stylus on the surface and converts them into digital text. 
 Usually, the writing surface captures the x-y coordinates of the stylus 
 movement.
+
+\subsection{Pattern Recognition Problems}
+\label{sec:patternrecognitionproblems}
+
+%xxx: was ist das generelle problem?
+xxx: welche probleme treten dabei auf?
+xxx: related problems: see liujaegernakagawa2004 1.1
+xxx: write something about the problems of different scripts here, 
+xxx: too, as in tappert1990 IV: problems.
+
+The general problem of \emph{pattern recognition} is to take a non-symbolic 
+representation of some pattern, like mouse or pen coordinates and transform
+it into a symbolic representation like a \emph{rectangle}, or in the case of 
+handwriting recognition, a character. There are several related problems,
+the recognition of equations, line drawnings and gestures symbols.
+The recognition of language symbols includes the different large alphabets of
+Chinese, the different scripts of Japanese, alphabetic scripts like Greek, 
+or Arabic and other non-alphabetic scripts like the Korean  Hangul,
+but also various writing styles of the latin-based alphabets,
+and diacritics that are used to denote pronunciation variants in different
+languages using latin script, like Turkish or Vietnamese.
+
+XXX remake fig 2. in tappert1990 which he had stolen from
+
+\subsection{Hardware requirements}
+\label{sec:hardwarerequirements}
+xxx: see santosh2009 basic tools / techniques / digitizer technology, 
+
+Several different hardware commercial products are available in order to
+capture the x-y coordinates of a stylus or pen. Graphics tablet like the
+products of the Wacom Co., Ltd.\footnote{www.wacom.com} are popular input
+devices for hand motions and hand gestures. The use of pen-like input devices 
+has also been recommended, since 42\% of mouse users report feelings of 
+weakness, stiffness and general discomfort in the wrist and hand when 
+using the mouse for long periods \shortcite{Woods2002}. Moreover there are
+PDAs and Tablet PCs, where the writing suface serves as an output device,
+i.e. an display at the same time. New generation mobile phones also contain
+touch-displays, but for those it is more common to be operated without a 
+stylus. Those devices interpret user gestures, however the input is given 
+directly with the users fingers. Another rather new development are real-ink 
+digital pens. With those, a user can write on paper with real ink, and the pen
+stores the movements of the pen-tip on the paper. The movements are transferred 
+to a computer later. It can be expected that with technologies like Bluetooth
+it may be possible to transfer those data in real-time, not delayed.
 
 \subsection{Recognition vs Identification}
 \label{sec:recognitionvsidentification}
@@ -196,27 +240,6 @@ that state things like \emph{Pozilei} in a white font on a green ground
 (the German police colours in most federal states are green and white), 
 which German native speakers usually read as \emph{Polizei} (police),
 because that is the most likely interpretation.
-
-\subsection{Hardware requirements}
-\label{sec:hardwarerequirements}
-xxx: see santosh2009 basic tools / techniques / digitizer technology, 
-
-Several different hardware commercial products are available in order to
-capture the x-y coordinates of a stylus or pen. Graphics tablet like the
-products of the Wacom Co., Ltd.\footnote{www.wacom.com} are popular input
-devices for hand motions and hand gestures. The use of pen-like input devices 
-has also been recommended, since 42\% of mouse users report feelings of 
-weakness, stiffness and general discomfort in the wrist and hand when 
-using the mouse for long periods \shortcite{Woods2002}. Moreover there are
-PDAs and Tablet PCs, where the writing suface serves as an output device,
-i.e. an display at the same time. New generation mobile phones also contain
-touch-displays, but for those it is more common to be operated without a 
-stylus. Those devices interpret user gestures, however the input is given 
-directly with the users fingers. Another rather new development are real-ink 
-digital pens. With those, a user can write on paper with real ink, and the pen
-stores the movements of the pen-tip on the paper. The movements are transferred 
-to a computer later. It can be expected that with technologies like Bluetooth
-it may be possible to transfer those data in real-time, not delayed.
 
 \subsection{On-Line vs. Off-Line recogniton}
 \label{sec:onlinevsoffline}
