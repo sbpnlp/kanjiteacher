@@ -1,0 +1,914 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"><head>
+
+  
+<title>Teaching and Reference Material on Japanese </title>
+<meta name="keywords" content="kanji, path animation, computer-aided language learning, dictionaries">
+<meta name="author" content="Julien Quint">
+<meta name="author" content="Ulrich Apel">
+<meta name="" content="text/html; charset=UTF-8" http-equiv="Content-Type">
+<meta name="" content="text/css" http-equiv="Content-Style-Type">
+<style type="text/css">
+ul.simple {list-style-type: none}
+ul.bulleted {list-style-type: disc}
+ul.dashed {list-style-type: square}
+ol.arabic {list-style-type: decimal}
+ol.ualpha {list-style-type: upper-alpha}
+ol.uroman {list-style-type: upper-roman}
+ol.lalpha {list-style-type: lower-alpha}
+ol.lroman {list-style-type: lower-roman}
+ol.ftnote {list-style-type: decimal}
+		</style>
+<link href="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/gcapaper.css" type="text/css" rel="stylesheet">
+</head><body>
+<h1 class="title">Teaching and Reference Material on Japanese <i>Kanji</i> in
+			SVG</h1>
+<h2 class="subt">Stroke Order, Animated Drawing of Characters, <i>Kanji</i>
+			Components and their Relationships.</h2>
+<p class="keyword">
+<i class="keywordHeader">Keywords: </i>
+<a title="kanji" id="K1.kanji">kanji, </a><a title="path animation" id="K2.path.animation">path animation, </a><a title="computer-aided language learning" id="K3.computer-aided.language.learning">computer-aided language learning, </a><a title="dictionaries" id="K4.dictionaries">dictionaries</a></p>
+<p class="author">
+<span class="authorName"><a title="dictionaries" id="K4.dictionaries">Julien Quint</a></span>
+<a title="dictionaries" id="K4.dictionaries">        <br>National Institute of Informatics
+        <br>Tokyo
+        <br>Japan
+        <br>
+</a><a href="mailto:quint@nii.ac.jp" class="email">quint@nii.ac.jp</a>
+      </p>
+<p class="bioHeader">
+<i>Biography</i>
+</p>
+<blockquote class="bio">
+				<p>
+<a id="quint">Dr. Julien Quint is currently a visiting researcher at the
+					National Institute of Informatics in Tokyo, Japan, under a postdoc
+					fellowship from the Japanese Society for the Promotion of Science.
+					He completed his PhD in Computational Linguistics at the Université
+					Joseph Fourier in Grenoble, France in 2002, where he worked on a
+					language-independent formalism for text segmentation based on
+					weighted finite-state techniques. He is currently interested in
+					applications of this formalism to the Japanese language.</a></p>
+<a id="quint">      </a></blockquote>
+<p class="author">
+<span class="authorName"><a id="quint">Ulrich Apel</a></span>
+<a id="quint">        <br>National Institute of Informatics
+        <br>Tokyo
+        <br>Japan
+        <br>
+</a><a href="mailto:ulrich.apel@nii.ac.jp" class="email">ulrich.apel@nii.ac.jp</a>
+      </p>
+<p class="bioHeader">
+<i>Biography</i>
+</p>
+<blockquote class="bio">
+				<p>
+<a id="apel">Dr Ulrich Apel is currently a visiting researcher ath the
+					National Institute of Informatics in Tokyo, Japan, under a postdoc
+					fellowship from the Japanese Society for the Promotion of Science.
+					He studied in Munich, Germany, and Osaka before completing his PhD
+					in Japanology at Munich University in 2002. Since 1998, he is working
+					on a Japanese-German dictionary database; it contains about
+					215,000 records and 90,000 headwords (see </a><a href="http://bunmei7.hus.osaka-u.ac.jp:591/WaDokuJT/">http://bunmei7.hus.osaka-u.ac.jp:591/WaDokuJT/</a>).
+					For a comprehensive description of the Japanese language, better data
+					on Sino-Japanese characters (<i>kanji</i>) is needed, on which he is
+					working now with the help of SVG.</p>
+			</blockquote>
+<hr class="upperBorder">
+<h2 class="abstractHeader">Abstract</h2>
+<hr class="lowerBorder">
+<div class="abstract">
+			<p>Learning to read and to write Japanese is a difficult venture for
+				Japanese and foreigners alike. While Japanese study these culture
+				techniques in a period of many years at school, foreigners who mostly
+				try to learn them beside job or other classes would rely on good
+				teaching material and easy means to look up Japanese characters. Most
+				<i>kanji</i> dictionaries assume that their users already have a lot of
+				information on the character--its stroke count, its radical or
+				pronunciation. This project tries to put together data for easier look
+				up of Japanese characters and better teaching material. We use SVG
+				for a structured description of <i>kanji</i> and their graphical
+				characteristics; then describe applications of such a
+				description.</p>
+    </div>
+  <hr class="upperBorder">
+<h2 class="tocHeader">Table of Contents</h2>
+<hr class="lowerBorder">
+<p class="toc">
+<b>
+<a href="#S1.">1. Introduction</a>
+</b>
+<br>
+<b>
+<a href="#S2.">2. An Introduction to Kanji</a>
+</b>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S2.1">2.1 Kanji as the Main Obstacle for Learning Japanese</a>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S2.2">2.2 History of Kanji and their Main Building
+					Principles</a>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S2.3">2.3 Problem Description</a>
+<br>
+<b>
+<a href="#S3.">3. Representing Kanji in XML and SVG</a>
+</b>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S3.1">3.1 Kanji Strokes, Stroke Groups and the Kanji
+					Project</a>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S3.2">3.2 Possible Applications</a>
+<br>
+<b>
+<a href="#S4.">4. Three Example Applications</a>
+</b>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S4.1">4.1 Searching for Kanji by Strokes</a>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S4.2">4.2 Automatic Animation of Kanji Strokes</a>
+<br>
+		&nbsp;&nbsp;&nbsp;&nbsp;
+	
+<a href="#S4.3">4.3 Highlighting of Kanji Components</a>
+<br>
+<b>
+<a href="#S5.">5. Prospects of the Project and Future Work: Animation Details and
+				Variations in Stroke Weight</a>
+</b>
+<br>
+<b>
+<a href="#S6.">6. Conclusion</a>
+</b>
+<br>
+<b>
+<a href="#S.Bibliography">Bibliography</a>
+</b>
+<br>
+</p>
+
+		<h2>
+<a id="S1.">1. Introduction</a>
+</h2>
+<p>The complex writing system of the Japanese language, notably its
+				reliance on a very large set of characters borrowed from China (the
+				so-called "Chinese characters", or <i>kanji</i>, 漢字, in Japanese),
+				makes the life of the language learner very difficult, and can even
+				sometimes cause difficulty to native speakers. The many shortcomings
+				of currently available teaching material make the situation even
+				worse.</p>
+<p>
+<i>Kanji</i> are complex graphical entities consisting of possibly
+				dozens of strokes. In order to write such characters legibly, it is
+				necessary to draw the strokes in the correct direction (as this affects
+				the shape of the stroke) and the correct order (as this affects the
+				overall shape of the character). Conversely, to be able to look up an
+				unknown <i>kanji</i> in a dictionary, it is necessary to be able to
+				recognize the exact number and shapes of the strokes.</p>
+<p>Shortcomings of paper resources for learning and reference material
+				on <i>kanji</i> can be addressed by more flexible electronic tools.
+				However, if electronic resources are now widely available (in the form
+				of electronic dictionaries for computers, mobile phones, PDAs, or as
+				handheld standalone device; or services on the Web for glossing,
+				transliteration or low-quality automatic translation), they do
+				not take into account the very graphical nature of <i>kanji</i> and
+				treat them as atomic elements, much like letters of the roman
+				alphabet.</p>
+<p>Describing the structure of <i>kanji</i> in more details leads to
+				applications that would be difficult to create using the sort of
+				resources described above; these applications would include tools to
+				learn how to write <i>kanji</i> or how to look them up in a
+				dictionary.</p>
+<p>An obvious format for such a description is XML; and as we are
+				dealing with graphical entities, SVG is perfectly suited for the
+				visual part of the description (as a companion to a more abstract
+				description of the character). A <i>kanji</i> is composed of strokes
+				organized into components and sub-components; this maps perfectly
+				with SVG elements such as paths (for strokes) and groups (for
+				components). Moreover, SVG is not limited to static content; and
+				animating the strokes of a character is a very clear way to show how
+				to write it.</p>
+<p>We show how the structure and shape of <i>kanji</i> can be
+				described in SVG, and what sorts of application this description
+				permits. Of particular interest is the automatic animation of strokes
+				for learning how to write a character correctly.</p>
+
+		<h2>
+<a id="kanjintro">
+</a><a id="S2.">2. An Introduction to <i>Kanji</i>
+</a>
+</h2>
+<h3>
+<a id="S2.1">2.1 <i>Kanji</i> as the Main Obstacle for Learning Japanese</a>
+</h3>
+<p>The modern Japanese writing system is considered as one of the
+				most complex in the world. To describe it Japanese often call it
+				<i>kanji kanamajiri bun</i> (漢字仮名交じり文).</p>
+<p>This means that Japanese normally uses the originally Chinese
+				characters—<i>kanji</i>—and <i>kana</i> (<i>hiragana</i>
+				and <i>katakana</i>), which are cursive or shortened versions of
+				former <i>kanji</i> and which now represent only the sounds of
+				syllables. <i>Hiragana</i> are used for example for grammatical
+				particles and function words; <i>katakana</i> are used mainly for
+				non-Chinese loan words and names. Each set of <i>kana</i> consists of
+				48 different characters, which can be combined with diacritical
+				marks.</p>
+<p>It is possible to write Japanese totally in <i>kana</i>, but
+				because of the large number of homophones in Japanese, this would lead
+				to misunderstandings. During a lecture, Japanese professors write
+				<i>kanji</i> on the black board to clarify what they are talking about,
+				and Japanese television makes extensive use of subtitles. Nowadays,
+				latin characters and roman and arabic numerals are used along with
+				<i>kanji</i> and <i>kana</i>.</p>
+<p>In Japanese schools, about 1,000 <i>kanji</i> are taught with their
+				correct stroke order at primary school (these are the <i>kyôiku
+					kanji</i>, 教育漢字). When pupils leave compulsory school, they
+				should know about 2,000 of them (the <i>jôyô kanji</i>, 常用漢字). It is
+				said that educated Japanese people know about 3,000 <i>kanji</i>.</p>
+<p>The introduction of electronic writing systems has had two
+				contradictory effects on the usage of <i>kanji</i>. The ability to
+				write <i>kanji</i> by hand has worsened, because now handwriting is
+				only one way to write. On the other hand, it has become very easy to
+				write even very difficult and exotic <i>kanji</i> provided that one
+				can key in their pronunciation. Today, it is mostly a passive use of
+				<i>kanji</i> that is needed.</p>
+<p>
+<i>Kanji</i> are difficult even for Japanese people. After a
+				long stay outside of Japan, the <i>kanji</i> ability of Japanese
+				people decreases. If a Japanese is asked to write a difficult
+				<i>kanji</i>, she is not sure about the correct stroke order. This
+				uncertainty then shows in the script.</p>
+<p>For foreigners learning Japanese, it is very difficult to learn,
+				memorize, read and write <i>kanji</i>. The subject is of course
+				difficult, but to make things worse, the teaching material on
+				<i>kanji</i> in western languages has often too little information
+				on how <i>kanji</i> are actually written. This concerns for example
+				stroke direction, possible variations of character forms or of their
+				components.</p>
+<h3>
+<a id="S2.2">2.2 History of <i>Kanji</i> and their Main Building
+					Principles</a>
+</h3>
+<p>There exist <i>kanji</i> dictionaries with tens of thousands of
+					characters, but the number of <i>kanji</i> which were in actual use
+					in Japan didn't exceed 5,000 or 6,000. The <i>kanji</i> set of older
+					computer fonts contains about 6,400 characters. There are additional
+					character sets like JIS X 0122 or JIS X 0213, which contain
+					several more thousands <i>kanji.</i>
+</p>
+<p>Chinese characters were developed in the second millennium
+					before Christ. <i>Kanji</i> were introduced in Japan in the fourth
+					century AD. Together with <i>kanji</i>, many Chinese loan words came
+					to Japan with their original pronunciation adaptated to the Japanese
+					phonetical system. Sometimes, the same <i>kanji</i> was introduced
+					several times in different compounds, from different eras or different
+					regions in China, with different pronunciations. Furthermore, in
+					Japan, <i>kanji</i> are very often used with their meaning only, and
+					the pronunciation of the corresponding Japanese word is assigned to
+					them. That means that the same <i>kanji</i> may be pronounced
+					differently according to its usage.</p>
+<p>
+<i>Kanji</i> are often called <i>ideographs</i>, meaning that
+					the characters refer to an idea rather than to their pronunciation.
+					Actually, for the majority of them, this is not the case. A
+					typology of Chinese characters from the Later Han Dynasty
+					distinguishes six categories of <i>kanji</i> (<i>rikusho</i>,
+					六書). The first four consider the way the <i>kanji</i> are
+					built:
+					</p><ol class="arabic">
+<li>Pictographs (<i>shokei</i>, 象形) are pictures of the
+								thing that they designate (<i>e.g.</i> 日 "sun", 月 "moon",
+								木 "tree", 鳥 "bird", etc.)</li>
+<li>Diagrammatic characters (<i>shiji</i>, 指事) represent
+								their meaning symbolically (<i>e.g.</i> 一 "one", 二 "two",
+								上 "above", 下 "below", etc.)</li>
+<li>Characters with combined meanings (<i>kaii</i>, 会意)
+								combine simple characters to indicate a meaning: for example
+								the combination of 日 and 月 ("sun" and "moon") gives
+								明 "bright".</li>
+<li>Phonetic characters (<i>keisei</i>, 形声) have one
+								element that suggests the general area of meaning and another
+								that indicates the sound; for instance, the character
+								<i>ume</i> 梅 contains the <i>kanji</i> 木 "tree" to indicate
+								the meaning, and the <i>kanji</i> <i>mai</i>, 毎 "every", for
+								the sound. This is the biggest group of <i>kanji</i> and seems
+								to be still productive in China and Taiwan for characters used
+								in proper names.</li>
+</ol><p>
+					The last two categories deal with (5) extensions of the original
+					meanings (<i>tenchu</i>, 転注; for example, the meaning of 悪 "bad"
+					was extended to mean also "hate"); and (6) characters which are used
+					with a borrowed meaning (<i>kasha</i>, 仮借; for example, the
+					character depicting a scorpion 萬 is used for the meaning of
+					10,000).</p>
+<p>There are also a few <i>kanji</i> which were invented in Japan,
+					often called <i>kokuji</i>, 国字, such as <i>tôge</i> 峠 "mountain
+					pass"; <i>sakaki</i>, 榊 "<i>Cleyera Japonica</i>"; <i>tsuji</i>,
+					辻, "crossroad"; and <i>hata</i> or <i>hatake</i>, 畑, "plowed
+					field". Such characters normally have no Sino-Japanese
+					reading.</p>
+<p>Developments following WWII lead to a separation of <i>kanji</i>
+					forms in Japan, China, Taiwan and Korea. Japan and mainland China
+					invented simplified forms of <i>kanji</i> (often different forms for
+					different <i>kanji</i>), whereas Taiwan and Korea still use the
+					traditional <i>kanji</i> forms (in Korea, the use of <i>kanji</i> is
+					nowadays quite limited). For example, in Japan and China,
+					<i>gaku</i> or <i>manabu</i>, 學, became 学; <i>ten</i>, 點, became
+					点. In Japan, <i>ben</i> is now written 弁 instead of 瓣 or
+					辯.</p>
+<p>In Japan, the Ministry of Education (<i>Monbushô</i>) selected a
+					number of around 2,000 <i>kanji</i> for official and general public
+					use. In 1958, it published instructions for the stroke order and
+					<i>kanji</i> forms that should be taught at school for about 900
+					<i>kanji</i>. Traditionally, there used to be a certain freedom in
+					stroke order and <i>kanji</i> forms, but the Ministry of Education
+					selected one "official" form. Although the <i>Monbushô</i> tried to
+					generalize and use rules for stroke order, they still seem quite
+					arbitrary. Calligraphers also stress that the proposals of the
+					<i>Monbushô</i> don't use the more common character forms or stroke
+					orders <a class="bibref" href="#Emori2003">
+<b>[Emori, 2003]</b>
+</a> .</p>
+<h3>
+<a id="S2.3">2.3 Problem Description</a>
+</h3>
+<p>Although nowadays <i>kanji</i> are very often written on a
+					computer, a typewriter (<i>wapuro</i>) or a mobile phone, it is still
+					important to be able to write them by hand. In Japan, for example,
+					letters written by hand are considered more personal than printed
+					ones, and people with a nice handwriting are considered smart and
+					well educated. For learners of Japanese, writing <i>kanji</i> by hand
+					is still one of the best ways to memorize them.</p>
+<p>To recognize Japanese written by hand, or inscriptions and
+					computer fonts which use characters that were written by hand as
+					models, it is important to be able to recognize the original strokes,
+					because in handwriting strokes are often joined up and hard to
+					recognize as individual strokes. In small fonts sizes and on the
+					computer screen, strokes are often hard to distinguish. As
+					<i>kanji</i> lexica use the stroke count as one criterion to index
+					their contents, it becomes more difficult to find a certain
+					<i>kanji</i> if one isn't able to count its strokes.</p>
+<p>Most lexica give no information on the stroke order, and if they
+					do, only for a small number of characters. Some dictionaries with
+					stroke order don't use the <i>kanji</i> forms and stroke order
+					considered as the standard by the <i>Monbushô</i>. Normal
+					<i>kanji</i> lexica have little information on variations of the
+					components of the <i>kanji</i>. Ordinary paper lexica are of
+					little help if one only recognizes parts of a <i>kanji</i>. One has
+					to recognize the whole <i>kanji</i> to be able to look it up. These
+					might be further reasons for the bad handwriting of many western
+					learners of Japanese, and their overall difficulty of learning and
+					using <i>kanji</i>.</p>
+
+		<h2>
+<a id="S3.">3. Representing <i>Kanji</i> in XML and SVG</a>
+</h2>
+<h3>
+<a id="S3.1">3.1 <i>Kanji</i> Strokes, Stroke Groups and the <i>Kanji</i>
+					Project</a>
+</h3>
+<p>The project tries to put together data that will lead to better
+					teaching material, and easier (and, if needed, more complex) ways to
+					look up <i>kanji</i>. Furthermore, it will allow a number of new ways
+					to display informations on <i>kanji</i>. This is achieved by
+					considering <i>kanji</i> as hierarchical, graphical entities, and
+					representing data in XML and (for the visual part) SVG.</p>
+<p>As a very abstract and basic way to analyze characters, one could
+					use a graphetic approach which would lead to the recognition of
+					graphemes. Graphemes are defined as the smallest units that allow
+					to distinguish meaning. For example, in the case of <i>kanji</i>,
+					this could be stroke length (as in 土 <i>vs.</i> 士, or
+					末 <i>vs.</i> 未), angle of the stroke (as in 三 <i>vs.</i> 川
+					<i>vs.</i> 彡, and even, if <i>kana</i> are also considered, ミ),
+					stroke direction (as in 干 <i>vs.</i> 千), or the ending of strokes
+					(as in 干 <i>vs.</i> 于). A more concrete analysis, which also takes
+					the act of writing into account, uses the brush or pen strokes as
+					basic units of <i>kanji</i>. This is the one chosen here.</p>
+<p>The stroke form of <i>kanji</i> is predetermined by the tool
+					used in former times, the brush. There are no long strokes from
+					right to left or from the bottom up, which would go against the
+					direction of the hairs of the brush when one writes with the right
+					hand (not only doest it seem to be more difficult to write
+					<i>kanji</i> with the left hand; left-handed persons have even
+					trouble using graphical character recognition for PDAs or
+					tablet computers). An analysis of strokes distinguishes 25 basic
+					forms of strokes. This analysis considers stroke direction, bending
+					of the strokes, endings (blunt or with a short bend) and so
+					on.</p>
+<p>Strokes can be grouped together not only to build a full
+					<i>kanji</i> but also to build smaller units. <i>Kanji</i>
+					dictionaries include radicals, but there are other stroke groups
+					too, which frequently occur in <i>kanji</i>, although, even in
+					Japanese, there does not seem to be any technical term for them. For
+					exemple, a Japanese graphic program for building non-standard
+					<i>kanji</i> (<i>gaiji</i>, 外字) just calls them "parts"
+					(<i>pâtsu</i>, パーツ). We chose the term <i>grapheme
+						elements</i>.</p>
+<p>The analysis of the strokes and of the grapheme elements depend
+					on each other. If one can recognize grapheme elements within a
+					<i>kanji</i>, one can use existing data to get the description of
+					its component strokes. Furthermore, one can look for stroke
+					combinations to find grapheme elements.</p>
+<p>The analysis of the grapheme elements uses mostly existing
+					<i>kanji</i> or given radicals. This might be extended.</p>
+<p>To display the collected information about a <i>kanji</i> and
+					its components, path data is needed. This data is put together with a
+					vector graphics program (namely, Adobe Illustrator). The stroke order
+					is identical with the input of the paths. The database for grapheme
+					elements can be used to look up the components of a <i>kanji</i>,
+					and the basic elements can be added together with copy and paste.
+					The main work is then to put everything at the right place. For
+					later review and to have more flexible data, numbers for the stroke
+					order are put beside the strokes.</p>
+<p>The data for a given <i>kanji</i> can then be exported as SVG.
+					<a class="xref" href="#f6f22static">
+<b>Figure 1</b>
+</a>  shows one of thousands of <i>kanji</i>
+					made available through this project. The source code for the
+					SVG data in <a class="xref" href="#f6f22source">
+<b>Figure 2</b>
+</a> shows clearly the
+					hierarchical organization and the order of the strokes through the
+					use of <tt>g</tt> and <tt>path</tt> elements.</p>
+<div class="figure">
+<a id="f6f22static">
+</a><div class="graphic">
+<object data="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/6f22-static.svg" type="image/svg+xml" height="226.77165354330708" width="226.77165354330708"><a id="f6f22static">6f22-static.svg</a></object><a class="nsmopudfsvfqsdniokib" href="http://www.svgopen.org/2004/papers/svgopen/6f22-static.svg"></a>
+</div>
+<blockquote class="figureTitle">
+<p>
+<a id="f6f22static"><b>Figure 1: A <i>kanji</i> in SVG</b>
+</a></p>
+</blockquote>
+</div>
+<div class="figure">
+<a id="f6f22source">
+</a><table class="codeBlock">
+<tbody><tr>
+<td>
+<pre>&lt;svg width="109" height="109" viewBox="0 0 109 109" style="fill:none;stroke:black;stroke-width:4;stroke-linecap:round;stroke-linejoin:round;"&gt;
+  &lt;title&gt;漢&lt;/title&gt;
+  &lt;g id="01_pos_left"&gt;
+    &lt;g id="01_rad_general"&gt;
+      &lt;g id="01_strgr_さんずい/水V"&gt;
+        &lt;path id="01_1" d="M21.38,19.75c3.31,1.47,8.54,6.05,9.37,8.34"/&gt;
+        &lt;path id="02_1" d="M16.75,45.5c3.79,1.15,9.8,4.72,10.75,6.5"/&gt;
+        &lt;path id="03_6" d="M14.75,88.21c1.5,1.31,3.31,1.36,4.25-0.25c2.75-4.7,5.5-10.45,8-16.45"/&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+  &lt;g id="04_pos_right"&gt;
+    &lt;g id="04_strgr_くさかんむり/艸V"&gt;
+      &lt;path id="04_2" d="M38.07,23.44c0.99,0.4,2.15,0.5,3.14,0.4c10.79-1.09,34.04-4.59,44.49-4.63c1.66-0.01,2.65,0.19,3.48,0.39"/&gt;
+      &lt;path id="05_3" d="M49.35,13.24c1.34,1.1,1.77,1.43,1.92,2.11c1.34,6.33,1.99,11.1,2.38,13.4"/&gt;
+      &lt;path id="06_3" d="M71.38,10c0.32,0.9,0.67,1.55,0.38,2.68c-1.01,4.07-1.26,9.57-2.37,13.91"/&gt;
+    &lt;/g&gt;
+    &lt;g id="07_strgr_口"&gt;
+      &lt;path id="07_3" d="M41.75,33.46c0.42,0.31,0.85,0.57,1.04,0.96C44.25,37.5,46,46,47,51.53"/&gt;
+      &lt;path id="08_11" d="M44.38,35.55c8.62-1.61,31.12-4.38,36.06-4.79c1.8-0.15,2.89,0.88,2.63,1.75c-1.07,3.6-2.32,7.94-3.91,12.92"/&gt;
+      &lt;path id="09_2" d="M47.2,48.83c5.8-0.46,25.8-2.25,33.77-2.95"/&gt;
+    &lt;/g&gt;
+    &lt;g id="10_strgr_夫"&gt;
+      &lt;path id="10_2" d="M45.21,60.14c0.71,0.29,2.03,0.43,2.74,0.29c2.89-0.57,24.08-3.06,30.52-2.96c1.19,0.02,1.91,0.14,2.5,0.28"/&gt;
+      &lt;g id="11_strgr_大"&gt;
+        &lt;path id="11_2" d="M38.84,72.88c0.71,0.29,2.03,0.43,2.74,0.29c2.89-0.56,39.3-4.58,45.74-4.48c1.19,0.02,1.91,0.14,2.5,0.28"/&gt;
+        &lt;path id="12_4" d="M61.85,34.3c0.48,0.95,0.66,1.84,0.66,3.68c0,42.02-6.27,50.77-27.77,58.52"/&gt;
+        &lt;path id="13_5" d="M61,72c9.25,7.5,21.02,17.37,29,21c2.69,1.22,4.94,1.62,6,1.79"/&gt;
+      &lt;/g&gt;
+    &lt;/g&gt;
+  &lt;/g&gt;
+&lt;/svg&gt;</pre>
+</td>
+</tr>
+</tbody></table>
+<blockquote class="figureTitle">
+<p>
+<a id="f6f22source"><b>Figure 2: SVG source code for the <i>kanji</i>
+</b>
+</a></p>
+</blockquote>
+</div>
+<h3>
+<a id="S3.2">3.2 Possible Applications</a>
+</h3>
+<p>The data allows new approaches for searching <i>kanji</i>,
+					such as:
+					</p><ul class="bulleted">
+<li>search for stroke forms;</li>
+<li>input of individual strokes of the <i>kanji</i> on the
+								numpad of the keyboard in a matrix-like fashion;</li>
+<li>search for strokes in the correct stroke
+								order;</li>
+<li>search for grapheme elements;</li>
+<li>search for stroke forms, radicals and grapheme elements
+								according to their position.</li>
+</ul><p>
+					It also allows new ways to display <i>kanji</i>:
+					</p><ul class="bulleted">
+<li>
+<i>kanji</i> can be built up according to their stroke
+								order, which can be used in (paper) dictionaries or teaching
+								material (as shown in <a class="xref" href="#kanjistrokes">
+<b>Figure 3</b>
+</a> );</li>
+<li>practice sheet for writing can be generated automatically
+								(as shown in <a class="xref" href="#practicesheet">
+<b>Figure 4</b>
+</a> );</li>
+<li>animated version of the practice sheet can also be
+								generated automatically (shown later);</li>
+<li>grapheme groups can be highlighted (shown
+								later).</li>
+</ul><p>
+				</p>
+<div class="figure">
+<a id="kanjistrokes">
+</a><div class="graphic">
+<object data="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/kanji-strokes.svg" type="image/svg+xml" height="300" width="400"><a id="kanjistrokes">kanji-strokes.svg</a></object><a class="nsmopudfsvfqsdniokib" href="http://www.svgopen.org/2004/papers/svgopen/kanji-strokes.svg"></a>
+</div>
+<blockquote class="figureTitle">
+<p>
+<a id="kanjistrokes"><b>Figure 3: Building a character by its strokes in order</b>
+</a></p>
+</blockquote>
+</div>
+<div class="figure">
+<a id="practicesheet">
+</a><div class="graphic">
+<object data="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/practice-sheet.svg" type="image/svg+xml" height="300" width="400"><a id="practicesheet">practice-sheet.svg</a></object><a class="nsmopudfsvfqsdniokib" href="http://www.svgopen.org/2004/papers/svgopen/practice-sheet.svg"></a>
+</div>
+<blockquote class="figureTitle">
+<p>
+<a id="practicesheet"><b>Figure 4: An example practice sheet with arrows for stroke direction
+						and numbers for stroke order</b>
+</a></p>
+</blockquote>
+</div>
+<p><a id="practicesheet">The SVG representation can be manipulated easily through style
+					sheets or scripts to provide these modes of display. Altering the
+					data (to show variations of the stroke orders, for instance) is easy
+					to achieve as all the information necessary is already
+					present.</a></p>
+<p><a id="practicesheet">Applications to graphical character recognition or correction of
+					drawing mistakes are two more examples.</a></p>
+
+<a id="practicesheet">		</a><h2>
+<a id="S4.">4. Three Example Applications</a>
+</h2>
+<h3>
+<a id="S4.1">4.1 Searching for <i>Kanji</i> by Strokes</a>
+</h3>
+<p>The easiest way to find a <i>kanji</i> in a dictionary, be it
+					on paper or in electronic form, is to know its pronunciation. In the
+					case of an unknown word, when the pronunciation information is not
+					available, one must usually go through the index in dictionary,
+					which is organized by number of strokes and radicals. For beginners,
+					this is extremely difficult and frustrating as it is hard to guess
+					which part is the radical, and exactly how many strokes there
+					are.</p>
+<p>However, even a beginner (who has learnt to read and write at
+					least a few dozens of <i>kanji</i>) is able to recognize basic
+					strokes and even some components of a <i>kanji</i>, though not
+					necessarily the radical. Using the graphemic data described above,
+					one can search for <i>kanji</i> by inputing the strokes or
+					components that can be recognized with confidence.</p>
+<p>Note that for the search itself, the graphical data is not used;
+					the characters are represented by a list of numbers, each number
+					representing a type of stroke, in the correct order. So for instance
+					the character <i>shizuka</i>, 静, corresponds to the list of strokes
+					2, 3, 2, 2, 4, 17, 2, 2, 4, 15, 11, 2, 2, 8.</p>
+<p>By inputting a series of stroke numbers, the user can get all the
+					<i>kanji</i> that match this description. Moreover, the request can
+					also include <i>kanji</i> which appear as components of more complex
+					characters. For instance, one can search for 静 by including one of
+					its components, 青, in a request.</p>
+<p>Note that the more strokes the user can distinguish (and add to
+					her query), the better the precision will be; however,
+					if a stroke is not correct, the right character may not appear in
+					the result set. Achieving the best precision and recall, as well as
+					the best relevance ordering of results is a classical task of
+					information retrieval.</p>
+<p>The current implementation of this application is still
+					tentative and many improvements are needed. The first one is that
+					we should take into account the actual groups of stroke (so far,
+					only a flat, albeit ordered list is used), which would improve
+					precision dramatically. There are also many ways to input the
+					request, which leads to graphical user-interface design
+					questions.</p>
+<h3>
+<a id="S4.2">4.2 Automatic Animation of <i>Kanji</i> Strokes</a>
+</h3>
+<p>In this application, the <i>kanji</i> are not shown statically
+					but dynamically, by drawing every stroke progressively as if they
+					were actually drawn by someone behind the screen. This is
+					illlustrated by <a class="xref" href="#f6f22anim">
+<b>Figure 5</b>
+</a>  where every stroke is
+					rendered in sequence, with a pause between strokes; the stroke
+					currently drawn is highlighted for clarity. (Reload to restart
+					the animation from the beginning.)</p>
+<div class="figure">
+<a id="f6f22anim">
+</a><div class="graphic">
+<object data="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/6f22-anim.svg" type="image/svg+xml" height="226.77165354330708" width="226.77165354330708"><a id="f6f22anim">6f22-anim.svgz</a></object><a style="left: 694px ! important; top: 6932.83px ! important;" title="Klicken Sie hier, um dieses Objekt mit Adblock Plus zu blockieren" class="nsmopudfsvfqsdniokib qyulwysczrrhwpgsztmp" href="http://www.svgopen.org/2004/papers/svgopen/6f22-anim.svgz"></a>
+</div>
+<blockquote class="figureTitle">
+<p>
+<a id="f6f22anim"><b>Figure 5: Animated strokes</b>
+</a></p>
+</blockquote>
+</div>
+<p><a id="f6f22anim">The original, static, SVG document contains all the data
+					necessary for such an application. The strokes are in the correct
+					order, and the points defining the paths are set so that the
+					stroke is drawn in the correct direction (<i>e.g.</i> the first
+					stroke of </a><a class="xref" href="#f6f22anim">
+<b>Figure 5</b>
+</a>  is drawn correctly from
+					the left to right). Each stroke corresponds to a <tt>path</tt>
+					element, defined by successive Bézier curves.</p>
+<p>Although SVG provides a solid framework for animation, there
+					is no "out-of-the-box" solution for the progressive drawing of a
+					path. Some hacks have been suggested, but it quickly
+					became clear that the animation steps had to be computed
+					beforehand. The method chosen consists of splitting the paths in
+					shorter segments, each segment being a curve of its own. It is then
+					possible to draw every segment in turn, therefore providing animated
+					content. Of course, since there are thousands of <i>kanji</i>, with
+					possibly dozens of complex paths in the dictionary, the cost of
+					splitting the paths manually is prohibitive. Moreover, automatic
+					splitting allows the user to control parameters of the animation,
+					such as the number of steps for every stroke and the overall speed
+					of the animation.</p>
+<p>Remember that for a given character, we have an order list of
+					strokes, with a one-to-one correspondance between strokes and paths.
+					In order to create the animated stroke, the following steps are
+					undertaken:
+					</p><ol class="arabic">
+<li>the <tt>d</tt> attribute of the <tt>path</tt> element is
+								parsed using regular expressions. After parsing, all coordinates
+								are transformed into absolute coordinates; <i>e.g.</i> a
+								<tt>c</tt> curve is transformed into a <tt>C</tt> curve.
+								After this step, the path data consists only of an absolute
+								moveto (<tt>M</tt>) command followed by a series of absolute
+								curveto commands (<tt>C</tt>).</li>
+<li>Every curve is then split in two using the algorithm of
+								de Casteljau. Each half can then be split further in the same
+								way; the number of steps is controlled by a parameter <i>n</i>
+								(therefore, a curve is split into 2<sup>
+<i>n</i>
+</sup>
+								segments). In order example, <i>n</i> is set to 3.</li>
+<li>The <tt>d</tt> attribute of the path is then set to an
+								empty string, and an <tt>animate</tt> child element is added
+								to provide the successive values of <tt>d</tt> over time. Two
+								parameters control the speed of the animation: first, the
+								duration <i>d</i> during which a segment is drawn (defaults to
+								0.15 second), and the pause <i>p</i> between two strokes
+								(defaults to 0.1 second). These two values are used to compute
+								the total time it takes to draw a stroke and when the next
+								segment should be drawn.</li>
+</ol><p>
+					We create for every "static" character an animated counterpart and
+					store it in a compressed SVG file. The path coordinates are truncated
+					to two decimal places in order to save some space. The result files
+					have an average size of about 5 kilobytes, which is very reasonable.
+					<a class="xref" href="#animstep">
+<b>Figure 6</b>
+</a>  shows (part of) a path element in the
+					animated file. In this example, the path being drawn is shown in
+					red (as indicated by the <tt>set</tt> child); it then turns to black
+					when the next step begins.</p>
+<div class="figure">
+<a id="animstep">
+</a><table class="codeBlock">
+<tbody><tr>
+<td>
+<pre>&lt;path d="" id="01_1"&gt;
+  &lt;animate accumulate="sum" attributeName="d" attributeType="XML" begin="0" dur="0.45" fill="freeze" values="M21.38 19.75C21.79 19.93 22.23 20.16 22.69 20.43;M21.38 19.75C21.79 19.93 22.23 20.16 22.69 20.43C23.16 20.7 23.63 21.01 24.12 21.35;..."/&gt;
+  &lt;set attributeName="stroke" attributeType="CSS" begin="0" dur="0.55" fill="remove" to="red"/&gt;
+&lt;/path&gt;</pre>
+</td>
+</tr>
+</tbody></table>
+<blockquote class="figureTitle">
+<p>
+<a id="animstep"><b>Figure 6: An animated path (excerpt)</b>
+</a></p>
+</blockquote>
+</div>
+<p><a id="animstep">The current implementation of the splitting technique is,
+					however, not interactive. The data is processed once on the server
+					side. Therefore, it is not possible for the user to make any changes
+					to settings chosen when the files where generated. In the future,
+					the splitting will be done either on demand, on the server side,
+					or on the client side, using the scripting abilities of SVG.</a></p>
+<h3>
+<a id="S4.3">4.3 Highlighting of <i>Kanji</i> Components</a>
+</h3>
+<p>A simple but powerful idea is to highlight the <i>kanji</i>
+					components with color (or some other sort of visual mean of making
+					a component stand out from the others). In <a class="xref" href="#f6f22staticcolor">
+<b>Figure 7</b>
+</a> , the four main components of the
+					character are highlighted when the mouse is moved over them.</p>
+<div class="figure">
+<a id="f6f22staticcolor">
+</a><div class="graphic">
+<object data="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/6f22-static-color.svg" type="image/svg+xml" height="226.77165354330708" width="226.77165354330708"><a id="f6f22staticcolor">6f22-static-color.svg</a></object><a style="left: 694px ! important; top: 8062.23px ! important;" title="Klicken Sie hier, um dieses Objekt mit Adblock Plus zu blockieren" class="nsmopudfsvfqsdniokib qyulwysczrrhwpgsztmp" href="http://www.svgopen.org/2004/papers/svgopen/6f22-static-color.svg"></a>
+</div>
+<blockquote class="figureTitle">
+<p>
+<a id="f6f22staticcolor"><b>Figure 7: Highlighting different grapheme elements with colors</b>
+</a></p>
+</blockquote>
+</div>
+<p><a id="f6f22staticcolor">This highlighting part can be added automatically to the SVG
+					data by appending a <tt>set</tt> element child to every group that
+					will be highlightable (in this example, the <tt>stroke</tt> attribute
+					is affected). But since most components correspond to an actual
+					<i>kanji</i>, we can go further and make every component clickable,
+					providing a link to the full <i>kanji</i> form. This is especially
+					useful when the component has a different form from its standalone
+					coutnerpart; for instance, in </a><a class="xref" href="#f6f22staticcolor">
+<b>Figure 7</b>
+</a> 
+					the leftmost component, highlighted in red, actually stands for
+					水. Once again, these links can be added automatically.</p>
+
+		<h2>
+<a id="S5.">5. Prospects of the Project and Future Work: Animation Details and
+				Variations in Stroke Weight</a>
+</h2>
+<p>The use of Bézier curves for the description of strokes gives
+				very good result when the paths are animated. As the control points
+				of the curves were carefully chosen, the automatic splitting of the
+				paths into segments leads to a rhythm of animation that feels quite
+				natural. However, there are still some subtleties of writing that
+				are not catched by this technique: some vertical strokes should be
+				drawn slower, whereas the "hook" at the end of a vertical stroke should
+				be drawn faster.</p>
+<p>Another issue is the actual appearance of the strokes. Japanese
+				characters are normally written with a tool like a brush, a pencil,
+				a pen, a ball pen etc. According to the pressure applied to the tool
+				while writing, the stroke weight varies. The correct change of stroke
+				weight is important for a nice handwriting and aesthetic characters:
+				see the two model characters in <a class="xref" href="#strokeweightchange">
+<b>Figure 8</b>
+</a> .
+				Often, the direction of a stroke can only be recognized by the
+				changing stroke weight, when for example at the starting point the
+				stroke is thicker and tapers to a point at the end.</p>
+<p>The path data itself doesn't contain information about stroke
+				weight, but we can use the analysis of the different kinds of strokes
+				from the <i>kanji</i> descriptions. This gives us information about
+				a stroke's shape at its starting point, its course and its end. The
+				problem is to relate this information to the path data.</p>
+<p>We demonstrate two approaches. First, we tried the Art Brush
+				function of Adobe Illustrator. To our knowledge, newer versions of SVG
+				will support a similar function. A graphic element depicting a stroke
+				is stretched over the length of a path. According to the kind of the
+				strokes of a given <i>kanji</i>, we could assign different Art Brushes.
+				This sounds very much like a suitable solution for our problem, because
+				Art Brush can simulate actual brush strokes. In our case however, the
+				control on the Art Brush isn’t sufficient for really correct and 
+				aesthetic characters (see the paths using Illustrator's Art Brush in
+				<a class="xref" href="#strokeweightchange">
+<b>Figure 8</b>
+</a> ). Start and end points are
+				stretched or compressed too much; the change of stroke weight in the
+				course of a stroke, at bends for example, is very difficult. Art
+				Brushes seem also to be very difficult to animate.</p>
+<p>The other approach was it to divide the paths into smaller
+				segments, like for the animation, and assign different stroke weights
+				to these sectors. If the sectors are small enough, the stroke looks as
+				if it had no transitions (see the example with divided vector paths in
+				<a class="xref" href="#strokeweightchange">
+<b>Figure 8</b>
+</a> ). This approach gives full
+				control of the stroke weight and enables us to work out the
+				characteristics of every kind of stroke. For pedagogical purposes,
+				this is an excellent result. As the strokes and the whole character
+				look very well balanced, this approach also satisfies aesthetic
+				demands. This version of the character is also very easy to animate.
+				The result stroke reminds of a stroke by pencil or felt-tip pen, which
+				are the most frequently used writing tools nowadays. The simulation of
+				a real brush stroke, however, seems to be very difficult with this
+				approach too.</p>
+<p>If Art Brushes are introduced in future versions of the SVG
+				recommendation, it would benefit from giving more control to the
+				brushes than does Illustrator (for instance) today.</p>
+<div class="figure">
+<a id="strokeweightchange">
+</a><div class="graphic">
+<object data="svgopen.org_2004_papers_svgopen_Teaching_and_Reference_Material_on_Japanese-Dateien/stroke-weight-change.svg" type="image/svg+xml" height="600" width="600"><a id="strokeweightchange">stroke-weight-change.svg</a></object><a style="left: 881px ! important; top: 9062.1px ! important;" title="Klicken Sie hier, um dieses Objekt mit Adblock Plus zu blockieren" class="nsmopudfsvfqsdniokib qyulwysczrrhwpgsztmp" href="http://www.svgopen.org/2004/papers/svgopen/stroke-weight-change.svg"></a>
+</div>
+<blockquote class="figureTitle">
+<p>
+<a id="strokeweightchange"><b>Figure 8: Changes in stroke weight</b>
+</a></p>
+</blockquote>
+</div>
+
+<a id="strokeweightchange">		</a><h2>
+<a id="S6.">6. Conclusion</a>
+</h2>
+<p>Although neither the analysis of <i>kanji</i> into strokes or
+				grapheme elements, nor animated <i>kanji</i> showing stroke order and
+				direction are totally new, the problem until now was that for every
+				one of these different approaches new sets of data had to be created
+				for every different purposes. The SVG data described here was shown
+				to be adequate for different kinds of applications, three of which
+				have been highlighted. Many more are possible. The data is also
+				extensible, for exemple to the characters of JIS level III and IV, or
+				other character sets such as Chinese character sets, in traditional or
+				simplified form.</p>
+		
+ 
+
+	
+		<h2 class="bibliogHeader">
+<a id="S.Bibliography">Bibliography</a>
+</h2>
+<dl class="bibliog">
+			
+				<dt class="bib">
+<a id="Bussmann1990">
+<b>[Bußmann, 1990]</b>
+
+				</a></dt><dd class="pub"><a id="Bussmann1990">Hadumod Bußmann. <i>Lexikon der Sprachwissenschaft.</i> Kröner,
+					Stuttgart, 1990.
+			
+			
+				</a></dd><dt class="bib">
+<a id="Emori2003">
+<b>[Emori, 2003]</b>
+
+				</a></dt><dd class="pub"><a id="Emori2003">Emori Kenji. <i>Kai gyô sô—hitsujun jitai jiten.</i>
+					Sanseido, Tokyo, 2003.
+			
+			
+				</a></dd><dt class="bib">
+<a id="Fazzioli1987">
+<b>[Fazzioli, 1987]</b>
+
+				</a></dt><dd class="pub"><a id="Fazzioli1987">Gemalte Wörter. <i>214 chinesische Schriftzeichen—Vom Bild
+						zum Begriff.</i> Lübbe, Bergisch Gladbach, 1987.
+			
+			
+				</a></dd><dt class="bib">
+<a id="Frutiger1978">
+<b>[Frutiger, 1978.]</b>
+
+				</a></dt><dd class="pub"><a id="Frutiger1978">Adrian Frutiger. <i>Der Mensch und seine Zeichen: Schriften,
+						Symbole, Signete, Signale.</i> Fourier, Wiesbaden, 1978.
+			
+			
+				</a></dd><dt class="bib">
+<a id="Hadamitzky1995">
+<b>[Hadamitzky, 1995]</b>
+
+				</a></dt><dd class="pub"><a id="Hadamitzky1995">Wolfgang Hadamitzky. <i>Langenscheidts Handbuch der japanischen
+						Schrift—Kanji und Kana 1. Handbuch.</i> Langenscheidt,
+					Berlin <i>et al.</i>, 1995.
+			
+			
+				</a></dd><dt class="bib">
+<a id="Kodansha1998">
+<b>[Kôdansha, 1998]</b>
+
+				</a></dt><dd class="pub">
+<a id="Kodansha1998"><i>Kôdansha Encyclopedia of Japan.</i> Kôdansha, Tokyo,
+					1998.
+			
+			
+				</a></dd><dt class="bib">
+<a id="schmidt1995">
+<b>[Schmidt, 1995]</b>
+
+				</a></dt><dd class="pub"><a id="schmidt1995">Berthold Schmidt. <i>Einfürhung in die Schrift und Aussprache des
+						Japanischen.</i> Buske, Hamburg, 1995.
+			
+		</a></dd></dl>
+<a id="schmidt1995">	
+	
+</a><p class="credits">
+<a id="schmidt1995"><small>XHTML rendition created by
+        </small></a><small><a href="http://www.schemasoft.com/gcatools/">gcapaper Web Publisher v2.0</a>,
+        ©
+        2001-3 <a href="http://www.schemasoft.com/">Schema Software Inc.</a>
+</small>
+</p></body></html>

@@ -1,15 +1,17 @@
-@inproceedings{DBLP:conf/www/QuintA05,
-  author    = {Julien Quint and
-               Ulrich Apel},
-  title     = {Does learning how to read Japanese have to be so difficult:
-               and can the web help?},
-  booktitle = {WWW (Special interest tracks and posters)},
-  year      = {2005},
-  pages     = {1152-1153},
-  ee        = {http://doi.acm.org/10.1145/1062745.1062914},
-  crossref  = {DBLP:conf/www/2005si},
-  bibsource = {DBLP, http://dblp.uni-trier.de}
-}
+@inproceedings{1062914,
+ author = {Quint, Julien and Apel, Ulrich},
+ title = {Does learning how to read Japanese have to be so difficult: and can the web help?},
+ booktitle = {WWW '05: Special interest tracks and posters of the 14th international conference on World Wide Web},
+ year = {2005},
+ isbn = {1-59593-051-5},
+ pages = {1152--1153},
+ location = {Chiba, Japan},
+ doi = {http://doi.acm.org/10.1145/1062745.1062914},
+ ee = {http://doi.acm.org/10.1145/1062745.1062914},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ }
+% here: Quint2005.pdf
 
 @proceedings{DBLP:conf/www/2005si,
   editor    = {Allan Ellis and

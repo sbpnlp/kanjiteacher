@@ -1,0 +1,93 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml"><head>
+
+
+  
+
+  
+    <meta name="" http-equiv="Content-Type" content="text/html; charset=UTF-8"> 
+		<title>Building a Graphetic Kanji Dictionary with SVG</title>
+		<style type="text/css">
+			body { margin: 2em; text-align: justify }
+			h1 { text-align: center }
+			.author { text-align: center; margin-bottom: 2em }
+			.indent { text-indent: 2em }
+		</style>
+  </head><body>
+		<h1>Building a Graphetic Kanji Dictionary with SVG</h1>
+		<p class="author">
+		Julien Quint &lt;<code><a href="mailto:quint@nii.ac.jp">quint@nii.ac.jp</a></code>&gt; and<br>
+		Ulrich Apel &lt;<code><a href="mailto:ulrich_apel@t-online.de">ulrich_apel@t-online.de</a></code>&gt;<br>
+		National Institute of Informatics<br>
+		Hitotsubashi 2-1-2, Chiyoda-ku, Tokyo 101-8430 Japan<br>
+		</p>
+		<p><strong>The Difficulty of Reading and Writing Kanji.</strong>
+		The Japanese writing system is a very complex one, built around a large
+		set of thousands of characters borrowed from China known as <em>kanji</em>
+		(<span xml:lang="ja">漢字</span>.) Since an educated person is expected
+		to know around 3,000 individual characters, learning them is an enormous
+		task for Japanese people and foreigners alike. To make matters worse,
+		it is difficult to find good learning material.</p>
+		<p class="indent">Among the challenges that the <em>kanji</em> pose for
+		the student are the difficulty to look up a word or a character in a
+		dictionary, as one needs to know details about the character such as the
+		number of strokes or prononciation, which are difficult to guess for the
+		beginner. Another big issue is the difficulty to write a <em>kanji</em>
+		as it may involve dozens of strokes, the shape, order and direction of
+		which matter to the legibility of the character.</p>
+		<p><strong>A Graphetic Approach.</strong>
+		Trying to build better teaching material leads to consider the
+		<em>kanji</em> as graphic entities composed of <em>graphemes</em>: the
+		smallest meaning distinguishing unit. Among many possibilities, a sensible
+		one is to consider the brush or pen stroke as the basic unit of a character.
+		Analysis of stroke uses 25 basic forms, considering direction, bending,
+		endings, and so on.</p>
+		<p class="indent">We use two different XML vocabularies to describe a
+		<em>kanji</em>. The first one is an ad-hoc vocabulary for the description
+		of strokes, stroke groups, radicals, etc. <em>Kanji</em> are complex
+		objects which, except for the simplest cases, can be divided into several
+		groups of strokes inherited from other <em>kanji</em>. Some parts are
+		<em>radicals</em> that will determine the meaning and/or pronunciation of
+		the characters: for instance, 梅 (<em>ume</em>) has the radical 木 for
+		<em>tree</em> (left part) determining its meaning and 毎 (<em>mai</em>)
+		for the prononciation. In any case, it is important to (1) classify the
+		different types of strokes and (2) clearly tag the different stroke groups
+		and radicals that allow to effectively decompose a character into smaller
+		constituents which help remembering how to read or write it.</p>
+		<p class="indent">The second vocabulary that we use is SVG. SVG allows
+		us to precisely describe the drawing of the kanji by associating every
+		stroke with a path (and every stroke group with a group of path.) SVG
+		allows many interesting applications, going further than simple display
+		of the characters, such as animation (as described below) or linking of
+		radicals with the actual kanji that they come from (with XLink.)</p>
+		<p class="indent">Note that there are several styles of calligraphy in
+		use in Japan; as in most other languages, handwritten characters may
+		differ a lot from their typeset counterpart. We are mostly interested in
+		the handwritten characters here.</p>
+		<p><strong>Automatic Animation of Path Data.</strong>
+		The SVG data is static; but animating the strokes allows to show
+		effectively the stroke order and the direction of the stroke for the
+		teaching of writing. Since the dictionary consists of thousands of
+		characters, this has to be done automatically from the static data
+		currently available.</p>
+		<p class="indent">Each stroke is represented by a <code>path</code>
+		element which is mostly composed of quadratic Bézier curves (elements
+		<code>C</code>, <code>c</code>, <code>S</code> and <code>s</code>.)
+		Animating the drawing of path goes further than what SVG 1.1 proposes;
+		therefore, we have devised a simple animation scheme consisting of
+		segmenting every curve in every stroke into a certain number of steps,
+		and then drawing the curve in small time increments. This time increment
+		and number of segmentation steps can be modified to tweak the aspect of
+		the final animation. Since we are dealing with Bézier paths, they are
+		simple to segment into a number of parts that is a power of two. Also,
+		the definition of the control points of the curves influences greatly
+		the animation (some parts of a stroke are drawn fast when others are drawn
+		more slowly) and can make it very natural looking. The coupling of the SVG
+		information with the other XML information allows to enforce the correct
+		order and direction of the paths.</p>
+		<p><strong>Conclusion.</strong> As a result, we have collected (and are
+		still collecting) an unprecedented amount of information about the shape
+		and writing of <em>kanji</em>, for educative or reference purposes. SVG
+		is a key technology in the presentation of this data, be it for static
+		display or animation.</p>
+	</body></html>
