@@ -1,3 +1,4 @@
+
 %%% Local Variables: 
 %%% mode: latex
 %%% TeX-master: "../KanjiHWR"
@@ -108,11 +109,11 @@ characters (\cjk{汉字}) as they were imported into the Japanese language
 (see~\ref{sec:ahorthistoryofjapanesewritingsystem}).
 
 The different scripts can even be blended with each other within one word. 
-Take for instance the verb \emph{taberu} (\cjk{食べる} - \emph{to eat}). 
-The first character is a kanji character, 
-pronounced \emph{/ta/}, which also bears the meaning of the word, 
-the second and third characters are the hiragana characters 
-\emph{be} and \emph{ru} which are there for konjugation and phonetic reasons. 
+Take for instance the verb \emph{taberu}  (\cjk{食べる} - \emph{to eat}). 
+The first character is a kanji character, pronounced \emph{/ta/}, 
+also bears the meaning of the word, the second and third characters 
+are the hiragana characters \emph{be} and \emph{ru} which are there for 
+conjugation only as well as for phonetic reasons. 
 However, without them, the character \cjk{食} still bears the meaning of 
 the concept \emph{eat}, but the character alone does not result in 
 the verb \emph{taberu}.
@@ -153,24 +154,70 @@ movement.
 \label{sec:patternrecognitionproblems}
 
 %xxx: was ist das generelle problem?
-xxx: welche probleme treten dabei auf?
+%xxx: welche probleme treten dabei auf?
 xxx: related problems: see liujaegernakagawa2004 1.1
 xxx: write something about the problems of different scripts here, 
 xxx: too, as in tappert1990 IV: problems.
 
 The general problem of \emph{pattern recognition} is to take a non-symbolic 
 representation of some pattern, like mouse or pen coordinates and transform
-it into a symbolic representation like a \emph{rectangle}, or in the case of 
-handwriting recognition, a character. There are several related problems,
-the recognition of equations, line drawnings and gestures symbols.
-The recognition of language symbols includes the different large alphabets of
-Chinese, the different scripts of Japanese, alphabetic scripts like Greek, 
-or Arabic and other non-alphabetic scripts like the Korean  Hangul,
-but also various writing styles of the latin-based alphabets,
-and diacritics that are used to denote pronunciation variants in different
-languages using latin script, like Turkish or Vietnamese.
+it into a symbolic representation like a \emph{rectangle} with its coordinates,
+or in the case of handwriting recognition, a character. 
+There are several related problems, the recognition of equations, line 
+drawnings and gestures symbols. The recognition of language symbols includes 
+the different large alphabets of Chinese, the different scripts of Japanese, 
+alphabetic scripts like Greek, or Arabic and other non-alphabetic scripts like
+the Korean  Hangul, but also various writing styles of the latin-based 
+alphabets, and diacritics that are used to denote pronunciation variants in 
+different languages using latin script, like Turkish or Vietnamese.
 
-XXX remake fig 2. in tappert1990 which he had stolen from 
+\subsubsection{Similar characters}
+\label{sec:similarcharacters}
+
+XXX remake fig 2. in tappert1990 which he had stolen from his reference 240
+
+There are several subproblems to the task of pattern recognition of a character.
+Different styles of handwriting can be seen in xxx LABELOFGRAPHICABOVE. 
+Towards the bottom of the graphic characters are harder to recognise. 
+In the case of boxed discrete characters, segmentation is done for the 
+machine by the user. Run-on discrete characters are easier to recognise 
+than pure cursive handwriting, because there is a pen-up and 
+pen-down between each character. In cursive handwriting, segmentation 
+between the characters becomes a more difficult task. Some parts of the writing
+may be delayed, like the crosses of \emph{t} or the dots on \emph{i} or \emph{j}.
+Besides the segmentation, the discrimination of shapes is often not trivial.
+Humans may or may not be able to decipher somebody else's handwriting and clearly
+distinguish between, say \emph{U-V}, but most of the times, context helps with 
+that task. Other characters have similar shapes, too, like \emph{C-L}, \emph{a-d}
+and \emph{n-h}. Confusion can arise between characters and numbers like 
+\emph{O-0}, \emph{I-1}, \emph{l-1}, \emph{Z-2}, \emph{S-5}, \emph{G-6}, 
+\emph{I-1}, \emph{Z-2}. Lowercase and uppercase are hard to distinguish in the
+cases of \emph{C-c}, \emph{K-k}, \emph{O-o}, others are mainly distinguished 
+by their position relative to the base line of the rest of the text: 
+\emph{P-p}, \emph{Y-y}. Therefore, context helps the human reader to identify
+the correct character. This could be used as an advantage in automated pattern
+recognition, as well. However, the other characters nearby would have to be
+recognised first, which creates a (solvable) hen and egg problem.
+In the Japanese scrpit the problem is taken to another dimension. 
+For example \cjk{本}(root)-\cjk{木}(tree) is only a very simple example 
+that might lead to confusion of the different symbols. However, due to the 
+hierarchical organisation of the characters with their radicals
+(see~\ref{sec:japanesewritingsystemtoday}) there are many more shapes that look
+very much alike. From the shape recognition perspective, minor changes to the 
+shape of a character can change its meaning drastically.
+Compare \cjk{嘸}~(how, indeed), \cjk{撫}~stroke, pat), \cjk{蕪}~(turnip) and
+\cjk{憮}~(disappointment). They all contain the radical 
+\cjk{無}~(nothingness, none), which doesn't seem to have any semantic connection
+with the characters, however, it can be seen as the main radical in those 
+characters.
+
+
+
+
+
+
+
+
 
 
 
@@ -358,7 +405,7 @@ systems for latin-based alphbets. The process begins with \emph{Character
 segmentation}, goes on with \emph{Preprocessing}, \emph{Pattern descrpition}, 
 \emph{Pattern recognition} and ends with \emph{Contextual processing}, 
 if applicable. However, there are differences to the standard process, due to 
-the nature of the Chinese characters (see \ref{sec:methodsofhwrsystems}).
+the nature of the Chinese characters (see \ref{sec:handwritingpropertieseastasian}).
 Especially the pattern representation is divers in the different OJCCR systems,
 whereas it is naturally more alike in the systems focussing on latin characters.
 This is due to the fact that the latin alphabet is rather small, but has more
