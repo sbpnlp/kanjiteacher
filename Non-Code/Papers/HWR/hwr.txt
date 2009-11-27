@@ -435,9 +435,19 @@ HMM Based On-Line Handwriting Recognition pp. 1,039-1,044
 
 In this directory: 2009-11-04-14-49-07_HandwritingPAMI96.pdf
 #############################################
+http://portal.acm.org/citation.cfm?id=323002#
+http://research.cs.queensu.ca/~blostein/
+http://www.springer.com/computer/computer+imaging/book/978-3-540-28757-5
+
 In this directory: 
 #############################################
-In this directory: 
+
+R. Zanibbi, D. Blostein, J. Cordy, "Recognition Tasks are Imitation Games", in Pattern Recognition and Data Mining, Eds. S. Singh et al., Lecture Notes in Computer Science, Vol. 3686, pp. 209-218, 2005.
+
+http://research.cs.queensu.ca/~blostein/ICAPR05.pdf
+
+
+In this directory: Zanibbi2005.pdf
 #############################################
 In this directory: 
 #############################################
