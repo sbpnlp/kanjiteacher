@@ -10,6 +10,7 @@ del *.blg
 del *.log
 del *.toc
 del *~
+del *.bak
 
 cd ..
 
@@ -23,5 +24,6 @@ del *.blg
 del *.log
 del *.toc
 del *~
+del *.bak
 
 :end
