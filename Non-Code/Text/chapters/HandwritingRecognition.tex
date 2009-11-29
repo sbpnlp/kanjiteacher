@@ -391,7 +391,7 @@ way a system expects characters to be written distinctively.
 \label{sec:atypicalonlinehwrapplication}
 
 A typical HWR application has several parts that follow up on each other in a
-procedural fashion. 
+procedural fashion.
 \begin{itemize}
 \item \textbf{Data capturing}: The data is captured through an input device 
   like a writing surface and a stylus.
@@ -402,6 +402,17 @@ direction and curve matching.
 
 \subsection{Data Capturing}
 \label{sec:datacapturing}
+
+In order to caputre the data necessary for on-line HWR some special hardware is
+needed. It is possible to input data with a regular mouse on a regular computer,
+however the data will be less \emph{noisy} if a stylus is used for input
+of the handwriting. See~\ref{sec:hardwarerequirements} for more information on 
+the hardware requirements of HWR. The data that are served by a device driver
+or the operating system are structured as mouse coordinates. In case of 
+pressure-sensitive input devices the device driver also returns the pressure
+intensity. However, a typical on-line HWR application uses the mouse coordinates,
+not the pressure intensity. 
+
 
 how is the data captured? what format?
 hardware?
