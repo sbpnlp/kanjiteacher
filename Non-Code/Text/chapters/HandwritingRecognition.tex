@@ -34,7 +34,7 @@ Handwriting was developed as a means of communication and to expand one's own
 memory. With the advent of each new technologies the question arose, 
 if handwriting was going to survive. However, the opposite seems to be the 
 truth: For example, the printing press increased the number of documents
-available and therefore increased the number of people who learned to read
+available and therefore increased the number of people who learnt to read
 and write. Through the increased rate of alphabetisation, naturally there was
 an increased use of handwriting as a means of communication.
 
@@ -121,7 +121,7 @@ the verb \emph{taberu}.
 \section{Automated Recognition of Handwriting}
 \label{sec:autorecoofhandwriting}
 
-\subsection{Short History of Handwriting recognition}
+\subsection{Short History of Handwriting Recognition}
 \label{sec:shorthistoryofhwr}
 
 \emph{Handwriting recognition} (HWR) as a technological discipline performed 
@@ -184,14 +184,14 @@ put into a computable format \shortcite{ChanYeung2001}. In diagram recognition
 both the characters and the diagram layout are 
 recognised \shortcite{Blostein1999}.
 
-\subsubsection{Problem of Similar characters}
+\subsubsection{Problem of Similar Characters}
 \label{sec:similarcharacters}
 
 XXX remake fig 2. in Tappert1990 which he had stolen from his reference 240
 
 There are several subproblems to the task of pattern recognition of a character.
 Different styles of handwriting can be seen in xxx LABELOFGRAPHICABOVE. 
-The scripts towards the bottom of the graphic characters are harder to recognise. 
+The scripts towards the bottom of LABELOFGRAPHICABOVE are harder to recognise. 
 In the case of boxed discrete characters, segmentation is done for the 
 machine by the user. Run-on discrete characters are easier to recognise 
 than pure cursive handwriting, because there is a pen-up and 
@@ -224,9 +224,9 @@ Compare \cjk{嘸}~(how, indeed), \cjk{撫}~stroke, pat), \cjk{蕪}~(turnip) and
 with the characters, however, it can be seen as the main radical in those 
 characters.
 
-\subsection{Hardware requirements}
+\subsection{Hardware Requirements}
 \label{sec:hardwarerequirements}
-xxx: see santosh2009 basic tools / techniques / digitiser technology, 
+%xxx: see santosh2009 basic tools / techniques / digitiser technology, 
 
 In order to perform on-line handwriting recognition, the handwriting needs to 
 be captured in some way. Special hardware is necessary to perform the task of
@@ -239,40 +239,40 @@ products of the Wacom Co., Ltd.\footnote{www.wacom.com} are popular input
 devices for hand motions and hand gestures. The use of pen-like input devices 
 has also been recommended, since 42\% of mouse users report feelings of 
 weakness, stiffness and general discomfort in the wrist and hand when 
-using the mouse for long periods \shortcite{Woods2002}. Moreover there are
-PDAs and Tablet PCs, where the writing surface serves as an output device,
-i.e. an display at the same time (see~\ref{sec:digitalpensonscreens}). 
-
+using the mouse for long periods \shortcite{Woods2002}. 
 The sampling rates of digital pens are usually around 50-200 Hz. The higher the
 sampling rate the finer the resolution of the resulting co-ordinates,
-which leads to more accurate measurement of fast strokes. New generation 
-mobile phones also contain touch-displays, but for those it is more common 
-to be operated without a stylus. Those devices interpret user gestures, 
-however the input is given directly with the users fingers. 
+which leads to more accurate measurement of fast strokes. 
+
+Moreover there are PDAs and Tablet PCs, where the writing surface serves 
+as an output device, i.e. an display at the same time.
+If the pen capturing area is transparent and has an instantaneous display behind
+that shows immediately whatever input the user drew with the stylus,
+a high level of interactivity can be reached \shortcite{Santosh2009}. 
+These displays include touch screens, which are a newer development. 
+New generation mobile phones like the notorious iPhone from Apple Inc. 
+also contain touch-displays, but for those it is more common to be 
+operated without a stylus. For the task of handwriting recognition, 
+a stylus can be regarded as the more natural device, 
+since people usually write with pens on paper,
+therefore a stylus on a display seems more natural than using a 
+finger on a display for writing. 
+In order to interpret user gestures, an input given directly with the fingers
+is a more natural option. Gestures for zooming into digital pictures, 
+or turning to the next page of a document are interpreted on these devices.
+
 Another rather new development are real-ink digital pens. With those, 
-a user can write on paper with real ink, and the pen stores the movements 
-of the pen-tip on the paper. The movements are transferred to a computer later. 
+a user can write on paper with real ink, and the pen stores the 
+movements of the pen-tip on the paper. The movements are transferred to a 
+computer later. 
 It can be expected that with technologies like Bluetooth it may be possible 
 to transfer those data in real-time, not delayed.
-In a fairly new development accelerometre technology has been used 
+In a fairly new development accelerometer technology has been used 
 for handwriting recognition, using a mobile phone as a device to write 
 in the air \shortcite{Agrawal2009}. That approach can be regarded as an area 
-that is only loosly related to classical handwriting recognition, 
+that is only loosely related to classical handwriting recognition, 
 as the phone stores an image of the strokes in the air that were measured
-by the accelerator device, but doesn't trnasform the strokes into characters.
-
-
-\subsubsection{Digital Pens on Screens}
-\label{sec:digitalpensonscreens}
-
-If the pen capturing area is transparent and has an instantaneous display behind
-that shows immidiately whatever input the user drew with the stylus,
-a high level of interactivity can be reached.
-
-
-
-\shortcite{Santosh2009}. 
-
+by the accelerator device, but does not transform the strokes into characters.
 
 \subsection{Recognition vs Identification}
 \label{sec:recognitionvsidentification}
@@ -322,18 +322,26 @@ that state things like \emph{Pozilei} in a white font on a green ground
 which German native speakers usually read as \emph{Polizei} (police),
 because that is the most likely interpretation.
 
-\subsection{On-Line vs. Off-Line recognition}
+\subsection{On-Line vs. Off-Line Recognition}
 \label{sec:onlinevsoffline}
 
-xxx: see Plamondon2000 1.5. blend systems!
-xxx: see Santosh2009: off-line / on-line chapter
+%xxx: see Plamondon2000 1.5. blend systems!
+%xxx: see Santosh2009: off-line / on-line chapter
+
+\subsubsection{Basic Features of On-Line Recognition}
+\label{sec:basicfeaturesofonlinerecognition}
 
 \emph{On-line} HWR means that the input is converted in \emph{real-time}, 
 \emph{dynamically}, while the user is writing. This recognition can lag behind
 the user's writing speed. \shortcite{Tappert1990} report average writing rates 
 of 1.5-2.5 characters/s for English alphanumerics or 0.2-2.5 characters/s for 
 Chinese characters. In on-line systems, the data usually comes in as a sequence 
-of coordinate points.
+of coordinate points. Essentially, an on-line system accepts as input a
+stream of x-y coordinates from an input device that captures those data
+combined with the appropriate measuring times of those points.
+
+\subsubsection{Basic Features of Off-Line Recognition}
+\label{sec:basicfeaturesofofflinerecognition}
 
 \emph{Off-line} HWR is the application of a HWR algorithm after the writing.
 It can be performed at any time after the writing has been completed. That 
@@ -342,16 +350,44 @@ includes recognition of data transferred from the real-ink pens
 has been completed. The standard case of off-line HWR, however, is a subset of
 optical character recognition (OCR). An scanner transfers the physical image 
 on paper into a bitmap, the character recognition is performed on the bitmap.
-An OCR system can recognise several hundred characters per second.
+An OCR system can recognise several hundred characters per second. Images are
+usually binarised by a threshold of its colour pattern, such that the image
+pixels are either 1 or 0 \shortcite{Santosh2009}.
 
-On-line devices have the dynamic information of the writing, since each point 
-coordinate is captured at a specific point of time. Also, the system know the
-input stroke sequence, their direction and speed of writing. All these 
-information can be an advantage for an on-line system, however, off-line systems
-have used algorithms of line-thinning, such that the data consists of point
-coordinates, similar to the input of on-line systems \shortcite{Tappert1990}.
+\subsubsection{Similarities and Differences of On-Line and Off-Line  Recognition}
+\label{sec:similaritiesanddifferences}
 
-\section{A Typical On-Line HWR application}
+There are two main differences between on-line and off-line handwriting
+recognition. \emph{a)} Off-line recognition happens, hence the name, 
+after the time of writing. Therefore, a complete piece of writing can be 
+expected as an input by the machine. \emph{b)}On-line devices also get the
+dynamic information of the writing as input, since each point coordinate 
+is captured at a specific point of time, which can be provided to the 
+handwriting recogniser along with the point coordinates by the operating system.
+In addition, the recogniser has information about the input stroke sequence, 
+the stroke direction and the speed of the writing. In the off-line case these 
+pieces of information are not readily available, but can be partially 
+reconstructed from the off-line data \shortcite{Santosh2009}.
+
+All these information can be an advantage for an on-line system, however, 
+off-line systems have used algorithms of line-thinning, such that the data 
+consists of point coordinates, similar to the input of on-line systems 
+\shortcite{Tappert1990}. When line thinning has been applied, an off-line 
+system could estimate the trajectory of the writing and then use the same 
+algorithm as an on-line system \shortcite{Plamondon2000}. 
+Vice versa, an on-line system can employ algorithms of off-line systems, 
+since it is possible to construct a binary image from mouse coordinates 
+of points. However, only few systems of that kind have been developed. 
+A promising approach was developed in the middle of the 1990'ies by 
+\shortcite{Nishida1995}, where an on-line and and off-line system are 
+fully integrated with each other as a \emph{blend system}.
+
+On-line systems can refer interactively to the user in case of an unsuccessful 
+or uncertain recognition. Along these lines, an on-line system can adapt to 
+the way a specific user draws certain characters and a user can adapt to the
+way a system expects characters to be written distinctively.
+
+\section{A Typical On-Line HWR Application}
 \label{sec:atypicalonlinehwrapplication}
 
 A typical HWR application has several parts that follow up on each other in a
@@ -364,7 +400,7 @@ procedural fashion.
 direction and curve matching.
 \end{itemize}
 
-\subsection{Data capturing}
+\subsection{Data Capturing}
 \label{sec:datacapturing}
 
 how is the data captured? what format?
@@ -375,18 +411,18 @@ xxx: see Santosh2009 sampling
 \subsection{Preprocessing}
 \label{sec:preprocessing}
 
-xxx: see santosh2009 pre-processing
+xxx: see Santosh2009 pre-processing
 xxx: see Tappert1990 preprocessing: segmentation, noise reduction.
-xxx: see santosh2009 noise elimination
-xxx: see santosh2009 normalisation
-xxx: see santosh2009 repetition removal
+xxx: see Santosh2009 noise elimination
+xxx: see Santosh2009 normalisation
+xxx: see Santosh2009 repetition removal
 
 \subsection{Character Recognition}
 \label{sec:characterrecognition}
 
 xxx: see Tappert1990 VI shape recognition.
 xxx: see Plamondon2000: 3.1.1 different models
-xxx: see all the substroke stuff, santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
+xxx: see all the substroke stuff, Santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
@@ -394,7 +430,7 @@ xxx: see all the substroke stuff, santosh, shimodaira2003, nakai2003: very short
 xxx: what happens after the recognition process?
 xxx: see Tappert1990 again in postprocessing chapter.
 
-\section{HWR of Hanzi and Kanji}
+\section{HWR of Hànzì and Kanji}
 \begin{itemize}
 \item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
   Schriftzeichen und verschiedene Herangehensweisen zu verschaffen.
@@ -408,8 +444,8 @@ xxx: see Tappert1990 again in postprocessing chapter.
 
 \subsection{The current State-of-the-Art in Japanese and Chinese Character Recognition}
 From the 1990s  , On-Line Japanese and Chinese Character Recognition 
-(OJCCR) systems have been aiming at loosening the restrictions imposed on 
-the writer when using an OJCCR system. Their focus shifted from recognition 
+(OLCCR) systems have been aiming at loosening the restrictions imposed on 
+the writer when using an OLCCR system. Their focus shifted from recognition 
 of block style script ('regular' script) to fluent style script, 
 which is also called 'cursive' style. Accuracies of up to about 95\% are
 achieved in the different systems.
