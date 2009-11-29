@@ -465,7 +465,22 @@ In this directory: Zanibbi2005.pdf
 
 In this directory: Agrawal2009.pdf
 #############################################
-In this directory: 
+@article{Nishida1995,
+ author = {Nishida, Hirobumi},
+ title = {An approach to integration of off-line and on-line recognition of handwriting},
+ journal = {Pattern Recogn. Lett.},
+ volume = {16},
+ number = {11},
+ year = {1995},
+ issn = {0167-8655},
+ pages = {1213--1219},
+ doi = {http://dx.doi.org/10.1016/0167-8655(95)00071-N},
+ publisher = {Elsevier Science Inc.},
+ address = {New York, NY, USA},
+ }
+
+
+In this directory: Nishida1995.pdf
 #############################################
 In this directory: 
 #############################################
