@@ -479,36 +479,193 @@ In this directory: Agrawal2009.pdf
  address = {New York, NY, USA},
  }
 
-
 In this directory: Nishida1995.pdf
 #############################################
 [PDF] ►Comparison of elastic matching algorithms for online Tamil handwritten character …
 
 N Joshi, G Sita, AG Ramakrishnan, S … - … on Frontiers in Handwriting Recognition (IWFHR-9), …, 2004 - ragashri.ee.iisc.ernet.in
 We present a comparison of elastic matching schemes for writer dependent on-line
-handwriting recognition of iso- lated Tamil characters. Three different features
-are con- sidered namely, preprocessed xy co-ordinates, quantized slope ...
+handwriting recognition of iso- lated Tamil characters. Three different features are con- sidered namely, preprocessed xy co-ordinates, quantized slope ...
 
+N. Joshi and G. Sita and A.G. Ramakrishnan and S. Mathvanath.
+Comparison of Elastic Matching Algorithms for Online Tamil Handwritten Character Recognition.
+9th  International Workshop on Frontiers in Handwriting Recognition.
+IWFHR 2004
+Tokyo, Japan
+October 2004
+
+In this directory: joshi2004.pdf
+In Bibtex: not yet
+#############################################
+PDF] ►Machine Recognition of Online Handwritten Devanagari Characters♦
+
+IAD Only - hpl.hp.com
+In this paper, we describe a system for the automatic recognition of isolated
+handwritten Devanagari characters obtained by linearizing consonant conjuncts.
+Owing to the large number of characters and resulting demands on data ...
+
+Niranjan Joshi, G. Sita, A.G. Ramakrishnan, V. Deepu and Sriganesh Madhvanath
+2005
+Machine Recognition of Online Handwritten Devanagari Characters.
+Proceedings of the 
+8th International Conference on Document Analysis and Recognition. 
+ICDAR 2005
+Seoul, Korea Aug-Sep 2005
+pp. 1156-1160
+
+http://www.robots.ox.ac.uk/~njoshi/publications.html
+
+http://www.computer.org/portal/web/csdl/doi/10.1109/ICDAR.2005.156
+
+@article{Joshi2005,
+author = {Niranjan Joshi and G. Sita and A.G. Ramakrishnan and V. Deepu and Sriganesh Madhvanath},
+title = {Machine Recognition of Online Handwritten Devanagari Characters},
+journal ={Document Analysis and Recognition, International Conference on},
+volume = {0},
+year = {2005},
+issn = {1520-5263},
+pages = {1156-1160},
+doi = {http://doi.ieeecomputersociety.org/10.1109/ICDAR.2005.156},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
+
+the publication date of the pdf here is 2007.
+it might be that this is not the same as the conference publication.
+In this directory: joshi2005machinerecognition.pdf 
+In Bibtex: yes
+#############################################
 Niranjan Joshi and G. Sita and A.G. Ramakrishnan and S. Madhvanath
 Tamil Handwriting Recognition Using Subspace and DTW Based Classifiers.
 11th International Conference on Neural Information Processing. 2004
 
+Niranjan Joshi, G.Sita, A.G. Ramakrishnan, and Sriganesh Madhvanath, "Tamil handwriting recognition using subspace and DTW based classifiers", in the 11th International Conference on Neural Information Processing - ICONIP 2004, Kolkata, India. 
 
-In this directory: joshi2004.pdf
+Tamil Handwriting Recognition Using Subspace and DTW Based Classifiers
+Buchreihen	Lecture Notes in Computer Science
+Verlag	Springer Berlin / Heidelberg
+ISSN	0302-9743 (Print) 1611-3349 (Online)
+Volume	Volume 3316/2004
+Buch	Neural Information Processing
+DOI	10.1007/b103766
+Copyright	2004
+ISBN	978-3-540-23931-4
+Kategorie	Pattern Recognition
+Seiten	806-813
+Fachgebiete	Informatik
+SpringerLink Date	Freitag, 29. Oktober 2004
+
+http://www.springerlink.com/content/v8xlqt222kvw63kj/
+Niranjan Joshi
+Email: niranjan@ee.iisc.ernet.in
+
+G. Sita
+Email: sita@ee.iisc.ernet.in
+
+A.G. Ramakrishnan
+Email: ramkiag@ee.iisc.ernet.in
+
+Sriganesh Madhvanath
+Email: srig@hplabs.com
+
+The PDF here might not be exactly the one published in 
+Springer, but probably it contains only slight variations.
+In this directory: Joshi2004Tamil.pdf
+In Bibtex: not yet
 #############################################
-In this directory: 
+Online Handwriting Recognition for Indic Scripts
+
+ Online Handwriting Recognition for Indic Scripts
+Buchreihen	Advances in Pattern Recognition
+Buch	Guide to OCR for Indic Scripts
+Verlag	Springer London
+DOI	10.1007/978-1-84800-330-9
+Copyright	2009
+ISBN	978-1-84800-329-3 (Print) 978-1-84800-330-9 (Online)
+Teil	Part 1
+DOI	10.1007/978-1-84800-330-9_11
+Seiten	209-234
+Fachgebiete	Informatik
+SpringerLink Date	Freitag, 25. September 2009
+
+http://kleineurl.de/1hhb9u.htm
+
+Note: Barath2008 is an HP paper that was published,
+this conference paper might be slightly different,
+avoid direct citations from the paper,
+just use the general gist of it, until you find out
+if it is the same or until you find Bharat2009.pdf
+
+Update: Seems to be the same paper with only slight variations.
+Here's the 2009 version: http://kleineurl.de/1hhb7d.htm
+In this directory: Bharath2008.pdf
+In Bibtex: not yet
 #############################################
-In this directory: 
+[12] R. Niels, L. Vuurpijl, “Dynamic Time Warping Applied to Tamil. Character Recognition”. Proceedings of the 8th International Conference ...
+www.waset.org/journals/waset/v45/v45-68.pdf - 
+
+R. Niels and L. Vuurpijl.
+Dynamic Time Warping Applied to Tamil Character Recognition.
+8th International Conference on Document Analysis and Recognition.
+2005.
+
+Ralph Niels & Louis Vuurpijl. Dynamic Time Warping Applied to Tamil Character Recognition. In Proceedings of the 8th International Conference on Document Analysis and Recognition (ICDAR2005), pages 730-734, Seoul, Korea, August 29-September 1, 2005.
+
+In this directory: NielsVuurpijl2005.pdf
+In Bibtex: not yet
 #############################################
-In this directory: 
+[PDF]
+Reduced Dynamic Time Warping for Handwriting Recognition Based on ...
+ - [ Diese Seite übersetzen ]
+Dateiformat: PDF/Adobe Acrobat - HTML-Version
+
+[PDF] ►Reduced Dynamic Time Warping for Handwriting Recognition Based on Multi-dimensional …
+
+M Bashir, J Kempf - IJIST, WASET, Paris, 2008 - akademik.unsri.ac.id
+Abstract—The purpose of this paper is to present a Dynamic Time Warping
+technique which reduces significantly the data processing time and memory size
+of multi-dimensional time series sampled by the biometric smart pen device...
+
+Contact Information  	Muzaffar Bashir
+Email: muzaffarbashir@gmail.com
+URL: http://www.bisp-regensburg.de
+
+Contact Information 	Jürgen Kempf
+Email: kempfj@gmx.de
+URL: http://www.bisp-regensburg.de 
+
+http://www.biometricsmartpen.de/ref_list.html
+
+M. Bashir, and J. Kempf, "Reduced Dynamic Time Warping for Handwriting Recognition Based on Multidimensional Time Series of a Novel Pen Device", WASET,
+International Journal of Intelligent Systems and Technologies, Volume 3 Number 4, Art. 31, p.194, Fall 2008
+
+M. Bashir, and J. Kempf, "Reduced Dynamic Time Warping for Handwriting Recognition Based on Multidimensional Time Series of a Novel Pen Device", WASET, Paris 2008 
+
+In this directory: BashirKempf2008.pdf
+In Bibtex: not yet
 #############################################
-In this directory: 
+Ralph Niels. Dynamic Time Warping: An Intuitive Way of Handwriting Recognition? Master's thesis, Radboud University Nijmegen, 2004.
+Manuscript committee: Dr. L.G. Vuurpijl (supervisor), Prof. Dr. C.M. Jonker and Dr. P.A. Kamsteeg.
+
+In this directory: NielsMaster2004.pdf
+In Bibtex: not yet
 #############################################
-In this directory: 
-#############################################
-In this directory: 
-#############################################
-In this directory: 
+Writer Independent Online Handwriting Recognition for Ethiopic Characters
+
+http://etd.aau.edu.et/dspace/handle/123456789/1319
+
+Title: 	Writer Independent Online Handwriting Recognition for Ethiopic Characters
+Authors: 	Daniel, Negussie
+Advisors: 	Dr. Solomon Atnafu
+Copyright: 	2006
+Date Added: 	29-Aug-2008
+Publisher: 	Addis Ababa University
+
+URI: 	http://hdl.handle.net/123456789/1319
+Appears in:	Thesis - Computer Science
+
+In this directory: DanielNegussieMaster2006.pdf
+In Bibtex: not yet
 #############################################
 In this directory: 
 #############################################
