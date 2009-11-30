@@ -482,7 +482,19 @@ In this directory: Agrawal2009.pdf
 
 In this directory: Nishida1995.pdf
 #############################################
-In this directory: 
+[PDF] ►Comparison of elastic matching algorithms for online Tamil handwritten character …
+
+N Joshi, G Sita, AG Ramakrishnan, S … - … on Frontiers in Handwriting Recognition (IWFHR-9), …, 2004 - ragashri.ee.iisc.ernet.in
+We present a comparison of elastic matching schemes for writer dependent on-line
+handwriting recognition of iso- lated Tamil characters. Three different features
+are con- sidered namely, preprocessed xy co-ordinates, quantized slope ...
+
+Niranjan Joshi and G. Sita and A.G. Ramakrishnan and S. Madhvanath
+Tamil Handwriting Recognition Using Subspace and DTW Based Classifiers.
+11th International Conference on Neural Information Processing. 2004
+
+
+In this directory: joshi2004.pdf
 #############################################
 In this directory: 
 #############################################
