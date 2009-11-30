@@ -1,7 +1,4 @@
-﻿
-
-
-http://www.jaeger.info/AboutMe.html
+﻿http://www.jaeger.info/AboutMe.html
 
 #############################################
 
@@ -27,7 +24,7 @@ address = {Los Alamitos, CA, USA},
 
 
 In this directory: JaegerOnlineReco2004.pdf PRINTED
-
+In Bibtex: yes
 #############################################
 
 An Overview Of Character Recognition
@@ -38,7 +35,6 @@ In this directory: AricaVuralAnOverviewOfCharacterRecognitionFocusedOnOfflie.pdf
 Arica N, Yarman-Vural F. An overview of character recognition focused
 on off-line handwriting. IEEE Trans Systems, Man and Cybernetics –
 Part C: Applic and Rev 2001; 31(2):216–233
-
 
 @article{ AricaVural2001,
 author = {Arica N, Yarman-Vural F},
@@ -53,7 +49,8 @@ doi = {},
 publisher = {IEEE Computer Society},
 address = {Los Alamitos, CA, USA},
 }
-
+In Bibtex: no
+In this directory: no
 #############################################
 Substroke approach to HMM-based on-line Kanji handwriting recognition
 - ►psu.edu [PDF] 
@@ -66,6 +63,8 @@ Approach to HMM-Based On-Line Kanji Handwriting Recognition,”
 Prof. Sixth Int’l Conf. Document Analysis and Recognition,
 pp. 491-495, 2001.
 
+
+REFERENCE article to Substroke / HMM
 	
 @article{ 10.1109/ICDAR.2001.953838,
 author = {Mitsuru Nakai and Naoto Akira and Hiroshi Shimodaira and Shigeki Sagayama},
@@ -84,7 +83,7 @@ http://doi.ieeecomputersociety.org/10.1109/ICDAR.2001.953838
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.63.150&rep=rep1&type=pdf
 
 In this directory: Nakai2001_10.1.1.63.150.pdf COULDN'T BE PRINTED
-
+In Bibtex: yes
 #############################################
 M. Nakai, H. Shimodaira, and S. Sagayama, “Generation of
 Hierarchical Dictionary for Stroke-Order Free Kanji Handwriting
@@ -100,6 +99,7 @@ Recognition Based on Substroke HMM Mitsuru NAKAI, Hiroshi SHIMODAIRA and Shigeki
 http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.58.4029&rep=rep1&type=pdf
 
 In this directory: Nakai_2003_10.1.1.58.4029.pdf PRINTED
+In Bibtex: yes
 #############################################
 
 http://doi.ieeecomputersociety.org/10.1109/IWFHR.2002.1030888
@@ -129,6 +129,7 @@ On-Line Handwriting Recognition,” Proc. Eighth Int’l
 Workshop Frontiers in Handwriting Recognition, pp. 78-83, 2002.
 
 In this directory: Tokuno2002_10.1.1.64.8842.pdf COULDN'T BE PRINTED
+In Bibtex: yes
 #############################################
 
 H. Shimodaira, T. Sudo, M. Nakai, and S. Sagayama. Online
@@ -150,11 +151,9 @@ publisher = {IEEE Computer Society},
 address = {Los Alamitos, CA, USA},
 }
 
-
 In this directory: Shimo2003_10.1.1.65.9768.pdf PRINTED
+In Bibtex: yes
 #############################################
-
-
 Two online japaneses chareacter databases in unipen format.
 
 S. Jaeger and M. Nakagawa, “Two On-Line Japanese Character
@@ -179,7 +178,7 @@ http://www.tuat.jp/~nakagawa/pub/2001/pdf/jaeger0109a-e.pdf
 }
 
 In this directory: jaeger200109a-e.pdf PRINTED
-
+In Bibtex: yes
 #############################################
 http://doi.ieeecomputersociety.org/10.110910.1109/34.57669
 http://ftp.gunadarma.ac.id/research/HandWriting/pen-tappert_TheStateArtHandWriting.pdf
@@ -199,10 +198,8 @@ publisher = {IEEE Computer Society},
 address = {Los Alamitos, CA, USA},
 }
 
-
 In this directory: tappert1990_pen-tappert_TheStateArtHandWriting.pdf PRINTED
-
-
+In Bibtex: yes
 #############################################
 http://www.tuat.ac.jp/~nakagawa/pub/2002/pdf/velek0208a-e.pdf
 http://doi.ieeecomputersociety.org/10.110910.1109/IWFHR.2002.1030905
@@ -227,6 +224,7 @@ Handwriting Recognition, pp. 177-182, 2002.
 }
 
 In this directory: velek200208a-e.pdf PRINTED
+In Bibtex: yes
 #############################################
 @article{ Plamondon2000,
 author = {Réjean Plamondon and Sargur N. Srihari},
@@ -247,7 +245,7 @@ http://worldcat.org/arcviewer/1/OCC/2007/08/08/0000070513/viewer/file947.pdf
 
 
 In this directory: plamondon2000_file947.pdf PRINTED
-
+In Bibtex: yes
 #############################################
 http://www.springerlink.com/index/y6660w11k18m7637.pdf
 http://www.springerlink.com/content/y6660w11k18m7637/
@@ -282,10 +280,8 @@ volume = {1121},
 series ={Lecture Notes in Computer Science},
 }
 
-
-
-
 In this directory: ChenLee_1996.pdf PRINTED
+In Bibtex: yes
 #############################################
 
 An HMM Implementation for On-line Handwriting Recognition
@@ -311,10 +307,9 @@ September 1 2005.
      month = {August}
 }
 
-
 In this directory: Okumura2005_10.1.1.78.8777.pdf 
+In Bibtex: yes
 #############################################
-
 http://hal.archives-ouvertes.fr/inria-00354242/
 http://hal.archives-ouvertes.fr/docs/00/35/42/42/PDF/8_Jan_Santosh_KC_A_COMPREHENSIVE_SURVEY_ON_ON-LINE_HANDWRITING_edited_santosh_.pdf
 
@@ -325,6 +320,7 @@ RECOGNITION TECHNOLOGY AND ITS REAL APPLICATION TO THE NEPALESE NATURAL ...
 
 
 In this directory: Santosh2009.pdf PRINTED
+In Bibtex: yes
 #############################################
 http://www.springerlink.com/index/95142l363060x13k.pdf
 M Nakagawa, J Tokuno, B Zhu, M Onuma, H … - Lecture Notes in Computer Science, 2008 - Springer
@@ -336,7 +332,6 @@ Masaki Nakagawa1 Contact Information, Junko Tokuno1, Bilan Zhu1, Motoki Onuma1, 
 (1)  	Tokyo University of Agriculture and Technology, Naka-cho 2-24-16, Koganei, Tokyo 184-8588, Japan
 Abstract
 
-	
 Recent Results of Online Japanese Handwriting Recognition and Its Applications
 Buchreihen	Lecture Notes in Computer Science
 Verlag	Springer Berlin / Heidelberg
@@ -368,6 +363,7 @@ SpringerLink Date	Donnerstag, 13. März 2008
 
 
 In this directory: Nakagawa2008.pdf  PRINTED
+In Bibtex: yes
 #############################################
 http://hal.archives-ouvertes.fr/docs/00/10/47/60/PDF/cr1098192494039.pdf
 
@@ -384,6 +380,7 @@ Recognition (IWFHR’06) (2006)
 
 
 In this directory: Bouteruche2006.pdf
+In Bibtex: no
 #############################################
 S. Jaeger, S. Manke, J. Reichert, A. Waibel. On-Line Handwriting Recognition: The Npen++ Recognizer. International Journal on Document Analysis and Recognition, volume 3, number 3, pages 169-181, 2001. 
 http://www.springerlink.com/index/GE7L6EBCWHJACJ91.pdf
@@ -403,8 +400,8 @@ SpringerLink Date	Donnerstag, 1. März 2001
 S. Jaeger, S. Manke, J. Reichert, and A.Waibel. Online Handwriting Recognition: The Npen++ Recognizer. International Journal on Document Analysis and Recognition, 3:169–180, 2001.
 
 In this directory: Jaeger2001.pdf
+In Bibtex: yes
 #############################################
-
 Arabic and Chinese Handwriting Recognition
 SACH 2006 Summit College Park, MD, USA, September 27-28, 2006 Selected Papers
 Buchreihen	Lecture Notes in Computer Science
@@ -418,9 +415,8 @@ Fachgebiete	Informatik
 SpringerLink Date	Donnerstag, 13. März 2008
 
 http://www.springerlink.com/content/p821jg623776/
-
-
-In this directory: 
+In this directory: hardcopy on the shelf
+In Bibtex: not as a single item, but Nakagawa2008
 #############################################
 http://en.wikipedia.org/wiki/Handwriting_recognition#cite_note-5
 http://www.freepatentsonline.com/1117184.pdf
@@ -428,28 +424,38 @@ http://www.freepatentsonline.com/1117184.pdf
 [GoldbergHE15] (*) Goldberg, Hyman Eli "Controller", United States Patent 1,116,663, December 28, 1915 
 
 In this directory: Goldberg1915_US1117184.pdf
+In Bibtex: yes
 #############################################
 J Hu, MK Brown, W Turin - IEEE Transactions on pattern analysis and machine …, 1996 - domino.research.ibm.com
 Page 1. 1039 IEEE TRANSACTIONS ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE, VOL. 18, NO. 10, OCTOBER 1996 
 HMM Based On-Line Handwriting Recognition pp. 1,039-1,044
 
-In this directory: 2009-11-04-14-49-07_HandwritingPAMI96.pdf
-#############################################
-http://portal.acm.org/citation.cfm?id=323002#
-http://research.cs.queensu.ca/~blostein/
-http://www.springer.com/computer/computer+imaging/book/978-3-540-28757-5
+@article{10.1109/34.541414,
+author = {Jianying Hu and Michael K. Brown and William Turin},
+title = {HMM Based On-Line Handwriting Recognition},
+journal ={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+volume = {18},
+number = {10},
+issn = {0162-8828},
+year = {1996},
+pages = {1039-1045},
+doi = {http://doi.ieeecomputersociety.org/10.1109/34.541414},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA},
+}
 
-In this directory: 
-#############################################
+http://www.computer.org/portal/web/csdl/transactions/tpami#4
 
+In this directory: Hu1996_HandwritingPAMI96.pdf
+In Bibtex: yes
+#############################################
 R. Zanibbi, D. Blostein, J. Cordy, "Recognition Tasks are Imitation Games", in Pattern Recognition and Data Mining, Eds. S. Singh et al., Lecture Notes in Computer Science, Vol. 3686, pp. 209-218, 2005.
 
 http://research.cs.queensu.ca/~blostein/ICAPR05.pdf
 
-
 In this directory: Zanibbi2005.pdf
+In Bibtex: yes
 #############################################
-
 @inproceedings{Agrawal2009,
  author = {Agrawal, Sandip and Constandache, Ionut and Gaonkar, Shravan and Choudhury, Romit Roy},
  title = {PhonePoint pen: using mobile phones to write in air},
@@ -464,6 +470,7 @@ In this directory: Zanibbi2005.pdf
  }
 
 In this directory: Agrawal2009.pdf
+In Bibtex: yes
 #############################################
 @article{Nishida1995,
  author = {Nishida, Hirobumi},
@@ -480,6 +487,7 @@ In this directory: Agrawal2009.pdf
  }
 
 In this directory: Nishida1995.pdf
+In Bibtex: yes
 #############################################
 [PDF] ►Comparison of elastic matching algorithms for online Tamil handwritten character …
 
@@ -556,6 +564,7 @@ Fachgebiete	Informatik
 SpringerLink Date	Freitag, 29. Oktober 2004
 
 http://www.springerlink.com/content/v8xlqt222kvw63kj/
+
 Niranjan Joshi
 Email: niranjan@ee.iisc.ernet.in
 
@@ -571,11 +580,11 @@ Email: srig@hplabs.com
 The PDF here might not be exactly the one published in 
 Springer, but probably it contains only slight variations.
 In this directory: Joshi2004Tamil.pdf
-In Bibtex: not yet
+In Bibtex: yes, as Joshi2004b
 #############################################
 Online Handwriting Recognition for Indic Scripts
 
- Online Handwriting Recognition for Indic Scripts
+Online Handwriting Recognition for Indic Scripts
 Buchreihen	Advances in Pattern Recognition
 Buch	Guide to OCR for Indic Scripts
 Verlag	Springer London
@@ -587,6 +596,9 @@ DOI	10.1007/978-1-84800-330-9_11
 Seiten	209-234
 Fachgebiete	Informatik
 SpringerLink Date	Freitag, 25. September 2009
+Editoren: Venu Govindaraju and Srirangaraj (Ranga) Setlur
+
+Autoren: A. Bharath and Sriganesh Madhvanath
 
 http://kleineurl.de/1hhb9u.htm
 
@@ -599,7 +611,7 @@ if it is the same or until you find Bharat2009.pdf
 Update: Seems to be the same paper with only slight variations.
 Here's the 2009 version: http://kleineurl.de/1hhb7d.htm
 In this directory: Bharath2008.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 [12] R. Niels, L. Vuurpijl, “Dynamic Time Warping Applied to Tamil. Character Recognition”. Proceedings of the 8th International Conference ...
 www.waset.org/journals/waset/v45/v45-68.pdf - 
@@ -612,7 +624,7 @@ Dynamic Time Warping Applied to Tamil Character Recognition.
 Ralph Niels & Louis Vuurpijl. Dynamic Time Warping Applied to Tamil Character Recognition. In Proceedings of the 8th International Conference on Document Analysis and Recognition (ICDAR2005), pages 730-734, Seoul, Korea, August 29-September 1, 2005.
 
 In this directory: NielsVuurpijl2005.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 [PDF]
 Reduced Dynamic Time Warping for Handwriting Recognition Based on ...
@@ -642,13 +654,13 @@ International Journal of Intelligent Systems and Technologies, Volume 3 Number 4
 M. Bashir, and J. Kempf, "Reduced Dynamic Time Warping for Handwriting Recognition Based on Multidimensional Time Series of a Novel Pen Device", WASET, Paris 2008 
 
 In this directory: BashirKempf2008.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 Ralph Niels. Dynamic Time Warping: An Intuitive Way of Handwriting Recognition? Master's thesis, Radboud University Nijmegen, 2004.
 Manuscript committee: Dr. L.G. Vuurpijl (supervisor), Prof. Dr. C.M. Jonker and Dr. P.A. Kamsteeg.
 
 In this directory: NielsMaster2004.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 Writer Independent Online Handwriting Recognition for Ethiopic Characters
 
@@ -661,11 +673,8 @@ Copyright: 	2006
 Date Added: 	29-Aug-2008
 Publisher: 	Addis Ababa University
 
-URI: 	http://hdl.handle.net/123456789/1319
-Appears in:	Thesis - Computer Science
-
 In this directory: DanielNegussieMaster2006.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 
 REFERENCE PAPER for Dynamic Time Warping!
@@ -673,7 +682,7 @@ REFERENCE PAPER for Dynamic Time Warping!
 Chu, S., Keogh, E., Hart, D., Pazzani, M. (2002). Iterative Deepening Dynamic Time Warping for Time Series. The Second SIAM International Conference on Data Mining (SDM-02), 2002.
 
 In this directory: chu2001.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 
 REFERENCE PAPER for Dynamic Time Warping!
@@ -681,7 +690,7 @@ REFERENCE PAPER for Dynamic Time Warping!
 Keogh, E. & Pazzani, M. (2001). Derivative Dynamic Time Warping. In First SIAM International Conference on Data Mining (SDM'2001), Chicago, USA
 
 In this directory: Keogh2001.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 In this directory: 
 #############################################
