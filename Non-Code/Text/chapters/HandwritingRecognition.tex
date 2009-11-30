@@ -181,8 +181,8 @@ different languages using Latin script, like Turkish or Vietnamese.
 Other Problems that are related to handwriting recognition include for example
 mathematical formula recognition, where mathematical formulas are analysed and 
 put into a computable format \shortcite{ChanYeung2001}. In diagram recognition 
-both the characters and the diagram layout are 
-recognised \shortcite{Blostein1999}.
+both the characters and the diagram layout are recognised 
+\shortcite{Blostein1999}.
 
 \subsubsection{Problem of Similar Characters}
 \label{sec:similarcharacters}
@@ -452,10 +452,20 @@ of strokes drawn by the user. According to the writing speed, the number of
 coordinates per distance can vary. A fast stroke will have fewer point samples,
 even if the same distance was covered on the writing surface.
 Some see this as a problem and \emph{re-sample} the points to be of equal 
-distance to each other and to have a constant number of sample points in every yyy
-string \shortcite{Santosh2009}. 
+distance to each other and to have a constant number of sample points in every 
+stroke \shortcite{Santosh2009}.
+\shortcite{Joshi2005} re-sample the strokes in a way that they yield a constant 
+number of point samples in space, rather than in time. They propose an approach 
+for 
+Devanāgarī\footnote
+{
+%http://www.britannica.com/EBchecked/topic/159937/Devanagari
+%An abugida, also called an alphasyllabary, is a segmental writing system, which
+% is based on consonants, and in which vowel notation is obligatory but secondary.
+Devanāgarī is a script used to write the Sanskrit, Prākrit, Hindi, Marathi, and Nepali languages, developed from the North Indian monumental script known as Gupta and ultimately from the Brāhmī alphabet, from which all modern Indian writing systems are derived \shortcite{EncyclopediaBritannicaDevanagari}.
+} 
+characters, where each of the charaters is represented by 60 sample points.
 
-\shortcite{Joshi2005}
 \shortcite{Velek2002a}
 
 

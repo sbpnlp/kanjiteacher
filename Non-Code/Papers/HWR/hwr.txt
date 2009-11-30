@@ -52,6 +52,23 @@ address = {Los Alamitos, CA, USA},
 In Bibtex: no
 In this directory: no
 #############################################
+@article{Blostein1999,
+ author = {Blostein, Dorothea and Haken, Lippold},
+ title = {{U}sing {D}iagram {G}eneration {S}oftware to {I}mprove {D}iagram {R}ecognition: {A} {C}ase {S}tudy of {M}usic {N}otation},
+ journal = {IEEE Trans. Pattern Anal. Mach. Intell.},
+ volume = {21},
+ number = {11},
+ year = {1999},
+ issn = {0162-8828},
+ pages = {1121--1136},
+ doi = {http://dx.doi.org/10.1109/34.809106},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ }
+
+In Bibtex: no
+In this directory: no
+#############################################
 Substroke approach to HMM-based on-line Kanji handwriting recognition
 - ►psu.edu [PDF] 
 M Nakai, N Akira, H Shimodaira, S Sagayama - Proc. ICDAR'01, 2001 - doi.ieeecomputersociety.org
@@ -673,7 +690,7 @@ Copyright: 	2006
 Date Added: 	29-Aug-2008
 Publisher: 	Addis Ababa University
 
-In this directory: DanielNegussieMaster2006.pdf
+In this directory: NegussieMaster2006.pdf
 In Bibtex: yes
 #############################################
 
