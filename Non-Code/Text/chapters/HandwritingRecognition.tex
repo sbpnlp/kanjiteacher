@@ -104,9 +104,9 @@ In Japanese, three different scripts are in active use at the same time,
 mixed and next to each other. They are called \emph{Hiragana} (\cjk{ひらがな}), 
 \emph{Katakana} (\cjk{カタカナ}) and \emph{Kanji} (\cjk{漢字}).
 Hiragana and Katakana are syllabic alphabets, each containing 46 characters
-(see~\ref{sec:kana}), whereas Kanji are essentially the Chinese \emph{Hànzì} 
-characters (\cjk{汉字}) as they were imported into the Japanese language 
-(see~\ref{sec:ahorthistoryofjapanesewritingsystem}).
+(see section~\ref{sec:kana}), whereas Kanji are essentially the Chinese 
+\emph{Hànzì} characters (\cjk{汉字}) as they were imported into the Japanese 
+language (see section~\ref{sec:ahorthistoryofjapanesewritingsystem}).
 
 The different scripts can even be blended with each other within one word. 
 Take for instance the verb \emph{taberu}  (\cjk{食べる} - \emph{to eat}). 
@@ -215,9 +215,9 @@ In the Japanese script the problem is taken to another dimension.
 For example \cjk{本}(root)-\cjk{木}(tree) is only a very simple example 
 that might lead to confusion of the different symbols. However, due to the 
 hierarchical organisation of the characters with their radicals
-(see~\ref{sec:japanesewritingsystemtoday}) there are many more shapes that look
-very much alike. From the shape recognition perspective, minor changes to the 
-shape of a character can change its meaning drastically.
+(see section~\ref{sec:japanesewritingsystemtoday}) there are many more shapes 
+that look very much alike. From the shape recognition perspective, 
+minor changes to the shape of a character can change its meaning drastically.
 Compare \cjk{嘸}~(how, indeed), \cjk{撫}~stroke, pat), \cjk{蕪}~(turnip) and
 \cjk{憮}~(disappointment). They all contain the radical 
 \cjk{無}~(nothingness, none), which doesn't seem to have any semantic connection
@@ -273,6 +273,9 @@ in the air \shortcite{Agrawal2009}. That approach can be regarded as an area
 that is only loosely related to classical handwriting recognition, 
 as the phone stores an image of the strokes in the air that were measured
 by the accelerator device, but does not transform the strokes into characters.
+
+xxx: if you want to add more technical details here, 
+see Santosh2009:Digitizer Technology. :xxx
 
 \subsection{Recognition vs Identification}
 \label{sec:recognitionvsidentification}
@@ -346,10 +349,11 @@ combined with the appropriate measuring times of those points.
 \emph{Off-line} HWR is the application of a HWR algorithm after the writing.
 It can be performed at any time after the writing has been completed. That 
 includes recognition of data transferred from the real-ink pens 
-(see \ref{sec:hardwarerequirements}) to a computing device after the writing
-has been completed. The standard case of off-line HWR, however, is a subset of
-optical character recognition (OCR). An scanner transfers the physical image 
-on paper into a bitmap, the character recognition is performed on the bitmap.
+(see section~\ref{sec:hardwarerequirements}) to a computing device after the 
+writing has been completed. The standard case of off-line HWR, however, is a 
+subset of optical character recognition (OCR). An scanner transfers the physical 
+image on paper into a bitmap, the character recognition is performed on the 
+bitmap.
 An OCR system can recognise several hundred characters per second. Images are
 usually binarised by a threshold of its colour pattern, such that the image
 pixels are either 1 or 0 \shortcite{Santosh2009}.
@@ -402,22 +406,58 @@ direction and curve matching.
 
 \subsection{Data Capturing}
 \label{sec:datacapturing}
+%xxx: see Plamondon2000 1.4.
+%xxx: see Santosh2009 sampling
 
-In order to caputre the data necessary for on-line HWR some special hardware is
-needed. It is possible to input data with a regular mouse on a regular computer,
-however the data will be less \emph{noisy} if a stylus is used for input
-of the handwriting. See~\ref{sec:hardwarerequirements} for more information on 
-the hardware requirements of HWR. The data that are served by a device driver
-or the operating system are structured as mouse coordinates. In case of 
-pressure-sensitive input devices the device driver also returns the pressure
-intensity. However, a typical on-line HWR application uses the mouse coordinates,
-not the pressure intensity. 
+Some special hardware is needed, in order to capture the data necessary 
+for on-line HWR. It is possible to input data with a regular mouse on 
+a regular computer, however the data will be less \emph{noisy}, 
+if a stylus is used for input of the handwriting. 
+See section~\ref{sec:hardwarerequirements} for more information on the hardware 
+requirements of HWR. The data that is served by a device driver or the operating
+system is structured as mouse coordinates. In case of pressure-sensitive input 
+devices the device driver also returns the pressure intensity. 
+However, a typical on-line HWR application uses only the mouse coordinates,
+not the pressure intensity. Generally, HWR applications work with mouse
+coordinates, thus the trajectory of the stylus, in accordance with the 
+appropriate time information for each of the sampling points.
+
+xxx: 
+if you want to add more here, see \shortcite{Santosh2009}:
+\emph{Digitizer Technology}, but don't repeat to much stuff 
+from~\ref{sec:hardwarerequirements}
+:xxx
+
+xxx: 
+The reason for not using pressure intensity as a recognition feature might be 
+that it is plausible to assume that pressure intensity is even more individual 
+to the writer than the shape of the drawn characters. 
+Therefore, featuring pressure intensity in a HWR application could add more 
+noise to the data. However, the differences in pressure intensity 
+between different characters drawn by the same writer should be analysed.
+[xxx put the speculation about pressure intensity into outlook chapter? 
+something along the lines of progress in device technology, 
+subsection pressure intensity of tablets? Or maybe refer from here to
+outlook chapter?] 
+:xxx
+
+\subsubsection{Sampling}
+\label{sec:sampling}
+
+The pen-up and pen-down information is a central part in data capturing. 
+Depending on the sampling rate, there will be between 50 and 200 points per 
+second. Those can be viewed as a function of time.
+With theses pieces of information, it is possible to track the number and order
+of strokes drawn by the user. According to the writing speed, the number of 
+coordinates per distance can vary. A fast stroke will have fewer point samples,
+even if the same distance was covered on the writing surface.
+Some see this as a problem and \emph{re-sample} the points to be of equal 
+distance to each other and to have a constant number of sample points in every yyy
+string \shortcite{Santosh2009}. 
+
+\shortcite{Joshi2005}
 
 
-how is the data captured? what format?
-hardware?
-xxx: see Plamondon2000 1.4.
-xxx: see Santosh2009 sampling
 
 \subsection{Preprocessing}
 \label{sec:preprocessing}
@@ -484,7 +524,8 @@ systems for latin-based alphabets. The process begins with \emph{Character
 segmentation}, goes on with \emph{Preprocessing}, \emph{Pattern description}, 
 \emph{Pattern recognition} and ends with \emph{Contextual processing}, 
 if applicable. However, there are differences to the standard process, due to 
-the nature of the Chinese characters (see \ref{sec:handwritingpropertieseastasian}).
+the nature of the Chinese characters (see 
+section~\ref{sec:handwritingpropertieseastasian}).
 Especially the pattern representation is divers in the different OLCCR systems,
 whereas it is naturally more alike in the systems focusing on Latin characters.
 This is due to the fact that the Latin alphabet is rather small, but has more
