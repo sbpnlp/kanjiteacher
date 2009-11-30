@@ -495,7 +495,7 @@ Tokyo, Japan
 October 2004
 
 In this directory: joshi2004.pdf
-In Bibtex: not yet
+In Bibtex: yes
 #############################################
 PDF] ►Machine Recognition of Online Handwritten Devanagari Characters♦
 
@@ -667,9 +667,21 @@ Appears in:	Thesis - Computer Science
 In this directory: DanielNegussieMaster2006.pdf
 In Bibtex: not yet
 #############################################
-In this directory: 
+
+REFERENCE PAPER for Dynamic Time Warping!
+
+Chu, S., Keogh, E., Hart, D., Pazzani, M. (2002). Iterative Deepening Dynamic Time Warping for Time Series. The Second SIAM International Conference on Data Mining (SDM-02), 2002.
+
+In this directory: chu2001.pdf
+In Bibtex: not yet
 #############################################
-In this directory: 
+
+REFERENCE PAPER for Dynamic Time Warping!
+
+Keogh, E. & Pazzani, M. (2001). Derivative Dynamic Time Warping. In First SIAM International Conference on Data Mining (SDM'2001), Chicago, USA
+
+In this directory: Keogh2001.pdf
+In Bibtex: not yet
 #############################################
 In this directory: 
 #############################################
