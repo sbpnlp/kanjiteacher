@@ -1,0 +1,27 @@
+before you change anything, right click the folder
+    'steven's thesis'
+and say
+    "SVN Update"
+==> all my changes will come to your hard disc,  so you're looking at the newest version.
+
+if you change any files, don't just correct bits of text, because that'd be illegal,
+I have to swear that I did the work myself, therefore just put in comments for my
+consideration...
+
+in order for me to recognise the comments, mark them somehow,
+at best, always the same way, so I can find them, if I search for a certain character string
+maybe something like:
+
+    jacky comments:
+    this sentence above is total crap, it's to long and I don't know what you mean by it.
+    it would be better to put it like this:
+    This is the short version of the sentence.
+
+
+after you finish your changes, right click the folder
+    'steven's thesis'
+and say
+    "SVN Commit"
+
+that way you should hardly ever get any conflicts.
+
