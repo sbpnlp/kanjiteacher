@@ -269,7 +269,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <summary>
         /// Static variable that represents an empty point.
         /// </summary>
-        private static Point empty = new Point(0, 0);
+        private static Point empty = new Point(Double.MinValue, Double.MaxValue);
 
         /// <summary>
         /// Implements the operator !=. Compares two Kanji.DesktopApp.LogicLayer.Point objects. 
