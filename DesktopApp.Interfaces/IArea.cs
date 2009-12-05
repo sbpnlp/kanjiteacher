@@ -32,6 +32,12 @@ namespace Kanji.DesktopApp.Interfaces
         /// Calculates the 2D geometrical size of the area.
         /// </summary>
         /// <returns>The size of this area.</returns>
-        double GeometricalSize(); 
+        double GeometricalSize();
+
+        /// <summary>
+        /// Product of an Area and a scalar value. Resizes the Area with the scalar value.
+        /// </summary>
+        /// <param name="s">Scalar value to be multiplied by </param>
+        void Stretch(double s);
     }
 }

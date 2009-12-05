@@ -832,6 +832,20 @@ namespace Kanji.DesktopApp.LogicLayer
             return this.Magnitude;
         }
 
+        /// <summary>
+        /// Creates a point list from a list of vectors
+        /// </summary>
+        /// <param name="vectorList">The vector list.</param>
+        /// <returns></returns>
+        public static List<Point> CreatePointList(List<Vector2> vectorList)
+        {
+            List<Point> output = new List<Point>(vectorList.Count);
+            foreach (Vector2 v in vectorList)
+            {
+                output.Add(v.ToPoint());
+            }
+            return output;
+        }
         #endregion
 
         #region Component Operations
@@ -1058,6 +1072,15 @@ namespace Kanji.DesktopApp.LogicLayer
                             Y.ToString(format, formatProvider)
                         );
             }
+        }
+
+        /// <summary>
+        /// Returns the vector coordinates as a Point.
+        /// </summary>
+        /// <returns></returns>
+        public Point ToPoint()
+        {
+            return new Point(X, Y);
         }
 
         /// <summary>

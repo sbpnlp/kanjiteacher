@@ -85,7 +85,7 @@ namespace Kanji.DesktopApp.LogicLayer
         {
             Anchor = upperLeft;
             Width = lowerRight.X - upperLeft.X;
-            Height = upperLeft.Y - lowerRight.Y;
+            Height = lowerRight.Y - upperLeft.Y; //backwards, due to screen coordinate system
         }
 
         #endregion
@@ -154,6 +154,16 @@ namespace Kanji.DesktopApp.LogicLayer
         public double GeometricalSize()
         {
             return Width * Height;
+        }
+
+        /// <summary>
+        /// Product of a Rectangle and a scalar value. Resizes the Rectangle with the scalar value.
+        /// </summary>
+        /// <param name="s">Scalar value to be multiplied by</param>
+        public void Stretch(double s)
+        {
+            Width *= s;
+            Height *= s;
         }
 
         #endregion

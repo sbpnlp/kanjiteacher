@@ -8,7 +8,23 @@ namespace Kanji.DesktopApp.LogicLayer
 {
     public class BoundingBox : Square2D, IBoundingBox
     {
-        private double paddingFactor = 1.1;
+        #region Private fields
+        /// <summary>
+        /// The padding factor describes how much whitespace is allowed around the
+        /// bounding box
+        /// </summary>
+        private const double paddingFactor = 1;
+        private List<Point> _pointList = new List<Point>();
+        private List<Vector2> _vectorsFromAnchor = new List<Vector2>();
+        #endregion
+
+        #region Public fields
+        public List<Point> PointList { get { return _pointList; } set { _pointList = value; Initialisation(); } }
+        public List<Vector2> VectorsFromAnchor { get { return _vectorsFromAnchor; } }
+
+        #endregion
+
+        #region Constructors
         /// <summary>
         /// Initializes a new instance of the <see cref="BoundingBox "/> class.
         /// </summary>
@@ -35,20 +51,35 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <param name="pointlist">The pointlist.</param>
         public BoundingBox(List<Point> pointlist) : base()
         {
+            /* Remember that the coordinate system begins in the
+             * upper left corner of the screen.
+             * Therefore some calculations seem backwards,
+             * like moving the anchor point around
+             */
+
+            _pointList = pointlist;
+            Initialisation();
+        }
+        #endregion
+
+        #region Private methods
+        private void Initialisation()
+        {
             Point uppermost, lowermost, leftmost, rightmost;
-            if (pointlist.Count >= 1)
-                uppermost = lowermost = leftmost = rightmost = pointlist[0];
+            if (_pointList.Count >= 1)
+                uppermost = lowermost = leftmost = rightmost = _pointList[0];
             else throw new ArithmeticException("Bounding Box needs at least one point");
 
             // find uppermost, lowermost, leftmoest and rightmost point of pointlis
-            foreach (Point p in pointlist)
+            foreach (Point p in _pointList)
             {
                 if (p.X > rightmost.X) rightmost = p;
                 if (p.X < leftmost.X) leftmost = p;
-                if (p.Y > uppermost.Y) uppermost = p;
-                if (p.Y < lowermost.Y) lowermost = p;
+                if (p.Y < uppermost.Y) uppermost = p; //this seems backwards:
+                if (p.Y > lowermost.Y) lowermost = p; //due to upside down screen coordinates
             }
 
+            //create bounding rectangle for some calculations
             Rectangle2D r = new Rectangle2D(
                 new Point(leftmost.X, uppermost.Y),
                 new Point(rightmost.X, lowermost.Y));
@@ -62,7 +93,7 @@ namespace Kanji.DesktopApp.LogicLayer
             else if (r.Width > r.Height)
             {
                 // increase height to width
-                r.Anchor.Y -= ((r.Width - r.Height) / 2);
+                r.Anchor.Y -= ((r.Width - r.Height) / 2); //backwards, because of screen coordinates
                 r.Height = r.Width;
             }
 
@@ -71,10 +102,39 @@ namespace Kanji.DesktopApp.LogicLayer
             Width = r.Width;
 
             // additional padding to increase box size
-            double move = (Width * paddingFactor - Width) / 2;
-            Anchor.X -= Math.Floor(move);
-            Anchor.Y -= Math.Floor(move);
-            Width = Math.Floor(Width * paddingFactor);
+            double paddedWidth = Width * paddingFactor;
+            //calculate average between the two for movement of anchor point
+            double move = (paddedWidth - Width) / 2;
+            //set new width
+            Width = paddedWidth;
+            //move anchor point
+            Anchor.X -= move;
+            Anchor.Y -= move; //backwards, due to screen coordinates beginning in upper left corner
+
+            //move pointlist into vector list, relative to anchor point
+            _vectorsFromAnchor = new List<Vector2>(_pointList.Count);
+            foreach (Point p in _pointList)
+            {
+                _vectorsFromAnchor.Add(new Vector2(Anchor, p));
+            }
         }
+        #endregion
+
+        #region Public methods
+
+        /// <summary>
+        /// Product of a BoundingBox and a scalar value. Resizes the BoundingBox
+        /// and the values of the Points inside with the scalar value.
+        /// </summary>
+        /// <param name="s">Scalar value to be multiplied by</param>
+        public new void Stretch(double s)
+        {
+            Width *= s;
+            for (int i = 0; i < _vectorsFromAnchor.Count; i++)
+            {
+                _vectorsFromAnchor[i] = _vectorsFromAnchor[i] * s;
+            }
+        }
+        #endregion
     }
 }

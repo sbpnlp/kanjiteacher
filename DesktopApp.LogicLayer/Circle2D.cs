@@ -128,6 +128,15 @@ namespace Kanji.DesktopApp.LogicLayer
             return Math.PI * Radius * Radius;
         }
 
+        /// <summary>
+        /// Product of a Circle and a scalar value. Resizes the Circle with the scalar value.
+        /// </summary>
+        /// <param name="s">Scalar value to be multiplied by.</param>
+        public void Stretch(double s)
+        {
+            Radius *= s;
+        }
+
         #endregion
 
         #region Overridden Object methods
