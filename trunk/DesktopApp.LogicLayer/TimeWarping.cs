@@ -61,11 +61,11 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <value>The warping path.</value>
         public List<Point> WarpingPath { 
             get {
-                return BackwardsSequence(OriginalSequence.Count, OtherSequence.Count);
+                return GetWarpingPath(OriginalSequence.Count-1, OtherSequence.Count-1);
             } 
         }
 
-        public List<Point> BackwardsSequence(int i, int j)
+        public List<Point> GetWarpingPath(int i, int j)
         {
             List<Point> bSeq = new List<Point>();
 
@@ -151,6 +151,10 @@ namespace Kanji.DesktopApp.LogicLayer
         #endregion
 
         #region Public methods
+        /// <summary>
+        /// Calculates the distances of the points.
+        /// </summary>
+        /// <returns></returns>
         public List<List<double>> CalculateDistances()
         {
             for (int i = 0; i < OriginalSequence.Count; i++)
@@ -171,7 +175,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <returns></returns>
         public double CalculateCumulativeDistance()
         {
-            return CalculateCummulativeDistanceOf(OriginalSequence.Count, OtherSequence.Count);
+            return CalculateCumulativeDistanceOf(OriginalSequence.Count-1, OtherSequence.Count-1);
         }
         /// <summary>
         /// Calculates the minimal path.
@@ -179,7 +183,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <param name="i">i corresponds to the index of the OriginalSequence</param>
         /// <param name="j">j corresponds to the index of the OtherSequence</param>
         /// <returns></returns>
-        public double CalculateCummulativeDistanceOf(int i, int j)
+        public double CalculateCumulativeDistanceOf(int i, int j)
         {
             //if walking over boundaries of matrix return OUTSIDE const
             if ((i < 0) || (j < 0)) return OUTSIDE;
@@ -198,13 +202,13 @@ namespace Kanji.DesktopApp.LogicLayer
             else if (i == 0) //walk only upwards
             {
                 CummulativeDistances[i][j] =
-                    Distances[i][j] + CalculateCummulativeDistanceOf(i, j - 1);
+                    Distances[i][j] + CalculateCumulativeDistanceOf(i, j - 1);
                 MinimalPath[i][j] = new Point(i, j - 1);
             }
             else if (j == 0) //walk only to the left
             {
                 CummulativeDistances[i][j] =
-                    Distances[i][j] + CalculateCummulativeDistanceOf(i - 1, j);
+                    Distances[i][j] + CalculateCumulativeDistanceOf(i - 1, j);
                 MinimalPath[i][j] = new Point(i - 1, j);
             }
             else
@@ -215,9 +219,9 @@ namespace Kanji.DesktopApp.LogicLayer
                 // - one left, one up
 
                 List<double> temp = new List<double>();
-                temp.Add(CalculateCummulativeDistanceOf(i, j - 1)); //0 == up
-                temp.Add(CalculateCummulativeDistanceOf(i - 1, j)); //1 == left
-                temp.Add(CalculateCummulativeDistanceOf(i - 1, j - 1)); //2 == upleft
+                temp.Add(CalculateCumulativeDistanceOf(i, j - 1)); //0 == up
+                temp.Add(CalculateCumulativeDistanceOf(i - 1, j)); //1 == left
+                temp.Add(CalculateCumulativeDistanceOf(i - 1, j - 1)); //2 == upleft
 
 
                 int minimum = FindMinimum(temp);

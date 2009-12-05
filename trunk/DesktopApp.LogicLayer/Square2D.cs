@@ -50,5 +50,14 @@ namespace Kanji.DesktopApp.LogicLayer
         }
         #endregion
 
+        /// <summary>
+        /// Product of a Square and a scalar value. Resizes the Square with the scalar value.
+        /// </summary>
+        /// <param name="s">Scalar value to be multiplied by</param>
+        public new void Stretch(double s)
+        {
+            Width *= s;
+        }
+
     }
 }
