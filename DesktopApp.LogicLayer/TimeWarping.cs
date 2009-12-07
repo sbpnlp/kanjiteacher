@@ -15,19 +15,19 @@ namespace Kanji.DesktopApp.LogicLayer
         /// Gets or sets the cummulative distances of the matrix.
         /// </summary>
         /// <value>The cummulative distances.</value>
-        public List<List<double>> CummulativeDistances { get; set; }
+        public double[,] CummulativeDistances { get; set; }
 
         /// <summary>
         /// Gets or sets the distances of the matrix.
         /// </summary>
         /// <value>The distances.</value>
-        public List<List<double>> Distances { get; set; }
+        public double[,] Distances { get; set; }
         #endregion
         #region Private fields
         /// <summary>
         /// Constant to define an empty field, because 0 is a value
         /// </summary>
-        const double EMPTY = Double.MinValue;
+        const double EMPTY = 0;
 
         /// <summary>
         /// Constant to define a value OUTSIDE the matrix
@@ -53,16 +53,36 @@ namespace Kanji.DesktopApp.LogicLayer
         /// which will yield the sum of the path.
         /// </summary>
         /// <value>The minimal path.</value>
-        private List<List<Point>> MinimalPath { get; set; }
+        private Point[,] MinimalPath { get; set; }
+
+        private List<Point> _warpingPath = null;
 
         /// <summary>
         /// Gets the warping path, which represents the minimal path through the matrix.
         /// </summary>
         /// <value>The warping path.</value>
-        public List<Point> WarpingPath { 
-            get {
-                return GetWarpingPath(OriginalSequence.Count-1, OtherSequence.Count-1);
+        public List<Point> WarpingPath
+        { 
+            get 
+            {
+                if (_warpingPath == null) 
+                {
+                    _warpingPath = GetWarpingPath(OriginalSequence.Count - 1, OtherSequence.Count - 1);
+                }
+                return _warpingPath;
             } 
+        }
+
+        public double WarpingDistance
+        {
+            get
+            {
+                if (_warpingPath == null)
+                {
+                    _warpingPath = GetWarpingPath(OriginalSequence.Count - 1, OtherSequence.Count - 1);
+                }
+                return CalculateCumulativeDistance() / _warpingPath.Count;
+            }
         }
 
         public List<Point> GetWarpingPath(int i, int j)
@@ -74,7 +94,7 @@ namespace Kanji.DesktopApp.LogicLayer
             while ((!p.Equals(Point.Empty)) && (!p.Equals(new Point(0,0))))
             {
                 bSeq.Insert(0, p);
-                p = MinimalPath[(int)p.X][(int)p.Y];
+                p = MinimalPath[(int)p.X, (int)p.Y];
                 //when reaching end, stop procedure
                 if (p.Equals(new Point(0,0)))
                 {
@@ -111,26 +131,28 @@ namespace Kanji.DesktopApp.LogicLayer
         /// </summary>
         private void InitialiseLists()
         {
-            CummulativeDistances = new List<List<double>>();
-            Distances = new List<List<double>>();
-            MinimalPath = new List<List<Point>>();
+            CummulativeDistances = new double[OriginalSequence.Count, OtherSequence.Count];
+            Distances = new double[OriginalSequence.Count, OtherSequence.Count];
+            MinimalPath = new Point[OriginalSequence.Count, OtherSequence.Count];
+            MinimalPath[0, 0] = new Point(0, 0);
 
-            //fill the lists with zeros
-            for (int i = 0; i < OriginalSequence.Count; i++)
-            {
-                //adding lists for the columns
-                CummulativeDistances.Add(new List<double>());
-                Distances.Add(new List<double>());
-                MinimalPath.Add(new List<Point>());
+            // This is only necessary for List<> not for array
+            ////fill the lists with zeros
+            //for (int i = 0; i < OriginalSequence.Count; i++)
+            //{
+            //    //adding lists for the columns
+            //    CummulativeDistances.Add(new List<double>());
+            //    Distances.Add(new List<double>());
+            //    MinimalPath.Add(new List<Point>());
 
-                //adding items for the rows
-                for (int j = 0; j < OtherSequence.Count; j++)
-                {
-                    CummulativeDistances[i].Add(EMPTY);
-                    Distances[i].Add(EMPTY);
-                    MinimalPath[i].Add(Point.Empty);
-                }
-            }
+            //    //adding items for the rows
+            //    for (int j = 0; j < OtherSequence.Count; j++)
+            //    {
+            //        CummulativeDistances[i].Add(EMPTY);
+            //        Distances[i].Add(EMPTY);
+            //        MinimalPath[i].Add(Point.Empty);
+            //    }
+            //}
         }
 
         /// <summary>
@@ -151,18 +173,22 @@ namespace Kanji.DesktopApp.LogicLayer
         #endregion
 
         #region Public methods
+        public delegate double AbstractDistanceCalculatorFunction(Point p, Point q);
+
         /// <summary>
         /// Calculates the distances of the points.
         /// </summary>
         /// <returns></returns>
-        public List<List<double>> CalculateDistances()
+        public double[,] CalculateDistances(AbstractDistanceCalculatorFunction MeasureDistance)
         {
             for (int i = 0; i < OriginalSequence.Count; i++)
             {
                 //calculate distance OriginalSequence to OtherSequnce
                 for (int j = 0; j < OtherSequence.Count; j++)
                 {
-                    Distances[i][j] = OtherSequence[j].Distance(OriginalSequence[i]);
+                    //Distances[i,j] = OtherSequence[j].Distance(OriginalSequence[i]);
+                    Distances[i, j] = MeasureDistance(OriginalSequence[i], OtherSequence[j]);
+
                 }
             }
 
@@ -190,26 +216,26 @@ namespace Kanji.DesktopApp.LogicLayer
 
             //if this cummulative distance has already been calculated
             //return it from list
-            if (CummulativeDistances[i][j] != EMPTY)
-                return CummulativeDistances[i][j];
+            if (CummulativeDistances[i,j] != EMPTY)
+                return CummulativeDistances[i,j];
 
             //finalise recursive function at index <0,0>,
             //where cummulative distance is equal to distance
             if ((i == 0) && (j == 0))
             {
-                CummulativeDistances[i][j] = Distances[0][0];
+                CummulativeDistances[i,j] = Distances[0,0];
             }
             else if (i == 0) //walk only upwards
             {
-                CummulativeDistances[i][j] =
-                    Distances[i][j] + CalculateCumulativeDistanceOf(i, j - 1);
-                MinimalPath[i][j] = new Point(i, j - 1);
+                CummulativeDistances[i,j] =
+                    Distances[i,j] + CalculateCumulativeDistanceOf(i, j - 1);
+                MinimalPath[i,j] = new Point(i, j - 1);
             }
             else if (j == 0) //walk only to the left
             {
-                CummulativeDistances[i][j] =
-                    Distances[i][j] + CalculateCumulativeDistanceOf(i - 1, j);
-                MinimalPath[i][j] = new Point(i - 1, j);
+                CummulativeDistances[i,j] =
+                    Distances[i,j] + CalculateCumulativeDistanceOf(i - 1, j);
+                MinimalPath[i,j] = new Point(i - 1, j);
             }
             else
             {
@@ -228,24 +254,24 @@ namespace Kanji.DesktopApp.LogicLayer
 
                 if (minimum == 0) //left
                 {
-                    CummulativeDistances[i][j] =
-                        Distances[i][j] + CummulativeDistances[i][j - 1];
-                    MinimalPath[i][j] = new Point(i, j - 1);
+                    CummulativeDistances[i,j] =
+                        Distances[i,j] + CummulativeDistances[i,j - 1];
+                    MinimalPath[i,j] = new Point(i, j - 1);
                 }
                 else if (minimum == 1) //up
                 {
-                    CummulativeDistances[i][j] =
-                        Distances[i][j] + CummulativeDistances[i - 1][j];
-                    MinimalPath[i][j] = new Point(i - 1, j);
+                    CummulativeDistances[i,j] =
+                        Distances[i,j] + CummulativeDistances[i - 1,j];
+                    MinimalPath[i,j] = new Point(i - 1, j);
                 }
                 else
                 {
-                    CummulativeDistances[i][j] =
-                        Distances[i][j] + CummulativeDistances[i - 1][j - 1]; //upleft
-                    MinimalPath[i][j] = new Point(i - 1, j - 1);
+                    CummulativeDistances[i,j] =
+                        Distances[i,j] + CummulativeDistances[i - 1,j - 1]; //upleft
+                    MinimalPath[i,j] = new Point(i - 1, j - 1);
                 }
             }
-            return CummulativeDistances[i][j];
+            return CummulativeDistances[i,j];
         }
         #endregion
 
@@ -262,6 +288,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// The Matrix to print
         /// </summary>
         List<List<double>> _matrix;
+        double[,] _matrixArray = null;
         string _newLineChar = "\n";
         string _blankChar = " ";
         #endregion
@@ -277,10 +304,19 @@ namespace Kanji.DesktopApp.LogicLayer
         public MatrixPrinter(List<List<double>> matrix)
         {
             _matrix = matrix;
+            _matrixArray = null;
         }
-        #endregion
 
-        #region Public methods
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatrixPrinter"/> class.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        public MatrixPrinter(double[,] matrix)
+        {
+            _matrixArray = matrix;
+            _matrix = null;
+        }
+
         /// <summary>
         /// Initializes a new instance of the <see cref="MatrixPrinter"/> class.
         /// </summary>
@@ -290,15 +326,68 @@ namespace Kanji.DesktopApp.LogicLayer
         public MatrixPrinter(List<List<double>> matrix, string newlinechar, string blankchar)
         {
             _matrix = matrix;
+            _matrixArray = null;
             _newLineChar = newlinechar;
             _blankChar = blankchar;
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="MatrixPrinter"/> class.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <param name="newlinechar">The newlinechar.</param>
+        /// <param name="blankchar">The blankchar.</param>
+        public MatrixPrinter(double[,] matrix, string newlinechar, string blankchar)
+        {
+            _matrix = null;
+            _matrixArray = matrix;
+            _newLineChar = newlinechar;
+            _blankChar = blankchar;
+        }
+
+        #endregion
+
+        #region Public methods
+
+        public string print()
+        {
+            if (_matrixArray == null) return printMatrixList();
+            else return printMatrixArray();
+        }
+
+        private string printMatrixArray()
+        {
+            StringBuilder output = new StringBuilder();
+            output.AppendLine("Rows and columns are switched in this print view");
+            //array is supposed to be two-dimensional,
+            //therefore: 
+            if (_matrixArray.Rank == 2)
+            {
+                int m = _matrixArray.GetLength(0);
+                int n = _matrixArray.GetLength(1);
+
+                for (int i = 0; i < m; i++)
+                {
+                    for (int j = 0; j < n; j++)
+                    {
+                        output.AppendFormat(string.Format("{0:0.000}", _matrixArray[i, j]));
+
+                        if (j + 1 < n)
+                        {
+                            output.Append("," + _blankChar);
+                        }
+                    }
+                    output.Append(_newLineChar);
+                }
+            }
+            return output.ToString();
         }
 
         /// <summary>
         /// Prints this instance.
         /// </summary>
         /// <returns></returns>
-        public string print() 
+        private string printMatrixList() 
         {
             StringBuilder output = new StringBuilder();
             output.AppendLine("Rows and columns are switched in this print view");
@@ -329,6 +418,19 @@ namespace Kanji.DesktopApp.LogicLayer
         public string printNewMatrix(List<List<double>> matrix)
         {
             _matrix = matrix;
+            _matrixArray = null;
+            return print();
+        }
+
+        /// <summary>
+        /// Prints a new matrix with current configuration.
+        /// </summary>
+        /// <param name="matrix">The matrix.</param>
+        /// <returns></returns>
+        public string printNewMatrix(double[,] matrix)
+        {
+            _matrix = null;
+            _matrixArray = matrix;
             return print();
         }
         #endregion
