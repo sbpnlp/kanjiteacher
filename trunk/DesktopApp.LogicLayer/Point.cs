@@ -329,6 +329,15 @@ namespace Kanji.DesktopApp.LogicLayer
             }
             else return null;
         }
+
+        public static bool IsNullOrEmpty(Point p)
+        {
+            if (p != null)
+            {
+                return p.IsEmpty;
+            }
+            else return true; 
+        }
         #endregion
 
         #endregion

@@ -23,9 +23,7 @@ namespace Testing
             p.Add(new Point(4, 2));
             p.Add(new Point(5, 3));
             p.Add(new Point(6, 2));
-
-            BoundingBox bb = new BoundingBox(p);
-            
+            BoundingBox bb = new BoundingBox(p);   
         }
 
         private static void TestTimeWarping()
@@ -61,7 +59,7 @@ namespace Testing
             s.Add(new Point(9.5, 5));
 
             TimeWarping tw = new TimeWarping(r, q);
-            tw.CalculateDistances();
+            tw.CalculateDistances((p1, p2) => p1.Distance(p2));
             MatrixPrinter m = new MatrixPrinter(tw.Distances);
             m.NewlineChar = "\r\n";
             m.BlankChar = " ";
@@ -101,7 +99,10 @@ namespace Testing
             List<Point> newS = Vector2.CreatePointList(bs.VectorsFromAnchor);
 
             TimeWarping tw2 = new TimeWarping(newR, newQ);
-            tw2.CalculateDistances();
+            tw2.CalculateDistances((p1, p2) => p1.Distance(p2));
+
+            myStop.X = newR.Count - 1;
+            myStop.Y = newQ.Count - 1;
 
             Console.WriteLine(m.printNewMatrix(tw2.Distances));
 
@@ -116,7 +117,7 @@ namespace Testing
 
 
             TimeWarping tw3 = new TimeWarping(newP, newS);
-            tw3.CalculateDistances();
+            tw3.CalculateDistances(delegate(Point p1, Point p2) { return p1.Distance(p2); });
 
             Console.WriteLine(m.printNewMatrix(tw3.Distances));
 
@@ -129,11 +130,9 @@ namespace Testing
                 Console.WriteLine(mp);
             }
 
-
-
+            Console.WriteLine("Warping distance r / q: " + tw.WarpingDistance.ToString());
+            Console.WriteLine("Warping distance newR / newQ (newR is the same shape but double size): " + tw2.WarpingDistance.ToString());
+            Console.WriteLine("Warping distance newP / newS (are resized to the same bounding box and then moved on top of each other): " + tw3.WarpingDistance.ToString());
         }
-
- 
-
     }
 }
