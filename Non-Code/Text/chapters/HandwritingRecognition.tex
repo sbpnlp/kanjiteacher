@@ -468,11 +468,11 @@ characters, where each of the charaters is represented by 60 sample points.
 \subsection{Preprocessing}
 \label{sec:preprocessing}
 
-xxx: see Santosh2009 pre-processing
-xxx: see Tappert1990 preprocessing: segmentation, noise reduction.
-xxx: see Santosh2009 noise elimination
-xxx: see Santosh2009 normalisation
-xxx: see Santosh2009 repetition removal
+%xxx: see Santosh2009 pre-processing
+%xxx: see Tappert1990 preprocessing: segmentation, noise reduction.
+%xxx: see Santosh2009 noise elimination
+%xxx: see Santosh2009 normalisation
+%xxx: see Santosh2009 repetition removal
 
 Most On-Line HWR systems apply some kind of preprocessing. Generally, 
 preprocessing serves to smoothen the data, eleminate noise and normalise the
@@ -487,11 +487,11 @@ Some systems also employ a \emph{normalisation} step, that can include
 \shortcite{Santosh2009} employ a similar perception in their review about several
 on-line HWR systems. Their \emph{noise elimination} corresponds to 
 \emph{noise reduction} and the afforementioned \emph{normalisation} describes 
-roughly the same techniques that \citeauthoryear{Tappert1990} depict.
-\citeauthoryear{Santosh2009} also present the additional processing step of 
-\emph{repetition removal}, which can be mapped to \emph{dot reduction}.
-In the remainder of this section the typical preprocessing steps are presented 
-in more detail.
+roughly the same techniques that \shortciteA{Tappert1990} depict.
+\shortciteA{Santosh2009} also present the additional processing step of 
+\emph{repetition removal}, is comparable to the \emph{dot reduction} mentioned 
+above. In the remainder of this section the typical preprocessing steps are 
+presented in more detail.
 
 \subsection{Segmentation}
 \label{sec:segmentation}
@@ -506,6 +506,15 @@ single strokes, characters or words respectively. In alphabetic scripts it is
 sometimes difficult to segment each character externally. In CJK cursive script 
 it is difficult to distinguish individual strokes, however, usually each 
 character can be isolated without much processing.  
+The earliest method of external segmentation is an explicit signal from the user,
+other work used the projection of the trajectories on the X-axis for spatial
+segmentation. Another method uses temporal information and employs a time-out
+between the end of one and the beginning of another character.
+A fairly easy possibility is of course the use of boxed characters, where the 
+user is required to write each character in a separate box.
+Taking the box idea to the next level of abstraction, some systems provide 
+different boxes on a single screen for different types of characters 
+\shortcite{Tappert1990}.
 
 \subsubsection{Internal Segmentation}
 \label{sec:internalsegmentation}
@@ -516,23 +525,63 @@ In \emph{overlaid handwriting recognition} a sequence of characters is written
 on the same area, e.g. on a very small display like a wrist watch with a touch 
 screen. In that case, segmentation becomes a problem even for OLCCR systems.
 \shortcite{Shimodaira2003} employ substroke HMMs in a wearable computing 
-environment. they achieved performances of 69.2\% with free stroke order
+environment. They achieved performances of 69.2\% with free stroke order
 and 88\% with fixed stroke order characters.
 
 \subsection{Noise Reduction} 
 \label{sec:noisereduction}
+Any stroke drawn on a device with a pen input contains noise. Digitising errors
+like limited accuracy of the tablet or erratic pen-down indication or hand 
+fluctuation are sources of noise in the input data.  There are different types 
+of noise and different types of filters for elimination of the noise from the 
+data \shortcite{Santosh2009}.
+
 \subsubsection{Smoothing}
 \label{sec:smoothing}
+\emph{Smoothing} is usually a technique that averages a point with its 
+neighbour point. A common variant of that is only averaging a point with its
+previous point. That ensures that the recognition can proceed as the input
+is received \shortcite{Tappert1990}. \shortcite{Joshi2005} employ a 5-tap low 
+pass Gaussian filter in order to smoothen the data. Today, Gaussian filters are 
+often used as a means of smoothing data, despite the fact that \emph{filtering}
+usually refers to reducing the number of samples in a sequence of points.
+
 \subsubsection{Filtering}
-\label{sec:fitlering}
+\label{sec:filtering}
+\emph{Filtering} describes a technique that thins out the number of samples in 
+a point sequence. It is sometimes referred to as \emph{thinning} but should not 
+be confused with \emph{line thinning} in off-line HWR. Here, thinning means 
+reducing the number of data samples. Also, duplicate points can be detected
+and eliminated through filters.
+The ideal filtering method depends on the recognition method. There are 
+filtering techniques that enforce a minimum distance between points. When a 
+filtering method of that type is used, points tend to be equally spaced.
+This filtering tecnique assumes many samples per distance. When a stroke is drawn
+quickly on a tablet, it can happen, that the distance of the atual sample 
+points is larger than the minimum distance the filter permits. In that case,
+interpolation can be used in order to introduce new data points in between and
+achieve equidistant points. Smoothing and filtering can also be performed in one 
+operation for time optimasation \shortcite{Tappert1990}.
+
 \subsubsection{Wild Point Correction}
 \label{sec:wildpointcorrection}
+\emph{Wild Point Correction} is used for elimination of spurious points. Those 
+points occur usually as a result of errors in data capturing. Acceleration and 
+generally any change of velocity of the hand movement can cause the digitiser 
+tablet to detect wild points \shortcite{Tappert1990}.
+
 \subsubsection{Dehooking}
 \label{sec:dehooking}
+Hooks occur at the beginning and more frequently at the end of a stroke. They
+are recognised by the data capturing device because of inaccurate pen-down 
+detection or random motion when lifting the stylus off the tablet.
+\emph{Dehooking} is a tecnique to remove the hooks at the end and at the 
+beginning of a stroke \shortcite{Tappert1990}.
+
 \subsubsection{Repetition Removal}
 \label{sec:repetitionremoval}
 
-more santosh less tappert
+%more santosh less tappert
 
 \subsubsection{Stroke Connection}
 \label{sec:strokeconnection}
@@ -547,6 +596,9 @@ more santosh less tappert
 \label{sec:sizenormalisation}
 \subsubsection{Stroke Lenght Normalisation}
 \label{sec:strokelengthnormalisation}
+\subsubsection{Resampling}
+\label{sec:resampling}
+
 
 
 
