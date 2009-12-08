@@ -422,7 +422,8 @@ appropriate time information for each of the sampling points.
 
 xxx: 
 if you want to add more here, see \shortcite{Santosh2009}:
-\emph{Digitizer Technology}, but don't repeat to much stuff 
+\emph{Digitizer Technology} as well as \shortcite{Tappert1990}:
+\emph{Digitizer Technology} but don't repeat to much stuff 
 from~\ref{sec:hardwarerequirements}
 :xxx
 
@@ -467,16 +468,88 @@ characters, where each of the charaters is represented by 60 sample points.
 \subsection{Preprocessing}
 \label{sec:preprocessing}
 
-Most On-Line HWR systems apply some kind of preprocessing. Generally, 
-preprocessing serves to smoothen the data, eleminate noise and normalise the
-data, in order to retrieve a more accurate recognition in the next step.
-
-
 xxx: see Santosh2009 pre-processing
 xxx: see Tappert1990 preprocessing: segmentation, noise reduction.
 xxx: see Santosh2009 noise elimination
 xxx: see Santosh2009 normalisation
 xxx: see Santosh2009 repetition removal
+
+Most On-Line HWR systems apply some kind of preprocessing. Generally, 
+preprocessing serves to smoothen the data, eleminate noise and normalise the
+data, in order to retrieve a more accurate recognition in the next step.
+\shortcite{Tappert1990} distinguish between the phases \emph{external} and 
+\emph{internal segmentation}, a \emph{noise reduction} step that has several 
+substeps:\\
+\emph{Smoothing}, \emph{filtering}, \emph{wild point correction}, 
+\emph{dehooking}, \emph{dot reduction} and \emph{stroke connection}.
+Some systems also employ a \emph{normalisation} step, that can include
+\emph{deskewing}, \emph{basline drift correction} and \emph{size normalisation}.
+\shortcite{Santosh2009} employ a similar perception in their review about several
+on-line HWR systems. Their \emph{noise elimination} corresponds to 
+\emph{noise reduction} and the afforementioned \emph{normalisation} describes 
+roughly the same techniques that \citeauthoryear{Tappert1990} depict.
+\citeauthoryear{Santosh2009} also present the additional processing step of 
+\emph{repetition removal}, which can be mapped to \emph{dot reduction}.
+In the remainder of this section the typical preprocessing steps are presented 
+in more detail.
+
+\subsection{Segmentation}
+\label{sec:segmentation}
+
+The term \emph{Segmentation} describes the processing step of segmenting the 
+individual characters or strokes from each other.
+
+\subsubsection{External Segmentation}  
+\label{sec:externasegmentation}
+\emph{External segmentation} is the step of isolating writing units. That can be
+single strokes, characters or words respectively. In alphabetic scripts it is 
+sometimes difficult to segment each character externally. In CJK cursive script 
+it is difficult to distinguish individual strokes, however, usually each 
+character can be isolated without much processing.  
+
+\subsubsection{Internal Segmentation}
+\label{sec:internalsegmentation}
+In cursive script, several strokes are connected together, even several 
+characters can be written without a pen-up movement. Therefore some partial 
+recognition is needed in order to perform the segmentation.
+In \emph{overlaid handwriting recognition} a sequence of characters is written 
+on the same area, e.g. on a very small display like a wrist watch with a touch 
+screen. In that case, segmentation becomes a problem even for OLCCR systems.
+\shortcite{Shimodaira2003} employ substroke HMMs in a wearable computing 
+environment. they achieved performances of 69.2\% with free stroke order
+and 88\% with fixed stroke order characters.
+
+\subsection{Noise Reduction} 
+\label{sec:noisereduction}
+\subsubsection{Smoothing}
+\label{sec:smoothing}
+\subsubsection{Filtering}
+\label{sec:fitlering}
+\subsubsection{Wild Point Correction}
+\label{sec:wildpointcorrection}
+\subsubsection{Dehooking}
+\label{sec:dehooking}
+\subsubsection{Repetition Removal}
+\label{sec:repetitionremoval}
+
+more santosh less tappert
+
+\subsubsection{Stroke Connection}
+\label{sec:strokeconnection}
+
+\subsection{Normalisation} 
+\label{sec:normalisation}
+\subsubsection{Deskewing}
+\label{sec:deskewing}
+\subsubsection{Basline Drift Correction} 
+\label{sec:baselinedriftcorrection}
+\subsubsection{Size Normalisation}
+\label{sec:sizenormalisation}
+\subsubsection{Stroke Lenght Normalisation}
+\label{sec:strokelengthnormalisation}
+
+
+
 
 \subsection{Character Recognition}
 \label{sec:characterrecognition}
