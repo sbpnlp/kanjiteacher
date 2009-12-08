@@ -118,8 +118,14 @@ namespace Testing
 
             TimeWarping tw3 = new TimeWarping(newP, newS);
             tw3.CalculateDistances(delegate(Point p1, Point p2) { return p1.Distance(p2); });
-
+            Console.WriteLine("Euclidian distances:");
             Console.WriteLine(m.printNewMatrix(tw3.Distances));
+            tw3.CalculateDistances(delegate(Point p1, Point p2) { return Math.Pow(p1.X-p2.X, 2) + Math.Pow(p1.Y-p2.Y, 2); });
+            Console.WriteLine("Added squares, no square root:");
+            Console.WriteLine(m.printNewMatrix(tw3.Distances));            
+
+
+
 
             Console.WriteLine("\n\n\n");
 
