@@ -581,28 +581,50 @@ beginning of a stroke \shortcite{Tappert1990}.
 
 \subsubsection{Repetition Removal}
 \label{sec:repetitionremoval}
-
-%more santosh less tappert
+\emph{Repetition removal} or \emph{dot reduction} reduces dots to single points
+\shortcite{Tappert1990}. Points that are accumulated on a very close area and 
+form a dot, do not improve recognition quality, but rather distort the 
+trajectory. There can even be co-occuring points. Slow handwriting will generate
+repeating points, and those are generally at the dominant points, such as
+corners \shortcite{Santosh2009}.
 
 \subsubsection{Stroke Connection}
 \label{sec:strokeconnection}
+A \emph{stroke connection} preprocessing method can eliminate pen-up movements
+that are suspected to be accidental or inaccuratly measured. There are different
+methods to do this, one of which connects strokes if the distance between pen-up
+and the next pen-down is short in comparison to the size of the character 
+\shortcite{Tappert1990}.
 
 \subsection{Normalisation} 
 \label{sec:normalisation}
+Data \emph{normalisation} is a preprocessing step that prepares data to better
+match the gold standard and the lexicon entries. It can correct slants or size.
+
 \subsubsection{Deskewing}
 \label{sec:deskewing}
-\subsubsection{Basline Drift Correction} 
+\emph{Deskewing} is a technique that modifies the slant of an input. Deskewing 
+algorithms can be applied to individual characters or whole words \shortcite{Tappert1990}. In Chinese and Japanese character recognition, slant correction can
+be applied in a similar fashion like with latin-based alphabets.
+
+\subsubsection{Baseline Drift Correction} 
 \label{sec:baselinedriftcorrection}
+\emph{Baseline drift correction} detects a baseline or horizontal line relative
+to a word or a set of characters. After detection, that line is corrected to
+be horizontal \shortcite{Tappert1990}.
+
 \subsubsection{Size Normalisation}
 \label{sec:sizenormalisation}
+Adjustment to a standard size can be done with \emph{size normalisation}. This 
+process also normalises for location by relocating the centre of a character
+\shortcite{Tappert1990}.
+
 \subsubsection{Stroke Lenght Normalisation}
 \label{sec:strokelengthnormalisation}
-\subsubsection{Resampling}
-\label{sec:resampling}
-
-
-
-
+\emph{Stroke length normalisation}, sometime called \emph{resampling} normalises
+the number of points in a stroke or character. Dealing with strokes that were 
+normalised in such a way provides for easy alignment and classification 
+\shortcite{Tappert1990}. 
 
 \subsection{Character Recognition}
 \label{sec:characterrecognition}
