@@ -8,7 +8,212 @@ In this folder: Ardjomandy2007_Sina-AmirKayvan.pdf
 Bibtex: Ardjomandy2007 (not yet)
 ####################################################
 
-In this folder: 
+welsh_E-learning
+
+http://www3.interscience.wiley.com/journal/118851887/abstract?CRETRY=1&SRETRY=0
+hier: welsh_E-learning.pdf
+
+
+%0 Journal Article
+%A Elizabeth T. Welsh
+%A Connie R. Wanberg
+%A Kenneth G. Brown
+%A Marcia J. Simmering
+%T E-learning: emerging uses, empirical results and future directions
+%J International Journal of Training and Development
+%V 7
+%N 4
+%P 245-258
+%D 2003
+%@ 1468-2419
+%+ Carlson School of Management, University of Minnesota, Minneapolis, USA; University of Minnesota; University of Iowa; Louisiana Tech University
+%1 10.1046/j.1360-3736.2003.00184.x
+%U http://dx.doi.org/10.1046/j.1360-3736.2003.00184.x
+#############################################################
+
+
+
+http://210.240.189.214/digitalweb/02_class/00_papers/13_english_papers/45_objections_%E9%A1%A7%E4%BB%B2%E6%84%B7.pdf
+
+
+[PDF] ?Three objections to learning objects and e-learning standards
+
+N Friesen - Online education using learning objects, 2004 - 210.240.189.214
+"Learning objects," "learning object metadata," and "learning object repositories" are terms that
+have been central to many discussions, projects and funding priorities of both public and private
+educational organizations. These words have been associated with a range of benefits ...
+Cited by 176 - Related articles - View as HTML - All 10 versions
+
+Friesen, N. (2003) T h ree Objections to Learning Objects. In Mc Greal, R. (ed.),
+Online Education using Learning Ob j e c t s. London: Taylor & Francis Books Ltd.
+Available from: http://phenom.educ.ualberta.ca/~nfriesen
+
+
+hier: friesen2003.pdf
+
+
+#############################################################
+
+[PDF] ?Semantic Learning We bs
+
+A Stutt, E Motta - Journal of In teracti ve Media in Education, 2004 - www-jime.open.ac.uk
+By 2020, micro p rocessors will likely be as cheap and plentiful as scrap paper, scatte red by
+the millions into the environment, allowing us to place intelligent systems eve ry whe re. This
+will change eve rything around us, including the nature of commerce, the wealth of ...
+Cited by 46 - Related articles - View as HTML - All 10 versions
+
+
+Stutt, A. and Motta, E. (2004). Semantic Learning Webs. Journal of Interactive Media in Education, 2004 (10).
+
+hier: stutt	2004.pdf
+#############################################################
+
+E-learning developments and experiences
+- ?uct.ac.za [PDF] 
+S Alexander - Education+ Training, 2001 - emeraldinsight.com
+The focus of much e-learning activity is upon the development of courses and their
+resources. Successful e-learning takes place within a complex system involving the student experience
+of learning, teachers' strategies, teachers' planning and thinking, and the ...
+Cited by 160 - Related articles - BL Direct - All 6 versions
+
+Alexander, S 2001. E-learning developments and experiences. Education and Training, Bradford
+43(4-5):240-248.
+
+
+hier: alexander2001.pdf
+#############################################################
+
+Engelbrecht,E. (2003) A look at e-learning models: Investigating their value for developing an e-learning strategy
+Progressio 25(2)38-47.
+
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.133.4962&rep=rep1&type=pdf
+
+hier: engelbrecht2003.pdf
+
+#############################################################
+
+Exploring the e-learning State of Art
+- ?ejel.org [PDF] 
+EK Kahiigi, L Ekenberg, MDH Hansson - … the 6th Conference on E-learning … - books.google.com
+... Engelbrecht, E.(2003) A look at e-Learning models: Investigating their value for developing
+an e- Learning strategy. Progressio 25 (2) 38-47 Fosnot, CT (1996) Constructivism: Theory,
+Perspective and Practice, Teachers College Press, New York. ...
+Cited by 10 - Related articles - All 2 versions
+
+
+http://books.google.com/books?hl=en&lr=&id=spo9X16qn30C&oi=fnd&pg=PA349&dq=engelbrecht+e-learning&ots=rsPAAYlYHC&sig=CwIexY3N85BfgjVP1s2Zcvk-0K8
+
+Evelyn Kigozi Kahiigi, Love Ekenberg, Henrik Hansson, F.F Tusubira and Mats Danielson, Exploring the e-Learning State of Art, Electronic Journal e-Learning Volume 6 Issue 2 2008, pp. 77 – 88, ISSN 1479-4403
+
+
+
+http://www.ejel.org/Volume-6/v6-i2/Kahiigi_et_al.pdf
+
+hier: Kahiigi_et_al2003.pdf
+
+#############################################################
+
+
+@article{986216,
+ author = {Zhang, Dongsong and Zhao, J. Leon and Zhou, Lina and Nunamaker,Jr., Jay F.},
+ title = {Can e-learning replace classroom learning?},
+ journal = {Commun. ACM},
+ volume = {47},
+ number = {5},
+ year = {2004},
+ issn = {0001-0782},
+ pages = {75--79},
+ doi = {http://doi.acm.org/10.1145/986213.986216},
+ publisher = {ACM},
+ address = {New York, NY, USA},
+ }
+
+http://portal.acm.org/citation.cfm?id=986213.986216#
+
+hier: zhang2004.pdf
+#############################################################
+
+
+http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6W4X-45679XY-H&_user=1592387&_rdoc=1&_fmt=&_orig=search&_sort=d&_docanchor=&view=c&_searchStrId=1129093699&_rerunOrigin=scholar.google&_acct=C000053620&_version=1&_urlVersion=0&_userid=1592387&md5=2f041b040441f7684cec30d84a6ebda1
+
+doi:10.1016/S1096-7516(01)00069-0   
+
+doi:10.1016/j.physletb.2003.10.071
+
+
+@article{Ismail2001329,
+title = "The design of an e-learning system: Beyond the hype",
+journal = "The Internet and Higher Education",
+volume = "4",
+number = "3-4",
+pages = "329 - 336",
+year = "2001",
+note = "",
+issn = "1096-7516",
+doi = "DOI: 10.1016/S1096-7516(01)00069-0",
+url = "http://www.sciencedirect.com/science/article/B6W4X-45679XY-H/2/81d718f512334e0b65a0d40fcb07bff3",
+author = "Johan Ismail",
+keywords = "E-learning",
+keywords = "Training",
+keywords = "Knowledge management",
+keywords = "Learning management systems",
+keywords = "Learning design systems"
+}
+
+
+
+
+hier: Ismail2002.pdf
+
+
+#############################################################
+
+10.1.1.94.9924
+
+S. Graf and B. List, “An evaluation of open source e-learning platforms
+stressing adaptation issues,” in Proc. IEEE Int. Conf. Advanced
+Learning Technologies, Kaohsiung, Taiwan, Jul. 2005, pp. 163–165.
+http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.94.9924&rep=rep1&type=pdf
+
+
+hier: graf2005.pdf
+#############################################################
+
+hamid 2002
+
+@article{Hamid2001311,
+title = "e-Learning: Is it the "e" or the learning that matters?",
+journal = "The Internet and Higher Education",
+volume = "4",
+number = "3-4",
+pages = "311 - 316",
+year = "2001",
+note = "",
+issn = "1096-7516",
+doi = "DOI: 10.1016/S1096-7516(01)00072-0",
+url = "http://www.sciencedirect.com/science/article/B6W4X-45679XY-F/2/f1e084bf7f579f8d8e204497361607e9",
+author = "Azma Abdul Hamid",
+keywords = "e-Learning concept",
+keywords = "Fundamentals",
+keywords = "Advantages"
+}
+
+
+
+http://www.sciencedirect.com/science?_ob=ArticleURL&_udi=B6W4X-45679XY-F&_user=1592387&_rdoc=1&_fmt=&_orig=search&_sort=d&_docanchor=&view=c&_searchStrId=1129103835&_rerunOrigin=scholar.google&_acct=C000053620&_version=1&_urlVersion=0&_userid=1592387&md5=03376198f60b4f80dc0d896cfe574b96
+
+hier: hamid2002.pdf
+#############################################################
+
+[PDF] ?How Can Massive Multi-user Virtual Environments and Virtual Role Play Enhance …
+
+AADL O'Hare - Learning in Virtual Environments International … - belfast.cooperationireland.org
+7 How Can Massive Multi-user Virtual Environments and Virtual Role Play Enhance Traditional
+Teaching Practice? Angela Addisonand Dr Liam O'Hare Keywords: Second Life, problem-based
+learning, immersive, cognitive skills development, co-operative learning Abstract There ...
+Related articles - View as HTML - All 4 versions
+
+hier: relive2008.pdf
 Bibtex: 
 ####################################################
 
