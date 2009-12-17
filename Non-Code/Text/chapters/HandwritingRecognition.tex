@@ -107,14 +107,14 @@ Hiragana and Katakana are syllabic alphabets, each containing 46 characters
 language (see section~\ref{sec:ahorthistoryofjapanesewritingsystem}).
 
 The different scripts can even be blended with each other within one word. 
-Take for instance the verb \emph{taberu}  (\cjk{食べる} - \emph{to eat}). 
+Take for instance the verb \cjk{食べる} (pron. \emph{taberu}, 
+eng. \emph{to eat}). 
 The first character is a Kanji character, pronounced \emph{/ta/}, 
-also bears the meaning of the word, the second and third characters 
+which also bears the meaning of the word. The second and third characters 
 are the Hiragana characters \emph{be} and \emph{ru} which are there for 
 conjugation only as well as for phonetic reasons. 
-However, without them, the character \cjk{食} still bears the meaning of 
-the concept \emph{eat}, but the character alone does not result in 
-the verb \emph{taberu}.
+Without them, the character \cjk{食} still bears the meaning of the concept 
+\emph{eat}, but the character alone does not result in the verb \emph{taberu}.
 
 \section{Automated Recognition of Handwriting}
 \label{sec:autorecoofhandwriting}
@@ -394,14 +394,28 @@ way a system expects characters to be written distinctively.
 \label{sec:atypicalonlinehwrapplication}
 
 A typical HWR application has several parts that follow up on each other in a
-procedural fashion.
+procedural fashion. The main parts of such an application are the following:
 \begin{itemize}
 \item \textbf{Data capturing}: The data is captured through an input device 
-  like a writing surface and a stylus.
-\item \textbf{Preprocessing}: The data is segmented, noise reduction like smoothing and filtering are applied.
+  like a writing surface and a stylus. Data caputring is described in
+  section~\ref{sec:datacapturing}.
+\item \textbf{Preprocessing}: The data is segmented, noise reduction like 
+  smoothing and filtering are applied. Preprocessing is described in 
+  section~\ref{sec:preprocessing}.
 \item \textbf{Character Recognition}: Feature analysis, stroke matching, time, 
-direction and curve matching.
+  direction and curve matching. A description of character recognition can be 
+  found in section~\ref{sec:characterrecognition}.
 \end{itemize}
+In a typical HWR application there are some intermediate steps that can be 
+regarded as partial processes of the ones mentioned above. In preprocessing,
+there is often a segmentation step (see~\ref{sec:segmentation}), most systems 
+perform one or several methods of noise reduction (see~\ref{sec:noisereduction}) and it is common to employ a data normalisation step 
+(see~\ref{sec:normalisation}). In character recognition the subprocesses are 
+xxx: see sections that are not subsections of \ref{sec:characterrecognition}, but fall under character recognition conceptually and post them here. :xxx
+Additionally, there are some systems that employ a postprocessing step 
+(see~\ref{sec:postprocessing}). 
+
+
 
 \subsection{Data Capturing}
 \label{sec:datacapturing}
@@ -629,6 +643,7 @@ normalised in such a way provides for easy alignment and classification
 \subsection{Character Recognition}
 \label{sec:characterrecognition}
 
+
 xxx: see Tappert1990 VI shape recognition.
 xxx: see Plamondon2000: 3.1.1 different models
 xxx: see all the substroke stuff, Santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
@@ -638,6 +653,8 @@ too, like Hu1996
 \shortcite{Tokuno2002}
 \shortcite{Nakai2001}
 \shortcite{Nakai2003}
+
+
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
