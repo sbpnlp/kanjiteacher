@@ -7,29 +7,33 @@
 \usepackage{fontspec}
 \usepackage[english]{babel}
 \usepackage{url}
+\usepackage{minitoc}
 \usepackage{chicago}
 \bibliographystyle{chicago}
 
-\newenvironment{CJK}{
-
-%\fontspec[Scale=0.9]{MS Mincho}
-\fontspec[Scale=0.9]{MingLiU} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
-
-\XeTeXlinebreaklocale "ja" 
-\XeTeXlinebreakskip = 0pt plus 1pt 
-
+\newenvironment{CJK}
+{
+  % \fontspec[Scale=0.9]{MS Mincho}
+  \fontspec[Scale=0.9]{MingLiU} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
+  \XeTeXlinebreaklocale "ja" 
+  \XeTeXlinebreakskip = 0pt plus 1pt 
 }{}
 
 %\newcommand{\cjk}[1]{{\fontspec[Scale=0.9]{MS Mincho}#1}}
 \newcommand{\cjk}[1]{{\fontspec[Scale=0.9]{MingLiU}#1}} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
 
+\setcounter{tocdepth}{1}
+\setcounter{secnumdepth}{3}
+\setcounter{minitocdepth}{3}
+
 \begin{document}
+\dominitoc
 \input chapters/TitlepageContents.tex
 %\input chapters/Abstract.tex
-%\input chapters/Introduction.tex
-%\input chapters/JapaneseScript.tex
+\input chapters/Introduction.tex
+\input chapters/JapaneseScript.tex
 \input chapters/HandwritingRecognition.tex
-%\input chapters/E-Learning.tex
+\input chapters/E-Learning.tex
 %\input chapters/ConceptualDesign.tex
 %\input chapters/TechnicalDesign.tex
 %\input chapters/HWREngine.tex
