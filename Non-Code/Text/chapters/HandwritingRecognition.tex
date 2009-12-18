@@ -743,9 +743,8 @@ proposed improvements to the algorithm, mainly through pruning.
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
-
-xxx: what happens after the recognition process?
-xxx: see Tappert1990 again in postprocessing chapter.
+%xxx: what happens after the recognition process?
+%xxx: see Tappert1990 again in postprocessing chapter.
 
 When the recognition process is finished, some systems start another process
 that takes as input the output of the character recognition. In this 
@@ -765,46 +764,53 @@ and character boundaries are generated and probability estimations calculate
 the moste likely sequence of characters, using both the alterative recognition
 results and a language model for Japanese.
 
-\section{HWR of Hànzì and Kanji}
-\begin{itemize}
-\item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
-  Schriftzeichen und verschiedene Herangehensweisen zu verschaffen.
-\item Nutzen: Leser kann sich ein Bild darueber verschaffen,
-  in welchem Kontext sich die Applikation bewegt.
-\item Was: research different approaches, see what the focus on, 
-  what their speciality is and report about them. Take different specialist 
-  papers and compare them.
-\item Wie: Wiss. Report. / Zusammenfassung. Vergleich. 
-\end{itemize}
+\section{HWR of Hànzì (\cjk{汉字}) and Kanji (\cjk{漢字})}
+\label{sec:hwrofhanziandkanji}
 
-\subsection{The current State-of-the-Art in Japanese and Chinese Character Recognition}
-From the 1990s  , On-Line Japanese and Chinese Character Recognition 
+% \begin{itemize}
+% \item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
+%   Schriftzeichen und verschiedene Herangehensweisen zu verschaffen.
+% \item Nutzen: Leser kann sich ein Bild darueber verschaffen,
+%   in welchem Kontext sich die Applikation bewegt.
+% \item Was: research different approaches, see what the focus on, 
+%   what their speciality is and report about them. Take different specialist 
+%   papers and compare them.
+% \item Wie: Wiss. Report. / Zusammenfassung. Vergleich. 
+% \end{itemize}
+
+The HWR of the Chinese Hànzì (\cjk{汉字}) and the Japanese Kanji (\cjk{漢字}) 
+merged as Online Chinese Character Recognition (OLCCR). The techniqes are 
+essentially the same, only the language models differ. Hereafter, I'm going to 
+use the term OLCCR for online character recognition of both Chinese and Japanese
+characters.
+
+\subsection[The State of the Art in OLCCR]{The Current State-of-the-Art in Japanese and Chinese Character Recognition}
+From the 1990'ies, On-Line Japanese and Chinese Character Recognition 
 (OLCCR) systems have been aiming at loosening the restrictions imposed on 
 the writer when using an OLCCR system. Their focus shifted from recognition 
 of block style script ('regular' script) to fluent style script, 
 which is also called 'cursive' style. Accuracies of up to about 95\% are
 achieved in the different systems.
 
-\cite{Nakagawa2008} report their recent results of on-line Japanese 
+\shortcite{Nakagawa2008} report their recent results of on-line Japanese 
 handwriting recognition and its applications. Their article gives 
 important insights into character modelling, which are employed in 
-this application.
+this application. Multiple subpatterns of characters are detected and used for
+character modelling.
 
-xxx: bla.  says the opposite. \cite{ChenLee1996} oder auch 
-xxx: \cite{Nakagawa2008} und \cite{Nakai2003} 
-xxx: zu guter letzt: \cite{Santosh2009}
+\subsection{Overview of a Typical OLCCR system}
 
-\subsection{Overview of a typical OLCCR system}
+xxx: see \cite{ChenLee1996} 
+xxx: see \cite{Nakagawa2008}
+xxx: see \cite{Nakai2003} 
+xxx: see \cite{Tokuno2002} 
+xxx: see \cite{Shimodaira2003} 
+xxx: see \cite{LiuJaegerNakagawa2004} 
 
-
-
-
-xxx:  \cite{LiuJaegerNakagawa2004} have said: 
-
-\cite{Keogh2001}
 xxx:  graphic:
 handwritten -> character segmentation -> ... -> character codes
 see fig. 3 of liujaegernakagawa2004
+:xxx
 
 Broadly speaking, from an abstract viewpoint, typical handwriting recognition 
 systems for Chinese and Japanese characters have the same structure like the
@@ -823,18 +829,13 @@ least - it is widely agreed upon a 'proper' stroke sequence for a character,
 even across country borders.
 
 xxx: liujaeger2004: 4.1. structural representation. statistical representation.
-
 xxx: liujaeger2004: character classification
 xxx: liujaeger2004: very short: contextual processing.
 
-
-
-
 \subsubsection{HMM Analysis}
 \label{sec:hmmanalysis}
-xxx: check all papers in the paper directory, especially all that HMM stuff,
-too, like Hu1996
-\shortcite{Tokuno2002}
-\shortcite{Nakai2001}
-\shortcite{Nakai2003}
-
+xxx: check all papers in the paper directory, especially all that HMM stuff
+xxx: \shortcite{Hu1996}
+xxx: \shortcite{Tokuno2002}
+xxx: \shortcite{Nakai2001}
+xxx: \shortcite{Nakai2003}

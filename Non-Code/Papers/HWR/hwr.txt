@@ -709,6 +709,7 @@ Keogh, E. & Pazzani, M. (2001). Derivative Dynamic Time Warping. In First SIAM I
 In this directory: Keogh2001.pdf
 In Bibtex: yes
 #############################################
+
 In this directory: 
 #############################################
 In this directory: 
