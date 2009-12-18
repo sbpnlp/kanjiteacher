@@ -747,6 +747,24 @@ proposed improvements to the algorithm, mainly through pruning.
 xxx: what happens after the recognition process?
 xxx: see Tappert1990 again in postprocessing chapter.
 
+When the recognition process is finished, some systems start another process
+that takes as input the output of the character recognition. In this 
+postprocessing step, language information can be used to improve the recognition
+accuracy. Postprocessing is mainly used for continuous character recognition,
+where more than a single charaters is recgonised. Since some systems yield a 
+single string of characters others yield a number of alternative recognitions,
+often in addition with a certainty measure.
+A postprocessing unit can use the information to calculate estimates for words
+or even sentences. When the character recogniser yields single choices for 
+characters, the postprocessor can apply a correction algorithm, based on a 
+language model \shortcite{Tappert1990}.
+\shortcite{Shimodaira2003} proposed a method for overlaid handwriting 
+recognition, where the segmentation problem (see~\ref{sec:segmentation}) is 
+resolved at the end of the recognition process: Alternative choices of characters
+and character boundaries are generated and probability estimations calculate
+the moste likely sequence of characters, using both the alterative recognition
+results and a language model for Japanese.
+
 \section{HWR of Hànzì and Kanji}
 \begin{itemize}
 \item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
