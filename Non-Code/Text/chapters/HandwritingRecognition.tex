@@ -417,8 +417,6 @@ xxx: see sections that are not subsections of \ref{sec:characterrecognition}, bu
 Additionally, there are some systems that employ a postprocessing step 
 (see~\ref{sec:postprocessing}). 
 
-
-
 \subsection{Data Capturing}
 \label{sec:datacapturing}
 %xxx: see Plamondon2000 1.4.
@@ -618,32 +616,33 @@ Data \emph{normalisation} is a preprocessing step that prepares data to better
 match the gold standard and the lexicon entries. It can correct slants or size.
 
 \paragraph{Deskewing}
-\label{sec:deskewing}
-\emph{Deskewing} is a technique that modifies the slant of an input. Deskewing 
+is a technique that modifies the slant of an input. Deskewing 
 algorithms can be applied to individual characters or whole words \shortcite{Tappert1990}. In Chinese and Japanese character recognition, slant correction can
 be applied in a similar fashion like with latin-based alphabets.
 
 \paragraph{Baseline Drift Correction} 
-\label{sec:baselinedriftcorrection}
-\emph{Baseline drift correction} detects a baseline or horizontal line relative
+detects a baseline or horizontal line relative
 to a word or a set of characters. After detection, that line is corrected to
 be horizontal \shortcite{Tappert1990}.
 
 \paragraph{Size Normalisation}
-\label{sec:sizenormalisation}
 Adjustment to a standard size can be done with \emph{size normalisation}. This 
 process also normalises for location by relocating the centre of a character
 \shortcite{Tappert1990}.
 
 \paragraph{Stroke Length Normalisation}
-\label{sec:strokelengthnormalisation}
-\emph{Stroke length normalisation}, sometime called \emph{resampling} normalises
+sometime called \emph{resampling} normalises
 the number of points in a stroke or character. Dealing with strokes that were 
 normalised in such a way provides for easy alignment and classification 
 \shortcite{Tappert1990}. 
 
 \subsection{Character Recognition}
 \label{sec:characterrecognition}
+
+%xxx: see Tappert1990 VI shape recognition.
+xxx: see Plamondon2000: 3.1.1 different models
+xxx: see all the substroke stuff, Santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
+%xxx: see the DTW stuff, too for curve matching
 
 Character recognition is a special case of shape recognition. It is the 
 recognition of the shape of writing units. Character recognition falls into
@@ -654,12 +653,15 @@ The most common methods include
 \begin{itemize}
   \item \textbf{Feature Analysis}, where the distinctive features of characters 
     are taken into account (see~\ref{sec:featureanalysis}).
-  \item \textbf{Time / Zone Sequences} that code zones on the writing display
-    (see~\ref{sec:timeandzones}).
+  \item \textbf{Zone Sequences} that code zones on the writing surface
+    (see~\ref{sec:zonesequences}).
+  \item \textbf{Stroke Direction} - the individual strokes or substrokes of a
+    character are identified and matched against a stroke sequence database
+    (see~\ref{sec:strokedirection}).
   \item \textbf{Curve Matching} is a method that comes from signal processing
     and is essentially independent of the alphabet (see~\ref{sec:curvematching}).
-  \item \textbf{HMM Analysis} is independent of the other methods used, 
-    generally it performs a statistical analysis of the features used, 
+  \item \textbf{HMM Analysis} is independent of the other methods. Basically HMM
+    analysis performs a statistical analysis of the features used, 
     regardless of what they are, i.e. curves, time sequences or writing features
     of the characters themselves (see~\ref{sec:hmmanalysis}).
 \end{itemize}
@@ -668,49 +670,76 @@ The most common methods include
 \label{sec:featureanalysis}
 A character or shape can be represented by a set of features. These features are
 dependent on the alphabet. Therefore, systems can employ a pre-made analysis of 
-the individual characters of the alphabet. For the Latin alphbet, the systems 
-use features like descender or not decsender, dot or no dot 
+the individual characters of the alphabet. For the Latin alphabet, the systems 
+use features like descender or not descender, dot or no dot 
 \shortcite{Tappert1990}. Some systems use a decision tree for 
 \textbf{binary features}. 
 If there is a descender, for lowercase characters, the recognition choice is 
 reduced to \emph{f, g, j, p, q, y, z}. If an ascender is present, for lowercase 
 characters, the choice is reduced to \emph{b, d, f, h, k, l, t}. In case there
 is an ascender and a descender, the intersection of the two sets leaves only 
-one element the character \emph{f}. A HWR system can come to similar conlusions
-by checking if a dot is present \emph{i, j}, if the character has an open line
-\emph{c, u, v, w, y} or a closed line \emph{a, b, d, e, g, o, p, q}. Systems 
-that perform feature analysis have the potential to use psycholinguistic 
+one element, namely the character \emph{f}. A HWR system can come to similar 
+conclusions by checking if a dot is present \emph{i, j}, if the character has an 
+open line \emph{c, u, v, w, y} or a closed line \emph{a, b, d, e, g, o, p, q}. 
+Systems that perform feature analysis have the potential to use psycholinguistic 
 knowledge and drive the recognition process along the lines humans distinguish 
 characters from each other. The feature analysis method has the disadvantage that
 it may not produce alternative recognition choices.
 
 There are also systems that use \textbf{non-binary features}. It is a very common
 technique in pattern recognition to use a fixed number of non-binary features.
-A feature space of that kind can be further divided into decision regions.
+A feature space of that kind can be further divided into decision regions
+\shortcite{Tappert1990}.
 
-\subsubsection{Time Sequences and Zones}
-\label{sec:timeandzones}
+\subsubsection{Zone Sequences}
+\label{sec:zonesequences}
+
+There are systems that use \emph{zone sequences} in order to 
+represent characters. The zones can be specified by sub-dividing the bounding 
+box of a character. The trajectory of the pen that is drawn through the zones
+is then transformed into a time sequence of zones. That time sequence can be 
+matched against a dictionary of sequences, in which each character is 
+represented \shortcite{Tappert1990}.
+
+\subsubsection{Stroke Direction}
+\label{sec:strokedirection}
+Stroke direction is another popular feature among HWR systems. The pen-tip motion
+is captured and each stroke is categorised as a primitive direction (up, down, 
+left, right, other systems also use the diagonal directions and a pen-down, 
+pen-up). \shortcite{Nakai2001} and \shortcite{Tokuno2002} use the stroke 
+direction feature combined with a pen-coordinate feature. 
+\shortcite{Okumura2005} and others follow a similar approach. The substroke 
+approach is very popular in OLCCR, it is often combined with HMMs 
+(see~\ref{sec:hmmanalysis}).
 
 \subsubsection{Curve Matching}
 \label{sec:curvematching}
 
-\subsubsection{HMM Analysis}
-\label{sec:hmmanalysis}
+Curve matching is a set of methods that has been popularised in signal 
+processing. Prototype characters are stored in a data base as descriptions 
+of curves. During the recognition process the input curves are matched against 
+the prototypes. It is common to use curves that are functions of time, 
+the direction of the tangent to the stroke or both. Characters have been encoded as a time sequence of eight stroke directions, and as time 
+regions \shortcite{Tappert1990}. Chinese characters have been encoded as a 
+small number of fixed points, since they consist of mainly straight strokes 
+\shortcite{Nakagawa2008}.
 
-
-
-
-xxx: see Tappert1990 VI shape recognition.
-xxx: see Plamondon2000: 3.1.1 different models
-xxx: see all the substroke stuff, Santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
-
-xxx: check all papers in the paper directory, especially all that HMM stuff,
-too, like Hu1996
-\shortcite{Tokuno2002}
-\shortcite{Nakai2001}
-\shortcite{Nakai2003}
-
-
+\paragraph{Elastic matching}
+Curve matching and pattern matching become equivalent in their feature space
+when there is a constant number of points in a curve and in one-to-one 
+correspondence. However, since many strokes are non-linear the best fit is often
+not a linear alignment of the points.
+In order to solve point sequence comparison problem, elastic matching has 
+been used successfully \shortcite{Tappert1990}.
+\shortcite{Joshi2004a} compare different elastic matching methods for Tamil 
+handwriting recognition. \emph{Dynamic Time Warping} (DTW) is an elastic 
+matching technique that has been applied to handwriting recognition by a number 
+of systems e.g. \shortcite{Vuori2002}, \shortcite{Niels2004}, 
+\shortcite{Joshi2005} and \shortcite{Bashir2008}.
+The DTW algorithm yielded promising results, especially for the different scripts
+of the Indian subcontinent, however, due to its complexity, 
+\shortcite{Keogh2001}, \shortcite{Chu2002} as well as \shortcite{Bashir2008} 
+proposed improvements to the algorithm, mainly through pruning.
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
@@ -749,6 +778,9 @@ xxx: zu guter letzt: \cite{Santosh2009}
 
 \subsection{Overview of a typical OLCCR system}
 
+
+
+
 xxx:  \cite{LiuJaegerNakagawa2004} have said: 
 
 \cite{Keogh2001}
@@ -779,4 +811,12 @@ xxx: liujaeger2004: very short: contextual processing.
 
 
 
+
+\subsubsection{HMM Analysis}
+\label{sec:hmmanalysis}
+xxx: check all papers in the paper directory, especially all that HMM stuff,
+too, like Hu1996
+\shortcite{Tokuno2002}
+\shortcite{Nakai2001}
+\shortcite{Nakai2003}
 
