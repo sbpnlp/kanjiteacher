@@ -359,7 +359,7 @@ An OCR system can recognise several hundred characters per second. Images are
 usually binarised by a threshold of its colour pattern, such that the image
 pixels are either 1 or 0 \shortcite{Santosh2009}.
 
-\subsubsection{Similarities and Differences of On-Line and Off-Line  Recognition}
+\subsubsection[Similarities and Differences]{Similarities and Differences of On-Line and Off-Line  Recognition}
 \label{sec:similaritiesanddifferences}
 
 There are two main differences between on-line and off-line handwriting
@@ -422,7 +422,7 @@ Additionally, there are some systems that employ a postprocessing step
 %xxx: see Plamondon2000 1.4.
 %xxx: see Santosh2009 sampling
 
-Some special hardware is needed, in order to capture the data necessary 
+Special hardware is needed in order to capture the data necessary 
 for on-line HWR. It is possible to input data with a regular mouse on 
 a regular computer, however the data will be less \emph{noisy}, 
 if a stylus is used for input of the handwriting. 
@@ -784,7 +784,6 @@ essentially the same, only the language models differ. Hereafter, I'm going to
 use the term OLCCR for online character recognition of both Chinese and Japanese
 characters.
 
-\subsection[The State of the Art in OLCCR]{The Current State-of-the-Art in Japanese and Chinese Character Recognition}
 From the 1990'ies, On-Line Japanese and Chinese Character Recognition 
 (OLCCR) systems have been aiming at loosening the restrictions imposed on 
 the writer when using an OLCCR system. Their focus shifted from recognition 
@@ -810,12 +809,14 @@ xxx: see \cite{LiuJaegerNakagawa2004}
 xxx:  graphic:
 handwritten -> character segmentation -> ... -> character codes
 see fig. 3 of liujaegernakagawa2004
+olccrSystemOverview.png
+\input images/olccrSystemOverview.tex
 :xxx
 
-Broadly speaking, from an abstract viewpoint, typical handwriting recognition 
-systems for Chinese and Japanese characters have the same structure like the
-systems for latin-based alphabets. The process begins with \emph{Character 
-segmentation}, goes on with \emph{Preprocessing}, \emph{Pattern description}, 
+Broadly speaking, typical handwriting recognition systems for Chinese and 
+Japanese characters have the same structure like the systems for latin-based 
+alphabets. The process begins with \emph{Character segmentation}, 
+goes on with \emph{Preprocessing}, \emph{Pattern description}, 
 \emph{Pattern recognition} and ends with \emph{Contextual processing}, 
 if applicable. However, there are differences to the standard process, due to 
 the nature of the Chinese characters (see 
@@ -831,6 +832,12 @@ even across country borders.
 xxx: liujaeger2004: 4.1. structural representation. statistical representation.
 xxx: liujaeger2004: character classification
 xxx: liujaeger2004: very short: contextual processing.
+
+\subsubsection{Preprocessing}
+\label{sec:olccrpreprocessing}
+
+
+
 
 \subsubsection{HMM Analysis}
 \label{sec:hmmanalysis}
