@@ -806,13 +806,11 @@ xxx: see \cite{Tokuno2002}
 xxx: see \cite{Shimodaira2003} 
 xxx: see \cite{LiuJaegerNakagawa2004} 
 
-xxx:  graphic:
-handwritten -> character segmentation -> ... -> character codes
-see fig. 3 of liujaegernakagawa2004
-olccrSystemOverview.png
-%\input images/olccrSystemOverview.tex
+\begin{figure}
 \includegraphics[scale=0.5]{images/olccrSystemOverview.png}
-:xxx
+\caption{Overview of an OLCCR system}
+\label{fig:olccrsystemoverview}
+\end{figure}
 
 Broadly speaking, typical handwriting recognition systems for Chinese and 
 Japanese characters have the same structure like the systems for latin-based 
@@ -822,7 +820,9 @@ goes on with \emph{Preprocessing}, \emph{Pattern description},
 if applicable. However, there are differences to the standard process, due to 
 the nature of the Chinese characters (see 
 section~\ref{sec:handwritingpropertieseastasian}).
-Especially the pattern representation is divers in the different OLCCR systems,
+A typical OLCCR system is depicted in fig.~\ref{fig:olccrsystemoverview}.
+
+Especially the pattern representation is diverse in the different OLCCR systems,
 whereas it is naturally more alike in the systems focusing on Latin characters.
 This is due to the fact that the Latin alphabet is rather small, but has more
 variation concerning writing style, whereas the Chinese alphabet has a larger 
