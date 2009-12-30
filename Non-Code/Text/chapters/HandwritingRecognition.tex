@@ -6,7 +6,7 @@
 \chapter{On-Line Handwriting Recognition}
 \label{chap:onlinehwr}
 
-\minitoc
+%\minitoc
 
 %\begin{itemize}
 %\item Warum: Um Ueberblick ueber HWR-Techniken zu verschaffen
@@ -804,13 +804,7 @@ xxx: see \cite{Nakagawa2008}
 xxx: see \cite{Nakai2003} 
 xxx: see \cite{Tokuno2002} 
 xxx: see \cite{Shimodaira2003} 
-xxx: see \cite{LiuJaegerNakagawa2004} 
-
-\begin{figure}
-\includegraphics[scale=0.5]{images/olccrSystemOverview.png}
-\caption{Overview of an OLCCR system}
-\label{fig:olccrsystemoverview}
-\end{figure}
+%xxx: see \cite{LiuJaegerNakagawa2004} 
 
 Broadly speaking, typical handwriting recognition systems for Chinese and 
 Japanese characters have the same structure like the systems for latin-based 
@@ -820,24 +814,77 @@ goes on with \emph{Preprocessing}, \emph{Pattern description},
 if applicable. However, there are differences to the standard process, due to 
 the nature of the Chinese characters (see 
 section~\ref{sec:handwritingpropertieseastasian}).
-A typical OLCCR system is depicted in fig.~\ref{fig:olccrsystemoverview}.
 
-Especially the pattern representation is diverse in the different OLCCR systems,
-whereas it is naturally more alike in the systems focusing on Latin characters.
-This is due to the fact that the Latin alphabet is rather small, but has more
-variation concerning writing style, whereas the Chinese alphabet has a larger 
-inventory of characters, but less variation in how to write a character - at
-least - it is widely agreed upon a 'proper' stroke sequence for a character,
-even across country borders.
+\begin{figure}[htbp]
+\includegraphics[scale=0.5]{images/olccrSystemOverview.png}
+\caption{Overview of an OLCCR system after XXX shortcite LiuJaegerNakagawa2004 }
+\label{fig:olccrsystemoverview}
+\end{figure}
 
-xxx: liujaeger2004: 4.1. structural representation. statistical representation.
-xxx: liujaeger2004: character classification
-xxx: liujaeger2004: very short: contextual processing.
+A typical OLCCR system is depicted in figure~\ref{fig:olccrsystemoverview}.
+The first two steps, character segmentation and preprocessing are virtually
+identical to systems dealing with Latin script. The next step, pattern 
+representation is not only different from Latin script sysstems, but it has
+great diversity among the different OLCCR systems.
+The pattern description is naturally more alike in the systems focusing on 
+Latin characters. This is due to the fact that the Latin alphabet is quite 
+small, but has more variation concerning writing style, whereas the Chinese 
+alphabet has a larger inventory of characters, but less variation in how to 
+write a character. The reason for that is that it is widely agreed upon a 
+standard stroke sequence for a character, even across country 
+borders \shortcite{Nakai2003}.
+The next step after the pattern representation is the actual character 
+recognition or classification. Different flavours of comparison methods are
+applied in different systems, but some systems employ coarse classification 
+first, then a fine classification, whereas other systems try to find the 
+corresponding character model in a model database in just one step.
+The coarse classification is done to reduce the candidate set, the fine 
+classification is used to find the best match. There are systems that 
+accomplish another step \emph{contextual processing}, which can be regarded 
+as an equivalent to postprocessing~\shortcite{LiuJaegerNakagawa2004}.
+
+\subsubsection{Character Segmentation}
+\label{sec:olccrcharactersegmentation}
+
+Character segmentation is a technique that does not apply to OLCCR systems in
+the same way it does to HWR systems for other scripts. Each character is
+written separately, even in cursive script. In Chinese characters, \emph{cursive}
+refers to reduction of lines and lesser pen-up movements within a character.
+In e.g. Latin script it usually refers to not lifting up the pen before the end
+of a word~\shortcite{Tappert1990}. Therefore character segmentation is often a
+trivial task in OLCCR systems, also due to the fact that systems usually only
+allow writing in boxes - or, in box-free application, assume horizontal 
+character orientation~\shortcite{Nakagawa2008}.
+
+One system attempts to recognise overlaid handwriting characters on a small 
+display, allowing continuous writing for the user. That is essentially boxed
+writing, but because of the small display, there is only one box in which 
+all characters have to be drawn. The system can therefore be regarded as a
+continuous character recognition system. In that system, character segmentation 
+is not done as a preprocessing step, but during recognition. The system uses 
+HMM technique, based on substrokes and segments the characters alongside the 
+recognition process~\shortcite{Shimodaira2003}.
+
+The system developed by~\shortciteA{Nakagawa2008} in~\citeyearNP{Nakagawa2008}
+performs continuous character recognition, regardless of the text orientation.
+yyy
 
 \subsubsection{Preprocessing}
 \label{sec:olccrpreprocessing}
 
+The preprocessing techniques used in OLCCR systems are mainly the same as the
+ones described in section~\ref{sec:preprocessing}, in~\shortcite{Tappert1990}
+and in~\shortcite{Santosh2009}. However, since the input devices offer higher 
+quality input, less noise reduction is necessary and smoothing is enough to 
+remove undesirable points from the input trajectory. Therefore, many OLCCR 
+systems limit preprocessing to the other techniques. Data points are reduced
+by one of two methods: approxiamtion of lines (by feature points) or 
+resampling~\shortcite{LiuJaegerNakagawa2004}.
 
+
+xxx: liujaeger2004: 4.1. structural representation. statistical representation.
+xxx: liujaeger2004: character classification
+xxx: liujaeger2004: very short: contextual processing.
 
 
 \subsubsection{HMM Analysis}
