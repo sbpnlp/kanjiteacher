@@ -710,9 +710,59 @@ In this directory: Keogh2001.pdf
 In Bibtex: yes
 #############################################
 
-In this directory: 
+Vuokko Vuori, Jorma Laaksonen, Erkki Oja, Jari Kangas. Speeding up On-line Recognition of Handwritten Characters by Pruning the Prototype Set. Published in the Proceedings of ICDAR'01, pp 501-505, Seattle, USA, September 2001. 
+
+http://www.cis.hut.fi/~vuokkov/hcr/
+
+In this directory: Vuori2001ICDAR01.ps
+In Bibtex: yes: Vuori2001
 #############################################
-In this directory: 
+Bahlmann/Burkhardt: Frog on hand 2004
+
+@Article{ba:bu:tpami04,
+  author =       {Claus Bahlmann and Hans Burkhardt},
+  title =        {The Writer Independent Online Handwriting
+                  Recognition System \emph{frog on hand} and Cluster
+                  Generative Statistical Dynamic Time Warping},
+  journal =      {IEEE Trans. Pattern Anal. and Mach. Intell.},
+  month =        mar,
+  year =         2004,
+  volume =       26,
+  number =       3,
+  pages =        {299--310},
+  abstract =     {In this paper, we give a comprehensive description
+                  of our writer-independent online handwriting
+                  recognition system frog on hand. The focus of this
+                  work concerns the presentation of the
+                  classification/training approach, which we call
+                  cluster generative statistical dynamic time warping
+                  (CSDTW). CSDTW is a general, scalable, HMM-based
+                  method for variable-sized, sequential data that
+                  holistically combines cluster analysis and
+                  statistical sequence modeling. It can handle general
+                  classification problems that rely on this sequential
+                  type of data, e.g., speech recognition, genome
+                  processing, robotics, etc. Contrary to previous
+                  attempts, clustering and statistical sequence
+                  modeling are embedded in a single feature space and
+                  use a closely related distance measure. We show
+                  character recognition experiments of frog on hand
+                  using CSDTW on the UNIPEN online handwriting
+                  database. The recognition accuracy is significantly
+                  higher than reported results of other handwriting
+                  recognition systems. Finally, we describe the
+                  real-time implementation of frog on hand on a Linux
+                  Compaq iPAQ embedded device.},
+  url =
+                  {ftp://ftp.informatik.uni-freiburg.de/papers/lmb/ba_bu_tpami04.pdf},
+  keywords =     {Pattern recognition, handwriting analysis, Markov
+                  processes, dynamic programming, clustering},
+
+}
+
+
+In this directory: BahlmannBurkhardt2004.pdf
+Bibtex: yes: BahlmannBurkhardt2004
 #############################################
 In this directory: 
 #############################################

@@ -53,10 +53,11 @@ Any script of any language has a number of features. The fundamental
 characteristic of a script is that the differences between the features
 of different characters are more decisive than the different features of 
 drawing variants of the same letter in individual handwriting styles.
-There might be exceptions, because \emph{0} and \emph{O} or \emph{1} and 
-\emph{I} respectively, can be written alike. However, in those cases, 
-context makes clear which one was intended by the writer.
-Despite the exception, written communication can only work with that
+There might be exceptions, because \emph{0} (number between '-1' and '1') and 
+\emph{O} (letter between 'n' and 'p') or \emph{1} (number between '0' and '2') 
+and \emph{I} (letter between 'h' and 'j') respectively, can be written alike. 
+However, in those cases, context makes clear which one was intended by the 
+writer. Despite the exception, written communication can only work with that
 fundamental quality \shortcite{Tappert1990}.
 
 \subsection{Handwriting Properties of Latin Script}
@@ -89,8 +90,8 @@ XXX Graphic with example of expanding cursive letters here.
 % xxx: see tappert1990 IV handwriting properties and recognition problems
 Generally, a handwriting is a formed of a number of strokes, that are drawn
 in a time sequence. Opposed to the latin-based alphabets, consider Chinese and
-Japanese script. Chinese has a larger alphabet, up to 50000 characters, 
-3000-5000 of which are in active use. There are also two writing styles,
+Japanese script. Chinese has a larger alphabet, up to 50.000 characters, 
+3.000-5.000 of which are in active use. There are also two writing styles,
 block style - which corresponds to printed characters in Latin alphabets,
 even if handwritten. The other style is cursive style. In block style the
 individual parts of the character are usually written in proper stroke order,
@@ -105,17 +106,17 @@ mixed and next to each other. They are called \emph{Hiragana} (\cjk{ひらがな
 \emph{Katakana} (\cjk{カタカナ}) and \emph{Kanji} (\cjk{漢字}).
 Hiragana and Katakana are syllabic alphabets, each containing 46 characters
 (see section~\ref{sec:kana}), whereas Kanji are essentially the Chinese 
-\emph{Hànzì} characters (\cjk{汉字}) as they were imported into the Japanese 
+\emph{Hànzì} (\cjk{汉字}) characters as they were imported into the Japanese 
 language (see section~\ref{sec:ahorthistoryofjapanesewritingsystem}).
 
 The different scripts can even be blended with each other within one word. 
-Take for instance the verb \cjk{食べる} (pron. \emph{taberu}, 
+Take for instance the verb '\cjk{食べる}' (pron. \emph{/taberu/}, 
 Eng. \emph{to eat}). 
-The first character is a Kanji character, pronounced \emph{/ta/}, 
+The first character '\cjk{食}' is a Kanji character, pronounced \emph{/ta/}, 
 which also bears the meaning of the word. The second and third characters 
-are the Hiragana characters \emph{be} and \emph{ru} which are there for 
-conjugation only as well as for phonetic reasons. 
-Without them, the character \cjk{食} still bears the meaning of the concept 
+are the Hiragana characters '\cjk{べ}' \emph{be} and '\cjk{る}' \emph{ru}, 
+which are there for conjugation only as well as for phonetic reasons. 
+Without them, the character '\cjk{食}' still bears the meaning of the concept 
 \emph{eat}, but the character alone does not result in the verb \emph{taberu}.
 
 \section{Automated Recognition of Handwriting}
@@ -392,6 +393,39 @@ or uncertain recognition. Along these lines, an on-line system can adapt to
 the way a specific user draws certain characters and a user can adapt to the
 way a system expects characters to be written distinctively.
 
+\subsection{HWR of Hànzì (\cjk{汉字}) and Kanji (\cjk{漢字})}
+\label{sec:hwrofhanziandkanji}
+
+% \begin{itemize}
+% \item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
+%   Schriftzeichen und verschiedene Herangehensweisen zu verschaffen.
+% \item Nutzen: Leser kann sich ein Bild darueber verschaffen,
+%   in welchem Kontext sich die Applikation bewegt.
+% \item Was: research different approaches, see what the focus on, 
+%   what their speciality is and report about them. Take different specialist 
+%   papers and compare them.
+% \item Wie: Wiss. Report. / Zusammenfassung. Vergleich. 
+% \end{itemize}
+
+The HWR of the Chinese Hànzì (\cjk{汉字}) and the Japanese Kanji (\cjk{漢字}) 
+merged as Online Chinese Character Recognition (OLCCR). The techniqes are 
+essentially the same, only the language models differ. Hereafter, I'm going to 
+use the term OLCCR for online character recognition of both Chinese and Japanese
+characters.
+
+From the 1990'ies, On-Line Japanese and Chinese Character Recognition 
+(OLCCR) systems have been aiming at loosening the restrictions imposed on 
+the writer when using an OLCCR system. Their focus shifted from recognition 
+of block style script ('regular' script) to fluent style script, 
+which is also called 'cursive' style. Accuracies of up to about 95\% are
+achieved in the different systems.
+
+\shortcite{Nakagawa2008} report their recent results of on-line Japanese 
+handwriting recognition and its applications. Their article gives 
+important insights into character modelling, which are employed in 
+this application. Multiple subpatterns of characters are detected and used for
+character modelling.
+
 \section{A Typical On-Line HWR Application}
 \label{sec:atypicalonlinehwrapplication}
 
@@ -640,8 +674,8 @@ normalised in such a way provides for easy alignment and classification
 \label{sec:characterrecognition}
 
 %xxx: see Tappert1990 VI shape recognition.
-xxx: see Plamondon2000: 3.1.1 different models
-xxx: see all the substroke stuff, Santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
+%xxx: see Plamondon2000: 3.1.1 different models
+%xxx: see all the substroke stuff, Santosh, shimodaira2003, nakai2003: very short, properly in OLCCR
 %xxx: see the DTW stuff, too for curve matching
 
 Character recognition is a special case of shape recognition. It is the 
@@ -734,12 +768,16 @@ been used successfully \shortcite{Tappert1990}.
 \shortcite{Joshi2004a} compare different elastic matching methods for Tamil 
 handwriting recognition. \emph{Dynamic Time Warping} (DTW) is an elastic 
 matching technique that has been applied to handwriting recognition by a number 
-of systems e.g. \shortcite{Vuori2002}, \shortcite{Niels2004}, 
-\shortcite{Joshi2005} and \shortcite{Bashir2008}.
-The DTW algorithm yielded promising results, especially for the different scripts
-of the Indian subcontinent, however, due to its complexity, 
-\shortcite{Keogh2001}, \shortcite{Chu2002} as well as \shortcite{Bashir2008} 
-proposed improvements to the algorithm, mainly through pruning.
+of systems e.g. \shortcite{Vuori2001}, \shortcite{Niels2004}, 
+\shortcite{Joshi2005} and \shortcite{Bashir2008}. While the aforementioned 
+systems use it for a single script, \shortcite{Bharath2009} attempt to create
+a HWR for several indic scripts using the same technology. 
+\shortcite{BahlmannBurkhardt2004} use elastic matching combined with 
+HMM modelling for their HWR system. The DTW algorithm yields promising results, 
+especially for the different scripts of the Indian subcontinent, however, 
+due to its complexity, \shortcite{Keogh2001}, \shortcite{Chu2002} as well as 
+\shortcite{Bashir2008} proposed improvements to the algorithm, 
+mainly through pruning.
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
@@ -764,64 +802,33 @@ and character boundaries are generated and probability estimations calculate
 the moste likely sequence of characters, using both the alterative recognition
 results and a language model for Japanese.
 
-\section{HWR of Hànzì (\cjk{汉字}) and Kanji (\cjk{漢字})}
-\label{sec:hwrofhanziandkanji}
-
-% \begin{itemize}
-% \item Warum: Um einen Ueberblick ueber HWR-Techniken fuer Japanische 
-%   Schriftzeichen und verschiedene Herangehensweisen zu verschaffen.
-% \item Nutzen: Leser kann sich ein Bild darueber verschaffen,
-%   in welchem Kontext sich die Applikation bewegt.
-% \item Was: research different approaches, see what the focus on, 
-%   what their speciality is and report about them. Take different specialist 
-%   papers and compare them.
-% \item Wie: Wiss. Report. / Zusammenfassung. Vergleich. 
-% \end{itemize}
-
-The HWR of the Chinese Hànzì (\cjk{汉字}) and the Japanese Kanji (\cjk{漢字}) 
-merged as Online Chinese Character Recognition (OLCCR). The techniqes are 
-essentially the same, only the language models differ. Hereafter, I'm going to 
-use the term OLCCR for online character recognition of both Chinese and Japanese
-characters.
-
-From the 1990'ies, On-Line Japanese and Chinese Character Recognition 
-(OLCCR) systems have been aiming at loosening the restrictions imposed on 
-the writer when using an OLCCR system. Their focus shifted from recognition 
-of block style script ('regular' script) to fluent style script, 
-which is also called 'cursive' style. Accuracies of up to about 95\% are
-achieved in the different systems.
-
-\shortcite{Nakagawa2008} report their recent results of on-line Japanese 
-handwriting recognition and its applications. Their article gives 
-important insights into character modelling, which are employed in 
-this application. Multiple subpatterns of characters are detected and used for
-character modelling.
-
-\subsection{Overview of a Typical OLCCR system}
+\section{Overview of a Typical OLCCR system}
+\label{sec:olccr:overview}
 
 xxx: see \cite{ChenLee1996} 
 xxx: see \cite{Nakagawa2008}
 xxx: see \cite{Nakai2003} 
 xxx: see \cite{Tokuno2002} 
 xxx: see \cite{Shimodaira2003} 
-%xxx: see \cite{LiuJaegerNakagawa2004} 
+xxx: see \cite{LiuJaegerNakagawa2004} 
 
-Broadly speaking, typical handwriting recognition systems for Chinese and 
-Japanese characters have the same structure like the systems for latin-based 
-alphabets. The process begins with \emph{Character segmentation}, 
-goes on with \emph{Preprocessing}, \emph{Pattern description}, 
-\emph{Pattern recognition} and ends with \emph{Contextual processing}, 
-if applicable. However, there are differences to the standard process, due to 
-the nature of the Chinese characters (see 
-section~\ref{sec:handwritingpropertieseastasian}).
+Typical handwriting recognition systems for Chinese and Japanese characters 
+have broadly the same structure as systems for latin-based alphabets. The 
+process begins with \emph{Character segmentation}, goes on with 
+\emph{Preprocessing}, \emph{Pattern description}, \emph{Pattern recognition} and 
+ends with \emph{Contextual processing}, if applicable. 
+However, there are differences to the standard process, due to the nature of 
+the Chinese characters (see section~\ref{sec:handwritingpropertieseastasian}).
 
 \begin{figure}[htbp]
 \includegraphics[scale=0.5]{images/olccrSystemOverview.png}
-\caption{Overview of an OLCCR system after XXX shortcite LiuJaegerNakagawa2004 }
+\caption{Overview of an OLCCR system}
 \label{fig:olccrsystemoverview}
 \end{figure}
 
-A typical OLCCR system is depicted in figure~\ref{fig:olccrsystemoverview}.
+A typical OLCCR system is depicted 
+after~\shortciteANP{LiuJaegerNakagawa2004}~\citeyear{LiuJaegerNakagawa2004} in 
+figure~\ref{fig:olccrsystemoverview}.
 The first two steps, character segmentation and preprocessing are virtually
 identical to systems dealing with Latin script. The next step, pattern 
 representation is not only different from Latin script sysstems, but it has
@@ -843,8 +850,8 @@ classification is used to find the best match. There are systems that
 accomplish another step \emph{contextual processing}, which can be regarded 
 as an equivalent to postprocessing~\shortcite{LiuJaegerNakagawa2004}.
 
-\subsubsection{Character Segmentation}
-\label{sec:olccrcharactersegmentation}
+\subsection{Character Segmentation}
+\label{sec:olccr:charactersegmentation}
 
 Character segmentation is a technique that does not apply to OLCCR systems in
 the same way it does to HWR systems for other scripts. Each character is
@@ -870,8 +877,8 @@ performs continuous character recognition, regardless of the text orientation.
 The average character size is estimated from all strokes drawn and the estitmate
 defines a threshold for the separation of characters.
 
-\subsubsection{Preprocessing}
-\label{sec:olccrpreprocessing}
+\subsection{Preprocessing}
+\label{sec:olccr:preprocessing}
 
 The preprocessing techniques used in OLCCR systems are mainly the same as the
 ones described in section~\ref{sec:preprocessing}, in~\shortcite{Tappert1990}
@@ -881,17 +888,96 @@ remove undesirable points from the input trajectory. Therefore, many OLCCR
 systems limit preprocessing to the other techniques. Data points are reduced
 by one of two methods: approxiamtion of lines (by feature points) or 
 resampling~\shortcite{LiuJaegerNakagawa2004}.
+Size normalisation is realised in most HWR systems, OLCCR systems included.
 
+\subsection{Pattern Description}
+\label{sec:olccr:patterndescription}
 
-xxx: liujaeger2004: 4.1. structural representation. statistical representation.
+An important part of each HWR system is the description of the patterns that
+need to be recognised. Since the Japanese and Chinese alphabet has a manifold 
+character set, pattern representation faces greater difficulty, because confusion
+of characters must be avoided.
+There are three main types of pattern description in OLCCR systems. The 
+classification of characters depends highly on that representation.
+In the beginning of research into OLCCR systems, \emph{structural} character 
+representation was the natural choice. As systems and computing power evolved, 
+\emph{statistical} character representation became more relevant. In order to 
+optimise for speed and recognition accuracy, system designers started blending
+the two methods to \emph{hybrid statistical-structural} character representation
+~\shortcite{LiuJaegerNakagawa2004}. Systems that use statistical character
+representation usually store the input patterns in feature vectors. The character
+model database holds the parametres for classification.
+
+\subsubsection{Statistical Character Representation} 
+\label{sec:olccr:statisticalrepresentation}
+
+xxx: liujaeger2004: 4.3. structural representation. statistical representation.
 xxx: liujaeger2004: character classification
 xxx: liujaeger2004: very short: contextual processing.
 
+\subsubsection{Structural Character Representation}
+\label{sec:olccr:structuralcharacterrepresentation}
 
-\subsubsection{HMM Analysis}
-\label{sec:hmmanalysis}
+\shortcite{Nakagawa2008}
+xxx: liujaeger2004: 4.1. structural representation. statistical representation
+\shortcite{Breen2004}
+\shortcite{}
+\shortcite{}
+\shortcite{}
+\shortcite{}
+\shortcite{}
+\shortcite{}
+\shortcite{}
+
+
+\subsubsection{Statistical-Structural Character Representation}
+\label{sec:olccr:statistical-structuralcharacterrepresentation}
+
+xxx: liujaeger2004: 4.1. structural representation. statistical representation.
+xxx: see substroke stuff here
+
+\subsection{Classification}
+\label{sec:olccr:classification}
+liujaeger2004
+\shortcite{Plamondon2000}
+\shortcite{Nakagawa2008}
+\shortcite{}
+\shortcite{}
+
+
+\subsubsection{Coarse Classification}
+\label{sec:olccr:coarseclassification}
+
+\subsubsection{Strutural Classification}
+\label{sec:olccr:structuralclassification}
+
+\paragraph{Stroke Matching}
+\label{sec:olccr:strokematching}
+stroke correspondence
+
+\paragraph{Elastic Matching}
+\label{sec:olccr:elasticmatching}
+dtw
+\shortcite{Negussie2008}
+\shortcite{Niels2004}
+\shortcite{Niels2005}
+\shortcite{Vuori2001}
+\shortcite{Velek2002a}
+\shortcite{Chu2002}
+\shortcite{Joshi2004a} %comparison of elastic matching algorithms
+\shortcite{Santosh2009}
+
+for general elastic matching see \ref{sec:curvematching}
+
+\subsubsection{Statistical Classification}
+\label{sec:olccr:statisticalclassification}
 xxx: check all papers in the paper directory, especially all that HMM stuff
 xxx: \shortcite{Hu1996}
 xxx: \shortcite{Tokuno2002}
 xxx: \shortcite{Nakai2001}
 xxx: \shortcite{Nakai2003}
+xxx: \shortcite{Okumura2005}
+xxx: \shortcite{Shimodaira2003}
+
+\subsection{Postprocessing}
+\label{sec:olccr:postprocessing}
