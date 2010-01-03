@@ -911,9 +911,16 @@ model database holds the parametres for classification.
 \subsubsection{Statistical Character Representation} 
 \label{sec:olccr:statisticalrepresentation}
 
-xxx: liujaeger2004: 4.3. structural representation. statistical representation.
-xxx: liujaeger2004: character classification
-xxx: liujaeger2004: very short: contextual processing.
+In statistical character representation, the central focus lies on transfering
+input patterns into feature vectors. The model database contains the same type
+of classification information for the characters.
+Since each stroke of a character is represented in a feature vector, 
+systems are enabled to perform stroke order free recognition. The trajectory
+can also be mapped into a 2D image, in order to apply off-line recognition 
+features. An on-line version of the direction feature, commonly used in off-line recognition systems, can be found in several systems. Generally,
+using features and a statistical representation, enables the use of several
+feature extraction techniques that have been developed for off-line 
+systems~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsubsection{Structural Character Representation}
 \label{sec:olccr:structuralcharacterrepresentation}
@@ -933,8 +940,24 @@ xxx: liujaeger2004: 4.1. structural representation. statistical representation
 \subsubsection{Statistical-Structural Character Representation}
 \label{sec:olccr:statistical-structuralcharacterrepresentation}
 
-xxx: liujaeger2004: 4.1. structural representation. statistical representation.
-xxx: see substroke stuff here
+A common example of statistical-structural character representation is the 
+\emph{substroke approach}. \shortcite{Nakai2001}, \shortcite{Shimodaira2003}, 
+\shortcite{Okumura2005} and others define 8 or more\footnote{Some systems 
+distinguish between short and long strokes and thus use 16 stroke types.} stroke 
+types, each of which has its own direction and orientation. These are used to
+describe input patterns sequentially but also non-sequentially.
+
+In statistical-structural models, characters are described in graph or tree 
+structures. The primitives, e.g. the substrokes and their relations to each other
+are represented in a probablistic model. 
+Most of the substroke systems use HMMs. The substrokes are represented by nodes
+and the transition between strokes is measured probabilistically. Some systems
+use points or line segments. Other systems use full strokes or even radicals.
+Attempting to avoid stroke-order dependence of the system, often multiple HMMs
+are generated with stroke-order variations.
+The substroke approach responds to that by hierarchical character models,
+such that the stroke order variations can be stored in a 
+network~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsection{Classification}
 \label{sec:olccr:classification}
