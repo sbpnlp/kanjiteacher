@@ -764,9 +764,47 @@ Bahlmann/Burkhardt: Frog on hand 2004
 In this directory: BahlmannBurkhardt2004.pdf
 Bibtex: yes: BahlmannBurkhardt2004
 #############################################
+James/Jim Breen
+Multiple Indexing
+
+@InProceedings{Breen2004,
+  author = 	 {James Breen},
+  title = 	 {{M}ultiple {I}ndexing in an {E}lectronic {K}anji {D}ictionary},
+  booktitle = {post COLING Workshop on Enhancing and Using Electronic Dictionaries},
+  year =         {2004},
+  editor = 	 {Michael Zock and Patrick St Dizier},
+  address = 	 {Geneva, Switzerland},
+  month = 	 {August},
+  organization = {COLING},
+  publisher = {International Committee on Computational Linguistics},
+  url = 	 {http://www.csse.monash.edu.au/~jwb/kanjindx.pdf}
+}
+
 In this directory: 
+in bibtex: yes, Breen2004
 #############################################
-In this directory: 
+
+CY Suen, S Mori, SH Kim, CH … - 7th Int. Conference on …, 2003 - primaresearch.org
+... Wakahara conducted large scale experiments for characters used daily in Japan [J22]: Kanji,
+Kana, and alpha-numerics, based on his ... The ePDC feature based OCR achieved around 95%
+recognition rate for the public handwritten Kanji character database ETL9B [J16]. ...
+Zitiert durch: 29 - Ähnliche Artikel - HTML-Version - Alle 8 Versionen
+
+@inproceedings{939574,
+ author = {Suen, Ching Y. and Mori, Shunji and Kim, Soo H. and Leung, Cheung H.},
+ title = {Analysis and Recognition of Asian Scripts - the State of the Art},
+ booktitle = {ICDAR '03: Proceedings of the Seventh International Conference on Document Analysis and Recognition},
+ year = {2003},
+ isbn = {0-7695-1960-1},
+ pages = {866},
+ publisher = {IEEE Computer Society},
+ address = {Washington, DC, USA},
+ }
+
+
+In this directory: Suen2003.pdf
+in bibtex: Suen2003
+
 #############################################
 In this directory: 
 #############################################
