@@ -831,7 +831,7 @@ after~\shortciteANP{LiuJaegerNakagawa2004}~\citeyear{LiuJaegerNakagawa2004} in
 figure~\ref{fig:olccrsystemoverview}.
 The first two steps, character segmentation and preprocessing are virtually
 identical to systems dealing with Latin script. The next step, pattern 
-representation is not only different from Latin script sysstems, but it has
+representation is not only different from Latin script systems, but it has
 great diversity among the different OLCCR systems.
 The pattern description is naturally more alike in the systems focusing on 
 Latin characters. This is due to the fact that the Latin alphabet is quite 
@@ -874,7 +874,7 @@ recognition process~\shortcite{Shimodaira2003}.
 
 The system developed by~\shortciteANP{Nakagawa2008} in~\citeyearNP{Nakagawa2008}
 performs continuous character recognition, regardless of the text orientation.
-The average character size is estimated from all strokes drawn and the estitmate
+The average character size is estimated from all strokes drawn and the estimate
 defines a threshold for the separation of characters.
 
 \subsection{Preprocessing}
@@ -886,7 +886,7 @@ and in~\shortcite{Santosh2009}. However, since the input devices offer higher
 quality input, less noise reduction is necessary and smoothing is enough to 
 remove undesirable points from the input trajectory. Therefore, many OLCCR 
 systems limit preprocessing to the other techniques. Data points are reduced
-by one of two methods: approxiamtion of lines (by feature points) or 
+by one of two methods: approximation of lines (by feature points) or 
 resampling~\shortcite{LiuJaegerNakagawa2004}.
 Size normalisation is realised in most HWR systems, OLCCR systems included.
 
@@ -906,36 +906,60 @@ optimise for speed and recognition accuracy, system designers started blending
 the two methods to \emph{hybrid statistical-structural} character representation
 ~\shortcite{LiuJaegerNakagawa2004}. Systems that use statistical character
 representation usually store the input patterns in feature vectors. The character
-model database holds the parametres for classification.
+model database holds the parameters for classification.
 
 \subsubsection{Statistical Character Representation} 
 \label{sec:olccr:statisticalrepresentation}
 
-In statistical character representation, the central focus lies on transfering
+In statistical character representation, the central focus lies on transferring
 input patterns into feature vectors. The model database contains the same type
 of classification information for the characters.
 Since each stroke of a character is represented in a feature vector, 
 systems are enabled to perform stroke order free recognition. The trajectory
 can also be mapped into a 2D image, in order to apply off-line recognition 
-features. An on-line version of the direction feature, commonly used in off-line recognition systems, can be found in several systems. Generally,
-using features and a statistical representation, enables the use of several
-feature extraction techniques that have been developed for off-line 
-systems~\shortcite{LiuJaegerNakagawa2004}.
+features. An on-line version of the direction feature, commonly used in off-line recognition systems, can be found in several systems~\shortcite{Suen2003}. 
+Generally, using features and a statistical representation, 
+enables the use of several feature extraction techniques that have been 
+developed for off-line systems~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsubsection{Structural Character Representation}
 \label{sec:olccr:structuralcharacterrepresentation}
 
-\shortcite{Nakagawa2008}
-xxx: liujaeger2004: 4.1. structural representation. statistical representation
-\shortcite{Breen2004}
-\shortcite{}
-\shortcite{}
-\shortcite{}
-\shortcite{}
-\shortcite{}
-\shortcite{}
-\shortcite{}
+Several different approaches have been proposed to structural character 
+representation. The most basic version of a structured representation is simple
+point sequences. Systems that use point sequences as a representation,
+calculate the distance between the strokes. Another approach deals with feature 
+point or line segments. Feature points are calculated from the original 
+point sequence, which is ideal for characters with mostly straight lines. 
+Instead of matching complete point sequences, only feature point sequences need 
+to be matched with the character database~\shortcite{LiuJaegerNakagawa2004}.
 
+Using stroke codes for character representation has been adopted by a number of
+OLCCR systems. Each of the graphemic strokes of the Kanji stroke inventory is
+named. A character representation consists of a stroke sequence of the named
+strokes or a relation between the strokes.
+
+\paragraph{Structured Character Representation} 
+is a approach where the characters are structured in their graphemic 
+subcomponents. \shortcite{Nakagawa2008} employ basic sub patterns and then 
+structural information about how these are combined to form a full character.
+That way, the dictionary is smaller, because there is only limited number of 
+sub patterns and their variations. The sub patterns are not chosen randomly,
+but taken from the inherent hierarchical structure of the Hànzì and Kanji.
+The characters are organised hierarchically in the way that each one of them
+is built from the same set of radicals. Therefore the characters can be 
+described as a trees or directed acyclic graphs, using the radical 
+representations. In the dictionary, the radicals are shared between the 
+characters, reducing the dictionary size 
+immensely~\shortcite{LiuJaegerNakagawa2004}. 
+There are around 200 radicals but around 3000 Kanji characters in active use in 
+the Japanese script. Creating a character representation for each one of them 
+is a considerable effort however, using a structured approach can lessen that 
+labour-intensive task. \shortcite{Breen2004} proposed a multi-index dictionary 
+that bears the potential to support the creation of structured character 
+databases. Besides the alleviation of the database creation, the storage space 
+used can limited, which will be advantageous when building a system for small 
+computing devices.
 
 \subsubsection{Statistical-Structural Character Representation}
 \label{sec:olccr:statistical-structuralcharacterrepresentation}
@@ -949,7 +973,7 @@ describe input patterns sequentially but also non-sequentially.
 
 In statistical-structural models, characters are described in graph or tree 
 structures. The primitives, e.g. the substrokes and their relations to each other
-are represented in a probablistic model. 
+are represented in a probabilistic model. 
 Most of the substroke systems use HMMs. The substrokes are represented by nodes
 and the transition between strokes is measured probabilistically. Some systems
 use points or line segments. Other systems use full strokes or even radicals.
@@ -964,14 +988,13 @@ network~\shortcite{LiuJaegerNakagawa2004}.
 liujaeger2004
 \shortcite{Plamondon2000}
 \shortcite{Nakagawa2008}
-\shortcite{}
-\shortcite{}
+
 
 
 \subsubsection{Coarse Classification}
 \label{sec:olccr:coarseclassification}
 
-\subsubsection{Strutural Classification}
+\subsubsection{Structural Classification}
 \label{sec:olccr:structuralclassification}
 
 \paragraph{Stroke Matching}
@@ -980,7 +1003,7 @@ stroke correspondence
 
 \paragraph{Elastic Matching}
 \label{sec:olccr:elasticmatching}
-dtw
+DTW
 \shortcite{Negussie2008}
 \shortcite{Niels2004}
 \shortcite{Niels2005}
