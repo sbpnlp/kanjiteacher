@@ -985,14 +985,69 @@ network~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsection{Classification}
 \label{sec:olccr:classification}
-liujaeger2004
-\shortcite{Plamondon2000}
-\shortcite{Nakagawa2008}
 
+xxx: \shortcite{Plamondon2000}
+xxx: \shortcite{Nakagawa2008}
 
+Classifying an input pattern representation as an entry found in a pattern 
+database is the kernel of each pattern recogniton application.
+Representing data in the same format as the original patterns 
+(see~\ref{sec:olccr:patterndescription} is another key task, however the actual
+classification is the main piece of software.
+In this section, different kinds of classification are reviewed to fit with
+the different kinds of pattern description. The two main groups of 
+classification methods are reviewed: \emph{structural classification} and 
+\emph{probabilistic classification}.
+Additionally, a short section about \emph{coarse classification} shows how to
+speed up the classification process by preprocessing in the sense of 
+classification preprocessing, not to be confused with the data preprocessing
+described in section~\ref{sec:preprocessing}.
 
 \subsubsection{Coarse Classification}
 \label{sec:olccr:coarseclassification}
+
+Coarse classification is a name for any method that pre-selects characters
+to match an input pattern, before the detailed or fine classification is done.
+There are different coarse classification methods, but nevertheless the overall
+goal of coarse classification remains the same. Increasing the speed of the
+classification process.
+That appears to be necessary due to large vocabulary size. Comparing an input
+pattern with each pattern in the pattern database is a time-consuming process.
+Therefore, many system desigerns subdivide their database into \emph{character
+classes}. When a new input pattern needs to be analysed, the system first assigns
+a character class and therefore reduces the search space. This coare 
+classification method is called \emph{class set partitioning}. Another method of 
+coarse classification is \emph{dynamic candidate 
+selection}~\shortcite{LiuJaegerNakagawa2004}.
+
+\paragraph{Class set partitioning} methods divide the large set of characters  
+into smaller groups - character classes. These groups can be completely disjoint 
+or sometimes overlap. The system assigns the input pattern to one or more 
+character classes. After that, in the next step of the recognition process, 
+the input pattern is compared to the members of the character class it has been 
+assigned to. The groups are devised in the database design 
+phase~\shortcite{LiuJaegerNakagawa2004}.
+
+\paragraph{Dynamic candidate selection} methods calculate a matching score between 
+the input pattern and each character class. A subset of character classes is 
+selected for further enquiry. ~\shortcite{LiuNakagawa2000} have shown that the 
+increase in recognition speed can be achieved without loss of precision by 
+choosing a variable number of classes according to a confidence value.
+The dynamic grouping can be based on several different factors. For instance
+the overall character structure, the basic stroke substructure, the stroke 
+sequence~\shortcite{LiuJaegerNakagawa2004}.
+Selection the partition classes dynamically is less labour-intensive, because it
+avoids the training process or manual division of the character classes.
+Stroke number of the input pattern can also be used as a preselcetion of
+characters. Systems that employ structured character representations (see 
+section~\ref{sec:olccr:structuralcharacterrepresentation}) can also use radical 
+detection. All characters in the database that do not contain the confidently 
+detected radical are ruled out from fine classification. However, the radical
+detection has a close reation to structural classification (see 
+section~\ref{sec:olccr:structuralclassification}) and cannot be done without it.
+Another possibility to perform coarse classification is feature vector matching,
+where only a subset of the feature vector is compared and thus rules out all
+character database entries that do not match~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsubsection{Structural Classification}
 \label{sec:olccr:structuralclassification}
@@ -1011,12 +1066,14 @@ DTW
 \shortcite{Velek2002a}
 \shortcite{Chu2002}
 \shortcite{Joshi2004a} %comparison of elastic matching algorithms
+\shortcite{Joshi2004b} for tamil hwr
 \shortcite{Santosh2009}
 
 for general elastic matching see \ref{sec:curvematching}
 
-\subsubsection{Statistical Classification}
-\label{sec:olccr:statisticalclassification}
+\subsubsection{Probabilistic Classification}
+\label{sec:olccr:probabilisticclassification}
+
 xxx: check all papers in the paper directory, especially all that HMM stuff
 xxx: \shortcite{Hu1996}
 xxx: \shortcite{Tokuno2002}
