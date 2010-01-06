@@ -1,4 +1,4 @@
-﻿http://www.jaeger.info/AboutMe.html
+http://www.jaeger.info/AboutMe.html
 
 #############################################
 
@@ -806,7 +806,31 @@ In this directory: Suen2003.pdf
 in bibtex: Suen2003
 
 #############################################
-In this directory: 
+
+http://www.computer.org/portal/web/csdl/abs/trans/tp/2000/06/i0636abs.htm
+
+Precise candidate selection for large character set recognition by confidence …
+
+CL Liu, M Nakagawa - IEEE Transactions on Pattern Analysis …, 2000 - csdl.computer.org
+AbstractÐThis paper proposes a precise candidate selection method for large character set recognition
+by confidence evaluation of distance-based classifiers. The proposed method is applicable to
+a wide variety of distance metrics and experiments on Euclidean distance and city block ...
+
+@article{10.1109/34.862202,
+author = {Cheng-Lin Liu and Masaki Nakagawa},
+title = {Precise Candidate Selection for Large Character Set Recognition by Confidence Evaluation},
+journal ={IEEE Transactions on Pattern Analysis and Machine Intelligence},
+volume = {22},
+issn = {0162-8828},
+year = {2000},
+pages = {636-642},
+doi = {http://doi.ieeecomputersociety.org/10.1109/34.862202},
+publisher = {IEEE Computer Society},
+address = {Los Alamitos, CA, USA}
+}
+
+In this directory: LiuNakagawa2000.pdf
+in bibtex: yes
 #############################################
 In this directory: 
 #############################################
