@@ -387,6 +387,8 @@ of points. However, only few systems of that kind have been developed.
 A promising approach was developed in the middle of the 1990'ies by 
 \shortcite{Nishida1995}, where an on-line and and off-line system are 
 fully integrated with each other as a \emph{blend system}.
+\shortcite{Velek2002a} determine the likelihood of different classifiers in
+a multi-classifier system, before they are combined and yield a result.
 
 On-line systems can refer interactively to the user in case of an unsuccessful 
 or uncertain recognition. Along these lines, an on-line system can adapt to 
@@ -768,10 +770,9 @@ been used successfully \shortcite{Tappert1990}.
 \shortcite{Joshi2004a} compare different elastic matching methods for Tamil 
 handwriting recognition. \emph{Dynamic Time Warping} (DTW) is an elastic 
 matching technique that has been applied to handwriting recognition by a number 
-of systems e.g. \shortcite{Vuori2001}, \shortcite{Niels2004}, 
-\shortcite{Joshi2005} and \shortcite{Bashir2008}. While the aforementioned 
-systems use it for a single script, \shortcite{Bharath2009} attempt to create
-a HWR for several indic scripts using the same technology. 
+of systems e.g. \shortcite{Vuori2001} (for Latin script), \shortcite{Niels2004} (for Tamil), \shortcite{Joshi2004b} (for Tamil) and \shortcite{Joshi2005} (for Devanagari). While the aforementioned systems use it for a single script, 
+\shortcite{Bharath2009} attempt to create a HWR for several indic scripts using 
+the same technology. 
 \shortcite{BahlmannBurkhardt2004} use elastic matching combined with 
 HMM modelling for their HWR system. The DTW algorithm yields promising results, 
 especially for the different scripts of the Indian subcontinent, however, 
@@ -1020,7 +1021,7 @@ classification method is called \emph{class set partitioning}. Another method of
 coarse classification is \emph{dynamic candidate 
 selection}~\shortcite{LiuJaegerNakagawa2004}.
 
-\paragraph{Class set partitioning} methods divide the large set of characters  
+\paragraph{Class Set Partitioning} methods divide the large set of characters  
 into smaller groups - character classes. These groups can be completely disjoint 
 or sometimes overlap. The system assigns the input pattern to one or more 
 character classes. After that, in the next step of the recognition process, 
@@ -1028,7 +1029,7 @@ the input pattern is compared to the members of the character class it has been
 assigned to. The groups are devised in the database design 
 phase~\shortcite{LiuJaegerNakagawa2004}.
 
-\paragraph{Dynamic candidate selection} methods calculate a matching score between 
+\paragraph{Dynamic Candidate Selection} methods calculate a matching score between 
 the input pattern and each character class. A subset of character classes is 
 selected for further enquiry. ~\shortcite{LiuNakagawa2000} have shown that the 
 increase in recognition speed can be achieved without loss of precision by 
@@ -1052,35 +1053,129 @@ character database entries that do not match~\shortcite{LiuJaegerNakagawa2004}.
 \subsubsection{Structural Classification}
 \label{sec:olccr:structuralclassification}
 
-\paragraph{Stroke Matching}
-\label{sec:olccr:strokematching}
-stroke correspondence
+Structural classification refers to a set of methods for classification or
+character matching that use the internal structure of the character in order to
+perform the matching. Input patterns are compared to structural representations
+of the candidate character classes.
+The one with the minimum distance measure is considered the resulting character.
 
-\paragraph{Elastic Matching}
-\label{sec:olccr:elasticmatching}
-DTW
-\shortcite{Negussie2008}
-\shortcite{Niels2004}
-\shortcite{Niels2005}
-\shortcite{Vuori2001}
-\shortcite{Velek2002a}
-\shortcite{Chu2002}
-\shortcite{Joshi2004a} %comparison of elastic matching algorithms
-\shortcite{Joshi2004b} for tamil hwr
-\shortcite{Santosh2009}
+The different methods of structural classification can be grouped as follows:\\
+\emph{Stroke matching} or \emph{stroke correspondence}, 
+\emph{elastic matching} or \emph{DP matching (dynamic programming)}, 
+\emph{relational matching} and \emph{knowledge-based matching}.
+Stroke matching compares the strokes that have been drawn with the strokes of the
+character model in the character database. Elastic matching is performed on 
+ordered stroke sequences and contains stroke deformation techniques. 
+Relational matching considers the strokes and the interstroke relationships, 
+whereas stroke matching only considers the strokes, but not their relations 
+to each other. \emph{Hierarchical matching} and \emph{deformation methods} are 
+connected to these approaches in an orthogonal fashion, i.e. they can be combined
+with the approaches mentioned above.
 
-for general elastic matching see \ref{sec:curvematching}
+\paragraph{Hierarchical Matching} can improve recognition speed, because parts 
+of the recognition and representation are done only once for several characters.
+That approach would of course not be possible without the hierarchical 
+composition of the Kanji characters. The accuracy of that approach is limited in
+the way that the accuracy of the recognition depends on the accuracy of the
+radical recognition. However, when a radical has been recognised correctly, 
+the classification can succeed by traversing a decision tree or 
+network~\shortcite{LiuJaegerNakagawa2004}.
+
+\paragraph{Deformation Methods} deform the input pattern in a way to better match
+with a character representation from the database. In order to do that a 
+deformation vector field is computed, based on the stroke correspondence.
+Then the prototype is deformed by local affine transformations in order to fit 
+the input pattern.
+
+\paragraph{Stroke Matching} is a technique where a distance between the input 
+strokes and the strokes in the database are calculated. The distance between an
+intput pattern and a charatcer in the database is the sum of the between stroke
+distances. When the input strokes are reordered according to domain-specific 
+rules, alternative stroke orders can be matched. The domain-specific rules 
+contain linguistic information such as the stroke order precedence.
+Alternatively, there can be several database entries for the same character with
+varying stroke orders. Defining these rules is a labour-intensive 
+task~\shortcite{LiuJaegerNakagawa2004}.
+
+\paragraph{Elastic Matching} does not differ much from the general elastic matching 
+techniques described in section~\ref{sec:curvematching}. Elastic matching 
+searches for the ordered correspondence between primitive symbols, such as 
+coordinate points or line segments. During that process the algorithm seeks to
+minimise the edit distance (\emph{Levenshtein distance}). A popular elastic 
+matching technique is called \emph{Dynamic time warping} (DTW), which is used by
+many different systems, especially the concerned with HWR for scripts that
+have rather curvy characters like Tamil \shortcite{Niels2005}, \shortcite{Joshi2004b} or Devanāgarī \shortcite{Joshi2005}, but has also been applied to HWR of
+latin-based alphabets \shortcite{Negussie2008}, \shortcite{Vuori2001}.
+\shortcite{Niels2004} and \shortcite{Joshi2004a} have done research into which 
+elastic matching approach is suitable for HWR, as well as, if DTW is useful for 
+that task at all. Both conclude that the method bears advantages, because 
+certain problems concerning handwritten input, such as stroke lenght, or number 
+of sample points can be dealt with.
+
+\paragraph{Relational Matching} systems search for correspondences between element sets. That is, for example the spatial relationships between strokes in a set of 
+strokes in a character representation. Since the stroke order within radicals
+tends to be invariant, it is possible to perform elastic matching for the strokes
+within the radical and use relational matching for the strokes on a character 
+level. Just like elastic matching and stroke matching, relational matching can
+be performed by systems focussing on character patterns or radicals.
+The advantage of relational matching over elastic matching is that it is 
+stroke-order independent. Since the relationship constraint improves the accuracy
+of the matching, relational matching also has an advantage over stroke matching.
+However, it is computationally complex and therefore slower than the other 
+two methods~\shortcite{LiuJaegerNakagawa2004}.
+
+\paragraph{Knowledge-Based Matching} utilises the knowledge of the internal 
+structure of characters. The knowledge is formulated and represented as heuristic
+rules or constraints. The constraints reduce the search space of structural 
+matching efficiently. Radical detection and stroke reordering have been performed
+by rule-based methonds. The rules hold the information of permitted basic strokes
+for a character or fixed spatial featurer of strokes.
+Building knowledge-based systems can be laborious, because of the tasks of 
+acquiring and organising the knowledge. However, even simple heuristics have
+proved to be valuable. Some heuristics can be acquired in an automatic fashion,
+or from corpus studies, for example statistical distribution of stroke order for
+characters. With rule-based heuristics, the overall recognition accuracy of
+systems based on other classification methods can be 
+improved~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsubsection{Probabilistic Classification}
 \label{sec:olccr:probabilisticclassification}
 
-xxx: check all papers in the paper directory, especially all that HMM stuff
-xxx: \shortcite{Hu1996}
-xxx: \shortcite{Tokuno2002}
-xxx: \shortcite{Nakai2001}
-xxx: \shortcite{Nakai2003}
-xxx: \shortcite{Okumura2005}
-xxx: \shortcite{Shimodaira2003}
+The use of probablistic methods for classifiaction has increased. Many modern 
+OLCCR systems use probabilistic methods succesfully. For example, the stroke-type
+probability can help computing the between-stroke distance. Alternatively,
+if the prototype strokes are modelled as Guissian densitiy functions, the 
+matching score of an input pattern respective to a character model can be 
+computed using the joint probability of constituent 
+strokes~\shortcite{LiuJaegerNakagawa2004}.
+
+\paragraph{HMM-based Classification} has been a popular method in recent years of
+research in OLCCR systems. The recognition task is the decoding of the 
+observed sequence (i.e. the input sequence) into the most probable state 
+sequence. This is done with the Viterbi algorithm, that is very popular for
+these types of decoding tasks, such as automated 
+translation~\shortcite{KoehnHoang2007}. Radicals can be represented in HMMs and 
+therefore be shared between different characters in the character database.
+
+\shortcite{Hu1996} have incorporated HMMs into a stochastic language model for 
+Latin characters. \shortcite{Tokuno2002} employed a substroke model for cursive
+Kanji and Hiragana handwriting recognition. Their model contains 
+contend-dependent substrokes and their character model therefore needs 25 HMMs
+as opposed to one for each character. The substroke approach became popular,
+and has been used by \shortcite{Nakai2001}. In a follow-up article, 
+\shortcite{Nakai2003} propose the automated generation of a dictionary for 
+stroke-order free OLCCR. That approach is as well based on substroke HMMs.
+\shortcite{Shimodaira2003} propose a handwriting recognition interface for 
+wearable computing. In their approach the HWR has do be done overlaid, i.e. the
+user draws sequential characters in the same box. The resulting segmentation
+problem is solved by using substroke HMMs, where recognition is done in parallel
+with segementation. In order to achieve that, a stochastic bigram language model
+is combined with the HMMs.
+Another system~\shortcite{Okumura2005} uses not only the pen-direction feature 
+of the other substroke-based HMM approaches, but additionally incorporates the 
+pen-coordinates into the system. This is done at the inter-state transitions of 
+the HMM, whereas the pen-direction feature is utilised at the intra-state 
+transitions.
 
 \subsection{Postprocessing}
 \label{sec:olccr:postprocessing}

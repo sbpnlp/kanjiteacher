@@ -43,3 +43,18 @@ Ergonomics.pdf:
 https://dspace.lboro.ac.uk/dspace-jspui/handle/2134/2559
 WOODS, V. et al, 2002. Ergonomics of using a mouse or other non-keyboard input device. HSE research report 045. London : Health and Safety Executive
 
+
+@inproceedings{1557821,
+ author = {Koehn, Philipp and Hoang, Hieu and Birch, Alexandra and Callison-Burch, Chris and Federico, Marcello and Bertoldi, Nicola and Cowan, Brooke and Shen, Wade and Moran, Christine and Zens, Richard and Dyer, Chris and Bojar, Ond\v{r}ej and Constantin, Alexandra and Herbst, Evan},
+ title = {Moses: open source toolkit for statistical machine translation},
+ booktitle = {ACL '07: Proceedings of the 45th Annual Meeting of the ACL on Interactive Poster and Demonstration Sessions},
+ year = {2007},
+ pages = {177--180},
+ location = {Prague, Czech Republic},
+ publisher = {Association for Computational Linguistics},
+ address = {Morristown, NJ, USA},
+ }
+
+
+in this folder: KoehnHoang2007.pdf
+in bibtex: yes KoehnHoang2007
