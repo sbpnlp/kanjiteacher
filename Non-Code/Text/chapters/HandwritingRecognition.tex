@@ -81,8 +81,17 @@ next one starts, however, there are exceptions:
 In cursive handwriting, the dots on \emph{i} and \emph{j} and the crosses
 of \emph{t} might be delayed until the underlying portions of all 
 the characters of the word are completed. 
+Figure~\ref{fig:expandingcursiveletters} shows examples of letters that expand 
+below the ground line with their descender or stretch up to the top line with
+an ascender.
 
 XXX Graphic with example of expanding cursive letters here.
+
+\begin{figure}[htbp]
+\includegraphics[scale=0.5]{images/expandingcursiveletters.png}
+\caption{Expanding cursive letters}
+\label{fig:expandingcursiveletters}
+\end{figure}
 
 \subsection{Handwriting Properties of East Asian Scripts}
 \label{sec:handwritingpropertieseastasian}
@@ -188,14 +197,21 @@ both the characters and the diagram layout are recognised
 \subsubsection{Problem of Similar Characters}
 \label{sec:similarcharacters}
 
+\begin{figure}[htbp]
+\includegraphics[scale=0.5]{images/differentHandwritingStyles.png}
+\caption{Different handwriting styles}
+\label{fig:differenthandwritingstyles}
+\end{figure}
+
 XXX remake fig 2. in Tappert1990 which he had stolen from his reference 240
 
 There are several subproblems to the task of pattern recognition of a character.
-Different styles of handwriting can be seen in xxx LABELOFGRAPHICABOVE. 
-The scripts toward the bottom of LABELOFGRAPHICABOVE are harder to recognise. 
-In the case of boxed discrete characters, segmentation is done for the 
-machine by the user. Run-on discrete characters are easier to recognise 
-than pure cursive handwriting, because there is a pen-up and 
+Different styles of handwriting after~\shortcite{Tappert1990} can be seen in 
+figure~\ref{fig:differenthandwritingstyles}.
+The scripts toward the bottom of figure~\ref{fig:differenthandwritingstyles} 
+are harder to recognise. In the case of boxed discrete characters, segmentation 
+is done for the machine by the user. Run-on discrete characters are easier to 
+recognise than pure cursive handwriting, because there is a pen-up and 
 pen-down between each character. In cursive handwriting, segmentation 
 between the characters becomes a more difficult task. Some parts of the writing
 may be delayed, like the crosses of \emph{t} or the dots on \emph{i} or \emph{j}.
@@ -276,8 +292,8 @@ that is only loosely related to classical handwriting recognition,
 as the phone stores an image of the strokes in the air that were measured
 by the accelerator device, but does not transform the strokes into characters.
 
-xxx: if you want to add more technical details here, 
-see Santosh2009:Digitizer Technology. :xxx
+%xxx: if you want to add more technical details here, 
+%see Santosh2009:Digitizer Technology. :xxx
 
 \subsection{Recognition vs Identification}
 \label{sec:recognitionvsidentification}
@@ -410,13 +426,13 @@ way a system expects characters to be written distinctively.
 % \end{itemize}
 
 The HWR of the Chinese Hànzì (\cjk{汉字}) and the Japanese Kanji (\cjk{漢字}) 
-merged as Online Chinese Character Recognition (OLCCR). The techniqes are 
-essentially the same, only the language models differ. Hereafter, I'm going to 
-use the term OLCCR for online character recognition of both Chinese and Japanese
-characters.
+in practise are merged as \emph{On-line Chinese Character Recognition} (OLCCR). 
+The techniques are essentially the same, only the language models differ. 
+Hereafter, I'm going to use the term OLCCR for on-line character recognition of 
+both Chinese and Japanese characters.
 
 From the 1990'ies, On-Line Japanese and Chinese Character Recognition 
-(OLCCR) systems have been aiming at loosening the restrictions imposed on 
+systems have been aiming at loosening the restrictions imposed on 
 the writer when using an OLCCR system. Their focus shifted from recognition 
 of block style script ('regular' script) to fluent style script, 
 which is also called 'cursive' style. Accuracies of up to about 95\% are
@@ -448,10 +464,8 @@ In a typical HWR application there are some intermediate steps that can be
 regarded as partial processes of the ones mentioned above. In preprocessing,
 there is often a segmentation step (see~\ref{sec:segmentation}), most systems 
 perform one or several methods of noise reduction (see~\ref{sec:noisereduction}) and it is common to employ a data normalisation step 
-(see~\ref{sec:normalisation}). In character recognition the subprocesses are 
-xxx: see sections that are not subsections of \ref{sec:characterrecognition}, but fall under character recognition conceptually and post them here. :xxx
-Additionally, there are some systems that employ a postprocessing step 
-(see~\ref{sec:postprocessing}). 
+(see~\ref{sec:normalisation}). Additionally, some systems that employ a 
+postprocessing step (see~\ref{sec:postprocessing}). 
 
 \subsection{Data Capturing}
 \label{sec:datacapturing}
@@ -471,25 +485,25 @@ not the pressure intensity. Generally, HWR applications work with mouse
 coordinates, thus the trajectory of the stylus, in accordance with the 
 appropriate time information for each of the sampling points.
 
-xxx: 
-if you want to add more here, see \shortcite{Santosh2009}:
-\emph{Digitizer Technology} as well as \shortcite{Tappert1990}:
-\emph{Digitizer Technology} but don't repeat to much stuff 
-from~\ref{sec:hardwarerequirements}
-:xxx
+%xxx: 
+%if you want to add more here, see \shortcite{Santosh2009}:
+%\emph{Digitizer Technology} as well as \shortcite{Tappert1990}:
+%\emph{Digitizer Technology} but don't repeat to much stuff 
+%from~\ref{sec:hardwarerequirements}
+%:xxx
 
-xxx: 
-The reason for not using pressure intensity as a recognition feature might be 
-that it is plausible to assume that pressure intensity is even more individual 
-to the writer than the shape of the drawn characters. 
-Therefore, featuring pressure intensity in a HWR application could add more 
-noise to the data. However, the differences in pressure intensity 
-between different characters drawn by the same writer should be analysed.
-[xxx put the speculation about pressure intensity into outlook chapter? 
-something along the lines of progress in device technology, 
-subsection pressure intensity of tablets? Or maybe refer from here to
-outlook chapter?] 
-:xxx
+%xxx: 
+%The reason for not using pressure intensity as a recognition feature might be 
+%that it is plausible to assume that pressure intensity is even more individual 
+%to the writer than the shape of the drawn characters. 
+%Therefore, featuring pressure intensity in a HWR application could add more 
+%noise to the data. However, the differences in pressure intensity 
+%between different characters drawn by the same writer should be analysed.
+%[xxx put the speculation about pressure intensity into outlook chapter? 
+%something along the lines of progress in device technology, 
+%subsection pressure intensity of tablets? Or maybe refer from here to
+%outlook chapter?] 
+%:xxx
 
 \subsubsection{Sampling}
 \label{sec:sampling}
@@ -554,9 +568,10 @@ individual characters or strokes from each other.
 \label{sec:externasegmentation}
 \emph{External segmentation} is the step of isolating writing units. That can be
 single strokes, characters or words respectively. In alphabetic scripts it is 
-sometimes difficult to segment each character externally. In CJK cursive script 
-it is difficult to distinguish individual strokes, however, usually each 
-character can be isolated without much processing.  
+sometimes difficult to segment each character externally. In CJK (Chinese, 
+Japanese and Korean) cursive script it is difficult to distinguish individual 
+strokes, however, since it is common to write in boxes, usually each character 
+can be isolated without much processing.
 The earliest method of external segmentation is an explicit signal from the user,
 other work used the projection of the trajectories on the X-axis for spatial
 segmentation. Another method uses temporal information and employs a time-out
@@ -705,9 +720,9 @@ The most common methods include
 \subsubsection{Feature Analysis}
 \label{sec:featureanalysis}
 A character or shape can be represented by a set of features. These features are
-dependent on the alphabet. Therefore, systems can employ a pre-made analysis of 
-the individual characters of the alphabet. For the Latin alphabet, the systems 
-use features like descender or not descender, dot or no dot 
+dependent on the alphabet. Therefore, systems can employ a preconceive analysis 
+of the individual characters of the alphabet. For the Latin alphabet, the 
+systems use features like descender or not descender, dot or no dot 
 \shortcite{Tappert1990}. Some systems use a decision tree for 
 \textbf{binary features}. 
 If there is a descender, for lowercase characters, the recognition choice is 
@@ -771,7 +786,7 @@ been used successfully \shortcite{Tappert1990}.
 handwriting recognition. \emph{Dynamic Time Warping} (DTW) is an elastic 
 matching technique that has been applied to handwriting recognition by a number 
 of systems e.g. \shortcite{Vuori2001} (for Latin script), \shortcite{Niels2004} (for Tamil), \shortcite{Joshi2004b} (for Tamil) and \shortcite{Joshi2005} (for Devanagari). While the aforementioned systems use it for a single script, 
-\shortcite{Bharath2009} attempt to create a HWR for several indic scripts using 
+\shortcite{Bharath2009} attempt to create a HWR for several Indic scripts using 
 the same technology. 
 \shortcite{BahlmannBurkhardt2004} use elastic matching combined with 
 HMM modelling for their HWR system. The DTW algorithm yields promising results, 
@@ -789,29 +804,29 @@ When the recognition process is finished, some systems start another process
 that takes as input the output of the character recognition. In this 
 postprocessing step, language information can be used to improve the recognition
 accuracy. Postprocessing is mainly used for continuous character recognition,
-where more than a single charaters is recgonised. Since some systems yield a 
+where more than a single characters is recognised. Since some systems yield a 
 single string of characters others yield a number of alternative recognitions,
 often in addition with a certainty measure.
 A postprocessing unit can use the information to calculate estimates for words
 or even sentences. When the character recogniser yields single choices for 
-characters, the postprocessor can apply a correction algorithm, based on a 
+characters, the post-processor can apply a correction algorithm, based on a 
 language model \shortcite{Tappert1990}.
 \shortcite{Shimodaira2003} proposed a method for overlaid handwriting 
 recognition, where the segmentation problem (see~\ref{sec:segmentation}) is 
 resolved at the end of the recognition process: Alternative choices of characters
 and character boundaries are generated and probability estimations calculate
-the moste likely sequence of characters, using both the alterative recognition
+the most likely sequence of characters, using both the alternative recognition
 results and a language model for Japanese.
 
 \section{Overview of a Typical OLCCR system}
 \label{sec:olccr:overview}
 
-xxx: see \cite{ChenLee1996} 
-xxx: see \cite{Nakagawa2008}
-xxx: see \cite{Nakai2003} 
-xxx: see \cite{Tokuno2002} 
-xxx: see \cite{Shimodaira2003} 
-xxx: see \cite{LiuJaegerNakagawa2004} 
+%xxx: see \cite{ChenLee1996} 
+%xxx: see \cite{Nakagawa2008}
+%xxx: see \cite{Nakai2003} 
+%xxx: see \cite{Tokuno2002} 
+%xxx: see \cite{Shimodaira2003} 
+%xxx: see \cite{LiuJaegerNakagawa2004} 
 
 Typical handwriting recognition systems for Chinese and Japanese characters 
 have broadly the same structure as systems for latin-based alphabets. The 
@@ -987,11 +1002,11 @@ network~\shortcite{LiuJaegerNakagawa2004}.
 \subsection{Classification}
 \label{sec:olccr:classification}
 
-xxx: \shortcite{Plamondon2000}
-xxx: \shortcite{Nakagawa2008}
+%xxx: \shortcite{Plamondon2000}
+%xxx: \shortcite{Nakagawa2008}
 
 Classifying an input pattern representation as an entry found in a pattern 
-database is the kernel of each pattern recogniton application.
+database is the kernel of each pattern recognition application.
 Representing data in the same format as the original patterns 
 (see~\ref{sec:olccr:patterndescription} is another key task, however the actual
 classification is the main piece of software.
@@ -1014,9 +1029,9 @@ goal of coarse classification remains the same. Increasing the speed of the
 classification process.
 That appears to be necessary due to large vocabulary size. Comparing an input
 pattern with each pattern in the pattern database is a time-consuming process.
-Therefore, many system desigerns subdivide their database into \emph{character
+Therefore, many system designers subdivide their database into \emph{character
 classes}. When a new input pattern needs to be analysed, the system first assigns
-a character class and therefore reduces the search space. This coare 
+a character class and therefore reduces the search space. This coarse 
 classification method is called \emph{class set partitioning}. Another method of 
 coarse classification is \emph{dynamic candidate 
 selection}~\shortcite{LiuJaegerNakagawa2004}.
@@ -1039,12 +1054,12 @@ the overall character structure, the basic stroke substructure, the stroke
 sequence~\shortcite{LiuJaegerNakagawa2004}.
 Selection the partition classes dynamically is less labour-intensive, because it
 avoids the training process or manual division of the character classes.
-Stroke number of the input pattern can also be used as a preselcetion of
+Stroke number of the input pattern can also be used as a preselection of
 characters. Systems that employ structured character representations (see 
 section~\ref{sec:olccr:structuralcharacterrepresentation}) can also use radical 
 detection. All characters in the database that do not contain the confidently 
 detected radical are ruled out from fine classification. However, the radical
-detection has a close reation to structural classification (see 
+detection has a close relation to structural classification (see 
 section~\ref{sec:olccr:structuralclassification}) and cannot be done without it.
 Another possibility to perform coarse classification is feature vector matching,
 where only a subset of the feature vector is compared and thus rules out all
@@ -1089,7 +1104,7 @@ the input pattern.
 
 \paragraph{Stroke Matching} is a technique where a distance between the input 
 strokes and the strokes in the database are calculated. The distance between an
-intput pattern and a charatcer in the database is the sum of the between stroke
+input pattern and a character in the database is the sum of the between stroke
 distances. When the input strokes are reordered according to domain-specific 
 rules, alternative stroke orders can be matched. The domain-specific rules 
 contain linguistic information such as the stroke order precedence.
@@ -1109,7 +1124,7 @@ latin-based alphabets \shortcite{Negussie2008}, \shortcite{Vuori2001}.
 \shortcite{Niels2004} and \shortcite{Joshi2004a} have done research into which 
 elastic matching approach is suitable for HWR, as well as, if DTW is useful for 
 that task at all. Both conclude that the method bears advantages, because 
-certain problems concerning handwritten input, such as stroke lenght, or number 
+certain problems concerning handwritten input, such as stroke length, or number 
 of sample points can be dealt with.
 
 \paragraph{Relational Matching} systems search for correspondences between element sets. That is, for example the spatial relationships between strokes in a set of 
@@ -1117,7 +1132,7 @@ strokes in a character representation. Since the stroke order within radicals
 tends to be invariant, it is possible to perform elastic matching for the strokes
 within the radical and use relational matching for the strokes on a character 
 level. Just like elastic matching and stroke matching, relational matching can
-be performed by systems focussing on character patterns or radicals.
+be performed by systems focusing on character patterns or radicals.
 The advantage of relational matching over elastic matching is that it is 
 stroke-order independent. Since the relationship constraint improves the accuracy
 of the matching, relational matching also has an advantage over stroke matching.
@@ -1128,8 +1143,8 @@ two methods~\shortcite{LiuJaegerNakagawa2004}.
 structure of characters. The knowledge is formulated and represented as heuristic
 rules or constraints. The constraints reduce the search space of structural 
 matching efficiently. Radical detection and stroke reordering have been performed
-by rule-based methonds. The rules hold the information of permitted basic strokes
-for a character or fixed spatial featurer of strokes.
+by rule-based methods. The rules hold the information of permitted basic strokes
+for a character or fixed spatial feature of strokes.
 Building knowledge-based systems can be laborious, because of the tasks of 
 acquiring and organising the knowledge. However, even simple heuristics have
 proved to be valuable. Some heuristics can be acquired in an automatic fashion,
@@ -1141,10 +1156,10 @@ improved~\shortcite{LiuJaegerNakagawa2004}.
 \subsubsection{Probabilistic Classification}
 \label{sec:olccr:probabilisticclassification}
 
-The use of probablistic methods for classifiaction has increased. Many modern 
-OLCCR systems use probabilistic methods succesfully. For example, the stroke-type
+The use of probabilistic methods for classification has increased. Many modern 
+OLCCR systems use probabilistic methods successfully. For example, the stroke-type
 probability can help computing the between-stroke distance. Alternatively,
-if the prototype strokes are modelled as Guissian densitiy functions, the 
+if the prototype strokes are modelled as Gaussian density functions, the 
 matching score of an input pattern respective to a character model can be 
 computed using the joint probability of constituent 
 strokes~\shortcite{LiuJaegerNakagawa2004}.
@@ -1169,7 +1184,7 @@ stroke-order free OLCCR. That approach is as well based on substroke HMMs.
 wearable computing. In their approach the HWR has do be done overlaid, i.e. the
 user draws sequential characters in the same box. The resulting segmentation
 problem is solved by using substroke HMMs, where recognition is done in parallel
-with segementation. In order to achieve that, a stochastic bigram language model
+with segmentation. In order to achieve that, a stochastic bi-gram language model
 is combined with the HMMs.
 Another system~\shortcite{Okumura2005} uses not only the pen-direction feature 
 of the other substroke-based HMM approaches, but additionally incorporates the 
@@ -1179,3 +1194,61 @@ transitions.
 
 \subsection{Postprocessing}
 \label{sec:olccr:postprocessing}
+
+\subsubsection{Contextual Processing During Recognition}
+\label{sec:olccr:contextualprocessingduring}
+
+OLCCR systems, focus on finding the appropriate candidate for an input pattern.
+Once the correct character has been found the task is solved. Most systems
+deal with extraction of features and classification or matching, resulting in 
+scores for individual characters. There are systems that have to deal with 
+multiple character input. That can make the problem more complex, 
+for example when dealing with overlaid handwriting and the accompanying 
+segmentation problem~\shortcite{Shimodaira2003}. 
+
+In Japanese, it is possible to write from left to write in lines, 
+while the lines go from to to bottom. It is also possible, to write from top 
+to bottom in columns, while the columns go from right to left. 
+The task of recognising multiple character input becomes more difficult,
+when attempting to recognise Japanese handwriting without assumptions about the
+writing direction~\shortcite{Nakagawa2008}. 
+However, it is possible to make use of the linguistic context for contextual 
+processing of already recognised character classes.
+The context can provide additional information about which character class is
+the most suitable among a selection of possibilities with their scores.
+Also, geometric features like size, location or aspect ratio can support the 
+segmentation process. 
+
+For page-based recognition processes - especially in the case of off-line 
+recognition, but also when handwriting input can be placed freely on some
+input device with a stylus-based or touch display - it is important to integrate
+the segmentation and the recognition modules. Frequently, segmentation can not
+be done unambiguously before the recognition~\shortcite{LiuJaegerNakagawa2004}.
+
+Some segmentation ambiguities need to be solved during the recognition process.
+Usually, the systems generate some candidate character classes and verify them
+by their geometric features, the recognition results and also linguistic 
+knowledge. The candidates can be represented in a network, where the edges denote
+combinations or segments that build up the candidate pattern.
+Each path in the pattern represents a segmentation of the input and its 
+recognition result. A dynamic programming search yields the path with the highest
+probability value. Linguistic knowledge can be used to verify the path or
+can be inserted into the path scores~\shortcite{LiuJaegerNakagawa2004}.
+
+\subsubsection{Contextual Processing After Recognition}
+\label{sec:olccr:contextualprocessingafter}
+
+Linguistic processing of system results after segmentation and recognition
+is called \emph{postprocessing}. For instance, based on the recognition result,
+other candidate characters can be given, due to statistical information about 
+confusion of characters. That procedure reduces the risk of excluding the
+true class from the candidate set.
+
+Additionally to that, there are systems that ruthlessly exploit linguistic 
+knowledge in dictionaries or character-based or word-based n-grams 
+models. Word-based n-gram models usually provide syntactic or semantic classes, 
+for example parts of speech. Using n-gram models involves dividing text into 
+words and some degree of morphological analysis. It is beneficial to use 
+writer-specific dictionaries. Generally, linguistic postprocessing improves
+the accuracy of the recognition~\shortcite{LiuJaegerNakagawa2004}.
+
