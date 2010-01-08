@@ -58,3 +58,17 @@ WOODS, V. et al, 2002. Ergonomics of using a mouse or other non-keyboard input d
 
 in this folder: KoehnHoang2007.pdf
 in bibtex: yes KoehnHoang2007
+
+@InCollection{Grassmuck1997,
+  author = 	 {Grassmuck, Volker},
+  title = 	 {{D}ie japanische {S}chrift und ihre {D}igitalisierung},
+  booktitle = 	 {Reden über Medien},
+  publisher = {Hochschulverlag},
+  year = 	 {1997},
+  editor = 	 {Winfried Noeth and Karin Wenz},
+  volume = 	 {II},
+  series = 	 {Reihe Intervalle. Schriften des WZ},
+  address = 	 {Kassel},
+  url = {http://waste.informatik.hu-berlin.de/grassmuck/Texts/jp-schrift.html}
+}
+
