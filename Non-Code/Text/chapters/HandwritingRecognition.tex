@@ -146,8 +146,8 @@ by machines has been around for many years. The quality of the systems
 recognising handwriting has improved over the decades. It is the key 
 technology to pen-based computer systems. The first research papers 
 concerned with \emph{pattern recognition} on computers were published 
-in the late 1950'ies, \emph{Handwriting recognition} as an individual subject in 
-the early 1960'ies. \shortcite{Goldberg1915} describes in a US Patent
+in the late 1950s, \emph{Handwriting recognition} as an individual subject in 
+the early 1960s. \shortcite{Goldberg1915} describes in a US Patent
 a machine that can recognise alphanumeric characters as early as 1915. 
 However, despite the surprise of how early such a device was invented,
 it should be taken into consideration that that was before the times 
@@ -157,7 +157,7 @@ computers with screens.
 
 \shortcite{Tappert1990} describe in their review the development of 
 handwriting recognition, which was a popular research topic in the early 
-1970'ies and then again in the 1980'ies, due to the increased availability 
+1970s and then again in the 1980s, due to the increased availability 
 of pen-input devices.  Generally speaking, handwriting recognition (HWR) 
 involves automatic conversion of handwritten text into a machine readable 
 character encoding like ASCII or UTF-8. Typical HWR-environments include 
@@ -407,7 +407,7 @@ algorithm as an on-line system \shortcite{Plamondon2000}.
 Vice versa, an on-line system can employ algorithms of off-line systems, 
 since it is possible to construct a binary image from mouse coordinates 
 of points. However, only few systems of that kind have been developed. 
-A promising approach was developed in the middle of the 1990'ies by 
+A promising approach was developed in the middle of the 1990s by 
 \shortcite{Nishida1995}, where an on-line and and off-line system are 
 fully integrated with each other as a \emph{blend system}.
 \shortcite{Velek2002a} determine the likelihood of different classifiers in
@@ -438,7 +438,7 @@ The techniques are essentially the same, only the language models differ.
 Hereafter, I'm going to use the term OLCCR for on-line character recognition of 
 both Chinese and Japanese characters.
 
-From the 1990'ies, On-Line Japanese and Chinese Character Recognition 
+From the 1990s, On-Line Japanese and Chinese Character Recognition 
 systems have been aiming at loosening the restrictions imposed on 
 the writer when using an OLCCR system. Their focus shifted from recognition 
 of block style script ('regular' script) to fluent style script, 
@@ -490,7 +490,7 @@ devices the device driver also returns the pressure intensity.
 However, a typical on-line HWR application uses only the mouse coordinates,
 not the pressure intensity. Generally, HWR applications work with mouse
 coordinates, thus the trajectory of the stylus, in accordance with the 
-appropriate time information for each of the sampling points.
+appropriate time information for each of the sampling points. 
 
 %xxx: 
 %if you want to add more here, see \shortcite{Santosh2009}:
@@ -742,7 +742,9 @@ open line \emph{c, u, v, w, y} or a closed line \emph{a, b, d, e, g, o, p, q}.
 Systems that perform feature analysis have the potential to use psycholinguistic 
 knowledge and drive the recognition process along the lines humans distinguish 
 characters from each other. The feature analysis method has the disadvantage that
-it may not produce alternative recognition choices.
+it may not produce alternative recognition choices. \shortcite{Jaeger2001} use 
+ascenders and descenders as features in neural network, 
+where the number of points above or below the baseline is counted.
 
 There are also systems that use \textbf{non-binary features}. It is a very common
 technique in pattern recognition to use a fixed number of non-binary features.
@@ -774,13 +776,15 @@ approach is very popular in OLCCR, it is often combined with HMMs
 \label{sec:curvematching}
 
 Curve matching is a set of methods that has been popularised in signal 
-processing. Prototype characters are stored in a data base as descriptions 
+processing. Prototype characters are stored in a database as descriptions 
 of curves. During the recognition process the input curves are matched against 
 the prototypes. It is common to use curves that are functions of time, 
 the direction of the tangent to the stroke or both. Characters have been encoded as a time sequence of eight stroke directions, and as time 
 regions \shortcite{Tappert1990}. Chinese characters have been encoded as a 
 small number of fixed points, since they consist of mainly straight strokes 
-\shortcite{Nakagawa2008}.
+\shortcite{Nakagawa2008}. The approach of \shortcite{Jaeger2001a} utilises 
+the Unipen format \shortcite{Guyon1994}, \shortcite{Unipen} in order to create Japanese 
+character databases.
 
 \paragraph{Elastic matching}
 Curve matching and pattern matching become equivalent in their feature space
@@ -801,6 +805,15 @@ especially for the different scripts of the Indian subcontinent, however,
 due to its complexity, \shortcite{Keogh2001}, \shortcite{Chu2002} as well as 
 \shortcite{Bashir2008} proposed improvements to the algorithm, 
 mainly through pruning.
+
+\subsubsection{HMM Analysis}
+\label{sec:hmmanalysis}
+
+xxx: write a short note on hmm analysis.
+for example cite \shortcite{Hu2000} and \shortcite{Hu1996} and maybe also
+\shortcite{BahlmannBurkhardt2004}
+:xxx
+
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
@@ -828,12 +841,12 @@ results and a language model for Japanese.
 \section{Overview of a Typical OLCCR system}
 \label{sec:olccr:overview}
 
-%xxx: see \cite{ChenLee1996} 
-%xxx: see \cite{Nakagawa2008}
-%xxx: see \cite{Nakai2003} 
-%xxx: see \cite{Tokuno2002} 
-%xxx: see \cite{Shimodaira2003} 
-%xxx: see \cite{LiuJaegerNakagawa2004} 
+%xxx: see \shortcite{ChenLee1996} 
+%xxx: see \shortcite{Nakagawa2008}
+%xxx: see \shortcite{Nakai2003} 
+%xxx: see \shortcite{Tokuno2002} 
+%xxx: see \shortcite{Shimodaira2003} 
+%xxx: see \shortcite{LiuJaegerNakagawa2004} 
 
 Typical handwriting recognition systems for Chinese and Japanese characters 
 have broadly the same structure as systems for latin-based alphabets. The 
@@ -969,6 +982,8 @@ structural information about how these are combined to form a full character.
 That way, the dictionary is smaller, because there is only limited number of 
 sub patterns and their variations. The sub patterns are not chosen randomly,
 but taken from the inherent hierarchical structure of the Hànzì and Kanji.
+\shortcite{ChenLee1996} propose a hierarchical representation for the 
+reference database of on-line handwriting recognition.
 The characters are organised hierarchically in the way that each one of them
 is built from the same set of radicals. Therefore the characters can be 
 described as a trees or directed acyclic graphs, using the radical 
@@ -1004,7 +1019,7 @@ Attempting to avoid stroke-order dependence of the system, often multiple HMMs
 are generated with stroke-order variations.
 The substroke approach responds to that by hierarchical character models,
 such that the stroke order variations can be stored in a 
-network~\shortcite{LiuJaegerNakagawa2004}.
+network~\shortcite{LiuJaegerNakagawa2004}.  
 
 \subsection{Classification}
 \label{sec:olccr:classification}
