@@ -1,0 +1,1 @@
+document.write('<a target="_blank" href="http://ad.jp.doubleclick.net/click;h=v8/3922/0/0/%2a/t;95340357;0-0;0;16551802;3-125/125;25664641/25682495/1;;~sscs=%3fhttp://www.time.co.jp/timejapan"><img src="http://s0.2mdn.net/viewad/1262430/1-TIME2.gif" border=0 alt="TIME"></a>');

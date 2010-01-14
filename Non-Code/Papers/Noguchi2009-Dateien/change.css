@@ -1,0 +1,10 @@
+@charset "utf-8";
+/*2005 01/24 minor changed*/
+/*for modern browsers,Win IE6, Mac IE 5.1, FireFox 1, Opera 8, NN 7,*/
+
+@import url(common.css);
+
+/*OS9 mac ie5*/
+/*\*//*/
+ @import url("ie5mac.css"); 
+/**/

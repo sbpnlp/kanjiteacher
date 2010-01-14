@@ -1,0 +1,31 @@
+<!--
+function ShowSubNavi(i) {
+	MM_showHideLayers('HeaderMainNaviSubMenu01','','hide');
+	MM_showHideLayers('HeaderMainNaviSubMenu02','','hide');
+	MM_showHideLayers('HeaderMainNaviSubMenu03','','hide');
+	MM_showHideLayers('HeaderMainNaviSubMenu04','','hide');
+	MM_showHideLayers('HeaderMainNaviSubMenu05','','hide');
+	MM_showHideLayers('HeaderMainNaviSubMenu06','','hide');
+	MM_showHideLayers('HeaderMainNaviSubMenu'+i,'','show');
+	MM_showHideLayers('MainNaviBtDown01','','show');
+	MM_showHideLayers('MainNaviBtDown02','','show');
+	MM_showHideLayers('MainNaviBtDown03','','show');
+	MM_showHideLayers('MainNaviBtDown04','','show');
+	MM_showHideLayers('MainNaviBtDown05','','show');
+	MM_showHideLayers('MainNaviBtDown06','','show');
+	MM_showHideLayers('MainNaviBtDown'+i,'','hide');
+	MM_showHideLayers('MainNaviBtClose01','','hide');
+	MM_showHideLayers('MainNaviBtClose02','','hide');
+	MM_showHideLayers('MainNaviBtClose03','','hide');
+	MM_showHideLayers('MainNaviBtClose04','','hide');
+	MM_showHideLayers('MainNaviBtClose05','','hide');
+	MM_showHideLayers('MainNaviBtClose06','','hide');
+	MM_showHideLayers('MainNaviBtClose'+i,'','show');
+	MM_swapImgRestore();
+}
+function HideSubNavi(i) {
+	MM_showHideLayers('HeaderMainNaviSubMenu'+i,'','hide');
+	MM_showHideLayers('MainNaviBtDown'+i,'','show');
+	MM_showHideLayers('MainNaviBtClose'+i,'','hide');
+}
+//-->

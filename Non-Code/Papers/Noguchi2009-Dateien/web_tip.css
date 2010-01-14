@@ -1,0 +1,810 @@
+#AnswersBalloon {
+font-size:12px;
+}
+#AnswersBalloon table{
+	font-size:12px;
+    border-collapse:separate;
+    margin: 0px;
+    padding: 0px;
+}
+
+#AnswersBalloon ul{
+    list-style-type: circle;
+}
+html>/**/body #AnswersBalloon img  {
+   display:block;
+}
+#AnswersBalloon ol {*margin-left:30pt;}       /*ie trick fix for fbgz 8319*/
+#AnswersBalloon ol li{list-style-type:decimal;color:black;}
+#AnswersBalloon ul li{list-style-type: disc;color:black;}
+#AnswersBalloon li ol li {list-style-type:lower-alpha;color:black;}
+
+#AnswersBalloon	td {
+       /* border: none;        */
+		font-size: 12px;
+		padding: 0px;
+		text-align: left;
+        margin:0px;
+        color:#000000;
+        font-family:Arial, Helvetica, sans-serif;
+    }
+#AnswersBalloon #pictureTable td {
+       text-align: center;
+}
+#AnswersBalloon #Balloontable table{
+	font-size:12px;
+}
+
+/*p{margin:4px 0px 4px 0px;} */
+
+#AnswersBalloon #Balloontable {
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#fefea7;
+	margin:1px;
+    border:1px solid #CCC;
+}
+
+#AnswersBalloon #AnswersFrame {
+	background-color:#fefea7;
+}
+
+/*p{margin:4px 0px 4px 0px;} */
+
+#AnswersBalloon #Balloontable1 {
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#fefff1;
+	margin:1px;
+    border:1px solid #CCC;
+    /*line-height:15px; */
+}
+
+#AnswersBalloon #Balloontable2 {     /*for us new ui */
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#fefff1;
+	margin:1px;
+    border:1px solid #CCC;
+    margin-top:10px;
+    *margin-top:0px;
+}
+
+#AnswersBalloon #Balloontable2wallst {     /*for wallst new ui */
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#fefff1;
+	margin:1px;
+    border:1px solid #CCC;
+    margin-top:10px;
+    *margin-top:0px;
+}
+
+#AnswersBalloon #Balloontable2cbs {     /*for cbs new ui */
+    text-align:left;
+    font-family: Arial, Helvetica, sans-serif;
+	font-size:12px;
+	background-color:#fefff1;
+	margin:1px;
+    border:1px solid #CCC;
+    margin-top:5px;
+    *margin-top:0px;
+}
+
+#AnswersBalloon #Answertip {
+     text-align:left;
+     color:#000000;
+     font-family:Arial, Helvetica, sans-serif;
+}
+#AnswersBalloon #top {
+	margin-bottom: 10px;
+}
+
+#AnswersBalloon #header {
+	margin-right: 160px;
+	white-space: nowrap;
+	margin-bottom: -5px;
+}
+
+#AnswersBalloon #header img {
+/*	margin-left: -10px; */
+	padding-top: 5px;
+}
+
+
+#AnswersBalloon .blueHeader{
+   font-family:Arial, sans-serif;
+   color:#003399;
+   font-style:italic;
+   font-weight:bold;
+   font-size:12px;
+   margin-left:0;
+}
+
+#AnswersBalloon a{
+    color:#003399;
+    background:none;
+}
+#AnswersBalloon .callout {
+	font-family:Arial,Helvetica,sans-serif;
+	color: #003399;
+	font-size:12px;
+	font-weight: bold;
+	line-height: 14px;
+	text-decoration: none;
+    background:none;
+}
+
+#AnswersBalloon a.callout {
+	text-decoration: underline;
+    background:none;
+}
+
+#AnswersBalloon .content {
+  font-family: Arial,Helvetica,sans-serif;
+  font-size:12px;
+}
+
+#AnswersBalloon .contentb {
+	font-family:Arial,Helvetica,sans-serif;
+	font-size:12px;
+	font-weight: bold;
+	line-height: 14px;
+	color: #000000;
+	text-decoration: none
+}
+
+#AnswersBalloon h1 {
+	font-size:12px;
+	font-weight:bold;
+	margin-bottom:12px;
+	margin-top:0px;
+	color: #003399;
+}
+
+#AnswersBalloon img {
+	border: 0;
+}
+
+
+#AnswersBalloon .nobr {
+	white-space: nowrap;
+}
+
+
+
+/**************************************************************************************************/
+#AnswersBalloon .topic-list {
+/*	list-style-type: none; */
+	margin-left: 1.5em;
+	padding-left: 0;
+}
+#AnswersBalloon .fts-list {
+	margin-left: 0em;
+	padding-left: 0;
+}
+
+#AnswersBalloon .fts-list-item {
+	margin-left: 0em;
+	padding-left: 1.2em;
+	padding-right: 0em;
+	text-indent: -1.2em;
+	cell-spacing: 1em;
+}
+#AnswersBalloon .small
+{
+    font-size: 7pt;
+}
+#AnswersBalloon .hw
+{
+    color: #003399;
+    font-size:16px;
+    font-weight: bold
+}
+#AnswersBalloon .shw
+{
+    color: #003399;
+    font-size:12px;
+    font-weight: bold
+}
+#AnswersBalloon .smallhead, .infl, .kw, .schdirlink
+{
+    font-size:12px;
+    font-weight: bold
+}
+#AnswersBalloon .schdir, .schdesc
+{
+    font-size: 8pt;
+}
+#AnswersBalloon .schlink
+{
+    font-size: 8pt;
+    font-weight: bold
+}
+#AnswersBalloon .notelab
+{
+    font-size: 8pt;
+    font-style: italic;
+    font-weight: bold
+}
+#AnswersBalloon .idiom
+{
+    font-size:12px;
+    font-style: italic;
+    font-weight: bold
+}
+#AnswersBalloon .pron
+{
+    font-family: Arial, Verdana, sans-serif;
+    font-size:12px;
+}
+
+#AnswersBalloon .emon
+{
+    font-style: italic;
+}
+#AnswersBalloon a.unvisited
+{
+    color: blue
+}
+#AnswersBalloon p.note
+{
+    font-family: Arial, Verdana, sans-serif;
+    font-size: 9pt;
+}
+#AnswersBallon p
+{
+     text-align:left;
+     color:#000000;
+     font-family: Arial, Helvetica, sans-serif;
+}
+#AnswersBalloon p.copyright
+{
+	margin-top: 0px;
+	font-size: 10px;
+	color:#555555;
+}
+#AnswersBalloon p.ety
+{
+	color : #666666;
+	font-family: Arial, Verdana, sans-serif;
+}
+#AnswersBalloon .Arial8 {
+	font-family : Arial;
+	font-size : 8pt;
+}
+#AnswersBalloon .Arial9 {
+	font-family : Arial;
+	font-size : 9pt;
+}
+#AnswersBalloon a.ilnk {
+	color: #003399;
+    font-size : 8pt;
+    background:none;
+}
+
+#AnswersBalloon .hl0 {
+ background-color:#ffff00;
+}
+#AnswersBalloon .hl1 {
+ background-color:#00ffff;
+}
+#AnswersBalloon .hl2 {
+ background-color:#ff00ff;
+}
+#AnswersBalloon .hl3 {
+ background-color:#00ff00;
+}
+#AnswersBalloon .hl4 {
+ background-color:#ff0000;
+}
+#AnswersBalloon .epick {
+	border-top:5px solid #E1E0E0;
+	border-left:5px solid #E1E0E0;
+	border-right:5px solid #A4B4AA;
+	border-bottom:5px solid #A4B4AA;
+	text-decoration: none;
+}
+#AnswersBalloon plain {
+	text-decoration: none;
+}
+
+#AnswersBalloon .ds-separator{
+	padding-top:1px;
+	height:12px;
+}
+
+#AnswersBalloon hr.greenSeparator{
+ padding:0px;
+ margin:10px 0px 0px 0px;
+ border:1px solid #008000;
+ visibility: visible;
+}
+#AnswersBalloon hr.separator{
+	color: #CCC;
+	margin-left: 0px;
+	visibility: visible;
+}
+
+#AnswersBalloon hr.grayseparator{
+	color: #E1E0E0;
+	background-color: #E1E0E0;
+	height: 1px;
+	border: 0;
+	margin-left: 0px;
+	visibility: visible;
+}
+
+#AnswersBalloon hr {
+	visibility: hidden;
+}
+
+#AnswersBalloon .epick-domain {
+	color: #808080;
+}
+
+#AnswersBalloon .dym-prefix {
+	font-family: Arial,Helvetica,sans-serif;
+	color: #FF0000;
+	font-size:12px;
+	line-height: 14px;
+	text-decoration: none;
+}
+
+#AnswersBalloon .plink {
+	margin-left: 1em;
+	cursor: pointer;
+	cursor: hand;
+}
+
+#AnswersBalloon .leftlink {
+	font-size:12px;
+	color: #003399;
+	text-decoration: none;
+	text-align:right;
+	padding:  -1px 5px 10px 0px;
+}
+#AnswersBalloon .leftlink a{
+	text-decoration: none;
+	color: #003399;
+}
+
+#AnswersBalloon .bordered-iframe{
+	border-top:5px solid #E1E0E0;
+	border-left:5px solid #E1E0E0;
+	border-right:5px solid #A4B4AA;
+	border-bottom:5px solid #A4B4AA;
+	text-decoration: none;
+	margin-left: 0;
+	margin-top: 0;
+	margin-bottom: 0;
+	margin-right: 0;
+}
+
+#AnswersBalloon .pointer {
+	cursor: pointer;
+	cursor: hand;
+}
+
+#AnswersBalloon #resultMenu{
+ background-color:#F2FEF3;
+ border:1px solid #B0DFB0;
+ width:110px;
+ margin-top:-20px;
+ margin-left:423px;
+ padding:5px;
+ display:none;
+ position:absolute;
+ z-index: 50;
+}
+
+#AnswersBalloon .dataSourceTitle{
+  padding: 0px 10px 0px 10px;
+  color:#008000;
+  font-size:12px;
+  font-weight:bold;
+}
+
+#AnswersBalloon a.dataSourceTitle{
+  padding: 0px 10px 0px 10px;
+  color:#008000;
+  font-size:12px;
+  font-weight:bold;
+  text-decoration: none;
+}
+
+#AnswersBalloon .copyrightImage {
+ vertical-align:middle;
+ border:0px;
+ float:right;
+ padding:7px 10px 0px 0px;
+}
+
+#AnswersBalloon .grayHeading{
+ color:#595959;
+ font-weight:bold;
+ font-size:12px;
+ padding:2px 0px 2px 10px;
+ margin:0px;
+}
+
+#AnswersBalloon a.breadcrumb {
+ color:#7D0303;
+font-size:12px;
+}
+
+#AnswersBalloon .pageTools {
+	clear: both;
+}
+
+#AnswersBalloon .ads {
+}
+
+#AnswersBalloon div.ads {
+	float:left;
+	left:580;
+	margin-bottom:12px;
+}
+
+#AnswersBalloon p#topicTitle {
+	min-height:40px;
+	margin:0px;
+	padding:0px;
+	height:100%;
+}
+
+#AnswersBalloon .tellMeAboutBox {
+   width:170px;
+   margin-left:10px;
+   color:#000000;
+   background-image:url(/main/images/tell_me_about.gif);
+   background-repeat:no-repeat;
+   background-position:center;
+ }
+
+#AnswersBalloon .emptyBox{
+   width:170px;
+   margin-left:10px;
+   color:#000000;
+
+}
+
+#AnswersBalloon .innercallout{
+	font-family: Arial,Helvetica,sans-serif;
+	color: #003399;
+	font-weight:bold;
+	line-height: 14px;
+	text-decoration: none;}
+
+#AnswersBalloon a.innercallout {
+	text-decoration: underline;}
+
+#AnswersBalloon a.innercallout:hover {
+	color: #61A900;}
+
+#AnswersBalloon a.greenLink{
+   color:#003399;
+}
+
+#AnswersBalloon .printPreviewLogo{
+ text-align:left;
+ margin:0px;
+ margin-left:5px;
+ padding:0px;
+}
+
+#AnswersBalloon .bodyHead{
+  width:775px;
+  padding-left:4px;
+  margin-right:auto;
+  margin-left:auto;
+}
+
+#AnswersBalloon .lookupImg{
+	vertical-align:bottom;
+ }
+
+a.bulbLink {
+ /*color:#008000;*/
+ cursor:hand;
+ cursor:pointer;
+ /*text-decoration:none;
+ border-bottom:1px solid #008000;
+ background-image:url(img/light_bulb.gif);background-position: right;background-repeat:no-repeat;
+ padding-right:14px;*/
+ }
+
+a.bulbLink:hover {
+ /*color: #008000;*/ /*text-decoration: none;border-bottom:1px solid #008000;*/
+}
+
+a.bulbLink:active {
+	/*color: #008000;*/ /*text-decoration: none;*/
+}
+
+#AnswersBalloon .tipContent{
+	margin:5px 12px 0px 12px;
+    float:left;
+}
+
+#AnswersBalloon .menu{
+	background-image: url(/main/images/backTooltipMenu.gif);
+	background-position: top left;
+	background-repeat: repeat-x;
+	left:0px;
+	top:0px;
+}
+
+
+#AnswersBalloon .menu div{
+	background-image: url(/main/images/leftTooltipMenu.gif);
+	background-position: top left;
+	background-repeat: no-repeat;
+}
+#AnswersBalloon .newtitle {
+	cursor: move;
+}
+#AnswersBalloon .handle {
+	cursor: move;
+}
+
+#AnswersBalloon .menu div div{
+	background-image: url(/main/images/rightTooltipMenu.gif);
+	background-position: top right;
+	background-repeat: no-repeat;
+	margin:0px 0px 5px 0px;
+	padding:9px 6px 10px 6px;
+}
+
+#AnswersBalloon a.menuItem{
+	color:black;
+	font-size:11px;
+    text-decoration:underline;
+}
+
+#AnswersBalloon .tipContent{
+    font-size:13px;
+}
+#AnswersBalloon .donotmoveme{
+    cursor: default;
+
+}
+#AnswersBalloon .tab-title2{
+    font-size:14px;
+}
+/*for ff backward compatibitility 2.1.12 */
+#AnswersBalloon .topimage {vertical-align:top;height:8px;padding:0px;margin:0px;font-size:1px;}
+#AnswersBalloon .topimage img {vertical-align:top;}
+#AnswersBalloon .bottomimage {vertical-align:bottom;height:8px;padding:0px;margin:0px;font-size:1px}
+#AnswersBalloon .bottomimage img {vertical-align:bottom;}
+#AnswersBalloon .hookimage img {vertical-align:bottom;}
+
+#AnswersBalloon .topimage1, .topimagecorner1 {vertical-align:top;height:8px;padding:0px;margin:0px;font-size:1px;}
+#AnswersBalloon .topimage1 img {vertical-align:top;}
+#AnswersBalloon .bottomimage1, .bottomimagecorner1 {vertical-align:bottom;height:8px;padding:0px;margin:0px;font-size:1px}
+#AnswersBalloon .bottomimage1 img {vertical-align:bottom;}
+#AnswersBalloon .hookimage1 img {vertical-align:bottom;}
+#AnswersBalloon .topimage1, .bottomimage1 {background-color:#E5F2FF;}
+
+#AnswersBalloon .tipCopyright{
+    color:#003399;
+    font-size:11px;
+}
+
+
+#AnswersBalloon .tipCopyright a{
+	font-size:11px;
+	font-weight:normal;
+}
+
+#AnswersBalloon .answering{
+    font-size:24px;
+    text-align:center;
+    margin-top:120px;
+    line-height:normal;
+    /*color:#FFFFFF; */
+}
+#AnswersBalloon #wikiDonate{
+    font-size:12px;
+    width:99%;
+    background:none;
+}
+#AnswersBalloon li{
+font-size:12px;
+ text-align:left;
+ color:#000000;
+ font-family:Arial, Helvetica, sans-serif;
+}
+#AnswersBalloon .AnswerTipSouth   {
+    border:0px;
+    margin-top:-1px;
+}
+*html #AnswersBalloon .AnswerTipSouth   {  /* ie trick */
+    border:0px;
+    margin-top:0px;
+}
+#AnswersBalloon .AnswerTipNorth   {
+
+}
+html>/**/body #AnswersBalloon img  {    /* only for ff */
+   display:block;
+}
+*:first-child+html #AnswersBalloon .AnswerTipNorth{      /* ie7 trick */
+    top:0px;
+}
+
+/* table standards */
+#AnswersBalloon table.rimage {
+        float:right;
+        margin-left:1em;
+        margin-bottom:1em;
+        text-align:center;
+        font-size:smaller;
+}
+
+/* thumbnails */
+#AnswersBalloon div.thumb {
+    margin: 10px;
+    text-align: center;
+    width: auto;
+}
+#AnswersBalloon div.thumb div {
+    border: 1px solid #8888aa;
+    background-color: #f7f8ff;
+    padding: 2px;
+    font-size: 94%;
+    text-align: center;
+    overflow: hidden;
+}
+#AnswersBalloon div.thumb div * {
+    border: none;
+    background: none;
+}
+#AnswersBalloon div.thumb img {
+    border:1px solid #8888AA;
+    margin-bottom:3px;
+    background:#FFFFFF;
+}
+#AnswersBalloon div.thumbcaption,div.thumbcaption * {
+    border: none !important;
+    background: none !important;
+}
+#AnswersBalloon div.thumbcaption {
+    padding: 0.2em 0 0.2em 0 !important;
+    text-align: left !important;
+}
+#AnswersBalloon div.tright {
+    float: right;
+    margin-left:0.5em;
+}
+#AnswersBalloon div.tleft {
+    float: left;
+    margin-right:0.5em;
+}
+
+/**************** Blue Border styles ******************/
+#AnswersBalloon #Balloontable {
+	background-color:#fefea7;
+}
+#AnswersBalloon #Balloontable1 {
+	background-color:#fefff1;
+}
+#AnswersBalloon .centerrow, #AnswersHandlea,#AnswersHandleb,#AnswersHandlec,#AnswersHandled,#AnswersHandlee,#AnswersHandlef,#AnswersHandleg,#AnswersHandleh,#AnswersHandle2,#AnswersHandle4
+{
+    background-color: #E5F2FF;
+}
+
+#AnswersBalloon #Balloontable1 .menu{
+	background-image: url(/main/images/backTooltipMenu_cbs.gif);
+}
+
+
+#AnswersBalloon #Balloontable1 .menu div{
+	background-image: url(/main/images/leftTooltipMenu_cbs.gif);
+}
+
+
+#AnswersBalloon #Balloontable1 .menu div div{
+	background-image: url(/main/images/rightTooltipMenu_cbs.gif);
+}
+
+#AnswersBalloon #AnswersFrame {
+	background-color:#E5F2FF;
+}
+
+#AnswersBalloon .spotlightBack {
+    background-image:none;
+}
+#AnswersBalloon #AnswerBalloonClose {    /*not for IE6 fbg 6925 */
+    margin:-3px 3px 0px 0px;
+}
+*html #AnswersBalloon #AnswerBalloonClose {    /*only for IE6 fbg 6925 */
+    margin:-3px 15px 0px 0px;
+}
+
+/* New UI*/
+/* generic popup css */
+.AnswersFrame{ width: 510px; height: 394px; }
+.AnswersFrame[class] { background-image: url(http://wwwimage.cbsnews.com/common/images/v2/popup_shadow.png) !important; background-repeat: no-repeat; }
+.AnswersHeader { width: 490px; height: 306px; margin: 10px; background-image: url(/main/images/answertip1.gif); background-repeat: no-repeat; }
+.AnswersHeaderA { width: 510px; height: 380px; margin: 10px; background-image: url(/main/images/answertip5.gif); background-repeat: no-repeat; }
+.AnswersHeaderB { width: 500px; height: 310px; margin: 10px; background-image: url(/main/images/answertip4.gif); background-repeat: no-repeat; }
+.AnswersHeaderC { width: 580px; height: 380px; margin: 10px; background-image: url(/main/images/answertip6.gif); background-repeat: no-repeat; }
+.AnswersHeaderW { width: 490px; height: 348px; margin: 10px; background-image: url(/main/images/answertip3.gif); background-repeat: no-repeat; }
+.AnswersHeaderClient { width: 490px; height: 306px; margin: 10px; background-image: url(/main/images/answertip2.gif); background-repeat: no-repeat; }
+.AnswersHeaderInner { margin: 5px 5px 5px 5px; width: 485px; padding-top: 5px; }
+.AnswersContentFrame, .AnswersContentFrameNoFooter{ margin: 5px 2px 2px 2px; padding: 2px; border: 0px solid #CCC;}
+.AnswersContentFrame1, .AnswersContentFrameNoFooter1{ margin: -10px 2px 2px 2px; padding: 2px; border: 0px solid #CCC;}
+div.AnswersContentFrameNoFooter{ height: 295px;}
+iframe.AnswersContentFrameNoFooter { margin-top: 0; width: 453px; height: 295px;}
+iframe.AnswersContentFrame { margin-top: 0; width: 453px; height: 225px;}
+.AnswersContent { padding: 5px; overflow: auto; height: 220px; font-family: Arial, Sans; font-size: 12px; color: #333; border: 0; width: 455px;}
+.AnswersContentFrameNoFooter .AnswersContent { height: 295px; border:0; padding:0;}
+.AnswersContentHeader { font-family: Verdana, Sans; font-size: 10px; font-weight: bold; text-transform: uppercase; }
+.AnswersContentHeadline { font-family: Arial, Sans; font-size: 18px; color: #039; font-weight: bold; }
+.AnswersFooter {  margin: -2px 0px 0px 10px; padding-top: 0px; font-family: Arial, Sans; font-size: 10px; color: #999; }
+.AnswersHeader1 {float: right; font-family: Arial, Sans; font-size: 10px; color: #9CF;width:310px;height:25px;margin-right:-2px;margin-top:-3px; }
+.AnswersHeader2 {font-family: Arial, Sans; font-size: 16px; font-weight: bold; color: #fff;margin-left:5px; }
+.AnswersHeader3 {font-family: Arial, Sans; font-size: 12px; font-weight: bold; color: #fff }
+.AnswersHeader4 {float: right; font-family: Arial, Sans; font-size: 10px; color: #9CF;width:310px;height:25px;margin-right:-90px;margin-top:-3px; }
+#AnswersBalloon #AnswersCloseImage {
+    margin-top:3px;
+    *margin-top:-2px;          /* ie trick */
+}
+#AnswersBalloon #AnswersCBSCloseImage{
+    margin-left:20px;
+    margin-top:-5px;
+    margin-right:0px;
+    *margin-right:-20px;
+    position:relative;
+}
+#AnswersBalloon #AnswertipMore {  /* ie trick */
+    *position:relative;
+    *top:-7px;
+}
+#AnswersBalloon #AnswertipCBSMore {
+    position:relative;
+    top:-5px;
+    left:15px;
+    *left:5px !important;
+}
+#AnswersBalloon #AnswersLogoImage {
+    position:relative;
+    margin-left:0px;
+    margin-top:3px;
+    *margin-top:0px;
+    left:15px;
+}
+#AnswersBalloon #AnswersLogoImage1 {
+    position:relative;
+    margin-left:0px;
+     margin-top:0px;
+    *margin-top:-4px;
+    left:15px;
+}
+#AnswersBalloon #WALLSTLogoImage {
+    position:relative;
+    margin-left:0px;
+    margin-top:6px;
+    *margin-top:3px;
+    left:15px;
+}
+
+#AnswersBalloon #AnswersLogoCBSImage {
+    margin-left:10px;
+    margin-top:-10px;
+    *margin-top:-12px;
+}
+#AnswersBalloon #AnswersAds  {
+    *margin-top:2px;
+}
+.gradientHeading{
+	border:1px solid #D0DBEF;
+        background-image: url(/main/images/education_backP.gif);
+	background-repeat:x-repeat;
+	padding:4px;
+	margin-top:0px;}

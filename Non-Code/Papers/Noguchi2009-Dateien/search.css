@@ -1,0 +1,962 @@
+/* @override http://search.japantimes.co.jp/_scripts/search.css */
+
+/***********************************************/
+/* HTML tag styles                             */
+/***********************************************/ 
+/* overrides decoration from previous rule for hovered links */
+
+a:link{
+	text-decoration: none;
+}
+
+a:visited{
+	text-decoration: none;
+}
+
+label{
+ font: bold 100% Arial,sans-serif;
+ color: #334d55;
+ font-size: 13.5px;
+}
+
+p#message1{
+	line-height: 160%;
+}
+
+font#sheader1 {
+	font-size: 25px;
+	font-weight: bolder;
+	color: Black;
+}
+
+.sheader1 {
+	font-size: 25px;
+	font-weight: bolder;
+	color: Black;
+	line-height: 130%;
+}
+
+font#sheader2 {
+	font-size: 18px;
+	color: Black;
+}
+
+.sheader2 {
+	font-size: 20px;
+	color: Black;
+	line-height: 130%;
+}
+
+font#sheader3 {
+	font-size: 15px;
+	color: Black;
+}
+
+.sheader3 {
+	font-size: 15px;
+	color: Black;
+	line-height: 130%;
+}
+
+
+font#stype1 {
+	font-size: 15px;
+	color: Black;
+	text-decoration: underline;
+}
+
+.stype1 {
+	font-size: 15px;
+	color: Black;
+	text-decoration: underline;
+	line-height: 130%;
+}
+
+font#stype2 {
+	font-size: 18px;
+	color: Blue;
+	text-decoration: underline;
+}
+
+.stype2 {
+	font-size: 18px;
+	color: Blue;
+	text-decoration: underline;
+	line-height: 130%;
+}
+
+font#stype3 {
+	font-size: 12px;
+	color: Black;
+}
+
+.stype3 {
+	font-size: 12px;
+	color: Black;
+	line-height: 130%;
+}
+
+p#stype1 {
+	text-indent: 5px;
+}
+
+p#stype2 {
+	text-indent: 10px;
+}
+
+p#stype3 {
+	text-indent: 10px;
+}
+
+a#search{
+	color: #006699;
+	text-decoration: none;
+}
+
+/***********************************************/
+/* Layout Divs                                 */
+/***********************************************/
+
+#search{
+	width: 580px;
+	float: left;
+	font-size: 15px;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin-bottom: 5px;
+}
+
+#message{
+	width: 100%;
+	text-align: center;
+	padding-top: 20px;
+	padding-right: 10px;
+	margin-left: 10px;
+	padding-left: 10px;
+	margin-bottom: 20px;
+	padding-bottom: 20px;
+}
+
+
+/***********************************************/
+/*Search Divs                               */
+/***********************************************/
+/************* #search styles ***************/
+#searchheader{
+	text-align: left;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-size: 100%;
+	float: left;
+	padding-top: 10px;
+	padding-bottom: 3.5px;
+}
+
+#searchheader h1.searchlogo {
+	width: 580px;
+	height: 21px;
+	text-align: left;
+	font-size: 22px;
+	color: #000000;
+	font-weight: light;
+}
+#searchheader .search-q{
+	font-size: 15px;
+	font-weight: bold;
+	text-align: left;
+	color: #000000;
+	line-height: 130%;
+}
+
+#search1 {
+	text-align: left;
+	width: 580px;
+	margin: 0px;
+	padding: 0px;
+	font-size: 90%;
+	clear: both;
+	padding-top: 10px;
+	margin-top: 5px;
+	padding-bottom: 10px;
+}
+
+#SearchLeftSide {
+	width: 445px;
+	height: 200px;
+	float: left;
+	background-color: #FFFFFF;
+}
+
+#SearchRightSide{
+	width: 131px;
+	height: 160px;
+	float: right;
+	background-color: #FFFFFF;
+}
+
+#SearchLeftSide .searchbyinput{
+	height: 80px;
+	width: 435px;
+	text-align: left;
+	background-color: #ADD8E6;
+	font-size: 90%;
+	padding: 5px;
+	clear: both;
+}
+
+#SearchLeftSide .searchbyinput .SearchintroBox {
+	padding: 5px 0 0 0;
+	float: left
+}
+
+#SearchLeftSide .searchbyinput .search-i{
+	width: 300px;
+	text-align: left;
+	margin: 6px 0 0 4px;
+	font-size: 12px;
+	line-height: 12px;
+	float: right;
+	font-style: italic;
+	font-weight: bold;
+}
+
+#SearchLeftSide .searchbydate{
+	height: 80px;
+	width: 435px;
+	text-align: left;
+	background-color: #B0E0E6;
+	font-size: 12.5px;
+	margin-top: 10px;
+	padding: 5px;
+	clear: both;
+}
+
+#SearchLeftSide .searchbydate .searchdtleft {
+	text-align: left;
+	width: 50%;
+	margin: 0px;
+	padding: 0px;
+	float: left;
+}
+
+#SearchLeftSide .searchbydate .searchdtright {
+	text-align: left;
+	width: 50%;
+	margin-left: 0px;
+	padding: 0px;
+	float: right;
+}
+
+#SearchLeftSide .searchbydate .searchbutton {
+	text-align: right;
+	padding: 5px 12px 0 0;
+	float: right;
+}
+
+#SearchRightSide .searchcal {
+	text-align: center;
+	width: 131px;
+	height: 128px;
+	padding-top: 20px;
+	padding-left: 0px;
+	font-size: 12.5px;
+	line-height: 13px;
+	font-weight: bold;
+}
+
+#search2 {
+	text-align: left;
+	width: 100%;
+	margin: 0px;
+	padding: 0px;
+	font-size: 90%;
+	clear: both;
+	padding-top: 10px;
+	margin-top: 5px;
+	padding-bottom: 10px;
+}
+
+#searchbytype1 {
+	width: 48%;
+	height: 110px;
+	float: left;
+	background-color: #FFFFFF;
+	padding-left: 8px;
+	margin-top: 10px;
+	border: 1px solid #ffffff;
+}
+
+#searchbytype2 {
+	width: 48%;
+	height: 110px;
+	float: right;
+	background-color: #FFFFFF;
+	padding-left: 6px;
+	margin-top: 10px;
+	border: 1px solid #ffffff;
+}
+
+.categories{
+	font-size: 14px;
+	color: Black;
+	line-height: 130%;
+}
+
+.categories a:hover{
+	text-decoration: underline;
+}
+
+.SelectBox{
+	margin-top: 3.5px;
+}
+
+/*********** #Question styles ***********/
+#quiestion {
+	text-align: left;
+	width: 90%;
+	font-size: 90%;
+	font-family: Arial, Helvetica, sans-serif;
+	clear: both;
+	padding-top: 10px;
+	padding-left: 50px;
+}
+
+
+/***********************************************/
+/* Search Result                                 */
+/***********************************************/
+#searchresult{
+	vertical-align: top;
+/*	text-align: center; */
+	width: 550px;
+	float: left;
+	padding-right: 10px;
+	padding-left: 10px;
+	margin: 10px;
+	border: 0px;
+}
+
+table#search{
+	vertical-align: top;
+	width: 550px;
+	border: 0px;
+}
+
+td#search{
+	text-align: center;
+}
+
+td#searchmessage{
+	text-align: left;
+}
+
+#resultheader {
+	text-align: left;
+	font-family: "Times New Roman", Times, serif;
+}
+
+#resultlist {
+	padding-top: 15px;
+	padding-bottom: 0px;
+	font-size: 16px;
+	line-height: 130%;
+	text-align: center;
+	font-family: "Times New Roman", Times, serif;
+}
+
+#resultmore {
+	text-align: right;
+	font-family: "Times New Roman", Times, serif;
+}
+
+#resultbody {
+	width: 100%;
+	text-align: left;
+	font-family: "Times New Roman", Times, serif;
+	padding-left: 10px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+#resultbody ul{
+	font-family: "Times New Roman", Times, serif;
+}
+
+#resultbody li{
+	font-family: "Times New Roman", Times, serif;
+	list-style-type: none;	
+}
+
+
+/***********************************************/
+/* Search Result                                 */
+/***********************************************/
+#headline{
+	font-size: 25px;
+	font-weight: bold;
+	margin-bottom: 5px;
+	line-height: 120%;
+}
+
+#deck{
+	font-size: 18px;
+	font-weight: bold;
+	line-height: 120%;
+}
+
+#kicker{
+	font-size: 16px;
+	line-height: 120%;
+}
+
+#writer{
+	font-size: 16px;
+}
+
+#writerstitle{
+	font-size: 14px;
+}
+
+#credit{
+	font-size: 14px;
+	margin: 5px 0 8px 0;
+}
+
+#specialnote{
+	font-size: 18px;
+	font-style: italic;
+	line-height: 120%;
+}
+
+#mainbody{
+	font-size: 16px;
+	clear: both;
+	margin-top: 10px;
+}
+
+#paragrah{
+	line-height: 130%;
+	margin-bottom: 10px;
+}
+
+#subhead{
+	font-size: 18px;
+	line-height: 120%;
+}
+
+#book{
+	font-size: 18px;
+	font-weight: bold;
+	font-style: italic;
+	line-height: 120%;
+	margin-bottom: 10px;
+}
+
+#bio{
+	font-size: 16px;
+	font-style: italic;
+	line-height: 120%;
+}
+
+#columnname{
+	font-size: 16px;
+	line-height: 120%;
+	margin-bottom: 8px;
+}
+
+#seriesname{
+	font-size: 20px;
+	line-height: 120%;
+}
+
+#searchfooter{
+	margin-top: 20px;
+	font-size: 12px;
+	width: 100%;
+	clear: both;
+}
+
+#footerleft{
+	margin-top: 20px;
+	font-size: 12px;
+	width: 40%;
+	text-align: left;
+	float: left;
+}
+
+#date{
+	font-size: 12px;
+	font-weight: bold;
+}
+
+#displayname{
+	font-size: 12px;
+}
+
+#copyright{
+	font-size: 12px;
+}
+
+#footerright{
+	margin-top: 20px;
+	font-size: 12px;
+	vertical-align: middle;
+	width: 60%;
+	text-align: center;
+	float: right;
+}
+
+#naviline{
+	vertical-align: middle;
+	font-weight: bold;
+	float: right;
+}
+
+hr#article {
+	display: block;
+	border: inset 1px;
+	margin: auto;
+	height: 2px;
+	background-color: Black;
+}
+
+#film{
+	text-align: center;
+}
+
+table#photo{
+/*	font-weight: bold; */
+/*	color: Fuchsia;	*/
+	line-height: 90%;
+	font-size: 12px;
+/*	padding-left: 5px;	*/
+/*	padding-right: 5px;	*/
+	margin-left: 10px;
+	margin-right: 10px;
+/*	font-family: Arial, Helvetica, sans-serif; */
+/*	font-family: "Times New Roman", Times, serif;	*/
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+/*	font-style: italic; */
+}
+
+table#photoright{
+	line-height: 90%;
+	font-size: 12px;
+/*	margin-left: 10px;	*/
+	margin-left: 10px;
+/*	font-family: Arial, Helvetica, sans-serif; */
+/*	font-family: "Times New Roman", Times, serif;	*/
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+/*	font-style: italic; */
+}
+
+table#photoleft{
+	line-height: 90%;
+	font-size: 12px;
+/*	margin-left: 10px;	*/
+	margin-right: 10px;
+/*	font-family: Arial, Helvetica, sans-serif; */
+/*	font-family: "Times New Roman", Times, serif;	*/
+	font-family: Verdana, Geneva, Arial, Helvetica, sans-serif;
+/*	font-style: italic; */
+}
+
+/*
+table#guide{
+	padding-left: 10px;
+	padding-right: 10px;
+}
+*/
+
+
+#others{
+	clear: both;
+	border: 1px solid #cccccc;
+	margin-top: 20px;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	padding-left: 5px;
+	padding-right: 5px;
+	font-size: 13px;
+	line-height: 150%;
+}
+
+#others li{
+	list-style-type: none;
+}
+
+#contextad{
+	width: 100%;
+	float: center;
+	padding-left: 10px;
+	margin-top: 20px;
+}
+/* add 070405 BlogWidget kono */
+#RightAdBlock #BlogWidget {
+	width: 299px;
+	border: 1px solid #190990;
+	border-top: 4px solid #190990;
+	clear: both;
+	margin-top: 10px;
+}
+/* Related Link Box 2007.07.04 */
+.RelatedLinkBox{
+	border: 1px solid #696969;
+	width: 250px;
+	background-color: #F5F5F5;
+	float:left;
+	margin: 8px 10px 8px 0;
+}
+.RelatedLinkBox p.RelatedLinksStart{
+	font-family: Times New Roman;
+	font-size: 1em;
+	color: #B22222;
+	font-weight: bold;
+	margin: 5px 0 7px 7px;
+}
+.RelatedLinkBox h6.RelatedLinkHeadline{
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	font-weight: regular;
+	line-height: 13px;
+	background-image: url(../images/index_left_marker.gif);
+	background-repeat: no-repeat;
+	padding: 0px 3px 0.5em 10px;
+	margin-top: 2px;
+	margin-left: 4px;
+}
+
+/* Slideshow Box 2008.03.09 */
+
+.SlideshowBox{
+	border: 1px solid #696969;
+	width: 250px;
+	background-color: #F5F5F5;
+	float:left;
+	margin: 8px 10px 8px 0;
+}
+
+.SlideshowBox p.SlideshowBoxStart{
+	font-family: Times New Roman;
+	font-size: 1.2em;
+	color: #B22222;
+	font-weight: bold;
+	margin: 5px 0 7px 7px;
+}
+
+.SlideshowBox h6.SlideshowBoxHeadline{
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #000000;
+	font-weight: regular;
+	line-height: 13px;
+	background-image: url(../images/index_left_marker.gif);
+	background-repeat: no-repeat;
+	padding: 0px 3px 0.5em 10px;
+	margin-top: 2px;
+	margin-left: 4px;
+}
+
+.TABLE_TEXT{
+	padding: 2px 5px 2px 5px;
+}
+
+
+/* Film related links 2008.05.26 */
+
+h2.FilmsThisWeek{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 0px 0px 0px 2px;
+	margin: 0 0 0px 0;
+	text-align: left;
+	color: #990000;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.1em;
+	
+}
+
+.FilmRelatedImg{
+	float: left;
+	width: 163px;
+	padding-bottom: 10px;
+}
+
+.FilmRelatedText{
+	float: right;
+	font-family: Helvetica, Arial, sans-serif;
+	padding: 0px 0px 0px 2px;
+	margin: 0 0 0px 0;
+	text-align: left;
+	width: 105px;
+}
+
+.MovieTitle{
+	font-size: 0.8em;
+	line-height: 1em;
+	padding: 0px 0px 2px 0px;
+	margin: 0 0 0px 0;
+	font-weight: normal;
+}
+
+h3.HeadLine {
+	font-weight: bold;
+	font-size: 0.8em;
+	line-height: 1em;
+	padding: 0px 0px 0 0px;
+	margin: 0 0 2px 0;
+}
+
+
+h3.HeadLine a{
+	text-decoration: none;}
+}
+
+h3.HeadLine a:hover{
+	text-decoration: underline;
+}
+
+
+.Auther{
+	font-size: 0.8em;
+	color:#69C;
+	padding: 0px 0px 0 0px;
+	margin: 0 0 2px 0;
+}
+
+
+
+
+.RelatedLinkOneBlock{
+	padding: 0 0px 0px 0px;
+	margin: .5em 0 0 0;
+}
+
+.RelatedTopLine{
+	font-size: 0.75em;
+	line-height: 1em;
+	padding: 0 0px 0px 0px;
+	margin: 0 0 0.4em 0;
+	font-weight: normal;
+	color: #000066;
+}
+
+
+h2.RelatedLinkMainTitle{
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	padding: 0px 0px 0px 2px;
+	margin: 0 0 0px 0;
+	text-align: left;
+	color: #990000;
+	font-size: 1em;
+	font-weight: bold;
+	line-height: 1.1em;
+	
+}
+
+.RelatedLinkMainTitle a{
+	color: #990000;
+	text-decoration: none;
+}
+.RelatedLinkMainTitle a:hover{
+	text-decoration: underline;
+}
+.RelatedLinkMainTitle a:visited{
+	color: #990000;
+}
+
+h3.RelatedHeadLine {
+	font-weight: bold;
+	font-size: 1em;
+	line-height: 1.2em;
+	padding: 0px 0px 0 0px;
+	margin: 0 0 0 0;
+}
+
+
+h3.RelatedHeadLine a{
+	text-decoration: none;
+}
+
+h3.RelatedHeadLine a:hover{
+	text-decoration: underline;
+}
+
+
+
+
+.FilmRelatedImg2{
+	width: 172px;
+	padding: 4px 0px 4px 6px;
+	border: 1px solid #dcdcdc;
+}
+
+.MusicRelatedImg2{
+	width: 172px;
+	padding: 4px 0px 4px 6px;
+	border: 1px solid #dcdcdc;
+}
+
+
+
+.MusicRelatedImgEmpty {
+	width: 172px;
+	padding: 4px 0px 4px 6px;
+	border: 0px solid #dcdcdc;
+}
+ 
+h3.HeadLineBold {
+	font-weight: bold;
+	font-size: 0.8em;
+	line-height: 1.2em;
+	padding: 0px 0px 0 0px;
+	margin: 0 0 0px 0;
+}
+
+
+h3.HeadLineBold a{
+	text-decoration: none;
+}
+
+h3.HeadLineBold a:hover{
+	text-decoration: none;
+}
+
+.AutherLight{
+	font-size: 0.7em;
+	line-height: 0.7em;
+	color:#69C;
+	padding: 10px 0px 10px 0px;
+	margin: 10px 0 10px 0;
+}
+
+.movie_link{
+	width: 250px;
+	height: auto;
+	border: 1px solid #000000;
+	float: left;
+	margin: 10px 10px 10px 0;
+	padding: 0;
+}
+
+
+.movie_link_title{
+	width: 230px;
+	height:30px;
+	font-family: Times New Roman;
+	font-size: 1.5em;
+	line-height: 1.7em;
+	color: #B22222;
+	font-weight: bold;
+	margin: 5px 10px 7px 10px;
+	padding: 0;
+	text-align: left;
+	background-image: url(../images/video_icon.jpg);
+	background-repeat: no-repeat;
+	background-position: right;
+	background-color: #F5F5F5;
+}
+.movie_link_headlines{
+	font-family: Geneva, Arial, Helvetica, sans-serif;
+	font-size: 15px;
+	color: #000000;
+	font-weight: normal;
+	line-height: 16px;
+	background-image: url(../images/video_play_icon.jpg);
+	background-repeat: no-repeat;
+	background-position: left;
+	border-top: 1px solid #777777;
+	padding: 10px 0px 0px 40px;
+	margin: 10px 10px 10px 10px;
+}
+.movie_link_headlines a{
+	color: #0033cc;
+	text-decoration: none;
+}
+.movie_link_headlines a:hover{
+	color: #3399ff;
+	text-decoration: underline;
+}
+.movie_link_headlines a:visited{
+	color: #0033cc;
+	text-decoration: none;
+}
+
+.ArticleThumbsImage{
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity: 1;
+}
+.ArticleThumbsImage img{
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=100);
+	-moz-opacity: 1;
+	opacity: 1;
+	padding: 0px;
+	margin: 0px;
+}
+.ArticleThumbsImage:hover img{
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=60);
+	-moz-opacity: 0.6;
+	opacity: 0.6;
+}
+
+.ArticleThumbsImageThis img{
+	filter:progid:DXImageTransform.Microsoft.Alpha(opacity=50);
+	-moz-opacity: 0.5;
+	opacity: 0.5;
+	padding: 0px;
+	margin: 0px;
+}
+.RelatedLinksWithThumbs{
+	width:auto;
+	height:auto;
+	border-top: 2px solid #777777;
+	padding: 2px 0 10px 0;
+	margin: 10px 0 0 0;
+}
+.RelatedLinksWithThumbsRow{
+	margin:0 0 10px 0;
+	padding:0 0 0 0;
+	float:left;
+}
+.RelatedLinksWithThumbsTitle{
+	width:auto;
+	border-top: 1px solid #777777;
+	padding: 10px 0px 10px 0px;
+	margin: 0px 0px 0px 0px;
+	font-size: 1.2em;
+	line-height: 1.25em;
+	font-weight: bold;
+	font-family: Times New Roman;
+	color: #B22222;
+	text-align:left;
+}
+.RelatedLinksWithThumbsBox{
+	width:auto;
+	border: 1px solid #ccc;
+	padding: 10px;
+	margin: 9.5px;
+	float:left;
+}
+.RelatedLinksWithThumbsHead{
+	width:auto;
+	color: #ccc;
+	font-size: 1em;
+	line-height: 1.05em;
+	margin:3px 0px 5px 0px;
+	padding: 0 0px 0 0px;
+	font-weight: bold;
+	text-align:left;
+}
+.RelatedLinksWithThumbsTeaser{
+	width:auto;
+	font-size: 0.8em;
+	line-height: 1.1em;
+	margin:0px 0px 5px 0px;
+	padding: 0 0px 0 0px;
+	font-weight: normal;
+	text-align:left;
+}
+
