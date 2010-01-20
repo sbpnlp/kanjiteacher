@@ -21,13 +21,13 @@
 %xxx: see plamondon2000 intro
 %xxx: see plamondon2000 2: different disciplines
 %xxx: see santosh2009: introduction for related stuff
-xxx: \\
-alter this section a bit - needs be a general introduction, 
-not so much centered around the question if handwriting as an art will
-survive or not. that can be dealt with in a side note or subsection,
-but the general introduction needs to inform about the general question.
-"What is handwriting?" \\
-:xxx
+%xxx: \\
+%alter this section a bit - needs be a general introduction, 
+%not so much centered around the question if handwriting as an art will
+%survive or not. that can be dealt with in a side note or subsection,
+%but the general introduction needs to inform about the general question.
+%"What is handwriting?" \\
+%:xxx
 
 Handwriting is a very personal skill to individuals. It consists of graphical
 marks on a surface and can be used to identify a person. 
@@ -93,7 +93,7 @@ Figure~\ref{fig:expandingcursiveletters} shows examples of letters that expand
 below the ground line with their descender or stretch up to the top line with
 an ascender.
 
-XXX Graphic with example of expanding cursive letters here.
+%XXX Graphic with example of expanding cursive letters here.
 
 \begin{figure}[htbp]
 \includegraphics[scale=0.5]{images/expandingcursiveletters.png}
@@ -211,7 +211,7 @@ both the characters and the diagram layout are recognised
 \label{fig:differenthandwritingstyles}
 \end{figure}
 
-XXX remake fig 2. in Tappert1990 which he had stolen from his reference 240
+%XXX remake fig 2. in Tappert1990 which he had stolen from his reference 240
 
 There are several subproblems to the task of pattern recognition of a character.
 Different styles of handwriting after~\shortcite{Tappert1990} can be seen in 
@@ -810,11 +810,18 @@ mainly through pruning.
 \subsubsection{HMM Analysis}
 \label{sec:hmmanalysis}
 
-xxx: write a short note on hmm analysis.
-for example cite \shortcite{Hu2000} and \shortcite{Hu1996} and maybe also
-\shortcite{BahlmannBurkhardt2004}
-:xxx
-
+%xxx: write a short note on hmm analysis. how is it done?
+%what's the gist of it?
+HMM analysis is a technique that is not uncommon among modern systems.
+It generally follows the standard procedures described in the literature.
+A detailed description of how On-Line Chinese character recognition can be
+done using HMM analysis can be found in the works of 
+\shortciteANP{Hu2000}~\citeyear{Hu2000},
+\shortciteANP{Hu1996}~\citeyear{Hu1996} and also 
+\shortciteANP{BahlmannBurkhardt2004}~\citeyear{BahlmannBurkhardt2004}.
+In this paper consider section~\ref{sec:olccr:probabilisticclassification} for
+some details of HMM analysis, embedded into the actual classification process.
+%:xxx
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
@@ -1194,10 +1201,10 @@ sequence. This is done with the Viterbi algorithm, that is very popular for
 these types of decoding tasks, such as automated 
 translation~\shortcite{KoehnHoang2007}. Radicals can be represented in HMMs and 
 therefore be shared between different characters in the character database.
-
-\shortcite{Hu1996} have incorporated HMMs into a stochastic language model for 
-Latin characters. \shortcite{Tokuno2002} employed a substroke model for cursive
-Kanji and Hiragana handwriting recognition. Their model contains 
+\shortciteANP{Hu1996}~\citeyear{Hu1996} have incorporated HMMs into a 
+stochastic language model for Latin characters. 
+\shortciteANP{Tokuno2002}~\citeyear{Tokuno2002} employed a substroke model for 
+cursive Kanji and Hiragana handwriting recognition. Their model contains 
 contend-dependent substrokes and their character model therefore needs 25 HMMs
 as opposed to one for each character. The substroke approach became popular,
 and has been used by \shortcite{Nakai2001}. In a follow-up article, 
