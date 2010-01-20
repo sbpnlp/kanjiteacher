@@ -1,0 +1,13 @@
+Next Actions
+
+
+Project name		Action description				Due date
+KADS 1.2010		Collect material for KADS			10.02.2010
+DA			Implementiere kleines Script, dass gezeichnetes 
+			Bildmaterial vom PDA als Bitmap oder SVG 
+			speichert.
+DA			Nutze Script, dass gezeichnetes Bildmaterial 
+			speichert um Herkunft der Kanji nach Kano1990
+			zu zeichnen, Lesson 1 S. 2. Fuer:
+			JapaneseScript.tex fig:kanjipictograms
+
