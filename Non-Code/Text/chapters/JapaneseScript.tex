@@ -24,7 +24,7 @@ section~\ref{sec:kana}, which centers around the Kana scripts.
 Machine processing of the different Japanese scripts and the difficulties that
 go along will be demonstrated in section~\ref{sec:machinewritingofjapanese}.
 The difficulties of learning to use the Japanese script will be illustrated in 
-section~\ref{sec:writingjapanesedifficulties}.
+section~\ref{sec:japanesedifficulties}.
 
 \section{A Short History of the Japanese Script}
 \label{sec:ashorthistoryofjapanesewritingsystem}
@@ -530,10 +530,11 @@ Chinese borrowings, but not all of them. The original Japanese vocabulary has
 multisyllabic morphemes, therefore some impreciseness arises in the graphical
 reproduction of the morpheme structure~\shortcite{Foljanty1984}.
 
-\subsubsection{Graphemic Elements}
-\label{sec:graphemicelements}
+%\subsubsection{Graphemic Elements}
+%\label{sec:graphemicelements}
 
-xxx: see \shortcite{Foljanty1984} 2.1.4.2
+%xxx: see \shortcite{Foljanty1984} 2.1.4.2
+%xxx do wee need anything about graphemic elements?
 
 \subsubsection{Radicals}
 \label{sec:radicals}
@@ -591,14 +592,24 @@ under the \cjk{木} (tree) class Radical. %Namely at entry 1872
 
 \subsection{Structure of the Japanese Writing System}
 \label{sec:structureofwritingsystem}
+
 Having demonstrated the Hiragana in~\ref{sec:hiragana}, the Katakana 
 in~\ref{sec:katakana} and the Kanji in section~\ref{sec:compositionofkanji}, 
 it is now possible to report about the structure of the writing system as such.
 It now becomes apparent, why a sentence like the one presented in 
-example~(\ref{exe:mariaYamada}) is written and spelled the way it is.
-
-The \emph{Okurigana} (\cjk{送り仮名}, Jap. pron. \cjk{ オクリガナ}/okurigana; 
-Eng. 'accompanying characters') are Kana that form 
+example~(\ref{exe:mariaYamada}) in section~\ref{sec:modernjapanesewritingsystem} 
+is written and spelled the way it is.
+\begin{exe}
+\ex\label{exe:okurigana}
+\gll 
+ \cjk{帰りたくない} \\
+ kaeritakunai \\
+ go-home-want-not \\
+\trans 'I do not want to go home' \\
+\end{exe}
+An important part of the blended writing in Japanese are the 
+\emph{Okurigana} (\cjk{送り仮名}, Jap. pron. \cjk{ オクリガナ}/okurigana; 
+Eng. 'accompanying characters'). Okurigana are Kana that form 
 a word together with a Kanji character~\shortcite{Lange1922}.
 For instance, the word in example~(\ref{exe:okurigana}) has only one Kanji 
 character: \cjk{帰} (Jap. pron. \cjk{カエ}/kae; Eng. 'go-home'), while the other characters are all Kana characters, that are part of the same word and modify
@@ -608,15 +619,38 @@ the verb.
   \item \cjk{たく} (\emph{taku}): derivation of \emph{tai} = want
   \item \cjk{ない} (\emph{nai}): Negation ending
 \end{itemize}
-
+Knowing the two syllabic scripts by heart helps distinguish the Kanji from them.
+Therefore it is possible to use the three scripts next to each other, even 
+without blanks. The Okurigana further help distinguish different versions of 
+the same Kanji, as they sometimes even partially describe the sounds of a 
+verb stem.
 \begin{exe}
-\ex\label{exe:okurigana}
+\ex\label{exe:stemspelling}
+\begin{xlist}
+\ex\label{exe:stemspellingkaeru}
 \gll 
- \cjk{帰りたくない} \\
- kaeritakunai \\
- go-home-want-not \\
-\trans 'I do not want to go home' \\
+ \cjk{変ーえる} \\
+ ka-eru \\
+ change \\
+\trans 'to change something' (transitive) \\
+
+\ex\label{exe:stemspellingkawaru}
+\gll 
+ \cjk{変ーわる} \\
+ ka-waru \\
+ change \\
+\trans 'to change oneself' (reflexive) \\
+\end{xlist}
 \end{exe}
+Compare for example~(\ref{exe:stemspellingkaeru}) 
+and~(\ref{exe:stemspellingkawaru}). 
+The Japanese verb ending is 
+\cjk{る}~(Hiragana: \emph{ru}). A part of the verb stem are expressed with
+Hiragana, too. In~(\ref{exe:stemspellingkaeru}) it is the 
+\cjk{え}~(Hiragana: \emph{e}) while in~(\ref{exe:stemspellingkawaru}) it is the 
+\cjk{わ}~(Hiragana: \emph{wa}).
+The Kanji are further used to write nouns, the Hiragana are used for particles 
+and other grammatical functions, while the Katakana are used for foreign words.
 
 %xxx see Foljanty 2.2. kana intro, for this intro - how to write a different language with chinese characters.
 %xxx: see \shortcite{Foljanty1984} 3.1-3.2
@@ -626,9 +660,34 @@ the verb.
 \label{sec:machinewritingofjapanese}
 
 Machine processing of the Japanese scripts has been an issue, ever since humans
-started to automate their writing.
+started to automate their writing. 
+~\shortciteANP{Lange1922}~\citeyear{Lange1922} reports in the foreword to the first edition (1896) of his work about difficulties during the printing process. 
+Firstly, there was only one 
+printing office in Germany that was able to print these kind of things at all.
+Also, there were technical issues, like incompatible letter size and missing
+characters among the letters available. The manufacturing of the appropriate
+letters delayed the publication.
+\begin{quote}
+Bei der Drucklegung des Werkes in der Reichsdruckerei, der einzigen Druckerei 
+in Deutschland, welche dergleichen zu drucken im stande ist, stellten sich 
+leider einige Übelstände heraus. Einerseits sind die Kana-Zeichen, 
+welche dieselbe besitzt, au gross, um als erklärende Zeichen bequem neben die 
+chinesischen Zeichen gesetzt werden zu können, andererseits fehlten unter den 
+10000 chinesischen Zeichen, die aus Shanghai gekommen, eine Anzahl in Japan 
+ganz gebräuchlicher Zeichen. 
+Diese mussten entweder aus den vorhandenen Teilzeichen,
+die eine andere Form als die übrigen Typen haben, zusammengesetzt werden oder 
+sie mussten erst geschnitten werden; 
+haupsächlich durch den letzteren Umstand hat sich die Fertigstellung des Werkes 
+verzögert.
+%xxx full translation of the quote into english?
+%\footnote{When the work was printed in the Reichsdruckerei, the only print shop
+% in Germany, ablet to print this kind of work, }
+\end{quote}
 
-xxx: see \shortcite{Lange1922} p. XII Stichwort Drucklegung
+Difficulties in machine writing Japanese also occured at a later stage.
+
+p. XII Stichwort Drucklegung
 xxx: see \shortcite{Foljanty1984} 5
 xxx: see MS IME dsecription (technical report or something?!)
 xxx: see section \ref{sec:hwrofhanziandkanji} for a description of research 
@@ -636,11 +695,18 @@ efforts in order to provide technology for using handwriting as an input method
 for Japanese.
 xxx: see \shortcite{Grassmuck1997}
 
-
-\section{Difficulties of Writing Japanese for Learners}
-\label{sec:writingjapanesedifficulties}
+\section{Difficulties of the Japanese Script for Learners}
+\label{sec:japanesedifficulties}
 
 %xxx different readings
+%Heisig has developed a method to learn the Kanji.
+%the%several other methods exist
+
+There are at least four ways to learn the Japanese Script.
+http://appleotaku.com/four-ways-to-learn-kanji/
+
+Interest and fascination is unbroken: see books like Haschke Thomas.
+
 
 \subsection{From online forum}
 Wenn man mal bei 1000 Kanji ist geht die Geschwindigkeit extrem zurück.
