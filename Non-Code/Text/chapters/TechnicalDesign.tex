@@ -137,8 +137,76 @@ needs be performed.
 \subsubsection{Recognition Data Flow}
 \label{sec:arch:recognitiondataflow}
 
+The recognition data flow is simply the flow of data occuring in a recognition 
+scenario. It can be described in \ref{recdataflowDisplayResult} steps.
+\begin{enumerate}
+  \item \label{recdataflowClear} 
+        Clearing the input GUI screen 
+        [Controller $\Rightarrow$ Web service $\Rightarrow$ Mobile view]
+  \item \label{recdataflowTransmit} 
+        Transmitting user input data to the web service 
+        [Mobile view $\Rightarrow$ Web service]
+  \item \label{recdataflowEncapsulatePass} 
+        Encapsulating data into a message and passing 
+        it to the controller 
+        [Web service $\Rightarrow$ Controller]
+  \item \label{recdataflowRequestRecognition} 
+        Requesting recognition 
+        [Controller $\Rightarrow$ Model] 
+  \item \label{recdataflowReturnResult} 
+        Returning recognition result 
+        [Model $\Rightarrow$ Controller] 
+  \item \label{recdataflowDisplayResult} %this should be the last label, otherwise seek for the place where it is used as a number and change it to the new last label there
+        Displaying recognition result 
+        [Controller $\Rightarrow$ Desktop view]
+\end{enumerate}
+When the desktop application requests the use to input a Kanji 
+character, it sends a message to the web service advising the mobile view to 
+clear the screen (Step~\ref{recdataflowClear}). 
+The mobile view receives the information by polling the web service. 
+When the user starts drawing on the surface of the mobile GUI, the data is 
+caputered and transmitted to the web service (Step~\ref{recdataflowTransmit}).
+Each stroke is captured and sent individually in order to ensure a faster 
+recognition. That way, the recognition process is initiated before the
+user finishes writing a character. The web service receives the data and 
+creates an encapsulated message. That message is passed to the 
+controller (Step~\ref{recdataflowEncapsulatePass}).
+The controller initiates a request to the model, containing all strokes
+subsequent to the last clear screen 
+event (Step~\ref{recdataflowRequestRecognition}).
+The model performs the recognition of the set of strokes and returns the result
+or partial result to the controller (Step~\ref{recdataflowReturnResult}).
+The controller advises the desktop view to display the resulting character
+(Step~\ref{recdataflowDisplayResult}).
+
 \subsubsection{Learning Data Flow}
 \label{sec:arch:learningdataflow}
+
+The learning data flow is the data flow between the learning module of the 
+application, the recognition process and the user interaction.
+It can be summed up in \ref{learningdataflowDisplayResult} steps.
+\begin{enumerate}
+  \item \label{learningdataflowClear} 
+        Clearing the input GUI screen 
+        [Controller $\Rightarrow$ Web service $\Rightarrow$ Mobile view]
+  \item \label{learningdataflowTransmit} 
+        Transmitting user input data to the web service 
+        [Mobile view $\Rightarrow$ Web service]
+  \item \label{learningdataflowEncapsulatePass} 
+        Encapsulating data into a message and passing 
+        it to the controller 
+        [Web service $\Rightarrow$ Controller]
+  \item \label{learningdataflowRequestRecognition} 
+        Requesting recognition 
+        [Controller $\Rightarrow$ Model] 
+  \item \label{learningdataflowReturnResult} 
+        Returning recognition result 
+        [Model $\Rightarrow$ Controller] 
+  \item \label{learningdataflowDisplayResult} %this should be the last label, otherwise seek for the place where it is used as a number and change it to the new last label there
+        Displaying recognition result 
+        [Controller $\Rightarrow$ Desktop view
+\end{enumerate}
+
 
 \subsection{Software Modules}
 \label{sec:arch:softwaremodules}
@@ -146,11 +214,30 @@ needs be performed.
 \subsubsection{Mobile GUI}
 \label{sec:arch:mobilegui}
 
+%Put a gfx with a screen shot here.
+%http://kleineurl.de/1kfec2.htm
+%http://kleineurl.de/1kfeav.htm
+%http://kleineurl.de/1kfebg.htm
+%http://kleineurl.de/1kfebt.htm
+%http://kleineurl.de/1kfecf.htm
+%http://kleineurl.de/1kfecs.htm
+
+appearance: reset-button, but no commit-button/finish-button
+is anything but reset needed? no!
+polling, 
+data capturing, 
+sending
+
 \subsubsection{Desktop GUI}
 \label{sec:arch:desktopgui}
 
 \subsubsection{Web Service}
 \label{sec:arch:webservice}
+
+When the desktop application requests the use to input a Kanji 
+character, it sends a message to the web service advising the mobile view to 
+clear the screen. The mobile view receives the information by polling the web
+service. 
 
 http://de.wikipedia.org/wiki/Windows_Communication_Foundation
 http://en.wikipedia.org/wiki/Web_service
