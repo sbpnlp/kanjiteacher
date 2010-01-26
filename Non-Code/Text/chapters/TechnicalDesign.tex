@@ -28,7 +28,8 @@ on-line handwriting recognition. Techniques of handwriting recognition are
 reviewed in chapter~\ref{chap:onlinehwr}. The general requirements of an 
 e-learning application are presented in chapter~\ref{chap:elearning}. 
 The resulting specific conceptual design choices have been 
-layed out in chapter~\ref{chap:conceptualdesignofkanjicoach}.
+layed out in chapter~\ref{chap:conceptualdesignofkanjicoach}. This
+section deals with the technical aspects of the system design.
 
 \subsection{Global Architecture}
 \label{sec:globalarchitecture}
@@ -40,7 +41,14 @@ Figure~(\ref{fig:modelviewcontroller}) shows the general set-up of the
 MVC design pattern after~\shortcite{Krasner1988}. xxx: Also 
 figure~(\ref{fig:modelviewcontroller2}) - decide how it should be done and use
 the appropriate gfx. xxx!
-
+In the MVC paradigm the \emph{model} is a domain-specific software, 
+an implementation of the central structure of the system. It can be a simple
+integer, representing a counter or it could be a higly complex object structure, 
+even a whole software module. The \emph{view} represents anything graphical. 
+It requests data from the model and displays the result. The \emph{controller} 
+is the interface between the model and the view. It controls and scheduls the 
+interaction between the input devices, the model and the 
+view~\shortcite{Krasner1988}.
 %xxx Make this a graphic, not a photographic image of a graphic 
 \begin{figure}[htbp]
 \begin{center}
@@ -81,9 +89,50 @@ The system data flow is shown in figure~(\ref{fig:systemdataflow}).
 \label{fig:systemdataflow}
 \end{center}
 \end{figure}
+The controller lies in the centre of the application, it runs on the stationary
+device. It contains a web service that is used as an interface to receive data 
+from the mobile view. The desktop view is the main interaction point for the 
+user. The model contains the logic, while the data access layer provides a 
+reusable interface for storing data. 
 
 \subsubsection{Communication}
 \label{sec:communication}
+
+The communication between the different parts of the application is realised 
+in two independet and distinct ways. The communication between the 
+modules running under the same process is realised via a messaging system. 
+The communication between the modules that run on different devices
+or at least as a separate process is realised via a web service.
+
+\emph{Loose coupling} is used here as a term to emphasize that different modules 
+in a larger system are only loosely connected and do not depend largely on each 
+other. \emph{Coupling} can be understood as the degree of knowledge a module or 
+class have of each another. The lesser the knowledge of each other the software 
+modules can manage with, the more loose the coupling.
+
+In the course of the design and development cycles of the Kanji Coach, 
+it became apparent that it has to be possible to attach different views, 
+input devices and data storage systems to the controller. This is due to the 
+distributed nature of the application. 
+In order to ensure that the handwriting data input view, which currently runs 
+on a mobile device, can run on a different device, it had to be loosly coupled 
+to the main controller. Therefore, the communication between the mobile view 
+and the main controller is realised via a web service. 
+Because of this communication structure, it is possible to exchange the 
+handwriting data input view with a different one, for instance when running 
+the application on a device like a tablet PC. The implementation of the 
+communication structure within the web service is described in greater detail 
+in section~\ref{sec:arch:webservice}.
+
+The messaging system that forms the communication structure between the software 
+modules running as the same process is realised with a message class that
+can be manipulated by the modules using these messages.
+Technically, the web service and the controller both run as a subprocess of the 
+main desktop view. When the web service receives a request and accompanying data
+from the mobile view, both request and data are bundled into an encapsulated
+message and passed to the controller. A similar type of message is used for 
+requests from the controller to the model, for instance a recognition task that 
+needs be performed.
 
 \subsubsection{Recognition Data Flow}
 \label{sec:arch:recognitiondataflow}
@@ -103,6 +152,11 @@ The system data flow is shown in figure~(\ref{fig:systemdataflow}).
 \subsubsection{Web Service}
 \label{sec:arch:webservice}
 
+http://de.wikipedia.org/wiki/Windows_Communication_Foundation
+http://en.wikipedia.org/wiki/Web_service
+http://kleineurl.de/1kfd1k.htm
+
+
 \subsubsection{Recognition Module}
 \label{sec:arch:recognitionmodule}
 
@@ -118,6 +172,8 @@ The system data flow is shown in figure~(\ref{fig:systemdataflow}).
 \subsection{Framework}
 \label{sec:framework}
 
+http://de.wikipedia.org/wiki/Windows_Communication_Foundation
+
 .NET vs. Java etc.
 
 \subsection{Desktop Computer}
@@ -126,11 +182,8 @@ The system data flow is shown in figure~(\ref{fig:systemdataflow}).
 \subsection{Pen Input Device}
 \label{sec:peninputdevice}
 
+warum mobil? - damit man sehen kann, was man macht!
+
 \subsubsection{Stylus Input}
 \label{sec:stylusinput}
-
-
-
-
-
 
