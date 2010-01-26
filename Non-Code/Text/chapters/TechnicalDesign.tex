@@ -36,7 +36,7 @@ section deals with the technical aspects of the system design.
 
 The global architecture of the application follows the Model-View-Controller
 (MVC) design pattern. This paradigm is used as a general model, however, 
-it is not implemented the strict way proposed by~\shortcite{Krasner1988}.
+it is not designed the strict way proposed by~\shortcite{Krasner1988}.
 Figure~(\ref{fig:modelviewcontroller}) shows the general set-up of the 
 MVC design pattern after~\shortcite{Krasner1988}. xxx: Also 
 figure~(\ref{fig:modelviewcontroller2}) - decide how it should be done and use
@@ -93,7 +93,9 @@ The controller lies in the centre of the application, it runs on the stationary
 device. It contains a web service that is used as an interface to receive data 
 from the mobile view. The desktop view is the main interaction point for the 
 user. The model contains the logic, while the data access layer provides a 
-reusable interface for storing data. 
+reusable interface for storing data. The details of 
+figure~(\ref{fig:systemdataflow}) are described in subsequent 
+sections~\ref{sec:arch:recognitiondataflow} and~\ref{sec:arch:learningdataflow}.
 
 \subsubsection{Communication}
 \label{sec:communication}
@@ -120,8 +122,8 @@ to the main controller. Therefore, the communication between the mobile view
 and the main controller is realised via a web service. 
 Because of this communication structure, it is possible to exchange the 
 handwriting data input view with a different one, for instance when running 
-the application on a device like a tablet PC. The implementation of the 
-communication structure within the web service is described in greater detail 
+the application on a device like a tablet PC. The design of the communication 
+structure within the web service is described in greater detail 
 in section~\ref{sec:arch:webservice}.
 
 The messaging system that forms the communication structure between the software 
@@ -138,7 +140,8 @@ needs be performed.
 \label{sec:arch:recognitiondataflow}
 
 The recognition data flow is simply the flow of data occuring in a recognition 
-scenario. It can be described in \ref{recdataflowDisplayResult} steps.
+scenario. It can be described in \ref{recdataflowDisplayResult} steps
+as depicted in figure~(\ref{fig:systemdataflow}).
 \begin{enumerate}
   \item \label{recdataflowClear} 
         Clearing the input GUI screen 
@@ -162,51 +165,74 @@ scenario. It can be described in \ref{recdataflowDisplayResult} steps.
 \end{enumerate}
 When the desktop application requests the use to input a Kanji 
 character, it sends a message to the web service advising the mobile view to 
-clear the screen (Step~\ref{recdataflowClear}). 
+clear the screen (step~\ref{recdataflowClear}). 
 The mobile view receives the information by polling the web service. 
 When the user starts drawing on the surface of the mobile GUI, the data is 
-caputered and transmitted to the web service (Step~\ref{recdataflowTransmit}).
+caputered and transmitted to the web service (step~\ref{recdataflowTransmit}).
 Each stroke is captured and sent individually in order to ensure a faster 
 recognition. That way, the recognition process is initiated before the
 user finishes writing a character. The web service receives the data and 
 creates an encapsulated message. That message is passed to the 
-controller (Step~\ref{recdataflowEncapsulatePass}).
+controller (step~\ref{recdataflowEncapsulatePass}).
 The controller initiates a request to the model, containing all strokes
 subsequent to the last clear screen 
-event (Step~\ref{recdataflowRequestRecognition}).
+event (step~\ref{recdataflowRequestRecognition}).
 The model performs the recognition of the set of strokes and returns the result
-or partial result to the controller (Step~\ref{recdataflowReturnResult}).
+or partial result to the controller (step~\ref{recdataflowReturnResult}).
 The controller advises the desktop view to display the resulting character
-(Step~\ref{recdataflowDisplayResult}).
+(step~\ref{recdataflowDisplayResult}).
 
 \subsubsection{Learning Data Flow}
 \label{sec:arch:learningdataflow}
 
 The learning data flow is the data flow between the learning module of the 
 application, the recognition process and the user interaction.
-It can be summed up in \ref{learningdataflowDisplayResult} steps.
+The learning data flow design can be summed up 
+in~\ref{learningdataflowDisplayLearningState} steps.
 \begin{enumerate}
-  \item \label{learningdataflowClear} 
-        Clearing the input GUI screen 
-        [Controller $\Rightarrow$ Web service $\Rightarrow$ Mobile view]
-  \item \label{learningdataflowTransmit} 
-        Transmitting user input data to the web service 
-        [Mobile view $\Rightarrow$ Web service]
-  \item \label{learningdataflowEncapsulatePass} 
-        Encapsulating data into a message and passing 
-        it to the controller 
-        [Web service $\Rightarrow$ Controller]
-  \item \label{learningdataflowRequestRecognition} 
-        Requesting recognition 
-        [Controller $\Rightarrow$ Model] 
-  \item \label{learningdataflowReturnResult} 
-        Returning recognition result 
+  \item \label{learningdataflowAskForDrawing} 
+        In learning mode or test mode: Asking user to draw a character,
+        based on the current lesson data. The controller sends a display
+        request to the desktop view.
+        [Controller $\Rightarrow$ Desktop view]
+  \item \label{learningdataflowRequestStoring} 
+        After recognition process: Request storing recognised character in 
+        learning profile.
+        [Controller $\Rightarrow$ Model]
+  \item \label{learningdataflowStoring} 
+        Calculation of error points for a character (creation of new data) and
+        storage.
+        [Model $\Rightarrow$ Data access layer]
+  \item \label{learningdataflowReturningLearningState} 
+        Returning learning state of character 
         [Model $\Rightarrow$ Controller] 
-  \item \label{learningdataflowDisplayResult} %this should be the last label, otherwise seek for the place where it is used as a number and change it to the new last label there
-        Displaying recognition result 
+  \item \label{learningdataflowDisplayLearningState} %this should be the last label, otherwise seek for the place where it is used as a number and change it to the new last label there
+        Displaying learning state 
         [Controller $\Rightarrow$ Desktop view
 \end{enumerate}
+The learning data flow is described in the middle of a user interaction with the
+learning application as it illustrates a typical data flow most appropriately
+as shown in figure~(\ref{fig:systemdataflow}).
 
+In step~\ref{learningdataflowAskForDrawing} of the learning data flow, the 
+controller sends a message to the desktop view with a request to display an 
+invitation to the user to draw a specific character.
+That step is a part of the general messaging system design that manages the 
+communication between the controller and the other modules.
+When the recognition process is finished, the character needs to be stored.
+The controller requests the model to store the 
+character (step~\ref{learningdataflowRequestStoring}).
+The logic layer then creates new data, namely the error points of a 
+character that naturally become a part of the data flow.
+Both the character recognition result and the error points are stored
+using the data access layer (step~\ref{learningdataflowStoring}). 
+The resulting learning state defines which character will be displayed next.
+This calculation result is transmitted from the model to the 
+controller after storage in the penultimate 
+step~(\ref{learningdataflowReturningLearningState}).
+The last step in the learning data flow is the display of the resulting learning 
+state to the user in the desktop 
+view (step~\ref{learningdataflowDisplayLearningState}).
 
 \subsection{Software Modules}
 \label{sec:arch:softwaremodules}
