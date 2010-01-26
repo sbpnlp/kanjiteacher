@@ -33,10 +33,54 @@ layed out in chapter~\ref{chap:conceptualdesignofkanjicoach}.
 \subsection{Global Architecture}
 \label{sec:globalarchitecture}
 
+The global architecture of the application follows the Model-View-Controller
+(MVC) design pattern. This paradigm is used as a general model, however, 
+it is not implemented the strict way proposed by~\shortcite{Krasner1988}.
+Figure~(\ref{fig:modelviewcontroller}) shows the general set-up of the 
+MVC design pattern after~\shortcite{Krasner1988}. xxx: Also 
+figure~(\ref{fig:modelviewcontroller2}) - decide how it should be done and use
+the appropriate gfx. xxx!
 
+%xxx Make this a graphic, not a photographic image of a graphic 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.5]{images/TechnicalDesign/MVC.png}
+\caption{The Model-View-Controller paradigm}
+\label{fig:modelviewcontroller}
+\end{center}
+\end{figure}
+
+%xxx Make this a graphic, not a photographic image of a graphic 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.5]{images/TechnicalDesign/ModelViewControllerDiagram.png}
+\caption{The Model-View-Controller paradigm AGAIN!}
+\label{fig:modelviewcontroller2}
+\end{center}
+\end{figure}
+
+A global overview of the system architecture can be seen in 
+figure~(\ref{fig:globalarchitecture}).
+%xxx Make this a graphic, not a photographic image of a graphic 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.5]{images/TechnicalDesign/GlobalArchitecture.png}
+\caption{The global architecture of the software system}
+\label{fig:globalarchitecture}
+\end{center}
+\end{figure}
 
 \subsection{System Data Flow}
 \label{sec:arch:systemdataflow}
+The system data flow is shown in figure~(\ref{fig:systemdataflow}).
+%xxx Make this a graphic, not a photographic image of a graphic 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.5]{images/TechnicalDesign/SystemDataFlow.png}
+\caption{The data flow within the software system}
+\label{fig:systemdataflow}
+\end{center}
+\end{figure}
 
 \subsubsection{Communication}
 \label{sec:communication}
