@@ -320,23 +320,87 @@ framework~\shortcite{W3C1997,Kennedy2001,Smith2007}.
 
 \subsubsection{Recognition Module}
 \label{sec:arch:recognitionmodule}
-
+As a part of the model within the MVC paradigm the recognition module plays
+a crucial role. From an abstract viewpoint it functions as a black box.
+A set of pen trajectories is passed to to the recogniser and a set of
+characters is returned as a result, sorted by their matching value.
+Additionally, an intended character can be passed to the recognition engine,
+such that the recognising module can generate an error analysis based on the 
+intended character. If no intended character is given, the recogniser is designed
+to use the best result as a basis for an error analysis, with lower confidence
+values attached. The detailed design and implementation choices of the 
+handwriting recognition engine are described in 
+chapter~\ref{chap:handwritingrecognitionengine}.
 
 \subsubsection{Learning Module}
 \label{sec:arch:learningmodule}
 
+The learning module is designed as a basic module, mainly for the purpose of 
+demonstration. It performs user and character administration tasks.
+Each user has a personalised character set, containing the lessons that have been
+studied and the error points of each character.
+The application is therefore not a vocabulary teaching application, 
+but rather a Kanji teaching application. The error point system is rather simple,
+the more error points a character has, the more often it will be repeated.
+Similarly, the character repetition depends on a vocabulary training method,
+that is employed in a systematic fashion. For details see 
+section~\ref{sec:concept:characterrepetition}.
+
 \section{Framework and Devices}
 \label{sec:frameworkanddevices}
+
+In this section the choices for framework and devices are reviewed briefly.
+The decision of which framework to use depends on the operating system.
 
 \subsection{Operating System}
 \label{sec:operatingsystem}
 
+Despite the quasi-religious views of which operating system (OS) to use, 
+the choice for the Kanji Coach system was simply user oriented. 
+The user group 'students of Japanese' consists mainly of non-technical people. 
+They usually use a version of the MS Windows operating system. Therefore, even 
+when attempting to provide for cross-plattform usability, 
+the windows platform is chosen as the basis for the implementation. 
+Neither the author nor the application seek to convince anyone of using one 
+or the other operating system, therefore it is a logical choice to provide 
+software for a system that most people use.
+
 \subsection{Framework}
 \label{sec:framework}
 
-http://de.wikipedia.org/wiki/Windows_Communication_Foundation
+The framework to run the system had to fulfill a few criteria.
+\begin{itemize}
 
-.NET vs. Java etc.
+  \item It should provide an easy-to-use graphical user interface.
+
+  \item It should mirror the natural look-and-feel of the operating system 
+        it runs on.
+
+  \item It should be cross-plattform if possible and not be bound to native
+        OS-specific code.
+
+  \item It should provide cross-device communication.
+
+  \item It should provide a modern high-level programming language
+
+\end{itemize}
+
+Even though native code that runs directly on the operating system may 
+provide for speed and natural look-and-feel, any efforts to port the system
+to a different platform become laborious tasks. That rules out the choice of
+\emph{C++}.
+Generally, the design ideas and framework criteria seem to apply well to both 
+the Java platform and the .NET framework. Both provide functionality for an 
+easy-to-use GUI. .NET does not mirror the natural look-and-feel of the windows
+operating system, it \emph{is} the natural look-and-feel on Windows.
+Java has the ability to set the look-and-feel to different systems, also to
+windows. The Java virtual machine has long been known to run on different 
+platforms, most importantly Linux and Windows, while the .NET framework has been
+implemented for X-Systems by Novell and is called \emph{Mono}.
+The 
+
+und cross-device communication mit WCF vor whatever java does
+C# vor Java
 
 \subsection{Desktop Computer}
 \label{sec:desktopcomputer}
