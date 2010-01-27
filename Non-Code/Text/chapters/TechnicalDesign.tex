@@ -393,23 +393,61 @@ Generally, the design ideas and framework criteria seem to apply well to both
 the Java platform and the .NET framework. Both provide functionality for an 
 easy-to-use GUI. .NET does not mirror the natural look-and-feel of the windows
 operating system, it \emph{is} the natural look-and-feel on Windows.
-Java has the ability to set the look-and-feel to different systems, also to
-windows. The Java virtual machine has long been known to run on different 
-platforms, most importantly Linux and Windows, while the .NET framework has been
-implemented for X-Systems by Novell and is called \emph{Mono}.
-The 
-
-und cross-device communication mit WCF vor whatever java does
-C# vor Java
+Java has the ability to adopt the look-and-feel of different systems it runs on,
+MS Windows as well. The Java virtual machine has long been known to run on 
+different platforms, most importantly Linux and Windows, 
+while the .NET framework has been implemented for X-Systems by Novell and is 
+called \emph{Mono}.
+The two differences that gave the .NET framework a slight advantage over Java 
+was the comfort and ease the Windows Communication Foundation offers.
+The web service functions can be called exactly the way as if they were methods 
+of a local software module. The integration of the different parts of the system,
+namely the handwriting data input view and the controller does not require much
+additional effort. Another advantage of the .NET framework is the programming
+language \emph{C\#} that combines many features of the Java with some of C++.
+Additionally, C\# offers a smoother handling of generic lists, which is useful
+when dealing with lists of mouse coordinates, lists of strokes that are lists
+of mouse coordinates and ultimately lists of characters.
+With the CLR, which is an ECMA standard like C\#, it is also possible to easily 
+integrate with other languages available for the .NET environment.
+Lastly, despite the ease of integration with a .NET client, the WCF also allows 
+for other systems to connect to a webservice. Since it uses SOAP internally, 
+it is possible to communicate with a WCF web service even without .NET, using
+so called \emph{POX} (Plain Old XML) messages that can be generated in any
+programming language on any framework and operating system.
 
 \subsection{Desktop Computer}
 \label{sec:desktopcomputer}
 
+The choice for a stationary computing device is driven by the kind of user
+the learning application is aimed at. A notebook computer the way it can be 
+bought in any computer store is the closest match to what a user of the system  
+most probably will be running. 
+The learning system is a standard desktop application with a standard 
+MS Windows forms GUI. Therefore, this kind of system is most suitable for the
+designed system.
+Nevertheless, it is possible to run both the handwriting data input view and
+the desktop application on the same PC - for example a tablet PC.
+The integration could stay exactly the same.
+
 \subsection{Pen Input Device}
 \label{sec:peninputdevice}
 
-warum mobil? - damit man sehen kann, was man macht!
-
-\subsubsection{Stylus Input}
-\label{sec:stylusinput}
+The pen input device has been chosen to be a \emph{Personal Digital Assistant} 
+computer (PDA). The reason for that design choice is simple. At the time of
+drawing the user should be able to see what he is drawing on the writing surface.
+At the same time the data should be available to the controller in real-time,
+i.e. after a pen-up movement.
+The main decision had to be made between a graphics tablet and PDA.
+The option of mouse input of charaters was ruled out from the beginning,
+because the mouse is not a useful device to enter handrwitten characters.
+Graphics tablets like a Wacom tablet are cheaper than a PDA, however,
+their distribution on the market and therefore among potential users is small.
+The solution with a PDA leaves room to exchange the device that runs the input
+area with any mobile device that has the ability to connect to a wireless LAN,
+e.g. an iPhone.
+Another possibility would be pens that write on paper and also transmit data
+to a PC. Those, however, either do not perform the transmission in real-time,
+or do not come as plain mouse coordinates but bitmaps or can not connect to
+custom made software at all, but only to their OEM software.
 
