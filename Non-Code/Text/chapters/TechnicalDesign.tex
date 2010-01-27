@@ -91,9 +91,9 @@ The system data flow is shown in figure~(\ref{fig:systemdataflow}).
 \end{figure}
 The controller lies in the centre of the application, it runs on the stationary
 device. It contains a web service that is used as an interface to receive data 
-from the mobile view. The desktop view is the main interaction point for the 
-user. The model contains the logic, while the data access layer provides a 
-reusable interface for storing data. The details of 
+from the handwriting input data view. The desktop view is the main interaction 
+point for the user. The model contains the logic, while the data access layer 
+provides a reusable interface for storing data. The details of 
 figure~(\ref{fig:systemdataflow}) are described in subsequent 
 sections~\ref{sec:arch:recognitiondataflow} and~\ref{sec:arch:learningdataflow}.
 
@@ -118,8 +118,8 @@ input devices and data storage systems to the controller. This is due to the
 distributed nature of the application. 
 In order to ensure that the handwriting data input view, which currently runs 
 on a mobile device, can run on a different device, it had to be loosly coupled 
-to the main controller. Therefore, the communication between the mobile view 
-and the main controller is realised via a web service. 
+to the main controller. Therefore, the communication between the handwriting 
+input data view and the main controller is realised via a web service. 
 Because of this communication structure, it is possible to exchange the 
 handwriting data input view with a different one, for instance when running 
 the application on a device like a tablet PC. The design of the communication 
@@ -131,10 +131,10 @@ modules running as the same process is realised with a message class that
 can be manipulated by the modules using these messages.
 Technically, the web service and the controller both run as a subprocess of the 
 main desktop view. When the web service receives a request and accompanying data
-from the mobile view, both request and data are bundled into an encapsulated
-message and passed to the controller. A similar type of message is used for 
-requests from the controller to the model, for instance a recognition task that 
-needs be performed.
+from the handwriting input data view, both request and data are bundled into an 
+encapsulated message and passed to the controller. A similar type of message 
+is used for requests from the controller to the model, for instance a recognition
+task that needs be performed.
 
 \subsubsection{Recognition Data Flow}
 \label{sec:arch:recognitiondataflow}
@@ -145,10 +145,10 @@ as depicted in figure~(\ref{fig:systemdataflow}).
 \begin{enumerate}
   \item \label{recdataflowClear} 
         Clearing the input GUI screen 
-        [Controller $\Rightarrow$ Web service $\Rightarrow$ Mobile view]
+        [Controller $\Rightarrow$ Web service $\Rightarrow$ Handwriting data input view]
   \item \label{recdataflowTransmit} 
         Transmitting user input data to the web service 
-        [Mobile view $\Rightarrow$ Web service]
+        [Handwriting data input view $\Rightarrow$ Web service]
   \item \label{recdataflowEncapsulatePass} 
         Encapsulating data into a message and passing 
         it to the controller 
@@ -164,11 +164,13 @@ as depicted in figure~(\ref{fig:systemdataflow}).
         [Controller $\Rightarrow$ Desktop view]
 \end{enumerate}
 When the desktop application requests the use to input a Kanji 
-character, it sends a message to the web service advising the mobile view to 
-clear the screen (step~\ref{recdataflowClear}). 
-The mobile view receives the information by polling the web service. 
-When the user starts drawing on the surface of the mobile GUI, the data is 
-caputered and transmitted to the web service (step~\ref{recdataflowTransmit}).
+character, it sends a message to the web service advising the handwriting data 
+input view to clear the screen (step~\ref{recdataflowClear}). 
+The handwriting data input view receives the information by polling the web 
+service. 
+When the user starts drawing on the surface of the handwriting data input view, 
+the data is caputered and transmitted to the web service 
+(step~\ref{recdataflowTransmit}).
 Each stroke is captured and sent individually in order to ensure a faster 
 recognition. That way, the recognition process is initiated before the
 user finishes writing a character. The web service receives the data and 
@@ -237,8 +239,8 @@ view (step~\ref{learningdataflowDisplayLearningState}).
 \subsection{Software Modules}
 \label{sec:arch:softwaremodules}
 
-\subsubsection{Mobile GUI}
-\label{sec:arch:mobilegui}
+\subsubsection{Handwriting Data Input View}
+\label{sec:arch:handwritingdatainputview}
 
 %Put a gfx with a screen shot here.
 %http://kleineurl.de/1kfec2.htm
@@ -248,22 +250,51 @@ view (step~\ref{learningdataflowDisplayLearningState}).
 %http://kleineurl.de/1kfecf.htm
 %http://kleineurl.de/1kfecs.htm
 
-appearance: reset-button, but no commit-button/finish-button
-is anything but reset needed? no!
-polling, 
-data capturing, 
-sending
+The handwriting data input view is a graphical user interface. It is designed for
+simplicity and usability. It's main task is data capturing.
+It contains only an input area, with a cross in order for the user to better 
+locate the strokes of the character. This follows a common practice in Kanji 
+teaching - a cross departs the writing area in four areas.
 
-\subsubsection{Desktop GUI}
-\label{sec:arch:desktopgui}
+There is no \emph{commit} or \emph{finish} button on the handwriting data 
+input GUI, since the end of a stroke sequence is handled with a time out in 
+the learning module. When the user needs too long to input a character there 
+is a problem and help should be offered.
+Therefore, it is sufficient to only display a reset button on the writing area.
+Whenever the reset button is pressed, the controller is notified of that event.
+The current drawing will be removed from the screen. The next user input will
+be treated as a new character
+
+In the background of the handwriting data input view the user input is sent to 
+the controller module. Besides that, a polling mechanism ensures that any 
+messages from the controller to the handwriting input data view are received.
+Whenever the user finishes a stroke, the module sends a message via a web service
+(see section~\ref{sec:arch:webservice}) to the controller.
+
+\subsubsection{Main View}
+\label{sec:arch:mainview}
+
+%xxx graphic of UI design here, maybe a sketch and maybe a screenshot.
+The main view of the system is a graphical user interface. It contains a simple
+learning environment, a display area for the characters that have been drawn
+in the handwriting input area an information area that displays addidional 
+information about a character. In a configuration area the user can choose 
+between the different lessons the system offers and between a training mode
+and a test mode.
 
 \subsubsection{Web Service}
 \label{sec:arch:webservice}
 
-When the desktop application requests the use to input a Kanji 
-character, it sends a message to the web service advising the mobile view to 
-clear the screen. The mobile view receives the information by polling the web
-service. 
+The main communication module between the handwriting data input view and the 
+controller is a web service that runs on the main part of the application
+as a subprocess of the controller. When the desktop application requests the 
+user to input a Kanji character, it sends a message to the web service 
+advising the handwriting data input view to clear the screen. 
+The handwriting data input view receives the information by polling the 
+web service. However, the main task of the web service is to receive data 
+from the handwriting input data view and forward that data to the controller
+of the system.
+\shortcite{W3C1997}
 
 http://de.wikipedia.org/wiki/Windows_Communication_Foundation
 http://en.wikipedia.org/wiki/Web_service
