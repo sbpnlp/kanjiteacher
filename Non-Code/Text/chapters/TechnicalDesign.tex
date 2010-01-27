@@ -293,16 +293,34 @@ advising the handwriting data input view to clear the screen.
 The handwriting data input view receives the information by polling the 
 web service. However, the main task of the web service is to receive data 
 from the handwriting input data view and forward that data to the controller
-of the system.
-\shortcite{W3C1997}
+of the system. 
 
-http://de.wikipedia.org/wiki/Windows_Communication_Foundation
-http://en.wikipedia.org/wiki/Web_service
-http://kleineurl.de/1kfd1k.htm
-
+A web service is a standard means of interoperation between different software
+systems, possibly running on different platforms and frameworks. The web service
+as such is an abstract definition of an interface, it must be implemented by a 
+concrete agent. This agent is a software that sends and receives 
+messages~\shortcite{W3C2004}.
+The web service in the Kanji Coach system is not a web service in the strict 
+sense as intended by the~\shortciteANP{W3C2004}~\citeyear{W3C2004}. It does not 
+provide a service as such. The calling client does not receive a reply to a 
+request, just an acknoledge message stating that the data has been received. 
+A reply with more information is not necessary, since the handwriting data 
+input view does not display any information to the user. 
+In summary, the web service design for the Kanji Coach system is a web service
+in the technical sense, but not in the conceptual sense, as there is no real
+crosswise interaction between server and client.
+The concrete implementation of the web service is realised with the
+\emph{Windows Communication Foundation} (WCF)~\shortcite{Smith2007}.
+The WCF uses a \emph{SOAP protocol} (originally: 
+\emph{Simple Object Access Protocol}) internally, but the functionality can be 
+accessed from within the .NET framework, the concrete SOAP XML messages will 
+be created and unpacked into instances of \emph{Common Language Runtime} (CLR) 
+objects automatically by the WCF 
+framework~\shortcite{W3C1997,Kennedy2001,Smith2007}.
 
 \subsubsection{Recognition Module}
 \label{sec:arch:recognitionmodule}
+
 
 \subsubsection{Learning Module}
 \label{sec:arch:learningmodule}
