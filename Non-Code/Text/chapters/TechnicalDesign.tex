@@ -5,7 +5,13 @@
 
 \chapter{Technical Design of the Application}
 \label{chap:technicaldesign}
+%xxx untersuche dieses kapitel auf:
+% die argumentationssequenz "folgende anforderungen, 
+% folgende loesungsmoeglichkeiten,
+% die gewaehlte loesungs entspricht den anforderungen am besten"
+% NICHT: folgendes problem, erstbeste loesung, fertigrw
 
+loesungsmoeglichkeiten
 The focus of this chapter is on the general architectural choices made during
 the development of the system. In this chapter, the technical design aspects 
 of the application are described. The general system architecture is layed out in
@@ -50,6 +56,7 @@ is the interface between the model and the view. It controls and scheduls the
 interaction between the input devices, the model and the 
 view~\shortcite{Krasner1988}.
 %xxx Make this a graphic, not a photographic image of a graphic 
+% see page 38, 39 and 40
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.5]{images/TechnicalDesign/MVC.png}
@@ -98,7 +105,7 @@ figure~(\ref{fig:systemdataflow}) are described in subsequent
 sections~\ref{sec:arch:recognitiondataflow} and~\ref{sec:arch:learningdataflow}.
 
 \subsubsection{Communication}
-\label{sec:communication}
+\label{sec:communication} %xxx grep this label, see if it is in use and replace by sec:arch:communication
 
 The communication between the different parts of the application is realised 
 in two independet and distinct ways. The communication between the 
@@ -135,6 +142,16 @@ from the handwriting input data view, both request and data are bundled into an
 encapsulated message and passed to the controller. A similar type of message 
 is used for requests from the controller to the model, for instance a recognition
 task that needs be performed.
+
+%xxxs. 12 beachten: WICHTIG: selbstgeschriebenens protokoll als alternative
+%xxx erwaehnen, ausserdem INKML als datenstruktur
+%warum nicht inkml? warum nicht die unipen-struktur?
+%selbst mit verwendung von WCF koennte die datenstruktur hilfreich sein.
+%ja, aber geschwindigkeit - "get it up there" zaehlt mehr.
+%eingabegeraet nimmt ohnehin punktliste vom user,
+%umwandlund in irgendein datenformat kann auch spaeter im 
+%verarbeitungsprozess erfolgen.
+
 
 \subsubsection{Recognition Data Flow}
 \label{sec:arch:recognitiondataflow}
@@ -284,6 +301,8 @@ and a test mode.
 
 \subsubsection{Web Service}
 \label{sec:arch:webservice}
+
+%xxx just for the record: see page 50 in booklet to see if this section needs anything else
 
 The main communication module between the handwriting data input view and the 
 controller is a web service that runs on the main part of the application
@@ -451,3 +470,5 @@ to a PC. Those, however, either do not perform the transmission in real-time,
 or do not come as plain mouse coordinates but bitmaps or can not connect to
 custom made software at all, but only to their OEM software.
 
+%xxx hier zum beispiel noch bericht ueber recherche nach graphic-tablets?!
+%und deren APIs siehe seite 35
