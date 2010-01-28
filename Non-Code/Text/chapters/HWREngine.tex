@@ -5,20 +5,44 @@
 
 \chapter{Handwriting Recognition Engine}
 \label{chap:handwritingrecognitionengine}
-The sections of this chapter are more the result of a brainstorming 
-than a  proper thought-through chapter design.
-xxx: see santosh2009 for mathematical stuff: nice description of what I'm doing
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+- Why this section? 
+  The purpose of this section is to describe the software module of the 
+  HWR engine.
+  Any important of the software should be described. This is the core of the
+  HWR part of the software and therefore needs description.
+  It would be off purpose, if non-technical aspects of the HWR Engine would be 
+  described.
+- What goes into this section?
+  The main content of this section is the complete functionality of the 
+  HWR engine.
+  It should become apparent how the HWR engine works.
+  * if describing a problem: why is the problem relevant.
+    The problem of HWR is relevant, because it is the crucial novelty of the
+    application. The combination of a Kanji learning tool and a HWR is a new 
+    thing. It enables user to practice writing Kanji. (maybe too high-level for
+    this section, move to intro / motivation section).
+  * if describing a solution to a problem: 
+    what alternatives were there to solve it?    
+    Instead of a HWR engine, the user could either not have a HWR engine and
+    write on paper or not practice writing the kanji.
+    why was this solution chosen? 
+    because it creates an additional benefit, that was not available before.
+    what made it the best choice? 
+    the fact that it writing on paper is impractical and not practicing does
+    not lead to the desired result.
 
+    was it the optimal solution? given there is only not practicing and
+    practicing on paper: yes.
+
+- How will this section be structured and organised?
+  The organisational structure of the section is already layed out in the
+  sections and subsections.
+- In what style will it be written?
+  The style of writing will be technical. A technical description, using
+  pseudocode.
+- Next action - what to write first?
+  The next part to write is the answers to the questions of all subsections.
 
 %xxx always: what alternatives were there?
 
@@ -27,18 +51,67 @@ next action - what to write first?
 this should deal with how the data are captured during the process
 mouse coordinates and stuff
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+- Why this section? 
+  The purpose of this section is to describe the data capturing process.
+  It would be off purpose, if it describes to much around - the devices, the
+  transmission. This should focus on the capturing as such.
+  It should not go into great deail.
+  
+- What goes into this section?
+  The main content of this section is the technical data capturing.
+  Programmatically generating a pen trajectory from reading mouse coordinates.
+  
+  
+  * if describing a problem: why is the problem relevant.
+    The relevance of the problem is evident: Without the user's writing,
+    there would not be any handwriting recognition.
+
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    The alternatives are not massively relevant here, since they come down
+    to using different input devices, which is discussed elsewhere.
+
+    what made it the best choice? 
+    the fact that this is just how it is done.
+    was it the optimal solution?
+    yes.
+
+- How will this section be structured and organised?
+  The organisational structure of the section begins with describing the mobile 
+  input GUI from a technical level.
+  Then the class in the background that actually captures the mouse events.
+  the capturing of the mouse events.
+  the storing of the data points in lists.
+ 
+- In what style will it be written?
+  The style of writing will be technical. using pseudocode if required.
+  however the algorithm is not relevant here.
+
+- Next action - what to write first?
+  The next part to write is the one about the GUI
+  also the substructuring needs to be done as required.
+
+
 
 \section{Data Format}
 \label{sec:hwre:dataformat}
+
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
 how is the data structured? radicals, strokes, characters, xml-format
 representation of point, stroke, box, radical, character
 s. 20-23, 25f
@@ -48,18 +121,27 @@ show process of how I came to current data formats.
 show requirements.
 what alternatives were there to consider?
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
 
 \section{Database}
 \label{sec:hwre:database}
+
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
+
 this can be seen more generic as 'the lexicon', not necessarily
 the linguistic information about the characters, but rather the whole
 lexicon, including the point sequences.
@@ -67,61 +149,61 @@ where did I get it from? how many chars are in there?
 how are they accessible? what format?
 Jim Breen
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
 
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
 
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
+
 -> Modules and parts of HWR, create graphic.
 
 s. 18 zeichen, punkt usw. UML diagramme.
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
 
 \section{Stroke Recognition Process}
 \label{sec:hwre:strokerecognitionprocess}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
+xxx: see santosh2009 for mathematical stuff: nice description of what I'm doing
+
 
 \subsection{Advanced Point Lists}
 \label{sec:hwre:advancedpointlists}
 %xxx this chapter used to be called:
 %xxx \subsection{From Simple Point List to Boxed Representation}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+
 
 what's the similarity measure for
 points and strokes?
@@ -131,15 +213,6 @@ what alternatives were there to consider?
 \subsection{Normalisation}
 \label{sec:hwre:normalisation}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
 
 \subsection{Boxing}
 \label{sec:hwre:boxing}
@@ -149,28 +222,12 @@ what alternatives were there to consider?
 is it useful to have a similarity measure for bounding boxes?
 yes! but why? explain!
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+
 
 \subsubsection{Scaling}
 \label{sec:hwre:scaling}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+
 
 s. 42-45
 how is scaling done?
@@ -180,15 +237,7 @@ what alternatives were there to consider?
 \subsection{Curve Handling}
 \label{sec:hwre:curvehandling}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+
 
 S 14, 16, 17
 how is curver handling done?
@@ -201,15 +250,7 @@ s. 24
 \subsection{Dynamic Time Warping}
 \label{sec:hwre:dynamictimewarping}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+
 
 what's the similarity measure for
 points and strokes?
@@ -230,15 +271,22 @@ however, what about 3D time warping?
 \section{Radical Recognition Process}
 \label{sec:hwre:radicalrecognitionprocess}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
 
 what's the similarity measure for
 radicals?
@@ -255,15 +303,22 @@ what alternatives were there to consider?
 \section{Character Recognition Process}
 \label{sec:hwre:characterrecognitionprocess}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
 
 what's the similarity measure for
 characters?
@@ -274,16 +329,22 @@ s. 9/10 pixelwolke vs. reihenfolge
 \section{Error Handling}
 \label{sec:hwre:errorhandling}
 
-%xxx focus on technical aspects
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+- Why this section? 
+  The purpose of this section is 
+  It would be off purpose, if 
+- What goes into this section?
+  The main content of this section is 
+  * if describing a problem: why is the problem relevant.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, why was this solution chosen? 
+    what made it the best choice? was it the optimal solution?
+- How will this section be structured and organised?
+  The organisational structure of the section 
+- In what style will it be written?
+  The style of writing will be 
+- Next action - what to write first?
+  The next part to write is
+
 
 
 see section \ref{sec:concept:sourcesoferror} in chapter 
@@ -292,15 +353,7 @@ see section \ref{sec:concept:sourcesoferror} in chapter
 \subsection{Error Recognition}
 \label{sec:hwre:errorrecognition}
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
+
 
 why this section? to demonstrate own achievements of error recognition.
 the reader should know how it is done technically.
@@ -324,15 +377,6 @@ recognition process, then how errors are identified.
 
 %focus on technical aspects
 
-why this section? 
-what goes into this section?
-  if describing a problem: why is the problem relevant.
-  if describing a solution to a problem: what alternatives were
-  there to solve it, why was this solution chosen? what made it the best
-  choice? was it the optimal solution?
-how will this section be structured and organised?
-in what style will it be written?
-next action - what to write first?
 
 
 why this section? 
@@ -343,6 +387,4 @@ thematically they are the same section. thus they are put together under
 Error Handling \ref{sec:hwre:errorhandling}.
 
 what goes into this section?
-
-
 
