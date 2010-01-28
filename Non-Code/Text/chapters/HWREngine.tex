@@ -9,49 +9,340 @@ The sections of this chapter are more the result of a brainstorming
 than a  proper thought-through chapter design.
 xxx: see santosh2009 for mathematical stuff: nice description of what I'm doing
 
-\section{Capturing Data}
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+
+%xxx always: what alternatives were there?
+
+\section{Data Capturing}
+\label{sec:hwre:datacapturing}
 this should deal with how the data are captured during the process
 mouse coordinates and stuff
 
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
 \section{Data Format}
+\label{sec:hwre:dataformat}
 how is the data structured? radicals, strokes, characters, xml-format
+representation of point, stroke, box, radical, character
+s. 20-23, 25f
+include character models 1-4 on pages
+
+show process of how I came to current data formats.
+show requirements.
+what alternatives were there to consider?
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
 
 \section{Database}
+\label{sec:hwre:database}
+this can be seen more generic as 'the lexicon', not necessarily
+the linguistic information about the characters, but rather the whole
+lexicon, including the point sequences.
 where did I get it from? how many chars are in there?
 how are they accessible? what format?
+Jim Breen
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
 
 \section{Recognition Architecture}
+\label{sec:hwre:recognitionarchitecture}
+
+-> Modules and parts of HWR, create graphic.
 
 s. 18 zeichen, punkt usw. UML diagramme.
 
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
 
-\section{Stroke recognition process}
-\subsection{From point list to vectors}
-\subsection{Handling curves}
-\subsection{Handling all that other stuff that requires some math}
+\section{Stroke Recognition Process}
+\label{sec:hwre:strokerecognitionprocess}
 
-\section{Radical recognition process}
-\section{Character recognition process}
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
 
+\subsection{Advanced Point Lists}
+\label{sec:hwre:advancedpointlists}
+%xxx this chapter used to be called:
+%xxx \subsection{From Simple Point List to Boxed Representation}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+what's the similarity measure for
+points and strokes?
+show requirements.
+what alternatives were there to consider?
+
+\subsection{Normalisation}
+\label{sec:hwre:normalisation}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+\subsection{Boxing}
+\label{sec:hwre:boxing}
+how is boxing done?
+show requirements.
+what alternatives were there to consider?
+is it useful to have a similarity measure for bounding boxes?
+yes! but why? explain!
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+\subsubsection{Scaling}
+\label{sec:hwre:scaling}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+s. 42-45
+how is scaling done?
+show requirements.
+what alternatives were there to consider?
+
+\subsection{Curve Handling}
+\label{sec:hwre:curvehandling}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+S 14, 16, 17
+how is curver handling done?
+show requirements.
+what alternatives were there to consider?
+
+stroke matching with angles instead of point position.
+s. 24
+
+\subsection{Dynamic Time Warping}
+\label{sec:hwre:dynamictimewarping}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+what's the similarity measure for
+points and strokes?
+show requirements.
+what alternatives were there to consider?
+
+s. 51
+how is dynamic time warping done here?
+pointer to papers or hwr - chapter, don't explain DTW here.
+show requirements
+why DTW?
+what alternatives were there to consider?
+none - it is the alternative.
+to all the other stuff I've been doing.
+however, what about 3D time warping?
+
+
+\section{Radical Recognition Process}
+\label{sec:hwre:radicalrecognitionprocess}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+what's the similarity measure for
+radicals?
+show requirements.
+what alternatives were there to consider?
+
+what about stroke number and stroke sequence?
+why deal with it? can be dealt with? 
+how? why this way, why not another way?
+generally, how is radical recognition done?
+show requirements.
+what alternatives were there to consider?
+
+\section{Character Recognition Process}
+\label{sec:hwre:characterrecognitionprocess}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+what's the similarity measure for
+characters?
+show requirements.
 s. 24 pseudocode
 s. 9/10 pixelwolke vs. reihenfolge
 
-\section{Error recognition}
-\subsection{How to deal with typical errors when writing Japanese}
-\subsubsection{Error recognition}
-focus on technical aspects
-\subsubsection{Error handling}
-focus on technical aspects
+\section{Error Handling}
+\label{sec:hwre:errorhandling}
 
-\section{HWR applied to e-learning of Japanese Kanji}
-\subsection{Integration of HWR into e-learning app}
-educational aspects / the e-learning view
-\subsection{Error handling}
-educational aspects / the e-learning view
+%xxx focus on technical aspects
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+
+see section \ref{sec:concept:sourcesoferror} in chapter 
+\ref{chap:conceptualdesignofkanjicoach} for possible sources of error
+
+\subsection{Error Recognition}
+\label{sec:hwre:errorrecognition}
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+why this section? to demonstrate own achievements of error recognition.
+the reader should know how it is done technically.
+
+what goes into this section? the aspects of finding errors. finding errors
+is not a straightforward trivial task - whenever something does not match
+it is an error - doesn't work like that. instead, 
+firstly, it needs to be made sure that it actually is an error.
+meaning - not a recognition error, but a user error.
+secondly, the type of error needs be identified.
+see section \ref{sec:concept:sourcesoferror} (or handwritten page 58)
+for sources of error.
+
+how will this section be written?
+technical - first describe how the error recognition integrates into the
+recognition process, then how errors are identified.
+
+
+\subsection{Error Processing}
+\label{sec:hwre:errorprocessing}
+
+%focus on technical aspects
+
+why this section? 
+what goes into this section?
+  if describing a problem: why is the problem relevant.
+  if describing a solution to a problem: what alternatives were
+  there to solve it, why was this solution chosen? what made it the best
+  choice? was it the optimal solution?
+how will this section be structured and organised?
+in what style will it be written?
+next action - what to write first?
+
+
+why this section? 
+actually the 'handling' or 'processing' aspect could be 
+described in the recognition section \ref{sec:hwre:errorrecognition} as well.
+so this section is only for a better overview, for document structure, 
+thematically they are the same section. thus they are put together under
+Error Handling \ref{sec:hwre:errorhandling}.
+
+what goes into this section?
 
 
 
-Hallo Rainer,
-
-Brassington
-Zeicheneingabe mit custom tool z.B. Silverlight.
