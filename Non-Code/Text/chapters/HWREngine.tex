@@ -239,7 +239,12 @@ mouse coordinates and stuff
     the discussion of those can be found in chapter \ref{chap:onlinehwr}.
     this section only uses pointers to that chapter.
 
-    what made it the best choice? was it the optimal solution?
+    what made it the best choice?
+    certainly not the lacking of alternatives, but the mix between 
+    possibilities to programmatically interact with the recognition process
+    and performance of the process.
+
+    was it the optimal solution?
     yes and no.
     it depends on the focus.
     big discussion! WHY this architecture?
@@ -269,37 +274,94 @@ mouse coordinates and stuff
   The next part to write is to hash out the substructure in subsections.
 
 
-
-
-
 \section{Stroke Recognition Process}
 \label{sec:hwre:strokerecognitionprocess}
 
 - Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
+  The purpose of this section is to describe the recognition process of a strokes
+  This is necessary, because it is a crucial part of the recognition process
+  as such, to describe which is the purpose of this chapter
+
+  It would be off purpose, if the radical or character recognition process 
+  would be described, too.
+  It would be off purpose, if the stroke recognition process would not be 
+  layed out in its entirety.
+
 - What goes into this section?
-  The main content of this section is 
+  The main content of this section is the details of the stroke recognition
+  process. The question how it is done is central and crucial.
+
   * if describing a problem: why is the problem relevant.
+    stroke recognition is not relevant as such, it becomes relevant because
+    of the recognition approach chosen, which is similar to the one of CITE
+
   * if describing a solution to a problem: what alternatives were
     there to solve it, why was this solution chosen? 
-    what made it the best choice? was it the optimal solution?
+    there are alternatives, many of which are possible. mathematical methods 
+    and formats. since roughly following \shortciteANP{Nakagawa2008}'s
+    \citeyear{Nakagawa2008} approach - the discussion of the different 
+    approaches can be left to the handwriting recognition section and the 
+    literature, however - I needed to come up with a 'good mix' of 
+    recognition quality and the possibility to extract detailed knowledge 
+    from the recognitiont process.
+     
+    what made it the best choice? 
+    certainly not the lacking of alternatives, but the mix between 
+    possibilities to programmatically interact with the recognition process
+    and performance of the process.
+    see - main section! not too much repetition.
+
+    was it the optimal solution?
+
+    given the circumstances - yes, because it fulfilled the criteria 
+    (to be layed out)
+    from a pure HWR perspective - no, sinces other systems perform better on the
+    pure handwriting task.
+    from a hwr in a learning environment perspective - yes, because this
+    system gives us the ability to accompany the recognition process in detail
+    
+
 - How will this section be structured and organised?
-  The organisational structure of the section 
+  The organisational structure of the section will contain
+
+  1. from the captured point lists to something cooler, what are we actually
+     doing? from point to 'stroke'.
+
+  2. 'normalisation', including 'boxing' and then 'scaling'
+
+  3. curve handling. what are we doing at the edgy points?
+
+  4. alternative solution: time warping. doesn't need anything of the
+     abovementioned cool stuff, just one alorithm.
+     show algorithm and give a rough, rough, rough explanation,
+     maybe even without algorithm and point to papers that explain DTW.
+
 - In what style will it be written?
-  The style of writing will be 
+  The style of writing will be technical and mathematical.
+  if something is calculated, show maths behind rather than algorithm.
+
 - Next action - what to write first?
-  The next part to write is
+  The next part to write is the detailed content requirements of each subsection.
 
 xxx: see santosh2009 for mathematical stuff: nice description of what I'm doing
-
 
 \subsection{Advanced Point Lists}
 \label{sec:hwre:advancedpointlists}
 %xxx this chapter used to be called:
 %xxx \subsection{From Simple Point List to Boxed Representation}
 
-
+what happens to the points?
+nothing, really - the magic happens when normalisation and the other stuff
+starts.
+why this section? what's the purpose? oh, right - angles and vectors instead
+of simple points. from one point to the next, or rather from on point to
+ten points down the line, to get a rougher direction.
+vectors make it interesting. 
+impacts on curve handling! gradient and stuff can be measured in the 
+vector representation (even without any boxes)
+making the point list a cool mathematical object!
+show code samples in pseudocode if necessary.
+report about the cool stuff.
 
 what's the similarity measure for
 points and strokes?
@@ -309,20 +371,23 @@ what alternatives were there to consider?
 \subsection{Normalisation}
 \label{sec:hwre:normalisation}
 
+what is N?
+why do N?
+show requirements.
+how is N performed here?
+why is it performed like that?
 
-\subsection{Boxing}
+\subsubsection{Boxing}
 \label{sec:hwre:boxing}
 how is boxing done?
 show requirements.
 what alternatives were there to consider?
 is it useful to have a similarity measure for bounding boxes?
 yes! but why? explain!
-
-
+size of the boxes! - think of characters that only have two strokes.
 
 \subsubsection{Scaling}
 \label{sec:hwre:scaling}
-
 
 
 s. 42-45
@@ -368,7 +433,8 @@ however, what about 3D time warping?
 \label{sec:hwre:radicalrecognitionprocess}
 
 - Why this section? 
-  The purpose of this section is 
+  The purpose of this section is to explain the Radical recognition process in
+  detail. It is 
   It would be off purpose, if 
 - What goes into this section?
   The main content of this section is 
