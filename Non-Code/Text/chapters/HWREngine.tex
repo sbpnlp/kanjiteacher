@@ -59,8 +59,8 @@ mouse coordinates and stuff
   
 - What goes into this section?
   The main content of this section is the technical data capturing.
-  Programmatically generating a pen trajectory from reading mouse coordinates.
-  
+  A description of how to
+  programmatically generate a pen trajectory from reading mouse coordinates.
   
   * if describing a problem: why is the problem relevant.
     The relevance of the problem is evident: Without the user's writing,
@@ -97,83 +97,179 @@ mouse coordinates and stuff
 \label{sec:hwre:dataformat}
 
 - Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
+  The purpose of this section is to give the reader an idea of how the captured
+  data is structured. That means concretely the character format, describing
+  the HW trajectories. This is necessary in order to be able to explain the
+  Funktionsweise of the HWR engine in detail.
+
+  It would be off purpose, if the section contained a description of the 
+  lexical data, which is described in a different section.
+
 - What goes into this section?
-  The main content of this section is 
+  The main content of this section is what is stated under purpose:
+  A description of how the captured data is structured.
+
   * if describing a problem: why is the problem relevant.
+    The task of handwriting recognition is essentially a task working with data.
+    Therefore the structure of the data is one of the crucial points.
+    
   * if describing a solution to a problem: what alternatives were
     there to solve it, why was this solution chosen? 
+
+    The solution was chosen because of its clarity, simplicity and 
+    accessibility, also because of its interoperability with potential 
+    other systems.
     what made it the best choice? was it the optimal solution?
+    For the purpose followed with the system - yes, it was the optimal solution,
+    because it does not require much effort to parse the stored data
+    and it contains all necessary information in a structured manner.
+    
 - How will this section be structured and organised?
-  The organisational structure of the section 
+  The organisational structure of the section contains:
+
+  A general description of the XML format - why it was used as opposed to
+  other possible formats like unipen and inkml.
+  show requirements!
+  show process of how I came to current data formats.
+  include character models 1-4 on pages. - however, not everything in one go,
+  but rather in the individual sections if possible.
+  in the end, a radical has its own format that is unchanged, even
+  if internal structure of a stroke is changed.
+  (unipen is only text based, inkml does not help here, but the system allows
+  for exchange of the custom format with those)
+
+  data format of and representation of 
+  point, stroke, box, radical, character s. 20-23, 25f
+
 - In what style will it be written?
-  The style of writing will be 
+  The style of writing will be technical - a description of the XML format.
+  Pointer to code sample in Appendix.
+
 - Next action - what to write first?
-  The next part to write is
-
-how is the data structured? radicals, strokes, characters, xml-format
-representation of point, stroke, box, radical, character
-s. 20-23, 25f
-include character models 1-4 on pages
-
-show process of how I came to current data formats.
-show requirements.
-what alternatives were there to consider?
-
+  The next part to write is the actual subsection structure of this section.
 
 \section{Database}
 \label{sec:hwre:database}
 
 - Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
+  The purpose of this section is to explain the structure and production of 
+  the database.   That includes both pen trajectory and lexical data.
+  That is a relevant information, because the system provides these information,
+  therefore they must come from somewhere. In order to explain some of the
+  error recognition processes it is necessary to have these information first.
+
+  It would be off purpose, if anything else goes into this section.
+  The xml format is described elsewhere, the lexical charater DB comes from 
+  jim breen (cite his paper) nothing else needs be in here.
+
 - What goes into this section?
-  The main content of this section is 
+  The main content of this section is a description of the character database.
+  The jim breen stuff can be pointed to, but the production process of the 
+  self made data should be described.
+
   * if describing a problem: why is the problem relevant.
+    The problem is relevant, because without a character database, there won't
+    be any recognition - the system wouldn't know anything.
+
   * if describing a solution to a problem: what alternatives were
     there to solve it, why was this solution chosen? 
+
+    Alternatives - see alternatives of data format!
+    Technical alternatives - proper DB instead of flat-file possible,
+    but not necessary. It is actually not that much data,
+    even if all characters are included.
+   
     what made it the best choice? was it the optimal solution?
+    the fact that the alternatives do not offer a better solution.
+
 - How will this section be structured and organised?
-  The organisational structure of the section 
+  The organisational structure of the section will contain
+  1. description of the technical format of the character data base
+     two flat files - indexed via the actual kanji character in unicode
+     format, since it is unique. this is a character-centred application!
+     how are they accessible? what format?
+     this can be seen more generic as 'the lexicon', not necessarily
+     the linguistic information about the characters, 
+     but rather the whole lexicon, including the point sequences.
+
+  2. discussion of alternatives: relational DB or only one flat file
+     two flat files are better, because of updates and other-language versions
+     of the jim breen lexicon. leave it unchanged! otherwise you'd need a
+     converter!
+
+  3. Description of the production of the lexicon.
+     it was not just taken from j.b. but it was intervowen?! (verflochten) 
+     with the trajectories. where did I get these from? 
+     how many chars are in the two dictionaries?
+
 - In what style will it be written?
-  The style of writing will be 
+  The style of writing will be a technical description
 - Next action - what to write first?
-  The next part to write is
-
-
-this can be seen more generic as 'the lexicon', not necessarily
-the linguistic information about the characters, but rather the whole
-lexicon, including the point sequences.
-where did I get it from? how many chars are in there?
-how are they accessible? what format?
-Jim Breen
-
-
+  The next part to write is to hash out the actual subsections.
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
 
 - Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
+  The purpose of this section is to give the reader an overview of the whole
+  recognition system. the recognition system! not the whole system, 
+  not the learning part.
+
+  It would be off purpose if other stuff would be described.
+  stick to the main focus - architecture of the pure recognition.
+  If would be off purpose if it was too detailed.
+  The actual recognition process is discussed in subsequent sections!
+  don't go into too much detail.
+
 - What goes into this section?
-  The main content of this section is 
+  The main content of this section is an overview of the recognition 
+  architecture. This should not be confused with the overview of the
+  whole Kanji Coach system. it is more detailed and focused.
+
+  One big graphic shows the overview of the different modules.
+  
   * if describing a problem: why is the problem relevant.
+    not really a problem - every system has an architecture.
+   
+
   * if describing a solution to a problem: what alternatives were
     there to solve it, why was this solution chosen? 
+
+    this solution was chosen after review of around 50 HWR systems.
+    the discussion of those can be found in chapter \ref{chap:onlinehwr}.
+    this section only uses pointers to that chapter.
+
     what made it the best choice? was it the optimal solution?
+    yes and no.
+    it depends on the focus.
+    big discussion! WHY this architecture?
+    roughly following X and Y and Z,
+    however, not creating an optimal handwriting recognition engine.
+    research suggests that HMM models are more useful etc.
+    however - the type of error recognition desired,
+    requires a structural system.
+    it is only new in research (find that one paper 
+    that does that bloody thing) to blend HMM and structural models
+    in a hybrid HWR system, simimlar to hybrid MT systems.
+    this is interesting for outlook - point there to idea
+    HMM vs structural vs error recognition
+
 - How will this section be structured and organised?
-  The organisational structure of the section 
+  The organisational structure of the section will be as follows:
+  1. architecture: graphic and explanatory description
+  -> Modules and parts of HWR, create graphic.
+
+  s. 18 zeichen, punkt usw. UML diagramme.
+     
+  2. brief discussion about alternative architectures
+
 - In what style will it be written?
-  The style of writing will be 
+  The style of writing will be technical
 - Next action - what to write first?
-  The next part to write is
+  The next part to write is to hash out the substructure in subsections.
 
 
--> Modules and parts of HWR, create graphic.
 
-s. 18 zeichen, punkt usw. UML diagramme.
 
 
 \section{Stroke Recognition Process}
