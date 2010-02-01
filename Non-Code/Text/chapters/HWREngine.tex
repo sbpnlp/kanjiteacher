@@ -42,7 +42,7 @@
   The style of writing will be technical. A technical description, using
   pseudocode.
 - Next action - what to write first?
-  The next part to write is the answers to the questions of all subsections.
+  The next part to write is the general introduction to this section
 
 %xxx always: what alternatives were there?
 
@@ -445,15 +445,29 @@ however, what about 3D time warping?
 
   * if describing a solution to a problem: what alternatives were
     there to solve it, why was this solution chosen? 
-    again - part of the whole process
-    what made it the best choice? was it the optimal solution?
-- How will this section be structured and organised?
-  The organisational structure of the section 
-- In what style will it be written?
-  The style of writing will be 
-- Next action - what to write first?
-  The next part to write is
+    again - part of the structural recognition process that allows for
+    interaction with the user concerning error recognition
 
+    what made it the best choice? was it the optimal solution?
+    here, simply the lacking of alternatives. if the recognition process
+    does not distinguish between 'shapes' and 'radicals' the error
+    handling engine would not be able to inform the user.
+    (xxx: turn this one around into a positive sentence. 
+    only through distinguishing... :xxx)
+    
+- How will this section be structured and organised?
+  The organisational structure of the section will be as follows:
+
+    1. Representation of a radical as a stroke sequence
+    2. stroke matching, reordered stroke matching in order to find 
+       alternative radicals or radical variants, depending on the 
+       number of strokes involved in the process: stroke number, stroke sequence.
+
+- In what style will it be written?
+  The style of writing will be formal, showing the general algorithm.
+
+- Next action - what to write first?
+  The next part to write is the general algorithm as pseudocode.
 
 what's the similarity measure for
 radicals?
@@ -471,56 +485,110 @@ what alternatives were there to consider?
 \label{sec:hwre:characterrecognitionprocess}
 
 - Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
-- What goes into this section?
-  The main content of this section is 
-  * if describing a problem: why is the problem relevant.
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    what made it the best choice? was it the optimal solution?
-- How will this section be structured and organised?
-  The organisational structure of the section 
-- In what style will it be written?
-  The style of writing will be 
-- Next action - what to write first?
-  The next part to write is
+  The purpose of this section is to distinguish the radical recognition process
+  from the character recognition process.
+  
+  It would be off purpose, if too much of the radical recognition process would
+  be repeaeted. 
 
+- What goes into this section?
+  The main content of this section is to show the actual character recognition
+  process based on the radical recognition. 
+  it should show the plan to find the appropriate characters, given a number of
+  alternative radicals.
+  s. 9/10 pixelwolke vs. reihenfolge
+
+  * if describing a problem: why is the problem relevant.
+    the problem is not just relevant it is the final problem to solve
+    before solving the main problem of HWR.
+  * if describing a solution to a problem: what alternatives were
+    there to solve it, 
+    many different alternatives - see discussion of HWR, however,
+    the approach chosen here was the structural one/
+    why was this solution chosen? 
+    because of the possibility to interact with the recognition process
+    and reading partial results.
+    what made it the best choice? was it the optimal solution?
+    the other HWR approaches do not allow for the partial structural recognition
+    with linguistic components of characters.
+
+- How will this section be structured and organised?
+  The organisational structure of the section will contain
+  1. description of the process from  radical list to a character.
+  2. what if there are alternative radical lists?
+  3. what would've been an alternative solution?
+     directly going from exactly one radical list to exactly one chararcter.
+     s. 9/10 pixelwolke vs. reihenfolge
+
+- In what style will it be written?
+  The style of writing will be technical
+
+- Next action - what to write first?
+  The next part to write is to put the subparts into proper subsections.
 
 what's the similarity measure for
 characters?
 show requirements.
 s. 24 pseudocode
-s. 9/10 pixelwolke vs. reihenfolge
 
 \section{Error Handling}
 \label{sec:hwre:errorhandling}
 
 - Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
+  The purpose of this section is to demonstrate a crucial novelty of this 
+  HWR engline, the error handling module.
+  
+  It would be off purpose, if it had to explain too much of the recognition 
+  process as such - that should've been done in other chapters.
+  
 - What goes into this section?
-  The main content of this section is 
+  The main content of this section is the 'way of an error'.
+  what happens if the character that is bound to be recognised just doesn't fit?
+  so there's an stroke that's not long enough and it's position is not
+  high enough within the character.
+
   * if describing a problem: why is the problem relevant.
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    what made it the best choice? was it the optimal solution?
+    the problem is relevant for a learning application.
+    the purpose of the application is to teach the characters with an automated
+    recognition engine - one the central ''A.I.'' of this application
+    is the automated error recognition.
+
+  * if describing a solution to a problem: 
+    what alternatives were there to solve it, 
+    
+    the alternative to the chosen process was a less flexible approach.
+    just measuring the absolute match - in size, shape pixel by pixel
+    (again pixelwolke) would've been of a lower quality.
+    compare skritter - it does not provide the high quality feedback.
+
+    why was this solution chosen? 
+    because the design of the application required high-quality feedback,
+    on a linguistic level.
+    
+    what made it the best choice? 
+    because it was the only one that met the requirement of providing 
+    high-qualitiy feed-back.
+    
+    was it the optimal solution?
+    who knows? - looks like it now, but evaluation will show.
+    depends on user experience. 
+
 - How will this section be structured and organised?
   The organisational structure of the section 
+   1. error recognition
+   2. The Way of an error after recognition (error processing)
+   3. 
 - In what style will it be written?
-  The style of writing will be 
+  The style of writing will be a technical description - probably no algorithms
+
 - Next action - what to write first?
-  The next part to write is
-
-
+  The next part to write is to describe the error recognition.
 
 see section \ref{sec:concept:sourcesoferror} in chapter 
 \ref{chap:conceptualdesignofkanjicoach} for possible sources of error
 
 \subsection{Error Recognition}
 \label{sec:hwre:errorrecognition}
-
-
 
 why this section? to demonstrate own achievements of error recognition.
 the reader should know how it is done technically.
@@ -543,8 +611,6 @@ recognition process, then how errors are identified.
 \label{sec:hwre:errorprocessing}
 
 %focus on technical aspects
-
-
 
 why this section? 
 actually the 'handling' or 'processing' aspect could be 
