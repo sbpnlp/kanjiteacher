@@ -42,54 +42,71 @@
   The style of writing will be technical. A technical description, using
   pseudocode.
 - Next action - what to write first?
-  The next part to write is the general introduction to this section
+  The next part to write is the general introduction to this chapter
 
 %xxx always: what alternatives were there?
 
 \section{Data Capturing}
 \label{sec:hwre:datacapturing}
-this should deal with how the data are captured during the process
-mouse coordinates and stuff
 
-- Why this section? 
-  The purpose of this section is to describe the data capturing process.
-  It would be off purpose, if it describes to much around - the devices, the
-  transmission. This should focus on the capturing as such.
-  It should not go into great deail.
-  
-- What goes into this section?
-  The main content of this section is the technical data capturing.
-  A description of how to
-  programmatically generate a pen trajectory from reading mouse coordinates.
-  
-  * if describing a problem: why is the problem relevant.
-    The relevance of the problem is evident: Without the user's writing,
-    there would not be any handwriting recognition.
+Each handwriting recognition process begins with the data capturing.
+That is the user's handwriting must be captured and fed into the system.
+The data capturing is therefore a crucial part of the whole process.
+In this system a GUI is used for the capturing of the pen movements on a 
+writing surface.
 
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    The alternatives are not massively relevant here, since they come down
-    to using different input devices, which is discussed elsewhere.
+%this should deal with how the data are captured during the process
+%mouse coordinates and stuff
 
-    what made it the best choice? 
-    the fact that this is just how it is done.
-    was it the optimal solution?
-    yes.
+%- Why this section? 
+%  The purpose of this section is to describe the data capturing process.
+%  It would be off purpose, if it describes to much around - the devices, the
+%  transmission. This should focus on the capturing as such.
+%  It should not go into great deail.
+%  
+%- What goes into this section?
+%  The main content of this section is the technical data capturing.
+%  A description of how to
+%  programmatically generate a pen trajectory from reading mouse coordinates.
+%  
+%  * if describing a problem: why is the problem relevant.
+%    The relevance of the problem is evident: Without the user's writing,
+%    there would not be any handwriting recognition.
+%
+%  * if describing a solution to a problem: what alternatives were
+%    there to solve it, why was this solution chosen? 
+%    The alternatives are not massively relevant here, since they come down
+%    to using different input devices, which is discussed elsewhere.
+%
+%    what made it the best choice? 
+%    the fact that this is just how it is done.
+%    was it the optimal solution?
+%    yes.
+%
+%- How will this section be structured and organised?
+%  The organisational structure of the section begins with describing the mobile 
+%  input GUI from a technical level.
+%  Then the class in the background that actually captures the mouse events.
+%  the capturing of the mouse events.
+%  the storing of the data points in lists.
+% 
+%- In what style will it be written?
+%  The style of writing will be technical. using pseudocode if required.
+%  however the algorithm is not relevant here.
+%
+%- Next action - what to write first?
+%  The next part to write is the one about the GUI
+%  also the substructuring needs to be done as required. DONE
 
-- How will this section be structured and organised?
-  The organisational structure of the section begins with describing the mobile 
-  input GUI from a technical level.
-  Then the class in the background that actually captures the mouse events.
-  the capturing of the mouse events.
-  the storing of the data points in lists.
- 
-- In what style will it be written?
-  The style of writing will be technical. using pseudocode if required.
-  however the algorithm is not relevant here.
+\subsection{Writing Surface} %the mobile GUI
+\label{sec:hwre:writingsurface}
+NEXT ACTION - describe writing surface and it's GUI
 
-- Next action - what to write first?
-  The next part to write is the one about the GUI
-  also the substructuring needs to be done as required.
+\subsubsection{Writing Surface GUI}
+\label{sec:hwre:writingsurfacegui}
+
+\subsubsection{Writing Surfaces Background Module}
+\label{sec:hwre:writingsurfacebackground}
 
 
 
