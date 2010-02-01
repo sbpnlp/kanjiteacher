@@ -6,43 +6,43 @@
 \chapter{Handwriting Recognition Engine}
 \label{chap:handwritingrecognitionengine}
 
-- Why this section? 
-  The purpose of this section is to describe the software module of the 
-  HWR engine.
-  Any important of the software should be described. This is the core of the
-  HWR part of the software and therefore needs description.
-  It would be off purpose, if non-technical aspects of the HWR Engine would be 
-  described.
-- What goes into this section?
-  The main content of this section is the complete functionality of the 
-  HWR engine.
-  It should become apparent how the HWR engine works.
-  * if describing a problem: why is the problem relevant.
-    The problem of HWR is relevant, because it is the crucial novelty of the
-    application. The combination of a Kanji learning tool and a HWR is a new 
-    thing. It enables user to practice writing Kanji. (maybe too high-level for
-    this section, move to intro / motivation section).
-  * if describing a solution to a problem: 
-    what alternatives were there to solve it?    
-    Instead of a HWR engine, the user could either not have a HWR engine and
-    write on paper or not practice writing the kanji.
-    why was this solution chosen? 
-    because it creates an additional benefit, that was not available before.
-    what made it the best choice? 
-    the fact that it writing on paper is impractical and not practicing does
-    not lead to the desired result.
+%- Why this section? 
+%   The purpose of this section is to describe the software module of the 
+%   HWR engine.
+%   Any important of the software should be described. This is the core of the
+%   HWR part of the software and therefore needs description.
+%   It would be off purpose, if non-technical aspects of the HWR Engine would be 
+%   described.
+% - What goes into this section?
+%   The main content of this section is the complete functionality of the 
+%   HWR engine.
+%   It should become apparent how the HWR engine works.
+%   * if describing a problem: why is the problem relevant.
+%     The problem of HWR is relevant, because it is the crucial novelty of the
+%     application. The combination of a Kanji learning tool and a HWR is a new 
+%     thing. It enables user to practice writing Kanji. (maybe too high-level for
+%     this section, move to intro / motivation section).
+%   * if describing a solution to a problem: 
+%     what alternatives were there to solve it?    
+%     Instead of a HWR engine, the user could either not have a HWR engine and
+%     write on paper or not practice writing the kanji.
+%     why was this solution chosen? 
+%     because it creates an additional benefit, that was not available before.
+%     what made it the best choice? 
+%     the fact that it writing on paper is impractical and not practicing does
+%     not lead to the desired result.
 
-    was it the optimal solution? given there is only not practicing and
-    practicing on paper: yes.
+%     was it the optimal solution? given there is only not practicing and
+%     practicing on paper: yes.
 
-- How will this section be structured and organised?
-  The organisational structure of the section is already layed out in the
-  sections and subsections.
-- In what style will it be written?
-  The style of writing will be technical. A technical description, using
-  pseudocode.
-- Next action - what to write first?
-  The next part to write is the general introduction to this chapter
+% - How will this section be structured and organised?
+%   The organisational structure of the section is already layed out in the
+%   sections and subsections.
+% - In what style will it be written?
+%   The style of writing will be technical. A technical description, using
+%   pseudocode.
+% - Next action - what to write first?
+%   The next part to write is the general introduction to this chapter
 
 %xxx always: what alternatives were there?
 
@@ -50,10 +50,9 @@
 \label{sec:hwre:datacapturing}
 
 Each handwriting recognition process begins with the data capturing.
-That is the user's handwriting must be captured and fed into the system.
-The data capturing is therefore a crucial part of the whole process.
-In this system a GUI is used for the capturing of the pen movements on a 
-writing surface.
+The user's handwriting must be captured and fed into the system. The data 
+capturing is therefore a crucial part of the whole process. In this system 
+a GUI is used for the capturing of the pen movements on a writing surface.
 
 %this should deal with how the data are captured during the process
 %mouse coordinates and stuff
@@ -100,53 +99,129 @@ writing surface.
 
 \subsection{Writing Surface} %the mobile GUI
 \label{sec:hwre:writingsurface}
-NEXT ACTION - describe writing surface and it's GUI
+%NEXT ACTION - describe writing surface and it's GUI
+
+The writing surface module, the view is split into two parts. The writing 
+surface GUI and the writing surface background module. The technical design of 
+the data input GUI is described in 
+section~\ref{sec:arch:handwritingdatainputview}.
 
 \subsubsection{Writing Surface GUI}
 \label{sec:hwre:writingsurfacegui}
+The GUI works with pen-down and pen-up events. It has a cross in the middle in 
+order to partition the writing surface the same way, character practicing paper 
+sheets are usually partitioned. The GUI class is listening to \emph{pen-down}, 
+\emph{pen-up} and \emph{pen-move} events. These are the equivalent in the mobile
+world for regular mouse-down, mouse-up and mouse-move events. However, there is 
+one difference - the pen-move event can only be captured between a pen-down and a
+pen-up event. An earlier conceptual idea for the HWR engine included using the
+mouse-move events during the input of a character between the strokes. This 
+could not be realised, however, because the series of pen-move events can only 
+be captured when there has been a previous pen-down event and no pen-up event 
+yet. The GUI captures the events and passes the point coordinates on to 
+the background class.
 
 \subsubsection{Writing Surfaces Background Module}
 \label{sec:hwre:writingsurfacebackground}
 
+When a pen-down event is detected, the background class of the GUI starts 
+listening for the pen movement. All point coordinates and the time of their 
+capturing are stored in two separate lists with the same indeces.
+An alternative solution would have been to store a number of instances of a 
+custom-made encapsulated Point class including the time stamp in one list only, 
+however, using two separate lists resulted in increased speed.
+Therfore, the point coordinates are stored in the frameworks Point class that 
+does not account for time stamps. Therefore a separate list is used for the 
+timestamps only.
 
+The background module of the writing surface mainly administrates the capturing 
+of the pen trajectory and sends it to the recognition module as soon as a 
+stroke is finished. Therefore the system does not receive a separate signal 
+indicating that the drawing of the character is finished. That design creates 
+as segmentation problem that is solved with the \emph{clear} button and the 
+\emph{clear} message. The segmentation of characters is left undetermined - only 
+the beginning of it is determined through the \emph{clear} message that is sent 
+to the moblie view from the controller - or the clear message that is sent to 
+the controller because the user clicked the \emph{reset} button.
+After a stroke is finished the according point and timestamp sequences are 
+passed to the main part of the HWR engine. 
 
 \section{Data Format}
 \label{sec:hwre:dataformat}
 
-- Why this section? 
-  The purpose of this section is to give the reader an idea of how the captured
-  data is structured. That means concretely the character format, describing
-  the HW trajectories. This is necessary in order to be able to explain the
-  Funktionsweise of the HWR engine in detail.
+% - Why this section? 
+%   The purpose of this section is to give the reader an idea of how the captured
+%   data is structured. That means concretely the character format, describing
+%   the HW trajectories. This is necessary in order to be able to explain the
+%   mode of operation of the HWR engine in detail.
 
-  It would be off purpose, if the section contained a description of the 
-  lexical data, which is described in a different section.
+%   It would be off purpose, if the section contained a description of the 
+%   lexical data, which is described in a different section.
 
-- What goes into this section?
-  The main content of this section is what is stated under purpose:
-  A description of how the captured data is structured.
+% - What goes into this section?
+%   The main content of this section is what is stated under purpose:
+%   A description of how the captured data is structured.
 
-  * if describing a problem: why is the problem relevant.
-    The task of handwriting recognition is essentially a task working with data.
-    Therefore the structure of the data is one of the crucial points.
+%   * if describing a problem: why is the problem relevant.
+%     The task of handwriting recognition is essentially a task 
+%     working with data.
+%     Therefore the structure of the data is one of the crucial points.
     
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
 
-    The solution was chosen because of its clarity, simplicity and 
-    accessibility, also because of its interoperability with potential 
-    other systems.
-    what made it the best choice? was it the optimal solution?
-    For the purpose followed with the system - yes, it was the optimal solution,
-    because it does not require much effort to parse the stored data
-    and it contains all necessary information in a structured manner.
+%     The solution was chosen because of its clarity, simplicity and 
+%     accessibility, also because of its interoperability with potential 
+%     other systems.
+%     what made it the best choice? was it the optimal solution?
+%     For the purpose followed with the system - yes, it was the optimal solution,
+%     because it does not require much effort to parse the stored data
+%     and it contains all necessary information in a structured manner.
     
-- How will this section be structured and organised?
-  The organisational structure of the section contains:
+% - How will this section be structured and organised?
+%   The organisational structure of the section contains:
 
-  A general description of the XML format - why it was used as opposed to
-  other possible formats like unipen and inkml.
-  show requirements!
+%   A general description of the XML format - why it was used as opposed to
+%   other possible formats like unipen and inkml.
+%   show requirements!
+%   show process of how I came to current data formats.
+%   include character models 1-4 on pages. - however, not everything in one go,
+%   but rather in the individual sections if possible.
+%   in the end, a radical has its own format that is unchanged, even
+%   if internal structure of a stroke is changed.
+%   (unipen is only text based, inkml does not help here, but the system allows
+%   for exchange of the custom format with those)
+
+%   data format of and representation of 
+%   point, stroke, box, radical, character s. 20-23, 25f
+
+% - In what style will it be written?
+%   The style of writing will be technical - a description of the XML format.
+%   Pointer to code sample in Appendix.
+
+% - Next action - what to write first?
+%   The next part to write is the actual subsection structure of this section.
+
+\subsection{Requirements of the Data Format}
+\label{sec:hwre:requirementsofdataformat}
+
+show requirements!
+
+
+
+%xxx how much do I really have to say to the unipen format?
+%xxx does it really not meet the requirements?
+
+\subsection{Data Format Description}
+\label{sec:hwre:dataformatdescription}
+
+
+  A general description of the XML format - why it was used that way,
+  given the requirements
+
+  data format of and representation of 
+  point, stroke, box, radical, character s. 20-23, 25f
+
   show process of how I came to current data formats.
   include character models 1-4 on pages. - however, not everything in one go,
   but rather in the individual sections if possible.
@@ -155,211 +230,227 @@ NEXT ACTION - describe writing surface and it's GUI
   (unipen is only text based, inkml does not help here, but the system allows
   for exchange of the custom format with those)
 
-  data format of and representation of 
-  point, stroke, box, radical, character s. 20-23, 25f
 
-- In what style will it be written?
-  The style of writing will be technical - a description of the XML format.
-  Pointer to code sample in Appendix.
+\subsubsection{Point Data Format}
+\label{sec:hwre:pointdataformat}
 
-- Next action - what to write first?
-  The next part to write is the actual subsection structure of this section.
+\subsubsection{Stroke Data Format}
+\label{sec:hwre:strokedataformat}
+
+\subsubsection{Radical Data Formant}
+\label{sec:hwre:radicaldataformat}
+
+\subsubsection{Character Data Format}
+\label{sec:hwre:characterdataformat}
+
+
+\subsection{Alternative Formats}
+\label{sec:hwre:alternativeformats}
+
+  as opposed to
+  other possible formats like unipen and inkml.
+
+\subsubsection{InkML}
+\label{sec:hwre:inkml}
+
+\subsubsection{The UNIPEN Format}
+\label{sec:hwre:unipenformat}
 
 \section{Database}
 \label{sec:hwre:database}
 
-- Why this section? 
-  The purpose of this section is to explain the structure and production of 
-  the database.   That includes both pen trajectory and lexical data.
-  That is a relevant information, because the system provides these information,
-  therefore they must come from somewhere. In order to explain some of the
-  error recognition processes it is necessary to have these information first.
+% - Why this section? 
+%   The purpose of this section is to explain the structure and production of 
+%   the database.   That includes both pen trajectory and lexical data.
+%   That is a relevant information, because the system provides these information,
+%   therefore they must come from somewhere. In order to explain some of the
+%   error recognition processes it is necessary to have these information first.
 
-  It would be off purpose, if anything else goes into this section.
-  The xml format is described elsewhere, the lexical charater DB comes from 
-  jim breen (cite his paper) nothing else needs be in here.
+%   It would be off purpose, if anything else goes into this section.
+%   The xml format is described elsewhere, the lexical charater DB comes from 
+%   jim breen (cite his paper) nothing else needs be in here.
 
-- What goes into this section?
-  The main content of this section is a description of the character database.
-  The jim breen stuff can be pointed to, but the production process of the 
-  self made data should be described.
+% - What goes into this section?
+%   The main content of this section is a description of the character database.
+%   The jim breen stuff can be pointed to, but the production process of the 
+%   self made data should be described.
 
-  * if describing a problem: why is the problem relevant.
-    The problem is relevant, because without a character database, there won't
-    be any recognition - the system wouldn't know anything.
+%   * if describing a problem: why is the problem relevant.
+%     The problem is relevant, because without a character database, there won't
+%     be any recognition - the system wouldn't know anything.
 
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
 
-    Alternatives - see alternatives of data format!
-    Technical alternatives - proper DB instead of flat-file possible,
-    but not necessary. It is actually not that much data,
-    even if all characters are included.
+%     Alternatives - see alternatives of data format!
+%     Technical alternatives - proper DB instead of flat-file possible,
+%     but not necessary. It is actually not that much data,
+%     even if all characters are included.
    
-    what made it the best choice? was it the optimal solution?
-    the fact that the alternatives do not offer a better solution.
+%     what made it the best choice? was it the optimal solution?
+%     the fact that the alternatives do not offer a better solution.
 
-- How will this section be structured and organised?
-  The organisational structure of the section will contain
-  1. description of the technical format of the character data base
-     two flat files - indexed via the actual kanji character in unicode
-     format, since it is unique. this is a character-centred application!
-     how are they accessible? what format?
-     this can be seen more generic as 'the lexicon', not necessarily
-     the linguistic information about the characters, 
-     but rather the whole lexicon, including the point sequences.
+% - How will this section be structured and organised?
+%   The organisational structure of the section will contain
+%   1. description of the technical format of the character data base
+%      two flat files - indexed via the actual kanji character in unicode
+%      format, since it is unique. this is a character-centred application!
+%      how are they accessible? what format?
+%      this can be seen more generic as 'the lexicon', not necessarily
+%      the linguistic information about the characters, 
+%      but rather the whole lexicon, including the point sequences.
 
-  2. discussion of alternatives: relational DB or only one flat file
-     two flat files are better, because of updates and other-language versions
-     of the jim breen lexicon. leave it unchanged! otherwise you'd need a
-     converter!
+%   2. discussion of alternatives: relational DB or only one flat file
+%      two flat files are better, because of updates and other-language versions
+%      of the jim breen lexicon. leave it unchanged! otherwise you'd need a
+%      converter!
 
-  3. Description of the production of the lexicon.
-     it was not just taken from j.b. but it was intervowen?! (verflochten) 
-     with the trajectories. where did I get these from? 
-     how many chars are in the two dictionaries?
+%   3. Description of the production of the lexicon.
+%      it was not just taken from j.b. but it was intervowen?! (verflochten) 
+%      with the trajectories. where did I get these from? 
+%      how many chars are in the two dictionaries?
 
-- In what style will it be written?
-  The style of writing will be a technical description of how it is done.
+% - In what style will it be written?
+%   The style of writing will be a technical description of how it is done.
 
-- Next action - what to write first?
-  The next part to write is to hash out the actual subsections.
+% - Next action - what to write first?
+%   The next part to write is to hash out the actual subsections.
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
 
-- Why this section? 
-  The purpose of this section is to give the reader an overview of the whole
-  recognition system. the recognition system! not the whole system, 
-  not the learning part.
+% - Why this section? 
+%   The purpose of this section is to give the reader an overview of the whole
+%   recognition system. the recognition system! not the whole system, 
+%   not the learning part.
 
-  It would be off purpose if other stuff would be described.
-  stick to the main focus - architecture of the pure recognition.
-  If would be off purpose if it was too detailed.
-  The actual recognition process is discussed in subsequent sections!
-  don't go into too much detail.
+%   It would be off purpose if other stuff would be described.
+%   stick to the main focus - architecture of the pure recognition.
+%   If would be off purpose if it was too detailed.
+%   The actual recognition process is discussed in subsequent sections!
+%   don't go into too much detail.
 
-- What goes into this section?
-  The main content of this section is an overview of the recognition 
-  architecture. This should not be confused with the overview of the
-  whole Kanji Coach system. it is more detailed and focused.
+% - What goes into this section?
+%   The main content of this section is an overview of the recognition 
+%   architecture. This should not be confused with the overview of the
+%   whole Kanji Coach system. it is more detailed and focused.
 
-  One big graphic shows the overview of the different modules.
+%   One big graphic shows the overview of the different modules.
   
-  * if describing a problem: why is the problem relevant.
-    not really a problem - every system has an architecture.
+%   * if describing a problem: why is the problem relevant.
+%     not really a problem - every system has an architecture.
    
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
 
-    this solution was chosen after review of around 50 HWR systems.
-    the discussion of those can be found in chapter \ref{chap:onlinehwr}.
-    this section only uses pointers to that chapter.
+%     this solution was chosen after review of around 50 HWR systems.
+%     the discussion of those can be found in chapter \ref{chap:onlinehwr}.
+%     this section only uses pointers to that chapter.
 
-    what made it the best choice?
-    certainly not the lacking of alternatives, but the mix between 
-    possibilities to programmatically interact with the recognition process
-    and performance of the process.
+%     what made it the best choice?
+%     certainly not the lacking of alternatives, but the mix between 
+%     possibilities to programmatically interact with the recognition process
+%     and performance of the process.
 
-    was it the optimal solution?
-    yes and no.
-    it depends on the focus.
-    big discussion! WHY this architecture?
-    roughly following X and Y and Z,
-    however, not creating an optimal handwriting recognition engine.
-    research suggests that HMM models are more useful etc.
-    however - the type of error recognition desired,
-    requires a structural system.
-    it is only new in research (find that one paper 
-    that does that bloody thing) to blend HMM and structural models
-    in a hybrid HWR system, simimlar to hybrid MT systems.
-    this is interesting for outlook - point there to idea
-    HMM vs structural vs error recognition
+%     was it the optimal solution?
+%     yes and no.
+%     it depends on the focus.
+%     big discussion! WHY this architecture?
+%     roughly following X and Y and Z,
+%     however, not creating an optimal handwriting recognition engine.
+%     research suggests that HMM models are more useful etc.
+%     however - the type of error recognition desired,
+%     requires a structural system.
+%     it is only new in research (find that one paper 
+%     that does that bloody thing) to blend HMM and structural models
+%     in a hybrid HWR system, simimlar to hybrid MT systems.
+%     this is interesting for outlook - point there to idea
+%     HMM vs structural vs error recognition
 
-- How will this section be structured and organised?
-  The organisational structure of the section will be as follows:
-  1. architecture: graphic and explanatory description
-  -> Modules and parts of HWR, create graphic.
+% - How will this section be structured and organised?
+%   The organisational structure of the section will be as follows:
+%   1. architecture: graphic and explanatory description
+%   -> Modules and parts of HWR, create graphic.
 
-  s. 18 zeichen, punkt usw. UML diagramme.
+%   s. 18 zeichen, punkt usw. UML diagramme.
      
-  2. brief discussion about alternative architectures
+%   2. brief discussion about alternative architectures
 
-- In what style will it be written?
-  The style of writing will be technical
-- Next action - what to write first?
-  The next part to write is to hash out the substructure in subsections.
+% - In what style will it be written?
+%   The style of writing will be technical
+% - Next action - what to write first?
+%   The next part to write is to hash out the substructure in subsections.
 
 \section{Stroke Recognition Process}
 \label{sec:hwre:strokerecognitionprocess}
 
-- Why this section? 
-  The purpose of this section is to describe the recognition process of a strokes
-  This is necessary, because it is a crucial part of the recognition process
-  as such, to describe which is the purpose of this chapter
+% - Why this section? 
+%   The purpose of this section is to describe the recognition process of a strokes
+%   This is necessary, because it is a crucial part of the recognition process
+%   as such, to describe which is the purpose of this chapter
 
-  It would be off purpose, if the radical or character recognition process 
-  would be described, too.
-  It would be off purpose, if the stroke recognition process would not be 
-  layed out in its entirety.
+%   It would be off purpose, if the radical or character recognition process 
+%   would be described, too.
+%   It would be off purpose, if the stroke recognition process would not be 
+%   layed out in its entirety.
 
-- What goes into this section?
-  The main content of this section is the details of the stroke recognition
-  process. The question how it is done is central and crucial.
+% - What goes into this section?
+%   The main content of this section is the details of the stroke recognition
+%   process. The question how it is done is central and crucial.
 
-  * if describing a problem: why is the problem relevant.
-    stroke recognition is not relevant as such, it becomes relevant because
-    of the recognition approach chosen, which is similar to the one of CITE
+%   * if describing a problem: why is the problem relevant.
+%     stroke recognition is not relevant as such, it becomes relevant because
+%     of the recognition approach chosen, which is similar to the one of CITE
 
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    there are alternatives, many of which are possible. mathematical methods 
-    and formats. since roughly following \shortciteANP{Nakagawa2008}'s
-    \citeyear{Nakagawa2008} approach - the discussion of the different 
-    approaches can be left to the handwriting recognition section and the 
-    literature, however - I needed to come up with a 'good mix' of 
-    recognition quality and the possibility to extract detailed knowledge 
-    from the recognitiont process.
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
+%     there are alternatives, many of which are possible. mathematical methods 
+%     and formats. since roughly following \shortciteANP{Nakagawa2008}'s
+%     \citeyear{Nakagawa2008} approach - the discussion of the different 
+%     approaches can be left to the handwriting recognition section and the 
+%     literature, however - I needed to come up with a 'good mix' of 
+%     recognition quality and the possibility to extract detailed knowledge 
+%     from the recognitiont process.
      
-    what made it the best choice? 
-    certainly not the lacking of alternatives, but the mix between 
-    possibilities to programmatically interact with the recognition process
-    and performance of the process.
-    see - main section! not too much repetition.
+%     what made it the best choice? 
+%     certainly not the lacking of alternatives, but the mix between 
+%     possibilities to programmatically interact with the recognition process
+%     and performance of the process.
+%     see - main section! not too much repetition.
 
-    was it the optimal solution?
+%     was it the optimal solution?
 
-    given the circumstances - yes, because it fulfilled the criteria 
-    (to be layed out)
-    from a pure HWR perspective - no, sinces other systems perform better on the
-    pure handwriting task.
-    from a hwr in a learning environment perspective - yes, because this
-    system gives us the ability to accompany the recognition process in detail
+%     given the circumstances - yes, because it fulfilled the criteria 
+%     (to be layed out)
+%     from a pure HWR perspective - no, sinces other systems perform better on the
+%     pure handwriting task.
+%     from a hwr in a learning environment perspective - yes, because this
+%     system gives us the ability to accompany the recognition process in detail
     
 
-- How will this section be structured and organised?
-  The organisational structure of the section will contain
+% - How will this section be structured and organised?
+%   The organisational structure of the section will contain
 
-  1. from the captured point lists to something cooler, what are we actually
-     doing? from point to 'stroke'.
+%   1. from the captured point lists to something cooler, what are we actually
+%      doing? from point to 'stroke'.
 
-  2. 'normalisation', including 'boxing' and then 'scaling'
+%   2. 'normalisation', including 'boxing' and then 'scaling'
 
-  3. curve handling. what are we doing at the edgy points?
+%   3. curve handling. what are we doing at the edgy points?
 
-  4. alternative solution: time warping. doesn't need anything of the
-     abovementioned cool stuff, just one alorithm.
-     show algorithm and give a rough, rough, rough explanation,
-     maybe even without algorithm and point to papers that explain DTW.
+%   4. alternative solution: time warping. doesn't need anything of the
+%      abovementioned cool stuff, just one alorithm.
+%      show algorithm and give a rough, rough, rough explanation,
+%      maybe even without algorithm and point to papers that explain DTW.
 
-- In what style will it be written?
-  The style of writing will be technical and mathematical.
-  if something is calculated, show maths behind rather than algorithm.
+% - In what style will it be written?
+%   The style of writing will be technical and mathematical.
+%   if something is calculated, show maths behind rather than algorithm.
 
-- Next action - what to write first?
-  The next part to write is the detailed content requirements of each subsection.
+% - Next action - what to write first?
+%   The next part to write is the detailed content requirements of each subsection.
 
-xxx: see santosh2009 for mathematical stuff: nice description of what I'm doing
+% xxx: see santosh2009 for mathematical stuff: nice description of what I'm doing
 
 \subsection{Advanced Point Lists}
 \label{sec:hwre:advancedpointlists}
@@ -443,163 +534,163 @@ however, what about 3D time warping?
 \section{Radical Recognition Process}
 \label{sec:hwre:radicalrecognitionprocess}
 
-- Why this section? 
-  The purpose of this section is to explain the Radical recognition process in
-  detail. It is a crucial part of the structural recognition process.
-  Therefore the purpose is evident - see purpose of chapter.
+% - Why this section? 
+%   The purpose of this section is to explain the Radical recognition process in
+%   detail. It is a crucial part of the structural recognition process.
+%   Therefore the purpose is evident - see purpose of chapter.
 
-  It would be off purpose, if there'd be too much around,
-  focus on the RRP only, nothing around.
+%   It would be off purpose, if there'd be too much around,
+%   focus on the RRP only, nothing around.
 
-- What goes into this section?
-  The main content of this section is the radical recognition.
-  That contains how the model is matched to the input.
-  Incrementality of recognition, using one stroke, two strokes,
-  three strokes and so on...
+% - What goes into this section?
+%   The main content of this section is the radical recognition.
+%   That contains how the model is matched to the input.
+%   Incrementality of recognition, using one stroke, two strokes,
+%   three strokes and so on...
 
-  * if describing a problem: why is the problem relevant.
-    it is a part of the structural recognition process!
+%   * if describing a problem: why is the problem relevant.
+%     it is a part of the structural recognition process!
 
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    again - part of the structural recognition process that allows for
-    interaction with the user concerning error recognition
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
+%     again - part of the structural recognition process that allows for
+%     interaction with the user concerning error recognition
 
-    what made it the best choice? was it the optimal solution?
-    here, simply the lacking of alternatives. if the recognition process
-    does not distinguish between 'shapes' and 'radicals' the error
-    handling engine would not be able to inform the user.
-    (xxx: turn this one around into a positive sentence. 
-    only through distinguishing... :xxx)
+%     what made it the best choice? was it the optimal solution?
+%     here, simply the lacking of alternatives. if the recognition process
+%     does not distinguish between 'shapes' and 'radicals' the error
+%     handling engine would not be able to inform the user.
+%     (xxx: turn this one around into a positive sentence. 
+%     only through distinguishing... :xxx)
     
-- How will this section be structured and organised?
-  The organisational structure of the section will be as follows:
+% - How will this section be structured and organised?
+%   The organisational structure of the section will be as follows:
 
-    1. Representation of a radical as a stroke sequence
-    2. stroke matching, reordered stroke matching in order to find 
-       alternative radicals or radical variants, depending on the 
-       number of strokes involved in the process: stroke number, stroke sequence.
+%     1. Representation of a radical as a stroke sequence
+%     2. stroke matching, reordered stroke matching in order to find 
+%        alternative radicals or radical variants, depending on the 
+%        number of strokes involved in the process: stroke number, stroke sequence.
 
-- In what style will it be written?
-  The style of writing will be formal, showing the general algorithm.
+% - In what style will it be written?
+%   The style of writing will be formal, showing the general algorithm.
 
-- Next action - what to write first?
-  The next part to write is the general algorithm as pseudocode.
+% - Next action - what to write first?
+%   The next part to write is the general algorithm as pseudocode.
 
-what's the similarity measure for
-radicals?
-show requirements.
-what alternatives were there to consider?
+% what's the similarity measure for
+% radicals?
+% show requirements.
+% what alternatives were there to consider?
 
-what about stroke number and stroke sequence?
-why deal with it? can be dealt with? 
-how? why this way, why not another way?
-generally, how is radical recognition done?
-show requirements.
-what alternatives were there to consider?
+% what about stroke number and stroke sequence?
+% why deal with it? can be dealt with? 
+% how? why this way, why not another way?
+% generally, how is radical recognition done?
+% show requirements.
+% what alternatives were there to consider?
 
 \section{Character Recognition Process}
 \label{sec:hwre:characterrecognitionprocess}
 
-- Why this section? 
-  The purpose of this section is to distinguish the radical recognition process
-  from the character recognition process.
+% - Why this section? 
+%   The purpose of this section is to distinguish the radical recognition process
+%   from the character recognition process.
   
-  It would be off purpose, if too much of the radical recognition process would
-  be repeaeted. 
+%   It would be off purpose, if too much of the radical recognition process would
+%   be repeaeted. 
 
-- What goes into this section?
-  The main content of this section is to show the actual character recognition
-  process based on the radical recognition. 
-  it should show the plan to find the appropriate characters, given a number of
-  alternative radicals.
-  s. 9/10 pixelwolke vs. reihenfolge
+% - What goes into this section?
+%   The main content of this section is to show the actual character recognition
+%   process based on the radical recognition. 
+%   it should show the plan to find the appropriate characters, given a number of
+%   alternative radicals.
+%   s. 9/10 pixelwolke vs. reihenfolge
 
-  * if describing a problem: why is the problem relevant.
-    the problem is not just relevant it is the final problem to solve
-    before solving the main problem of HWR.
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, 
-    many different alternatives - see discussion of HWR, however,
-    the approach chosen here was the structural one/
-    why was this solution chosen? 
-    because of the possibility to interact with the recognition process
-    and reading partial results.
-    what made it the best choice? was it the optimal solution?
-    the other HWR approaches do not allow for the partial structural recognition
-    with linguistic components of characters.
+%   * if describing a problem: why is the problem relevant.
+%     the problem is not just relevant it is the final problem to solve
+%     before solving the main problem of HWR.
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, 
+%     many different alternatives - see discussion of HWR, however,
+%     the approach chosen here was the structural one/
+%     why was this solution chosen? 
+%     because of the possibility to interact with the recognition process
+%     and reading partial results.
+%     what made it the best choice? was it the optimal solution?
+%     the other HWR approaches do not allow for the partial structural recognition
+%     with linguistic components of characters.
 
-- How will this section be structured and organised?
-  The organisational structure of the section will contain
-  1. description of the process from  radical list to a character.
-  2. what if there are alternative radical lists?
-  3. what would've been an alternative solution?
-     directly going from exactly one radical list to exactly one chararcter.
-     s. 9/10 pixelwolke vs. reihenfolge
+% - How will this section be structured and organised?
+%   The organisational structure of the section will contain
+%   1. description of the process from  radical list to a character.
+%   2. what if there are alternative radical lists?
+%   3. what would've been an alternative solution?
+%      directly going from exactly one radical list to exactly one chararcter.
+%      s. 9/10 pixelwolke vs. reihenfolge
 
-- In what style will it be written?
-  The style of writing will be technical
+% - In what style will it be written?
+%   The style of writing will be technical
 
-- Next action - what to write first?
-  The next part to write is to put the subparts into proper subsections.
+% - Next action - what to write first?
+%   The next part to write is to put the subparts into proper subsections.
 
-what's the similarity measure for
-characters?
-show requirements.
-s. 24 pseudocode
+% what's the similarity measure for
+% characters?
+% show requirements.
+% s. 24 pseudocode
 
 \section{Error Handling}
 \label{sec:hwre:errorhandling}
 
-- Why this section? 
-  The purpose of this section is to demonstrate a crucial novelty of this 
-  HWR engline, the error handling module.
+% - Why this section? 
+%   The purpose of this section is to demonstrate a crucial novelty of this 
+%   HWR engline, the error handling module.
   
-  It would be off purpose, if it had to explain too much of the recognition 
-  process as such - that should've been done in other chapters.
+%   It would be off purpose, if it had to explain too much of the recognition 
+%   process as such - that should've been done in other chapters.
   
-- What goes into this section?
-  The main content of this section is the 'way of an error'.
-  what happens if the character that is bound to be recognised just doesn't fit?
-  so there's an stroke that's not long enough and it's position is not
-  high enough within the character.
+% - What goes into this section?
+%   The main content of this section is the 'way of an error'.
+%   what happens if the character that is bound to be recognised just doesn't fit?
+%   so there's an stroke that's not long enough and it's position is not
+%   high enough within the character.
 
-  * if describing a problem: why is the problem relevant.
-    the problem is relevant for a learning application.
-    the purpose of the application is to teach the characters with an automated
-    recognition engine - one the central ''A.I.'' of this application
-    is the automated error recognition.
+%   * if describing a problem: why is the problem relevant.
+%     the problem is relevant for a learning application.
+%     the purpose of the application is to teach the characters with an automated
+%     recognition engine - one the central ''A.I.'' of this application
+%     is the automated error recognition.
 
-  * if describing a solution to a problem: 
-    what alternatives were there to solve it, 
+%   * if describing a solution to a problem: 
+%     what alternatives were there to solve it, 
     
-    the alternative to the chosen process was a less flexible approach.
-    just measuring the absolute match - in size, shape pixel by pixel
-    (again pixelwolke) would've been of a lower quality.
-    compare skritter - it does not provide the high quality feedback.
+%     the alternative to the chosen process was a less flexible approach.
+%     just measuring the absolute match - in size, shape pixel by pixel
+%     (again pixelwolke) would've been of a lower quality.
+%     compare skritter - it does not provide the high quality feedback.
 
-    why was this solution chosen? 
-    because the design of the application required high-quality feedback,
-    on a linguistic level.
+%     why was this solution chosen? 
+%     because the design of the application required high-quality feedback,
+%     on a linguistic level.
     
-    what made it the best choice? 
-    because it was the only one that met the requirement of providing 
-    high-qualitiy feed-back.
+%     what made it the best choice? 
+%     because it was the only one that met the requirement of providing 
+%     high-qualitiy feed-back.
     
-    was it the optimal solution?
-    who knows? - looks like it now, but evaluation will show.
-    depends on user experience. 
+%     was it the optimal solution?
+%     who knows? - looks like it now, but evaluation will show.
+%     depends on user experience. 
 
-- How will this section be structured and organised?
-  The organisational structure of the section 
-   1. error recognition
-   2. The Way of an error after recognition (error processing)
-   3. 
-- In what style will it be written?
-  The style of writing will be a technical description - probably no algorithms
+% - How will this section be structured and organised?
+%   The organisational structure of the section 
+%    1. error recognition
+%    2. The Way of an error after recognition (error processing)
+%    3. 
+% - In what style will it be written?
+%   The style of writing will be a technical description - probably no algorithms
 
-- Next action - what to write first?
-  The next part to write is to describe the error recognition.
+% - Next action - what to write first?
+%   The next part to write is to describe the error recognition.
 
 see section \ref{sec:concept:sourcesoferror} in chapter 
 \ref{chap:conceptualdesignofkanjicoach} for possible sources of error
