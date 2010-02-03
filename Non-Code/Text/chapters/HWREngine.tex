@@ -523,30 +523,114 @@ not introduce an H(n) definition for \emph{RADICAL} or \emph{GRAPHEM}.
 \subsubsection{The UNIPEN XML Format (\emph{UPX})}
 \label{sec:hwre:unipenformatupx}
 
-% Both:
-% \emph{expressiveness}
-% \emph{well-definedness}
-
-% Storage:
-% \emph{accessibility}
-% \emph{well-formedness}
-% \emph{parsabilty}
-
-% Run-time:
-% \emph{serialisability}
-
 The format \emph{Unipen for XML} (UPX) can be seen as an XML version of the
 UNIPEN format. The UNIPEN standard described in 
 section~(\ref{sec:hwre:standardunipenformat}) does not bear any resemblance
 with the InkML format shown in section~(\ref{sec:hwre:inkml}).
 Both formats fulfil a number of the requirements presented in 
 section~(\ref{sec:hwre:requirementsofdataformat}), but both formats fail to 
-fulfil them all.
+fulfil them all. The hwDataset format described in 
+section~(\ref{sec:hwre:hwdataset}) solves many of the problems UNIPEN faces,
+as it brings together a superset of the expressiveness of UNIPEN with
+the well-defined InkML format in a uniform way.
+According to~\shortciteANP{Agrawal2005} \citeyear{Agrawal2005} hwDataset
+was designed to support new data collection. The motivation to create another
+format came about from the fact that existing UNIPEN resources should be made
+available in a modern XML-based format that unifies InkML and UNIPEN.
+hwDataset comes very close to this aim, but does not necessarily account for a 
+conversion of UNIPEN resources. \shortciteANP{Agrawal2005} \citeyear{Agrawal2005}
+attempt to create a format that allows for a well-defined conversion from UNIPEN.
+The UNIPEN foundation considers UPX as the new de facto standard format for 
+storing annotated databases of online pen input~\shortcite{UnipenConsortium2006}.
 
-Especially the 
+UPX is a multi file format. It resembles hwDataset in the way that it comprises 
+both meta information and data annotations as well as pure InkML data in 
+separate files. Within the UPX \emph{hwData} element there can be any number
+of \emph{hLevel} elements in order to define the hierarchy of the trajectory.
+Listing~(\ref{lst:hLevelinupx}) shows an example 
+after~\shortcite{UnipenConsortium2006}. In the listing, the \emph{hLevel} tag
+is demonstrated. The word \emph{sexy} is described hierarchically.
+Firstly, in the outermost \emph{hLevel} tag, the \emph{level} attribute specifies
+a \emph{WORD}. Then the inner \emph{hLevel} elements specify a lower level
+of hierarchy, the characters. Note that not all characters are defined
+individualy in this example.
+The \emph{hwTraces} elements surround a number of \emph{traceView} elements that
+in turn point to the corresponding positions in an InkML file that holds the 
+pen trajectory. The meta data information that can be stored in UPX has a 
+similar expressive power as the hwDataset format.
+\shortciteANP{Madhvanath2006} \citeyear{Madhvanath2006} give a full format 
+description of the UPX format in their technical report.
 
+\begin{xmlcode}
+  \begin{lstlisting}[emph={hLevel},
+                     emphstyle={\color{blue}\textbf},
+                     emph={[2]hwTraces},
+                     emphstyle={[2]\color{green}\textbf},
+                     emph={[3]id,level},
+                     emphstyle={[3]\color{red}},
+                     caption={Demonstration of the \emph{hLevel} tag in UPX},
+                     label=lst:hLevelinupx]
+    <hLevel id="WORD_0" level="WORD">
+      <label id="WORD_0">
+        <alternate rank="1" score="1"/>sexy</alternate>
+      </label>
+      <hwTraces> 
+        <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
+                         from="22" 
+                         to="24"/>
+      </hwTraces>
 
-\shortcite{Agrawal2005}
+      <hLevel id="CHAR_0" level="CHAR">
+        <label id="CHAR_0">
+          <alternate rank="1" score="1"/>e</alternate>
+        </label>
+        <hwTraces> 
+          <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
+                           from="22:91" 
+                           to="22:161"/>
+        </hwTraces>
+      </hLevel>
+
+      <hLevel id="CHAR_1" level="CHAR">
+        <label id="CHAR_1">
+          <alternate rank="1" score="1"/>y</alternate>
+        </label>
+        <hwTraces> 
+          <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
+                           from="24:61" 
+                           to="24:162"/>
+        </hwTraces>
+      </hLevel>
+    </hLevel>
+  \end{lstlisting}
+\end{xmlcode}
+
+It seems as if the UPX format was able to fulfil all requirements.
+The UPX format fulfils the requirements of
+\begin{itemize}
+  \item \emph{Well-definedness}: As an XML structure providing IDs and names for 
+        each element and substructure, the format is well-defined.
+
+  \item \emph{Accessibility}: As an XML format it is both human and machine
+        readable and editable.
+
+  \item \emph{Well-formedness}: As an XML format with a defined scheme it can
+        be validated for its syntactic features.
+
+  \item \emph{Parsabilty}: As an XML format it can be easily parsed into a
+        tree structure.
+
+  \item \emph{Expressiveness}: The format provides the missing link between the
+        standard UNIPEN format and the InkML format. Additionally, it can 
+        describe hierarchical structures.
+\end{itemize}
+Since any XML format translates directly into a tree structure, the data 
+structure for the run-time does not need to be defined separately.
+Conversing pen trajectories in InkML format into a data stream has been 
+studied~\shortcite{Keshari2008}. These techniques however, are not necessary 
+for the proposed system. The data exchange is provided as technique available
+within the framework without any conversion (see 
+section~\ref{sec:arch:webservice}).
 
 \subsection{Data Format Description}
 \label{sec:hwre:dataformatdescription}
