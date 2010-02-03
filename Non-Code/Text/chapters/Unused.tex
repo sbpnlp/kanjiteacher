@@ -51,3 +51,22 @@
 %xxx - Next action - what to write first?
 %xxx   The next part to write is
 
+
+%Enter source code in latex documents:
+
+http://www.theofel.de/archives/2004/10/source_code_in.html
+
+\usepackage{listings} 
+\lstset{numbers=left, numberstyle=\tiny, numbersep=5pt} 
+\lstset{language=Perl} 
+
+1.   Als Code-Schnippsel im Flieﬂtext
+\lstinline|print "hello world"|
+2. Als eigenst‰ndigen Sourcecode
+\begin{lstlisting}[caption=Beispielcode]{Name}
+  print "hello world";
+\end{lstlisting}
+3. Einbetten einer externen Source-Code-Datei
+\lstinputlisting[frame=single,label=beispielcode,caption=Ein Beispiel]{beispiel.pl}
+
+

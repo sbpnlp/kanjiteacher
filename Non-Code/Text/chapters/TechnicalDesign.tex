@@ -337,7 +337,7 @@ of the system.
 A web service is a standard means of interoperation between different software
 systems, possibly running on different platforms and frameworks. The web service
 as such is an abstract definition of an interface, it must be implemented by a 
-concrete agent. This agent is a software that sends and receives 
+concrete agent. The agent itself then must be a software that sends and receives 
 messages~\shortcite{W3C2004}.
 The web service in the Kanji Coach system is not a web service in the strict 
 sense as intended by the~\shortciteANP{W3C2004}~\citeyear{W3C2004}. It does not 
@@ -355,7 +355,7 @@ The WCF uses a \emph{SOAP protocol} (originally:
 accessed from within the .NET framework, the concrete SOAP XML messages will 
 be created and unpacked into instances of \emph{Common Language Runtime} (CLR) 
 objects automatically by the WCF 
-framework~\shortcite{W3C1997,Kennedy2001,Smith2007}.
+framework~\shortcite{Kennedy2001,W3C2007,Smith2007}.
 
 \subsubsection{Recognition Module}
 \label{sec:arch:recognitionmodule}

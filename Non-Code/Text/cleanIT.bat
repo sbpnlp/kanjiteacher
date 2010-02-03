@@ -1,0 +1,12 @@
+del *.aux
+del *.bbl
+del *.blg
+del *.log
+del *.toc
+del *~
+del *.bak
+del *.mtc*
+del *.maf
+del *.lol
+del *.lot
+del *.lof

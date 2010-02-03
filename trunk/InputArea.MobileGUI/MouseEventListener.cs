@@ -146,6 +146,8 @@ namespace Kanji.InputArea.MobileGUI
 
         internal void MouseMove(MouseEventArgs e)
         {
+            Microsoft.Ink inky = new Microsoft.Ink();
+
             if (e.Button == MouseButtons.Left)
             {
                 ActiveTimes.Add(DateTime.Now);

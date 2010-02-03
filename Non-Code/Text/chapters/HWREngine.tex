@@ -200,21 +200,287 @@ passed to the main part of the HWR engine.
 %   Pointer to code sample in Appendix.
 
 % - Next action - what to write first?
-%   The next part to write is the actual subsection structure of this section.
+%   The next part to write is the actual subsection 
+%   structure of this section. DONE
+%   Think about requirements and write them down.
+
 
 \subsection{Requirements of the Data Format}
 \label{sec:hwre:requirementsofdataformat}
 
-show requirements!
+%show requirements!
+%think about differences between static data format and runtime data format.
 
+The data format for the recognition process underlies a number of requirements.
+Firstly, it has to be stated that two main data formats are necessary. 
+One for the actual recognition process as a data structure in the RAM.
+Secondly, there needs be a storage format for the data base that represents
+the handwriting of a character, radical, stroke, point list or simple point.
+The requirements for both data structures are:
+\begin{itemize}
+  \item \textbf{Expressiveness}: The data structure should be able to 
+        fully represent a complete character and all sub-elements that belong 
+        to it. That requirement is due to the structural approach to handwriting
+        recognition that is the basis for the error handling.
 
+  \item \textbf{Well-definedness}: The information structure should be 
+        unambigous, two different characters must have a different structure.
+\end{itemize}
+The storage structure has some additional requirements:
+\begin{itemize}
+  \item \textbf{Accessibility}: The data should be formatted in a way that a 
+        human editor can access the data, but it should also be prepared for 
+        programmatical access.
+  \item \textbf{Well-formedness}: There should be a way to check if the data is 
+        well-formed
+  \item \textbf{Parsabilty}: It should be possible to create the run-time data 
+        structure from the storage data structure.
+\end{itemize}
+The run-time data structure should in addition provide
+\begin{itemize}
+  \item \textbf{Serialisability}: It must be possible to create the storage 
+        data structure from the run-time data structure.
+\end{itemize}
+Any combination of two formats used should meet the above requirements, 
+at best in a uniform way. That is, any combination of storage format and 
+run-time format should ideally be compatible without the need of a complex
+data format converter.
 
-%xxx how much do I really have to say to the unipen format?
+%xxx how much do I really have to say about the unipen format?
 %xxx does it really not meet the requirements?
+
+% Both:
+% \emph{expressiveness}
+% \emph{well-definedness}
+
+% Storage:
+% \emph{accessibility}
+% \emph{well-formedness}
+% \emph{parsabilty}
+
+% Run-time:
+% \emph{serialisability}
+
+\subsection{Existing Handwriting Formats}
+\label{sec:hwre:existingformats}
+
+There are some existing formats for the description of handwriting. Their 
+intended use are handwriting recognition systems. The formats that will be
+reviewed here are InkML, NROFF and UPX. It will be analysed if one of these
+formats meets the above requirements in a sufficient way. This is unclear,
+because the formats have been developed mainly for alphabetic 
+scripts~\ref{Guyon1994,Unipen}.
+
+\subsubsection{InkML}
+\label{sec:hwre:inkml}
+
+InkML is a markup language for describing electronic pen trajectories. 
+Hence the name \emph{ink}. \emph{ML} stands for markup language, as is customary 
+for XML-based and SGML-based languages. The specification is currently in a 
+draft status, maintained by the World Wide Web Consortium 
+(W3C)~\shortcite{W3C2006}. 
+Judged from the viewpoint of the defined requirements, InkML is a candidate
+for the storage format. As an XML format it automatically fulfils the
+criterion of \emph{well-formedness}: Any piece of InkML code can be evaluated 
+with common techniques, since InkML has a well-defined scheme description.
+
+The main elements in the simplest form of InkML are the \textbf{<ink>} and 
+the \textbf{<trace>} element. These elements allow for a very simple form 
+of a pen trajectory, basically a flat list of point coordinates. The <ink> 
+element is the root element of any InkML code. The <trace> element holds
+point coordinates.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={trace},emphstyle=\textbf,caption={Demonstration of the \emph{trace} tag},label=lst:TraceTag]
+    <ink>
+      <trace>
+        282 45, 281 59, 284 73, 285 87, 287 101, 288 115, 290 129,
+        291 143, 294 157, 294 171, 294 185, 296 199, 300 213
+      </trace>
+    </ink>
+  \end{lstlisting}
+\end{xmlcode}
+Listing~(\ref{lst:TraceTag}) covers the general gist of the InkML format.
+Despite being an XML format, it is a flat format, each value pair, 
+separated by commas, represents one point in a coordinate notation.
+
+It is possible to add \emph{time} information to the trace. In order to do so,
+a time channel needs to be defined. Listing~(\ref{lst:TimeChannel}) shows the 
+definition and use of a time channel. The example shows a time channel whose 
+values for a given point are the relative to the timestamp refered to to by 
+\emph{\#ts001}~\shortcite{W3C2006}. Below there are two \emph{timestamp} tags.
+The first one has the ID \emph{ts001} and is referred to by both the
+time channel and the second time stamp that defines a time offset to time stamp
+\emph{ts001} with the \emph{timeOffset} attribute.
+The possibility to define time channels enables the InkML format to hold 
+information about the time at which a sample point has been taken.
+This is useful for the recognition mechanism used in this application,
+because it compares point coordinates as well as time stamps.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={timestamp,channel},emphstyle=\textbf,caption={Demonstration of the \emph{time channel}},label=lst:TimeChannel]
+    <channel name="T" 
+             type="integer"
+             units="ms"
+             respectTo="#ts001"/>
+
+    <timestamp xml:id="ts001" 
+               time="1265122414000"/>
+    <timestamp xml:id="ts002" 
+               timeOffset="600000" 
+               timestampRef="#ts001"/>
+  \end{lstlisting}
+\end{xmlcode}
+The InkML data structure fulfills several of the requirements necessary for a 
+storage data structure. InkML is 
+\begin{itemize}
+  \item \emph{well-defined}: Any point sequence that has different coordinate
+        values than another point sequence can be distinguished from the other.
+        
+  \item \emph{accessible}: As an XML format it can be handled programmatically,
+        but is also human-readable and can be edited by a human with a simple
+        interface like a text editor.
+
+  \item \emph{well-formed}: As an XML format it can be validated according to 
+        it's specification.
+
+  \item \emph{parsabale}: As an XML format, InkML does not need to be parsed with
+        custom-made methods, since most modern high-level languages offer
+        an access method to XML tree structures.
+\end{itemize}
+However, InkML is lacking some \emph{expressiveness}. Only pen trajectories and
+their time stamps can be expressed in the InkML format. InkML is not designed 
+to hold any of the other information compulsory for the structural handwriting
+recognition. In the case of character recognition, it needs to be able to 
+account for more than coordinate points and time stamps. There needs to be a 
+way to encode structural information about the characters and sub-elements of 
+the characters. InkML does not to be a sufficient format for the given task.
+
+\subsubsection{The Microsoft Ink Serialized Format}
+\label{sec:hwre:msisfformat}
+
+The \emph{Ink Serialized Format} (ISF) format is owned by the 
+Microsoft Corporation. However, it is not a proprietary format, the 
+specification is freely available. Since the format is purely binary, 
+it can not meet one of the requirements for the storage data structure:
+It is not feasible for a human to read and write files in that format,
+therefore ISF does not provide the necessary 
+\emph{accessibility}~\shortcite{Microsoft2007}. The format can still be used 
+as a run-time data structure, if it meets the requested criteria.
+The requirement of \emph{serialisability} is generally met. A binary format 
+allows for fast and reliable programmatical access to the data, it can be stored
+in binary files. The problem that accrues from this type of serialisation
+is that the storage format, the format used in a file or database, would again 
+not be human-editable and therefore fail to meet the \emph{accessibility} 
+requirement. In order to provide a serialisation that results in a 
+human-readable format, a format converter would be needed. Another problem 
+originates from the ISF format specification: It accounts only for the 
+description of mouse coordinates or pen trajectories, but does not offer 
+any structures for linguistic information. It fails to meet the ideal, 
+a unified format for linguistic and graphic information, 
+as it is lacking some degree of \emph{expressiveness}.
+
+
+\subsubsection{The Standard UNIPEN Format}
+\label{sec:hwre:standardunipenformat}
+
+The standard UNIPEN format specification is a file format definition for a flat
+text file. It contains tags in dot-notation. For example the tag \emph{.COMMENT}
+means that the following free text should be ignored, the tag \emph{.KEYWORD} 
+is used to define a new keyword, while the tag \emph{RESERVED} states that
+the text that comes after that tag is a reserved word within the UNIPEN format.
+The format is self-defined with the three keywords above. Any new keyword is
+defined with \emph{.KEYWORD}~\shortcite{Guyon1994,Unipen}.
+
+As a data structure for the purpose of a handwriting recognition, UNIPEN can 
+serve as a storage format, which is the primary purpose for the existence of the
+format. The UNIPEN format accounts for both pen trajectories as well as 
+information about the characters that have been written.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={.COMMENT,.PEN_DOWN,.PEN_UP},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
+.COMMENT #################################################################### 
+.COORD   X Y
+
+.SEGMENT TEXT 235:0-297:9 OK "Kurosu Masaaki"
+.SEGMENT CHARACTER 235:0-255:9 OK  "JISx3975_'Kuro'"
+
+.PEN_DOWN 
+  486 -1456 
+  488 -1454 
+  490 -1452 
+  488 -1450 
+  488 -1450 
+  486 -1452 
+  480 -1456 
+  474 -1466 
+  464 -1480 
+  452 -1492 
+  440 -1506 
+  428 -1524
+.PEN_UP 
+  406 -1556 
+  394 -1574 
+  384 -1590 
+  374 -1602
+.PEN_DOWN 
+  \end{lstlisting}
+\end{xmlcode}
+Listing~(\ref{lst:unipen}) shows a short example for a UNIPEN data structure.
+The \emph{.COORD} tag defines the structure of the pen coordinates. 
+The \emph{.SEGMENT} tag with the \emph{TEXT} modifier informs about the
+full text of the next number of segments. The \emph{.SEGMENT} tag with the
+\emph{CHARACTER} modifier informs about the character that is represented
+with the sequence of pen coordinates. The other information given is the
+start and end position within the file and the character code in JIS encoding.
+The \emph{.PEN\_DOWN} tag can be understood as a flag. All pen coordinates 
+following this tag have been captured as \emph{pen down} coordinates.
+The tag \emph{.PEN\_UP} sets the opposite flag: The coordinates stated after 
+this tag were captured while the pen was not touching the writing surface.
+The last \emph{.PEN\_DOWN} tag is the beginning of a new coordinate sequence
+for the next stroke. From a requirements point of view the UNIPEN provides a
+high standard, as it meets a great number of requirements for the storage 
+structure. \\
+The UNIPEN format is:
+\begin{itemize}
+  \item partially \textbf{expressive}: UNIPEN can represent a complete character
+        and the pen trajectory along with it. It does however, not account for
+        capturing the time information. At a constant sample rate the time stamps
+        of the individual points could theoratically be calculated, 
+        if time stamp of the first point is encoded in the meta information. 
+        However, that solution is not optimal, because it needs constant
+        sampling, even between a \emph{pen-up} and a \emph{pen-down} event.
+        There are input devices that do not offer those coordinates and the 
+        recognition system presented here does not rely on them for that reason.
+        The examples given are encoded in JIS, but it seems possible and feasible
+        to use the format with unicode encoding.
+
+  \item \textbf{well-defined}: The UNIPEN is unambigous, two different 
+        characters do have a different data structure, because the JIS code 
+        can serve as an ID.
+
+  \item \textbf{accessibile}: The data resides in flat text files, designed for 
+        human editing. It is accessble programmatically, too, but has a weakness
+        on that requirement compared to an XML-based format.
+
+  \item \textbf{parsable}: The flat file format can be parsed easily. Due to its
+        procedural nature it is also possible to create a run-time data structure
+        that is conceptually based on the storage structure and therefore
+        serialisable.
+\end{itemize}
+The main weakness of the flat format file is the lack of \emph{well-formedness}.
+There is no automatic way to check a document against a predefined format 
+specification. It can not be assessed if a file is well-formed.
+Additionally, the expressive power of the UNIPEN format would be seriously 
+challenged if it should provide for sub-structures of characters.
+In order to do so, it would be necessary to create new tag definitions for the 
+Radicals of the Kanji. Therefore, it can be concluded that the standard UNIPEN 
+format is not suitable for the task given. 
+
+\subsubsection{The UNIPEN Format \emph{UPX}}
+\label{sec:hwre:unipenformatupx}
+
+\shortcite{Agrawal2005,Unipen}
 
 \subsection{Data Format Description}
 \label{sec:hwre:dataformatdescription}
-
 
   A general description of the XML format - why it was used that way,
   given the requirements
@@ -242,19 +508,6 @@ show requirements!
 
 \subsubsection{Character Data Format}
 \label{sec:hwre:characterdataformat}
-
-
-\subsection{Alternative Formats}
-\label{sec:hwre:alternativeformats}
-
-  as opposed to
-  other possible formats like unipen and inkml.
-
-\subsubsection{InkML}
-\label{sec:hwre:inkml}
-
-\subsubsection{The UNIPEN Format}
-\label{sec:hwre:unipenformat}
 
 \section{Database}
 \label{sec:hwre:database}
