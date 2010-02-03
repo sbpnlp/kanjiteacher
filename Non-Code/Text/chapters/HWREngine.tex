@@ -265,11 +265,45 @@ data format converter.
 \label{sec:hwre:existingformats}
 
 There are some existing formats for the description of handwriting. Their 
-intended use are handwriting recognition systems. The formats that will be
-reviewed here are InkML, NROFF and UPX. It will be analysed if one of these
-formats meets the above requirements in a sufficient way. This is unclear,
-because the formats have been developed mainly for alphabetic 
-scripts~\ref{Guyon1994,Unipen}.
+intended use is for handwriting recognition systems. The formats that will be
+reviewed in this section are the \emph{Microsoft ISF} format in 
+section~(\ref{sec:hwre:msisfformat}), which is a binary format.
+The other formats are text based and human-readable. In this short review,
+the formats will be checked against the requirements defined in 
+section~(\ref{sec:hwre:requirementsofdataformat}). We will consider 
+\emph{InkML} in section~(\ref{sec:hwre:inkml}), 
+\emph{UNIPEN} in section~(\ref{sec:hwre:standardunipenformat}), 
+\emph{hwDataset} in section~(\ref{sec:hwre:hwdataset}) and 
+\emph{UPX} in section~(\ref{sec:hwre:unipenformatupx}). 
+The central question is, if one of these formats meets the above requirements in 
+a sufficient way. This is unclear, because the most of the formats have been 
+originally developed mainly for alphabetic scripts or for usage scenarios 
+different from the one proposed in this chapter.
+
+\subsubsection{The Microsoft Ink Serialized Format (\emph{ISF})}
+\label{sec:hwre:msisfformat}
+
+The \emph{Ink Serialized Format} (ISF) format is owned by the 
+Microsoft Corporation. However, it is not a proprietary format, the 
+specification is freely available. Since the format is purely binary, 
+it can not meet one of the requirements for the storage data structure:
+It is not feasible for a human to read and write files in that format,
+therefore ISF does not provide the necessary 
+\emph{accessibility}~\shortcite{Microsoft2007}. The format could still be used 
+as a run-time data structure, if it meets the requested criteria.
+The requirement of \emph{serialisability} is generally met. A binary format 
+allows for fast and reliable programmatical access to the data, it can be stored
+in binary files on a data storage medium. The problem that accrues from this 
+type of serialisation is that the storage format, the format used in a file or 
+database, would again not be human-editable and therefore fail to meet the 
+\emph{accessibility} requirement. 
+In order to provide a serialisation that results in a human-readable format, 
+a format converter would be needed. Another problem originates from the 
+ISF format specification: \\
+It accounts only for the description of mouse coordinates or pen trajectories, 
+but does not offer any structures for linguistic information. 
+It fails to meet the ideal, a unified format for linguistic and graphic 
+information, as it is lacking some degree of \emph{expressiveness}.
 
 \subsubsection{InkML}
 \label{sec:hwre:inkml}
@@ -354,31 +388,6 @@ account for more than coordinate points and time stamps. There needs to be a
 way to encode structural information about the characters and sub-elements of 
 the characters. InkML does not to be a sufficient format for the given task.
 
-\subsubsection{The Microsoft Ink Serialized Format}
-\label{sec:hwre:msisfformat}
-
-The \emph{Ink Serialized Format} (ISF) format is owned by the 
-Microsoft Corporation. However, it is not a proprietary format, the 
-specification is freely available. Since the format is purely binary, 
-it can not meet one of the requirements for the storage data structure:
-It is not feasible for a human to read and write files in that format,
-therefore ISF does not provide the necessary 
-\emph{accessibility}~\shortcite{Microsoft2007}. The format can still be used 
-as a run-time data structure, if it meets the requested criteria.
-The requirement of \emph{serialisability} is generally met. A binary format 
-allows for fast and reliable programmatical access to the data, it can be stored
-in binary files. The problem that accrues from this type of serialisation
-is that the storage format, the format used in a file or database, would again 
-not be human-editable and therefore fail to meet the \emph{accessibility} 
-requirement. In order to provide a serialisation that results in a 
-human-readable format, a format converter would be needed. Another problem 
-originates from the ISF format specification: It accounts only for the 
-description of mouse coordinates or pen trajectories, but does not offer 
-any structures for linguistic information. It fails to meet the ideal, 
-a unified format for linguistic and graphic information, 
-as it is lacking some degree of \emph{expressiveness}.
-
-
 \subsubsection{The Standard UNIPEN Format}
 \label{sec:hwre:standardunipenformat}
 
@@ -394,8 +403,8 @@ As a data structure for the purpose of a handwriting recognition, UNIPEN can
 serve as a storage format, which is the primary purpose for the existence of the
 format. The UNIPEN format accounts for both pen trajectories as well as 
 information about the characters that have been written.
-\begin{xmlcode}
-  \begin{lstlisting}[emph={.COMMENT,.PEN_DOWN,.PEN_UP},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
+\begin{texcode}
+  \begin{lstlisting}[emph={COMMENT,COORD,SEGMENT},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
 .COMMENT #################################################################### 
 .COORD   X Y
 
@@ -422,8 +431,9 @@ information about the characters that have been written.
   374 -1602
 .PEN_DOWN 
   \end{lstlisting}
-\end{xmlcode}
-Listing~(\ref{lst:unipen}) shows a short example for a UNIPEN data structure.
+\end{texcode}
+Listing~(\ref{lst:unipen}) is an excerpt from a data file created 
+by~\shortcite{Unipen}. It shows an example of a UNIPEN data structure.
 The \emph{.COORD} tag defines the structure of the pen coordinates. 
 The \emph{.SEGMENT} tag with the \emph{TEXT} modifier informs about the
 full text of the next number of segments. The \emph{.SEGMENT} tag with the
@@ -471,13 +481,72 @@ specification. It can not be assessed if a file is well-formed.
 Additionally, the expressive power of the UNIPEN format would be seriously 
 challenged if it should provide for sub-structures of characters.
 In order to do so, it would be necessary to create new tag definitions for the 
-Radicals of the Kanji. Therefore, it can be concluded that the standard UNIPEN 
-format is not suitable for the task given. 
+Radicals of the Kanji. \shortciteANP{Agrawal2005} \citeyear{Agrawal2005} 
+describe some more shortcomings of the UNIPEN format. It can be concluded that 
+the standard UNIPEN format is not suitable for the task given. 
 
-\subsubsection{The UNIPEN Format \emph{UPX}}
+\subsubsection{Handwriting Dataset (\emph{hwDataset})}
+\label{sec:hwre:hwdataset}
+
+The \emph{Handwriting Dataset} (hwDataset) is an XML format that is a complement
+to InkML. It is inspired by the UNIPEN format. The \emph{hwDataset} format 
+attempts to close the gap between pure ink data and the annotations that are 
+needed for handwriting recognition~\shortcite{Bhaskarabhatla2004}. 
+The format contains three main parts. The \emph{datasetInfo}, 
+the \emph{datasetDefs} and the \emph{hwData}. The datasetInfo element holds
+any metadata, like \emph{name}, \emph{category} and the like.
+The dataSetDefs encompasses information about \emph{data sources}, different
+\emph{writers} and their features like \emph{handedness}, \emph{gender}, 
+\emph{age}. The \emph{hwData} element in the XML code organises the 
+handwriting data hiearchically. Each hierarchy level contains one or 
+more \emph{hwTrace} elements. The hwTrace element refers to an InkML file, 
+containing the actual handwriting data. A detailed description of the hwDataset 
+format can be found in~\shortcite{Bhaskarabhatla2004}. 
+
+The format provides an XML scheme description and thus meets the 
+\emph{well-formedness} requirement. It is \emph{well-defined}, 
+because it accounts for unique structures. The \emph{parsabilty} is not an 
+issue for any XML format, since methods for accessing XML trees are provided 
+by modern programming libraries.
+The \emph{accessibility} is provided, the format has a clearly defined structure
+that can easily be understood by humans.
+The hwDataset format can structure many desirable information for the handwriting
+learning system proposed in this chapter. 
+From an \emph{expressiveness} viewpoint it can create substructures for 
+different parts of a sequence of pen trajectories. The \emph{hierarchy level} (H)
+of a trace accounts for the expressive power necessary. The H(n) elements 
+of the hwData elements are designed to hold meaningful names like 
+\emph{PARAGRAPH} or \emph{WORD}. It may be possible to use the format even to 
+denote different parts of the same character. There is no reason why one should
+not introduce an H(n) definition for \emph{RADICAL} or \emph{GRAPHEM}.
+
+\subsubsection{The UNIPEN XML Format (\emph{UPX})}
 \label{sec:hwre:unipenformatupx}
 
-\shortcite{Agrawal2005,Unipen}
+% Both:
+% \emph{expressiveness}
+% \emph{well-definedness}
+
+% Storage:
+% \emph{accessibility}
+% \emph{well-formedness}
+% \emph{parsabilty}
+
+% Run-time:
+% \emph{serialisability}
+
+The format \emph{Unipen for XML} (UPX) can be seen as an XML version of the
+UNIPEN format. The UNIPEN standard described in 
+section~(\ref{sec:hwre:standardunipenformat}) does not bear any resemblance
+with the InkML format shown in section~(\ref{sec:hwre:inkml}).
+Both formats fulfil a number of the requirements presented in 
+section~(\ref{sec:hwre:requirementsofdataformat}), but both formats fail to 
+fulfil them all.
+
+Especially the 
+
+
+\shortcite{Agrawal2005}
 
 \subsection{Data Format Description}
 \label{sec:hwre:dataformatdescription}
