@@ -1,0 +1,292 @@
+Wahrscheinlich sind die Codes hier URL-Encodes fuer UTF8-Zeichen.
+Bisher konnte ich aber nicht festtellen, dass etwa das Zeichen mit der
+Codierung C6F3 dem Radikal 二 entspricht.
+Nochmal pruefen:
+http://de.wikipedia.org/wiki/URL_Encoding#Nicht-ASCII-Zeichen
+http://www.tamasoft.co.jp/en/general-info/unicode.html
+
+
+
+STROKES: 1
+
+一 => %B0%EC
+｜ => %A1%C3
+丶 => %D0%A6
+ノ => %A5%CE
+乙 => %B2%B5
+亅 => %D0%AD
+
+STROKES: 2
+
+二 => %C6%F3
+亠 => %D0%B5
+人 => %BF%CD
+http://www.csse.monash.edu.au/~jwb/gif212/js01.png => %B2%BD
+http://www.csse.monash.edu.au/~jwb/gif212/js02.png => %D0%A4
+儿 => %D1%B9
+入 => %C6%FE
+ハ => %A5%CF
+http://www.csse.monash.edu.au/~jwb/gif212/js07.png => %D6%F5
+冂 => %D1%C4
+冖 => %D1%CC
+冫 => %D1%D2
+几 => %D1%DC
+凵 => %D1%E1
+刀 => %C5%E1
+http://www.csse.monash.edu.au/~jwb/gif212/3331.png => %B4%A2
+力 => %CE%CF
+勹 => %D2%B1
+匕 => %D2%B8
+匚 => %D2%B9
+十 => %BD%BD
+卜 => %CB%C
+卩 => %D2%C7
+厂 => %D2%CC
+厶 => %D2%D3
+又 => %CB%F4
+マ => %A5%DE
+九 => %B6%E5
+ユ => %A5%E6
+乃 => %C7%B5
+
+STROKES: 3
+http://www.csse.monash.edu.au/~jwb/gif212/6134.png => %B9%FE
+口 => %B8%FD
+囗 => %D3%F8
+土 => %C5%DA
+士 => %BB%CE
+夂 => %D4%E9
+夕 => %CD%BC
+大 => %C2%E7
+女 => %BD%F7
+子 => %BB%D2
+宀 => %D5%DF
+寸 => %C0%A3
+小 => %BE%AE
+http://www.csse.monash.edu.au/~jwb/gif212/js04.png => %BE%B0
+尢 => %D5%F7
+尸 => %D5%F9
+屮 => %D6%A5
+山 => %BB%B3
+川 => %C0%EE
+巛 => %D6%DF
+工 => %B9%A9
+已 => %D6%E1
+巾 => %B6%D2
+干 => %B4%B3
+幺 => %D6%F6
+广 => %D6%F8
+廴 => %D7%AE
+廾 => %D7%B0
+弋 => %D7%B5
+弓 => %B5%DD
+ヨ => %A5%E8
+彑 => %D7%C0
+彡 => %D7%C4
+彳 => %D7%C6
+http://www.csse.monash.edu.au/~jwb/gif212/3D38.png => %CB%BB
+http://www.csse.monash.edu.au/~jwb/gif212/3F37.png => %D9%A9
+http://www.csse.monash.edu.au/~jwb/gif212/4653.png => %BD%C1
+http://www.csse.monash.edu.au/~jwb/gif212/4A6D.png => %C8%C8
+http://www.csse.monash.edu.au/~jwb/gif212/js03.png => %E7%E8
+邦 => %CB%AE
+阡 => %EF%F4
+也 => %CC%E9
+亡 => %CB%B4
+及 => %B5%DA
+久 => %B5%D7
+
+STROKES: 4
+http://www.csse.monash.edu.au/~jwb/gif212/js05.png => %CF%B7
+心 => %BF%B4
+戈 => %D8%F9
+戸 => %B8%CD
+手 => %BC%EA
+支 => %BB%D9
+攵 => %DA%BE
+文 => %CA%B8
+斗 => %C5%CD
+斤 => %B6%D4
+方 => %CA%FD
+无 => %DA%DB
+日 => %C6%FC
+曰 => %DB%A9
+月 => %B7%EE
+木 => %CC%DA
+欠 => %B7%E7
+止 => %BB%DF
+歹 => %DD%C6
+殳 => %DD%D5
+比 => %C8%E6
+毛 => %CC%D3
+氏 => %BB%E1
+气 => %DD%E3
+水 => %BF%E5
+火 => %B2%D0
+http://www.csse.monash.edu.au/~jwb/gif212/4944.png => %DB%BF
+爪 => %C4%DE
+父 => %C9%E3
+爻 => %E0%AB
+爿 => %E0%AD
+片 => %CA%D2
+牛 => %B5%ED
+犬 => %B8%A4
+http://www.csse.monash.edu.au/~jwb/gif212/504B.png => %CE%E9
+王 => %B2%A6
+元 => %B8%B5
+井 => %B0%E6
+勿 => %CC%DE
+尤 => %CC%E0
+五 => %B8%DE
+屯 => %C6%D6
+巴 => %C7%C3
+毋 => %DD%D9
+
+STROKES: 5
+玄 => %B8%BC
+瓦 => %B4%A4
+甘 => %B4%C5
+生 => %C0%B8
+用 => %CD%D1
+田 => %C5%C4
+疋 => %C9%A5
+http://www.csse.monash.edu.au/~jwb/gif212/4D46.png => %E1%CB
+癶 => %E2%A2
+白 => %C7%F2
+皮 => %C8%E9
+皿 => %BB%AE
+目 => %CC%DC
+矛 => %CC%B7
+矢 => %CC%F0
+石 => %C0%D0
+示 => %BC%A8
+http://www.csse.monash.edu.au/~jwb/gif212/5072.png => %E3%BB
+禾 => %B2%D3
+穴 => %B7%EA
+立 => %CE%A9
+http://www.csse.monash.edu.au/~jwb/gif212/5C33.png => %BD%E9
+世 => %C0%A4
+巨 => %B5%F0
+冊 => %BA%FD
+母 => %CA%EC
+http://www.csse.monash.edu.au/~jwb/gif212/5474.png => %C7%E3
+牙 => %B2%E7
+
+STROKES: 6
+瓜 => %B1%BB
+竹 => %C3%DD
+米 => %CA%C6
+糸 => %BB%E5
+缶 => %B4%CC
+羊 => %CD%D3
+羽 => %B1%A9
+而 => %BC%A9
+耒 => %E6%D0
+耳 => %BC%AA
+聿 => %E6%E6
+肉 => %C6%F9
+自 => %BC%AB
+至 => %BB%EA
+臼 => %B1%B1
+舌 => %C0%E5
+舟 => %BD%AE
+艮 => %BA%B1
+色 => %BF%A7
+虍 => %E9%C8
+虫 => %C3%EE
+血 => %B7%EC
+行 => %B9%D4
+衣 => %B0%E1
+西 => %C0%BE
+
+STROKES: 7
+臣 => %BF%C3
+見 => %B8%AB
+角 => %B3%D1
+言 => %B8%C0
+谷 => %C3%AB
+豆 => %C6%A6
+豕 => %EC%B5
+豸 => %EC%B8
+貝 => %B3%AD
+赤 => %C0%D6
+走 => %C1%F6
+足 => %C2%AD
+身 => %BF%C8
+車 => %BC%D6
+辛 => %BF%C9
+辰 => %C3%A4
+酉 => %C6%D3
+釆 => %C8%D0
+里 => %CE%A4
+舛 => %C1%A4
+麦 => %C7%FE
+
+STROKES: 8
+金 => %B6%E2
+長 => %C4%B9
+門 => %CC%E7
+隶 => %F0%B0
+隹 => %F0%B2
+雨 => %B1%AB
+青 => %C0%C4
+非 => %C8%F3
+奄 => %B1%E2
+岡 => %B2%AC
+免 => %CC%C8
+斉 => %C0%C6
+
+STROKES: 9
+面 => %CC%CC
+革 => %B3%D7
+韭 => %F0%EC
+音 => %B2%BB
+頁 => %CA%C7
+風 => %C9%F7
+飛 => %C8%F4
+食 => %BF%A9
+首 => %BC%F3
+香 => %B9%E1
+品 => %C9%CA
+
+STROKES: 10
+馬 => %C7%CF
+骨 => %B9%FC
+高 => %B9%E2
+髟 => %F1%F5
+鬥 => %F2%A8
+鬯 => %F2%AE
+鬲 => %F2%AF
+鬼 => %B5%B4
+竜 => %CE%B5
+韋 => %F0%EA
+
+STROKES: 11
+魚 => %B5%FB
+鳥 => %C4%BB
+鹵 => %F3%C3
+鹿 => %BC%AF
+麻 => %CB%E3
+亀 => %B5%B5
+http://www.csse.monash.edu.au/~jwb/gif212/3557.png => %C5%A9
+黄 => %B2%AB
+黒 => %B9%F5
+
+STROKES: 12
+黍 => %B5%D0
+黹 => %F3%E3
+無 => %CC%B5
+歯 => %BB%F5
+
+STROKES: 13
+黽 => %F3%E6
+鼎 => %C5%A4
+鼓 => %B8%DD
+鼠 => %C1%CD
+
+STROKES: 14
+鼻 => %C9%A1
+齊 => %F3%EE
+
+STROKES: 17
+龠 => %F3%FE

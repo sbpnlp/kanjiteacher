@@ -350,7 +350,13 @@ information about the time at which a sample point has been taken.
 This is useful for the recognition mechanism used in this application,
 because it compares point coordinates as well as time stamps.
 \begin{xmlcode}
-  \begin{lstlisting}[emph={timestamp,channel},emphstyle=\textbf,caption={Demonstration of the \emph{time channel}},label=lst:TimeChannel]
+  \begin{lstlisting}[emph={timestamp,channel},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]name,type,units,respectTo,time,
+                              timeOffset,timestampRef},
+                     emphstyle={[2]\color{red}},
+                     caption={Demonstration of the \emph{time channel}},
+                     label=lst:TimeChannel]
     <channel name="T" 
              type="integer"
              units="ms"
@@ -562,12 +568,10 @@ similar expressive power as the hwDataset format.
 description of the UPX format in their technical report.
 
 \begin{xmlcode}
-  \begin{lstlisting}[emph={hLevel},
+  \begin{lstlisting}[emph={hLevel,hwTraces},
                      emphstyle={\color{blue}\textbf},
-                     emph={[2]hwTraces},
-                     emphstyle={[2]\color{green}\textbf},
-                     emph={[3]id,level},
-                     emphstyle={[3]\color{red}},
+                     emph={[2]id,level},
+                     emphstyle={[2]\color{red}},
                      caption={Demonstration of the \emph{hLevel} tag in UPX},
                      label=lst:hLevelinupx]
     <hLevel id="WORD_0" level="WORD">
@@ -635,29 +639,132 @@ section~\ref{sec:arch:webservice}).
 \subsection{Data Format Description}
 \label{sec:hwre:dataformatdescription}
 
-  A general description of the XML format - why it was used that way,
-  given the requirements
+  % A general description of the XML format - why it was used that way,
+  % given the requirements
 
-  data format of and representation of 
-  point, stroke, box, radical, character s. 20-23, 25f
+  % data format of and representation of 
+  % point, stroke, box, radical, character s. 20-23, 25f
 
-  show process of how I came to current data formats.
-  include character models 1-4 on pages. - however, not everything in one go,
-  but rather in the individual sections if possible.
-  in the end, a radical has its own format that is unchanged, even
-  if internal structure of a stroke is changed.
-  (unipen is only text based, inkml does not help here, but the system allows
-  for exchange of the custom format with those)
+  % show process of how I came to current data formats.
+  % include character models 1-4 on pages. - however, not everything in one go,
+  % but rather in the individual sections if possible.
+  % in the end, a radical has its own format that is unchanged, even
+  % if internal structure of a stroke is changed.
+  % (unipen is only text based, inkml does not help here, but the system allows
+  % for exchange of the custom format with those)
 
+The data format description could trivially be described with the UPX 
+description. In this case however, UPX needs to be adapted to the special needs.
+This section describes the adaption of UPX to the requirements of an on-line
+handwriting recognition for Kanji characters in a learning environment.
+The section describes both the file format and the run-time data structure.
 
 \subsubsection{Point Data Format}
 \label{sec:hwre:pointdataformat}
 
+In UPX, points are not represented directly, but in an outsourced InkML file,
+where they are part of the InkML standard pen trajectory definition. In InkML
+files, points are stored in traces as specified in the InkML format description.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={traceFormat,channel,timestamp},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]name,type,units,respectTo,id,time},
+                     emphstyle={[2]\color{red}},
+                     caption={Definition of the trace format},
+                     label=lst:traceformat]
+    <timestamp xml:id="ts001" 
+               time="1265122414000"/>
+    <traceFormat xml:id="kanjiStrokeTrace">
+      <channel name="X" type="decimal" />
+      <channel name="Y" type="decimal" />
+      <channel name="T" type="integer"
+                        units="ms"
+                        respectTo="#ts001" />
+    </traceFormat>
+  \end{lstlisting}
+\end{xmlcode}
+Listing~(\ref{lst:traceformat}) shows the trace format description as used in
+the system. The format consists of three channels that are given in ordered 
+sequence. There are no intermittent channels. The first two channels are \emph{X}
+and \emph{Y} for the pen coordinates. The third channel is \emph{T} for a time 
+stamp. The pen coordinates can be given as \emph{decimal} numbers, while the
+time stamp (in milliseconds) must be an \emph{integer}.
+The \emph{respectTo} attribute in the time channel indicates that all values
+must be interpreted as offsets to the time stamp with the id \emph{ts001}.
+
+An actual trace would then contain three values, each value triple separated by
+a comma. The trace format definition ensures the correct interpreation of the 
+values.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={trace,channel},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]name,type,units,respectTo,id},
+                     emphstyle={[2]\color{red}},
+                     caption={A sample trace},
+                     label=lst:traceinterpreation]
+    <trace id="id123abc">
+      45 76 0, 3 5 100, 4 -8 200, 4 -5 300,
+      9 -2 400, ...
+    </trace>
+  \end{lstlisting}
+\end{xmlcode}
+Listing~(\ref{lst:traceinterpreation}) shows a trace. Given the file contains
+the trace format definition shown in listing~(\ref{lst:traceformat}), the trace 
+in listing~(\ref{lst:traceinterpreation}) is interpreted in 
+table~(\ref{table:sampletraceinterpretation}). 
+
+\begin{table}[htbp]
+  \begin{tabular}{|l||l|l|l|p{200pt}|}
+    \hline
+    Trace & Channel X & Channel Y & Channel T & Comment \\
+    \hline
+    45 76 0 & 45 & 76  & 1265122414000 & The first trace initialises 
+                                         the values. The time stamp value is
+                                         read from timestamp \emph{ts001}. \\
+    \hline
+    3 5 100 & 48 & 81 &  1265122414100 & The delta values are added to the
+                                         existing data. \\
+    \hline
+    4 -8 200 & 52 & 73 &  1265122414200 & The time stamp values are relative to
+                                          \emph{ts001}, not to the last time 
+                                          stamp, unlike the pen coordinate 
+                                          deltas that are added to the current 
+                                          value trace by trace. \\
+    \hline
+    4 -5 300 & 56 & 68 &  1265122414300 & Negative values are treated as regular
+                                          delta values. \\
+    \hline
+    9 -2 400 & 65 & 66 &  1265122414400 & The values change as expected. \\
+    \hline
+  \end{tabular}
+\caption{Sample trace interpreation}
+\label{table:sampletraceinterpretation}
+\end{table}
+
+\paragraph{The run-time data structure} for a point holds the coordinate values 
+and an integer value for the time stamp. The conversion between the run-time 
+instance and the trace format is trivial and needs no description.
+
 \subsubsection{Stroke Data Format}
 \label{sec:hwre:strokedataformat}
 
+There is no explicit format for a stroke in the storage structure.
+A stroke is simply the trace between a pen-down event and the following pen-up
+event. All the points captured between form one stroke.
+Thus, in the InkML file format a stroke is simply a trace.
+If a greater number of strokes comes together, each one of them will be a trace
+and they can be groupe together as a tracegroup element in InkML.
+
+\paragraph{The run-time data structure} for a stroke is generated from a trace.
+The actual data structure is purely a list of point instances. 
+Any other (numerical) values are computed from the point list. 
+Section~(\ref{sec:hwre:strokerecognitionprocess}) goes into details of what 
+methods the data structure provides.
+
 \subsubsection{Radical Data Formant}
 \label{sec:hwre:radicaldataformat}
+
+
 
 \subsubsection{Character Data Format}
 \label{sec:hwre:characterdataformat}
