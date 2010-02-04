@@ -754,6 +754,34 @@ event. All the points captured between form one stroke.
 Thus, in the InkML file format a stroke is simply a trace.
 If a greater number of strokes comes together, each one of them will be a trace
 and they can be groupe together as a tracegroup element in InkML.
+It would be possible to create a separate level for strokes, as demonstrated
+in listing~(). However, since every \emph{hLevel} element for a stroke would 
+contain exactly one \emph{hwTrace} element, it seem redundant to do so.
+Listing~(\ref{lst:strokeasindividualelement}) shows a potential data structure
+for a stroke. As stated befere, this data structure redundant in the way, 
+that an \emph{hLevel} definition would contain only exactly one trace.
+xxx check this part for nonsense xxx yyy xxx yyy
+If a trace is interpreted as a stroke, the additional \emph{hLevel} for strokes
+becomes unnecessary.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
+                     emphstyle={[2]\color{red}},
+                     caption={A sample of how a stroke could be represented},
+                     label=lst:strokeasindividualelement]
+    <hLevel level="stroke" id="STROKE1">
+    <!-- The first stroke in this Radical of handwriting. -->
+      <label id="STROKE1label" labelSrcRef="labelref_DW" labelType="truth">
+        <alternate>[unicode value]</alternate>
+      </label>
+      <hwTraces>
+        <inkml:traceView traceRef="/example.inkml" from="12" to="12"/>
+      </hwTraces>
+    </hLevel>
+  \end{lstlisting}
+\end{xmlcode}
+
 
 \paragraph{The run-time data structure} for a stroke is generated from a trace.
 The actual data structure is purely a list of point instances. 
