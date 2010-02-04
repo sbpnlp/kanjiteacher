@@ -973,7 +973,44 @@ but not the UPX data structure.
 % - Next action - what to write first?
 %   The next part to write is to hash out the actual subsections.
 
-%
+\subsection{Database Organisation}
+\label{sec:hwre:databaseorganisation}
+
+The database used in the system consits of two parts. The first part is centered
+around handwriting information about characters and their substructures, 
+he second part is concerned with lexical information only.
+The \textbf{handwriting part} is a UPX file structure that holds character 
+descriptions, Kanji character unicode values, as well as Radical descriptions 
+and pointers to InkML files holding pen trajectories representing the
+data structures given in the UPX file.
+The \textbf{lexical part} is an XML file in a format described 
+by~\shortciteANP{Breen2004} \citeyear{Breen2004}. The XML file contains 
+lexical information about characters, such as their key Radicals, their Readings,
+and their translation into a number of languages.
+The handwriting part of the database has been discussed in 
+section~(\ref{sec:hwre:dataformatdescription}). The storage data structure layed
+out there is the structure used.
+The lexical part is provided\footnote{Kanjidict2 is freely available from \url{http://www.csse.monash.edu.au/~jwb/kanjidic2/}} in an XML text file.
+
+Listing~(\ref{lst:lexiconentryEAST}) shows a sample database entry of the 
+multi-index database created by~\shortciteANP{Breen2004} \citeyear{Breen2004}.
+The \emph{character} element is the root of an entry. The \emph{literal} tag 
+holds the digital form of the character. Under the \emph{codepoint} tag, 
+different code points can be stored, in the current version it is Unicode and 
+JIS0208 ~\shortcite{Unicode2000,JIS1997}. 
+The \emph{radical} element holds the number of the key radical of the character.
+In the current example for the character \cjk{東} the key radical is \cjk{木},
+which is number 75 in the classical Radical index.
+Miscellaneous information that may help a human finding the character in a 
+paper-based dictionary are stored in the \emph{misc} element.
+The file format provides room for the character index in different paper-based
+dictionaries and study books in the \emph{dic\_number} element. For example 
+the \emph{dic_ref} with the attribute \emph{dr_type="sh_kk"} holds the
+character index in ~\shortcite{Hadamitzky1995}. This information can be very
+useful for a learner when referring to study books. The \emph{reading\_meaning}
+element holds information about the pronunciation of the character and 
+translations into a number of different languages.
+
 
 
 \begin{xmlcode}
@@ -986,7 +1023,42 @@ but not the UPX data structure.
                    {chapters/codeSamples/EAST.xml}
 \end{xmlcode}
 
-Listing~(\ref{lst:lexiconentryEAST}) shows a test.
+
+
+
+
+\subsection{Alternative Database Structures}
+\label{sec:hwre:alternativedatabasestructures}
+
+The structure and organisation of the databases as it is now, seems the best 
+among several alternatives. 
+
+\subsubsection{Relational Database}
+\label{sec:hwre:relationaldatabase}
+
+discussion of alternatives: relational DB or only one flat file
+      two flat files are better, because of updates and other-language versions
+      of the jim breen lexicon. leave it unchanged! otherwise you'd need a
+      converter!
+
+
+The data sources used for the creation of the databases are two 
+technically independent data structures.
+The database entries - characters and their substructures are only connected 
+via some conceptual ideas about character structure and via a character code.
+Having independent data structures that allow for separation of data
+suggests using a relational database on the technical level.
+
+\subsubsection{A Unified File Format}
+\label{sec:hwre:aunifiedfileformat}
+
+
+to put it short: a unified file format would've been total crap.
+firstly, the UPX couldn't be used any more,
+secondly, other language versions and updates of the jim breen 
+dict couldn't be used any more.
+in order to use a unified file format, there would have to be a 
+unificication process, every time one 
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
