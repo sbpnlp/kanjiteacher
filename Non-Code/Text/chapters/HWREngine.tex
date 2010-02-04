@@ -762,13 +762,14 @@ for a stroke. As stated befere, this data structure is redundant in the way,
 that an \emph{hLevel} definition would contain only exactly one trace.
 If a trace is interpreted as a stroke, the additional \emph{hLevel} for strokes
 becomes unnecessary.
-xxx check this part for nonsense xxx yyy xxx yyy
+
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
                      emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
                      emphstyle={[2]\color{red}},
-                     caption={A sample of how a stroke could be represented},
+                     caption={An example of how a stroke could be 
+                              represented in UPX},
                      label=lst:strokeasindividualelement]
     <hLevel level="stroke" id="STROKE1">
     <!-- The first stroke in this Radical of handwriting. -->
@@ -783,36 +784,36 @@ xxx check this part for nonsense xxx yyy xxx yyy
 \end{xmlcode}
 
 \paragraph{The run-time data structure} for a stroke is generated from a trace.
-The actual data structure is purely a list of point instances. 
-Any other (numerical) values are computed from the point list. 
-Section~(\ref{sec:hwre:strokerecognitionprocess}) goes into details of what 
-methods the data structure provides.
+Despite not being represented in the storage structure, the run-time data
+structure for a stroke plays a crucial part in the recognition process.
+The actual data wihtin the structure is purely a list of point instances. 
+Any other numerical values are computed from the point list, with algorithms
+that are described in detail in 
+section~(\ref{sec:hwre:strokerecognitionprocess}).
 
-\subsubsection{Radical Data Formant}
+\subsubsection{Radical Data Format}
 \label{sec:hwre:radicaldataformat}
 
-The Radical data format is a data structure that works with the \emph{hLevel}
-element for description.
+The Radical data format is a data structure that works with the UPX \emph{hLevel}
+element for hierarchical description.
 Conceptually, a Radical is a hierarchical element in the composition of a Kanji
 character. With the UPX format specification in hand it is fairly 
 straightforward to define an appropriate data structure.
-Listing~(\ref{lst:radicaldataformat}) shows a UPX data structure for a radical
-of a Kanji. The Radical \cjk{木} consits of four strokes.
+Listing~(\ref{lst:radicaldataformat}) shows a UPX data structure for a Radical.
+The Radical \cjk{木} consists of four strokes.
 Since strokes are not represented explicitely in the data format,
-there are four \emph{traveView} elements under the \emph{hwTraces}.
-
-xxx check this part for nonsense xxx yyy xxx yyy
+there are four \emph{traceView} elements under the \emph{hwTraces} tag.
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
                      emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
                      emphstyle={[2]\color{red}},
-                     caption={A sample of how a stroke could be represented},
+                     caption={A Radical representation in UPX},
                      label=lst:radicaldataformat]
     <hLevel level="radical" id="RADICAL75">
     <!-- The first Radical in this Kanji character of handwriting. -->
       <label id="RADICAL75label" labelSrcRef="labelref_DW" labelType="truth">
-        <alternate>[unicode value, if applicable]</alternate>
+          <alternate>U+6728</alternate><-- Unicode value -->
       </label>
       <hwTraces>
         <inkml:traceView traceRef="/example.inkml" from="12" to="12"/>
@@ -824,10 +825,11 @@ xxx check this part for nonsense xxx yyy xxx yyy
   \end{lstlisting}
 \end{xmlcode}
 
-\paragraph{The run-time data structure} of a Radical is a collection of strokes.
-All values for recognition of a Radical are computed from the strokes
-by using different permutations of the strokes to match an entry from the
-database.
+\paragraph{The run-time data structure} of a Radical is a collection stroke instances.
+All values for recognition of a Radical are computed from the strokes instances
+by using different permutations of the strokes to match a database entry. A more
+detailed description of the Radical recognition process will be given in
+section~(\ref{sec:hwre:radicalrecognitionprocess}).
 
 \subsubsection{Character Data Format}
 \label{sec:hwre:characterdataformat}
@@ -835,30 +837,43 @@ database.
 The character data format is an ordered list of radicals, according to their
 standard sequence of writing within the character. In 
 listing~(\ref{lst:charaterdataformat}) the character \cjk{東} is shown.
-It consists of the radicals \cjk{日} and \cjk{木}. The structure is totally
-straightforward and exploits the advantages of the UPX format.
-The outermost \emph{hLevel} element is used for the character and additional
-descripitons, the two inner \emph{hLevel} elements are used for the two
-Radicals of that characters. Each \emph{traceView} in the Radicals represents
-a stroke. Thus, it can be seen that both Radicals constist of four strokes each.
-xxx check this part for nonsense xxx yyy xxx yyy
+It consists of the radicals \cjk{日} and \cjk{木}. The storage data structure 
+for characters in general is totally straightforward and exploits the 
+advantages of the UPX format.
+In the concrete example, the outermost \emph{hLevel} element is used for the 
+character and additional descripitons, the two inner \emph{hLevel} elements are 
+used for the two Radicals of that character. Each \emph{traceView} tag witihn 
+the Radicals represents a stroke. Thus, the data structure implicitely encodes
+the stroke number of a Radical. Here, both the Radicals \cjk{日} and \cjk{木}
+have four strokes each, the Kanji character \cjk{東} is comprised of 
+eight strokes in total.
+%xxx if you want to add a gfx of a stroke order there is one here:
+%http://en.wiktionary.org/wiki/%E6%9D%B1
+%however, the example is not great, since it is one of the rare cases,
+%where the stroke sequence is 'garbled' in the way that one radical is started,
+%then the next one is started and finished, then the first one is finished.
+%maybe a totally different example would be better?
+%what about the cedar \cjk{杉} from the japanese chapter?
+%radical 75 - tree \cjk{木}+ radical 59 hair / bristle
+%\cjk{彡} 
+%or just leave it and show the stroke order as problematic?!
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
                      emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
                      emphstyle={[2]\color{red}},
-                     caption={A sample of how a stroke could be represented},
+                     caption={A character representation in UPX},
                      label=lst:charaterdataformat]
     <hLevel level="character" id="CHARACTER71">
     <!-- The character 71 consists of the Radicals 72 and 75 -->
       <label id="CHARACTER71label" labelSrcRef="labelref_DW" labelType="truth">
-        <alternate>U+6771</alternate>
+        <alternate>U+6771</alternate><-- Unicode value -->
       </label>
 
       <hLevel level="radical" id="RADICAL72">
       <!-- The first Radical in this Kanji character of handwriting. -->
         <label id="RADICAL72label" labelSrcRef="labelref_DW" labelType="truth">
-          <alternate>U+65E5</alternate>
+          <alternate>U+65E5</alternate><-- Unicode value -->
         </label>
         <hwTraces>
           <inkml:traceView traceRef="/example.inkml" from="0" to="3"/>
@@ -871,7 +886,7 @@ xxx check this part for nonsense xxx yyy xxx yyy
       <hLevel level="radical" id="RADICAL75">
       <!-- The second Radical in this Kanji character of handwriting. -->
         <label id="RADICAL75label" labelSrcRef="labelref_DW" labelType="truth">
-          <alternate>U+6728</alternate>
+          <alternate>U+6728</alternate><-- Unicode value -->
         </label>
         <hwTraces>
           <inkml:traceView traceRef="/example.inkml" from="12" to="12"/>
@@ -884,6 +899,15 @@ xxx check this part for nonsense xxx yyy xxx yyy
   \end{lstlisting}
 \end{xmlcode}
 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics{images/radicalStructure/EAST-strokeorder.png}
+\caption{Stroke order of the Kanji \cjk{東}}
+\label{fig:strokeorderof東}
+\end{center}
+\end{figure}
+
+Notice xxx yyy the stroke order of EAST shown in figure \ref{fig:strokeorderof東}
 \section{Database}
 \label{sec:hwre:database}
 
@@ -944,7 +968,7 @@ xxx check this part for nonsense xxx yyy xxx yyy
 % - Next action - what to write first?
 %   The next part to write is to hash out the actual subsections.
 
-\yyy this is the actual next section!
+%\yyy this is the actual next section!
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
