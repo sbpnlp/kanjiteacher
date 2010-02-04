@@ -24,7 +24,8 @@
 \newenvironment{xmlcode}
 {
   \lstset{language=XML}
-  \fontspec{Courier New}
+%  \fontspec{Courier New}
+   \fontspec{GulimChe} %Using this font, so that CJK chars are supported in XML
 }{}
 
 \newenvironment{csharpcode}
@@ -33,23 +34,26 @@
   \fontspec{Courier New}
 }{}
 
-\newenvironment{texcode}
-{
-  \lstset{language=TeX}
-  \fontspec{Courier New}
-}{}
+% If any code snipped still uses "texcode" replace with xmlcode (fontspec 
+% differs, because of CJK chars in XML)
+% \newenvironment{texcode}
+% {
+%   \lstset{language=TeX}
+%   \fontspec{Courier New}
+% }{}
 
 %For Japanese writing
 \newenvironment{CJK}
 {
-  % \fontspec[Scale=0.9]{MS Mincho}
-  \fontspec[Scale=0.9]{MingLiU} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
+% \fontspec[Scale=0.9]{SimSun}
+%   \fontspec[Scale=0.9]{MS Mincho}
+  \fontspec{MingLiU} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
   \XeTeXlinebreaklocale "ja" 
   \XeTeXlinebreakskip = 0pt plus 1pt 
 }{}
 
 %\newcommand{\cjk}[1]{{\fontspec[Scale=0.9]{MS Mincho}#1}}
-\newcommand{\cjk}[1]{{\fontspec[Scale=0.9]{MingLiU}#1}} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
+\newcommand{\cjk}[1]{{\fontspec[Scale=1.0]{MingLiU}#1}} %MingLiU can also display Chinese characters as in 汉字 - which Mincho is not able to display, probably because it's not Japanese.
 
 \setcounter{tocdepth}{3}
 \setcounter{secnumdepth}{3}

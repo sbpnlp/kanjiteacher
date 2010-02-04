@@ -409,7 +409,7 @@ As a data structure for the purpose of a handwriting recognition, UNIPEN can
 serve as a storage format, which is the primary purpose for the existence of the
 format. The UNIPEN format accounts for both pen trajectories as well as 
 information about the characters that have been written.
-\begin{texcode}
+\begin{xmlcode}
   \begin{lstlisting}[emph={COMMENT,COORD,SEGMENT},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
 .COMMENT #################################################################### 
 .COORD   X Y
@@ -437,7 +437,7 @@ information about the characters that have been written.
   374 -1602
 .PEN_DOWN 
   \end{lstlisting}
-\end{texcode}
+\end{xmlcode}
 Listing~(\ref{lst:unipen}) is an excerpt from a data file created 
 by~\shortcite{Unipen}. It shows an example of a UNIPEN data structure.
 The \emph{.COORD} tag defines the structure of the pen coordinates. 
@@ -847,20 +847,22 @@ the Radicals represents a stroke. Thus, the data structure implicitely encodes
 the stroke number of a Radical. Here, both the Radicals \cjk{日} and \cjk{木}
 have four strokes each, the Kanji character \cjk{東} is comprised of 
 eight strokes in total.
-%xxx if you want to add a gfx of a stroke order there is one here:
-%http://en.wiktionary.org/wiki/%E6%9D%B1
-%however, the example is not great, since it is one of the rare cases,
-%where the stroke sequence is 'garbled' in the way that one radical is started,
-%then the next one is started and finished, then the first one is finished.
-%maybe a totally different example would be better?
-%what about the cedar \cjk{杉} from the japanese chapter?
-%radical 75 - tree \cjk{木}+ radical 59 hair / bristle
-%\cjk{彡} 
-%or just leave it and show the stroke order as problematic?!
+
+The stroke order of \cjk{東} is shown in figure \ref{fig:strokeorderofEAST}.
+Notice, that the Radicals of this Kanji are not drawn one after another.
+The very first stroke is a part of the \cjk{木}-Radical, the four following
+strokes constitute the complete \cjk{日}-Radical and the last three strokes,
+again, are part of the \cjk{木}-Radical.
+The UPX structure shown in listing~(\ref{lst:charaterdataformat}) accounts for
+that by not specifying a total order of Radicals, but rather a preferred order.
+The traces are spatialised to their Radical, the order of drawing does effect
+the InkML traces and ultimately the recognition process, 
+but not the UPX data structure.
+
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
-                     emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
+                     emph={[2]id,level,labelSrcRef,labelType,traceRef,from,to},
                      emphstyle={[2]\color{red}},
                      caption={A character representation in UPX},
                      label=lst:charaterdataformat]
@@ -872,7 +874,9 @@ eight strokes in total.
 
       <hLevel level="radical" id="RADICAL72">
       <!-- The first Radical in this Kanji character of handwriting. -->
-        <label id="RADICAL72label" labelSrcRef="labelref_DW" labelType="truth">
+        <label id="RADICAL72label" 
+               labelSrcRef="labelref_DW" 
+               labelType="truth">
           <alternate>U+65E5</alternate><-- Unicode value -->
         </label>
         <hwTraces>
@@ -885,7 +889,9 @@ eight strokes in total.
 
       <hLevel level="radical" id="RADICAL75">
       <!-- The second Radical in this Kanji character of handwriting. -->
-        <label id="RADICAL75label" labelSrcRef="labelref_DW" labelType="truth">
+        <label id="RADICAL75label" 
+               labelSrcRef="labelref_DW" 
+               labelType="truth">
           <alternate>U+6728</alternate><-- Unicode value -->
         </label>
         <hwTraces>
@@ -900,14 +906,13 @@ eight strokes in total.
 \end{xmlcode}
 
 \begin{figure}[htbp]
-\begin{center}
-\includegraphics{images/radicalStructure/EAST-strokeorder.png}
-\caption{Stroke order of the Kanji \cjk{東}}
-\label{fig:strokeorderof東}
-\end{center}
+  \begin{center}
+    \includegraphics[scale=1.75]{images/radicalStructure/EAST-strokeorder.png}
+    \caption{Stroke order of the Kanji \cjk{東}}
+    \label{fig:strokeorderofEAST}
+  \end{center}
 \end{figure}
 
-Notice xxx yyy the stroke order of EAST shown in figure \ref{fig:strokeorderof東}
 \section{Database}
 \label{sec:hwre:database}
 
@@ -968,7 +973,20 @@ Notice xxx yyy the stroke order of EAST shown in figure \ref{fig:strokeorderof�
 % - Next action - what to write first?
 %   The next part to write is to hash out the actual subsections.
 
-%\yyy this is the actual next section!
+%
+
+
+\begin{xmlcode}
+  \lstinputlisting[emph={character,literal,codepoint,radical},
+                   emphstyle=\color{blue}\textbf,
+                   emph={[2]id,level,labelSrcRef,labelType,traceRef,from,to},%unused
+                   emphstyle={[2]\color{red}},
+                   caption={Sample lexicon entry for lexical data},
+                   label=lst:lexiconentryEAST]
+                   {chapters/codeSamples/EAST.xml}
+\end{xmlcode}
+
+Listing~(\ref{lst:lexiconentryEAST}) shows a test.
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
