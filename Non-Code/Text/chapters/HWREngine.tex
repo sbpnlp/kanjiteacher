@@ -1012,6 +1012,11 @@ element holds information about the pronunciation of the character and
 translations into a number of different languages. The \emph{nanori} elements
 describe additional Japanese readings that occur only in person- and place names.
 
+With this organisational approach it is possible for different parties to work 
+on different information structures simultaneously. These can be accessed,
+modified and improved separately. This is due to the encapsulation of the 
+different data structures.
+
 \begin{xmlcode}
   \lstinputlisting[emph={character,literal,codepoint,radical},
                    emphstyle=\color{blue}\textbf,
@@ -1025,35 +1030,50 @@ describe additional Japanese readings that occur only in person- and place names
 \subsection{Alternative Database Structures}
 \label{sec:hwre:alternativedatabasestructures}
 
-The structure and organisation of the databases as it is now, seems the best 
-among several alternatives. 
-
-\subsubsection{Relational Database}
-\label{sec:hwre:relationaldatabase}
-
-discussion of alternatives: relational DB or only one flat file
-      two flat files are better, because of updates and other-language versions
-      of the jim breen lexicon. leave it unchanged! otherwise you'd need a
-      converter!
-
-
-The data sources used for the creation of the databases are two 
-technically independent data structures.
-The database entries - characters and their substructures are only connected 
-via some conceptual ideas about character structure and via a character code.
-Having independent data structures that allow for separation of data
-suggests using a relational database on the technical level.
+The structure and organisation of the databases as it is now, seems optimal
+among several alternatives. The reason for that is that the data is stored in
+separate and self-containd units. The indexing refeencing between the different
+structures works seamless via the unicode codepoints.
+Another adavantage of using the available formats. KanjiDict2 is work in
+progress and updates may be available for other languages or for additional 
+characters. Using the KanjiDict2 the way it is allows for reliablity.
+The same is true for for UPX and InkML: UNIPEN has been the de facto standard
+for handwriting data exchange for a long time and UPX is considered the
+official successor of UNIPEN and InkML is a W3C recommendation\footnote{
+However, until the end of 2009 InkML has not been standardised by the W3C and
+UPX is still in a planning stage concerning standardisation.}.
 
 \subsubsection{A Unified File Format}
 \label{sec:hwre:aunifiedfileformat}
 
+An alternative solution to the split information approach would be to
+establish a unified file format for the pen trajectories, the UPX metadata
+and the lexical information. 
+The advantage of that approach is that all data would be in one single 
+place. However, a number of disadvantages would emerge from that approach, too.
+The file formats, InkML, UPX and KanjiDict2 already exist.
+Creating a new file format based on those would on one hand not create much 
+additional value, but on the other hand lead to not using available de facto
+standards. Every time, a new version of the lexical data is issued or every
+time one would want to update the gold standard pen trajectory of a character,
+the formats would have to be linked together. 
 
-to put it short: a unified file format would've been total crap.
-firstly, the UPX couldn't be used any more,
-secondly, other language versions and updates of the jim breen 
-dict couldn't be used any more.
-in order to use a unified file format, there would have to be a 
-unificication process, every time one 
+% \subsubsection{Relational Database}
+% \label{sec:hwre:relationaldatabase}
+
+% discussion of alternatives: relational DB or only one flat file
+%       two flat files are better, because of updates and other-language versions
+%       of the jim breen lexicon. leave it unchanged! otherwise you'd need a
+%       converter!
+
+
+% The data sources used for the creation of the databases are two 
+% technically independent data structures.
+% The database entries - characters and their substructures are only connected 
+% via some conceptual ideas about character structure and via a character code.
+% Having independent data structures that allow for separation of data
+% suggests using a relational database on the technical level.
+
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
