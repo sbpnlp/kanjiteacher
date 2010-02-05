@@ -1005,7 +1005,7 @@ Miscellaneous information that may help a human finding the character in a
 paper-based dictionary are stored in the \emph{misc} element.
 The file format provides room for the character index in different paper-based
 dictionaries and study books in the \emph{dic\_number} element. For example 
-the \emph{dic_ref} with the attribute \emph{dr_type="sh_kk"} holds the
+the \emph{dic\_ref} with the attribute \emph{dr\_type="sh\_kk"} holds the
 character index in ~\shortcite{Hadamitzky1995}. This information can be very
 useful for a learner when referring to study books. The \emph{reading\_meaning}
 element holds information about the pronunciation of the character and 
@@ -1250,14 +1250,55 @@ what alternatives were there to consider?
 \subsection{Normalisation}
 \label{sec:hwre:normalisation}
 
-what is N?
-why do N?
-show requirements.
-how is N performed here?
-why is it performed like that?
+Many handwriting recognition systems perform some kind of normalisation.
+See section~\ref{sec:normalisation} for a review of common techniques.
+In this system, only size normalisation is performed. Other normalisation 
+techniques reported in literature were often necessary, because the input 
+devices returned unsufficient data. With modern input devices many of the 
+normalisation techniques that were used to clean the data from different
+kinds of noise are not necessary.
+
+In order not to lose any data, the complete list of points is maintained,
+there is no point reduction. Since the prototype is a learning application and 
+not a pure handwriting recognition, the main issue seems the size of the 
+character. The size normalisation is done in two steps. Each complex that
+is more complex than a point has a bounding box around that can be used for 
+scaling.
 
 \subsubsection{Boxing}
 \label{sec:hwre:boxing}
+
+The term \emph{bounding box} needs not much introduction. It is the smallest 
+box surrounding a graphic object.
+In this prototype, bounding boxes are rectangles with the same height and width.
+Rectangles are defined in this prototyp as a handle point, height and a width.
+%$ R:= \{<x,y>, h, w\} $ where the 2-tuple $<x,y>$ is a point with the decimal
+values 'x' and 'y' as coordinates, 'h' is the y-height of the rectangle,
+'w' is the x-width.
+In order to find the square bounding box of any sequence of points,
+a method finds the four outermost points 'C' with the minimal and maximal values
+for 'x' and 'y'. The handle point 'P' and the width and height of the bounding 
+box 'B' can be calculated as follows. \\
+\begin{math}
+ C_{xmin} := <x_{min}, y_1> \\
+ C_{xmax} := <x_{max}, y_2> \\
+ C_{ymin} := <x_1, y_{min}> \\
+ C_{ymax} := <x_2, y_{max}> \\
+ P_{intermediate} := <x_{min}, y_{min}> \\
+ w_{intermediate} := x_{max} - x_{min} \\
+ h_{intermediate} := y_{max} - y_{min} \\
+ s := max(w_{intermediate},h_{intermediate}) \\
+%\[
+P := \left\{ 
+\begin{array}{l l}
+  <x,y> & \quad \text{if $h_{intermediate}$ is greater than $w_{intermediate}$}\\
+  -(n+1)/2 & \quad \text{if $n$ is odd}\\
+\end{array} \right.
+%\]
+\end{math}
+
+The other are always 
+
 how is boxing done?
 show requirements.
 what alternatives were there to consider?
@@ -1275,6 +1316,8 @@ what alternatives were there to consider?
 
 \subsection{Curve Handling}
 \label{sec:hwre:curvehandling}
+
+see~\ref{sec:curvematching}
 
 S 14, 16, 17
 how is curver handling done?

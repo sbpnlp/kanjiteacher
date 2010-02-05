@@ -644,8 +644,8 @@ and eliminated through filters.
 The ideal filtering method depends on the recognition method. There are 
 filtering techniques that enforce a minimum distance between points. When a 
 filtering method of that type is used, points tend to be equally spaced.
-This filtering technique assumes many samples per distance. When a stroke is drawn
-quickly on a tablet, it can happen, that the distance of the actual sample 
+This filtering technique assumes many samples per distance. When a stroke is 
+drawn quickly on a tablet, it can happen, that the distance of the actual sample 
 points is larger than the minimum distance the filter permits. In that case,
 interpolation can be used in order to introduce new data points in between and
 achieve equidistant points. Smoothing and filtering can also be performed in one 
@@ -770,8 +770,7 @@ A feature space of that kind can be further divided into decision regions
 \label{sec:zonesequences}
 
 There are systems that use \emph{zone sequences} in order to 
-represent characters. The zones can be specified by sub-dividing the bounding 
-box of a character. The trajectory of the pen that is drawn through the zones
+represent characters. The zones can be specified by sub-dividing the \emph{bounding box} of a character. The trajectory of the pen that is drawn through the zones
 is then transformed into a time sequence of zones. That time sequence can be 
 matched against a dictionary of sequences, in which each character is 
 represented \shortcite{Tappert1990}.
