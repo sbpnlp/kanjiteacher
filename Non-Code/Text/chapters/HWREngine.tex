@@ -1058,22 +1058,35 @@ standards. Every time, a new version of the lexical data is issued or every
 time one would want to update the gold standard pen trajectory of a character,
 the formats would have to be linked together. 
 
-% \subsubsection{Relational Database}
-% \label{sec:hwre:relationaldatabase}
+\subsubsection{Relational Database}
+\label{sec:hwre:relationaldatabase}
 
-% discussion of alternatives: relational DB or only one flat file
-%       two flat files are better, because of updates and other-language versions
-%       of the jim breen lexicon. leave it unchanged! otherwise you'd need a
-%       converter!
-
-
-% The data sources used for the creation of the databases are two 
-% technically independent data structures.
-% The database entries - characters and their substructures are only connected 
-% via some conceptual ideas about character structure and via a character code.
-% Having independent data structures that allow for separation of data
-% suggests using a relational database on the technical level.
-
+Establishing a relational database to hold the different data structures 
+sounds like a feasible plan. With consideration of the three formats
+InkML, UPX and KanjiDict2 it should be possible to design a relational database
+that holds the different information in a structured manner.
+However, again the same problem arises. Updates and extensions of the formtats
+of the data would create the need for a conversion tool.
+If the XML specification of one of the formats changes, the table structure
+in the relational database would have to be adapted, too.
+Alternatively, the actual XML code could be stored in relational database 
+tables. That approach however seem awkward. XML is a format for structuring
+data in human readable text files. All three formats, InkML, UPX and KanjiDict2
+have been designed to be human-editable and therefore accessible without
+any special software or tools but a text editor.
+Storing these XML structures in a relational database would compromise the 
+advantage of a relational database that lies in querying and would also
+make editing the data a more complex task.
+Additionally, the application is a desktop application for a single user 
+environment. Depending on what relational database was used that could
+force shipment of the database software along with the Kanji learning system.
+The conclusion is that once InkML and UPX have been standardised and are
+therefore more reliable formats it could be benefitial to design a relational
+database structure that mirrors these formats.
+Then, the relational database could be used in an online environment, 
+where a server application performs the recognition for a web client.
+For the time being and the technical equipment given it does not seem
+useful to employ a relational database.
 
 \section{Recognition Architecture}
 \label{sec:hwre:recognitionarchitecture}
