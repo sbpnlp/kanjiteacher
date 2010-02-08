@@ -1349,36 +1349,46 @@
 \subsection{Recognition of Straight Strokes}
 \label{sec:hwre:straightstrokes}
 
-For the matching of a straight stroke there are are a number of features
+\subsubsection{Identification of a Straight Stroke}
+\label{sec:hwre:identificationstraightstroke}
+
+Since strokes here are essentially point sequences and not mathematical objects 
+like functions, it is necessary to determine what shape a stroke has.
+In order to identify a straight stroke, a linear regression line is 
+calculated from the point sequence with the Gaussinan method of least squares.
+This calculation is done with the standard method for calculating least squares,
+as described in literature. 
+That method seeks for the minimal sum of squares of residuals.
+If the sum of residual squares is below a certain threshhold %xxx which threshhold? say the number!
+that has been determined empirically, the system assumes that the point 
+sequence generally follows a straight line.
+If the line appears to be straight, straight stroke matching will be performed.
+If not the line is matched with curve analysis methods.
+(see section~\ref{sec:hwre:curvehandling}). 
+
+\subsubsection{Straight Stroke Matching}
+\label{sec:hwre:straightstrokematching}
+
+For the matching of a straight stroke there are a number of features
 that could be considered for a feature vector.
+In order to describe a straight stroke and later match it with another one,
+a feature vector is constructed that has the following features:
 \begin{itemize}
-  \item Length
-  \item Direction
-  \item Initial point
-  \item Endpoint
-  \item Total number of measured coordinate points
-  \item Velocity with which the stroke was drawn
+  \item \textbf{Length}: The total lenght of the line. Sum of the distances of
+        succeeding points.
+  \item \textbf{Initial point}: The coordinates of the initial point
+  \item \textbf{Endpoint}: The coordinates of the endpoint
+  \item \textbf \textbf{Total number of measured points}: The number of sample
+        points that were measured by the input device
+  \item \textbf{Velocity}: The velocity with which the stroke was drawn
+  \item \textbf{Sum of residual squares}: The sum of residual squares of the 
+        points, relative to a straight line
+  \item \textbf{Gradient}/\textbf{Direction}: The slope of the linear 
+  regression line that can be constructed for the point sequence, or
+  the general direction of the line, represented as a numerical vector.
 \end{itemize}
-In this prototype the direction feature plays a crucial role.
-Generally follwing several approaches in on-line handwriting recognition
-literature (see section~ref{sec:strokedirection}), the approach used here 
-defines direction vectors.
-The general approach is to define a direction vector between a point
-within the point sequence and a successor point.
-However, since the measured points are usually very close together, 
-the direction vector is defined between a point and another point that 
-is further away, defined by a dynamic threshold, considering distance,
-total number of points and the total length of the stroke.
-
-If non of these vectors deviates from the general direction of the stroke,
-above another dynamic threshold, considering the total stroke length,
-the stroke is considered straight.
-
-In order to math two straight strokes with each other, the vicinity of their 
-start point and their end point is considered.
-Furthermore, the total length, the number of points and the velocity are 
-considered. A feature vector \(F\) for the description of a stroke then 
-consists of the following values:
+In order to match two strokes by their feature vectors \(F_{DB} & G_{exp} \),
+the following values are conidered.
 \begin{quote}
 \(
     F :=
@@ -1394,6 +1404,11 @@ consists of the following values:
     \right)
 \)
 \end{quote}
+
+xxx
+describe here how the feature vectors match.
+also describe how to use the sum of the least point stuff.
+compare the points with the other line crosswise...
 Those values are used for matching with other straight strokes by comparison
 of their values. In the case of the points, the euclidian vicinity between
 the original point and the candidate point is used as a comparison value.
@@ -1420,12 +1435,23 @@ vector.
 \end{quote}
 
 
-%xxx ausgleichsgerade hier, if applicabale.
-
 \subsection{Curve Handling}
 \label{sec:hwre:curvehandling}
 
+In this prototype the direction feature plays a crucial role.
+Generally follwing several approaches in on-line handwriting recognition
+literature (see section~ref{sec:strokedirection}), the approach used here 
+defines direction vectors.
+The general approach is to define a direction vector between a point
+within the point sequence and a successor point.
+However, since the measured points are usually very close together, 
+the direction vector is defined between a point and another point that 
+is further away, defined by a dynamic threshold, considering distance,
+total number of points and the total length of the stroke.
 
+If non of these vectors deviates from the general direction of the stroke,
+above another dynamic threshold, considering the total stroke length,
+the stroke is considered straight.
 
 In section
 see~\ref{sec:curvematching}
