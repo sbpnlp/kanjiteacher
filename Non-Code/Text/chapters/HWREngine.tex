@@ -1346,369 +1346,374 @@
 % %xxx or radicals.  that would call for a separate scaling section under
 % %xxx character recognition.
 
-\subsection{Recognition of Straight Strokes}
-\label{sec:hwre:straightstrokes}
+% \subsection{Recognition of Straight Strokes}
+% \label{sec:hwre:straightstrokes}
 
-\subsubsection{Identification of a Straight Stroke}
-\label{sec:hwre:identificationstraightstroke}
+% \subsubsection{Identification of a Straight Stroke}
+% \label{sec:hwre:identificationstraightstroke}
 
-The notion of \emph{stroke} essentially means \emph{point sequence} in a 
-technical sense. That is, strokes are not mathematical objects like functions.
-In order to perform stroke recognition, it is necessary to determine what shape 
-a stroke has. For the identification of a straight stroke, a linear regression 
-line is constructed from the point sequence with the Gaussian method of 
-least squares. The construction is done with the standard method for 
-calculating least squares, as described in literature. The method seeks for the 
-minimal sum of squares of residuals. %xxx citation?
-If the sum of residual squares is below 
-a certain threshhold %xxx which threshhold? say the number!
-that has been determined empirically, %xxx how?
-the system assumes that the point 
-sequence generally follows a straight line. In that case, straight stroke 
-matching will be performed. If the line appears to be curved, it will be matched
-with curve analysis methods as described in 
-section~\ref{sec:hwre:curvehandling}. 
+% The notion of \emph{stroke} essentially means \emph{point sequence} in a 
+% technical sense. That is, strokes are not mathematical objects like functions.
+% In order to perform stroke recognition, it is necessary to determine what shape 
+% a stroke has. For the identification of a straight stroke, a linear regression 
+% line is constructed from the point sequence with the Gaussian method of 
+% least squares. The construction is done with the standard method for 
+% calculating least squares, as described in literature. The method seeks for the 
+% minimal sum of squares of residuals. %xxx citation?
+% If the sum of residual squares is below 
+% a certain threshhold %xxx which threshhold? say the number!
+% that has been determined empirically, %xxx how?
+% the system assumes that the point 
+% sequence generally follows a straight line. In that case, straight stroke 
+% matching will be performed. If the line appears to be curved, it will be matched
+% with curve analysis methods as described in 
+% section~\ref{sec:hwre:curvehandling}. 
 
-\subsubsection{Straight Stroke Matching}
-\label{sec:hwre:straightstrokematching}
+% \subsubsection{Straight Stroke Matching}
+% \label{sec:hwre:straightstrokematching}
 
-For the matching of a straight stroke there are a number of features
-that could be considered for a feature vector.
-In order to describe a straight stroke and then match it with another one,
-a feature vector is constructed that has the following features:
-\begin{itemize}
-  \item \textbf{Length}: The total lenght of the line. Sum of the distances of
-        succeeding points.
-  \item \textbf{Initial point}: The coordinates of the initial point
-  \item \textbf{Endpoint}: The coordinates of the endpoint
-  \item \textbf \textbf{Total number of measured points}: The number of sample
-        points that were measured by the input device
-  \item \textbf{Velocity}: The velocity with which the stroke was drawn
-%  \item \textbf{Sum of residual squares}: The sum of residual squares of the 
-%        points, relative to a straight line
-  \item \textbf{Gradient}/\textbf{Direction}: The slope of the linear 
-  regression line that can be constructed for the point sequence, or
-  the general direction of the line, represented as a numerical vector.
-\end{itemize}
-However, some of the information seem redundant.
-In order to match two strokes by their feature vectors \(F_{DB} \) 
-and \(F_{exp} \), the following values are conidered:
-\begin{quote}
-\(
-    F :=
-    \left( 
-    \begin {array} {l c} 
-%        \text{Total number points} & n_{p} \\
-        \text{Length} & l \\
-        \text{Initial point} & p_{I} \\
-        \text{Endpoint} & p_{E} \\
-        \text{Velocity} & v \\
-        \text{Direction vector} & \vec{d} \\
-        \text{Sum of residual squares} & \sigma \\
-    \end {array} 
-    \right)
-\)
-\end{quote}
-The features are used for matching with other straight strokes by comparison
-of their values. 
-The length \(l\) is calculated as the sum of the euclidian distances \(d_i\) 
-between the individual points \(p_i\) and \(p_{i-i}\)  within a sequence 
-of \(N\) points. 
-\begin{quote}
-\(
-    d_i := \sqrt{(x_{i+1}-x_{i})^2+(y_{i+1}-y_{i})^2}\\
-    l := \sum\limits_{i=1}^{N-1}{d_i}
-\)
-\end{quote}
-In the case of the initial point and endpoint comparison of the two strokes, 
-the euclidian distance between the original point \(P_{I,DB},P_{E,DB}\)
-and the candidate point \(P_{I,exp},P_{E,exp}\) is used as a comparison value.
-The velocity \(v\) is calculated from the time difference \( \delta_T \) between 
-sampling time of the initial point \(t_{p_I}\) and the endpoint \(t_{p_E}\):
-\begin{quote}
-\(
-    \delta_T :=
-        t_{p_E} - t_{p_I}
-\)
-\end{quote}
-\begin{quote}
-\(
-    v := \frac{n_p}{\delta_T}
-\)
-\end{quote}
-The velocities \(v_{DB}\) and \(v_{exp}\) are both real numbers and can be 
-compared directly.
-The direction vectors of the regression line \(\vec{d}_{DB}\) and \(\vec{d}_{exp}\)
-are compared by the deviation of their directions.
-The deviation is expressed as the angle \( \alpha \) between the original and 
-the candidate vector.
-\begin{quote}
-\(
-    \alpha := \vec{d}_{DB} \quad \angle \quad \vec{d}_{exp}
-\)
-\end{quote}
-The sum of residual squares \( \sigma \) is calculated from the measured point
-sequence with respect to the regression line of the database point sequence.
-Given the regression line \(f_{DB}\), the sum of the squares of the residuals
-for the input sequence is:
-\begin{quote}
-\(
-    \sigma := \sum\limits_{i=1}^{N}{(f_{DB}(x_{i,exp}) - x_{i,exp})^2}
-\)
-\end{quote}
-The smaller \(\sigma\) the closer the measured points to the regression line
-from the database. This is only done for strokes that have been calculated
-to be straight, since any set of points can have a regression line,
-even curved ones. In the case of curved strokes, a linear regression line as
-it is used here does not seem to bear the potential helping identify a point 
-seqence to be a certain shape.
+% For the matching of a straight stroke there are a number of features
+% that could be considered for a feature vector.
+% In order to describe a straight stroke and then match it with another one,
+% a feature vector is constructed that has the following features:
+% \begin{itemize}
+%   \item \textbf{Length}: The total lenght of the line. Sum of the distances of
+%         succeeding points.
+%   \item \textbf{Initial point}: The coordinates of the initial point
+%   \item \textbf{Endpoint}: The coordinates of the endpoint
+%   \item \textbf \textbf{Total number of measured points}: The number of sample
+%         points that were measured by the input device
+%   \item \textbf{Velocity}: The velocity with which the stroke was drawn
+% %  \item \textbf{Sum of residual squares}: The sum of residual squares of the 
+% %        points, relative to a straight line
+%   \item \textbf{Gradient}/\textbf{Direction}: The slope of the linear 
+%   regression line that can be constructed for the point sequence, or
+%   the general direction of the line, represented as a numerical vector.
+% \end{itemize}
+% However, some of the information seem redundant.
+% In order to match two strokes by their feature vectors \(F_{DB} \) 
+% and \(F_{exp} \), the following values are conidered:
+% \begin{quote}
+% \(
+%     F :=
+%     \left( 
+%     \begin {array} {l c} 
+% %        \text{Total number points} & n_{p} \\
+%         \text{Length} & l \\
+%         \text{Initial point} & p_{I} \\
+%         \text{Endpoint} & p_{E} \\
+%         \text{Velocity} & v \\
+%         \text{Direction vector} & \vec{d} \\
+%         \text{Sum of residual squares} & \sigma \\
+%     \end {array} 
+%     \right)
+% \)
+% \end{quote}
+% The features are used for matching with other straight strokes by comparison
+% of their values. 
+% The length \(l\) is calculated as the sum of the euclidian distances \(d_i\) 
+% between the individual points \(p_i\) and \(p_{i-i}\)  within a sequence 
+% of \(N\) points. 
+% \begin{quote}
+% \(
+%     d_i := \sqrt{(x_{i+1}-x_{i})^2+(y_{i+1}-y_{i})^2}\\
+%     l := \sum\limits_{i=1}^{N-1}{d_i}
+% \)
+% \end{quote}
+% In the case of the initial point and endpoint comparison of the two strokes, 
+% the euclidian distance between the original point \(P_{I,DB},P_{E,DB}\)
+% and the candidate point \(P_{I,exp},P_{E,exp}\) is used as a comparison value.
+% The velocity \(v\) is calculated from the time difference \( \delta_T \) between 
+% sampling time of the initial point \(t_{p_I}\) and the endpoint \(t_{p_E}\):
+% \begin{quote}
+% \(
+%     \delta_T :=
+%         t_{p_E} - t_{p_I}
+% \)
+% \end{quote}
+% \begin{quote}
+% \(
+%     v := \frac{n_p}{\delta_T}
+% \)
+% \end{quote}
+% The velocities \(v_{DB}\) and \(v_{exp}\) are both real numbers and can be 
+% compared directly.
+% The direction vectors of the regression line \(\vec{d}_{DB}\) and \(\vec{d}_{exp}\)
+% are compared by the deviation of their directions.
+% The deviation is expressed as the angle \( \alpha \) between the original and 
+% the candidate vector.
+% \begin{quote}
+% \(
+%     \alpha := \vec{d}_{DB} \quad \angle \quad \vec{d}_{exp}
+% \)
+% \end{quote}
+% The sum of residual squares \( \sigma \) is calculated from the measured point
+% sequence with respect to the regression line of the database point sequence.
+% Given the regression line \(f_{DB}\), the sum of the squares of the residuals
+% for the input sequence is:
+% \begin{quote}
+% \(
+%     \sigma := \sum\limits_{i=1}^{N}{(f_{DB}(x_{i,exp}) - x_{i,exp})^2}
+% \)
+% \end{quote}
+% The smaller \(\sigma\) the closer the measured points to the regression line
+% from the database. This is only done for strokes that have been calculated
+% to be straight, since any set of points can have a regression line,
+% even curved ones. In the case of curved strokes, a linear regression line as
+% it is used here does not seem to bear the potential helping identify a point 
+% seqence to be a certain shape.
 
-% \subsection{Curve Handling}
-% \label{sec:hwre:curvehandling}
+\subsection{Curve Handling}
+\label{sec:hwre:curvehandling}
 
-% In this prototype the direction feature plays a crucial role.
-% Generally follwing several approaches in on-line handwriting recognition
-% literature (see section~ref{sec:strokedirection}), the approach used here 
-% defines direction vectors.
-% The general approach is to define a direction vector between a point
-% within the point sequence and a successor point.
-% However, since the measured points are usually very close together, 
-% the direction vector is defined between a point and another point that 
-% is further away, defined by a dynamic threshold, considering distance,
-% total number of points and the total length of the stroke.
+In this prototype the direction feature plays a crucial role.
+Generally follwing several approaches in on-line handwriting recognition
+literature (see section~\ref{sec:strokedirection}), the approach used here 
+defines direction vectors.
+The general approach is to define a direction vector between a point
+within the point sequence and a successor point.
+However, since the measured points are usually very close together, 
+the direction vector is defined between a point and another point that 
+is further away, defined by a dynamic threshold, considering distance,
+total number of points and the total length of the stroke.
 
-% If non of these vectors deviates from the general direction of the stroke,
-% above another dynamic threshold, considering the total stroke length,
-% the stroke is considered straight.
+If non of these vectors deviates from the general direction of the stroke,
+above another dynamic threshold, considering the total stroke length,
+the stroke is considered straight. Nevertheless, for matching straight strokes,
+a feature vector is used. 
 
-% In section
-% see~\ref{sec:curvematching}
+Different curve matching techniques are described in 
+section~\ref{sec:curvematching}. The technique used here refers to 
+\emph{curved strokes}, however, it is a vector-based technique, that aims at 
+point reduction. 
 
-% S 14, 16, 17
-% how is curver handling done?
-% show requirements.
-% what alternatives were there to consider?
 
-% stroke matching with angles instead of point position.
-% s. 24
 
-% \subsection{Dynamic Time Warping}
-% \label{sec:hwre:dynamictimewarping}
+S 14, 16, 17
+how is curver handling done?
+show requirements.
+what alternatives were there to consider?
+
+stroke matching with angles instead of point position.
+s. 24
+
+\subsection{Dynamic Time Warping}
+\label{sec:hwre:dynamictimewarping}
+
+what's the similarity measure for
+points and strokes?
+show requirements.
+what alternatives were there to consider?
+
+s. 51
+how is dynamic time warping done here?
+pointer to papers or hwr - chapter, don't explain DTW here.
+show requirements
+why DTW?
+what alternatives were there to consider?
+none - it is the alternative.
+to all the other stuff I've been doing.
+however, what about 3D time warping?
+
+
+\section{Radical Recognition Process}
+\label{sec:hwre:radicalrecognitionprocess}
+
+% - Why this section? 
+%   The purpose of this section is to explain the Radical recognition process in
+%   detail. It is a crucial part of the structural recognition process.
+%   Therefore the purpose is evident - see purpose of chapter.
+
+%   It would be off purpose, if there'd be too much around,
+%   focus on the RRP only, nothing around.
+
+% - What goes into this section?
+%   The main content of this section is the radical recognition.
+%   That contains how the model is matched to the input.
+%   Incrementality of recognition, using one stroke, two strokes,
+%   three strokes and so on...
+
+%   * if describing a problem: why is the problem relevant.
+%     it is a part of the structural recognition process!
+
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
+%     again - part of the structural recognition process that allows for
+%     interaction with the user concerning error recognition
+
+%     what made it the best choice? was it the optimal solution?
+%     here, simply the lacking of alternatives. if the recognition process
+%     does not distinguish between 'shapes' and 'radicals' the error
+%     handling engine would not be able to inform the user.
+%     (xxx: turn this one around into a positive sentence. 
+%     only through distinguishing... :xxx)
+    
+% - How will this section be structured and organised?
+%   The organisational structure of the section will be as follows:
+
+%     1. Representation of a radical as a stroke sequence
+%     2. stroke matching, reordered stroke matching in order to find 
+%        alternative radicals or radical variants, depending on the 
+%        number of strokes involved in the process: stroke number, stroke sequence.
+
+% - In what style will it be written?
+%   The style of writing will be formal, showing the general algorithm.
+
+% - Next action - what to write first?
+%   The next part to write is the general algorithm as pseudocode.
 
 % what's the similarity measure for
-% points and strokes?
+% radicals?
 % show requirements.
 % what alternatives were there to consider?
 
-% s. 51
-% how is dynamic time warping done here?
-% pointer to papers or hwr - chapter, don't explain DTW here.
-% show requirements
-% why DTW?
+% what about stroke number and stroke sequence?
+% why deal with it? can be dealt with? 
+% how? why this way, why not another way?
+% generally, how is radical recognition done?
+% show requirements.
 % what alternatives were there to consider?
-% none - it is the alternative.
-% to all the other stuff I've been doing.
-% however, what about 3D time warping?
 
+\section{Character Recognition Process}
+\label{sec:hwre:characterrecognitionprocess}
 
-% \section{Radical Recognition Process}
-% \label{sec:hwre:radicalrecognitionprocess}
-
-% % - Why this section? 
-% %   The purpose of this section is to explain the Radical recognition process in
-% %   detail. It is a crucial part of the structural recognition process.
-% %   Therefore the purpose is evident - see purpose of chapter.
-
-% %   It would be off purpose, if there'd be too much around,
-% %   focus on the RRP only, nothing around.
-
-% % - What goes into this section?
-% %   The main content of this section is the radical recognition.
-% %   That contains how the model is matched to the input.
-% %   Incrementality of recognition, using one stroke, two strokes,
-% %   three strokes and so on...
-
-% %   * if describing a problem: why is the problem relevant.
-% %     it is a part of the structural recognition process!
-
-% %   * if describing a solution to a problem: what alternatives were
-% %     there to solve it, why was this solution chosen? 
-% %     again - part of the structural recognition process that allows for
-% %     interaction with the user concerning error recognition
-
-% %     what made it the best choice? was it the optimal solution?
-% %     here, simply the lacking of alternatives. if the recognition process
-% %     does not distinguish between 'shapes' and 'radicals' the error
-% %     handling engine would not be able to inform the user.
-% %     (xxx: turn this one around into a positive sentence. 
-% %     only through distinguishing... :xxx)
-    
-% % - How will this section be structured and organised?
-% %   The organisational structure of the section will be as follows:
-
-% %     1. Representation of a radical as a stroke sequence
-% %     2. stroke matching, reordered stroke matching in order to find 
-% %        alternative radicals or radical variants, depending on the 
-% %        number of strokes involved in the process: stroke number, stroke sequence.
-
-% % - In what style will it be written?
-% %   The style of writing will be formal, showing the general algorithm.
-
-% % - Next action - what to write first?
-% %   The next part to write is the general algorithm as pseudocode.
-
-% % what's the similarity measure for
-% % radicals?
-% % show requirements.
-% % what alternatives were there to consider?
-
-% % what about stroke number and stroke sequence?
-% % why deal with it? can be dealt with? 
-% % how? why this way, why not another way?
-% % generally, how is radical recognition done?
-% % show requirements.
-% % what alternatives were there to consider?
-
-% \section{Character Recognition Process}
-% \label{sec:hwre:characterrecognitionprocess}
-
-% % - Why this section? 
-% %   The purpose of this section is to distinguish the radical recognition process
-% %   from the character recognition process.
+% - Why this section? 
+%   The purpose of this section is to distinguish the radical recognition process
+%   from the character recognition process.
   
-% %   It would be off purpose, if too much of the radical recognition process would
-% %   be repeaeted. 
+%   It would be off purpose, if too much of the radical recognition process would
+%   be repeaeted. 
 
-% % - What goes into this section?
-% %   The main content of this section is to show the actual character recognition
-% %   process based on the radical recognition. 
-% %   it should show the plan to find the appropriate characters, given a number of
-% %   alternative radicals.
-% %   s. 9/10 pixelwolke vs. reihenfolge
+% - What goes into this section?
+%   The main content of this section is to show the actual character recognition
+%   process based on the radical recognition. 
+%   it should show the plan to find the appropriate characters, given a number of
+%   alternative radicals.
+%   s. 9/10 pixelwolke vs. reihenfolge
 
-% %   * if describing a problem: why is the problem relevant.
-% %     the problem is not just relevant it is the final problem to solve
-% %     before solving the main problem of HWR.
-% %   * if describing a solution to a problem: what alternatives were
-% %     there to solve it, 
-% %     many different alternatives - see discussion of HWR, however,
-% %     the approach chosen here was the structural one/
-% %     why was this solution chosen? 
-% %     because of the possibility to interact with the recognition process
-% %     and reading partial results.
-% %     what made it the best choice? was it the optimal solution?
-% %     the other HWR approaches do not allow for the partial structural recognition
-% %     with linguistic components of characters.
+%   * if describing a problem: why is the problem relevant.
+%     the problem is not just relevant it is the final problem to solve
+%     before solving the main problem of HWR.
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, 
+%     many different alternatives - see discussion of HWR, however,
+%     the approach chosen here was the structural one/
+%     why was this solution chosen? 
+%     because of the possibility to interact with the recognition process
+%     and reading partial results.
+%     what made it the best choice? was it the optimal solution?
+%     the other HWR approaches do not allow for the partial structural recognition
+%     with linguistic components of characters.
 
-% % - How will this section be structured and organised?
-% %   The organisational structure of the section will contain
-% %   1. description of the process from  radical list to a character.
-% %   2. what if there are alternative radical lists?
-% %   3. what would've been an alternative solution?
-% %      directly going from exactly one radical list to exactly one chararcter.
-% %      s. 9/10 pixelwolke vs. reihenfolge
+% - How will this section be structured and organised?
+%   The organisational structure of the section will contain
+%   1. description of the process from  radical list to a character.
+%   2. what if there are alternative radical lists?
+%   3. what would've been an alternative solution?
+%      directly going from exactly one radical list to exactly one chararcter.
+%      s. 9/10 pixelwolke vs. reihenfolge
 
-% % - In what style will it be written?
-% %   The style of writing will be technical
+% - In what style will it be written?
+%   The style of writing will be technical
 
-% % - Next action - what to write first?
-% %   The next part to write is to put the subparts into proper subsections.
+% - Next action - what to write first?
+%   The next part to write is to put the subparts into proper subsections.
 
-% % what's the similarity measure for
-% % characters?
-% % show requirements.
-% % s. 24 pseudocode
+% what's the similarity measure for
+% characters?
+% show requirements.
+% s. 24 pseudocode
 
-% In order to scale to the normalised size, the length of an edge of the bounding
-% box is compared to the length of the normalised character.
+In order to scale to the normalised size, the length of an edge of the bounding
+box is compared to the length of the normalised character.
 
-% \section{Error Handling}
-% \label{sec:hwre:errorhandling}
+\section{Error Handling}
+\label{sec:hwre:errorhandling}
 
-% % - Why this section? 
-% %   The purpose of this section is to demonstrate a crucial novelty of this 
-% %   HWR engline, the error handling module.
+% - Why this section? 
+%   The purpose of this section is to demonstrate a crucial novelty of this 
+%   HWR engline, the error handling module.
   
-% %   It would be off purpose, if it had to explain too much of the recognition 
-% %   process as such - that should've been done in other chapters.
+%   It would be off purpose, if it had to explain too much of the recognition 
+%   process as such - that should've been done in other chapters.
   
-% % - What goes into this section?
-% %   The main content of this section is the 'way of an error'.
-% %   what happens if the character that is bound to be recognised just doesn't fit?
-% %   so there's an stroke that's not long enough and it's position is not
-% %   high enough within the character.
+% - What goes into this section?
+%   The main content of this section is the 'way of an error'.
+%   what happens if the character that is bound to be recognised just doesn't fit?
+%   so there's an stroke that's not long enough and it's position is not
+%   high enough within the character.
 
-% %   * if describing a problem: why is the problem relevant.
-% %     the problem is relevant for a learning application.
-% %     the purpose of the application is to teach the characters with an automated
-% %     recognition engine - one the central ''A.I.'' of this application
-% %     is the automated error recognition.
+%   * if describing a problem: why is the problem relevant.
+%     the problem is relevant for a learning application.
+%     the purpose of the application is to teach the characters with an automated
+%     recognition engine - one the central ''A.I.'' of this application
+%     is the automated error recognition.
 
-% %   * if describing a solution to a problem: 
-% %     what alternatives were there to solve it, 
+%   * if describing a solution to a problem: 
+%     what alternatives were there to solve it, 
     
-% %     the alternative to the chosen process was a less flexible approach.
-% %     just measuring the absolute match - in size, shape pixel by pixel
-% %     (again pixelwolke) would've been of a lower quality.
-% %     compare skritter - it does not provide the high quality feedback.
+%     the alternative to the chosen process was a less flexible approach.
+%     just measuring the absolute match - in size, shape pixel by pixel
+%     (again pixelwolke) would've been of a lower quality.
+%     compare skritter - it does not provide the high quality feedback.
 
-% %     why was this solution chosen? 
-% %     because the design of the application required high-quality feedback,
-% %     on a linguistic level.
+%     why was this solution chosen? 
+%     because the design of the application required high-quality feedback,
+%     on a linguistic level.
     
-% %     what made it the best choice? 
-% %     because it was the only one that met the requirement of providing 
-% %     high-qualitiy feed-back.
+%     what made it the best choice? 
+%     because it was the only one that met the requirement of providing 
+%     high-qualitiy feed-back.
     
-% %     was it the optimal solution?
-% %     who knows? - looks like it now, but evaluation will show.
-% %     depends on user experience. 
+%     was it the optimal solution?
+%     who knows? - looks like it now, but evaluation will show.
+%     depends on user experience. 
 
-% % - How will this section be structured and organised?
-% %   The organisational structure of the section 
-% %    1. error recognition
-% %    2. The Way of an error after recognition (error processing)
-% %    3. 
-% % - In what style will it be written?
-% %   The style of writing will be a technical description - probably no algorithms
+% - How will this section be structured and organised?
+%   The organisational structure of the section 
+%    1. error recognition
+%    2. The Way of an error after recognition (error processing)
+%    3. 
+% - In what style will it be written?
+%   The style of writing will be a technical description - probably no algorithms
 
-% % - Next action - what to write first?
-% %   The next part to write is to describe the error recognition.
+% - Next action - what to write first?
+%   The next part to write is to describe the error recognition.
 
-% see section \ref{sec:concept:sourcesoferror} in chapter 
-% \ref{chap:conceptualdesignofkanjicoach} for possible sources of error
+see section \ref{sec:concept:sourcesoferror} in chapter 
+\ref{chap:conceptualdesignofkanjicoach} for possible sources of error
 
-% \subsection{Error Recognition}
-% \label{sec:hwre:errorrecognition}
+\subsection{Error Recognition}
+\label{sec:hwre:errorrecognition}
 
-% why this section? to demonstrate own achievements of error recognition.
-% the reader should know how it is done technically.
+why this section? to demonstrate own achievements of error recognition.
+the reader should know how it is done technically.
 
-% what goes into this section? the aspects of finding errors. finding errors
-% is not a straightforward trivial task - whenever something does not match
-% it is an error - doesn't work like that. instead, 
-% firstly, it needs to be made sure that it actually is an error.
-% meaning - not a recognition error, but a user error.
-% secondly, the type of error needs be identified.
-% see section \ref{sec:concept:sourcesoferror} (or handwritten page 58)
-% for sources of error.
+what goes into this section? the aspects of finding errors. finding errors
+is not a straightforward trivial task - whenever something does not match
+it is an error - doesn't work like that. instead, 
+firstly, it needs to be made sure that it actually is an error.
+meaning - not a recognition error, but a user error.
+secondly, the type of error needs be identified.
+see section \ref{sec:concept:sourcesoferror} (or handwritten page 58)
+for sources of error.
 
-% how will this section be written?
-% technical - first describe how the error recognition integrates into the
-% recognition process, then how errors are identified.
+how will this section be written?
+technical - first describe how the error recognition integrates into the
+recognition process, then how errors are identified.
 
 
-% \subsection{Error Processing}
-% \label{sec:hwre:errorprocessing}
+\subsection{Error Processing}
+\label{sec:hwre:errorprocessing}
 
-% %focus on technical aspects
+%focus on technical aspects
 
-% why this section? 
-% actually the 'handling' or 'processing' aspect could be 
-% described in the recognition section \ref{sec:hwre:errorrecognition} as well.
-% so this section is only for a better overview, for document structure, 
-% thematically they are the same section. thus they are put together under
-% Error Handling \ref{sec:hwre:errorhandling}.
+why this section? 
+actually the 'handling' or 'processing' aspect could be 
+described in the recognition section \ref{sec:hwre:errorrecognition} as well.
+so this section is only for a better overview, for document structure, 
+thematically they are the same section. thus they are put together under
+Error Handling \ref{sec:hwre:errorhandling}.
 
-% what goes into this section?
+what goes into this section?
 
