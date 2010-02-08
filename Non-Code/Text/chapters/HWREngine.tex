@@ -1247,221 +1247,221 @@
 % show requirements.
 % what alternatives were there to consider?
 
-% \subsection{Normalisation}
-% \label{sec:hwre:normalisation}
+\subsection{Normalisation}
+\label{sec:hwre:normalisation}
 
-% Many handwriting recognition systems perform some kind of normalisation.
-% See section~\ref{sec:normalisation} for a review of common techniques.
-% In this system, only size normalisation is performed. Other normalisation 
-% techniques reported in literature were often necessary, because the input 
-% devices returned unsufficient data. With modern input devices many of the 
-% normalisation techniques that were used to clean the data from different
-% kinds of noise are not necessary.
+Many handwriting recognition systems perform some kind of normalisation.
+See section~\ref{sec:normalisation} for a review of common techniques.
+In this system, only size normalisation is performed. Other normalisation 
+techniques reported in literature were often necessary, because the input 
+devices returned unsufficient data. With modern input devices many of the 
+normalisation techniques that were used to clean the data from different
+kinds of noise are not necessary.
 
-% In order not to lose any data, the complete list of points is maintained,
-% there is no point reduction. Since the prototype is a learning application and 
-% not a pure handwriting recognition, the main issue seems the size of the 
-% character. The size normalisation is done in two steps. Each complex that
-% is more complex than a point has a bounding box around that can be used for 
-% scaling.
+In order not to lose any data, the complete list of points is maintained,
+there is no point reduction. Since the prototype is a learning application and 
+not a pure handwriting recognition, the main issue seems the size of the 
+character. The size normalisation is done in two steps. Each complex that
+is more complex than a point has a bounding box around that can be used for 
+scaling.
 
-% \subsubsection{Boxing}
-% \label{sec:hwre:boxing}
+\subsubsection{Boxing}
+\label{sec:hwre:boxing}
 
-% The term \emph{bounding box} needs not much introduction. It is the smallest 
-% box surrounding a graphic object.
-% In this prototype, bounding boxes are rectangles with the same height and width.
-% Rectangles are defined as a 3-tuple of a handle point, a height and a width.
-% \(R:= <<x,y>, w, y>\) where the 2-tuple \(<x,y>\) is a point in the coordinate
-% system with the decimal values \(x\) and \(y\) as coordinates, 
-% \(h\) is the \(y\)-height of the rectangle and \(w\) is the \(x\)-width.
-% In order to find an extended square bounding box of any sequence of points,
-% a method finds the four outermost points \(C_i\) with the minimal and maximal 
-% values for \(x\) and \(y\). 
-% \begin{quote}
-% \(
-%   C_{x_{min}} := <x_{min}, y_1> \\
-%   C_{x_{max}} := <x_{max}, y_2> \\
-%   C_{y_{min}} := <x_1, y_{min}> \\
-%   C_{y_{max}} := <x_2, y_{max}> 
-% \)
-% \end{quote}
-% The intermediate handle point \(H_{intermediate}\), the width \(w\) and 
-% height \(h\) of the minimal bounding box \(B'\) can be calculated as follows: 
-% \begin{quote}
-% \(
-%   H_{intermediate} := <x_{min}, y_{min}>  \\
-%   w := x_{max} - x_{min} \\
-%   h := y_{max} - y_{min} \\
-%   s := \operatorname{arg\,max}(w,h)
-% \)
-% \end{quote}
-% Then, the handle point \(H\) can be calculated by:
-% \begin{quote}
-% \(
-%   H := 
-%   \begin{cases}
-%    <x_{min} - \frac{s-w}{2},y_{min}> & \quad \text{if $s$ equals $h$}\\
-%    <x_{min}, y_{min} - \frac{s-h}{2}> & \quad \text{if $s$ equals $w$}\\
-%   \end{cases}
-% \)
-% \end{quote}
-% The minimal bounding box \(B'\) is a rectangle with the following values:
-% \begin{quote}
-%   \(B' := <H_{intermediate}, w, h>\).
-% \end{quote}
-% The extended, square bounding box \(B\) is a rectangle with the 
-% following values:
-% \begin{quote}
-%   \(B := <H, s, s>\)
-% \end{quote}
-% The use of boxing is used multifunctional in the prototype. One of the uses is
-% for distortion-free scaling (see section~\ref{sec:hwre:scaling}). Another use 
-% is for the comparison of positions of substructures of a character or 
-% Radical (see section~\ref{sec:hwre:radicalrecognitionprocess}).
+The term \emph{bounding box} needs not much introduction. It is the smallest 
+box surrounding a graphic object.
+In this prototype, bounding boxes are rectangles with the same height and width.
+Rectangles are defined as a 3-tuple of a handle point, a height and a width.
+\(R:= <<x,y>, w, y>\) where the 2-tuple \(<x,y>\) is a point in the coordinate
+system with the decimal values \(x\) and \(y\) as coordinates, 
+\(h\) is the \(y\)-height of the rectangle and \(w\) is the \(x\)-width.
+In order to find an extended square bounding box of any sequence of points,
+a method finds the four outermost points \(C_i\) with the minimal and maximal 
+values for \(x\) and \(y\). 
+\begin{quote}
+\(
+  C_{x_{min}} := <x_{min}, y_1> \\
+  C_{x_{max}} := <x_{max}, y_2> \\
+  C_{y_{min}} := <x_1, y_{min}> \\
+  C_{y_{max}} := <x_2, y_{max}> 
+\)
+\end{quote}
+The intermediate handle point \(H_{intermediate}\), the width \(w\) and 
+height \(h\) of the minimal bounding box \(B'\) can be calculated as follows: 
+\begin{quote}
+\(
+  H_{intermediate} := <x_{min}, y_{min}>  \\
+  w := x_{max} - x_{min} \\
+  h := y_{max} - y_{min} \\
+  s := \operatorname{arg\,max}(w,h)
+\)
+\end{quote}
+Then, the handle point \(H\) can be calculated by:
+\begin{quote}
+\(
+  H := 
+  \begin{cases}
+   <x_{min} - \frac{s-w}{2},y_{min}> & \quad \text{if $s$ equals $h$}\\
+   <x_{min}, y_{min} - \frac{s-h}{2}> & \quad \text{if $s$ equals $w$}\\
+  \end{cases}
+\)
+\end{quote}
+The minimal bounding box \(B'\) is a rectangle with the following values:
+\begin{quote}
+  \(B' := <H_{intermediate}, w, h>\).
+\end{quote}
+The extended, square bounding box \(B\) is a rectangle with the 
+following values:
+\begin{quote}
+  \(B := <H, s, s>\)
+\end{quote}
+The use of boxing is used multifunctional in the prototype. One of the uses is
+for distortion-free scaling (see section~\ref{sec:hwre:scaling}). Another use 
+is for the comparison of positions of substructures of a character or 
+Radical (see section~\ref{sec:hwre:radicalrecognitionprocess}).
 
-% \subsubsection{Scaling}
-% \label{sec:hwre:scaling}
+\subsubsection{Scaling}
+\label{sec:hwre:scaling}
 
-% The bounding box of most Kanji is square, in cases where it is not,
-% the space given to a smaller Kanji is still a square.
-% In order to account for that, scaling is done with respect to the ideal of a 
-% square shape of a character. That concept is used for full characters, as well
-% as Radicals and strokes.
-% Before scaling the size of a stroke, a square bounding box is constructed.
-% The handle point of the square bounding box is used as a vanishing point for
-% vectorial projection. In a stroke data structure that consists of a point
-% sequence \(p_1, \ldots, p_n\)  a number of vectors 
-% \(\vec{v}_1, \ldots, \vec{v}_n\) is created. Each vector is defined by the
-% handle point \(H = <x_h, y_h>\) of a square bounding box and the \(p_i\).
-% \begin{quote}
-% \(
-%   \vec{v}_k := p_k-H = \binom{x_{p_k}-x_h}{y_{p_k}-y_h}
-% \)
-% \end{quote}
-% In order to generate a scaled version of a sequence of points, 
-% all the \(\vec{v}_k\) are multiplied with a scaling factor.
+The bounding box of most Kanji is square, in cases where it is not,
+the space given to a smaller Kanji is still a square.
+In order to account for that, scaling is done with respect to the ideal of a 
+square shape of a character. That concept is used for full characters, as well
+as Radicals and strokes.
+Before scaling the size of a stroke, a square bounding box is constructed.
+The handle point of the square bounding box is used as a vanishing point for
+vectorial projection. In a stroke data structure that consists of a point
+sequence \(p_1, \ldots, p_n\)  a number of vectors 
+\(\vec{v}_1, \ldots, \vec{v}_n\) is created. Each vector is defined by the
+handle point \(H = <x_h, y_h>\) of a square bounding box and the \(p_i\).
+\begin{quote}
+\(
+  \vec{v}_k := p_k-H = \binom{x_{p_k}-x_h}{y_{p_k}-y_h}
+\)
+\end{quote}
+In order to generate a scaled version of a sequence of points, 
+all the \(\vec{v}_k\) are multiplied with a scaling factor.
 
-% %xxx think about a different type of scaling for strokes and characters
-% %xxx or radicals.  that would call for a separate scaling section under
-% %xxx character recognition.
+%xxx think about a different type of scaling for strokes and characters
+%xxx or radicals.  that would call for a separate scaling section under
+%xxx character recognition.
 
-% \subsection{Recognition of Straight Strokes}
-% \label{sec:hwre:straightstrokes}
+\subsection{Recognition of Straight Strokes}
+\label{sec:hwre:straightstrokes}
 
-% \subsubsection{Identification of a Straight Stroke}
-% \label{sec:hwre:identificationstraightstroke}
+\subsubsection{Identification of a Straight Stroke}
+\label{sec:hwre:identificationstraightstroke}
 
-% The notion of \emph{stroke} essentially means \emph{point sequence} in a 
-% technical sense. That is, strokes are not mathematical objects like functions.
-% In order to perform stroke recognition, it is necessary to determine what shape 
-% a stroke has. For the identification of a straight stroke, a linear regression 
-% line is constructed from the point sequence with the Gaussian method of 
-% least squares. The construction is done with the standard method for 
-% calculating least squares, as described in literature. The method seeks for the 
-% minimal sum of squares of residuals. %xxx citation?
-% If the sum of residual squares is below 
-% a certain threshhold %xxx which threshhold? say the number!
-% that has been determined empirically, %xxx how?
-% the system assumes that the point 
-% sequence generally follows a straight line. In that case, straight stroke 
-% matching will be performed. If the line appears to be curved, it will be matched
-% with curve analysis methods as described in 
-% section~\ref{sec:hwre:curvehandling}. 
+The notion of \emph{stroke} essentially means \emph{point sequence} in a 
+technical sense. That is, strokes are not mathematical objects like functions.
+In order to perform stroke recognition, it is necessary to determine what shape 
+a stroke has. For the identification of a straight stroke, a linear regression 
+line is constructed from the point sequence with the Gaussian method of 
+least squares. The construction is done with the standard method for 
+calculating least squares, as described in literature. The method seeks for the 
+minimal sum of squares of residuals. %xxx citation?
+If the sum of residual squares is below 
+a certain threshhold %xxx which threshhold? say the number!
+that has been determined empirically, %xxx how?
+the system assumes that the point 
+sequence generally follows a straight line. In that case, straight stroke 
+matching will be performed. If the line appears to be curved, it will be matched
+with curve analysis methods as described in 
+section~\ref{sec:hwre:curvehandling}. 
 
-% \subsubsection{Straight Stroke Matching}
-% \label{sec:hwre:straightstrokematching}
+\subsubsection{Straight Stroke Matching}
+\label{sec:hwre:straightstrokematching}
 
-% For the matching of a straight stroke there are a number of features
-% that could be considered for a feature vector.
-% In order to describe a straight stroke and then match it with another one,
-% a feature vector is constructed that has the following features:
-% \begin{itemize}
-%   \item \textbf{Length}: The total lenght of the line. Sum of the distances of
-%         succeeding points.
-%   \item \textbf{Initial point}: The coordinates of the initial point
-%   \item \textbf{Endpoint}: The coordinates of the endpoint
-%   \item \textbf \textbf{Total number of measured points}: The number of sample
-%         points that were measured by the input device
-%   \item \textbf{Velocity}: The velocity with which the stroke was drawn
-% %  \item \textbf{Sum of residual squares}: The sum of residual squares of the 
-% %        points, relative to a straight line
-%   \item \textbf{Gradient}/\textbf{Direction}: The slope of the linear 
-%   regression line that can be constructed for the point sequence, or
-%   the general direction of the line, represented as a numerical vector.
-% \end{itemize}
-% However, some of the information seem redundant.
-% In order to match two strokes by their feature vectors \(F_{DB} \) 
-% and \(F_{exp} \), the following values are conidered:
-% \begin{quote}
-% \(
-%     F :=
-%     \left( 
-%     \begin {array} {l c} 
-% %        \text{Total number points} & n_{p} \\
-%         \text{Length} & l \\
-%         \text{Initial point} & p_{I} \\
-%         \text{Endpoint} & p_{E} \\
-%         \text{Velocity} & v \\
-%         \text{Direction vector} & \vec{d} \\
-%         \text{Sum of residual squares} & \sigma \\
-%     \end {array} 
-%     \right)
-% \)
-% \end{quote}
-% The features are used for matching with other straight strokes by comparison
-% of their values. 
-% The length \(l\) is calculated as the sum of the euclidian distances \(d_i\) 
-% between the individual points \(p_i\) and \(p_{i-i}\)  within a sequence 
-% of \(N\) points. 
-% \begin{quote}
-% \(
-%     d_i := \sqrt{(x_{i+1}-x_{i})^2+(y_{i+1}-y_{i})^2}\\
-%     l := \sum\limits_{i=1}^{N-1}{d_i}
-% \)
-% \end{quote}
-% In the case of the initial point and endpoint comparison of the two strokes, 
-% the euclidian distance between the original point \(P_{I,DB},P_{E,DB}\)
-% and the candidate point \(P_{I,exp},P_{E,exp}\) is used as a comparison value.
-% The velocity \(v\) is calculated from the time difference \( \delta_T \) between 
-% sampling time of the initial point \(t_{p_I}\) and the endpoint \(t_{p_E}\):
-% \begin{quote}
-% \(
-%     \delta_T :=
-%         t_{p_E} - t_{p_I}
-% \)
-% \end{quote}
-% \begin{quote}
-% \(
-%     v := \frac{n_p}{\delta_T}
-% \)
-% \end{quote}
-% The velocities \(v_{DB}\) and \(v_{exp}\) are both real numbers and can be 
-% compared directly.
-% The direction vectors of the regression line \(\vec{d}_{DB}\) and \(\vec{d}_{exp}\)
-% are compared by the deviation of their directions.
-% The deviation is expressed as the angle \( \alpha \) between the original and 
-% the candidate vector.
-% \begin{quote}
-% \(
-%     \alpha := \vec{d}_{DB} \quad \angle \quad \vec{d}_{exp}
-% \)
-% \end{quote}
-% The sum of residual squares \( \sigma \) is calculated from the measured point
-% sequence with respect to the regression line of the database point sequence.
-% Given the regression line \(f_{DB}\), the sum of the squares of the residuals
-% for the input sequence is:
-% \begin{quote}
-% \(
-%     \sigma := \sum\limits_{i=1}^{N}{(f_{DB}(x_{i,exp}) - x_{i,exp})^2}
-% \)
-% \end{quote}
-% The smaller \(\sigma\) the closer the measured points to the regression line
-% from the database. This is only done for strokes that have been calculated
-% to be straight, since any set of points can have a regression line,
-% even curved ones. In the case of curved strokes, a linear regression line as
-% it is used here does not seem to bear the potential helping identify a point 
-% seqence to be a certain shape.
+For the matching of a straight stroke there are a number of features
+that could be considered for a feature vector.
+In order to describe a straight stroke and then match it with another one,
+a feature vector is constructed that has the following features:
+\begin{itemize}
+  \item \textbf{Length}: The total lenght of the line. Sum of the distances of
+        succeeding points.
+  \item \textbf{Initial point}: The coordinates of the initial point
+  \item \textbf{Endpoint}: The coordinates of the endpoint
+  \item \textbf \textbf{Total number of measured points}: The number of sample
+        points that were measured by the input device
+  \item \textbf{Velocity}: The velocity with which the stroke was drawn
+%  \item \textbf{Sum of residual squares}: The sum of residual squares of the 
+%        points, relative to a straight line
+  \item \textbf{Gradient}/\textbf{Direction}: The slope of the linear 
+  regression line that can be constructed for the point sequence, or
+  the general direction of the line, represented as a numerical vector.
+\end{itemize}
+However, some of the information seem redundant.
+In order to match two strokes by their feature vectors \(F_{DB} \) 
+and \(F_{exp} \), the following values are conidered:
+\begin{quote}
+\(
+    F :=
+    \left( 
+    \begin {array} {l c} 
+%        \text{Total number points} & n_{p} \\
+        \text{Length} & l \\
+        \text{Initial point} & p_{I} \\
+        \text{Endpoint} & p_{E} \\
+        \text{Velocity} & v \\
+        \text{Direction vector} & \vec{d} \\
+        \text{Sum of residual squares} & \sigma \\
+    \end {array} 
+    \right)
+\)
+\end{quote}
+The features are used for matching with other straight strokes by comparison
+of their values. 
+The length \(l\) is calculated as the sum of the euclidian distances \(d_i\) 
+between the individual points \(p_i\) and \(p_{i-i}\)  within a sequence 
+of \(N\) points. 
+\begin{quote}
+\(
+    d_i := \sqrt{(x_{i+1}-x_{i})^2+(y_{i+1}-y_{i})^2}\\
+    l := \sum\limits_{i=1}^{N-1}{d_i}
+\)
+\end{quote}
+In the case of the initial point and endpoint comparison of the two strokes, 
+the euclidian distance between the original point \(P_{I,DB},P_{E,DB}\)
+and the candidate point \(P_{I,exp},P_{E,exp}\) is used as a comparison value.
+The velocity \(v\) is calculated from the time difference \( \delta_T \) between 
+sampling time of the initial point \(t_{p_I}\) and the endpoint \(t_{p_E}\):
+\begin{quote}
+\(
+    \delta_T :=
+        t_{p_E} - t_{p_I}
+\)
+\end{quote}
+\begin{quote}
+\(
+    v := \frac{n_p}{\delta_T}
+\)
+\end{quote}
+The velocities \(v_{DB}\) and \(v_{exp}\) are both real numbers and can be 
+compared directly.
+The direction vectors of the regression line \(\vec{d}_{DB}\) and \(\vec{d}_{exp}\)
+are compared by the deviation of their directions.
+The deviation is expressed as the angle \( \alpha \) between the original and 
+the candidate vector.
+\begin{quote}
+\(
+    \alpha := \vec{d}_{DB} \quad \angle \quad \vec{d}_{exp}
+\)
+\end{quote}
+The sum of residual squares \( \sigma \) is calculated from the measured point
+sequence with respect to the regression line of the database point sequence.
+Given the regression line \(f_{DB}\), the sum of the squares of the residuals
+for the input sequence is:
+\begin{quote}
+\(
+    \sigma := \sum\limits_{i=1}^{N}{(f_{DB}(x_{i,exp}) - x_{i,exp})^2}
+\)
+\end{quote}
+The smaller \(\sigma\) the closer the measured points to the regression line
+from the database. This is only done for strokes that have been calculated
+to be straight, since any set of points can have a regression line,
+even curved ones. In the case of curved strokes, a linear regression line as
+it is used here does not seem to bear the potential helping identify a point 
+seqence to be a certain shape.
 
 \subsection{Curve Handling}
 \label{sec:hwre:curvehandling}
@@ -1478,7 +1478,7 @@ is further away, defined by a dynamic threshold, considering distance,
 total number of points and the total length of the stroke.
 
 If non of these vectors deviates from the general direction of the stroke,
-above another dynamic threshold, considering the total stroke length,
+a dynamic threshold, considering the total stroke length,
 the stroke is considered straight. Nevertheless, for matching straight strokes,
 a feature vector is used. 
 
@@ -1487,6 +1487,11 @@ section~\ref{sec:curvematching}. The technique used here refers to
 \emph{curved strokes}, however, it is a vector-based technique, that aims at 
 point reduction. 
 
+\subsubsection{Identifying Curves in Strokes}
+\label{sec:hwre:identifyingcurvesinstrokes}
+
+
+\cjk{休む}
 
 
 S 14, 16, 17
