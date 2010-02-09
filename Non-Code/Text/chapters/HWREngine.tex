@@ -1391,7 +1391,7 @@
 %   the general direction of the line, represented as a numerical vector.
 % \end{itemize}
 % However, some of the information seem redundant.
-% In order to match two strokes by their feature vectors \(F_{DB} \) 
+% In order to match two strokes by their feature vectors \(F_{db} \) 
 % and \(F_{exp} \), the following values are conidered:
 % \begin{quote}
 % \(
@@ -1421,7 +1421,7 @@
 % \)
 % \end{quote}
 % In the case of the initial point and endpoint comparison of the two strokes, 
-% the euclidian distance between the original point \(P_{I,DB},P_{E,DB}\)
+% the euclidian distance between the original point \(P_{I,db},P_{E,db}\)
 % and the candidate point \(P_{I,exp},P_{E,exp}\) is used as a comparison value.
 % The velocity \(v\) is calculated from the time difference \( \delta_T \) between 
 % sampling time of the initial point \(t_{p_I}\) and the endpoint \(t_{p_E}\):
@@ -1436,24 +1436,24 @@
 %     v := \frac{n_p}{\delta_T}
 % \)
 % \end{quote}
-% The velocities \(v_{DB}\) and \(v_{exp}\) are both real numbers and can be 
+% The velocities \(v_{db}\) and \(v_{exp}\) are both real numbers and can be 
 % compared directly.
-% The direction vectors of the regression line \(\vec{d}_{DB}\) and \(\vec{d}_{exp}\)
+% The direction vectors of the regression line \(\vec{d}_{db}\) and \(\vec{d}_{exp}\)
 % are compared by the deviation of their directions.
 % The deviation is expressed as the angle \( \alpha \) between the original and 
 % the candidate vector.
 % \begin{quote}
 % \(
-%     \alpha := \vec{d}_{DB} \quad \angle \quad \vec{d}_{exp}
+%     \alpha := \vec{d}_{db} \quad \angle \quad \vec{d}_{exp}
 % \)
 % \end{quote}
 % The sum of residual squares \( \sigma \) is calculated from the measured point
 % sequence with respect to the regression line of the database point sequence.
-% Given the regression line \(f_{DB}\), the sum of the squares of the residuals
+% Given the regression line \(f_{db}\), the sum of the squares of the residuals
 % for the input sequence is:
 % \begin{quote}
 % \(
-%     \sigma := \sum\limits_{i=1}^{N}{(f_{DB}(x_{i,exp}) - x_{i,exp})^2}
+%     \sigma := \sum\limits_{i=1}^{N}{(f_{db}(x_{i,exp}) - x_{i,exp})^2}
 % \)
 % \end{quote}
 % The smaller \(\sigma\) the closer the measured points to the regression line
@@ -1539,9 +1539,9 @@ The feature vector for curved strokes contains the following elements:
         \text{Initial point} & p_{I} \\
         \text{Endpoint} & p_{E} \\
         \text{Velocity} & v \\
-        \text{Corner angles} & \gamma_{i} \quad i := 1, \ldots , m \\
-        \text{Corner points} & c_{i} \quad i := 1, \ldots , m \\
-        \text{Direction sequence} & \vec{d}_j \quad j := 1, \ldots , q \\
+        \text{Corner angles} & \gamma_{i} \quad i := 1, \ldots , n \\
+        \text{Corner points} & c_{i} \quad i := 1, \ldots , n \\
+        \text{Direction sequence} & \vec{d}_j \quad j := 1, \ldots , m \\
     \end {array} 
     \right)
 \)
@@ -1557,48 +1557,141 @@ Therefore, the number of corner points \( m \) and corner angles is identical.
 The feature \emph{Corner points} is defined as the sum of euclidian distances 
 between the corner points from the stored datastructure with the candidate 
 data structure.
-
-
-
-
-
-
-
-
-
-
-
-
-
-S 14, 16, 17
-how is curver handling done?
-show requirements.
-what alternatives were there to consider?
-
-stroke matching with angles instead of point position.
-s. 24
+\begin{quote}
+\(
+%  d_i := 
+  c_p := \sum\limits_{i=1}^{n} \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2} % d_{i} 
+\)
+\end{quote}
+The corner angles feature is defined as the sum of the squares of the 
+differences between the angles at the corner points.
+\begin{quote}
+\(
+  c_a := \sum\limits_{i=1}^{n} (\beta_{i,db}-\beta_{i,exp})^2
+\)
+\end{quote}
+For both \( c_a \) and \( c_p \) the smaller the value, the closer the more
+similar the strokes. In fact, if \( c_a \) or \( c_p \) are equal to \(0\),
+the point analised point sequence was identical with the stored point sequence.
+The \emph{direction sequence} feature takes into account all the direction 
+changes, as opposed to the corner angles that use only the most significant ones.
+The direction sequence feature uses the angle of each line segment regarding the 
+X-axis of the coordinate system. The angles are then matched against the time
+they were produced in.
+%xxx how is this done exactly? what if the number of points differs?
+%how is the time involved?
+%S 14, 16, 17
+%how is curver handling done?
+%show requirements.
+%what alternatives were there to consider?
+%
+%stroke matching with angles instead of point position.
+%s. 24
 
 \subsection{Dynamic Time Warping}
 \label{sec:hwre:dynamictimewarping}
 
-what's the similarity measure for
-points and strokes?
-show requirements.
-what alternatives were there to consider?
+The technique of \emph{dynamic time warping} (DTW) has been used for stroke 
+matching by several studies and systems (see sections~\ref{{sec:curvematching}} 
+and~\ref{sec:olccr:structuralclassification}).
+It is an elastic matching technique that seeks an optimal path through
+a matrix of point distances. Details of the algorithm have been described
+in literature.
 
-s. 51
-how is dynamic time warping done here?
-pointer to papers or hwr - chapter, don't explain DTW here.
-show requirements
-why DTW?
-what alternatives were there to consider?
-none - it is the alternative.
-to all the other stuff I've been doing.
-however, what about 3D time warping?
+\subsubsection{Standard DTW}
+\label{sec:hwre:standarddtw}
 
+Following~\shortciteANP{Vuori2001} \citeyear{Vuori2001} 
+and~\shortciteANP{Niels2005} \citeyear{Niels2005}, 
+the DTW technique is implemented for two pen trajectories, 
+namely the trajectory stored in the database 
+\(P_{db} = (p_{1,db}\ldots,p_{n,db})\) and the input trajectory generated by
+the user's drawing \(P_{exp} = (q_{1,exp},\ldots,q_{m,exp})\).
+Any point pair \(p_{i,db}\) and \(p_{j,exp}\) matches if one of two constraints 
+is met:
+\begin{enumerate}
+  \item \textbf{Boundary condition}: The points \(p_{i,db}\) and \(p_{j,exp}\)  
+         match, if one of the following boundary conditions is fulfilled:
+        \begin{itemize}
+          \item \(p_{i,db}\) equals the initial point \(p_{I,db} \) 
+                and \(p_{j,exp}\) equals the initial point \(p_{I,exp}\)
+                of their respective point sequences \(P_{db}\) or \(P_{exp}\)
+
+          \item \(p_{i,db}\) equals the endpoint \(p_{E,db} \) 
+                and \(p_{j,exp}\) equals the endpoint \(p_{E,exp}\)
+                of their respective point sequences \(P_{db}\) or \(P_{exp}\)
+        \end{itemize}
+
+  \item \textbf{Continuity condition}: The points \(p_{i,db}\) and \(p_{j,exp}\)  
+         match, if the follwoing equation is fulfilled \\
+         \begin{quote}
+         \(
+            \frac{M}{N}i - cM \le j \le \frac{M}{N}i + cM
+         \)
+         \end{quote}
+         \(c\) is a constant between \(0\) and \(1\), indicating the 
+         strictness of the condition.
+\end{enumerate}
+
+\subsubsection{3-Dimensional DTW}
+\label{sec:hwre:3ddtw}
+
+In addition to the standard DTW algorithm, a second DTW classifier performs 
+a 3-dimensional distance calculation.
+That is, a point sequence \(P = (p_{1}\ldots,p_{n})\) is considered 
+3-dimensional in the way that it contains the relative time (in ms) from the
+beginning of the stroke as a third dimension.
+The point distance calculations are euclidian, ignoring the fact that the
+third dimension is a different type of coordinate.
+\begin{quote}
+\(
+  d_i := \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2+(z_{i,db}-z_{i,exp})^2} 
+\)
+\end{quote}
+\(<x_i, y_i>\) are the regular 2-dimensional point cooredinates, 
+while the \(z_i\) are the relative times from the beginning of the stroke.
+The actual DTW algorithm works exactly the same, the difference lies in 
+the distance calculation.
+This version of the algorithm has been conducted as an experiment. The direct
+comparision with the regular DTW is reported in 
+section~\ref{sec:impl:dtwvs3ddtw}.
+% what's the similarity measure for
+% points and strokes?
+% show requirements.
+% what alternatives were there to consider?
+
+% s. 51
+% how is dynamic time warping done here?
+% pointer to papers or hwr - chapter, don't explain DTW here.
+% show requirements
+% why DTW?
+% what alternatives were there to consider?
+% none - it is the alternative.
+% to all the other stuff I've been doing.
+% however, what about 3D time warping?
+
+\subsection{Stroke Matching Summary}
+\label{sec:hwre:strokematchingsummary}
+
+Four different classifiers have been implemented.
+The straight stroke matching via regression lines,
+the curve matching classifier with direction sequences and two variants
+of the dynamic time warping algorithm, a regular DTW algorithm and the 
+three-dimensional variant DTW.
+The stroke matching occurs in NUMBER parts. 
+Firstly, the straight stroke recogniser attempts to establish if a stroke 
+is straight or not. Then the straight stroke matcher analyses if the input
+stroke and the database stroke are equal.
+Secondly, if the stroke is regarded as being curved, the curve detector 
+performs a search for the significant points and angles in both sequences.
+After that, the curved stroke matcher compares the features of the curved
+strokes. If both recognisers fail to recognise the expected stroke, 
+dynamic time warping is used as a fallback option.
 
 \section{Radical Recognition Process}
 \label{sec:hwre:radicalrecognitionprocess}
+
+
 
 % - Why this section? 
 %   The purpose of this section is to explain the Radical recognition process in
