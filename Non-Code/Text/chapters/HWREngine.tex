@@ -1463,233 +1463,280 @@
 % it is used here does not seem to bear the potential helping identify a point 
 % seqence to be a certain shape.
 
-\subsection{Curve Handling}
-\label{sec:hwre:curvehandling}
+% \subsection{Curve Handling}
+% \label{sec:hwre:curvehandling}
 
-\subsubsection{Detecting Curves in Strokes}
-\label{sec:hwre:detectingcurvesinstrokes}
+% \subsubsection{Detecting Curves in Strokes}
+% \label{sec:hwre:detectingcurvesinstrokes}
 
-Different curve matching techniques are described in 
-section~\ref{sec:curvematching}. The technique used here refers to is a 
-vector-based technique, that aims at the extraction of features to describe
-the curved stroke. In this prototype the direction feature plays a crucial role.
-It is generally follwing several approaches in on-line handwriting recognition
-literature. The direction feature as it is used in other applications has been
-discussed in section~\ref{sec:strokedirection}). The approach for curve
-recognition used here defines direction vectors.
+% Different curve matching techniques are described in 
+% section~\ref{sec:curvematching}. The technique used here refers to is a 
+% vector-based technique, that aims at the extraction of features to describe
+% the curved stroke. In this prototype the direction feature plays a crucial role.
+% It is generally follwing several approaches in on-line handwriting recognition
+% literature. The direction feature as it is used in other applications has been
+% discussed in section~\ref{sec:strokedirection}). The approach for curve
+% recognition used here defines direction vectors.
 
-The general concept is to define a direction vector between a point
-within the point sequence and a successor point.
-However, since the measured points are usually very close together, 
-the direction vector is defined between a point and another point that 
-is further away, defined by a dynamic threshold, considering distance,
-total number of points and the total length of the stroke.
-If non of these vectors deviates from the general direction of the stroke,
-a dynamic threshold, considering the total stroke length,
-the stroke is considered straight. Nevertheless, for matching straight strokes,
-a feature vector for straight strokes is used.
-If the slope of the curve changes, i.e. the direction of the vectors changes, 
-a curve has been detected. 
-There is a threshold \( T_{min} \) for the minimal size of a 
-\emph{recognisable angle} between two vectors. Any angle smaller than that will 
-be ignored completely. A second threshold \( T_{max} \) describes the minimal size
-for an angle \( \gamma \)  that is taken into account.
-Any angle \( \beta_{i} \) between \( T_{min} \) and \( T_{max} \) will be stored. 
-When the sum of the \( \beta_{i} \) exceeds \( T_{max} \) the position will be 
-treated as a curve.
+% The general concept is to define a direction vector between a point
+% within the point sequence and a successor point.
+% However, since the measured points are usually very close together, 
+% the direction vector is defined between a point and another point that 
+% is further away, defined by a dynamic threshold, considering distance,
+% total number of points and the total length of the stroke.
+% If non of these vectors deviates from the general direction of the stroke,
+% a dynamic threshold, considering the total stroke length,
+% the stroke is considered straight. Nevertheless, for matching straight strokes,
+% a feature vector for straight strokes is used.
+% If the slope of the curve changes, i.e. the direction of the vectors changes, 
+% a curve has been detected. 
+% There is a threshold \( T_{min} \) for the minimal size of a 
+% \emph{recognisable angle} between two vectors. Any angle smaller than that will 
+% be ignored completely. A second threshold \( T_{max} \) describes the minimal size
+% for an angle \( \gamma \)  that is taken into account.
+% Any angle \( \beta_{i} \) between \( T_{min} \) and \( T_{max} \) will be stored. 
+% When the sum of the \( \beta_{i} \) exceeds \( T_{max} \) the position will be 
+% treated as a curve.
 
-\begin{quote}
-\(
-  \alpha < T_{min} \Rightarrow \alpha \text{ will be ignored}
-\)
-\end{quote}
-\begin{quote}
-\(
-  T_{min} < \beta_{i} < T_{max} \Rightarrow \beta_{i} \text{ will be stored}
-\)
-\end{quote}
-\begin{quote}
-\(
-  T_{max} < \gamma \Rightarrow 
-                  \gamma \text{ will be interpreted as an angle in the stroke}
-\)
-\end{quote}
-\begin{quote}
-\(
-  T_{max} < \sum\limits_{i=k}^{l} \beta_{i} \Rightarrow 
-                               \sum\limits_{i=k}^{l} \beta_{i}
-                               \text{ will be interpreted as an 
-                               angle in the stroke}
-\)
-\end{quote}
-A successful curve detection extracts the key feature of the curve 
-description. The remaining features can be extracted or calculated,
-by using the detected curves.
+% \begin{quote}
+% \(
+%   \alpha < T_{min} \Rightarrow \alpha \text{ will be ignored}
+% \)
+% \end{quote}
+% \begin{quote}
+% \(
+%   T_{min} < \beta_{i} < T_{max} \Rightarrow \beta_{i} \text{ will be stored}
+% \)
+% \end{quote}
+% \begin{quote}
+% \(
+%   T_{max} < \gamma \Rightarrow 
+%                   \gamma \text{ will be interpreted as an angle in the stroke}
+% \)
+% \end{quote}
+% \begin{quote}
+% \(
+%   T_{max} < \sum\limits_{i=k}^{l} \beta_{i} \Rightarrow 
+%                                \sum\limits_{i=k}^{l} \beta_{i}
+%                                \text{ will be interpreted as an 
+%                                angle in the stroke}
+% \)
+% \end{quote}
+% A successful curve detection extracts the key feature of the curve 
+% description. The remaining features can be extracted or calculated,
+% by using the detected curves.
 
-\subsubsection{Feature Extraction for Curved Strokes}
-\label{sec:hwre:featureextractionforcurvedstrokes}
+% \subsubsection{Feature Extraction for Curved Strokes}
+% \label{sec:hwre:featureextractionforcurvedstrokes}
 
-The feature vector for curved strokes contains the following elements:
+% The feature vector for curved strokes contains the following elements:
+% \begin{quote}
+% \(
+%     F :=
+%     \left( 
+%     \begin {array} {l c} 
+%         \text{Length} & l \\
+%         \text{Initial point} & p_{I} \\
+%         \text{Endpoint} & p_{E} \\
+%         \text{Velocity} & v \\
+%         \text{Corner angles} & \gamma_{i} \quad i := 1, \ldots , n \\
+%         \text{Corner points} & c_{i} \quad i := 1, \ldots , n \\
+%         \text{Direction sequence} & \vec{d}_j \quad j := 1, \ldots , m \\
+%     \end {array} 
+%     \right)
+% \)
+% \end{quote}
+% The partial feature vector \( l, p_{I}, p_{E}, v\) is identical to the partial
+% feature vector of the straight strokes with the same elements and needs no
+% further description (see section~\ref{sec:hwre:straightstrokematching}).
+% The corner angles have been calculated. In the case of a summation
+% of angles the point with the greatest angle will be determined as the 
+% corner point. In the case of angles that have been observed directly without 
+% summation, the corner point is the point where the angular vectors meet.
+% Therefore, the number of corner points \( m \) and corner angles is identical.
+% The feature \emph{Corner points} is defined as the sum of euclidian distances 
+% between the corner points from the stored datastructure with the candidate 
+% data structure.
+% \begin{quote}
+% \(
+% %  d_i := 
+%   c_p := \sum\limits_{i=1}^{n} \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2} % d_{i} 
+% \)
+% \end{quote}
+% The corner angles feature is defined as the sum of the squares of the 
+% differences between the angles at the corner points.
+% \begin{quote}
+% \(
+%   c_a := \sum\limits_{i=1}^{n} (\beta_{i,db}-\beta_{i,exp})^2
+% \)
+% \end{quote}
+% For both \( c_a \) and \( c_p \) the smaller the value, the closer the more
+% similar the strokes. In fact, if \( c_a \) or \( c_p \) are equal to \(0\),
+% the point analised point sequence was identical with the stored point sequence.
+% The \emph{direction sequence} feature takes into account all the direction 
+% changes, as opposed to the corner angles that use only the most significant ones.
+% The direction sequence feature uses the angle of each line segment regarding the 
+% X-axis of the coordinate system. The angles are then matched against the time
+% they were produced in.
+% %xxx how is this done exactly? what if the number of points differs?
+% %how is the time involved?
+% %S 14, 16, 17
+% %how is curver handling done?
+% %show requirements.
+% %what alternatives were there to consider?
+% %
+% %stroke matching with angles instead of point position.
+% %s. 24
+
+% \subsection{Dynamic Time Warping}
+% \label{sec:hwre:dynamictimewarping}
+
+% The technique of \emph{dynamic time warping} (DTW) has been used for stroke 
+% matching by several studies and systems (see sections~\ref{{sec:curvematching}} 
+% and~\ref{sec:olccr:structuralclassification}).
+% It is an elastic matching technique that seeks an optimal path through
+% a matrix of point distances. Details of the algorithm have been described
+% in literature.
+
+% \subsubsection{Standard DTW}
+% \label{sec:hwre:standarddtw}
+
+% Following~\shortciteANP{Vuori2001} \citeyear{Vuori2001} 
+% and~\shortciteANP{Niels2005} \citeyear{Niels2005}, 
+% the DTW technique is implemented for two pen trajectories, 
+% namely the trajectory stored in the database 
+% \(P_{db} = (p_{1,db}\ldots,p_{n,db})\) and the input trajectory generated by
+% the user's drawing \(P_{exp} = (q_{1,exp},\ldots,q_{m,exp})\).
+% Any point pair \(p_{i,db}\) and \(p_{j,exp}\) matches if one of two constraints 
+% is met:
+% \begin{enumerate}
+%   \item \textbf{Boundary condition}: The points \(p_{i,db}\) and \(p_{j,exp}\)  
+%          match, if one of the following boundary conditions is fulfilled:
+%         \begin{itemize}
+%           \item \(p_{i,db}\) equals the initial point \(p_{I,db} \) 
+%                 and \(p_{j,exp}\) equals the initial point \(p_{I,exp}\)
+%                 of their respective point sequences \(P_{db}\) or \(P_{exp}\)
+
+%           \item \(p_{i,db}\) equals the endpoint \(p_{E,db} \) 
+%                 and \(p_{j,exp}\) equals the endpoint \(p_{E,exp}\)
+%                 of their respective point sequences \(P_{db}\) or \(P_{exp}\)
+%         \end{itemize}
+
+%   \item \textbf{Continuity condition}: The points \(p_{i,db}\) and \(p_{j,exp}\)  
+%          match, if the follwoing equation is fulfilled \\
+%          \begin{quote}
+%          \(
+%             \frac{M}{N}i - cM \le j \le \frac{M}{N}i + cM
+%          \)
+%          \end{quote}
+%          \(c\) is a constant between \(0\) and \(1\), indicating the 
+%          strictness of the condition.
+% \end{enumerate}
+
+% \subsubsection{3-Dimensional DTW}
+% \label{sec:hwre:3ddtw}
+
+% In addition to the standard DTW algorithm, a second DTW classifier performs 
+% a 3-dimensional distance calculation.
+% That is, a point sequence \(P = (p_{1}\ldots,p_{n})\) is considered 
+% 3-dimensional in the way that it contains the relative time (in ms) from the
+% beginning of the stroke as a third dimension.
+% The point distance calculations are euclidian, ignoring the fact that the
+% third dimension is a different type of coordinate.
+% \begin{quote}
+% \(
+%   d_i := \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2+(z_{i,db}-z_{i,exp})^2} 
+% \)
+% \end{quote}
+% \(<x_i, y_i>\) are the regular 2-dimensional point cooredinates, 
+% while the \(z_i\) are the relative times from the beginning of the stroke.
+% The actual DTW algorithm works exactly the same, the difference lies in 
+% the distance calculation.
+% This version of the algorithm has been conducted as an experiment. The direct
+% comparision with the regular DTW is reported in 
+% section~\ref{sec:impl:dtwvs3ddtw}.
+% % what's the similarity measure for
+% % points and strokes?
+% % show requirements.
+% % what alternatives were there to consider?
+
+% % s. 51
+% % how is dynamic time warping done here?
+% % pointer to papers or hwr - chapter, don't explain DTW here.
+% % show requirements
+% % why DTW?
+% % what alternatives were there to consider?
+% % none - it is the alternative.
+% % to all the other stuff I've been doing.
+% % however, what about 3D time warping?
+
+% \subsection{Stroke Matching Summary}
+% \label{sec:hwre:strokematchingsummary}
+
+% Four different classifiers have been implemented.
+% The straight stroke matching via regression lines,
+% the curve matching classifier with direction sequences and two variants
+% of the dynamic time warping algorithm, a regular DTW algorithm and the 
+% three-dimensional variant DTW.
+% The stroke matching occurs in NUMBER parts. 
+% Firstly, the straight stroke recogniser attempts to establish if a stroke 
+% is straight or not. Then the straight stroke matcher analyses if the input
+% stroke and the database stroke are equal.
+% Secondly, if the stroke is regarded as being curved, the curve detector 
+% performs a search for the significant points and angles in both sequences.
+% After that, the curved stroke matcher compares the features of the curved
+% strokes. If both recognisers fail to recognise the expected stroke, 
+% dynamic time warping is used as a fallback option.
+
+\section{Radical Recognition Process}
+\label{sec:hwre:radicalrecognitionprocess}
+
+The recognition of a Radical is a search process. The data format of Radicals is 
+described in section~\ref{sec:hwre:radicaldataformat}.
+Essentially, a Radical is an ordered collection of strokes.
+In order to recognise a radical, the sequence of strokes from the database
+is compared to an input sequence.
+The measure of similarity is a feature vector that consists of the number of
+strokes and the similarities between them.
+Furthermore, permutations of the stroke sequence will be penalised.
+
+In order to match two radicals by their feature vectors \(F_{db} \) 
+and \(F_{exp} \), the following values are conidered:
 \begin{quote}
 \(
     F :=
     \left( 
     \begin {array} {l c} 
-        \text{Length} & l \\
-        \text{Initial point} & p_{I} \\
-        \text{Endpoint} & p_{E} \\
-        \text{Velocity} & v \\
-        \text{Corner angles} & \gamma_{i} \quad i := 1, \ldots , n \\
-        \text{Corner points} & c_{i} \quad i := 1, \ldots , n \\
-        \text{Direction sequence} & \vec{d}_j \quad j := 1, \ldots , m \\
+        \text{Total number of strokes} & n_{s} \\
+        \text{Stroke similarities} s \\ 
+        \text{Stroke sequence} & q \\
+        \text{Position of bounding box} & P \\
+        \text{Size of bounding box} & S \\
     \end {array} 
     \right)
 \)
 \end{quote}
-The partial feature vector \( l, p_{I}, p_{E}, v\) is identical to the partial
-feature vector of the straight strokes with the same elements and needs no
-further description (see section~\ref{sec:hwre:straightstrokematching}).
-The corner angles have been calculated. In the case of a summation
-of angles the point with the greatest angle will be determined as the 
-corner point. In the case of angles that have been observed directly without 
-summation, the corner point is the point where the angular vectors meet.
-Therefore, the number of corner points \( m \) and corner angles is identical.
-The feature \emph{Corner points} is defined as the sum of euclidian distances 
-between the corner points from the stored datastructure with the candidate 
-data structure.
-\begin{quote}
-\(
-%  d_i := 
-  c_p := \sum\limits_{i=1}^{n} \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2} % d_{i} 
-\)
-\end{quote}
-The corner angles feature is defined as the sum of the squares of the 
-differences between the angles at the corner points.
-\begin{quote}
-\(
-  c_a := \sum\limits_{i=1}^{n} (\beta_{i,db}-\beta_{i,exp})^2
-\)
-\end{quote}
-For both \( c_a \) and \( c_p \) the smaller the value, the closer the more
-similar the strokes. In fact, if \( c_a \) or \( c_p \) are equal to \(0\),
-the point analised point sequence was identical with the stored point sequence.
-The \emph{direction sequence} feature takes into account all the direction 
-changes, as opposed to the corner angles that use only the most significant ones.
-The direction sequence feature uses the angle of each line segment regarding the 
-X-axis of the coordinate system. The angles are then matched against the time
-they were produced in.
-%xxx how is this done exactly? what if the number of points differs?
-%how is the time involved?
-%S 14, 16, 17
-%how is curver handling done?
-%show requirements.
-%what alternatives were there to consider?
-%
-%stroke matching with angles instead of point position.
-%s. 24
+Some of the features need little explanation. The total number of strokes 
+\( n_{s} \) is an integer. In the matching process - if the \(n_{s,db} \) and
+\(n_{s,exp} \) differ, the confidence value of the radical recognition value 
+will be lowered. The position of the bounding box is determined by the handle
+point of the box. The euclidian distance between the \(P_{db}\) and \(P_{exp}\)
+serves as a distance measure. The size of the bounding box can support
+assumptions about the general shape of a radical.
 
-\subsection{Dynamic Time Warping}
-\label{sec:hwre:dynamictimewarping}
+The actual stroke matching forms the core of the Radical recognition process.
+The confidence values for the matched input strokes are used to analyse if the 
+input stroke sequence signifies the currently analysed Radical or a different 
+one. Each input stroke is matched against all the strokes from the Radical. 
+The stroke sequence with the greatest confidence value is taken into account.
+However, if the correct sequence of the 
 
-The technique of \emph{dynamic time warping} (DTW) has been used for stroke 
-matching by several studies and systems (see sections~\ref{{sec:curvematching}} 
-and~\ref{sec:olccr:structuralclassification}).
-It is an elastic matching technique that seeks an optimal path through
-a matrix of point distances. Details of the algorithm have been described
-in literature.
 
-\subsubsection{Standard DTW}
-\label{sec:hwre:standarddtw}
 
-Following~\shortciteANP{Vuori2001} \citeyear{Vuori2001} 
-and~\shortciteANP{Niels2005} \citeyear{Niels2005}, 
-the DTW technique is implemented for two pen trajectories, 
-namely the trajectory stored in the database 
-\(P_{db} = (p_{1,db}\ldots,p_{n,db})\) and the input trajectory generated by
-the user's drawing \(P_{exp} = (q_{1,exp},\ldots,q_{m,exp})\).
-Any point pair \(p_{i,db}\) and \(p_{j,exp}\) matches if one of two constraints 
-is met:
-\begin{enumerate}
-  \item \textbf{Boundary condition}: The points \(p_{i,db}\) and \(p_{j,exp}\)  
-         match, if one of the following boundary conditions is fulfilled:
-        \begin{itemize}
-          \item \(p_{i,db}\) equals the initial point \(p_{I,db} \) 
-                and \(p_{j,exp}\) equals the initial point \(p_{I,exp}\)
-                of their respective point sequences \(P_{db}\) or \(P_{exp}\)
+are high enough to 
+conlude they all matched with their corresponding stored strokes from the 
+database. 
 
-          \item \(p_{i,db}\) equals the endpoint \(p_{E,db} \) 
-                and \(p_{j,exp}\) equals the endpoint \(p_{E,exp}\)
-                of their respective point sequences \(P_{db}\) or \(P_{exp}\)
-        \end{itemize}
-
-  \item \textbf{Continuity condition}: The points \(p_{i,db}\) and \(p_{j,exp}\)  
-         match, if the follwoing equation is fulfilled \\
-         \begin{quote}
-         \(
-            \frac{M}{N}i - cM \le j \le \frac{M}{N}i + cM
-         \)
-         \end{quote}
-         \(c\) is a constant between \(0\) and \(1\), indicating the 
-         strictness of the condition.
-\end{enumerate}
-
-\subsubsection{3-Dimensional DTW}
-\label{sec:hwre:3ddtw}
-
-In addition to the standard DTW algorithm, a second DTW classifier performs 
-a 3-dimensional distance calculation.
-That is, a point sequence \(P = (p_{1}\ldots,p_{n})\) is considered 
-3-dimensional in the way that it contains the relative time (in ms) from the
-beginning of the stroke as a third dimension.
-The point distance calculations are euclidian, ignoring the fact that the
-third dimension is a different type of coordinate.
-\begin{quote}
-\(
-  d_i := \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2+(z_{i,db}-z_{i,exp})^2} 
-\)
-\end{quote}
-\(<x_i, y_i>\) are the regular 2-dimensional point cooredinates, 
-while the \(z_i\) are the relative times from the beginning of the stroke.
-The actual DTW algorithm works exactly the same, the difference lies in 
-the distance calculation.
-This version of the algorithm has been conducted as an experiment. The direct
-comparision with the regular DTW is reported in 
-section~\ref{sec:impl:dtwvs3ddtw}.
-% what's the similarity measure for
-% points and strokes?
-% show requirements.
-% what alternatives were there to consider?
-
-% s. 51
-% how is dynamic time warping done here?
-% pointer to papers or hwr - chapter, don't explain DTW here.
-% show requirements
-% why DTW?
-% what alternatives were there to consider?
-% none - it is the alternative.
-% to all the other stuff I've been doing.
-% however, what about 3D time warping?
-
-\subsection{Stroke Matching Summary}
-\label{sec:hwre:strokematchingsummary}
-
-Four different classifiers have been implemented.
-The straight stroke matching via regression lines,
-the curve matching classifier with direction sequences and two variants
-of the dynamic time warping algorithm, a regular DTW algorithm and the 
-three-dimensional variant DTW.
-The stroke matching occurs in NUMBER parts. 
-Firstly, the straight stroke recogniser attempts to establish if a stroke 
-is straight or not. Then the straight stroke matcher analyses if the input
-stroke and the database stroke are equal.
-Secondly, if the stroke is regarded as being curved, the curve detector 
-performs a search for the significant points and angles in both sequences.
-After that, the curved stroke matcher compares the features of the curved
-strokes. If both recognisers fail to recognise the expected stroke, 
-dynamic time warping is used as a fallback option.
-
-\section{Radical Recognition Process}
-\label{sec:hwre:radicalrecognitionprocess}
 
 
 
@@ -1750,6 +1797,8 @@ dynamic time warping is used as a fallback option.
 
 \section{Character Recognition Process}
 \label{sec:hwre:characterrecognitionprocess}
+In the usual case, the strokes do not interfere in their sequence, but there are
+a view exceptions.
 
 % - Why this section? 
 %   The purpose of this section is to distinguish the radical recognition process
