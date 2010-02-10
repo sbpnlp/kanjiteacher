@@ -1747,15 +1747,15 @@
 %  \end{pmatrix}
 % \)
 % \end{quote}
-% The matrix \(M\) forms the basis of the Radical recognition. The highest 
+% The matrix \(M\) forms the basis of the Radical recognition. The maximal 
 % confidence value for a Radical will be achieved if
 % \begin{itemize}
 %   \item \( m = n \) 
-%   \item the highest matching value \(\mu_{i,j}\) for each stroke is above a
+%   \item the maximal matching value \(\mu_{i,j}\) for each stroke is above a
 %         threshold in order to conclude that it matched with its corresponding 
 %         stored stroke from the database.
-%   \item the highest matching values \(\mu_{i,j}\) for all strokes form a diagonal 
-%         path through the matrix, with \( i = j \) for each highest matching 
+%   \item the maximal matching values \(\mu_{i,j}\) for all strokes form a diagonal 
+%         path through the matrix, with \( i = j \) for each maximal matching 
 %         value, starting at \(\mu_{1,1}\), ending at 
 %         \(\mu_{n,n}\) (and \(m=n\)).
 % \end{itemize}
@@ -1824,8 +1824,99 @@
 \section{Character Recognition Process}
 \label{sec:hwre:characterrecognitionprocess}
 
-In the usual case, the strokes do not interfere in their sequence, but there are
-a view exceptions.
+The character recognition process relies on the Radical recognition process.
+Each character is comprised of a set of Radicals the position of their 
+bounding boxes.
+In order to determine if a stroke sequence represents a certain character,
+firstly the individual Radicals are recognised. For character matching,
+the recognised Radicals are compared with the Radicals of the character.
+If they match with a confidence values above the threshold and their position 
+within the character is correct and the character is recognised correctly.
+Generally, the confidence value of a character depends on the confidence values
+of the individual radicals and the distance and position of the bounding boxes
+to the database entry. A feature vector \(F \) here is defined as:
+\begin{quote}
+\(
+    F :=
+    \left( 
+    \begin {array} {l c} 
+        \text{Number of Radicals} & n_{r} \\
+        \text{Position of Radical bounding boxes} & 
+                                   P_i \quad i = 1, \ldots, n_{r} \\
+%        \text{Size of Radical bounding boxes} & 
+%                                   S_i \quad i = 1, \ldots, n_{r} \\
+        \text{Radical confidence values} & c_{i} \quad i = 1, \ldots, n_{r} \\
+    \end {array} 
+    \right)
+\)
+\end{quote}
+The \(n_{r,db} \) and \(n_{r,exp} \) are compared numerically, as they are real 
+numbers. The positions of the Radical bounding boxes \(P_{i,db} \) and 
+\(P_{i,exp} \) are compared by their euclidian distance.
+%The sizes of the Radical bounding boxes \(S_{i,db} \) and \(S_{i,exp} \) are 
+%compared numerically. 
+The Radical confidence values \(c_i\) are averaged.
+The confidence value \(C\) for a character is calculated in several steps.
+The confidence value \(C_n\) for the number of Radicals is computed as follows:
+\begin{quote}
+\(
+   C_n := 
+   \begin{cases}
+     \frac{n_{r,db}}{n_{r,exp}} & \quad \text{if } n_{r,db} \leq n_{r,exp} \\
+     \frac{n_{r,exp}}{n_{r,db}} & \quad \text{if } n_{r,db} > n_{r,exp} \\
+   \end{cases}
+\)
+\end{quote}
+The confidence value \(C_p\) for the Radical positions is extracted from a 
+matrix of euclidian distances between the Radical handles 
+\(P_{i,db} = <x_{i,db},y_{i,db}> \) and 
+\(P_{i,exp} = <x_{i,exp}, y_{i,exp}> \). All the distance values \( \mu_{i,j}\) are 
+computed first to generate a Matrix of Radical position distances 
+\( M_{m,n}\), where
+\( n = n_{r,db} \) and \( m = n_{r,exp} \).
+\begin{quote}
+\(
+   \mu_{i,j} := \sqrt{(x_{i,db}-x_{j,exp})^2 + (y_{i,db}-y_{j,exp})^2}
+\)
+\end{quote}
+\begin{quote}
+\(
+  M_{m,n} = 
+  \begin{pmatrix}
+   \mu_{1,1} & \mu_{1,2} & \cdots & \mu_{1,n} \\
+   \mu_{2,1} & \mu_{2,2} & \cdots & \mu_{2,n} \\
+   \vdots  & \vdots  & \ddots & \vdots  \\
+   \mu_{m,1} & \mu_{m,2} & \cdots & \mu_{m,n} 
+  \end{pmatrix}
+\)
+\end{quote}
+The minimal value \( \xi_m \) of each line or column is chosen.
+\( f_p \) is a constant factor for scaling the confidence value.
+\begin{quote}
+\(
+  C_p := 
+  \begin{cases}
+    f_p * \sum\limits_{i=1}^{n_{r,db}} \xi_i \quad \text{if } n \geq m \\
+    f_p * \sum\limits_{i=1}^{n_{r,exp}} \xi_i \quad \text{if } n < m
+  \end{cases}
+\)
+\end{quote}
+%The confidence value \(C_s\) for the size of the Radical bounding boxes 
+%is computed as follows:
+The confidence value \( C \) is the averaged sum of the other confidence
+values. The sum consits of the confidence
+values for the number of characters \( C_n\),
+for the position of the Radical bounding boxes \( C_p\)
+and the averaged sum of the Radical confidence values.
+All partial confidence values are weighted with the \(w_i\) constants.
+\begin{quote}
+\(
+    C := \frac{1}{3}
+    (w_n * C_n + w_p * C_p + 
+     \frac{w_c}{n_{r,exp}} \sum\limits_{i=1}^{n_{r,exp}} c_{i} )
+\)
+\end{quote}
+
 
 % - Why this section? 
 %   The purpose of this section is to distinguish the radical recognition process
@@ -1873,9 +1964,6 @@ a view exceptions.
 % characters?
 % show requirements.
 % s. 24 pseudocode
-
-In order to scale to the normalised size, the length of an edge of the bounding
-box is compared to the length of the normalised character.
 
 \section{Error Handling}
 \label{sec:hwre:errorhandling}
