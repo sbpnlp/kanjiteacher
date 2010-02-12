@@ -2022,8 +2022,9 @@
 
 Error handling is a crucial part of the handwriting recognition engine.
 It provides the information needed in order to give informed feedback to 
-the user, when drawing a character. The general motivation for error handling
-has been discussed in section~\ref{sec:concept:motivationforerrorrecognition}
+the user, when he has drawn a character. The general motivation for error 
+handling has been discussed in 
+section~\ref{sec:concept:motivationforerrorrecognition}
 typical sources of error have been described in 
 section \ref{sec:concept:sourcesoferror}. 
 The focus in this section lies on the technical aspects of error handling.
@@ -2058,6 +2059,24 @@ an integral part of the recognition module.
 There is a logical explanation for that matter. The error detection in this 
 prototype is a structural error analysis. The achievement of a structural error 
 analysis the main cause for the character recognition process to be structural.
+The task of error detection is not trivial, since there can be recognition errors
+as well. However, in the case presented here, the error detection uses the
+confidence value calculations for strokes, radicals and characters in order
+to find out if there were errrors. Additionally, the confidence values
+for the structural elements define what type of error has been detected.
+
+\subsubsection{Direction of Error Detection}
+\label{sec:hwre:directionoferrordetection}
+
+Error detection is performed when the learning system asks the user to enter a
+certain character. Depending on the confidence value for the recognition of that
+character, error detection determines why and where the recognition failed. 
+Error detection works in two directions. From \emph{inside out} 
+and \emph{outside in}. The direction refers to the hierarchical nature of the 
+character structure.
+
+\paragraph{Outside in} error detection 
+
 
 
 
