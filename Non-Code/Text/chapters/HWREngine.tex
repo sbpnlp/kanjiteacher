@@ -2069,13 +2069,14 @@ for the structural elements define what type of error has been detected.
 \label{sec:hwre:directionoferrordetection}
 
 Error detection is performed when the learning system asks the user to enter a
-certain character. Depending on the confidence value for the recognition of that
-character, error detection determines why and where the recognition failed. 
-Error detection works in two directions. From \emph{inside out} 
-and \emph{outside in}. The direction refers to the hierarchical nature of the 
-character structure.
+certain character. Depending on the confidence value for the recognition of 
+character substructures, error detection determines why and where the 
+recognition failed. Error detection works in two directions:
+From \emph{inside out} and from \emph{outside in}. 
+The direction refers to the hierarchical nature of the character structure.
 
-\paragraph{Outside in} error detection 
+\paragraph{Outside in} error detection occurs if the confidence value of a 
+character was below a threshold.
 
 
 
