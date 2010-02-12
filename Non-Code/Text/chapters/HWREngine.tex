@@ -1973,12 +1973,13 @@
 %   HWR engline, the error handling module.
   
 %   It would be off purpose, if it had to explain too much of the recognition 
-%   process as such - that should've been done in other chapters.
+%   process as such - that should've been done in other sections.
   
 % - What goes into this section?
 %   The main content of this section is the 'way of an error'.
-%   what happens if the character that is bound to be recognised just doesn't fit?
-%   so there's an stroke that's not long enough and it's position is not
+%   what happens if the character that is bound to be recognised just 
+%   doesn't fit?
+%   so there's a stroke that's not long enough and it's position is not
 %   high enough within the character.
 
 %   * if describing a problem: why is the problem relevant.
@@ -2009,36 +2010,55 @@
 
 % - How will this section be structured and organised?
 %   The organisational structure of the section 
+%    
 %    1. error recognition
 %    2. The Way of an error after recognition (error processing)
-%    3. 
+%    
 % - In what style will it be written?
 %   The style of writing will be a technical description - probably no algorithms
 
 % - Next action - what to write first?
 %   The next part to write is to describe the error recognition.
 
-see section \ref{sec:concept:sourcesoferror} in chapter 
-\ref{chap:conceptualdesignofkanjicoach} for possible sources of error
+Error handling is a crucial part of the handwriting recognition engine.
+It provides the information needed in order to give informed feedback to 
+the user, when drawing a character. The general motivation for error handling
+has been discussed in section~\ref{sec:concept:motivationforerrorrecognition}
+typical sources of error have been described in 
+section \ref{sec:concept:sourcesoferror}. 
+The focus in this section lies on the technical aspects of error handling.
 
-\subsection{Error Recognition}
-\label{sec:hwre:errorrecognition}
+\subsection{Error Detection}
+\label{sec:hwre:errordetection}
 
-why this section? to demonstrate own achievements of error recognition.
-the reader should know how it is done technically.
+% what?
+% how?
+% when?
+% where?
 
-what goes into this section? the aspects of finding errors. finding errors
-is not a straightforward trivial task - whenever something does not match
-it is an error - doesn't work like that. instead, 
-firstly, it needs to be made sure that it actually is an error.
-meaning - not a recognition error, but a user error.
-secondly, the type of error needs be identified.
-see section \ref{sec:concept:sourcesoferror} (or handwritten page 58)
-for sources of error.
+% why this section? to demonstrate own achievements of error recognition.
+% the reader should know how it is done technically.
 
-how will this section be written?
-technical - first describe how the error recognition integrates into the
-recognition process, then how errors are identified.
+% what goes into this section? the aspects of finding errors. finding errors
+% is not a straightforward trivial task - whenever something does not match
+% it is an error - doesn't work like that. instead, 
+% firstly, it needs to be made sure that it actually is an error.
+% meaning - not a recognition error, but a user error.
+% secondly, the type of error needs be identified.
+% see section \ref{sec:concept:sourcesoferror} (or handwritten page 58)
+% for sources of error.
+
+% how will this section be written?
+% technical - first describe how the error recognition integrates into the
+% recognition process, then how errors are identified.
+
+Error detection is fully integrated into the character recognition process.
+Concerning abstract module structure it is not an individual model, but rather
+an integral part of the recognition module.
+There is a logical explanation for that matter. The error detection in this 
+prototype is a structural error analysis. The achievement of a structural error 
+analysis the main cause for the character recognition process to be structural.
+
 
 
 \subsection{Error Processing}
@@ -2048,7 +2068,7 @@ recognition process, then how errors are identified.
 
 why this section? 
 actually the 'handling' or 'processing' aspect could be 
-described in the recognition section \ref{sec:hwre:errorrecognition} as well.
+described in the recognition section \ref{sec:hwre:errordetection} as well.
 so this section is only for a better overview, for document structure, 
 thematically they are the same section. thus they are put together under
 Error Handling \ref{sec:hwre:errorhandling}.
