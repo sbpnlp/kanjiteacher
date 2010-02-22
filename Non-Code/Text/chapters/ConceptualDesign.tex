@@ -6,66 +6,127 @@
 \chapter{Conceptual Design of Kanji-Coach}
 \label{chap:conceptualdesignofkanjicoach}
 
-% - Why this section? 
-%   The purpose of this section is 
-%   It would be off purpose, if 
-% - What goes into this section?
-%   The main content of this section is 
-%   * if describing a problem: why is the problem relevant.
-%   * if describing a solution to a problem: what alternatives were
-%     there to solve it, why was this solution chosen? 
-%     what made it the best choice? was it the optimal solution?
-% - How will this section be structured and organised?
-%   The organisational structure of the section 
-% - In what style will it be written?
-%   The style of writing will be 
-% - Next action - what to write first?
-%   The next part to write is
-
 \section{Requirements of a Kanji Teaching E-Learning Application}
 \label{sec:concept:requirements}
 
-%xxx What follows from E-Learning aspects of the whole thing?
-%xxx state that it is not a vocabulary trainer, but a kanji trainer only.
-Wichtige Fragestellung: Wie sieht eine HWR in Lernumgebung aus?
-Mappe S. 19
-genaue anforderungen s. 19!
-waehle bestimmte architekture unter moeglichen ansaetzen.
+\subsection{General Considerations}
+\label{sec:concept:generalconsiderations}
 
-s. 12 beachten: WICHTIG: lernkomponenten, muss kein ganzes system sein.
-
-\subsection{Classification of a Kanji Teaching Application}
-\label{sec:concept:classificationofakanjiteachingapplication}
-
-%classification as an e-learning application.
-%what type of application is it?
-%which learning paradigm is followed?
-
-
-\subsection{Conceptual Issues for E-Learning of Kanji}
-\label{sec:elearn:conceptualissuesforelearningofkanji}
-
-If e-learning is considered as a learning method in higher education, 
-\emph{blended learning} seems to be the most suitable form of e-learning.
-That means, combining classroom activities with e-learning 
-methods~\shortcite{Hettinger2008,Kahiigi2008}.
-
+In order to create a concept for a Kanji teaching application,
+a number of different aspects need to be taken into consideration.
+These aspects emerge from the academic background concerning the Japanese script,
+pedagocical and didactic knowledge about teaching languages and general
+conceptions of e-learning applications.
 
 Many efforts in designing e-learning applications are focused around the
 teacher's view on learning. For designing an e-learning application that
 is useful to students, the students view needs be taken into 
-account~\shortcite{Alexander2007}.
-
+account~\shortcite{Alexander2007}. 
 \shortciteANP{Ivashin2009}~\citeyear{Ivashin2009} critisises the technical 
 dominance in e-learning and e-teaching processes, as the conceptual software
 designs are not always supporting the didactic purpose of the software.
 Therefore, the user view should be taken into account when conceptually designing
 an e-learning application.
+The requirement of a \emph{user-focused design} follows directly from this view.
 
 For online e-learning, it is a known that readers only scan the textual 
 information displayed. Therefore it is not useful to provide a user with 
 large blocks of text, but rather with smaller chunks that encourage 
-skimming over~\shortcite{Hamid2001}.
+skimming over~\shortcite{Hamid2001}. It can be expected that the fact
+that an e-learning process happens online does not greatly affect the user 
+behaviour. Therefore, the observations made for online e-learning can
+probably be applied to offline desktop application based e-learning.
+The requirement of \emph{keeping textual information short and concise} derives
+from the observation.
+
+If e-learning is considered as a learning method in higher education, 
+\emph{blended learning} seems to be the most suitable form of e-learning.
+That means, combining classroom activities with e-learning 
+methods~\shortcite{Hettinger2008,Kahiigi2008}. Language learning is not 
+necessarily considered as higher education. In case of studying Japanese,
+with its specific difficulties in language and the script, language learning
+is taken to an intellectual level that is at least close to higher education.
+Therefore, an e-learning application for any aspect of the Japanese language 
+should not have the pretensions of posessing the capability 
+to \emph{teach Japanese}. Japanese is a complex language with a complex script.
+Therefore, e-learning applications should aim at supporting a learner's 
+classroom efforts of studying the language. The requirement of 
+\emph{focussing on a specific language aspect} can be drawn from this reasoning.
+The prototype system designed in this work does not aim at being a complete
+system, but rather offers individual learning components from which a user can 
+choose what type of learning and which component best supports his study.
+
+\subsection{Classification of a Kanji Teaching Application}
+\label{sec:concept:classificationofakanjiteachingapplication}
+%xxx What follows from E-Learning aspects of the whole thing?
+%classification as an e-learning application.
+%what type of application is it?
+%which learning paradigm is followed?
+
+In section~\ref{sec:elearn:classification} different types of e-learning systems
+have been discussed. In the course of designing a prototype system, 
+design choices need to be made.
+The design choice for the prototype will be an offline e-learning system,
+that runs on a desktop PC.
+This design choice does not follow a conceptual requirement, in fact it ignores
+\shortciteANP{Ivashin2009}'s~\citeyear{Ivashin2009} criticism of technical 
+dominance in e-learning systems. The choice is a purely technical choice, 
+yet, it is driven by a conceptual requirement.
+The purpose of the e-learning environment is to test to what extend a handwriting
+recognition can help study the Kanji. In order to study that research question,
+the handwriting recognition needs to be implemented and integrated with the
+e-learning system. Thus, the design choice for an offline system was 
+inevitable in the sense that the technical limitations of on-line applications
+form an obstacle for pen input of characters and fast recognition procedures.
+
+In the definition given by~\shortcite{Richert2007} the prototype is a \emph{computer based training} (CBT) system, as it does not use the Internet for 
+communication or a webserver for storage. Another criterion for an offline 
+systems is that they are offered on CD-ROM or floppy disk.
+That criterion can be regarded completly obsolete, as it refers to specific 
+storage media. Even if a higher level of abstraction is used to describe the
+criterion, it is still obsolete, since \emph{a passive storage medium} is not 
+necessary to describe what the criterion actually tries to define.
+The criteria concerning communication and data storage are useful to confine
+different types of e-learning applications.
+Additionally, \emph{installability} can be used as a criterion for offline 
+e-learning systems. \emph{Installability} here refers to 
+\emph{the possibility to install a software on a computer system}, 
+not the \emph{ease of installation}, 
+which is defined in ISO9126 as \emph{installability} as 
+well~\shortcite{Chua2004}. 
+The ISO9126 type of installability will be taken into account during the software
+evaluation, which is reported in chapter~\ref{chap:implementationevaluation}.
+
+Concerning the level of interactivity described in 
+section~\ref{sec:elearn:interactivity} the prototype designed in this work is 
+aimed at a level higher than 
+level~\emph{(\ref{elearn:class:changingcontent})~Changing the content of a 
+component}. It is targeted between the 
+levels~\emph{(\ref{elearn:class:generateobjects})~Generating objects or 
+the content of a representation} 
+and~\emph{(\ref{elearn:class:constructivemanipulative})~Constructive and 
+manipulative actions through situation-dependent feedback}.
+Concretely, a user can:
+\begin{itemize}
+ \item Change the ideal shape of a character by storing a new gold standard.
+ \item Create new characters and their descriptions
+ \item Receive situation-dependent feedback even on the newly created characters,
+       due to the nature of the error recognition algorithm that evaluates
+       mathematically the distance between a gold standard character and
+       a an input.
+       Additionally, characters are analysed structurally, therefore new 
+       characters added by the user will automatically be classified and arranged
+       among the other characters in the database of the system.
+\end{itemize}
+Thus, based on the levels of interactivity~\shortcite{Richert2007},
+it can be concluded that the prototype provides a very high level of 
+interaction. The levels serve as an evaluation measurement for the quality of 
+e-learning applications.
+
+\subsection{Conceptual Issues for E-Learning of Kanji}
+\label{sec:elearn:conceptualissuesforelearningofkanji}
+
+%xxx state that it is not a vocabulary trainer, but a kanji trainer only.
 
 \shortcite{Stahlmann2004} spezielle aspekte bezueglich han-trainer pro
 
@@ -105,6 +166,12 @@ weil selbst der zeichenstift benutzt wird.
 %xxx In what form do the corrections come up?
 %xxx What kind of error recognition is there?
 %xxx character input: timeout for learning - no button in handwriting data input view
+
+Wichtige Fragestellung: Wie sieht eine HWR in Lernumgebung aus?
+Mappe S. 19
+genaue anforderungen s. 19!
+waehle bestimmte architekture unter moeglichen ansaetzen.
+
 
 welche art von character recognition muss geleistet werden?
 
