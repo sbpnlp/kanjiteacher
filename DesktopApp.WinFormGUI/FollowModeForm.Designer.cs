@@ -1,6 +1,6 @@
 ﻿namespace Kanji.DesktopApp.WinFormGUI
 {
-    partial class DesktopAppMainForm
+    partial class FollowModeForm
     {
         /// <summary>
         /// Required designer variable.
@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DesktopAppMainForm));
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.mnuFile = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuOpenLesson = new System.Windows.Forms.ToolStripMenuItem();
@@ -39,14 +38,13 @@
             this.mnuLearningProgress = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSwitchUser = new System.Windows.Forms.ToolStripMenuItem();
             this.grpInfo = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.grpMode = new System.Windows.Forms.GroupBox();
-            this.linkLabel4 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel3 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel2 = new System.Windows.Forms.LinkLabel();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
-            this.btnStart = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.btnNext = new System.Windows.Forms.Button();
+            this.btnRepeat = new System.Windows.Forms.Button();
+            this.btnReset = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.grpInfo.SuspendLayout();
             this.grpMode.SuspendLayout();
@@ -77,24 +75,24 @@
             // mnuOpenLesson
             // 
             this.mnuOpenLesson.Name = "mnuOpenLesson";
-            this.mnuOpenLesson.Size = new System.Drawing.Size(152, 22);
+            this.mnuOpenLesson.Size = new System.Drawing.Size(136, 22);
             this.mnuOpenLesson.Text = "Open Lesson";
             // 
             // mnuCloseLesson
             // 
             this.mnuCloseLesson.Name = "mnuCloseLesson";
-            this.mnuCloseLesson.Size = new System.Drawing.Size(152, 22);
+            this.mnuCloseLesson.Size = new System.Drawing.Size(136, 22);
             this.mnuCloseLesson.Text = "Close Lesson";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(152, 22);
+            this.mnuExit.Size = new System.Drawing.Size(136, 22);
             this.mnuExit.Text = "Exit";
             // 
             // mnuUser
@@ -126,7 +124,19 @@
             this.grpInfo.Size = new System.Drawing.Size(371, 381);
             this.grpInfo.TabIndex = 1;
             this.grpInfo.TabStop = false;
-            this.grpInfo.Text = "Mode Info";
+            this.grpInfo.Text = "Character Info";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(359, 356);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = "The 人 character means \'human\' and is read \'hito\' (ひと) or \'jin\' (ジン).";
+            this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // statusStrip1
             // 
@@ -138,82 +148,57 @@
             // 
             // grpMode
             // 
-            this.grpMode.Controls.Add(this.linkLabel4);
-            this.grpMode.Controls.Add(this.linkLabel3);
-            this.grpMode.Controls.Add(this.linkLabel2);
-            this.grpMode.Controls.Add(this.linkLabel1);
-            this.grpMode.Controls.Add(this.btnStart);
+            this.grpMode.BackColor = System.Drawing.SystemColors.Control;
+            this.grpMode.Controls.Add(this.btnReset);
+            this.grpMode.Controls.Add(this.btnRepeat);
+            this.grpMode.Controls.Add(this.panel1);
+            this.grpMode.Controls.Add(this.btnNext);
             this.grpMode.Location = new System.Drawing.Point(0, 27);
             this.grpMode.Name = "grpMode";
             this.grpMode.Size = new System.Drawing.Size(335, 381);
             this.grpMode.TabIndex = 3;
             this.grpMode.TabStop = false;
-            this.grpMode.Text = "Mode Selection";
+            this.grpMode.Text = "Character";
             // 
-            // linkLabel4
+            // panel1
             // 
-            this.linkLabel4.AutoSize = true;
-            this.linkLabel4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel4.Location = new System.Drawing.Point(12, 280);
-            this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(289, 17);
-            this.linkLabel4.TabIndex = 4;
-            this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Excercise Mode 2 (Input Kanji from Romaji)";
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(323, 327);
+            this.panel1.TabIndex = 2;
             // 
-            // linkLabel3
+            // btnNext
             // 
-            this.linkLabel3.AutoSize = true;
-            this.linkLabel3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel3.Location = new System.Drawing.Point(12, 216);
-            this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(291, 17);
-            this.linkLabel3.TabIndex = 3;
-            this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Excercise Mode 1 (Input Kanji from English)";
+            this.btnNext.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNext.Location = new System.Drawing.Point(254, 352);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 0;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = false;
             // 
-            // linkLabel2
+            // btnRepeat
             // 
-            this.linkLabel2.AutoSize = true;
-            this.linkLabel2.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel2.Location = new System.Drawing.Point(12, 146);
-            this.linkLabel2.Name = "linkLabel2";
-            this.linkLabel2.Size = new System.Drawing.Size(281, 17);
-            this.linkLabel2.TabIndex = 2;
-            this.linkLabel2.TabStop = true;
-            this.linkLabel2.Text = "Follow Mode (Redrawing new Characters)";
+            this.btnRepeat.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRepeat.Location = new System.Drawing.Point(173, 352);
+            this.btnRepeat.Name = "btnRepeat";
+            this.btnRepeat.Size = new System.Drawing.Size(75, 23);
+            this.btnRepeat.TabIndex = 3;
+            this.btnRepeat.Text = "Repeat";
+            this.btnRepeat.UseVisualStyleBackColor = false;
             // 
-            // linkLabel1
+            // btnReset
             // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.linkLabel1.Location = new System.Drawing.Point(12, 77);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(256, 17);
-            this.linkLabel1.TabIndex = 1;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "View Mode (Studying new Characters)";
+            this.btnReset.BackColor = System.Drawing.SystemColors.Control;
+            this.btnReset.Location = new System.Drawing.Point(92, 352);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 4;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
             // 
-            // btnStart
-            // 
-            this.btnStart.Location = new System.Drawing.Point(254, 352);
-            this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(75, 23);
-            this.btnStart.TabIndex = 0;
-            this.btnStart.Text = "Start";
-            this.btnStart.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(359, 356);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
-            // 
-            // DesktopAppMainForm
+            // FollowModeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -223,14 +208,13 @@
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "DesktopAppMainForm";
-            this.Text = "Kanji Teacher";
+            this.Name = "FollowModeForm";
+            this.Text = "Kanji Teacher - Lesson 1 - Follow Mode";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();
             this.grpMode.ResumeLayout(false);
-            this.grpMode.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -250,11 +234,10 @@
         private System.Windows.Forms.GroupBox grpInfo;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.GroupBox grpMode;
-        private System.Windows.Forms.Button btnStart;
-        private System.Windows.Forms.LinkLabel linkLabel4;
-        private System.Windows.Forms.LinkLabel linkLabel3;
-        private System.Windows.Forms.LinkLabel linkLabel2;
-        private System.Windows.Forms.LinkLabel linkLabel1;
+        private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnRepeat;
     }
 }
