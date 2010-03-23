@@ -73,17 +73,20 @@ This design choice does not follow a conceptual requirement, in fact it ignores
 dominance in e-learning systems. The choice is a purely technical choice, 
 yet, it is driven by a conceptual requirement.
 The purpose of the e-learning environment is to test to what extend a handwriting
-recognition can help study the Kanji. In order to study that research question,
-the handwriting recognition needs to be implemented and integrated with the
-e-learning system. Thus, the design choice for an offline system was 
-inevitable in the sense that the technical limitations of on-line applications
-form an obstacle for pen input of characters and fast recognition procedures.
+recognition engine can help studying the Kanji. In order to examine that 
+research question, the handwriting recognition needs to be implemented and 
+integrated with the e-learning system. 
+Thus, the design choice for an offline system was inevitable in the sense that 
+the technical limitations of on-line applications form an obstacle for pen 
+input of characters and fast recognition procedures.
 
-In the definition given by~\shortcite{Richert2007} the prototype is a \emph{computer based training} (CBT) system, as it does not use the Internet for 
-communication or a webserver for storage. Another criterion for an offline 
-systems is that they are offered on CD-ROM or floppy disk.
-That criterion can be regarded completly obsolete, as it refers to specific 
-storage media. Even if a higher level of abstraction is used to describe the
+According to the definition given by~\shortcite{Richert2007} the Kanji teacher 
+prototype is a \emph{computer based training} (CBT) system, as it does not use 
+the Internet for communication or a webserver for storage. 
+According to her research, another criterion for an identifying offline systems 
+is that they are offered for distribution on CD-ROM or floppy disk.
+That criterion can be regarded as obsolete, as it refers to specific storage 
+media. Even if a higher level of abstraction is used to describe the
 criterion, it is still obsolete, since \emph{a passive storage medium} is not 
 necessary to describe what the criterion actually tries to define.
 The criteria concerning communication and data storage are useful to confine
@@ -123,23 +126,33 @@ it can be concluded that the prototype provides a very high level of
 interaction. The levels serve as an evaluation measurement for the quality of 
 e-learning applications.
 
-%\subsection{Conceptual Issues for E-Learning of Kanji}
-%\label{sec:elearn:conceptualissuesforelearningofkanji}
+\subsection{Conceptual Issues for E-Learning of Kanji}
+\label{sec:elearn:conceptualissuesforelearningofkanji}
 
-%%xxx state that it is not a vocabulary trainer, but a kanji trainer only.
+An e-learning application for Kanji should be an e-learning application for
+vocabulary at the same time. It is conceptually not useful to split those two 
+learning tasks~\shortcite{Stahlmann2004}.
+Learning Kanji and Hànzì is a visual task. Learners need to focus on many little
+details concerning a character. For example, the character~\cjk{曜} contains 18 
+strokes that are difficult to distinguish from each other in a regular script 
+size of 11pt. It is those details that make it difficult for a learner to 
+remember a character. Thus, it is important to direct and guide the learner's 
+perception of the characters towards a construct of Radicals, rather than a 
+combination of a large number of strokes.
 
-%\shortcite{Stahlmann2004} spezielle aspekte bezueglich han-trainer pro
 
 
-%\section{Approaching the Specific Difficulties of the Japanese Script}
-%\label{sec:concept:tacklingdifficulties}
-
-%%xxx Use difficulties described in Japanese section and describe
-%%xxx how they are cared for in this application.
 
 
-%\subsection{Character Learning Aspects}
-%\label{sec:concept:charaterlearningaspects}
+\section{Approaching the Specific Difficulties of the Japanese Script}
+\label{sec:concept:tacklingdifficulties}
+
+xxx Use difficulties described in Japanese section and describe
+xxx how they are cared for in this application.
+
+
+\subsection{Character Learning Aspects}
+\label{sec:concept:charaterlearningaspects}
 
 
 %- greife typische probleme der lerner auf 
