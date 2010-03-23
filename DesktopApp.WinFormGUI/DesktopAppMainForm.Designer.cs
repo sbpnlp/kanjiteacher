@@ -39,6 +39,7 @@
             this.mnuLearningProgress = new System.Windows.Forms.ToolStripMenuItem();
             this.mnuSwitchUser = new System.Windows.Forms.ToolStripMenuItem();
             this.grpInfo = new System.Windows.Forms.GroupBox();
+            this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.grpMode = new System.Windows.Forms.GroupBox();
             this.linkLabel4 = new System.Windows.Forms.LinkLabel();
@@ -46,7 +47,6 @@
             this.linkLabel2 = new System.Windows.Forms.LinkLabel();
             this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.btnStart = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
             this.menuStrip1.SuspendLayout();
             this.grpInfo.SuspendLayout();
             this.grpMode.SuspendLayout();
@@ -77,24 +77,24 @@
             // mnuOpenLesson
             // 
             this.mnuOpenLesson.Name = "mnuOpenLesson";
-            this.mnuOpenLesson.Size = new System.Drawing.Size(152, 22);
+            this.mnuOpenLesson.Size = new System.Drawing.Size(136, 22);
             this.mnuOpenLesson.Text = "Open Lesson";
             // 
             // mnuCloseLesson
             // 
             this.mnuCloseLesson.Name = "mnuCloseLesson";
-            this.mnuCloseLesson.Size = new System.Drawing.Size(152, 22);
+            this.mnuCloseLesson.Size = new System.Drawing.Size(136, 22);
             this.mnuCloseLesson.Text = "Close Lesson";
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(133, 6);
             // 
             // mnuExit
             // 
             this.mnuExit.Name = "mnuExit";
-            this.mnuExit.Size = new System.Drawing.Size(152, 22);
+            this.mnuExit.Size = new System.Drawing.Size(136, 22);
             this.mnuExit.Text = "Exit";
             // 
             // mnuUser
@@ -127,6 +127,17 @@
             this.grpInfo.TabIndex = 1;
             this.grpInfo.TabStop = false;
             this.grpInfo.Text = "Mode Info";
+            // 
+            // textBox1
+            // 
+            this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Location = new System.Drawing.Point(6, 19);
+            this.textBox1.Multiline = true;
+            this.textBox1.Name = "textBox1";
+            this.textBox1.ReadOnly = true;
+            this.textBox1.Size = new System.Drawing.Size(359, 356);
+            this.textBox1.TabIndex = 0;
+            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // statusStrip1
             // 
@@ -202,16 +213,6 @@
             this.btnStart.TabIndex = 0;
             this.btnStart.Text = "Start";
             this.btnStart.UseVisualStyleBackColor = true;
-            // 
-            // textBox1
-            // 
-            this.textBox1.Location = new System.Drawing.Point(6, 19);
-            this.textBox1.Multiline = true;
-            this.textBox1.Name = "textBox1";
-            this.textBox1.ReadOnly = true;
-            this.textBox1.Size = new System.Drawing.Size(359, 356);
-            this.textBox1.TabIndex = 0;
-            this.textBox1.Text = resources.GetString("textBox1.Text");
             // 
             // DesktopAppMainForm
             // 

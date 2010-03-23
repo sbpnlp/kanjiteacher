@@ -16,8 +16,8 @@ namespace Kanji.DesktopApp.WinFormGUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
             //Application.Run(new DesktopAppMainForm());
-            //Application.Run(new ViewModeForm());
-            Application.Run(new FollowModeForm());
+            Application.Run(new ViewModeForm());
+            //Application.Run(new FollowModeForm());
         }
     }
 }
