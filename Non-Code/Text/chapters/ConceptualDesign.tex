@@ -187,17 +187,79 @@ Ideally, the system would have data that distinguishes both.
 
 Section~\ref{sec:japanesedifficulties} deals with the typical problems that 
 learners face when studying the Kanji. The Japanese script inevitably bears some 
-difficulties when attempting to study it.
-The application should care for these problems by supporting these issues.
+difficulties when attempting to study it. The application should care for these 
+problems by supporting these issues.
+
 
 \subsection{Character Learning Aspects}
 \label{sec:concept:charaterlearningaspects}
 
+The specific problems mentioned in section~\ref{sec:learnersproblems} are:
+\begin{enumerate}
+  \item \textbf{Similar Kanji} \label{enum:charlearning:similarkanji}
+  \item \textbf{Compounds} \label{enum:charlearning:compounds}
+  \item \textbf{Unusual readings} \label{enum:charlearning:unusualreadings}
+  \item \textbf{Alternative Kanji} \label{enum:charlearning:alternativekanji}
+  \item \textbf{Homophones} \label{enum:charlearning:homophones}
+  \item \textbf{Infrequent Jōyō Kanji} \label{enum:charlearning:infrequenjoyo}
+  \item \textbf{Non-Jōyō Kanji} \label{enum:charlearning:nonjoyo}
+\end{enumerate}
+
+\subsubsection{Problems Out of Focus of the Prototype}
+\label{sec:concept:problemsoutoffocus}
+
+A Kanji teaching prototype cannot provide solutions for all of those problems,
+but for some. It cannot provide a satisfying solution for 
+problem~\ref{enum:charlearning:compounds} because the prototype deals with single
+characters only. It is not useful to provide a solution for 
+problem~\ref{enum:charlearning:unusualreadings} because studying the main
+reading of a character is most important at the beginning. Especially, when
+studying a new character, the learner should focus on the character shape and
+the main reading, not on unsusual alternative readings. Kanji Coach aims
+at teaching the Japanese script, not the full Japanese language.
+
+Kanji Coach cannot provide a solution for 
+problems~\ref{enum:charlearning:infrequenjoyo} 
+and~\ref{enum:charlearning:nonjoyo}, memorising infrequent Jōyō 
+Kanji and Non-Jōyō Kanji. These characters are difficult because they are 
+infrequent. It seems more suitable for a learner to study the frequent characters
+first in order to learn reading and writing. Thus, it is not plausible to pay 
+special attention to this group of characters by presenting those moreoften to 
+the learner.
+
+Problem~\ref{enum:charlearning:alternativekanji} can be dealt with in an indirect
+way. Following the concept that frequent characters and the main reading should 
+be studied first, Kanji Coach does not provide any special form of presentation
+for this group of characters. However, it has the ability to recognise 
+alternative Kanji. In a scenario where a user is asked to input a certain 
+character, an alternative character with the same meaning would be accepted. 
+For instance, if a user is promped for the character for the number \emph{one}, 
+which is usually written~'\cjk{一}', but enters the character~'\cjk{壱}' this 
+input would be regarded as correct. However, the problem is not dealt with 
+directly, with the same reason as for other problem types: The focus lies on 
+studying the frequent characters.
+
+\subsubsection{Problems In Focus of the Prototype}
+\label{sec:concept:problemsinfocus}
+
+Homophones are a general difficulty of the Japanese language. Many words are
+ambiguous. Context can provide a better understanding, but even still,
+often it is necessary to see the written Kanji character in order to know what is
+meant with an expression~\shortcite{Foljanty1984}.
+Therefore, it is essential to deal with 
+problem~\ref{enum:charlearning:homophones}. 
+Conceptually, this can be solved by providing special lessons that focus on
+homonphones. Since the homophones are not homographs and therefore not homonyms
+is is a natural process in studying characters to distinguish the characters
+that are pronounced the same.
 
 
-%- greife typische probleme der lerner auf 
-%  (siehe japanischkapite \ref{sec:learnersproblems}
-%  s. 11 hinten kurze auflistung. geschichten?
+
+Kanji Coach can provide a solution for the main difficulty, 
+problem~\ref{enum:charlearning:similarkanji}.
+
+
+
 
 
 \subsubsection{Character Repetition}
