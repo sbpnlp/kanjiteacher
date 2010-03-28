@@ -4,7 +4,7 @@
 %%% End: 
 
 \chapter{Conceptual Design of Kanji-Coach}
-\label{chap:conceptualdesignofkanjicoach}
+\label{chap:conceptualdesignofKanjicoach}
 
 \section{Requirements of a Kanji Teaching E-Learning Application}
 \label{sec:concept:requirements}
@@ -57,7 +57,7 @@ system, but rather offers individual learning components from which a user can
 choose what type of learning and which component best supports his study.
 
 \subsection{Classification of a Kanji Teaching Application}
-\label{sec:concept:classificationofakanjiteachingapplication}
+\label{sec:concept:classificationofaKanjiteachingapplication}
 %xxx What follows from E-Learning aspects of the whole thing?
 %classification as an e-learning application.
 %what type of application is it?
@@ -127,7 +127,7 @@ interaction. The levels serve as an evaluation measurement for the quality of
 e-learning applications.
 
 \subsection{Conceptual Issues for E-Learning of Kanji}
-\label{sec:elearn:conceptualissuesforelearningofkanji}
+\label{sec:elearn:conceptualissuesforelearningofKanji}
 
 An e-learning application for Kanji should be an e-learning application for
 vocabulary at the same time. It is conceptually not useful to split those two 
@@ -168,7 +168,7 @@ own. The number of Radicals is larger than the number of graphemes, but not all
 Radicals are in use and some graphemes are Radicals themselves at the same 
 time~\shortcite{Hadamitzky1995}.
 The Radicals do not only bear a meaning, but also have a function in character
-formation (see section~\ref{sec:typologyofthekanji} for typology of the Kanji).
+formation (see section~\ref{sec:typologyoftheKanji} for typology of the Kanji).
 In order for a learner to memorise the Kanji, it seems useful to grasp the 
 concept of Kanji typology and therefore character formation.
 Equipped with the rules of character formation and a number of Radicals the
@@ -196,21 +196,21 @@ problems by supporting these issues.
 
 The specific problems mentioned in section~\ref{sec:learnersproblems} are:
 \begin{enumerate}
-  \item \textbf{Similar Kanji} \label{enum:charlearning:similarkanji}
+  \item \textbf{Similar Kanji} \label{enum:charlearning:similarKanji}
   \item \textbf{Compounds} \label{enum:charlearning:compounds}
   \item \textbf{Unusual readings} \label{enum:charlearning:unusualreadings}
-  \item \textbf{Alternative Kanji} \label{enum:charlearning:alternativekanji}
+  \item \textbf{Alternative Kanji} \label{enum:charlearning:alternativeKanji}
   \item \textbf{Homophones} \label{enum:charlearning:homophones}
   \item \textbf{Infrequent Jōyō Kanji} \label{enum:charlearning:infrequenjoyo}
   \item \textbf{Non-Jōyō Kanji} \label{enum:charlearning:nonjoyo}
 \end{enumerate}
 
-\subsubsection{Problems Out of Focus of the Prototype}
-\label{sec:concept:problemsoutoffocus}
+\subsubsection{Problems Outside the Scope of the Prototype}
+\label{sec:concept:problemsoutsidescope}
 
 A Kanji teaching prototype cannot provide solutions for all of those problems,
 but for some. It cannot provide a satisfying solution for 
-problem~\ref{enum:charlearning:compounds} because the prototype deals with single
+problem~\ref{enum:charlearning:compounds} as the prototype deals with single
 characters only. It is not useful to provide a solution for 
 problem~\ref{enum:charlearning:unusualreadings} because studying the main
 reading of a character is most important at the beginning. Especially, when
@@ -227,40 +227,69 @@ first in order to learn reading and writing. Thus, it is not plausible to pay
 special attention to this group of characters by presenting those moreoften to 
 the learner.
 
-Problem~\ref{enum:charlearning:alternativekanji} can be dealt with in an indirect
+\subsubsection{Problems Inside the Scope of the Prototype}
+\label{sec:concept:problemsinscope}
+
+The two main problems for learners of Japanese Kanji are 
+\begin{itemize}
+  \item Similar Kanji (problem~\ref{enum:charlearning:similarKanji})
+  \item Homophones (problem~\ref{enum:charlearning:homophones})
+\end{itemize}
+Those two will be dealt with in the prototype. Additionally, the problem of
+\begin{itemize}
+  \item Alternative Kanji (problem~\ref{enum:charlearning:alternativeKanji})
+\end{itemize}
+is targeted by the e-learning application.
+
+\paragraph{Similar Kanji} are the major issue for a learner of Japanese. The 
+prototype \emph{Kanji Coach} provides a solution for this difficulty.
+The solution does not necessarily contain the employment of specialised lessons 
+for similar-looking Kanji. The reason for that is that it is more suitable for 
+the human brain to study material that belongs to the same range of topics. 
+Similar looking Kanji often do not have a connection to each other except their 
+visual similarity. Therfore, studying them together does not seem useful,
+unless they are semantically similar, too, like for instance the characters for
+\emph{speaking} \cjk{話}, \emph{state/give instructions} \cjk{誥} and 
+\emph{language} \cjk{語} that also belong to the same Kanji class, 
+as their key Radical is the same.
+
+\paragraph{Homophones} are a general difficulty for learnears of the Japanese 
+language. Many words are phonetically ambiguous. The context can provide a better
+understanding, but often it is necessary to see the written Kanji character in 
+order to know what is meant with an expression~\shortcite{Foljanty1984}.
+Therefore, it is essential to deal with 
+problem~\ref{enum:charlearning:homophones}. 
+
+Conceptually, this issue can be solved by providing special lessons that focus on
+homonphones. Homophones in Japanese are not necessarily homographs and therefore 
+not homonyms in the strict sense. True homonyms are those word pairs that are 
+both homophones and homographs. In languages using Latin characters,
+homophones are often homographs at the same time, e.g.\ German \emph{Schloss} 
+(Eng.\ castle) and \emph{Schloss} (Eng.\ lock). This is due to the fact that
+the spelling roughly mimics the speech. The pairs that are both homophones and
+homographs are called homonyms. Sometimes, homophones are not homographs, 
+e.g.\ the verbs \emph{dye} and \emph{die}.
+
+In the course of studying the Kanji, it is part of the study process to 
+learn to distinguish the characters that are pronounced the same.
+For instance, there are roughly 80 distinct characters that share the
+pronounciation \emph{kyo}. Table~\ref{table:kicombinations} on 
+page~\pageref{table:kicombinations} shows several Kanji that are 
+pronounced~\emph{ki}. The prototype provides a lesson that is centred around 
+the homophone Kanji characters and their distinction.
+
+\paragraph{Alternative Kanji} is an issue that can be dealt with in an indirect
 way. Following the concept that frequent characters and the main reading should 
 be studied first, Kanji Coach does not provide any special form of presentation
 for this group of characters. However, it has the ability to recognise 
 alternative Kanji. In a scenario where a user is asked to input a certain 
 character, an alternative character with the same meaning would be accepted. 
 For instance, if a user is promped for the character for the number \emph{one}, 
-which is usually written~'\cjk{一}', but enters the character~'\cjk{壱}' this 
-input would be regarded as correct. However, the problem is not dealt with 
-directly, with the same reason as for other problem types: The focus lies on 
-studying the frequent characters.
-
-\subsubsection{Problems In Focus of the Prototype}
-\label{sec:concept:problemsinfocus}
-
-Homophones are a general difficulty of the Japanese language. Many words are
-ambiguous. Context can provide a better understanding, but even still,
-often it is necessary to see the written Kanji character in order to know what is
-meant with an expression~\shortcite{Foljanty1984}.
-Therefore, it is essential to deal with 
-problem~\ref{enum:charlearning:homophones}. 
-Conceptually, this can be solved by providing special lessons that focus on
-homonphones. Since the homophones are not homographs and therefore not homonyms
-is is a natural process in studying characters to distinguish the characters
-that are pronounced the same.
-
-
-
-Kanji Coach can provide a solution for the main difficulty, 
-problem~\ref{enum:charlearning:similarkanji}.
-
-
-
-
+which is usually written as~\cjk{一}, but enters the character~\cjk{壱} instead
+this input would be regarded as correct. Additionally, the user is presented 
+with a hint that another character with the same meaning exits. 
+The focus lies on studying the frequent characters, therefore there are no 
+special lessons concerning alternative Kanji.
 
 \subsubsection{Character Repetition}
 \label{sec:concept:characterrepetition} %label in use already.
@@ -269,13 +298,72 @@ In section~\ref{sec:elearn:elearningoflanguages} the pure repetition of
 grammatical structures as a learning method has been critisised.
 The system should account for that by not just forcing the user to
 reproduce fixed structures. In fact, it should leave room for creativity.
+The system does not provide a free-drawing module in order to allow for
+total creativity. But, creativity is given through the use of the
+Handwriting input as such. A user can practice his own writing style.
+The tolerance thresholds given by the character recognition allow for a
+interpretation of the character shape, rather than a pure repetition.
+
 %Zum Beispiel - radikale vorgeben und zeichen schreiben lassen.
 %und ganz generell: toleranzgrenzen erlauben kreativitaet allein schon deswegen,
 %weil selbst der zeichenstift benutzt wird.
 
-
 \section{Integration of HWR Into the Learning Process}
 \label{sec:concept:integrationofhwrintolearning}
+
+The learning process of Kanji is driven by understanding the structre and 
+meaning of the characters and memorising the shape~\shortcite{Stahlmann2004}. 
+In order to study and memorise, many learners rely on repeating to write the 
+Kanji. That approach seem most natural and can hardly be replaced by anything.
+
+\subsection{The Motivation for Using a HWR}
+\label{sec:concept:motivationforusinghwr}
+
+The fact that learning to read and write is an intervowen learning process 
+suggests that both should be studied together. In standard class room learning 
+environments that is the case. Learners read texts, are presented with new
+Kanji and are asked to reproduce the Kanji when writing essays.
+An e-learning application can not perform the teaching effort of a full language
+course. In order to provide complementary addition to a language course,
+the prototype should create an environment that increases the user's regalement 
+for tedious learning tasks.
+
+The repetition of writing characters in order to memorise them does not
+appeal to the majority of the learners. Especially having to write on paper
+repeating the same character over and over again does not awake inspiration
+and creativity. A handwriting recognition engine that provides corrections
+to the user has two main functions:
+\begin{itemize}
+  \item Making the repetitive task of training the muscular memory less tedious.
+  \item Helping the learner overcome difficulties in writing the Kanji
+\end{itemize}
+In order to train the muscular memory and memorise the Kanji, repetition is 
+needed. The same amount of written characters can seem less repeating simply if
+the characters are not written in a row. Additionally, using a technical device 
+can be more emotive and help increasing the user's motivation and 
+self-discipline. The most liberating feature of the prototype is the error
+correction that comes with the handwriting recognition. The user is less
+dependend on a teacher and can study in his own time and pace.
+
+\subsection{Character Recognition}
+\label{sec:concept:characterrecognition}
+
+The type of character recognition is crucial for the abilities of the system 
+concerning error processing. Highly optimised handwriting recognition systems
+perform a fast and reliable handwriting recognition. However, those systems
+often do not have a  record of the internal structure of the 
+characters.\footnote{See chapter~\ref{chap:onlinehwr} for details.}
+Since understanding of the structure of the characters is important for a 
+successful learning process, the error correction needs to focus on the internal
+structure of the Kanji characters. Studying the character shapes can be 
+performed as a purely visual task. Studying the full characters and grasping
+their construction is a cognitive task that combines visual memory with
+linguistic information. Thus, the error correction must provide structural
+error levels, considering the internal character structure. Following that
+concept even further, the character analysis must be structural, too.
+The prototype performs a strucutral character 
+recognition.\footnote{The technical details of the character recognition
+are described in chapter~\ref{chap:handwritingrecognitionengine}.}
 
 %xxx How do the HWR and the learning process interplay conceptually?
 %xxx In what form do the corrections come up?
@@ -297,12 +385,12 @@ reproduce fixed structures. In fact, it should leave room for creativity.
 % Error Recognition
 % what type of errors?
 % semantical errors? cow vs sheep vs pig
-% phonological errors (readings) kanji that sound the same.
-% theoretically: compounds - for the kanji readings.
+% phonological errors (readings) Kanji that sound the same.
+% theoretically: compounds - for the Kanji readings.
 % heft: s. 52
 
-% - compare with normal paper-based learning of kanji
-% - compare with other kanji-learning systems
+% - compare with normal paper-based learning of Kanji
+% - compare with other Kanji-learning systems
 % klare abgrenzung von skritter.
 % s. 51 unten im heft.
 

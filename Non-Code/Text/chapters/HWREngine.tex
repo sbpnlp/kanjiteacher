@@ -25,7 +25,7 @@
 %   * if describing a solution to a problem: 
 %     what alternatives were there to solve it?    
 %     Instead of a HWR engine, the user could either not have a HWR engine and
-%     write on paper or not practice writing the kanji.
+%     write on paper or not practice writing the Kanji.
 %     why was this solution chosen? 
 %     because it creates an additional benefit, that was not available before.
 %     what made it the best choice? 
@@ -674,7 +674,7 @@ files, points are stored in traces as specified in the InkML format description.
                      label=lst:traceformat]
     <timestamp xml:id="ts001" 
                time="1265122414000"/>
-    <traceFormat xml:id="kanjiStrokeTrace">
+    <traceFormat xml:id="KanjiStrokeTrace">
       <channel name="X" type="decimal" />
       <channel name="Y" type="decimal" />
       <channel name="T" type="integer"
@@ -950,7 +950,7 @@ but not the UPX data structure.
 % - How will this section be structured and organised?
 %   The organisational structure of the section will contain
 %   1. description of the technical format of the character data base
-%      two flat files - indexed via the actual kanji character in unicode
+%      two flat files - indexed via the actual Kanji character in unicode
 %      format, since it is unique. this is a character-centred application!
 %      how are they accessible? what format?
 %      this can be seen more generic as 'the lexicon', not necessarily
@@ -990,7 +990,7 @@ and their translation into a number of languages.
 The handwriting part of the database has been discussed in 
 section~(\ref{sec:hwre:dataformatdescription}). The storage data structure laid
 out there is the structure used.
-The lexical part is provided\footnote{KanjiDict2 is freely available from \url{http://www.csse.monash.edu.au/~jwb/kanjidic2/}} in an XML text file.
+The lexical part is provided\footnote{KanjiDict2 is freely available from \url{http://www.csse.monash.edu.au/~jwb/Kanjidic2/}} in an XML text file.
 
 Listing~(\ref{lst:lexiconentryEAST}) shows a sample database entry of the 
 multi-index database created by~\shortciteANP{Breen2004} \citeyear{Breen2004}.
@@ -1323,7 +1323,7 @@ Radical (see section~\ref{sec:hwre:radicalrecognitionprocess}).
 \label{sec:hwre:scaling}
 
 The bounding box of most Kanji is square, in cases where it is not,
-the space given to a smaller Kanji is still a square.
+the space given to a smaller Kanji is still a square of the same size.
 In order to account for that, scaling is done with respect to the ideal of a 
 square shape of a character. That concept is used for full characters, as well
 as Radicals and strokes.
@@ -2063,7 +2063,6 @@ as well. However, in the case presented here, the error detection uses the
 confidence value calculations for strokes, radicals and characters in order
 to find out if there were errors. Additionally, the confidence values
 for the structural elements define what type of error has been detected.
-
 
 \subsubsection{Direction of Error Detection}
 \label{sec:hwre:directionoferrordetection}
