@@ -37,24 +37,81 @@ that an e-learning process happens online does not greatly affect the user
 behaviour. Therefore, the observations made for online e-learning can
 probably be applied to offline desktop application based e-learning.
 The requirement of \emph{keeping textual information short and concise} derives
-from the observation.
+from that observation.
 
 If e-learning is considered as a learning method in higher education, 
 \emph{blended learning} seems to be the most suitable form of e-learning.
-That means, combining classroom activities with e-learning 
+Blended learning means combining classroom activities with e-learning 
 methods~\shortcite{Hettinger2008,Kahiigi2008}. Language learning is not 
 necessarily considered as higher education. In case of studying Japanese,
 with its specific difficulties in language and the script, language learning
 is taken to an intellectual level that is at least close to higher education.
-Therefore, an e-learning application for any aspect of the Japanese language 
+Thus, an e-learning application for any aspect of the Japanese language 
 should not have the pretensions of posessing the capability 
 to \emph{teach Japanese}. Japanese is a complex language with a complex script.
-Therefore, e-learning applications should aim at supporting a learner's 
+E-learning applications should aim at supporting a learner's 
 classroom efforts of studying the language. The requirement of 
 \emph{focussing on a specific language aspect} can be drawn from this reasoning.
 The prototype system designed in this work does not aim at being a complete
-system, but rather offers individual learning components from which a user can 
-choose what type of learning and which component best supports his study.
+e-learning system, but rather offers individual learning components from which 
+a user can choose what type of learning and which component best supports his 
+study.
+
+\subsection{Conceptual Considerations for E-Learning of Kanji}
+\label{sec:concept:conceptualconsiderationsforelearningofKanji}
+
+An e-learning application for Kanji should be an e-learning application for
+vocabulary at the same time. It is conceptually not useful to split those two 
+learning tasks~\shortcite{Stahlmann2004}.
+Learning Kanji and Hànzì is a visual task. Learners need to focus on many little
+details concerning a character. For example, the character~\cjk{曜} contains 18 
+strokes that are difficult to distinguish from each other in a regular script 
+size of 11pt. It is those details that make it difficult for a learner to 
+remember a character. Thus, it is important to direct and guide the learner's 
+perception and comprehension of the characters towards a construct of Radicals, 
+rather than a combination of a large number of strokes~\shortcite{Stahlmann2004}.
+When attempting to split characters into conceptual sub units for the ease of
+a learner, three different approaches lend themselves to this goal.
+
+\textbf{Firstly}, splitting the characters into certain strokes. There are 26 
+original strokes in the writing system and each shape in all the characters can 
+be drawn with a combination of those strokes~\shortcite{Foljanty1984}.
+This approach does not seem to ease the task of memorising the Kanji.
+It may be fairly easy to memorise 26 strokes, but the fact that around 
+2,000 Kanji necessary for reading Japanese consist of these strokes, does not
+imply that memorising those becomes any less difficult.
+
+\textbf{Secondly}, splitting the characters into graphemes. There are several 
+shapes in use in the Japanese and Chinese writing system. There are 79 
+graphemes in use~\shortcite{Hadamitzky1995}.
+Using graphemes as a conceptual unit for a learner seems much more useful than
+employing the strokes as a direct sub unit of the Kanji.
+Memorising all the graphemes may help a learner to study the Kanji, because all 
+sub shapes of the characters are known. However, graphemes do not necessarily 
+bear a meaning. Seen from a perspective of perception and cognition, 
+the coherence between the different parts of a Kanji would be purely visual.
+That can help learners with an outstanding visual memory, but probably not
+the majority with an average visual memory.
+
+\textbf{Thirdly}, splitting the characters into Radicals. Radicals are the 
+conceptual sub units of Kanji characters and they bear a meaning of their 
+own. The number of Radicals is larger than the number of graphemes, but not all 
+Radicals are in use and some graphemes are Radicals themselves at the same 
+time~\shortcite{Hadamitzky1995}.
+The Radicals do not only bear a meaning, but also have a function in character
+formation (see section~\ref{sec:typologyoftheKanji} for typology of the Kanji).
+In order for a learner to memorise the Kanji, it seems useful to grasp the 
+concept of Kanji typology and therefore character formation.
+Equipped with the rules of character formation and a number of Radicals the
+brain can link different parts of a Kanji character with other parts and 
+other characters. For example when studiying phonograms, the majority of the
+Kanji characters, knowledge about the pronunciation of the phonetic Radical
+will help the learner.
+
+Among those three possibilities it seems most suitable to use a combination of 
+the second and the third. Conceptually, the characters will be split into 
+Radicals, but the system must know about the concept of a grapheme, too.
+Ideally, the system would have data that distinguishes both.
 
 \subsection{Classification of a Kanji Teaching Application}
 \label{sec:concept:classificationofaKanjiteachingapplication}
@@ -63,11 +120,14 @@ choose what type of learning and which component best supports his study.
 %what type of application is it?
 %which learning paradigm is followed?
 
-In section~\ref{sec:elearn:classification} different types of e-learning systems
-have been discussed. In the course of designing a prototype system, 
-design choices need to be made.
-The design choice for the prototype will be an offline e-learning system,
-that runs on a desktop PC.
+\subsubsection{Classification in an E-Learning Context}
+\label{sec:concept:classificationinelearning}
+
+Different types of e-learning systems have been discussed in 
+section~\ref{sec:elearn:classification}. In the course of designing a prototype 
+system, design choices need to be made.
+The design choice for the prototype will be an offline e-learning system that 
+runs on a desktop PC.
 This design choice does not follow a conceptual requirement, in fact it ignores
 \shortciteANP{Ivashin2009}'s~\citeyear{Ivashin2009} criticism of technical 
 dominance in e-learning systems. The choice is a purely technical choice, 
@@ -100,9 +160,17 @@ well~\shortcite{Chua2004}.
 The ISO9126 type of installability will be taken into account during the software
 evaluation, which is reported in chapter~\ref{chap:implementationevaluation}.
 
-Concerning the level of interactivity described in 
-section~\ref{sec:elearn:interactivity} the prototype designed in this work is 
-aimed at a level higher than 
+\noindent The levels of interactivity as described in 
+section~\ref{sec:elearn:interactivity}:
+\begin{enumerate}
+\item \textbf{View and absorb objects} 
+\item \textbf{View and absorb multiple displays} 
+\item \textbf{Varying the form of representation} 
+\item \textbf{Changing the content of a component - parameter or data variation}
+\item \textbf{Generating objects or the content of a representation} 
+\item \textbf{Constructive and manipulative actions through situation-dependent feedback}
+\end{enumerate}
+The prototype designed in this work is aimed at a level higher than 
 level~\emph{(\ref{elearn:class:changingcontent})~Changing the content of a 
 component}. It is targeted between the 
 levels~\emph{(\ref{elearn:class:generateobjects})~Generating objects or 
@@ -126,61 +194,189 @@ it can be concluded that the prototype provides a very high level of
 interaction. The levels serve as an evaluation measurement for the quality of 
 e-learning applications.
 
-\subsection{Conceptual Issues for E-Learning of Kanji}
-\label{sec:elearn:conceptualissuesforelearningofKanji}
+\subsubsection[Classification of Kanji Coach]
+{Classification of Kanji Coach Among Kanji Teaching Applications}
+\label{sec:concept:classificationofkanjicoach}
 
-An e-learning application for Kanji should be an e-learning application for
-vocabulary at the same time. It is conceptually not useful to split those two 
-learning tasks~\shortcite{Stahlmann2004}.
-Learning Kanji and Hànzì is a visual task. Learners need to focus on many little
-details concerning a character. For example, the character~\cjk{曜} contains 18 
-strokes that are difficult to distinguish from each other in a regular script 
-size of 11pt. It is those details that make it difficult for a learner to 
-remember a character. Thus, it is important to direct and guide the learner's 
-perception of the characters towards a construct of Radicals, rather than a 
-combination of a large number of strokes~\shortcite{Stahlmann2004}.
-When attempting to split characters into conceptual sub units for the ease of
-a learner, two different approaches lend themselves to this goal.
+\emph{Kanji Coach} is an e-learning system for Kanji characters. Its unique
+features are
+\begin{itemize}
+  \item The internal handwriting recognition engine
+  \item The error recognition performed by the handwriting recognition module
+\end{itemize}
 
-Firstly, splitting the characters into certain strokes. There are 26 original 
-strokes in the writing system and each shape in all the characters can be drawn
-with a combination of those strokes~\shortcite{Foljanty1984}.
-This approach does not seem to ease the task of memorising the Kanji.
-It may be fairly easy to memorise 26 strokes, but the fact that around 
-2000 Kanji, necessary for reading Japanese, consist of these strokes does not
-imply that memorising those becomes any less difficult.
+The conceptual use of the handwriting recognition engine is dealt with in 
+section~\ref{sec:concept:integrationofhwrintolearning}. The error handling 
+concept is presented in section~\ref{sec:concept:handlingerrors}.
 
-Secondly, splitting the characters into graphemes. There are several shapes
-in use in the Japanese and Chinese writing system. There are 79 graphemes in 
-use~\shortcite{Hadamitzky1995}.
-Using graphemes as a conceptual unit for a learner seems much more useful than
-employing the strokes as a direct sub unit of the Kanji.
-Memorising all the graphemes may help a learner to study the Kanji, because all 
-sub shapes of the characters are known. However, graphemes do not necessarily 
-bear a meaning. Therefore, seen from a perspective of perception and cognition, 
-the coherence between the different parts of a Kanji would be purely visual.
-That can help learners with an outstanding visual memory, but probably not
-the majority with an average visual memory.
+There are several e-learning systems that are centred around learning to read 
+and write Japanese:
+\begin{enumerate}
+    \item \textbf{JWPce} \\
+          \url{http://www.physics.ucla.edu/~grosenth/jwpce.html} \\
+          Special text processing editor for Japanese as a foreign language,
+          including dictionaries.
+    \item \textbf{JFC} \\
+          \url{http://www.physics.ucla.edu/~grosenth/jfc.html} \\
+          Application for learning Kanji.
+    \item \textbf{JapAlpha} \\
+          \url{http://members.aol.com/JapAlpha/private/japa10.htm } \\
+          Application for learning the phonetic letters of Japanese.
+    \item \textbf{Hiragana und Katakana online lernen} \\
+          \url{http://www.theiling.de/schrift/#kanatop} \\
+          Web site for studying Hiragana and Katakana.
+    \item \textbf{Moji} \\
+          \url{http://moji.mozdev.org/} \\
+          Web browser extension for immidiate dictionary lookup of Knaji.
+    \item \textbf{KanjiQuick} \\
+          \url{http://www.kanji.de/} \\
+          Dictionary for Kanji-German with a translation module and a text to 
+          speech module.
+    \item \textbf{Kanji Gold} \\
+          \url{http://web.uvic.ca/kanji-gold/} \\
+          E-Learning application for studying Kanji.
+    \item \textbf{KanjiGym Light} \\
+          \url{http://www.kanjigym.de/} \\
+          E-Learning application for studying Kanji with the Heisig 
+          system.\footnote{The Heisig system is a method for studying Kanji,
+            discussed in section~\ref{sec:japanesedifficulties}.}
+    \item \textbf{Tagaini vocabulary teacher} \\
+          \url{http://www.tagaini.net/} \\
+          Vocabulary teacher for Japanese.
+    \item \textbf{Online vocabulary teacher} \\
+          \url{http://www.vokabeltrainer-online.net/} \\
+          General vocabulary teacher for several languages including Japanese.
+    \item \textbf{Kanji Teacher of SZSB}  \\
+          \url{http://szsbls3.szsb.uni-saarland.de/kanji/} \\
+          Online e-learning application for studying Kanji.
+    \item \textbf{Skritter} \\
+          \url{http://www.skritter.com} \\
+          Online e-learning application for studying Kanji including a
+          handwriting input.
+\end{enumerate}
 
-Thirdly, splitting the characters into Radicals. Radicals are the conceptual 
-sub units of Kanji characters and they bear a meaning of their 
-own. The number of Radicals is larger than the number of graphemes, but not all 
-Radicals are in use and some graphemes are Radicals themselves at the same 
-time~\shortcite{Hadamitzky1995}.
-The Radicals do not only bear a meaning, but also have a function in character
-formation (see section~\ref{sec:typologyoftheKanji} for typology of the Kanji).
-In order for a learner to memorise the Kanji, it seems useful to grasp the 
-concept of Kanji typology and therefore character formation.
-Equipped with the rules of character formation and a number of Radicals the
-brain can link different parts of a Kanji character with other parts and 
-other characters. For example when studiying phonograms, the majority of the
-Kanji characters, knowledge about the pronunciation of the phonetic Radical
-will help the learner.
+Among the various e-learning applications centred around Japanese there are 
+three different types of applications.
 
-Among those three possibilities it seems most suitable to use a combination of 
-the second and the third. Conceptually, the characters will be split into 
-Radicals, but the system must know about the concept of a grapheme, too.
-Ideally, the system would have data that distinguishes both.
+\begin{enumerate}
+  \item \textbf{Dictionaries}. In the dictionary type of applications it is 
+        possible to look up a Kanji and receive a translation in a different
+        language, mostly English, sometimes German. Among those JWPCE is
+        the most developed in the sense that it provides a Radical lookup.
+        A user can choose a number of Radicals in a matrix of Radicals
+        and the dictionary finds appropriate characters.
+  \item \textbf{Vocabulary teachers}. Vocabulary teaching applications provide 
+        interfaces for word look-up and foreign word input with either
+        Unicode input or Latin transcription of Japanese words.
+  \item \textbf{Script teachers}. Script teaching applications are designed 
+        as two different types. Multiple choice applications and handwriting 
+        input.
+        \begin{itemize}
+          \item \textbf{Multiple choice}. The large majority of e-learning 
+                applications teaching the Japanese script (either the two types
+                of Kana or the Kanji) have to use multiple choice for character
+                input. The reason for that is that modern 
+                Input Method Editors (IME)
+                allow for a Latin input of Japanese words and provide the
+                Kanji for the user. If the application would prompt the user
+                with a task like \emph{What Kanji is pronounced 'inu'?}
+                the user would have to type 'I-N-U' in order to be presented
+                with the character \cjk{犬} by the IME. In other words there is 
+                no cognitive task for the user except reading Latin characters 
+                from the screen and typing them on the computer keyboard.
+                Since that does not help with the task of learning the Kanji,
+                the only chance is multiple choice. The user is presented a set 
+                of characters and is asked to click on the one that had been 
+                asked for.
+          \item \textbf{Handwriting input}. There are only two 
+                applications
+                \footnote{\emph{Skritter} from 
+                  \url{http://www.skritter.com/}.}
+                \footnote{\emph{KanjiGym Light} from 
+                  \url{http://www.kanjigym.de/}.}
+                that use a handwriting input method in order to teach the Kanji.
+                However, none of the applications performs a handwriting 
+                recognition.
+         \end{itemize}
+\end{enumerate}
+
+\paragraph{Skritter} uses a kind of stroke-based similarity measure for 
+individual strokes. When the system prompts the user for a specific character,
+it allows only the next correct stroke of that character as user input. 
+Concretely, the user can just try to write any stroke. If it is close enough to 
+the next correct stroke, it will be morphed into an idealised picture of that 
+stroke.
+Figures:
+\begin{itemize}
+ \item 
+ Figure~\ref{fig:skritter:noIncorrectInput} shows that Skritter does not allow
+ any incorrect input by the user. If the user tries to input an incorrect stroke
+ the correct stroke is shown on the screen. That feature avoids any learning 
+ from one's own errors.
+
+ \item 
+ Figure~\ref{fig:skritter:morphInputToCorrectStroke} shows the way Skritter 
+ morphs a user input to the correct position. The stroke length is adapted to 
+ fit the character. The user's error disappears immediately.
+
+ \item 
+ Figure~\ref{fig:skritter:highToleranceForMorphing} shows the high tolerance that
+ Skritter allows when morphing. The user input stroke generally follows the right
+ direction, but the euclidian distance of the stroke and the ideal stroke is 
+ large. Nevertheless Skritter accepts that stroke as a correct input.
+\end{itemize}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/skritter/noIncorrectInput.png}
+\caption{Skritter does not allow incorrect input}
+\label{fig:skritter:noIncorrectInput}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/skritter/morphInputToCorrectStroke.png}
+\caption{Skritter morphs user input to correct strokes}
+\label{fig:skritter:morphInputToCorrectStroke}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/skritter/highToleranceForMorphing.png}
+\caption{Skritter employs a very high tolerance when morphing user input}
+\label{fig:skritter:highToleranceForMorphing}
+\end{center}
+\end{figure}
+
+\paragraph{Kanjigym Light} does not measure anything. The application provides
+a canvas for writing charaters. The user can input a character and then
+click a button named \emph{check}. The correct character appears next to the
+user input and leaves it to the user to compare for correctness.
+There is an accept and a discard button.
+\begin{itemize}
+\item Figure~\ref{fig:kanjigym:input} shows the user input canvas in 
+      Kanjigym Light.
+\item Figure~\ref{fig:kanjigym:check} shows the way Kanjigym Light has the 
+      user compare his own input with the original character.
+\end{itemize}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/kanjigym/input.png}
+\caption{Kanjigym Light character input}
+\label{fig:kanjigym:input}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/kanjigym/check.png}
+\caption{Kanjigym Light checking correctness manually}
+\label{fig:kanjigym:check}
+\end{center}
+\end{figure}
 
 \section{Approaching the Specific Difficulties of the Japanese Script}
 \label{sec:concept:tacklingdifficulties}
@@ -188,8 +384,9 @@ Ideally, the system would have data that distinguishes both.
 Section~\ref{sec:japanesedifficulties} deals with the typical problems that 
 learners face when studying the Kanji. The Japanese script inevitably bears some 
 difficulties when attempting to study it. The application should care for these 
-problems by supporting these issues.
-
+problems by supporting these issues. They can be approached by providing
+not only a handwriting input for the user but also a handwriting recognition
+engine that gives informed feedback to the user.
 
 \subsection{Character Learning Aspects}
 \label{sec:concept:charaterlearningaspects}
@@ -304,6 +501,12 @@ Handwriting input as such. A user can practice his own writing style.
 The tolerance thresholds given by the character recognition allow for a
 interpretation of the character shape, rather than a pure repetition.
 
+Similar to the multi-radical look-up in JWPCE a learning task for a user
+of the Kanji e-learning prototype could be the combination of different radicals
+to a Kanji character.
+That would allow for creativity and also appeal to the cognition because
+it is more than the repetition of shapes that were given before.
+
 %Zum Beispiel - radikale vorgeben und zeichen schreiben lassen.
 %und ganz generell: toleranzgrenzen erlauben kreativitaet allein schon deswegen,
 %weil selbst der zeichenstift benutzt wird.
@@ -386,6 +589,9 @@ concept even further, the character analysis must be structural, too.
 The prototype performs a strucutral character 
 recognition.\footnote{The technical details of the character recognition
 are described in chapter~\ref{chap:handwritingrecognitionengine}.}
+Structural character recognition means that it performs a structural analysis
+of the characters in order to obtain a symbolic value for the character,
+in this case a unicode value.
 
 %xxx How do the HWR and the learning process interplay conceptually?
 %xxx In what form do the corrections come up?
@@ -419,6 +625,13 @@ are described in chapter~\ref{chap:handwritingrecognitionengine}.}
 
 \section{Handling Errors}
 \label{sec:concept:handlingerrors}
+
+Having a handwriting recognition that gives informed feedback about the 
+question if the entered character was correct is an approach that allows
+for additional analysis and feedback.
+Because of the structural analysis of the characters during the recognition 
+process it becomes possible to provide feedback about errors on a graphemic, 
+phonetic and semantic level.
 
 %xxx why this section? what is its purpose?
 %because it is one of the crucial novelties of the system to provide an
