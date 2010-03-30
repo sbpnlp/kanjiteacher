@@ -121,7 +121,14 @@
     <value>17, 17</value>
   </metadata>
   <data name="textBox1.Text" xml:space="preserve">
-    <value>In "View Mode" you can study new characters by looking at a presentation of them. In "Follow Mode" you can redraw a character as it is shown to you. In "Excersise Mode 1" you can handwrite characters, given an English word. In "Excercise Mode 2" you can write characters given the reading in Romaji.</value>
+    <value>
+In "View Mode" you can study new characters by looking at a presentation of them. 
+
+In "Follow Mode" you can redraw a character as it is shown to you. 
+
+In "Exersise Mode 1" you can handwrite characters, given an English word. 
+
+In "Exercise Mode 2" you can write characters given the reading in Romaji.</value>
   </data>
   <metadata name="statusStrip1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>126, 17</value>

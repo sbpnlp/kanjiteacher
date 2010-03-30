@@ -41,13 +41,15 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.grpMode = new System.Windows.Forms.GroupBox();
-            this.panel1 = new System.Windows.Forms.Panel();
-            this.btnNext = new System.Windows.Forms.Button();
-            this.btnRepeat = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
+            this.btnRepeat = new System.Windows.Forms.Button();
+            this.panel1 = new System.Windows.Forms.Panel();
+            this.lblCharacter = new System.Windows.Forms.Label();
+            this.btnNext = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             this.grpInfo.SuspendLayout();
             this.grpMode.SuspendLayout();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStrip1
@@ -57,7 +59,7 @@
             this.mnuUser});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -129,20 +131,21 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(6, 19);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(359, 356);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "The 人 character means \'human\' and is read \'hito\' (ひと) or \'jin\' (ジン).";
+            this.textBox1.Text = "\r\n\r\n\r\n\r\n\r\nThe character 本 means \'root\' and is read \'hon\' (ほん).";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 409);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(710, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -160,23 +163,15 @@
             this.grpMode.TabStop = false;
             this.grpMode.Text = "Character";
             // 
-            // panel1
+            // btnReset
             // 
-            this.panel1.BackColor = System.Drawing.Color.White;
-            this.panel1.Location = new System.Drawing.Point(6, 19);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(323, 327);
-            this.panel1.TabIndex = 2;
-            // 
-            // btnNext
-            // 
-            this.btnNext.BackColor = System.Drawing.SystemColors.Control;
-            this.btnNext.Location = new System.Drawing.Point(254, 352);
-            this.btnNext.Name = "btnNext";
-            this.btnNext.Size = new System.Drawing.Size(75, 23);
-            this.btnNext.TabIndex = 0;
-            this.btnNext.Text = "Next";
-            this.btnNext.UseVisualStyleBackColor = false;
+            this.btnReset.BackColor = System.Drawing.SystemColors.Control;
+            this.btnReset.Location = new System.Drawing.Point(92, 352);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 4;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
             // 
             // btnRepeat
             // 
@@ -188,21 +183,42 @@
             this.btnRepeat.Text = "Repeat";
             this.btnRepeat.UseVisualStyleBackColor = false;
             // 
-            // btnReset
+            // panel1
             // 
-            this.btnReset.BackColor = System.Drawing.SystemColors.Control;
-            this.btnReset.Location = new System.Drawing.Point(92, 352);
-            this.btnReset.Name = "btnReset";
-            this.btnReset.Size = new System.Drawing.Size(75, 23);
-            this.btnReset.TabIndex = 4;
-            this.btnReset.Text = "Reset";
-            this.btnReset.UseVisualStyleBackColor = false;
+            this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.lblCharacter);
+            this.panel1.ForeColor = System.Drawing.Color.LightGray;
+            this.panel1.Location = new System.Drawing.Point(6, 19);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(323, 327);
+            this.panel1.TabIndex = 2;
+            // 
+            // lblCharacter
+            // 
+            this.lblCharacter.AutoSize = true;
+            this.lblCharacter.BackColor = System.Drawing.Color.White;
+            this.lblCharacter.Font = new System.Drawing.Font("MingLiU", 144F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblCharacter.Location = new System.Drawing.Point(25, 67);
+            this.lblCharacter.Name = "lblCharacter";
+            this.lblCharacter.Size = new System.Drawing.Size(272, 192);
+            this.lblCharacter.TabIndex = 2;
+            this.lblCharacter.Text = "本";
+            // 
+            // btnNext
+            // 
+            this.btnNext.BackColor = System.Drawing.SystemColors.Control;
+            this.btnNext.Location = new System.Drawing.Point(254, 352);
+            this.btnNext.Name = "btnNext";
+            this.btnNext.Size = new System.Drawing.Size(75, 23);
+            this.btnNext.TabIndex = 0;
+            this.btnNext.Text = "Next";
+            this.btnNext.UseVisualStyleBackColor = false;
             // 
             // FollowModeForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 433);
+            this.ClientSize = new System.Drawing.Size(710, 431);
             this.Controls.Add(this.grpMode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grpInfo);
@@ -215,6 +231,8 @@
             this.grpInfo.ResumeLayout(false);
             this.grpInfo.PerformLayout();
             this.grpMode.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -239,5 +257,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnReset;
         private System.Windows.Forms.Button btnRepeat;
+        private System.Windows.Forms.Label lblCharacter;
     }
 }

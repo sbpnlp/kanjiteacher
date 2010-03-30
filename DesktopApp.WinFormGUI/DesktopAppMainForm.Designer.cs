@@ -59,7 +59,7 @@
             this.mnuUser});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -131,6 +131,7 @@
             // textBox1
             // 
             this.textBox1.BackColor = System.Drawing.Color.White;
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.textBox1.Location = new System.Drawing.Point(6, 19);
             this.textBox1.Multiline = true;
             this.textBox1.Name = "textBox1";
@@ -141,9 +142,9 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 409);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(710, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
@@ -167,10 +168,10 @@
             this.linkLabel4.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel4.Location = new System.Drawing.Point(12, 280);
             this.linkLabel4.Name = "linkLabel4";
-            this.linkLabel4.Size = new System.Drawing.Size(289, 17);
+            this.linkLabel4.Size = new System.Drawing.Size(281, 17);
             this.linkLabel4.TabIndex = 4;
             this.linkLabel4.TabStop = true;
-            this.linkLabel4.Text = "Excercise Mode 2 (Input Kanji from Romaji)";
+            this.linkLabel4.Text = "Exercise Mode 2 (Input Kanji from Romaji)";
             // 
             // linkLabel3
             // 
@@ -178,10 +179,10 @@
             this.linkLabel3.Font = new System.Drawing.Font("Arial", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.linkLabel3.Location = new System.Drawing.Point(12, 216);
             this.linkLabel3.Name = "linkLabel3";
-            this.linkLabel3.Size = new System.Drawing.Size(291, 17);
+            this.linkLabel3.Size = new System.Drawing.Size(283, 17);
             this.linkLabel3.TabIndex = 3;
             this.linkLabel3.TabStop = true;
-            this.linkLabel3.Text = "Excercise Mode 1 (Input Kanji from English)";
+            this.linkLabel3.Text = "Exercise Mode 1 (Input Kanji from English)";
             // 
             // linkLabel2
             // 
@@ -218,7 +219,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 433);
+            this.ClientSize = new System.Drawing.Size(710, 431);
             this.Controls.Add(this.grpMode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grpInfo);

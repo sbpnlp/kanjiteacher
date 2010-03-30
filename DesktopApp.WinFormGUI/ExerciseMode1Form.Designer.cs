@@ -1,6 +1,6 @@
 ﻿namespace Kanji.DesktopApp.WinFormGUI
 {
-    partial class ViewModeForm
+    partial class ExerciseMode1Form
     {
         /// <summary>
         /// Required designer variable.
@@ -41,6 +41,8 @@
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.grpMode = new System.Windows.Forms.GroupBox();
+            this.btnReset = new System.Windows.Forms.Button();
+            this.btnRepeat = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lblCharacter = new System.Windows.Forms.Label();
             this.btnNext = new System.Windows.Forms.Button();
@@ -57,7 +59,7 @@
             this.mnuUser});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Size = new System.Drawing.Size(712, 24);
+            this.menuStrip1.Size = new System.Drawing.Size(710, 24);
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -136,20 +138,23 @@
             this.textBox1.ReadOnly = true;
             this.textBox1.Size = new System.Drawing.Size(359, 356);
             this.textBox1.TabIndex = 0;
-            this.textBox1.Text = "\r\n\r\n\r\n\r\n\r\nThe character 人 means \'human\' and is read \'hito\' (ひと) or \'jin\' (ジン).";
+            this.textBox1.Text = "\r\nPlease write the character that means \'root\'.\r\n\r\n\r\nGood effort!\r\n\r\nThere\'s only" +
+                " one stroke missing.\r\n\r\nThe correct character looks like this:\r\n\r\n本";
             this.textBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 411);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 409);
             this.statusStrip1.Name = "statusStrip1";
-            this.statusStrip1.Size = new System.Drawing.Size(712, 22);
+            this.statusStrip1.Size = new System.Drawing.Size(710, 22);
             this.statusStrip1.TabIndex = 2;
             this.statusStrip1.Text = "statusStrip1";
             // 
             // grpMode
             // 
             this.grpMode.BackColor = System.Drawing.SystemColors.Control;
+            this.grpMode.Controls.Add(this.btnReset);
+            this.grpMode.Controls.Add(this.btnRepeat);
             this.grpMode.Controls.Add(this.panel1);
             this.grpMode.Controls.Add(this.btnNext);
             this.grpMode.Location = new System.Drawing.Point(0, 27);
@@ -159,10 +164,31 @@
             this.grpMode.TabStop = false;
             this.grpMode.Text = "Character";
             // 
+            // btnReset
+            // 
+            this.btnReset.BackColor = System.Drawing.SystemColors.Control;
+            this.btnReset.Location = new System.Drawing.Point(92, 352);
+            this.btnReset.Name = "btnReset";
+            this.btnReset.Size = new System.Drawing.Size(75, 23);
+            this.btnReset.TabIndex = 4;
+            this.btnReset.Text = "Reset";
+            this.btnReset.UseVisualStyleBackColor = false;
+            // 
+            // btnRepeat
+            // 
+            this.btnRepeat.BackColor = System.Drawing.SystemColors.Control;
+            this.btnRepeat.Location = new System.Drawing.Point(173, 352);
+            this.btnRepeat.Name = "btnRepeat";
+            this.btnRepeat.Size = new System.Drawing.Size(75, 23);
+            this.btnRepeat.TabIndex = 3;
+            this.btnRepeat.Text = "Repeat";
+            this.btnRepeat.UseVisualStyleBackColor = false;
+            // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
             this.panel1.Controls.Add(this.lblCharacter);
+            this.panel1.ForeColor = System.Drawing.Color.LightGray;
             this.panel1.Location = new System.Drawing.Point(6, 19);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(323, 327);
@@ -173,11 +199,12 @@
             this.lblCharacter.AutoSize = true;
             this.lblCharacter.BackColor = System.Drawing.Color.White;
             this.lblCharacter.Font = new System.Drawing.Font("MingLiU", 144F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblCharacter.Location = new System.Drawing.Point(32, 69);
+            this.lblCharacter.ForeColor = System.Drawing.Color.Maroon;
+            this.lblCharacter.Location = new System.Drawing.Point(25, 67);
             this.lblCharacter.Name = "lblCharacter";
             this.lblCharacter.Size = new System.Drawing.Size(272, 192);
-            this.lblCharacter.TabIndex = 1;
-            this.lblCharacter.Text = "人";
+            this.lblCharacter.TabIndex = 3;
+            this.lblCharacter.Text = "本";
             // 
             // btnNext
             // 
@@ -189,18 +216,18 @@
             this.btnNext.Text = "Next";
             this.btnNext.UseVisualStyleBackColor = false;
             // 
-            // ViewModeForm
+            // ExcerciseMode1Form
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(712, 433);
+            this.ClientSize = new System.Drawing.Size(710, 431);
             this.Controls.Add(this.grpMode);
             this.Controls.Add(this.statusStrip1);
             this.Controls.Add(this.grpInfo);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Name = "ViewModeForm";
-            this.Text = "Kanji Teacher - Lesson 1 - View Mode";
+            this.Name = "ExcerciseMode1Form";
+            this.Text = "Kanji Teacher - Lesson 1 - Exercise Mode 1";
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.grpInfo.ResumeLayout(false);
@@ -229,7 +256,9 @@
         private System.Windows.Forms.GroupBox grpMode;
         private System.Windows.Forms.Button btnNext;
         private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.Label lblCharacter;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.Button btnReset;
+        private System.Windows.Forms.Button btnRepeat;
+        private System.Windows.Forms.Label lblCharacter;
     }
 }
