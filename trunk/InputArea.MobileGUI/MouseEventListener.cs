@@ -80,7 +80,7 @@ namespace Kanji.InputArea.MobileGUI
         /// <param name="colour">The colour.</param>
         private void UpdateDrawing(Drawing.Color colour)
         {
-                Drawing.Pen pen = new Drawing.Pen(colour, 3);
+                Drawing.Pen pen = new Drawing.Pen(colour, 8);
                 int j = 0;
 
                 foreach (List<MouseEventArgs> lp in AllActivePoints)

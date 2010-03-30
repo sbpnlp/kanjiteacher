@@ -15,26 +15,26 @@
 In order to create a concept for a Kanji teaching application,
 a number of different aspects need to be taken into consideration.
 These aspects emerge from the academic background concerning the Japanese script,
-pedagocical and didactic knowledge about teaching languages and general
+pedagogical and didactic knowledge about teaching languages and general
 conceptions of e-learning applications.
 
 Many efforts in designing e-learning applications are focused around the
 teacher's view on learning. For designing an e-learning application that
 is useful to students, the students view needs be taken into 
 account~\shortcite{Alexander2007}. 
-\shortciteANP{Ivashin2009}~\citeyear{Ivashin2009} critisises the technical 
+\shortciteANP{Ivashin2009}~\citeyear{Ivashin2009} criticises the technical 
 dominance in e-learning and e-teaching processes, as the conceptual software
 designs are not always supporting the didactic purpose of the software.
 Therefore, the user view should be taken into account when conceptually designing
 an e-learning application.
 The requirement of a \emph{user-focused design} follows directly from this view.
 
-For online e-learning, it is a known that readers only scan the textual 
+For on-line e-learning, it is a known that readers only scan the textual 
 information displayed. Therefore it is not useful to provide a user with 
 large blocks of text, but rather with smaller chunks that encourage 
 skimming over~\shortcite{Hamid2001}. It can be expected that the fact
-that an e-learning process happens online does not greatly affect the user 
-behaviour. Therefore, the observations made for online e-learning can
+that an e-learning process happens on-line does not greatly affect the user 
+behaviour. Therefore, the observations made for on-line e-learning can
 probably be applied to offline desktop application based e-learning.
 The requirement of \emph{keeping textual information short and concise} derives
 from that observation.
@@ -47,11 +47,11 @@ necessarily considered as higher education. In case of studying Japanese,
 with its specific difficulties in language and the script, language learning
 is taken to an intellectual level that is at least close to higher education.
 Thus, an e-learning application for any aspect of the Japanese language 
-should not have the pretensions of posessing the capability 
+should not have the ambition of possessing the capability 
 to \emph{teach Japanese}. Japanese is a complex language with a complex script.
 E-learning applications should aim at supporting a learner's 
 classroom efforts of studying the language. The requirement of 
-\emph{focussing on a specific language aspect} can be drawn from this reasoning.
+\emph{focusing on a specific language aspect} can be drawn from this reasoning.
 The prototype system designed in this work does not aim at being a complete
 e-learning system, but rather offers individual learning components from which 
 a user can choose what type of learning and which component best supports his 
@@ -104,7 +104,7 @@ In order for a learner to memorise the Kanji, it seems useful to grasp the
 concept of Kanji typology and therefore character formation.
 Equipped with the rules of character formation and a number of Radicals the
 brain can link different parts of a Kanji character with other parts and 
-other characters. For example when studiying phonograms, the majority of the
+other characters. For example when studying phonograms, the majority of the
 Kanji characters, knowledge about the pronunciation of the phonetic Radical
 will help the learner.
 
@@ -142,7 +142,7 @@ input of characters and fast recognition procedures.
 
 According to the definition given by~\shortcite{Richert2007} the Kanji teacher 
 prototype is a \emph{computer based training} (CBT) system, as it does not use 
-the Internet for communication or a webserver for storage. 
+the Internet for communication or a web server for storage. 
 According to her research, another criterion for an identifying offline systems 
 is that they are offered for distribution on CD-ROM or floppy disk.
 That criterion can be regarded as obsolete, as it refers to specific storage 
@@ -227,7 +227,7 @@ and write Japanese:
           Web site for studying Hiragana and Katakana.
     \item \textbf{Moji}:
           \url{http://moji.mozdev.org/} \\
-          Web browser extension for immidiate dictionary lookup of Knaji.
+          Web browser extension for immediate dictionary lookup of Kanji.
     \item \textbf{KanjiQuick}:
           \url{http://www.kanji.de/} \\
           Dictionary for Kanji-German with a translation module and a text to 
@@ -290,12 +290,8 @@ three different types of applications.
           \item \textbf{Handwriting input}. There are only two applications
                 that use a handwriting input method in order to teach the Kanji.
                 However, none of the applications performs a handwriting 
-                recognition. The applications are 
-                \footnote{\emph{Skritter} from 
-                  \url{http://www.skritter.com/}.}
-                \footnote{\emph{KanjiGym Light} from 
-                  \url{http://www.kanjigym.de/}.}
-
+                recognition. Those two applications are \emph{Skritter} and 
+                \emph{KanjiGym Light}.
          \end{itemize}
 \end{enumerate}
 
@@ -304,25 +300,30 @@ individual strokes. When the system prompts the user for a specific character,
 it allows only the next correct stroke of that character as user input. 
 Concretely, the user can just try to write any stroke. If it is close enough to 
 the next correct stroke, it will be morphed into an idealised picture of that 
-stroke.
-Figures:
+stroke. If not, Skritter will show the correct stroke.
+The system is clearly not a handwriting recognition system.
+
+\noindent Figures:
 \begin{itemize}
  \item 
  Figure~\ref{fig:skritter:noIncorrectInput} shows that Skritter does not allow
  any incorrect input by the user. If the user tries to input an incorrect stroke
  the correct stroke is shown on the screen. That feature avoids any learning 
- from one's own errors.
+ from one's own errors, because the correct stroke is always given.
 
  \item 
  Figure~\ref{fig:skritter:morphInputToCorrectStroke} shows the way Skritter 
  morphs a user input to the correct position. The stroke length is adapted to 
- fit the character. The user's error disappears immediately.
+ fit the character. The user's error concerning the stroke length disappears 
+immediately without any comment by the system. The system only comments incorrect
+stroke direction.
 
  \item 
  Figure~\ref{fig:skritter:highToleranceForMorphing} shows the high tolerance that
- Skritter allows when morphing. The user input stroke generally follows the right
- direction, but the euclidian distance of the stroke and the ideal stroke is 
- large. Nevertheless Skritter accepts that stroke as a correct input.
+ Skritter allows when morphing. The user input stroke more or less has the 
+ correct shape and the right  direction, but the euclidean distance of the 
+ input stroke and the ideal stroke is large. Nevertheless Skritter accepts that 
+ stroke as a correct input without a comment.
 \end{itemize}
 
 \begin{figure}[htbp]
@@ -349,22 +350,22 @@ Figures:
 \end{center}
 \end{figure}
 
-\paragraph{Kanjigym Light} does not perform a handwriting recognition. The 
-application provides a canvas for writing charaters. The user can input a 
-character and then click a button named \emph{check}. The correct character 
-appears next to the user input and leaves it to the user to compare for 
-correctness. There is an accept and a discard button.
+\paragraph{KanjiGym Light} does not perform a handwriting recognition. 
+The application provides a canvas for writing characters. The user 
+can input a character and then click a button named \emph{check}. The correct 
+character appears next to the user input and leaves it to the user to compare 
+for correctness. There is an accept and a discard button.
 \begin{itemize}
 \item Figure~\ref{fig:kanjigym:input} shows the user input canvas in 
-      Kanjigym Light.
-\item Figure~\ref{fig:kanjigym:check} shows the way Kanjigym Light has the 
+      KanjiGym Light.
+\item Figure~\ref{fig:kanjigym:check} shows the way KanjiGym Light has the 
       user compare his own input with the original character.
 \end{itemize}
 
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.7]{images/ConceptualDesign/kanjigym/input.png}
-\caption{Kanjigym Light character input}
+\caption{KanjiGym Light character input}
 \label{fig:kanjigym:input}
 \end{center}
 \end{figure}
@@ -372,7 +373,7 @@ correctness. There is an accept and a discard button.
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.7]{images/ConceptualDesign/kanjigym/check.png}
-\caption{Kanjigym Light checking correctness manually}
+\caption{KanjiGym Light checking correctness manually}
 \label{fig:kanjigym:check}
 \end{center}
 \end{figure}
@@ -409,10 +410,10 @@ but for some. It cannot provide a satisfying solution for
 problem~\ref{enum:charlearning:compounds} as the prototype deals with single
 characters only. It is not useful to provide a solution for 
 problem~\ref{enum:charlearning:unusualreadings} because studying the main
-reading of a character is most important at the beginning. Especially, when
-studying a new character, the learner should focus on the character shape and
-the main reading, not on unsusual alternative readings. Kanji Coach aims
-at teaching the Japanese script, not the full Japanese language.
+reading of a character is most important at the beginning of studying Kanji. 
+Especially, when studying a new character, the learner should focus on the 
+character shape and the main reading, not on unusual alternative readings. 
+Kanji Coach aims at teaching the Japanese script, not the full Japanese language.
 
 Kanji Coach cannot provide a solution for 
 problems~\ref{enum:charlearning:infrequenjoyo} 
@@ -420,7 +421,7 @@ and~\ref{enum:charlearning:nonjoyo}, memorising infrequent Jōyō
 Kanji and Non-Jōyō Kanji. These characters are difficult because they are 
 infrequent. It seems more suitable for a learner to study the frequent characters
 first in order to learn reading and writing. Thus, it is not plausible to pay 
-special attention to this group of characters by presenting those moreoften to 
+special attention to this group of characters by presenting those more often to 
 the learner.
 
 \subsubsection{Problems Inside the Scope of the Prototype}
@@ -443,13 +444,13 @@ The solution does not necessarily contain the employment of specialised lessons
 for similar-looking Kanji. The reason for that is that it is more suitable for 
 the human brain to study material that belongs to the same range of topics. 
 Similar looking Kanji often do not have a connection to each other except their 
-visual similarity. Therfore, studying them together does not seem useful,
+visual similarity. Therefore, studying them together does not seem useful,
 unless they are semantically similar, too, like for instance the characters for
 \emph{speaking} \cjk{話}, \emph{state/give instructions} \cjk{誥} and 
 \emph{language} \cjk{語} that also belong to the same Kanji class, 
 as their key Radical is the same.
 
-\paragraph{Homophones} are a general difficulty for learnears of the Japanese 
+\paragraph{Homophones} are a general difficulty for learners of the Japanese 
 language. Many words are phonetically ambiguous. The context can provide a better
 understanding, but often it is necessary to see the written Kanji character in 
 order to know what is meant with an expression~\shortcite{Foljanty1984}.
@@ -457,7 +458,7 @@ Therefore, it is essential to deal with
 problem~\ref{enum:charlearning:homophones}. 
 
 Conceptually, this issue can be solved by providing special lessons that focus on
-homonphones. Homophones in Japanese are not necessarily homographs and therefore 
+homophones. Homophones in Japanese are not necessarily homographs and therefore 
 not homonyms in the strict sense. True homonyms are those word pairs that are 
 both homophones and homographs. In languages using Latin characters,
 homophones are often homographs at the same time, e.g.\ German \emph{Schloss} 
@@ -469,7 +470,7 @@ e.g.\ the verbs \emph{dye} and \emph{die}.
 In the course of studying the Kanji, it is part of the study process to 
 learn to distinguish the characters that are pronounced the same.
 For instance, there are roughly 80 distinct characters that share the
-pronounciation \emph{kyo}. Table~\ref{table:kicombinations} on 
+pronunciation \emph{kyo}. Table~\ref{table:kicombinations} on 
 page~\pageref{table:kicombinations} shows several Kanji that are 
 pronounced~\emph{ki}. The prototype provides a lesson that is centred around 
 the homophone Kanji characters and their distinction.
@@ -480,7 +481,7 @@ be studied first, Kanji Coach does not provide any special form of presentation
 for this group of characters. However, it has the ability to recognise 
 alternative Kanji. In a scenario where a user is asked to input a certain 
 character, an alternative character with the same meaning would be accepted. 
-For instance, if a user is promped for the character for the number \emph{one}, 
+For instance, if a user is prompted for the character for the number \emph{one}, 
 which is usually written as~\cjk{一}, but enters the character~\cjk{壱} instead
 this input would be regarded as correct. Additionally, the user is presented 
 with a hint that another character with the same meaning exits. 
@@ -491,20 +492,20 @@ special lessons concerning alternative Kanji.
 \label{sec:concept:characterrepetition} %label in use already.
 
 In section~\ref{sec:elearn:elearningoflanguages} the pure repetition of 
-grammatical structures as a learning method has been critisised.
+grammatical structures as a learning method has been criticised.
 The system should account for that by not just forcing the user to
 reproduce fixed structures. In fact, it should leave room for creativity.
 The system does not provide a free-drawing module in order to allow for
-total creativity. But, creativity is given through the use of the
-Handwriting input as such. A user can practice his own writing style.
-The tolerance thresholds given by the character recognition allow for a
+total creativity. But creativity is given through the use of the
+handwriting input as such. A user can practise his own writing style.
+The tolerance thresholds given by the character recognition module allow for an
 interpretation of the character shape, rather than a pure repetition.
 
 Similar to the multi-radical look-up in JWPCE a learning task for a user
-of the Kanji e-learning prototype could be the combination of different radicals
-to a Kanji character.
+of the Kanji e-learning prototype \emph{Kanji Coach} could be the combination 
+of different radicals to a Kanji character.
 That would allow for creativity and also appeal to the cognition because
-it is more than the repetition of shapes that were given before.
+it is more demanding than merely repeating the shapes that were given before.
 
 %Zum Beispiel - radikale vorgeben und zeichen schreiben lassen.
 %und ganz generell: toleranzgrenzen erlauben kreativitaet allein schon deswegen,
@@ -513,20 +514,25 @@ it is more than the repetition of shapes that were given before.
 \section{Integration of HWR Into the Learning Process}
 \label{sec:concept:integrationofhwrintolearning}
 
-The learning process of Kanji is driven by understanding the structre and 
+The learning process of Kanji is driven by understanding the structure and 
 meaning of the characters and memorising the shape~\shortcite{Stahlmann2004}. 
 In order to study and memorise, many learners rely on repeating to write the 
-Kanji. That approach seem most natural and can hardly be replaced by anything.
+Kanji. That approach seems most natural and can hardly be replaced by any other 
+method. Nevertheless, the method can be changed to be more challenging to
+a user and thus create some level of excitement. This is done by combining
+it with different tasks where the user does not see the character before
+having to write it.
 
 \subsection{The Motivation for Using a HWR}
 \label{sec:concept:motivationforusinghwr}
 
-The fact that learning to read and learning to write is an intervowen process 
-suggests that both should be studied together. In standard class room learning 
-environments that is the case. Learners read texts, are presented with new
-Kanji and are asked to reproduce the Kanji when writing essays.
+The fact that learning to read and learning to write are highly interwoven 
+processes suggests that both should be studied together. In standard class room 
+learning environments that is the case. Learners read texts, learners are 
+presented with new Kanji and learners are asked to reproduce the Kanji when 
+writing essays.
 An e-learning application can not perform the teaching effort of a full language
-course. In order to provide complementary addition to a language course,
+course. In order to provide a complementary addition to a language course,
 the prototype should create an environment that increases the user's regalement 
 for tedious learning tasks.
 
@@ -534,7 +540,7 @@ The repetition of writing characters in order to memorise them does not
 appeal to the majority of the learners. Especially having to write on paper
 repeating the same character over and over again does not awake inspiration
 and creativity. An e-learning application with an integrated handwriting 
-recognition engine that provides corrections for the user inupt has two 
+recognition engine that provides corrections for the user input has two 
 main functions:
 \begin{itemize}
   \item Making the repetitive task of training the muscular memory less tedious.
@@ -545,19 +551,20 @@ In order to train the muscular memory and memorise the Kanji, repetition is
 needed. The same amount of written characters can seem less repeating simply if
 the characters are not written in a row. Additionally, using a technical device 
 can be more emotive and help increasing the user's motivation and 
-self-discipline. \shortcite{Ismail2002,Richert2007} critised that some 
+self-discipline. \shortcite{Ismail2002,Richert2007} criticised that some 
 e-learning applications do not add a value to the learning 
 process.\footnote{For details see section~\ref{sec:elearn:elearningoflanguages}.}
+The prototype proposed in this work does add value to the learning process.
 Additional value over practising to write characters on paper is added
 by the following features:
 \begin{itemize}
-  \item The general possibilities of the application to prompt the user with 
-        different characters
-  \item Presenting new characters, their meanings, pronunciation and
+  \item The general ability of the application to prompt the user with 
+        different characters in an ordered or random fashion.
+  \item Presentation new characters, their meanings, pronunciation and
         stroke order.
-  \item Having the characters organised in lessons and teaching related
-        characters in combination.
-  \item The different methods
+  \item Characters are organised in lessons and related characters are presented
+        in combination with each other in the same lesson.
+  \item The methods
     \begin{itemize}
       \item Writing a Japanese character after being prompted an English word, 
             instead of purely drawing lines without an additional cognitive 
@@ -565,7 +572,7 @@ by the following features:
       \item Writing a Japanese character after being prompted a Japanese word.
     \end{itemize}
   \item The error correction that comes with the handwriting recognition. The 
-        user is less dependend on a teacher and can study in his own time and 
+        user is less dependent on a teacher and can study in his own time and 
         pace, yet still get informed feedback.
 \end{itemize}
  
@@ -584,13 +591,14 @@ performed as a purely visual task. Studying the full characters and grasping
 their construction is a cognitive task that combines visual memory with
 linguistic information. Thus, the error correction must provide structural
 error levels, considering the internal character structure. Following that
-concept even further, the character analysis must be structural, too.
-The prototype performs a strucutral character 
-recognition.\footnote{The technical details of the character recognition
-are described in chapter~\ref{chap:handwritingrecognitionengine}.}
+concept even further, the character analysis must be structural as well.
+The prototype performs a structural character 
+recognition.\footnote{Details about how the character recognition is
+performed on a technical level can be found in 
+chapter~\ref{chap:handwritingrecognitionengine}.}
 Structural character recognition means that it performs a structural analysis
 of the characters in order to obtain a symbolic value for the character,
-in this case a unicode value.
+in this case a unicode value. 
 
 %xxx How do the HWR and the learning process interplay conceptually?
 %xxx In what form do the corrections come up?
@@ -646,23 +654,174 @@ phonetic and semantic level.
 \subsection{Motivation for Error Recognition}
 \label{sec:concept:motivationforerrorrecognition}
 
+The motivation for error recognition has been broached in the previous sections.
+The main reason is that a user needs be given a chance to learn from his own 
+errors. In any relation between a student and a teacher, concerning any subject 
+matter the teacher has the task to inform the student about mistakes.
+The teacher provides corrections to the errors of the student when trying
+to fulfil a task. The student can learn by improving what he had done wrong 
+before. 
+
+For an e-learning application it is difficult to provide an informed error 
+correction. The reasons for that lie in:
+\begin{itemize}
+  \item The limitations of communication between the machine and the user:
+        in the most common scenario the user interaction is limited to
+        typing with the keyboard and clicking with the mouse
+  \item The limitations of user input analysis. For text strings most of the
+        times only exact matches are accepted. Some types of analyses are very
+        difficult to perform, including syntax analysis and handwriting input.
+        That is the reason for most interfaces to perform a simplified
+        or a partial analysis of the user input or no analysis at all.
+  \item Limited knowledge within the application about potential user errors.
+\end{itemize}
+In Kanji Coach these limitations shall be weakened. The communication between
+machine and user is dome with an Intelligent User Interface, a canvas that
+takes handwritten characters as input. The limited user input analysis is
+approached with the interpretation of the strokes as a Kanji character.
+Knowledge about possible sources of error is stored in the application's 
+knowledge base, such that the third limitation has a less severe impact into
+user experience.
 
 \subsection[Sources of Error]{Possible Sources of Error When Writing Japanese Characters}
 \label{sec:concept:sourcesoferror}
 
-error handling, see page 58.
+There are seven different sources of errors for learners when writing Kanji 
+characters. These error categories are:
+\begin{itemize}
+\item Stroke level errors
+\item Radical level errors
+\item Character level errors
+\item Linguistic level errors
+  \begin{itemize}
+  \item Phonological errors
+  \item Morphological errors
+  \item Semantic errors
+  \item Lexical errors
+  \end{itemize}
+\end{itemize}
 
+\paragraph{Stroke level errors} 
+\begin{itemize}
+\item \textbf{Stroke length}: A stroke has been drawn by the user with an 
+      incorrect length.
+\item \textbf{Stroke direction}: The stroke has been drawn from the opposite
+      direction or the general stroke direction, the absolute angle with respect 
+      to the X-axis was deviant.
+\item \textbf{Stroke angle}: If the stroke has a corner the angle of in the
+      corner can deviate from the angle of the original stroke.
+\end{itemize}
 
-See notes on paper, seite 58
-- for example stroke number and stroke sequence
-- length of strokes
+\paragraph{Radical level errors}
+\begin{itemize}
+\item \textbf{Stroke number}: The number of strokes in the Radical is different
+      from the number of strokes in the gold standard Radical.
+\item \textbf{Stroke sequence}: The sequence of strokes within the Radical
+      is different from the ideal stroke sequence.
+\end{itemize}
 
-- stroke velocity
+\paragraph{Character level errors}
+\begin{itemize}
+\item \textbf{Incorrect Radical}: A Radical used within the character is not
+      correct as it was confused with a different one by the user.
+\item \textbf{Incorrect number of Radicals}: An additional Radical has been 
+      added to the character or a Radical is missing.
+\end{itemize}
+
+\paragraph{Linguistic level errors} are a super-category of other error category.
+The errors on a linguistic level do not concern the character input directly
+but rather the language and the use of the characters. The linguistic errors
+can be subdivided into phonological, morphological, semantic and lexical errors,
+where the latter ones have only a subtle distinction.
+
+\paragraph{Phonological errors} are errors concerning Kanji readings. If a user
+writes a character with the same reading as the character in question it is 
+likely to be a confusion based on the phonological features of the two 
+characters. The Japanese language has a large number of homophones that abet
+this type of confusion.
+
+\paragraph{Morphological errors} are mainly concerned with suffixation.
+If a Kanji character and additional Hiragana characters in order to form a word,
+these Hiragana characters are called \emph{Okurigana}.\footnote{For a detailed 
+description of what Okurigana are, see 
+section~\ref{sec:structureofwritingsystem}.}
+The error of adding incorrect Okurigana to a Kanji character can be classified
+as a morphological error. As the Kanji Coach prototype deals with single 
+characters only this error type is not applicable.
+
+\paragraph{Semantic errors} are those errors where a user confuses two characters
+with a similar meaning. For example, the words 
+\cjk{食べ物}~(Jap. pron.~\cjk{タベモノ}~/~tabemono; 
+Eng.~lit.~\emph{thing for eating}; Eng.~\emph{food}) 
+and 
+\cjk{飲み物}~(Jap. pron.~\cjk{ノミモノ}~/~nomimono; 
+Eng.~lit.~\emph{thing for drinking}; Eng.~\emph{drink})
+can be confused easily on a semantic level. The same is true for the individual 
+characters.
+ 
+\paragraph{Lexical errors} are the errors where a user uses a character with the
+same meaning. Those are not real errors. This falls under 
+\emph{alternative Kanji} that have been discussed in 
+section~\ref{sec:concept:problemsinscope}.
+This type of error can be compared to using a synonym in a vocabulary test.
+The word was not the word asked but the answer is not incorrect either.
+Therefore, lexical errors do not need special attention the the prototype
+application.
 
 \section{Use Cases}
 \label{sec:concept:usecases}
 
-Figure~\ref{fig:startupScreen}
+The uses cases presented in this section are oriented towards the conceptual
+design presented in the previous chapters. The startup screen of the application
+is presented in figure~\ref{fig:startupScreen}. There are four different modes 
+to choose from.
+\begin{enumerate}
+\item View mode
+\item Follow mode
+\item Exercise mode 1
+\item Exercises mode 2
+\end{enumerate}
+The user can employ different modes for self-directed study. In view mode,
+the characters and information about those are just presented to the user.
+
+Figure~\ref{fig:viewMode} shows the view mode. On the left side of the screen
+the character is presented to the user. On the right side of the screen
+information about the character are displayed.
+
+The first interactive character learning mode is the follow mode shown in
+figure~\ref{fig:followMode}. In follow mode, a character is shown and the user
+can follow the character lines that are shown on the screen. 
+
+The input in follow mode or in the other modes can be drawn on the mobile input
+area. That guarantees the ability to use a stylus. 
+Figure~\ref{fig:mobileDeviceInput} shows a drawing on the mobile device.
+In exercise~mode~1 the user is presented an English word and is asked 
+to draw the appropriate Kanji character. Exercise~mode~2 works the same way,
+just the user is presented the Japanese reading of a character instead of the
+English word.
+
+Figure~\ref{fig:exerciseMode1} shows the screen of exercise~mode~1 with a
+user input. The user input is mirrored from the mobile device as shown in 
+figure~\ref{fig:mobileDeviceInput} before.
+After the character recognition and error detection is performed,
+the application can return an analysis to the user.
+In this case the input was not quite correct. As seen in 
+figure~\ref{fig:followMode} in order to write the character for 'root',
+which is written \cjk{本}, there is one stroke missing in 
+figure~\ref{fig:mobileDeviceInput} and the mirrored image in
+figure~\ref{fig:exerciseMode1}.
+
+\emph{Incorrect stroke number} is one of the errors defined in 
+section~\ref{sec:concept:sourcesoferror}. It is in the 
+\emph{Radical error level} as there is a stroke missing in order to
+finish the Radical.
+There is no error in character level. In this special case the character
+is a Radical. The error 'missing stroke' is relevant to the Radical level.
+
+Figure~\ref{fig:exerciseMode1Errormessage} shows the error message and
+the feedback for the user. A missing stroke is just a minor error,
+therefore the user is presented a positive feedback.
+
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.7]{images/ConceptualDesign/startupScreen.png}
@@ -671,25 +830,46 @@ Figure~\ref{fig:startupScreen}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:viewMode}
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.7]{images/ConceptualDesign/viewMode.png}
-\caption{Startup screen}
+\caption{Character view mode}
 \label{fig:viewMode}
 \end{center}
 \end{figure}
 
-Figure~\ref{fig:mobileDeviceInput}
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.7]{images/ConceptualDesign/mobileDeviceInput.png}
-\caption{Startup screen}
-\label{fig:mobileDeviceInput}
+\includegraphics[scale=0.7]{images/ConceptualDesign/followMode.png}
+\caption{Follow mode for drawing new characters}
+\label{fig:followMode}
 \end{center}
 \end{figure}
 
 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.6]{images/ConceptualDesign/mobileDeviceInput.png}
+\caption{Mobile device character input}
+\label{fig:mobileDeviceInput}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/exerciseMode1.png}
+\caption{Exercise mode 1 for input of Kanji from English source}
+\label{fig:exerciseMode1}
+\end{center}
+\end{figure}
+
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.7]{images/ConceptualDesign/exerciseMode1Errormessage.png}
+\caption{Exercise mode 1 after user entered almost correct character}
+\label{fig:exerciseMode1Errormessage}
+\end{center}
+\end{figure}
 
 % siehe 'screenshot' - grafiken von s. 2 - 9
 % auch: was kann man aus e-learning machen?
