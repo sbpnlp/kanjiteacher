@@ -50,8 +50,10 @@ namespace Kanji.InputArea.MobileGUI
         #region Private methods
         protected virtual void OnStrokeFinished()
         {
+
             if (OnlyActiveStrokeFinished != null)
             {
+                MessageBox.Show("sending the point list of active points");
                 //send each point list only once for now...
                 //maybe exchange with 
                 //sending allactivepoints (after calling ArchiveActivePoints !)
