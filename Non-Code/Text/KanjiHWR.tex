@@ -86,21 +86,24 @@ Saarbrücken, den 31.03.2010}
 
 \begin{document}
 
-% CHECK1: "Fertig geschrieben"
-% CHECK2: "Korrekturgelesen"
-% CHECK3: "Korrekturen eingebaut"
-% CHECK4: "Endabnahme als individualkapitel"
-% CHECK5: "Endabnahme im Gesamtzusammenhang"
+% CHECK1: "Fertig geschrieben", d.h. Rechtschreibpruefung und 
+%         Freigabe zum Korrekturlesen
+% CHECK2: Korrekturgelesen von jemand anderem
+% CHECK3: Korrekturen eingebaut
+% CHECK4: Endabnahme als individualkapitel
+% CHECK5: Endabnahme im Gesamtzusammenhang der Arbeit
+% CHECK6: Native speaker language check
 
-\input chapters/TitlepageContents.tex             %CHECK1
-\input chapters/Abstract.tex                      %CHECK1 CHECK2     
-%\input chapters/Introduction.tex
-%\input chapters/JapaneseScript.tex               %CHECK1
-%\input chapters/HandwritingRecognition.tex       %CHECK1
-%\input chapters/E-Learning.tex                   %CHECK1
+
+\input chapters/TitlepageContents.tex            %CHECK1
+%\input chapters/Abstract.tex                     %CHECK1 CHECK2 CHECK3
+\input chapters/Introduction.tex
+%\input chapters/JapaneseScript.tex               %CHECK1 CHECK2
+%\input chapters/HandwritingRecognition.tex       %CHECK1 CHECK2
+%\input chapters/E-Learning.tex                   %CHECK1 CHECK2
 %\input chapters/ConceptualDesign.tex             %CHECK1
-%\input chapters/TechnicalDesign.tex              %CHECK1
-%\input chapters/HWREngine.tex                    %CHECK1
+%\input chapters/TechnicalDesign.tex              %CHECK1 
+%\input chapters/HWREngine.tex                    %CHECK1 CHECK2
 %\input chapters/ImplementationEvaluation.tex
 %\input chapters/Conclusions.tex
 %\input chapters/Outlook.tex
