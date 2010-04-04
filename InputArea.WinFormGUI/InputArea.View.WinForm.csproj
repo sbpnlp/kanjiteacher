@@ -6,7 +6,7 @@
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{668D8555-A844-46FE-A9D9-50305AAFF8F6}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Kanji.InputArea.WinFormGUI</RootNamespace>
     <AssemblyName>Kanji.InputArea.WinFormGUI</AssemblyName>

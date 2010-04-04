@@ -237,7 +237,7 @@ namespace Kanji.InputArea.WinFormGUI
         /// What is the use of this method?
         /// Why am I actually returning anything to the drawing area?
         /// No use. Just for seeing the strokes? No.
-        /// They should come up in the DesktopApp.WinFormGUI,
+        /// They should come up in the DesktopApp.InputArea,
         /// not here, in the InputArea...
         /// </summary>
         /// <param name="stroke"></param>

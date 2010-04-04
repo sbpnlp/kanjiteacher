@@ -1,6 +1,6 @@
 ﻿namespace Kanji.InputArea.WinFormGUI
 {
-    partial class WinFormGUI
+    partial class InputArea
     {
         /// <summary>
         /// Required designer variable.
@@ -43,7 +43,7 @@
             this.btnReset.UseVisualStyleBackColor = false;
             this.btnReset.Click += new System.EventHandler(this.btnReset_Click);
             // 
-            // WinFormGUI
+            // InputArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -52,11 +52,11 @@
             this.Controls.Add(this.btnReset);
             this.Name = "WinFormGUI";
             this.Text = "KanjiInput - 漢字インプト";
-            this.Load += new System.EventHandler(this.Form1_Load);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.WinFormGUI_MouseUp);
-            this.Paint += new System.Windows.Forms.PaintEventHandler(this.Form1_Paint);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Form1_MouseMove);
+            this.Load += new System.EventHandler(this.InputArea_Load);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.InputArea_MouseUp);
+            this.Paint += new System.Windows.Forms.PaintEventHandler(this.InputArea_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InputArea_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.InputArea_MouseMove);
             this.ResumeLayout(false);
 
         }
