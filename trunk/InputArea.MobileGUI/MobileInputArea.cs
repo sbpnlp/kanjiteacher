@@ -1,19 +1,12 @@
 ﻿using System;
-using System.Linq;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Text;
 using System.Windows.Forms;
-using System.Threading;
 
 namespace Kanji.InputArea.MobileGUI
 {
     public partial class MobileInputArea : Form
     {
         private MouseEventListener mouseListener;
-
+            
         public MobileInputArea()
         {
             InitializeComponent();
@@ -26,7 +19,7 @@ namespace Kanji.InputArea.MobileGUI
 
         private void MobileInputArea_Paint(object sender, PaintEventArgs e)
         {
-            mouseListener.ResetDrawing();
+            mouseListener.UpdateDrawing();
         }
 
         private void MobileInputArea_MouseMove(object sender, MouseEventArgs e)
@@ -34,14 +27,20 @@ namespace Kanji.InputArea.MobileGUI
             mouseListener.MouseMove(e);
         }
 
-        private void btnReset_Click(object sender, EventArgs e)
+        private void MobileInputArea_MouseDown(object sender, MouseEventArgs e)
         {
-            mouseListener.ResetDrawing();
+            mouseListener.MouseMove(e);
         }
 
         private void MobileInputArea_MouseUp(object sender, MouseEventArgs e)
         {
             mouseListener.MouseUp(e);
         }
+
+        private void btnReset_Click(object sender, EventArgs e)
+        {
+            mouseListener.ResetDrawing();
+        }
+
     }
 }

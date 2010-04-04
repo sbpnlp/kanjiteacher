@@ -55,6 +55,7 @@
             this.Load += new System.EventHandler(this.MobileInputArea_Load);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.MobileInputArea_MouseUp);
             this.Paint += new System.Windows.Forms.PaintEventHandler(this.MobileInputArea_Paint);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MobileInputArea_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MobileInputArea_MouseMove);
             this.ResumeLayout(false);
 
