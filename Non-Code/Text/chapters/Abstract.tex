@@ -82,72 +82,72 @@ recognition engine for the generation of informed feedback based on the errors m
 \addcontentsline{toc}{chapter}{Zusammenfassung}
 
 In dieser Arbeit wird eine Handschriftenerkennung für japanische Kanji 
-entwickelt. Der Handschriftenerkenner ist in eine E-Learning-Umgebung integriert und
-liefert eine automatisch generierte Fehlerkorrektur für Lernende.
+entwickelt. Der Handschriftenerkenner ist in eine E-Learning-Umgebung integriert 
+und liefert eine automatisch generierte Fehlerkorrektur für Lernende.
 
 Das System ist in konzeptioneller Hinsicht eine E-Learning-Anwendung für das 
 Erlernen der japanischen Schrift. Letztere weist aufgrund ihrer morphemischen 
-Struktur einen hohen Komplexitätsgrad auf und benötigt daher besonderen Lernaufwand.
-Die meisten E-Learning-Systeme für asiatische Schriftzeichen bieten Zeichenabfrage
-als Multiple-Choice an, da die Eingabe der Zeichen für einen Lernenden sonst 
-ein technisches Problem darstellen würde.
+Struktur einen hohen Komplexitätsgrad auf und benötigt daher besonderen 
+Lernaufwand. Die meisten E-Learning-Systeme für asiatische Schriftzeichen bieten 
+Zeichenabfrage als Multiple-Choice an, da die Eingabe der Zeichen für einen 
+Lernenden sonst ein technisches Problem darstellen würde.
 Der in dieser Arbeit erstellte Prototyp bietet die Möglichkeit 
 zur handschriftlichen Eingabe von Zeichen auf einer dafür geeigneten 
 Bildschirmoberfläche. Das ist ein Alleinstellungsmerkmal unter den 
 E-Learning-Anwendungen für die japanische Sprache.
 
 Die Studie untersucht, inwieweit es im Bereich des Schrifterwerbs möglich ist, 
-NLP und Lernmethoden zusammenzubringen. Dabei wird nicht mit Parsing-Methoden die 
-grammatische Struktur der Sprache untersucht, sondern vielmehr die interne Struktur 
-der Kanji zugrunde gelegt und durch einen Handschriftenerkenner erfasst. 
-Dabei sollen Schreibfehler strukturell erkannt werden. Intelligentes Feedback soll 
-dem Lernenden dabei helfen, die Fähigkeit der aktiven Reproduktion der Kanji zu 
-erwerben.
+NLP und Lernmethoden zusammenzubringen. Dabei wird nicht mit Parsing-Methoden 
+die grammatische Struktur der Sprache untersucht, sondern vielmehr die interne 
+Struktur der Kanji zugrunde gelegt und durch einen Handschriftenerkenner erfasst.
+Dabei sollen Schreibfehler strukturell erkannt werden. Intelligentes Feedback 
+soll dem Lernenden dabei helfen, die Fähigkeit der aktiven Reproduktion der 
+Kanji zu erwerben.
 
 Da der Prototyp eine disziplinübergreifende Software ist, 
 die in den Bereichen Handschriftenerkennung und E-Learning angesiedelt ist,
 wird in der vorliegenden Arbeit der Forschungsstand der beiden untersucht.
 Weiterhin wird die Struktur der japanischen Schrift linguistisch analysiert und
 dargestellt. Die Kombination der drei Disziplinen in einer Studie führt dazu, 
-dass die Substrukturen der Kanji überhaupt programmatisch analysiert werden können,
-wodurch die Fehlererkennung ermöglicht wird.
+dass die Substrukturen der Kanji überhaupt programmatisch analysiert werden 
+können, wodurch die Fehlererkennung ermöglicht wird.
 
 Das Ergebnis der Studie zeigt, dass es möglich ist, eine Handschriftenerkennung
 nutzbar zu machen, um einem Lernenden intelligentes Feedback zu geben,
 basierend auf den Fehlern, die bei der Eingabe gemacht wurden.
 
-\chapter*{Danksagungen}
-\label{chap:danksagungen}
-\addcontentsline{toc}{chapter}{Danksagungen}
+% \chapter*{Danksagungen}
+% \label{chap:danksagungen}
+% \addcontentsline{toc}{chapter}{Danksagungen}
 
-Ich möchte mich bei allen bedanken, die mir bei der Erstellung dieser Arbeit 
-geholfen haben. Jeder hat einen wertvollen Beitrag geleistet, 
-den ich sehr zu schätzen weiß. Besonders bedanken möchte ich mich bei 
-Dr. Tilman Becker, der mir über die gesamte Zeit wertvolle Hinweise gegeben hat, mit dem ich 
-hochinteressante fachliche Diskussionen hatte, die diese Arbeit vorangetrieben
-und verbessert haben. Weiterhin bedanke ich mich bei Prof.\ Wahlster, in dessen 
-Abteilung \emph{Intelligente Benutzerschnittstellen} am DFKI ich längere Zeit als HiWi 
-und als Diplomand tätig war, für das Ermöglichen dieser Diplomstudie.
-Mein besonderer Dank gilt allen Korrekturlesern, die mich vor dem ein oder anderen
-Rechtschreibfehler und inhaltlichen Unstimmigkeiten bewahrt haben, sowie allen,
-die mir mit Rat und Tat zur Seite gestanden haben. Diejenigen, 
-die ich vergessen habe, mögen mir verzeihen.
-Matthew Brown,
-Özgür Demir,
-Jacky Freiheit,
-Marco Geiger,
-Sebastian Germesin,
-Matthias an der Heiden,
-Gerd Herzog,
-Thomas Kleinbauer,
-Matthias Kwaterski, 
-Hartmut Nebe,
-Tino Ortega-Gomez,
-Peter Poller,
-Sigrid Poggel,
-Klaus Poggel,
-Gerhard Sonnenberg,
-Rainer Stahlmann,
-Anke Steffen,    
-Hideki Yamaguchi.  
-Alle in der Arbeit verbleibenden Fehler sind natürlich meine eigenen.
+% Ich möchte mich bei allen bedanken, die mir bei der Erstellung dieser Arbeit 
+% geholfen haben. Jeder hat einen wertvollen Beitrag geleistet, 
+% den ich sehr zu schätzen weiß. Besonders bedanken möchte ich mich bei 
+% Dr. Tilman Becker, der mir über die gesamte Zeit wertvolle Hinweise gegeben hat, mit dem ich 
+% hochinteressante fachliche Diskussionen hatte, die diese Arbeit vorangetrieben
+% und verbessert haben. Weiterhin bedanke ich mich bei Prof.\ Wahlster, in dessen 
+% Abteilung \emph{Intelligente Benutzerschnittstellen} am DFKI ich längere Zeit als HiWi 
+% und als Diplomand tätig war, für das Ermöglichen dieser Diplomstudie.
+% Mein besonderer Dank gilt allen Korrekturlesern, die mich vor dem ein oder anderen
+% Rechtschreibfehler und inhaltlichen Unstimmigkeiten bewahrt haben, sowie allen,
+% die mir mit Rat und Tat zur Seite gestanden haben. Diejenigen, 
+% die ich vergessen habe, mögen mir verzeihen.
+% Matthew Brown,
+% Özgür Demir,
+% Jacky Freiheit,
+% Marco Geiger,
+% Sebastian Germesin,
+% Matthias an der Heiden,
+% Gerd Herzog,
+% Thomas Kleinbauer,
+% Matthias Kwaterski, 
+% Hartmut Nebe,
+% Tino Ortega-Gomez,
+% Peter Poller,
+% Sigrid Poggel,
+% Klaus Poggel,
+% Gerhard Sonnenberg,
+% Rainer Stahlmann,
+% Anke Steffen,    
+% Hideki Yamaguchi.  
+% Alle in der Arbeit verbleibenden Fehler sind natürlich meine eigenen.
