@@ -3,30 +3,107 @@
 %%% TeX-master: "../KanjiHWR"
 %%% End: 
 \chapter{Conclusions}
+\label{chap:conclusions}
 
-- Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
-- What goes into this section?
-  The main content of this section is 
-  * if describing a problem: why is the problem relevant.
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    what made it the best choice? was it the optimal solution?
-- How will this section be structured and organised?
-  The organisational structure of the section 
-- In what style will it be written?
-  The style of writing will be 
-- Next action - what to write first?
-  The next part to write is
+%- Why this section? 
+%  The purpose of this section is 
+%  It would be off purpose, if 
+%- What goes into this section?
+%  The main content of this section is 
+%  * if describing a problem: why is the problem relevant.
+%  * if describing a solution to a problem: what alternatives were
+%    there to solve it, why was this solution chosen? 
+%    what made it the best choice? was it the optimal solution?
+%- How will this section be structured and organised?
+%  The organisational structure of the section 
+%- In what style will it be written?
+%  The style of writing will be 
+%- Next action - what to write first?
+%  The next part to write is
 
 
-siehe s. 47 oben.
-ich habe erschaffen.
-arbeitshypothese - lernen - kann kaum evaluiert werden.
+%siehe s. 47 oben.
+%ich habe erschaffen.
+%arbeitshypothese - lernen - kann kaum evaluiert werden.
 
-siehe introduction:
-was ist neu, was ist geil?
-vergleiche mit motivation?
-inwieweit ist motivation erfuellt?
-warum haben wir dass gemacht? was ist das ergebnis?
+%siehe introduction:
+%was ist neu, was ist geil?
+%vergleiche mit motivation?
+%inwieweit ist motivation erfuellt?
+%warum haben wir dass gemacht? was ist das ergebnis?
+
+In the history of Computational Linguistics there have been a several 
+attempts to integrate natural language processing techniques with 
+existing technologies. That task is complex in many aspects, depending on what is
+aimed at exactly.
+
+In this study, I will attempt to create a handwriting recognition for Japanese 
+Kanji. That seems interesting because Kanji the characters form a morphemic 
+writing system with a large number of characters. Thus, handwriting 
+recognition (HWR) of Kanji follows different patterns than in alphabetical 
+writing systems like Latin script. The overall methodology of HWR system is 
+similar to systems for Latin characters, but the details of analysis vary 
+strongly.
+
+Studying Japanese language is a complex task, because a new learner has to get 
+used to a new vocabulary that - coming from a European language - has very 
+little in common with the vocabulary of his mother tongue, unlike in European 
+languages where quite often there are several intersections. The learner also 
+needs to learn a new grammar system. Broadly speaking, most of the central 
+European languages follow a subject-verb-object (SVO) structure. 
+Japanese follows a subject-object-verb (SOV) structure. These create additional 
+difficulty, comparable with German reversed subclause structures that 
+are a source of error for many learners of German. 
+Yet, the most notable difference for a language learner with a central European 
+mother tongue is of course the writing system. The Japanese writing system uses 
+three different scripts. The so-called \emph{Kana} scripts \emph{Hiragana} and 
+\emph{Katakana} are syllabic, each character represents a syllable. Each syllable
+consists of either a vowel, a consonant and a vowel, or a consonant cluster and 
+a vowel. The syllables are called \emph{open}. Hiragana and Katakana represent 
+roughly the same inventory of syllables and both have around 40-50 characters 
+that can be modified with diacritics in order to yield additional syllable 
+representations. Therefore, these scripts are a hurdle for a learner, but 
+relatively unproblematic, due to their limited number of characters. 
+Besides, the two sets of Kana characters look quite distinct, 
+so the problem of confusing one character with another is limited to a relatively
+short learning period of those two scripts.
+
+The Kanji, on the contrary, form the largest part of a writing system that has 
+around 3,000 characters, which are built up of around 200 subunits called 
+\emph{Radicals}. 
+One part of the complexity lies in the number of characters. 
+The other part lies in the general method of representing an 
+idea or concept with a character instead of attempting to represent the sounds
+with graphemes in connection with language specific pronunciation rules. 
+Another difficulty lies in cognitively connecting the characters with their 
+pronunciations. Most characters have multiple pronunciations and for a language 
+learner, studying Japanese vocabulary takes at least twice as much effort 
+compared to languages using a Latin or at least some kind of alphabetic writing 
+system. The two tasks of learning the Kanji and studying the vocabulary 
+together can epitomise a very high learning curve. A connected subordinated 
+problem lies in the fact that quite often subjectively 'simple' vocabulary comes 
+with complex Kanji. Some e-learning applications have taken on that issue by 
+creating a learning environment in which a learner can connect learning 
+vocabulary with studying the Kanji characters.
+
+%xxx: see santosh2009: the statement of need
+
+\subsection{Integrating NLP and E-Learning}
+\label{sec:intro:integratingnlpandelearning}
+
+In this project, the main focus lies on the creation of an analytical handwriting
+recognition engine for Kanji. The advantages of such an engine can be applied to
+e-learning applications. This is exemplified with a sample e-learning application
+that includes specialised excercises for handwritten input.
+The novelty about it is a handwriting recognition that gives the learner the 
+ability to actually practise writing the Kanji and get a feedback, instead of 
+the rather limited multiple choice recognition that most other applications use.
+
+The integration of NLP and e-learning relies on the analytical handwriting
+recognition. Since characters are split into sub units, the generated feedback 
+about the input correctness can guide a user of the e-learning application 
+precisely to the error. This is an advantage over a binary statement 
+\emph{correct} or \emph{incorrect} that is directly based on recognition success.
+
+
+
