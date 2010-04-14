@@ -24,7 +24,6 @@ namespace Kanji.InputArea.MobileGUI
         /// </summary>
         public event StrokeEventHandler StrokeFinished;
         public event OnlyActiveStrokeEventHandler OnlyActiveStrokeFinished;
-        
 
         private Control Form { set; get; }
         private List<MouseEventArgs> ActivePoints = new List<MouseEventArgs>();

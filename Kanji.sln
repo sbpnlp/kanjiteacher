@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 10.00
 # Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputArea.View.WinForm", "InputArea.WinFormGUI\InputArea.View.WinForm.csproj", "{668D8555-A844-46FE-A9D9-50305AAFF8F6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputArea.WinForm.Controller", "InputArea.Controller\InputArea.WinForm.Controller.csproj", "{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InputArea.View.Mobile", "InputArea.MobileGUI\InputArea.View.Mobile.csproj", "{0119F9AC-39AC-432E-A697-D6273B9AF9B0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DesktopApp.View.WinFormGUI", "DesktopApp.WinFormGUI\DesktopApp.View.WinFormGUI.csproj", "{D4521370-DFA1-4B2D-81A7-B8CB74500902}"
@@ -40,12 +38,6 @@ Global
 		{668D8555-A844-46FE-A9D9-50305AAFF8F6}.Discovery|Any CPU.Build.0 = Debug|Any CPU
 		{668D8555-A844-46FE-A9D9-50305AAFF8F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{668D8555-A844-46FE-A9D9-50305AAFF8F6}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}.Discovery|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}.Discovery|Any CPU.Build.0 = Debug|Any CPU
-		{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0119F9AC-39AC-432E-A697-D6273B9AF9B0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0119F9AC-39AC-432E-A697-D6273B9AF9B0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0119F9AC-39AC-432E-A697-D6273B9AF9B0}.Debug|Any CPU.Deploy.0 = Debug|Any CPU

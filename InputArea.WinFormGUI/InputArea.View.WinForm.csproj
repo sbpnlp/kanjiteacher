@@ -71,6 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InputController.cs" />
     <Compile Include="KanjiService.cs" />
     <Compile Include="Service References\KanjiServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
@@ -145,10 +146,6 @@
     <ProjectReference Include="..\DesktopApp.LogicLayer\DesktopApp.LogicLayer.csproj">
       <Project>{B5F2848B-F62B-4783-BFDB-2B1CB786AA40}</Project>
       <Name>DesktopApp.LogicLayer</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\InputArea.Controller\InputArea.WinForm.Controller.csproj">
-      <Project>{EAA4D5BB-12F8-45B7-87FA-A7BBFA8ABBFB}</Project>
-      <Name>InputArea.WinForm.Controller</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
