@@ -49,7 +49,6 @@ namespace Kanji.InputArea.MobileGUI
         #region Private methods
         protected virtual void OnStrokeFinished()
         {
-
             if (OnlyActiveStrokeFinished != null)
             {
                 MessageBox.Show("sending the point list of active points");
@@ -81,25 +80,25 @@ namespace Kanji.InputArea.MobileGUI
         /// <param name="colour">The colour.</param>
         private void UpdateDrawing(Drawing.Color colour)
         {
-                Drawing.Pen pen = new Drawing.Pen(colour, 8);
-                int j = 0;
+            Drawing.Pen pen = new Drawing.Pen(colour, 8);
+            int j = 0;
 
-                foreach (List<MouseEventArgs> lp in AllActivePoints)
-                {
-                    j = 0;
-                    for (int i = 0; i < lp.Count; i++)
-                    {
-                        DrawLine(pen, lp[j], lp[i]);
-                        j = i;
-                    }
-                }
-
+            foreach (List<MouseEventArgs> lp in AllActivePoints)
+            {
                 j = 0;
-                for (int i = 1; i < ActivePoints.Count; i++)
+                for (int i = 0; i < lp.Count; i++)
                 {
-                    DrawLine(pen, ActivePoints[j], ActivePoints[i]);
+                    DrawLine(pen, lp[j], lp[i]);
                     j = i;
                 }
+            }
+
+            j = 0;
+            for (int i = 1; i < ActivePoints.Count; i++)
+            {
+                DrawLine(pen, ActivePoints[j], ActivePoints[i]);
+                j = i;
+            }
         }
 
         /// <summary>
@@ -120,14 +119,36 @@ namespace Kanji.InputArea.MobileGUI
 
         }
 
+        /// <summary>
+        /// Draws a line connecting the two points specified by the coordinate pairs.
+        /// </summary>
+        /// <param name="pen"><see cref="System.Drawing.Pen"/> that determines the color, width, and style of the line.</param>
+        /// <param name="X1">The x-coordinate of the first point.</param>
+        /// <param name="Y1">The y-coordinate of the first point.</param>
+        /// <param name="X2">The x-coordinate of the second point.</param>
+        /// <param name="Y2">The y-coordinate of the second point.</param>
+        /// <exception cref="System.ArgumentNullException">Pen is null.</exception>
         private void DrawLine(Drawing.Pen pen, int X1, int Y1, int X2, int Y2)
         {
             gfx.DrawLine(pen, X1, Y1, X2, Y2);
         }
 
+        /// <summary>
+        /// Draws a line connecting the two points specified by <see cref="System.Windows.Forms.MouseEventArgs"/>.
+        /// </summary>
+        /// <param name="pen"><see cref="System.Drawing.Pen"/> that determines the color, width, and style of the line.</param>
+        /// <param name="p1">The first point.</param>
+        /// <param name="p2">The second point.</param>
+        /// <exception cref="System.ArgumentNullException">Pen is null.</exception>
         private void DrawLine(Drawing.Pen pen, MouseEventArgs p1, MouseEventArgs p2)
         {
             gfx.DrawLine(pen, p1.X, p1.Y, p2.X, p2.Y);
+        }
+
+        private void DrawCross()
+        {
+            DrawCross(Drawing.Color.LightGray,
+                new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
         }
 
         #endregion
@@ -145,6 +166,10 @@ namespace Kanji.InputArea.MobileGUI
             UpdateDrawing(Drawing.Color.Black);
         }
 
+        /// <summary>
+        /// Catches the MouseMove event
+        /// </summary>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         internal void MouseMove(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
@@ -153,12 +178,6 @@ namespace Kanji.InputArea.MobileGUI
                 ActivePoints.Add(e);
             }
             UpdateDrawing(Drawing.Color.Black);
-        }
-
-        private void DrawCross()
-        {
-            DrawCross(Drawing.Color.LightGray,
-                new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
         }
 
         /// <summary>

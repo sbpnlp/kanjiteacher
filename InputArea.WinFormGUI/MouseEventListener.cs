@@ -46,33 +46,25 @@ namespace Kanji.InputArea.WinFormGUI
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
             controller = new WinClientCommunication();
             controller.View = this; //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
-            controller.IP = 
-            StrokeFinished = controller.ReceivePointList;
+            controller.IP = "127.0.0.1";
+            OnlyActiveStrokeFinished = controller.SendPointList;
         }
         #endregion
 
         #region Private methods
-        protected virtual void OnStrokeFinished(LL.MouseInputEventArgs e)
+        protected virtual void OnStrokeFinished()
         {
-            if (StrokeFinished != null)
+            if (OnlyActiveStrokeFinished != null)
             {
-                StrokeFinished(this, e);
+                MessageBox.Show("sending the point list of active points");
+                //send each point list only once for now...
+                //maybe exchange with 
+                //sending allactivepoints (after calling ArchiveActivePoints !)
+                OnlyActiveStrokeFinished(this, ActivePoints, ActiveTimes);
             }
-        }
 
-        private LL.MouseInputEventArgs AssembleInputEvents()
-        {
-            return new LL.MouseInputEventArgs(ActivePoints, PassivePoints);
-        }
-
-        /// <summary>
-        /// Archives the passive points into lists of lists.
-        /// The method also archives the passive times.
-        /// </summary>
-        private void ArchivePassivePoints()
-        {
-            AllPassivePoints.Add(PassivePoints);
-            PassivePoints = new List<LL.Point>();
+            //this deletes the current point lists
+            ArchiveActivePoints();
         }
 
         /// <summary>
@@ -82,7 +74,9 @@ namespace Kanji.InputArea.WinFormGUI
         private void ArchiveActivePoints()
         {
             AllActivePoints.Add(ActivePoints);
-            ActivePoints = new List<LL.Point>();
+            AllActiveTimes.Add(ActiveTimes);
+            ActivePoints = new List<MouseEventArgs>();
+            ActiveTimes = new List<DateTime>();
         }
 
         /// <summary>
@@ -91,38 +85,24 @@ namespace Kanji.InputArea.WinFormGUI
         /// <param name="colour">The colour.</param>
         private void UpdateDrawing(Drawing.Color colour)
         {
-            DrawCross();
-            using (Drawing.Graphics gfx = Form.CreateGraphics())
+            Drawing.Pen pen = new Drawing.Pen(colour, 8);
+            int j = 0;
+
+            foreach (List<MouseEventArgs> lp in AllActivePoints)
             {
-                Drawing.Pen pen = new Drawing.Pen(colour, 3);
-                int j = 0;
-
-                foreach (List<LL.Point> lp in AllActivePoints)
-                {
-                    j = 0;
-                    for (int i = 0; i < lp.Count; i++)
-                    {
-                        gfx.DrawLine(pen, lp[j].SysDrawPointF, lp[i].SysDrawPointF);
-                        j = i;
-                    }
-                }
-
                 j = 0;
-                for (int i = 0; i < ActivePoints.Count; i++)
+                for (int i = 0; i < lp.Count; i++)
                 {
-                    gfx.DrawLine(pen, ActivePoints[j].SysDrawPointF, ActivePoints[i].SysDrawPointF);
+                    DrawLine(pen, lp[j], lp[i]);
                     j = i;
                 }
+            }
 
-                //foreach (LL.Stroke s in AllStrokes)
-                //{
-                //    j = 0;
-                //    for (int i = 0; i < s.IntermediatePoints.Count; i++)
-                //    {
-                //        gfx.DrawLine(pen, s.IntermediatePoints[j].SysDrawPointF, s.IntermediatePoints[i].SysDrawPointF);
-                //        j = i;
-                //    }
-                //}
+            j = 0;
+            for (int i = 1; i < ActivePoints.Count; i++)
+            {
+                DrawLine(pen, ActivePoints[j], ActivePoints[i]);
+                j = i;
             }
         }
 
@@ -133,19 +113,47 @@ namespace Kanji.InputArea.WinFormGUI
         /// <param name="pt">The point where the cross should be drawn.</param>
         private void DrawCross(Drawing.Color colour, Drawing.Point pt)
         {
-            // Create new graphics object
-            Drawing.Graphics gfx = Form.CreateGraphics();
-
             // Create a pen that has the same background color as the form
             Drawing.Pen pen = new Drawing.Pen(colour);
 
             // Draw a horizontal line that will erase the previous line created
-            gfx.DrawLine(pen, new Drawing.Point(pt.X, 0), new Drawing.Point(pt.X, Form.ClientRectangle.Height));
+            DrawLine(pen, pt.X, 0, pt.X, Form.ClientRectangle.Height);
 
             // Draw a vertical line that will erase the previous line created
-            gfx.DrawLine(pen, new Drawing.Point(0, pt.Y), new Drawing.Point(Form.ClientRectangle.Width, pt.Y));
-            gfx.DrawPath(pen, new GraphicsPath());
+            DrawLine(pen, 0, pt.Y, Form.ClientRectangle.Width, pt.Y);
 
+        }
+
+        /// <summary>
+        /// Draws a line connecting the two points specified by the coordinate pairs.
+        /// </summary>
+        /// <param name="pen"><see cref="System.Drawing.Pen"/> that determines the color, width, and style of the line.</param>
+        /// <param name="X1">The x-coordinate of the first point.</param>
+        /// <param name="Y1">The y-coordinate of the first point.</param>
+        /// <param name="X2">The x-coordinate of the second point.</param>
+        /// <param name="Y2">The y-coordinate of the second point.</param>
+        /// <exception cref="System.ArgumentNullException">Pen is null.</exception>
+        private void DrawLine(Drawing.Pen pen, int X1, int Y1, int X2, int Y2)
+        {
+            gfx.DrawLine(pen, X1, Y1, X2, Y2);
+        }
+
+        /// <summary>
+        /// Draws a line connecting the two points specified by <see cref="System.Windows.Forms.MouseEventArgs"/>.
+        /// </summary>
+        /// <param name="pen"><see cref="System.Drawing.Pen"/> that determines the color, width, and style of the line.</param>
+        /// <param name="p1">The first point.</param>
+        /// <param name="p2">The second point.</param>
+        /// <exception cref="System.ArgumentNullException">Pen is null.</exception>
+        private void DrawLine(Drawing.Pen pen, MouseEventArgs p1, MouseEventArgs p2)
+        {
+            gfx.DrawLine(pen, p1.X, p1.Y, p2.X, p2.Y);
+        }
+
+        private void DrawCross()
+        {
+            DrawCross(Drawing.Color.LightGray,
+                new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
         }
 
         #endregion
@@ -159,31 +167,22 @@ namespace Kanji.InputArea.WinFormGUI
         internal void MouseUp(MouseEventArgs e)
         {
             //send point list here
-            OnStrokeFinished(AssembleInputEvents());
-
-            //this deletes the current point lists
-            ArchiveActivePoints();
-            ArchivePassivePoints();
-        }
-
-        internal void MouseMove(MouseEventArgs e)
-        {
-            DrawCross();
-            if (e.Button == MouseButtons.Left)
-            {
-                ActivePoints.Add(new LL.Point(e.X, e.Y, DateTime.Now));
-            }
-            else
-            {
-                PassivePoints.Add(new LL.Point(e.X, e.Y, DateTime.Now));
-            }
+            OnStrokeFinished();
             UpdateDrawing(Drawing.Color.Black);
         }
 
-        private void DrawCross()
+        /// <summary>
+        /// Catches the MouseMove event
+        /// </summary>
+        /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
+        internal void MouseMove(MouseEventArgs e)
         {
-            DrawCross(Drawing.Color.LightGray,
-                new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
+            if (e.Button == MouseButtons.Left)
+            {
+                ActiveTimes.Add(DateTime.Now);
+                ActivePoints.Add(e);
+            }
+            UpdateDrawing(Drawing.Color.Black);
         }
 
         /// <summary>
@@ -191,17 +190,12 @@ namespace Kanji.InputArea.WinFormGUI
         /// </summary>
         internal void ResetDrawing()
         {
-            Drawing.Graphics gfx = Form.CreateGraphics();
-            // gfx.FillRectangle(Drawing.Brushes.White, Form.ClientRectangle);
-            //see if the following works equally well than the above:
             gfx.FillRectangle(new Drawing.SolidBrush(Drawing.Color.White), Form.ClientRectangle);
-
-            gfx.Dispose();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            AllActivePoints = new List<List<LL.Point>>();
-            AllPassivePoints = new List<List<LL.Point>>();
-            ActivePoints = new List<LL.Point>();
-            PassivePoints = new List<LL.Point>();
+            AllActivePoints = new List<List<MouseEventArgs>>();
+            AllActiveTimes = new List<List<DateTime>>();
+            ActiveTimes = new List<DateTime>();
+            ActivePoints = new List<MouseEventArgs>();
         }
 
         /// <summary>
