@@ -4,46 +4,50 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Drawing.Drawing2D;
-using Kanji.InputArea.Controller;
 using Kanji.DesktopApp;
 using LL = Kanji.DesktopApp.LogicLayer;
 using Drawing = System.Drawing;
 using Kanji.DesktopApp.Interfaces;
+using KSR = Kanji.InputArea.WinFormGUI.KanjiServiceReference;
+
+//next thing to do: consume webserive just like InputArea.MobileGui
+//added KanjiServiceReference - so maybe the file KanjiService.cs generated
+//by svcutil.exe is not needed at all - let's see.
 
 namespace Kanji.InputArea.WinFormGUI
 {
-
-    //next thing to do: consume webserive just like InputArea.MobileGui
-    //added KanjiServiceReference - so maybe the file KanjiService.cs generated
-    //by svcutil.exe is not needed at all - let's see.
+    public delegate bool StrokeEventHandler(object sender, List<List<MouseEventArgs>> activePoints, List<List<DateTime>> activeTimes);
+    public delegate bool OnlyActiveStrokeEventHandler(object sender, List<MouseEventArgs> activePoints, List<DateTime> activeTimes);
 
     internal class MouseEventListener : IControlled
     {
         #region Fields
-        private InputController controller = new InputController();
+        private WinClientCommunication controller = null;
 
         /// <summary>
         /// Event that occurs when [stroke finished].
         /// </summary>
         public event LL.StrokeEventHandler StrokeFinished;
+        public event OnlyActiveStrokeEventHandler OnlyActiveStrokeFinished;
 
         private Control Form { set; get; }
-        //what's this for? don't find any reference:
-        //private GraphicsPath CurrentPath { set; get; }
-        private List<LL.Point> ActivePoints = new List<LL.Point>();
-        private List<LL.Point> PassivePoints = new List<LL.Point>();
-        private List<List<LL.Point>> AllActivePoints = new List<List<LL.Point>>();
-        private List<List<LL.Point>> AllPassivePoints = new List<List<LL.Point>>();
-        private List<LL.Stroke> AllStrokes = new List<LL.Stroke>();
+        private List<MouseEventArgs> ActivePoints = new List<MouseEventArgs>();
+        private List<DateTime> ActiveTimes = new List<DateTime>();
+        private List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
+        private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
+        Drawing.Graphics gfx = null;
         #endregion
 
         #region Constructors
         internal MouseEventListener(Control control)
         {
             Form = control;
-            controller.View = this; //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
-            StrokeFinished = controller.ReceivePointList;
+            gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
+            controller = new WinClientCommunication();
+            controller.View = this; //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
+            controller.IP = 
+            StrokeFinished = controller.ReceivePointList;
         }
         #endregion
 
