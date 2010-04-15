@@ -7,8 +7,8 @@ namespace Kanji.DesktopApp.Interfaces
 {
     public interface IControlled
     {
-        void ReceiveCharacters(List<ICharacter> cModels);
+        //void ReceiveCharacters(List<ICharacter> cModels);
 
-        void ReceivePointList(IStroke stroke, IBoundingBox bb);
+        //void ReceivePointList(IStroke stroke, IBoundingBox bb);
     }
 }

@@ -6,6 +6,7 @@ using Logics = Kanji.DesktopApp.LogicLayer;
 using System.Threading;
 using Kanji.DesktopApp.Interfaces;
 using SMC = System.ServiceModel.Channels;
+using System.ServiceModel;
 
 namespace Kanji.InputArea.WinFormGUI
 {
@@ -97,12 +98,12 @@ namespace Kanji.InputArea.WinFormGUI
         /// <returns>A handle to the client.</returns>
         private KanjiServiceClient CreateClient()
         {
-            SMC.Binding binding = CreateDefaultBinding();
-            string remoteAddress = KanjiServiceClient.EndpointAddress.Uri.ToString();
-            remoteAddress = remoteAddress.Replace("localhost", IP);
-            EndpointAddress endpoint = new EndpointAddress(remoteAddress);
+//            SMC.Binding binding = CreateDefaultBinding();
+//            string remoteAddress = KanjiServiceClient.EndpointAddress.Uri.ToString();
+//            remoteAddress = remoteAddress.Replace("localhost", IP);
+//            EndpointAddress endpoint = new EndpointAddress(remoteAddress);
 
-            return new KanjiServiceClient(binding, endpoint);
+            return new KanjiServiceClient("output.config");//binding, endpoint);
         }
         private SMC.Binding CreateDefaultBinding()
         {
