@@ -208,45 +208,45 @@ namespace Kanji.InputArea.WinFormGUI
         }
         #endregion
 
-        #region IControlled Members
+        //#region IControlled Members
 
-        public void ReceiveCharacters(List<ICharacter> cModels)
-        {
-            foreach (ICharacter c in cModels)
-            {
-                ResetDrawing();
+        //public void ReceiveCharacters(List<ICharacter> cModels)
+        //{
+        //    foreach (ICharacter c in cModels)
+        //    {
+        //        ResetDrawing();
 
-                foreach (LL.Radical r in ((LL.Character) c).RadicalList)
-                {
-                    foreach (LL.Stroke s in r.StrokeList)
-                    {
-                        AllActivePoints.Add(s.IntermediatePoints);
-                        //foreach (Point p in s.IntermediatePoints)
-                        //{
-                        //    // draw this point as a vector
-                        //}
-                    }
-                }
-            }
-            UpdateDrawing();
-        }
+        //        foreach (LL.Radical r in ((LL.Character) c).RadicalList)
+        //        {
+        //            foreach (LL.Stroke s in r.StrokeList)
+        //            {
+        //                AllActivePoints.Add(s.IntermediatePoints);
+        //                //foreach (Point p in s.IntermediatePoints)
+        //                //{
+        //                //    // draw this point as a vector
+        //                //}
+        //            }
+        //        }
+        //    }
+        //    UpdateDrawing();
+        //}
 
-        /// <summary>
-        /// What is the use of this method?
-        /// Why am I actually returning anything to the drawing area?
-        /// No use. Just for seeing the strokes? No.
-        /// They should come up in the DesktopApp.InputArea,
-        /// not here, in the InputArea...
-        /// </summary>
-        /// <param name="stroke"></param>
-        /// <param name="bb"></param>
-        public void ReceivePointList(IStroke stroke, IBoundingBox bb)
-        {
-            AllStrokes.Add((LL.Stroke)stroke);
+        ///// <summary>
+        ///// What is the use of this method?
+        ///// Why am I actually returning anything to the drawing area?
+        ///// No use. Just for seeing the strokes? No.
+        ///// They should come up in the DesktopApp.InputArea,
+        ///// not here, in the InputArea...
+        ///// </summary>
+        ///// <param name="stroke"></param>
+        ///// <param name="bb"></param>
+        //public void ReceivePointList(IStroke stroke, IBoundingBox bb)
+        //{
+        //    AllStrokes.Add((LL.Stroke)stroke);
 
-            UpdateDrawing();
-        }
+        //    UpdateDrawing();
+        //}
 
-        #endregion
+        //#endregion
     }
 }
