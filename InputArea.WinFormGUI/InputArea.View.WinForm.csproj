@@ -73,11 +73,6 @@
   <ItemGroup>
     <Compile Include="InputController.cs" />
     <Compile Include="KanjiService.cs" />
-    <Compile Include="Service References\KanjiServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="WinFormGUI.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -106,10 +101,6 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <None Include="Service References\KanjiServiceReference\kanji.wsdl" />
-    <None Include="Service References\KanjiServiceReference\kanji.xsd" />
-    <None Include="Service References\KanjiServiceReference\kanji1.xsd" />
-    <None Include="Service References\KanjiServiceReference\KanjiService.wsdl" />
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
@@ -147,28 +138,6 @@
       <Project>{B5F2848B-F62B-4783-BFDB-2B1CB786AA40}</Project>
       <Name>DesktopApp.LogicLayer</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Service References\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Service References\KanjiServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\KanjiServiceReference\kanji.disco" />
-    <None Include="Service References\KanjiServiceReference\kanji2.xsd" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\KanjiServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\KanjiServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Service References\KanjiServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

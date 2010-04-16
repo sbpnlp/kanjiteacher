@@ -22,7 +22,6 @@ namespace Kanji.InputArea.MobileGUI
         /// <summary>
         /// Event that occurs when [stroke finished].
         /// </summary>
-        public event StrokeEventHandler StrokeFinished;
         public event OnlyActiveStrokeEventHandler OnlyActiveStrokeFinished;
 
         private Control Form { set; get; }
@@ -39,10 +38,9 @@ namespace Kanji.InputArea.MobileGUI
             Form = control;
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            controller = new MobileClientCommunication(this);
-            controller.IP = Microsoft.VisualBasic.Interaction.InputBox("Please enter IP address of service", "IP address", "192.168.178.41", 50, 50);
+            string ip = Microsoft.VisualBasic.Interaction.InputBox("Please enter IP address of service", "IP address", "192.168.178.41", 50, 50);
+            controller = new MobileClientCommunication(this, ip);
             OnlyActiveStrokeFinished = controller.SendPointList;
-
         }
         #endregion
 
@@ -51,7 +49,6 @@ namespace Kanji.InputArea.MobileGUI
         {
             if (OnlyActiveStrokeFinished != null)
             {
-                MessageBox.Show("sending the point list of active points");
                 //send each point list only once for now...
                 //maybe exchange with 
                 //sending allactivepoints (after calling ArchiveActivePoints !)

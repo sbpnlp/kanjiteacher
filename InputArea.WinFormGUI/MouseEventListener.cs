@@ -8,11 +8,6 @@ using Kanji.DesktopApp;
 using LL = Kanji.DesktopApp.LogicLayer;
 using Drawing = System.Drawing;
 using Kanji.DesktopApp.Interfaces;
-using KSR = Kanji.InputArea.WinFormGUI.KanjiServiceReference;
-
-//next thing to do: consume webserive just like InputArea.MobileGui
-//added KanjiServiceReference - so maybe the file KanjiService.cs generated
-//by svcutil.exe is not needed at all - let's see.
 
 namespace Kanji.InputArea.WinFormGUI
 {
@@ -27,7 +22,6 @@ namespace Kanji.InputArea.WinFormGUI
         /// <summary>
         /// Event that occurs when [stroke finished].
         /// </summary>
-        public event LL.StrokeEventHandler StrokeFinished;
         public event OnlyActiveStrokeEventHandler OnlyActiveStrokeFinished;
 
         private Control Form { set; get; }
@@ -35,7 +29,7 @@ namespace Kanji.InputArea.WinFormGUI
         private List<DateTime> ActiveTimes = new List<DateTime>();
         private List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
         private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
-        Drawing.Graphics gfx = null;
+        private Drawing.Graphics gfx = null;
         #endregion
 
         #region Constructors
@@ -44,9 +38,7 @@ namespace Kanji.InputArea.WinFormGUI
             Form = control;
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            controller = new WinClientCommunication();
-            controller.View = this; //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
-            controller.IP = "127.0.0.1";
+            controller = new WinClientCommunication(this, "127.0.0.1"); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
             OnlyActiveStrokeFinished = controller.SendPointList;
         }
         #endregion
@@ -56,7 +48,6 @@ namespace Kanji.InputArea.WinFormGUI
         {
             if (OnlyActiveStrokeFinished != null)
             {
-                MessageBox.Show("sending the point list of active points");
                 //send each point list only once for now...
                 //maybe exchange with 
                 //sending allactivepoints (after calling ArchiveActivePoints !)
@@ -85,23 +76,29 @@ namespace Kanji.InputArea.WinFormGUI
         /// <param name="colour">The colour.</param>
         private void UpdateDrawing(Drawing.Color colour)
         {
-            Drawing.Pen pen = new Drawing.Pen(colour, 8);
-            int j = 0;
+            DrawCross();
 
             foreach (List<MouseEventArgs> lp in AllActivePoints)
             {
-                j = 0;
-                for (int i = 0; i < lp.Count; i++)
-                {
-                    DrawLine(pen, lp[j], lp[i]);
-                    j = i;
-                }
+                DrawPointList(colour, lp);
             }
 
-            j = 0;
-            for (int i = 1; i < ActivePoints.Count; i++)
+            DrawPointList(colour, ActivePoints);
+        }
+
+        /// <summary>
+        /// Draws the point list.
+        /// </summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="ptList">The point list.</param>
+        private void DrawPointList(Drawing.Color colour, List<MouseEventArgs> ptList)
+        {
+            Drawing.Pen pen = new Drawing.Pen(colour, 8);
+            int j = 0;
+
+            for (int i = 1; i < ptList.Count; i++)
             {
-                DrawLine(pen, ActivePoints[j], ActivePoints[i]);
+                DrawLine(pen, ptList[j], ptList[i]);
                 j = i;
             }
         }
@@ -168,7 +165,7 @@ namespace Kanji.InputArea.WinFormGUI
         {
             //send point list here
             OnStrokeFinished();
-            UpdateDrawing(Drawing.Color.Black);
+            UpdateDrawing();
         }
 
         /// <summary>
@@ -181,8 +178,8 @@ namespace Kanji.InputArea.WinFormGUI
             {
                 ActiveTimes.Add(DateTime.Now);
                 ActivePoints.Add(e);
+                DrawPointList(Drawing.Color.Black, ActivePoints);
             }
-            UpdateDrawing(Drawing.Color.Black);
         }
 
         /// <summary>
@@ -191,7 +188,8 @@ namespace Kanji.InputArea.WinFormGUI
         internal void ResetDrawing()
         {
             gfx.FillRectangle(new Drawing.SolidBrush(Drawing.Color.White), Form.ClientRectangle);
-            DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
+            DrawCross();
+//            DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
             AllActivePoints = new List<List<MouseEventArgs>>();
             AllActiveTimes = new List<List<DateTime>>();
             ActiveTimes = new List<DateTime>();
