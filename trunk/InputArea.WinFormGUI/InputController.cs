@@ -46,6 +46,7 @@ namespace Kanji.InputArea.WinFormGUI
         {
             View = view;
             IP = ipaddress;
+            _client = CreateClient();
         }
         #endregion
 
@@ -65,7 +66,7 @@ namespace Kanji.InputArea.WinFormGUI
             List<DateTime> activeTimes)
         {
             if (_client == null) _client = CreateClient();
-
+            put this into a thread, so the GUI can continue working
             try
             {
                 List<int> xs = new List<int>();
@@ -98,12 +99,28 @@ namespace Kanji.InputArea.WinFormGUI
         /// <returns>A handle to the client.</returns>
         private KanjiServiceClient CreateClient()
         {
-//            SMC.Binding binding = CreateDefaultBinding();
-//            string remoteAddress = KanjiServiceClient.EndpointAddress.Uri.ToString();
-//            remoteAddress = remoteAddress.Replace("localhost", IP);
-//            EndpointAddress endpoint = new EndpointAddress(remoteAddress);
+            SMC.Binding binding = CreateDefaultBinding();
+            string remoteAddress = "http://localhost:8000/kanji/KanjiService"; //KanjiServiceClient.EndpointAddress.Uri.ToString();
+            remoteAddress = remoteAddress.Replace("localhost", IP);
+            EndpointAddress endpoint = new EndpointAddress(remoteAddress);
 
-            return new KanjiServiceClient("output.config");//binding, endpoint);
+            //remember to get the path right.
+            try
+            {
+                //The client endpoint comes from the file: output.config
+                //this file must be available.
+                //more info: http://msdn.microsoft.com/en-gb/library/ms574925%28v=VS.100%29.aspx
+                //Use this constructor when there is more than one target endpoint 
+                //in the application configuration file. This value is the name 
+                //attribute of the client <endpoint>  element.
+                //return new KanjiServiceClient("BasicHttpBinding_IKanjiService", "http://localhost:8000/kanji");//binding, endpoint);
+                return new KanjiServiceClient(binding, endpoint);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(string.Format("File output.config path? probably not in the bin folder. Ex.msg: {0}", ex.Message));
+                return null;
+            }
         }
         private SMC.Binding CreateDefaultBinding()
         {
