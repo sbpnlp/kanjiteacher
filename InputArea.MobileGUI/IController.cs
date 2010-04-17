@@ -1,10 +1,8 @@
-﻿//This file should mirror Kanji.DesktopApp.Interfaces.IController in any respect if possible.
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+//This file should mirror Kanji.DesktopApp.Interfaces.IController in any respect if possible.
 namespace Kanji.InputArea.MobileGUI
 {
     /// <summary>

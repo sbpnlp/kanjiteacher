@@ -2,18 +2,23 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Logics = Kanji.DesktopApp.LogicLayer;
 using System.Threading;
-using Kanji.DesktopApp.Interfaces;
 using SMC = System.ServiceModel.Channels;
 using System.ServiceModel;
-
+using Kanji.DesktopApp.Interfaces;
+/* This class should be almost identical to the class
+ * with the same name in the namespace:
+ * Kanji.InputArea.MobileGUI
+ * Except for tiny bits that must be different.
+ * All the methods should be the same.
+ * If you change this, change the other one, too.
+ */
 namespace Kanji.InputArea.WinFormGUI
 {
-/// <summary>
-    /// Input controller for input coming from a non-mobil device.
+    /// <summary>
+    /// Client communicaton class for input coming from a non-mobil device.
     /// </summary>
-    public class WinClientCommunication : IController
+    public class ClientCommunication : IController
     {
         #region Fields
         public string IP { get { return _ip; } set { _ip = value; } }
@@ -24,15 +29,10 @@ namespace Kanji.InputArea.WinFormGUI
         
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="WinClientCommunication"/> class.
-        /// </summary>
-        public WinClientCommunication() {}
-
-        /// <summary>
-        /// Initializes a new instance of the <see cref="MobileClientCommunication"/> class.
+        /// Initializes a new instance of the <see cref="ClientCommunication"/> class.
         /// </summary>
         /// <param name="view">The view.</param>
-        public WinClientCommunication(IControlled view)
+        public ClientCommunication(IControlled view)
         {
             View = view;
         }
@@ -42,7 +42,7 @@ namespace Kanji.InputArea.WinFormGUI
         /// </summary>
         /// <param name="view">The view.</param>
         /// <param name="ipaddress">The ipaddress.</param>
-        public WinClientCommunication(IControlled view, string ipaddress)
+        public ClientCommunication(IControlled view, string ipaddress)
         {
             View = view;
             IP = ipaddress;
@@ -148,16 +148,8 @@ namespace Kanji.InputArea.WinFormGUI
             remoteAddress = remoteAddress.Replace("localhost", IP);
             EndpointAddress endpoint = new EndpointAddress(remoteAddress);
 
-            //remember to get the path right.
             try
             {
-                //The client endpoint comes from the file: output.config
-                //this file must be available.
-                //more info: http://msdn.microsoft.com/en-gb/library/ms574925%28v=VS.100%29.aspx
-                //Use this constructor when there is more than one target endpoint 
-                //in the application configuration file. This value is the name 
-                //attribute of the client <endpoint>  element.
-                //return new KanjiServiceClient("BasicHttpBinding_IKanjiService", "http://localhost:8000/kanji");//binding, endpoint);
                 return new KanjiServiceClient(binding, endpoint);
             }
             catch (Exception ex)
@@ -174,55 +166,6 @@ namespace Kanji.InputArea.WinFormGUI
             return binding;
         }
         #endregion
-
-//        /// <summary>
-//        /// Receives the point list from the input device.
-//        /// </summary>
-//        /// <param name="sender">The sender.</param>
-//        /// <param name="e">The <see cref="Kanji.DesktopApp.LogicLayer.MouseInputEventArgs"/> instance containing the event data.</param>
-//        public void ReceivePointList(object sender, IMouseInputEventArgs e)
-//        {
-//            // Create stroke from ActivePoints
-//            // Store Stroke in stroke list
-//            // take current stroke list and try to build radicals in different variants
-//            // store radicals
-//            // take current radicals and try to build character from them
-//            // store characters
-
-////            Logics.Character c = new Logics.Character(((Logics.MouseInputEventArgs)e).ActivePoints);
-////            c.AppController = this;
-//            // Thread t = new Thread(Logics.Character.CreateFromPointList);
-//            // t.Start(c);
-////            Logics.Stroke s = new Logics.Stroke(((Logics.MouseInputEventArgs)e).ActivePoints);
-////            Logics.Character.CreateFromPointList(c);
-
-//            //why giving anything back to the inputarea??? View.ReceivePointList((IStroke)s, (IBoundingBox)bb);
-//            //giving it to the "View" is correct, but the inputarea is not the "View"!
-//        }
-
-//        /// <summary>
-//        /// Receives the character models. When the characters have been built up from
-//        /// the point lists, this method can be used to transmit those models to
-//        /// the controller.
-//        /// </summary>
-//        /// <param name="cModels">The character models.</param>
-//        public void ReceiveCharacterModels(List<ICharacter> cModels)
-//        {
-//            //again: transmitting the character models to the view is correct,
-//            //but the inputarea is not the view, rather send it to the desktopapp.winformgui
-//            //View.ReceiveCharacters(cModels);
-//        }
-
-//        /// <summary>
-//        /// Receives the character list. When the characters models have been compared with the stored
-//        /// characters in the DB, this method can be used to transmit those models to
-//        /// the controller.
-//        /// </summary>
-//        /// <param name="cList">The character list.</param>
-//        public void ReceiveCharacterList(List<ICharacter> cList)
-//        {
-//            throw new NotImplementedException();
-//        }
     }
 
     /// <summary>

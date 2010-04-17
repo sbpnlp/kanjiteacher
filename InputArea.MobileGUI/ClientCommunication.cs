@@ -1,16 +1,24 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
-using LL = Kanji.DesktopApp.LogicLayer;
-using Draw = System.Drawing;
+using System.Threading;
 using SMC = System.ServiceModel.Channels;
 using System.ServiceModel;
-using System.Threading;
 
+/* This class should be almost identical to the class
+ * with the same name in the namespace:
+ * Kanji.InputArea.WinFormGUI
+ * Except for tiny bits that must be different.
+ * All the methods should be the same.
+ * If you change this, change the other one, too.
+ */
 namespace Kanji.InputArea.MobileGUI
 {
-    internal class MobileClientCommunication
+    /// <summary>
+    /// Client communicaton class for input coming from a mobil device.
+    /// </summary>
+    internal class ClientCommunication : IController
     {
         #region Fields
         public string IP { get; set; }
@@ -20,20 +28,20 @@ namespace Kanji.InputArea.MobileGUI
 
         #region Constructors
         /// <summary>
-        /// Initializes a new instance of the <see cref="MobileClientCommunication"/> class.
+        /// Initializes a new instance of the <see cref="ClientCommunication"/> class.
         /// </summary>
         /// <param name="view">The view.</param>
-        public MobileClientCommunication(IMobileView view)
+        public ClientCommunication(IMobileView view)
         {
             _view = view;
         }
 
         /// <summary>
-        /// Initializes a new instance of the <see cref="MobileClientCommunication"/> class.
+        /// Initializes a new instance of the <see cref="ClientCommunication"/> class.
         /// </summary>
         /// <param name="view">The view.</param>
         /// <param name="ipaddress">The ipaddress.</param>
-        public MobileClientCommunication(IMobileView view, string ipaddress)
+        public ClientCommunication(IMobileView view, string ipaddress)
         {
             _view = view;
             IP = ipaddress;
@@ -139,56 +147,17 @@ namespace Kanji.InputArea.MobileGUI
             string remoteAddress = KanjiServiceClient.EndpointAddress.Uri.ToString();
             remoteAddress = remoteAddress.Replace("localhost", IP);
             EndpointAddress endpoint = new EndpointAddress(remoteAddress);
-
-            return new KanjiServiceClient(binding, endpoint);
+            try
+            {
+                return new KanjiServiceClient(binding, endpoint);
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(string.Format("File output.config path? probably not in the bin folder. Ex.msg: {0}", ex.Message));
+                return null;
+            }
         }
         #endregion
-
-        /////// <summary>
-        /////// Sends the message for the desktop app to the web service.
-        /////// </summary>
-        /////// <param name="message">The message.</param>
-        /////// <returns>
-        /////// True if the transmission of the message to web service was successful, false otherwise.
-        /////// </returns>
-        ////public bool SendMessageToDesktop(KanjiMessage message)
-        ////{
-        ////    return _client.MessageForDesktop((int)message);
-        ////}
-
-        /////// <summary>
-        /////// Wraps the web service method for threading.
-        /////// </summary>
-        /////// <param name="message">The message.</param>
-        /////// <returns></returns>
-        ////public void MessageForDesktopWrapper(object message)
-        ////{
-        ////    _client.MessageForDesktop((int) message);
-        ////}
-
-        /////// <summary>
-        /////// Handles an incoming message from the server appropriately.
-        /////// </summary>
-        /////// <param name="kanjiMessage">The kanji message.</param>
-        ////private void HandleMessage(KanjiMessage kanjiMessage)
-        ////{
-        ////    switch (kanjiMessage)
-        ////    {
-        ////        case KanjiMessage.Nothing:
-        ////            //System.Windows.Forms.MessageBox.Show(KanjiMessage.Nothing.ToString());
-
-        ////            break;
-        ////        case KanjiMessage.InputCharacter:
-        ////            //System.Windows.Forms.MessageBox.Show(KanjiMessage.InputCharacter.ToString());
-        ////            break;
-        ////        case KanjiMessage.FinishedStroke:
-        ////            //System.Windows.Forms.MessageBox.Show(KanjiMessage.FinishedStroke.ToString());
-        ////            break;
-        ////        case KanjiMessage.ClearData:
-        ////            //System.Windows.Forms.MessageBox.Show(KanjiMessage.ClearData.ToString());
-        ////            break;
-        ////    }
-        ////}
     }
 
     /// <summary>

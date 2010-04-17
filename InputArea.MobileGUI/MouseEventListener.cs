@@ -21,7 +21,7 @@ namespace Kanji.InputArea.MobileGUI
     internal class MouseEventListener : IMobileView
     {
         #region Fields
-        private MobileClientCommunication controller = null;
+        private ClientCommunication controller = null;
 
         /// <summary>
         /// Event that occurs when [stroke finished].
@@ -42,7 +42,7 @@ namespace Kanji.InputArea.MobileGUI
             Form = control;
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            controller = new MobileClientCommunication(this, Microsoft.VisualBasic.Interaction.InputBox("Please enter IP address of service", "IP address", "192.168.178.41", 50, 50));
+            controller = new ClientCommunication(this, Microsoft.VisualBasic.Interaction.InputBox("Please enter IP address of service", "IP address", "192.168.178.41", 50, 50));
             OnlyActiveStrokeFinished = controller.SendPointList;
         }
         #endregion

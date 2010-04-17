@@ -22,7 +22,7 @@ namespace Kanji.InputArea.WinFormGUI
     internal class MouseEventListener : IControlled
     {
         #region Fields
-        private WinClientCommunication controller = null;
+        private ClientCommunication controller = null;
 
         /// <summary>
         /// Event that occurs when [stroke finished].
@@ -43,7 +43,7 @@ namespace Kanji.InputArea.WinFormGUI
             Form = control;
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            controller = new WinClientCommunication(this, "127.0.0.1"); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
+            controller = new ClientCommunication(this, "127.0.0.1"); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
             OnlyActiveStrokeFinished = controller.SendPointList;
         }
         #endregion

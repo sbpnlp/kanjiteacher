@@ -71,7 +71,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="InputController.cs" />
+    <Compile Include="ClientCommunication.cs" />
     <Compile Include="KanjiService.cs" />
     <Compile Include="WinFormGUI.cs">
       <SubType>Form</SubType>
