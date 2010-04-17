@@ -7,7 +7,13 @@ using System.Drawing.Drawing2D;
 using Kanji.DesktopApp;
 using LL = Kanji.DesktopApp.LogicLayer;
 using Drawing = System.Drawing;
-
+/* This class should be almost identical to the class
+ * with the same name in the namespace:
+ * Kanji.InputArea.WinFormGUI
+ * Except for tiny bits that must be different.
+ * All the methods should be the same.
+ * If you change this, change the other one, too.
+ */
 namespace Kanji.InputArea.MobileGUI
 {
     public delegate bool OnlyActiveStrokeEventHandler(object sender, List<MouseEventArgs> activePoints, List<DateTime> activeTimes);
@@ -27,7 +33,7 @@ namespace Kanji.InputArea.MobileGUI
         private List<DateTime> ActiveTimes = new List<DateTime>();
         private List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
         private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
-        private Drawing.Graphics gfx;
+        private Drawing.Graphics gfx = null;
         #endregion
 
         #region Constructors
@@ -46,6 +52,9 @@ namespace Kanji.InputArea.MobileGUI
         {
             if (OnlyActiveStrokeFinished != null)
             {
+                //xxx HACK the last element of ActiveTimes is not a time but the stroke number
+                ActiveTimes.Add(new DateTime(AllActivePoints.Count + 1));
+
                 //send each point list only once for now...
                 //maybe exchange with 
                 //sending allactivepoints (after calling ArchiveActivePoints !)
@@ -65,7 +74,7 @@ namespace Kanji.InputArea.MobileGUI
             AllActivePoints.Add(ActivePoints);
             AllActiveTimes.Add(ActiveTimes);
             ActivePoints = new List<MouseEventArgs>();
-            ActiveTimes = new List<DateTime>();    
+            ActiveTimes = new List<DateTime>();
         }
 
         /// <summary>
@@ -74,23 +83,29 @@ namespace Kanji.InputArea.MobileGUI
         /// <param name="colour">The colour.</param>
         private void UpdateDrawing(Drawing.Color colour)
         {
-            Drawing.Pen pen = new Drawing.Pen(colour, 8);
-            int j = 0;
+            DrawCross();
 
             foreach (List<MouseEventArgs> lp in AllActivePoints)
             {
-                j = 0;
-                for (int i = 0; i < lp.Count; i++)
-                {
-                    DrawLine(pen, lp[j], lp[i]);
-                    j = i;
-                }
+                DrawPointList(colour, lp);
             }
 
-            j = 0;
-            for (int i = 1; i < ActivePoints.Count; i++)
+            DrawPointList(colour, ActivePoints);
+        }
+
+        /// <summary>
+        /// Draws the point list.
+        /// </summary>
+        /// <param name="colour">The colour.</param>
+        /// <param name="ptList">The point list.</param>
+        private void DrawPointList(Drawing.Color colour, List<MouseEventArgs> ptList)
+        {
+            Drawing.Pen pen = new Drawing.Pen(colour, 8);
+            int j = 0;
+
+            for (int i = 1; i < ptList.Count; i++)
             {
-                DrawLine(pen, ActivePoints[j], ActivePoints[i]);
+                DrawLine(pen, ptList[j], ptList[i]);
                 j = i;
             }
         }
@@ -157,7 +172,7 @@ namespace Kanji.InputArea.MobileGUI
         {
             //send point list here
             OnStrokeFinished();
-            UpdateDrawing(Drawing.Color.Black);
+            UpdateDrawing();
         }
 
         /// <summary>
@@ -170,8 +185,8 @@ namespace Kanji.InputArea.MobileGUI
             {
                 ActiveTimes.Add(DateTime.Now);
                 ActivePoints.Add(e);
+                DrawPointList(Drawing.Color.Black, ActivePoints);
             }
-            UpdateDrawing(Drawing.Color.Black);
         }
 
         /// <summary>
@@ -180,7 +195,8 @@ namespace Kanji.InputArea.MobileGUI
         internal void ResetDrawing()
         {
             gfx.FillRectangle(new Drawing.SolidBrush(Drawing.Color.White), Form.ClientRectangle);
-            DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
+            DrawCross();
+            //            DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
             AllActivePoints = new List<List<MouseEventArgs>>();
             AllActiveTimes = new List<List<DateTime>>();
             ActiveTimes = new List<DateTime>();

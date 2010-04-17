@@ -8,7 +8,13 @@ using Kanji.DesktopApp;
 using LL = Kanji.DesktopApp.LogicLayer;
 using Drawing = System.Drawing;
 using Kanji.DesktopApp.Interfaces;
-
+/* This class should be almost identical to the class
+ * with the same name in the namespace:
+ * Kanji.InputArea.MobileGUI
+ * Except for tiny bits that must be different.
+ * All the methods should be the same.
+ * If you change this, change the other one, too.
+ */
 namespace Kanji.InputArea.WinFormGUI
 {
     public delegate bool OnlyActiveStrokeEventHandler(object sender, List<MouseEventArgs> activePoints, List<DateTime> activeTimes);
@@ -47,6 +53,9 @@ namespace Kanji.InputArea.WinFormGUI
         {
             if (OnlyActiveStrokeFinished != null)
             {
+                //xxx HACK the last element of ActiveTimes is not a time but the stroke number
+                ActiveTimes.Add(new DateTime(AllActivePoints.Count + 1));
+
                 //send each point list only once for now...
                 //maybe exchange with 
                 //sending allactivepoints (after calling ArchiveActivePoints !)
@@ -204,46 +213,5 @@ namespace Kanji.InputArea.WinFormGUI
             UpdateDrawing(Drawing.Color.Black);
         }
         #endregion
-
-        //#region IControlled Members
-
-        //public void ReceiveCharacters(List<ICharacter> cModels)
-        //{
-        //    foreach (ICharacter c in cModels)
-        //    {
-        //        ResetDrawing();
-
-        //        foreach (LL.Radical r in ((LL.Character) c).RadicalList)
-        //        {
-        //            foreach (LL.Stroke s in r.StrokeList)
-        //            {
-        //                AllActivePoints.Add(s.IntermediatePoints);
-        //                //foreach (Point p in s.IntermediatePoints)
-        //                //{
-        //                //    // draw this point as a vector
-        //                //}
-        //            }
-        //        }
-        //    }
-        //    UpdateDrawing();
-        //}
-
-        ///// <summary>
-        ///// What is the use of this method?
-        ///// Why am I actually returning anything to the drawing area?
-        ///// No use. Just for seeing the strokes? No.
-        ///// They should come up in the DesktopApp.InputArea,
-        ///// not here, in the InputArea...
-        ///// </summary>
-        ///// <param name="stroke"></param>
-        ///// <param name="bb"></param>
-        //public void ReceivePointList(IStroke stroke, IBoundingBox bb)
-        //{
-        //    AllStrokes.Add((LL.Stroke)stroke);
-
-        //    UpdateDrawing();
-        //}
-
-        //#endregion
     }
 }

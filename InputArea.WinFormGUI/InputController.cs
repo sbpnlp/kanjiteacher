@@ -68,14 +68,22 @@ namespace Kanji.InputArea.WinFormGUI
             try
             {
                 if (_client == null) _client = CreateClient();
-                Thread t = new Thread(SendPointListThreadWorker);
-                ThreadParameter threadParam = new ThreadParameter() { ActivePoints = activePoints, ActiveTimes = activeTimes };
-                t.Start(threadParam);
-                //SendPointListThreadWorker(threadParam);
+                //legacy Thread t = new Thread(SendPointListThreadWorker);
+                //legacy ThreadParameter threadParam = new ThreadParameter() { ActivePoints = activePoints, ActiveTimes = activeTimes };
+                //legacy t.Start(threadParam);
+                //legacy //debug SendPointListThreadWorker(threadParam);
+
+                ThreadStart tStart = delegate { SendPointListThreadWorker(activePoints, activeTimes); };
+                Thread t2 = new Thread(tStart);
+                t2.Start();
+                //debug SendPointListThreadWorker(activePoints, activeTimes);                
+
                 return true;
             }
             catch { return false; }
         }
+
+        #endregion
 
         #region Helpers
 
@@ -98,23 +106,33 @@ namespace Kanji.InputArea.WinFormGUI
             else
             {
                 tp = pointListObject as ThreadParameter;
+                SendPointListThreadWorker(tp.ActivePoints, tp.ActiveTimes);
+            }
+        }
 
-                try
+        /// <summary>
+        /// Thread worker for sending the point list.
+        /// Awaits as input the list of points and the list of timestamps.
+        /// </summary>
+        /// <param name="ActivePoints">The active points.</param>
+        /// <param name="ActiveTimes">The active times.</param>
+        void SendPointListThreadWorker(List<System.Windows.Forms.MouseEventArgs> ActivePoints, List<DateTime> ActiveTimes)
+        {
+            try
+            {
+                List<int> xs = new List<int>();
+                List<int> ys = new List<int>();
+                foreach (System.Windows.Forms.MouseEventArgs mea in ActivePoints)
                 {
-                    List<int> xs = new List<int>();
-                    List<int> ys = new List<int>();
-                    foreach (System.Windows.Forms.MouseEventArgs mea in tp.ActivePoints)
-                    {
-                        xs.Add(mea.X);
-                        ys.Add(mea.Y);
-                    }
+                    xs.Add(mea.X);
+                    ys.Add(mea.Y);
+                }
 
-                    _client.ReceivePoints(xs.ToArray(), ys.ToArray(), tp.ActiveTimes.ToArray());
-                }
-                catch (Exception ex)
-                {
-                    System.Windows.Forms.MessageBox.Show(ex.Message);
-                }
+                _client.ReceivePoints(xs.ToArray(), ys.ToArray(), ActiveTimes.ToArray());
+            }
+            catch (Exception ex)
+            {
+                System.Windows.Forms.MessageBox.Show(ex.Message);
             }
         }
 
@@ -156,7 +174,6 @@ namespace Kanji.InputArea.WinFormGUI
             return binding;
         }
         #endregion
-#endregion
 
 //        /// <summary>
 //        /// Receives the point list from the input device.

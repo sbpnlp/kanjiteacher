@@ -20,8 +20,14 @@ namespace Kanji.Webservice2
         /// <param name="times">The times.</param>
         public void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
-            Console.WriteLine("This is the Dummy Observer");
-            Console.WriteLine(string.Format("Received a list of points at {0}", times[0].ToLongTimeString()));
+            Console.WriteLine("This is the Dummy Observer.");
+//            Console.WriteLine(string.Format("Received a list of points at {0}", times[times.Count-1].ToLongTimeString()));
+
+            //xxx HACK the last element of ActiveTimes is not a time but the stroke number
+            Console.WriteLine(string.Format("Received a list of points [{2}] at {0}.\n\tLatency since drawing of last point (mouseup event): {1}", 
+                DateTime.Now.ToLongTimeString(), 
+                new DateTime(DateTime.Now.Ticks - times[times.Count - 2].Ticks).ToLongTimeString(),
+                times[times.Count-1].Ticks));
         }
 
         #endregion

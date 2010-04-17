@@ -43,6 +43,7 @@ namespace Kanji.InputArea.MobileGUI
         #endregion
 
         #region IController Members
+
         /// <summary>
         /// Sends the point list to the web service.
         /// </summary>
@@ -56,35 +57,77 @@ namespace Kanji.InputArea.MobileGUI
             List<System.Windows.Forms.MouseEventArgs> activePoints,
             List<DateTime> activeTimes)
         {
-            //put this into a thread, so the GUI can continue working
-            if (_client == null) _client = CreateClient();
+            try
+            {
+                if (_client == null) _client = CreateClient();
+                //legacy Thread t = new Thread(SendPointListThreadWorker);
+                //legacy ThreadParameter threadParam = new ThreadParameter() { ActivePoints = activePoints, ActiveTimes = activeTimes };
+                //legacy t.Start(threadParam);
+                //legacy //debug SendPointListThreadWorker(threadParam);
 
+                ThreadStart tStart = delegate { SendPointListThreadWorker(activePoints, activeTimes); };
+                Thread t2 = new Thread(tStart);
+                t2.Start();
+                //debug SendPointListThreadWorker(activePoints, activeTimes);                
+
+                return true;
+            }
+            catch { return false; }
+        }
+
+        #endregion
+
+        #region Helpers
+
+        /// <summary>
+        /// Thread worker for sending the point list.
+        /// Awaits as input the list of points and the list of timestamps.
+        /// </summary>
+        /// <param name="pointListObject">The point list object which should be a type 
+        /// that contains the public fields 
+        /// List<System.Windows.Forms.MouseEventArgs> ActivePoints and
+        /// List<DateTime> ActiveTimes.</param>
+        void SendPointListThreadWorker(object pointListObject)
+        {
+            ThreadParameter tp = null;
+            if (!(pointListObject is ThreadParameter))
+            {
+                System.Windows.Forms.MessageBox.Show("Point list could not be sent");
+                return;
+            }
+            else
+            {
+                tp = pointListObject as ThreadParameter;
+                SendPointListThreadWorker(tp.ActivePoints, tp.ActiveTimes);
+            }
+        }
+
+        /// <summary>
+        /// Thread worker for sending the point list.
+        /// Awaits as input the list of points and the list of timestamps.
+        /// </summary>
+        /// <param name="ActivePoints">The active points.</param>
+        /// <param name="ActiveTimes">The active times.</param>
+        void SendPointListThreadWorker(List<System.Windows.Forms.MouseEventArgs> ActivePoints, List<DateTime> ActiveTimes)
+        {
             try
             {
                 List<int> xs = new List<int>();
                 List<int> ys = new List<int>();
-                foreach (System.Windows.Forms.MouseEventArgs mea in activePoints)
+                foreach (System.Windows.Forms.MouseEventArgs mea in ActivePoints)
                 {
                     xs.Add(mea.X);
                     ys.Add(mea.Y);
                 }
 
-                //MessageForDesktopWrapper((object)KanjiMessage.FinishedStroke);
-                ////why doesn't this method want to be called in a thread?
-                ////Thread myThread = new Thread(this.MessageForDesktopWrapper);
-                ////myThread.Start((object)KanjiMessage.FinishedStroke);
-
-                return _client.ReceivePoints(xs.ToArray(), ys.ToArray(), activeTimes.ToArray());
+                _client.ReceivePoints(xs.ToArray(), ys.ToArray(), ActiveTimes.ToArray());
             }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
-                return false;
             }
         }
-        #endregion
 
-        #region Helpers
         /// <summary>
         /// Creates the client. Establishes a binding to the web service 
         /// at the IP given at this.IP
@@ -133,7 +176,7 @@ namespace Kanji.InputArea.MobileGUI
         ////    {
         ////        case KanjiMessage.Nothing:
         ////            //System.Windows.Forms.MessageBox.Show(KanjiMessage.Nothing.ToString());
-                    
+
         ////            break;
         ////        case KanjiMessage.InputCharacter:
         ////            //System.Windows.Forms.MessageBox.Show(KanjiMessage.InputCharacter.ToString());
@@ -146,5 +189,14 @@ namespace Kanji.InputArea.MobileGUI
         ////            break;
         ////    }
         ////}
+    }
+
+    /// <summary>
+    /// Helper struct that serves as a parameter for the parametrised thread start.
+    /// </summary>
+    class ThreadParameter
+    {
+        public List<DateTime> ActiveTimes;
+        public List<System.Windows.Forms.MouseEventArgs> ActivePoints;
     }
 }
