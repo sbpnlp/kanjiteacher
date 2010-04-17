@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-
+//This file should be mirrored by Kanji.InputArea.MobileGUI.IController in any respect if possible.
 namespace Kanji.DesktopApp.Interfaces
 {
     /// <summary>
