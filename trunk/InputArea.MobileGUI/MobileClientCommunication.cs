@@ -56,7 +56,7 @@ namespace Kanji.InputArea.MobileGUI
             List<System.Windows.Forms.MouseEventArgs> activePoints,
             List<DateTime> activeTimes)
         {
-            put this into a thread, so the GUI can continue working
+            //put this into a thread, so the GUI can continue working
             if (_client == null) _client = CreateClient();
 
             try
