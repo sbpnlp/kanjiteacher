@@ -11,7 +11,6 @@ using Kanji.DesktopApp.Interfaces;
 
 namespace Kanji.InputArea.WinFormGUI
 {
-    public delegate bool StrokeEventHandler(object sender, List<List<MouseEventArgs>> activePoints, List<List<DateTime>> activeTimes);
     public delegate bool OnlyActiveStrokeEventHandler(object sender, List<MouseEventArgs> activePoints, List<DateTime> activeTimes);
 
     internal class MouseEventListener : IControlled

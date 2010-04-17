@@ -65,33 +65,59 @@ namespace Kanji.InputArea.WinFormGUI
             List<System.Windows.Forms.MouseEventArgs> activePoints,
             List<DateTime> activeTimes)
         {
-            if (_client == null) _client = CreateClient();
-            put this into a thread, so the GUI can continue working
             try
             {
-                List<int> xs = new List<int>();
-                List<int> ys = new List<int>();
-                foreach (System.Windows.Forms.MouseEventArgs mea in activePoints)
-                {
-                    xs.Add(mea.X);
-                    ys.Add(mea.Y);
-                }
-
-                //MessageForDesktopWrapper((object)KanjiMessage.FinishedStroke);
-                ////why doesn't this method want to be called in a thread?
-                ////Thread myThread = new Thread(this.MessageForDesktopWrapper);
-                ////myThread.Start((object)KanjiMessage.FinishedStroke);
-
-                return _client.ReceivePoints(xs.ToArray(), ys.ToArray(), activeTimes.ToArray());
+                if (_client == null) _client = CreateClient();
+                Thread t = new Thread(SendPointListThreadWorker);
+                ThreadParameter threadParam = new ThreadParameter() { ActivePoints = activePoints, ActiveTimes = activeTimes };
+                t.Start(threadParam);
+                //SendPointListThreadWorker(threadParam);
+                return true;
             }
-            catch (Exception ex)
-            {
-                System.Windows.Forms.MessageBox.Show(ex.Message);
-                return false;
-            }
+            catch { return false; }
         }
 
         #region Helpers
+
+        /// <summary>
+        /// Thread worker for sending the point list.
+        /// Awaits as input the list of points and the list of timestamps.
+        /// </summary>
+        /// <param name="pointListObject">The point list object which should be a type 
+        /// that contains the public fields 
+        /// List<System.Windows.Forms.MouseEventArgs> ActivePoints and
+        /// List<DateTime> ActiveTimes.</param>
+        void SendPointListThreadWorker(object pointListObject)
+        {
+            ThreadParameter tp = null;
+            if (!(pointListObject is ThreadParameter))
+            {
+                System.Windows.Forms.MessageBox.Show("Point list could not be sent");
+                return;
+            }
+            else
+            {
+                tp = pointListObject as ThreadParameter;
+
+                try
+                {
+                    List<int> xs = new List<int>();
+                    List<int> ys = new List<int>();
+                    foreach (System.Windows.Forms.MouseEventArgs mea in tp.ActivePoints)
+                    {
+                        xs.Add(mea.X);
+                        ys.Add(mea.Y);
+                    }
+
+                    _client.ReceivePoints(xs.ToArray(), ys.ToArray(), tp.ActiveTimes.ToArray());
+                }
+                catch (Exception ex)
+                {
+                    System.Windows.Forms.MessageBox.Show(ex.Message);
+                }
+            }
+        }
+
         /// <summary>
         /// Creates the client. Establishes a binding to the web service 
         /// at the IP given at this.IP
@@ -180,5 +206,14 @@ namespace Kanji.InputArea.WinFormGUI
 //        {
 //            throw new NotImplementedException();
 //        }
+    }
+
+    /// <summary>
+    /// Helper struct that serves as a parameter for the parametrised thread start.
+    /// </summary>
+    class ThreadParameter
+    {
+        public List<DateTime> ActiveTimes;
+        public List<System.Windows.Forms.MouseEventArgs> ActivePoints;
     }
 }

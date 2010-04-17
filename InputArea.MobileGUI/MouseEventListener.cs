@@ -10,13 +10,11 @@ using Drawing = System.Drawing;
 
 namespace Kanji.InputArea.MobileGUI
 {
-    public delegate bool StrokeEventHandler(object sender, List<List<MouseEventArgs>> activePoints, List<List<DateTime>> activeTimes);
     public delegate bool OnlyActiveStrokeEventHandler(object sender, List<MouseEventArgs> activePoints, List<DateTime> activeTimes);
 
     internal class MouseEventListener : IMobileView
     {
         #region Fields
-
         private MobileClientCommunication controller = null;
 
         /// <summary>
@@ -38,8 +36,7 @@ namespace Kanji.InputArea.MobileGUI
             Form = control;
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            string ip = Microsoft.VisualBasic.Interaction.InputBox("Please enter IP address of service", "IP address", "192.168.178.41", 50, 50);
-            controller = new MobileClientCommunication(this, ip);
+            controller = new MobileClientCommunication(this, Microsoft.VisualBasic.Interaction.InputBox("Please enter IP address of service", "IP address", "192.168.178.41", 50, 50));
             OnlyActiveStrokeFinished = controller.SendPointList;
         }
         #endregion
