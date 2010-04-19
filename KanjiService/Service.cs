@@ -25,9 +25,10 @@ namespace Kanji.KanjiService
             //Console.WriteLine("BEGIN IP-List");
             foreach (IPAddress ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
-                Console.WriteLine("IP: " + ip.ToString());
                 if (ip.ToString().Substring(0, 3) == "192")
                 {
+                    //Console.WriteLine("IP: " + ip.ToString());
+                    observer.setIP(ip);
                     hostIP = ip.ToString();
                     //Console.WriteLine("^\n|\nDie nehmen wir!");
                     break;

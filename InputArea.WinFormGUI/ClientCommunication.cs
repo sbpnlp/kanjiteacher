@@ -8,7 +8,7 @@ using System.ServiceModel;
 using Kanji.DesktopApp.Interfaces;
 /* This class should be almost identical to the class
  * with the same name in the namespace:
- * Kanji.InputArea.MobileGUI
+ * Kanji.WinFormInputArea.MobileGUI
  * Except for tiny bits that must be different.
  * All the methods should be the same.
  * If you change this, change the other one, too.
