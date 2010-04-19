@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Webservice2", "Webservice2\
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.csproj", "{7E353285-7A95-416D-BCDC-8BE94848B34F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrokeMirrorer", "StrokeMirrorer\StrokeMirrorer.csproj", "{6B69CCCB-1899-4118-A7F6-53A68D65489D}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -105,6 +107,12 @@ Global
 		{7E353285-7A95-416D-BCDC-8BE94848B34F}.Discovery|Any CPU.Build.0 = Debug|Any CPU
 		{7E353285-7A95-416D-BCDC-8BE94848B34F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7E353285-7A95-416D-BCDC-8BE94848B34F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Discovery|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Discovery|Any CPU.Build.0 = Debug|Any CPU
+		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

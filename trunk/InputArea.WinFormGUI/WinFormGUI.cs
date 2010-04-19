@@ -3,18 +3,19 @@ using System.Windows.Forms;
 
 namespace Kanji.InputArea.WinFormGUI
 {
-    public partial class InputArea : Form
+    public partial class WinFormInputArea : Form
     {
-        private MouseEventListener mouseListener;
+        protected MouseEventListener mouseListener;
 
-        public InputArea()
+        public WinFormInputArea()
         {
             InitializeComponent();
+            mouseListener = new MouseEventListener(this);
         }
 
         private void InputArea_Load(object sender, EventArgs e)
         {
-            mouseListener = new MouseEventListener(this);
+//            mouseListener = new MouseEventListener(this);
         }
 
         private void InputArea_Paint(object sender, PaintEventArgs e)

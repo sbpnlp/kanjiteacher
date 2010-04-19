@@ -10,7 +10,7 @@ using Drawing = System.Drawing;
 using Kanji.DesktopApp.Interfaces;
 /* This class should be almost identical to the class
  * with the same name in the namespace:
- * Kanji.InputArea.MobileGUI
+ * Kanji.WinFormInputArea.MobileGUI
  * Except for tiny bits that must be different.
  * All the methods should be the same.
  * If you change this, change the other one, too.
@@ -19,7 +19,7 @@ namespace Kanji.InputArea.WinFormGUI
 {
     public delegate bool OnlyActiveStrokeEventHandler(object sender, List<MouseEventArgs> activePoints, List<DateTime> activeTimes);
 
-    internal class MouseEventListener : IControlled
+    public class MouseEventListener : IControlled
     {
         #region Fields
         private ClientCommunication controller = null;

@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProductVersion>9.0.30729</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}</ProjectGuid>
-    <OutputType>Exe</OutputType>
+    <ProjectGuid>{6B69CCCB-1899-4118-A7F6-53A68D65489D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Kanji.Webservice2</RootNamespace>
-    <AssemblyName>Kanji.Webservice2</AssemblyName>
+    <RootNamespace>Kanji.StrokeMirrorer</RootNamespace>
+    <AssemblyName>Kanji.StrokeMirrorer</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -35,8 +35,6 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -44,20 +42,36 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DummyObserver.cs" />
-    <Compile Include="InputBoxDialog.cs">
+    <Compile Include="MirrorArea.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PointListSaveObserver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ReadString.cs">
-      <SubType>Form</SubType>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
-    <Compile Include="ReadString.Designer.cs">
-      <DependentUpon>ReadString.cs</DependentUpon>
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -65,15 +79,14 @@
       <Project>{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}</Project>
       <Name>DesktopApp.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\InputArea.WinFormGUI\InputArea.View.WinForm.csproj">
+      <Project>{668D8555-A844-46FE-A9D9-50305AAFF8F6}</Project>
+      <Name>InputArea.View.WinForm</Name>
+    </ProjectReference>
     <ProjectReference Include="..\KanjiService\KanjiService.csproj">
       <Project>{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}</Project>
       <Name>KanjiService</Name>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <EmbeddedResource Include="InputBoxDialog.resx">
-      <DependentUpon>InputBoxDialog.cs</DependentUpon>
-    </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

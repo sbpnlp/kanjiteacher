@@ -6,6 +6,7 @@ using Kanji.InputArea.WinFormGUI;
 using KSvc = Kanji.KanjiService;
 using System.Threading;
 using Kanji.DesktopApp.Interfaces;
+using System.Net;
 
 namespace Kanji.DesktopApp.Controller
 {
@@ -51,12 +52,7 @@ namespace Kanji.DesktopApp.Controller
             throw new Exception("received points in controller!");
         }
 
-        #endregion
-
-        #region IObserver Members
-
-
-        public bool ShowMetaData()
+        public void setIP(IPAddress ip)
         {
             throw new NotImplementedException();
         }

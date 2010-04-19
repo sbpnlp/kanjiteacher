@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Drawing;
+using System.Net;
 
 namespace Kanji.DesktopApp.Interfaces
 {
@@ -20,5 +21,7 @@ namespace Kanji.DesktopApp.Interfaces
         /// <param name="ycoords">The ycoords.</param>
         /// <param name="times">The times.</param>
         void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times);
+
+        void setIP(IPAddress ip);
     }
 }
