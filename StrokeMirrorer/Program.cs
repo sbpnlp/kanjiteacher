@@ -28,9 +28,9 @@ namespace Kanji.StrokeMirrorer
             t.Start();
 
             //starting mirror GUI
-            //Application.EnableVisualStyles();
-            //Application.SetCompatibleTextRenderingDefault(false);
-            //Application.Run(new MirrorArea(0));
+            Application.EnableVisualStyles();
+            Application.SetCompatibleTextRenderingDefault(false);
+            Application.Run(new MirrorArea(plso));
         }
     }
 }

@@ -32,13 +32,13 @@ namespace Kanji.InputArea.WinFormGUI
         private Control Form { set; get; }
         private List<MouseEventArgs> ActivePoints = new List<MouseEventArgs>();
         private List<DateTime> ActiveTimes = new List<DateTime>();
-        private List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
+        protected List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
         private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
         private Drawing.Graphics gfx = null;
         #endregion
 
         #region Constructors
-        internal MouseEventListener(Control control)
+        public MouseEventListener(Control control)
         {
             Form = control;
             gfx = Form.CreateGraphics();
@@ -208,7 +208,7 @@ namespace Kanji.InputArea.WinFormGUI
         /// Updates the drawing. This is the method that a UI 
         /// should call for getting updated.
         /// </summary>
-        internal void UpdateDrawing()
+        public void UpdateDrawing()
         {
             UpdateDrawing(Drawing.Color.Black);
         }

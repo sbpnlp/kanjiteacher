@@ -58,8 +58,8 @@ namespace Kanji.Webservice2
                 if (times[times.Count - 1].Ticks == 1)
                 {
                     sw.WriteLine("</character>");
-                    string s = InputBoxDialog.InputBox("Please enter information about the character",
-                        "Character info", string.Empty);
+                    string s = string.Empty; //InputBoxDialog.InputBox("Please enter information about the character",
+//                        "Character info", string.Empty);
                     sw.WriteLine("<character><GeneralInfo>{0}</GeneralInfo>", s); 
                 }
                 sw.Write(string.Format("<stroke no=\"{0}\">", times[times.Count - 1].Ticks));
