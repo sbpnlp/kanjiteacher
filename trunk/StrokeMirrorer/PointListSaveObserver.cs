@@ -4,16 +4,21 @@ using System.Linq;
 using System.Text;
 using Kanji.DesktopApp.Interfaces;
 using System.Net;
+using Kanji.InputArea.WinFormGUI;
 
 namespace Kanji.StrokeMirrorer
 {
     class PointListSaveObserver : IObserver
     {
+        public MirrorEventListener MouseListener { get { return mouselistener; } set { mouselistener = value; } }
+        MirrorEventListener mouselistener = null;
+
         #region IObserver Members
 
         public void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
-            System.Windows.Forms.MessageBox.Show("punkte empfangen");
+            mouselistener.LoadPoints(xcoords, ycoords, times);
+            mouselistener.UpdateDrawing();
         }
 
         public void setIP(IPAddress ip)

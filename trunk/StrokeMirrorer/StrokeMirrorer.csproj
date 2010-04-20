@@ -51,6 +51,7 @@
     <Compile Include="MirrorArea.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="MirrorEventListener.cs" />
     <Compile Include="PointListSaveObserver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
