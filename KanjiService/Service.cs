@@ -18,35 +18,29 @@ namespace Kanji.KanjiService
 
         public void Run(IObserver observer)
         {
-            string hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0].ToString();
-            //Console.WriteLine(Dns.GetHostName());
-            //Console.WriteLine(Dns.GetHostEntry(Dns.GetHostName()).ToString());
-
-            //Console.WriteLine("BEGIN IP-List");
+            IPAddress hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
             foreach (IPAddress ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
-                if (ip.ToString().Substring(0, 3) == "192")
+    //            if (ip.ToString().Substring(0, 3) == "192") //local
+                if (ip.ToString().Substring(0, 3) == "134") //exclusively for saarland university
                 {
-                    //Console.WriteLine("IP: " + ip.ToString());
-                    observer.setIP(ip);
-                    hostIP = ip.ToString();
-                    //Console.WriteLine("^\n|\nDie nehmen wir!");
+                    hostIP = ip;
                     break;
                 }
             }
-            //Console.WriteLine("END IP-List");
 
+            observer.setIP(hostIP);
             Uri address;
 
             if (showmdata)
             {
-                address = new Uri(string.Format("http://localhost:8000/kanji", hostIP));
+                address = new Uri(string.Format("http://localhost:8000/kanji", hostIP.ToString()));
                 Console.WriteLine("Discovery mode");
             }
 
             else
             {
-                address = new Uri(string.Format("http://{0}:8000/kanji", hostIP));
+                address = new Uri(string.Format("http://{0}:8000/kanji", hostIP.ToString()));
                 Console.WriteLine("NOT Discovery mode");
             }
 
