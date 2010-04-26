@@ -12,7 +12,7 @@
 
   <hLevel id="RADICAL_xxGrass" level="radical">
     <label id="RADICAL_xxGrass">
-      <alternate rank="1" score="1"/>unicodeForRadGrass</alternate>
+      <alternate rank="1" score="1"/>unicodeForRadxxGrass</alternate>
     </label>
     
     <hwTraces>
@@ -27,7 +27,7 @@
       <hwTraces>
         <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="1" to="1"/>
       </hwTraces>
-    </hLevel>
+    </hLevel> <!-- EO stroke xxGrass_1 -->
 
     <hLevel id="RAD_xxGrass_STROKE_2" level="stroke">
       <label id="RAD_xxGrass_STROKE_2">
@@ -37,7 +37,7 @@
       <hwTraces>
         <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="2" to="2"/>
       </hwTraces>
-    </hLevel>
+    </hLevel> <!-- EO stroke xxGrass_2 -->
 
     <hLevel id="RAD_xxGrass_STROKE_3" level="stroke">
       <label id="RAD_xxGrass_STROKE_3">
@@ -47,12 +47,12 @@
       <hwTraces>
         <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="3" to="3"/>
       </hwTraces>
-    </hLevel>
-  </hLevel>
+    </hLevel> <!-- EO stroke xxGrass_3 -->
+  </hLevel> <!-- EO radical xxGrass -->
 
   <hLevel id="RADICAL_xxMensch" level="radical">
     <label id="RADICAL_xxMensch">
-      <alternate rank="1" score="1"/>unicodeForRadMensch</alternate>
+      <alternate rank="1" score="1"/>unicodeForRadxxMensch</alternate>
     </label>
     
     <hwTraces>
@@ -67,7 +67,7 @@
       <hwTraces>
         <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="4" to="4"/>
       </hwTraces>
-    </hLevel>
+    </hLevel> <!-- EO stroke xxMensch_1 -->
 
     <hLevel id="RADICAL_xxMensch_STROKE_2" level="stroke">
       <label id="RADICAL_xxMensch_STROKE_2">
@@ -77,9 +77,39 @@
       <hwTraces>
         <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="5" to="5"/>
       </hwTraces>
-    </hLevel>
-  </hLevel>
+    </hLevel> <!-- EO stroke xxMensch_2 -->
+  </hLevel> <!-- EO radical xxMensch -->
 
+  <hLevel id="RADICAL_xxLoeffel" level="radical">
+    <label id="RADICAL_xxLoeffel">
+      <alternate rank="1" score="1"/>unicodeForRadxxLoeffel</alternate>
+    </label>
+    
+    <hwTraces>
+      <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="6" to="7"/>
+    </hwTraces>
+    
+    <hLevel id="RADICAL_xxLoeffel_STROKE_1" level="stroke">
+      <label id="RADICAL_xxLoeffel_STROKE_1">
+        <alternate rank="1" score="1"/>xxLoeffel_1</alternate>
+      </label>
+      
+      <hwTraces>
+        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="6" to="6"/>
+      </hwTraces>
+    </hLevel> <!-- EO stroke xxLoeffel_1 -->
+
+    <hLevel id="RADICAL_xxLoeffel_STROKE_2" level="stroke">
+      <label id="RADICAL_xxLoeffel_STROKE_2">
+        <alternate rank="1" score="1"/>xxLoeffel_2</alternate>
+      </label>
+      
+      <hwTraces>
+        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="7" to="7"/>
+      </hwTraces>
+    </hLevel> <!-- EO stroke xxLoeffel_2 -->
+  </hLevel> <!-- EO radical xxLoeffel -->
+</hLevel> <!-- EO char 255-->
 
 <character><GeneralInfo>255</GeneralInfo>
 <stroke no="1"><point><time>634074029400000000</time><x>126</x><y>132</y></point><point><time>634074029400000000</time><x>128</x><y>132</y></point><point><time>634074029400000000</time><x>131</x><y>132</y></point><point><time>634074029400000000</time><x>133</x><y>130</y></point><point><time>634074029400000000</time><x>135</x><y>129</y></point><point><time>634074029400000000</time><x>137</x><y>129</y></point><point><time>634074029400000000</time><x>140</x><y>129</y></point><point><time>634074029400000000</time><x>142</x><y>128</y></point><point><time>634074029400000000</time><x>144</x><y>127</y></point><point><time>634074029400000000</time><x>147</x><y>126</y></point><point><time>634074029400000000</time><x>149</x><y>125</y></point><point><time>634074029400000000</time><x>151</x><y>125</y></point><point><time>634074029400000000</time><x>154</x><y>124</y></point><point><time>634074029400000000</time><x>157</x><y>124</y></point><point><time>634074029400000000</time><x>159</x><y>124</y></point><point><time>634074029400000000</time><x>161</x><y>123</y></point><point><time>634074029400000000</time><x>164</x><y>123</y></point><point><time>634074029410000000</time><x>166</x><y>122</y></point><point><time>634074029410000000</time><x>168</x><y>122</y></point><point><time>634074029410000000</time><x>171</x><y>121</y></point><point><time>634074029410000000</time><x>173</x><y>122</y></point><point><time>634074029410000000</time><x>175</x><y>121</y></point><point><time>634074029410000000</time><x>178</x><y>121</y></point><point><time>634074029410000000</time><x>181</x><y>120</y></point><point><time>634074029410000000</time><x>184</x><y>120</y></point><point><time>634074029410000000</time><x>186</x><y>119</y></point><point><time>634074029410000000</time><x>189</x><y>119</y></point><point><time>634074029410000000</time><x>191</x><y>119</y></point><point><time>634074029410000000</time><x>194</x><y>119</y></point><point><time>634074029410000000</time><x>197</x><y>119</y></point><point><time>634074029410000000</time><x>200</x><y>118</y></point><point><time>634074029410000000</time><x>204</x><y>117</y></point><point><time>634074029410000000</time><x>207</x><y>116</y></point><point><time>634074029410000000</time><x>210</x><y>116</y></point><point><time>634074029410000000</time><x>214</x><y>115</y></point><point><time>634074029410000000</time><x>217</x><y>115</y></point><point><time>634074029410000000</time><x>220</x><y>115</y></point><point><time>634074029410000000</time><x>223</x><y>114</y></point><point><time>634074029410000000</time><x>230</x><y>114</y></point><point><time>634074029410000000</time><x>233</x><y>113</y></point><point><time>634074029410000000</time><x>235</x><y>113</y></point><point><time>634074029410000000</time><x>238</x><y>113</y></point><point><time>634074029410000000</time><x>242</x><y>113</y></point><point><time>634074029410000000</time><x>244</x><y>113</y></point><point><time>634074029410000000</time><x>248</x><y>112</y></point><point><time>634074029410000000</time><x>250</x><y>112</y></point><point><time>634074029410000000</time><x>253</x><y>112</y></point><point><time>634074029410000000</time><x>255</x><y>112</y></point><point><time>634074029410000000</time><x>258</x><y>112</y></point><point><time>634074029410000000</time><x>261</x><y>112</y></point><point><time>634074029410000000</time><x>263</x><y>111</y></point><point><time>634074029410000000</time><x>267</x><y>111</y></point><point><time>634074029410000000</time><x>269</x><y>111</y></point><point><time>634074029410000000</time><x>272</x><y>111</y></point><point><time>634074029410000000</time><x>275</x><y>111</y></point><point><time>634074029410000000</time><x>278</x><y>111</y></point><point><time>634074029410000000</time><x>281</x><y>111</y></point><point><time>634074029410000000</time><x>284</x><y>111</y></point><point><time>634074029410000000</time><x>287</x><y>110</y></point><point><time>634074029410000000</time><x>290</x><y>109</y></point><point><time>634074029410000000</time><x>293</x><y>109</y></point><point><time>634074029410000000</time><x>296</x><y>109</y></point><point><time>634074029410000000</time><x>298</x><y>109</y></point><point><time>634074029410000000</time><x>301</x><y>108</y></point><point><time>634074029410000000</time><x>303</x><y>108</y></point><point><time>634074029410000000</time><x>305</x><y>108</y></point><point><time>634074029410000000</time><x>307</x><y>107</y></point><point><time>634074029410000000</time><x>310</x><y>108</y></point><point><time>634074029410000000</time><x>314</x><y>108</y></point><point><time>634074029410000000</time><x>317</x><y>108</y></point><point><time>634074029410000000</time><x>319</x><y>108</y></point><point><time>634074029410000000</time><x>322</x><y>107</y></point><point><time>634074029410000000</time><x>324</x><y>107</y></point><point><time>634074029410000000</time><x>327</x><y>107</y></point><point><time>634074029410000000</time><x>329</x><y>107</y></point><point><time>634074029420000000</time><x>332</x><y>107</y></point><point><time>634074029420000000</time><x>334</x><y>107</y></point><point><time>634074029420000000</time><x>337</x><y>107</y></point><point><time>634074029420000000</time><x>340</x><y>108</y></point><point><time>634074029420000000</time><x>342</x><y>107</y></point><point><time>634074029420000000</time><x>344</x><y>108</y></point></stroke>

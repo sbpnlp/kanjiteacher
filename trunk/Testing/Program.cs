@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kanji.DesktopApp.LogicLayer;
+using System.IO;
 
 namespace Testing
 {
@@ -10,9 +11,20 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            TestTimeWarping();
+            //TestTimeWarping();
+            TestConverter();
             //TestBoundingBox();
             Console.ReadLine();
+        }
+
+        private static void TestConverter()
+        {
+
+            Converter.ConvertInputToFinalFormat(
+                new FileStream("C:\\Diplom\\kanjiteacher\\data\\char255.notQuite.inkml", FileMode.Open),
+                new FileStream("C:\\Diplom\\kanjiteacher\\data\\char255.inkml", FileMode.Create)
+                );
+
         }
 
         private static void TestBoundingBox()
