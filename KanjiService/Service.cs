@@ -21,8 +21,8 @@ namespace Kanji.KanjiService
             IPAddress hostIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList[0];
             foreach (IPAddress ip in Dns.GetHostEntry(Dns.GetHostName()).AddressList)
             {
-    //            if (ip.ToString().Substring(0, 3) == "192") //local
-                if (ip.ToString().Substring(0, 3) == "134") //exclusively for saarland university
+                if (ip.ToString().Substring(0, 3) == "192") //local
+                ////if (ip.ToString().Substring(0, 3) == "134") //exclusively for saarland university
                 {
                     hostIP = ip;
                     break;

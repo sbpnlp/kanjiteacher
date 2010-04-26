@@ -43,7 +43,12 @@ namespace Kanji.InputArea.WinFormGUI
             Form = control;
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
-            controller = new ClientCommunication(this, "127.0.0.1"); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
+            string myIP = "127.0.0.1"; 
+            myIP = "192.168.1.141"; //e1
+            myIP = "192.168.1.136"; //e2
+            //myIP = "192.168.1.108"; //diplom-vm bei wkm
+            
+            controller = new ClientCommunication(this, myIP); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
             OnlyActiveStrokeFinished = controller.SendPointList;
         }
         #endregion
