@@ -40,7 +40,7 @@ namespace Kanji.DesktopApp.LogicLayer
                 }
 
                 DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
-                filename = "char" + c.SHKK + ".inkml";
+                filename = "char" + StringTools.AddZeros(Int32.Parse(c.SHKK), 5) + ".inkml";
                 StreamWriter sw = new StreamWriter(di.FullName + Path.DirectorySeparatorChar + filename);
                 sw.Write(output.OuterXml);
                 sw.Flush();
@@ -77,7 +77,7 @@ namespace Kanji.DesktopApp.LogicLayer
 
                                 case "stroke":
                                     c.StrokeList.Add(xmlr.ReadElementContentAsStroke());
-                                    c.StrokeList[c.StrokeList.Count - 1].ID = StringTools.AddZeros(c.StrokeList.Count);
+                                    c.StrokeList[c.StrokeList.Count - 1].ID = StringTools.AddZeros(c.StrokeList.Count, 4);
                                     break;
                             }
                         }
