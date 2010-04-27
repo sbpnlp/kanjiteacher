@@ -33,7 +33,11 @@ namespace Kanji.DesktopApp.LogicLayer
                         case "stroke":
                             if (firstStrokedone)
                                 HandleStroke(root, xmlr);
-                            else HandleFirstStroke(root, xmlr, out ts);
+                            else
+                            {
+                                HandleFirstStroke(root, output, xmlr, out ts);
+                                firstStrokedone = true;
+                            }
                             break;
                     }
                 }
@@ -62,17 +66,54 @@ namespace Kanji.DesktopApp.LogicLayer
             //Console.WriteLine("Display the modified XML document...");
             //Console.WriteLine(doc.OuterXml);
 
-            outputstream.Write(Encoding.UTF8.GetBytes(output.OuterXml), 0, Encoding.UTF8.GetByteCount(output.OuterXml));
+            outputstream.Write(
+                Encoding.UTF8.GetBytes(output.OuterXml), 
+                0, 
+                Encoding.UTF8.GetByteCount(output.OuterXml));
         }
 
-        private static void HandleFirstStroke(XmlElement root, XmlTextReader xmlr, out long ts)
+        private static void HandleFirstStroke(XmlElement root, XmlDocument doc, XmlTextReader xmlr, out long initialTs)
         {
-            //continue reading 
-            //take first point element and get time information out of it
+            int strokeNo = 0;
+            if (xmlr.HasAttributes) //stroke has attribute "no"
+                strokeNo = Int32.Parse(xmlr.GetAttribute("no"));
+            Console.WriteLine(strokeNo);
+            //go to the next node, should be the first point
+
+            int x = 0;
+            int y = 0;
+
+
+            xmlr.Read(); //move forward to point type
+
+            HandlePoint(xmlr, out x, out y, out initialTs);
+
+            
+
             //create timestamp node
             //create traceFormat node
             //crate trace from the point nodes
-            ts = 0;
+        }
+
+        private static void HandlePoint(XmlTextReader xmlr, out int x, out int y, out long initialTs)
+        {
+            if (xmlr.NodeType == XmlNodeType.Element)
+            {
+                if (xmlr.Name == "point")
+                {
+                    //awaited node type is point for the first point
+                    //if (xmlr.Name == "point") 
+                    //continue reading 
+                    //take first point element and get time information out of it
+                    xmlr.Read(); //now moving to time
+                    initialTs = xmlr.ReadElementContentAsLong();
+                    x = xmlr.ReadElementContentAsInt();
+                    y = xmlr.ReadElementContentAsInt();
+                }else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
+            }
+            else throw new Exception("Not even an element type");
+
+            
         }
 
         private static void HandleStroke(XmlElement root, XmlTextReader xmlr)
