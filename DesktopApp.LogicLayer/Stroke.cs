@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kanji.DesktopApp.Interfaces;
+using System.Xml;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
@@ -25,6 +26,28 @@ namespace Kanji.DesktopApp.LogicLayer
         {
             AllPoints = allPoints;
             SearchIntermediate();
+        }
+
+        public XmlNode ToXmlNode(XmlDocument doc, XmlElement attachTo)
+        {
+            XmlElement elem = doc.CreateElement("timestamp");
+            elem.SetAttribute("xml:id", "testID" + BeginPoint.Time.Ticks.ToString());
+            attachTo.AppendChild(elem);
+
+            elem = doc.CreateElement("trace");
+            elem.SetAttribute("id", "testID" + BeginPoint.Time.Ticks.ToString() + "trace");
+
+            StringBuilder sb = new StringBuilder();
+            for (int i = 0; i < AllPoints.Count; i++)
+            {
+                string traceString = AllPoints[i].ToTraceString(BeginPoint.Time.Ticks);
+                sb.Append(traceString + ",\r\n");
+            }
+            elem.InnerText = sb.ToString().TrimEnd().TrimEnd(',');
+
+            attachTo.AppendChild(elem);
+            
+            return attachTo;
         }
 
         /// <summary>

@@ -12,14 +12,9 @@ namespace Kanji.DesktopApp.LogicLayer
         public static void ConvertInputToFinalFormat(Stream inputstream, Stream outputstream)
         {
             XmlDocument output = new XmlDocument();
-//            XmlNode node = output.CreateNode(
-//            output.CreateDocumentType("kanji
-
-            XmlElement root = output.DocumentElement;
+            output.LoadXml("<ink></ink>");
             
             XmlTextReader xmlr = new XmlTextReader(inputstream);
-            bool firstStrokedone = false;
-            long ts = 0;
             List<Stroke> strokeList = new List<Stroke>();
 
             while (xmlr.Read())
@@ -32,17 +27,19 @@ namespace Kanji.DesktopApp.LogicLayer
                             HandleGeneralInfo(output, xmlr);
                             break;
                         case "stroke":
-                            if (firstStrokedone)
-                                HandleStroke(root, xmlr);
-                            else
-                            {
-                                ReadElementContentAsStroke(xmlr);
-                                firstStrokedone = true;
-                            }
+                            strokeList.Add(xmlr.ReadElementContentAsStroke());
                             break;
                     }
                 }
             }
+
+//            output.DocumentElement = output.CreateElement("Character");
+
+            for (int i = 0; i < strokeList.Count; i++)
+            {
+                strokeList[i].ToXmlNode(output, output.DocumentElement);
+            }
+
 
             //XmlDocument doc = new XmlDocument();
             //doc.LoadXml("<book>" +
@@ -89,21 +86,6 @@ namespace Kanji.DesktopApp.LogicLayer
                 else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
             }
             else throw new Exception("Not even an element type");
-
-            //int strokeNo = 0;
-            //if (xmlr.HasAttributes) //stroke has attribute "no"
-            //    strokeNo = Int32.Parse(xmlr.GetAttribute("no"));
-            //Console.WriteLine(strokeNo);
-            ////go to the next node, should be the first point
-            //xmlr.Read(); //move forward to point type
-
-            //Point p = Converter.ReadElementContentAsPoint(xmlr);
-            ////Point p = xmlr.ReadElementContentAsPoint(); 
-            
-
-            //create timestamp node
-            //create traceFormat node
-            //crate trace from the point nodes
         }
 
         private static Point ReadElementContentAsPoint(this XmlTextReader xmlr) 
@@ -121,12 +103,6 @@ namespace Kanji.DesktopApp.LogicLayer
                 }else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
             }
             else throw new Exception("Not even an element type");
-
-            
-        }
-
-        private static void HandleStroke(XmlElement root, XmlTextReader xmlr)
-        {
 
             
         }
