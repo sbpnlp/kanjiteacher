@@ -7,20 +7,32 @@ namespace Kanji.DesktopApp.LogicLayer.Helpers
 {
     public static class StringTools
     {
-        public static string AddZeros(int s)
+        //public static string AddZeros(int s)
+        //{
+        //    //besser: mit 10er-potenzen.
+        //    string retval = string.Empty;
+        //    if (s < 10000)
+        //        retval += "0";
+        //    if (s < 1000)
+        //        retval += "0";
+        //    if (s < 100)
+        //        retval += "0";
+        //    if (s < 10)
+        //        retval += "0";
+        //    retval += s.ToString();
+        //    return retval;
+        //}
+
+        public static string AddZeros(int s, int power)
         {
-            //besser: mit 10er-potenzen.
             string retval = string.Empty;
-            if (s < 10000)
-                retval += "0";
-            if (s < 1000)
-                retval += "0";
-            if (s < 100)
-                retval += "0";
-            if (s < 10)
-                retval += "0";
-            retval += s.ToString();
-            return retval;
+             
+            for(int i = power; i>1; i--)
+            {
+                if (Math.Pow((double)1, (double)power) >= (double)s)
+                    retval += "0";
+            }
+            return retval + s.ToString();
         }
     }
 }

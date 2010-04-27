@@ -13,8 +13,15 @@ namespace Testing
         {
             //TestTimeWarping();
             TestConverter();
+            TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
+        }
+
+        private static void TestAddZeros()
+        {
+            stringtools test: add zeros.
+            get it right...
         }
 
         private static void TestConverter()
