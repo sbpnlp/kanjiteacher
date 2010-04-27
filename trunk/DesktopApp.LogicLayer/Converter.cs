@@ -4,77 +4,91 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Xml;
+using Kanji.DesktopApp.LogicLayer.Helpers;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
     public static class Converter
     {
-        public static void ConvertInputToFinalFormat(Stream inputstream, Stream outputstream)
+        public static void ConvertInputToFinalFormat(Stream inputstream)
         {
-            XmlDocument output = new XmlDocument();
-            output.LoadXml("<ink></ink>");
+            XmlDocument output = null; 
             
             XmlTextReader xmlr = new XmlTextReader(inputstream);
             List<Stroke> strokeList = new List<Stroke>();
+            List<Character> characterList = new List<Character>();
+
+            string filename = string.Empty;
 
             while (xmlr.Read())
             {
-                if (xmlr.NodeType == XmlNodeType.Element)
+                if ((xmlr.NodeType == XmlNodeType.Element) &&
+                    (xmlr.Name == "character"))
                 {
-                    switch (xmlr.Name)
-                    {
-                        case "GeneralInfo":
-                            HandleGeneralInfo(output, xmlr);
-                            break;
-                        case "stroke":
-                            strokeList.Add(xmlr.ReadElementContentAsStroke());
-                            string tempID = string.Empty;
-                            if (strokeList.Count < 100)
-                                tempID += "0";
-                            if (strokeList.Count < 10)
-                                tempID += "0";
-                            tempID += strokeList.Count.ToString();
-                            strokeList[strokeList.Count - 1].ID = tempID;
-                            break;
-                    }
+                    characterList.Add(xmlr.ReadElementContentAsCharacter());
                 }
             }
 
-//            output.DocumentElement = output.CreateElement("Character");
-
-            for (int i = 0; i < strokeList.Count; i++)
+            foreach (Character c in characterList)
             {
-                strokeList[i].ToXmlNode(output, output.DocumentElement);
+                output = new XmlDocument();
+                output.LoadXml("<ink></ink>");
+
+                for (int i = 0; i < c.StrokeList.Count; i++)
+                {
+                    c.StrokeList[i].ToXmlNode(output, output.DocumentElement);
+                }
+
+                DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
+                filename = "char" + c.SHKK + ".inkml";
+                StreamWriter sw = new StreamWriter(di.FullName + Path.DirectorySeparatorChar + filename);
+                sw.Write(output.OuterXml);
+                sw.Flush();
+                sw.Close();
             }
 
+            //outputstream.Write(
+            //    Encoding.UTF8.GetBytes(output.OuterXml), 
+            //    0, 
+            //    Encoding.UTF8.GetByteCount(output.OuterXml));
+        }
 
-            //XmlDocument doc = new XmlDocument();
-            //doc.LoadXml("<book>" +
-            //            "  <title>Oberon's Legacy</title>" +
-            //            "  <price>5.95</price>" +
-            //            "</book>");
+        private static Character ReadElementContentAsCharacter(this XmlTextReader xmlr)
+        {
+            if (xmlr.NodeType == XmlNodeType.Element)
+            {
+                if (xmlr.Name == "character")
+                {
+                    Character c = new Character();
 
-            //// Create a new element node.
-            //XmlNode newElem = doc.CreateNode("element", "pages", "");
-            //newElem.InnerText = "290";
-            //XmlNode newElem2 = doc.CreateElement("pages2");
-            //newElem2.InnerText = "333";
+                    xmlr.ReadStartElement("character"); //now moving to generalinfo
 
-            //Console.WriteLine("Add the new element to the document...");
-            //XmlElement root = doc.DocumentElement;
-            //root.AppendChild(newElem);
-            //root.AppendChild(newElem2);
-            //XmlNode newElem3 = doc.CreateElement("testpages");
-            //newElem3.InnerText = "textdrinnen";
-            //root.AppendChild(newElem3);
+                    //now we should be at the first stroke
 
-            //Console.WriteLine("Display the modified XML document...");
-            //Console.WriteLine(doc.OuterXml);
+                    while (xmlr.NodeType != XmlNodeType.EndElement)
+                    {
+                        if (xmlr.NodeType == XmlNodeType.Element)
+                        {
+                            switch (xmlr.Name)
+                            {
+                                case "GeneralInfo":
+                                    c.SHKK = xmlr.ReadElementContentAsString();// +".inkml";
+                                    break;
 
-            outputstream.Write(
-                Encoding.UTF8.GetBytes(output.OuterXml), 
-                0, 
-                Encoding.UTF8.GetByteCount(output.OuterXml));
+                                case "stroke":
+                                    c.StrokeList.Add(xmlr.ReadElementContentAsStroke());
+                                    c.StrokeList[c.StrokeList.Count - 1].ID = StringTools.AddZeros(c.StrokeList.Count);
+                                    break;
+                            }
+                        }
+                        else xmlr.Read(); //move on
+                    }
+                    xmlr.ReadEndElement();
+                    return c;
+                }
+                else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
+            }
+            else throw new Exception("Not even an element type");
         }
 
         private static Stroke ReadElementContentAsStroke(this XmlTextReader xmlr)
@@ -84,11 +98,11 @@ namespace Kanji.DesktopApp.LogicLayer
                 if (xmlr.Name == "stroke")
                 {
                     Stroke s = new Stroke();
-                    
+
                     xmlr.ReadStartElement("stroke"); //now moving to point
                     while (xmlr.NodeType != XmlNodeType.EndElement)
                         s.AllPoints.Add(xmlr.ReadElementContentAsPoint());
-                    
+
                     xmlr.ReadEndElement();
                     return s;
                 }
@@ -112,13 +126,6 @@ namespace Kanji.DesktopApp.LogicLayer
                 }else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
             }
             else throw new Exception("Not even an element type");
-
-            
-        }
-
-        private static void HandleGeneralInfo(XmlDocument output, XmlTextReader xmlr)
-        {
-            //do nothing or create file with correct name
         }
     }
 }

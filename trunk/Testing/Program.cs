@@ -19,12 +19,9 @@ namespace Testing
 
         private static void TestConverter()
         {
-
-            Converter.ConvertInputToFinalFormat(
-                new FileStream("C:\\Diplom\\kanjiteacher\\data\\char255.notQuite.inkml", FileMode.Open),
-                new FileStream("C:\\Diplom\\kanjiteacher\\data\\char255.inkml", FileMode.Create)
-                );
-
+            Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes.txt", FileMode.Open));
+            //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\char255.notQuite.inkml", FileMode.Open));
+            //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes2.txt", FileMode.Open));
         }
 
         private static void TestBoundingBox()
