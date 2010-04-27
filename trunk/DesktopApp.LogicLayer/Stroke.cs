@@ -15,6 +15,12 @@ namespace Kanji.DesktopApp.LogicLayer
         public List<Point> IntermediatePoints { get; set; }
         public List<Point> AllPoints { get; set; }
 
+        public Stroke() 
+        {
+            AllPoints = new List<Point>();
+            IntermediatePoints = new List<Point>();
+        }
+
         public Stroke(List<Point> allPoints)
         {
             AllPoints = allPoints;
