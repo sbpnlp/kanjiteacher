@@ -11,12 +11,22 @@ namespace Kanji.DesktopApp.LogicLayer
     /// </summary>
     public class Character : ICharacter
     {
-        public List<Radical> RadicalList = new List<Radical>();
-        public List<List<Point>> ActivePoints;
-        public IController AppController;
+        public List<Radical> RadicalList { get; set; }
+        public List<List<Point>> ActivePoints { get; set; }
+        public IController AppController { get; set; }
+        public List<Stroke> StrokeList { get; set; }
+        public string SHKK { get; set; }
+
+        public Character()
+        {
+            RadicalList = new List<Radical>();
+            ActivePoints = new List<List<Point>>();
+            AppController = null;
+            StrokeList = new List<Stroke>();
+        }
 
         public Character(List<List<Point>> activePoints, IController controller)
-        {
+        {//xxx this one needs work. what's it's use, anyway?
             ActivePoints = activePoints;
             AppController = controller;
         }

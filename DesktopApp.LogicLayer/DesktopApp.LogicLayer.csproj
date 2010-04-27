@@ -51,6 +51,7 @@
     <Compile Include="Character.cs" />
     <Compile Include="Circle2D.cs" />
     <Compile Include="Converter.cs" />
+    <Compile Include="Helpers\StringTools.cs" />
     <Compile Include="KanjiMessage.cs" />
     <Compile Include="MouseInputEventArgs.cs" />
     <Compile Include="Point.cs" />
