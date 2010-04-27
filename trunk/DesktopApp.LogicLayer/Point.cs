@@ -341,5 +341,10 @@ namespace Kanji.DesktopApp.LogicLayer
         #endregion
 
         #endregion
+
+        public string ToTraceString(long timestamp)
+        {
+            return string.Format("{0} {1} {2}", X, Y, Time.Ticks - timestamp);
+        }
     }
 }
