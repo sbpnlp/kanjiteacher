@@ -6,26 +6,18 @@
     <alternate rank="1" score="1">花</alternate>
   </label>
 
-  <hwTraces>
-    <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="1" to="7"/>
-  </hwTraces>
-
   <hLevel id="RADICAL_xxGrass" level="radical">
     <label id="RADICAL_xxGrass">
       <alternate rank="1" score="1"/>unicodeForRadxxGrass</alternate>
     </label>
-    
-    <hwTraces>
-      <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="1" to="3"/>
-    </hwTraces>
-    
+   
     <hLevel id="RAD_xxGrass_STROKE_1" level="stroke">
       <label id="RAD_xxGrass_STROKE_1">
         <alternate rank="1" score="1"/>xxGrass_1</alternate>
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="1" to="1"/>
+        <inkml:traceView traceRef="char255.inkml#001" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxGrass_1 -->
 
@@ -35,7 +27,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="2" to="2"/>
+        <inkml:traceView traceRef="char255.inkml#002" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxGrass_2 -->
 
@@ -45,7 +37,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="3" to="3"/>
+        <inkml:traceView traceRef="char255.inkml#003" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxGrass_3 -->
   </hLevel> <!-- EO radical xxGrass -->
@@ -55,17 +47,13 @@
       <alternate rank="1" score="1"/>unicodeForRadxxMensch</alternate>
     </label>
     
-    <hwTraces>
-      <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="4" to="5"/>
-    </hwTraces>
-    
     <hLevel id="RADICAL_xxMensch_STROKE_1" level="stroke">
       <label id="RADICAL_xxMensch_STROKE_1">
         <alternate rank="1" score="1"/>xxMensch_1</alternate>
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="4" to="4"/>
+        <inkml:traceView traceRef="char255.inkml#004" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxMensch_1 -->
 
@@ -75,7 +63,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="5" to="5"/>
+        <inkml:traceView traceRef="char255.inkml#005" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxMensch_2 -->
   </hLevel> <!-- EO radical xxMensch -->
@@ -85,17 +73,13 @@
       <alternate rank="1" score="1"/>unicodeForRadxxLoeffel</alternate>
     </label>
     
-    <hwTraces>
-      <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="6" to="7"/>
-    </hwTraces>
-    
     <hLevel id="RADICAL_xxLoeffel_STROKE_1" level="stroke">
       <label id="RADICAL_xxLoeffel_STROKE_1">
         <alternate rank="1" score="1"/>xxLoeffel_1</alternate>
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="6" to="6"/>
+        <inkml:traceView traceRef="char255.inkml#006" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxLoeffel_1 -->
 
@@ -105,7 +89,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char255.inkml#dataSet_0_traces" from="7" to="7"/>
+        <inkml:traceView traceRef="char255.inkml#007" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxLoeffel_2 -->
   </hLevel> <!-- EO radical xxLoeffel -->
