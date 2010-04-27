@@ -28,6 +28,13 @@ namespace Kanji.DesktopApp.LogicLayer
                             break;
                         case "stroke":
                             strokeList.Add(xmlr.ReadElementContentAsStroke());
+                            string tempID = string.Empty;
+                            if (strokeList.Count < 100)
+                                tempID += "0";
+                            if (strokeList.Count < 10)
+                                tempID += "0";
+                            tempID += strokeList.Count.ToString();
+                            strokeList[strokeList.Count - 1].ID = tempID;
                             break;
                     }
                 }
@@ -77,9 +84,11 @@ namespace Kanji.DesktopApp.LogicLayer
                 if (xmlr.Name == "stroke")
                 {
                     Stroke s = new Stroke();
+                    
                     xmlr.ReadStartElement("stroke"); //now moving to point
                     while (xmlr.NodeType != XmlNodeType.EndElement)
                         s.AllPoints.Add(xmlr.ReadElementContentAsPoint());
+                    
                     xmlr.ReadEndElement();
                     return s;
                 }

@@ -15,35 +15,40 @@ namespace Kanji.DesktopApp.LogicLayer
         public Point EndPoint { get { return AllPoints[AllPoints.Count - 1]; } }
         public List<Point> IntermediatePoints { get; set; }
         public List<Point> AllPoints { get; set; }
+        public string ID { get; set; }
 
         public Stroke() 
         {
             AllPoints = new List<Point>();
             IntermediatePoints = new List<Point>();
+            ID = string.Empty;
         }
 
         public Stroke(List<Point> allPoints)
         {
             AllPoints = allPoints;
             SearchIntermediate();
+            ID = string.Empty;
         }
 
         public XmlNode ToXmlNode(XmlDocument doc, XmlElement attachTo)
         {
             XmlElement elem = doc.CreateElement("timestamp");
-            elem.SetAttribute("xml:id", "testID" + BeginPoint.Time.Ticks.ToString());
+            elem.SetAttribute("xml:id", ID+"_ts");
+            elem.InnerText = BeginPoint.Time.Ticks.ToString();
             attachTo.AppendChild(elem);
 
             elem = doc.CreateElement("trace");
-            elem.SetAttribute("id", "testID" + BeginPoint.Time.Ticks.ToString() + "trace");
+            elem.SetAttribute("id", ID);
 
             StringBuilder sb = new StringBuilder();
+            string separator = ", ";
             for (int i = 0; i < AllPoints.Count; i++)
             {
                 string traceString = AllPoints[i].ToTraceString(BeginPoint.Time.Ticks);
-                sb.Append(traceString + ",\r\n");
+                sb.Append(traceString + separator);
             }
-            elem.InnerText = sb.ToString().TrimEnd().TrimEnd(',');
+            elem.InnerText = sb.ToString().TrimEnd(separator.ToCharArray());
 
             attachTo.AppendChild(elem);
             
