@@ -111,14 +111,20 @@ section~\ref{sec:arch:handwritingdatainputview}.
 The GUI works with pen-down and pen-up events. It has a cross in the middle in 
 order to partition the writing surface the same way, character practising paper 
 sheets are usually partitioned. The GUI class is listening to \emph{pen-down}, 
-\emph{pen-up} and \emph{pen-move} events. These are the equivalent in the mobile
-world for regular mouse-down, mouse-up and mouse-move events. However, there is 
-one difference - the pen-move event can only be captured between a pen-down and a
-pen-up event. An earlier conceptual idea for the HWR engine included using the
+\emph{pen-up} and \emph{pen-move} events. These are the equivalent events on 
+mobile devices for regular mouse-down, mouse-up and mouse-move events. 
+However, there is one difference - the pen-move event can only be captured 
+between a pen-down and a pen-up event. 
+An earlier conceptual idea for the HWR engine included using the
 mouse-move events during the input of a character between the strokes. This 
 could not be realised, however, because the series of pen-move events can only 
-be captured when there has been a previous pen-down event and no pen-up event 
-yet. The GUI captures the events and passes the point coordinates on to 
+be captured when there has been a previous pen-down event before a pen-up event. 
+
+xxx
+why could it not be realised?
+physical contact of pen to writign surface.
+
+The GUI captures the events and passes the point coordinates on to 
 the background class.
 
 \subsubsection{Writing Surfaces Background Module}
@@ -128,8 +134,13 @@ When a pen-down event is detected, the background class of the GUI starts
 listening for the pen movement. All point coordinates and the time of their 
 capturing are stored in two separate lists with the same indices.
 An alternative solution would have been to store a number of instances of a 
-custom-made encapsulated Point class including the time stamp in one list only, 
-however, using two separate lists resulted in increased speed.
+custom-made encapsulated \emph{Point} 
+
+xxx look for class names in whole chapter and make them cursive.
+
+
+class including the time stamp in one 
+list only, however, using two separate lists resulted in increased speed.
 Therefore, the point coordinates are stored in the frameworks Point class that 
 does not account for time stamps. Therefore a separate list is used for the 
 timestamps only.
@@ -309,7 +320,8 @@ information, as it is lacking some degree of \emph{expressiveness}.
 \label{sec:hwre:inkml}
 
 InkML is a markup language for describing electronic pen trajectories. 
-Hence the name \emph{ink}. \emph{ML} stands for markup language, as is customary 
+Hence the name \emph{Ink}. The letter combination \emph{ML} stands for markup 
+language, as is customary 
 for XML-based and SGML-based languages. The specification is currently in a 
 draft status, maintained by the World Wide Web Consortium 
 (W3C)~\shortcite{W3C2006}. 
@@ -318,11 +330,19 @@ for the storage format. As an XML format it automatically fulfils the
 criterion of \emph{well-formedness}: Any piece of InkML code can be evaluated 
 with common techniques, since InkML has a well-defined scheme description.
 
-The main elements in the simplest form of InkML are the \textbf{<ink>} and 
+The main XML elements in the simplest form of InkML are the \begin{xmlcode}<ink>\end{xmlcode} and
+
+xxx xml-elemente vernuenftig formatieren. am besten als code.
+
+ 
 the \textbf{<trace>} element. These elements allow for a very simple form 
-of a pen trajectory, basically a flat list of point coordinates. The <ink> 
-element is the root element of any InkML code. The <trace> element holds
+of a pen trajectory, basically a flat list of point coordinates. The 
+<ink>-element is the root element of any InkML code. The <trace>-element holds
 point coordinates.
+
+xxx abstand zwischen listings und text ueberpruefen.
+xxx formatieren und schoen machen.
+
 \begin{xmlcode}
   \begin{lstlisting}[emph={trace},emphstyle=\textbf,caption={Demonstration of the \emph{trace} tag},label=lst:TraceTag]
     <ink>
@@ -751,12 +771,18 @@ instance and the trace format is trivial and needs no description.
 There is no explicit format for a stroke in the storage structure.
 A stroke is simply the trace between a pen-down event and the following pen-up
 event. All the points captured between form one stroke.
+
+xxx was bedeutet das im zusammenhang mit der struktur im RAM?
+warum jetzt sinmply a trace? das steht vorher schon da:
 Thus, in the InkML file format a stroke is simply a trace.
+
+
 If a greater number of strokes comes together, each one of them will be a trace
 and they can be grouped together as a \emph{tracegroup} element in InkML.
 It would be possible to create a separate level for strokes, as demonstrated
-in listing~(). However, since every \emph{hLevel} element for a stroke would 
-contain exactly one \emph{hwTrace} element, it seem redundant to do so.
+in listing~(\ref{lst:strokeasindividualelement}). However, since every 
+\emph{hLevel} element for a stroke would contain exactly one \emph{hwTrace} 
+element, it seem redundant to do so.
 Listing~(\ref{lst:strokeasindividualelement}) shows a potential data structure
 for a stroke. As stated before, this data structure is redundant in the way, 
 that an \emph{hLevel} definition would contain only exactly one trace.
@@ -1392,6 +1418,9 @@ a feature vector is constructed that has the following features:
 However, some of the information seem redundant.
 In order to match two strokes by their feature vectors \(F_{db} \) 
 and \(F_{exp} \), the following values are considered:
+
+xxx die variablen einfuehren im satz, dann erst 'mathematisch' hinschreiben
+
 \begin{quote}
 \(
     F :=
@@ -1527,7 +1556,7 @@ by using the detected curves.
 
 \subsubsection{Feature Extraction for Curved Strokes}
 \label{sec:hwre:featureextractionforcurvedstrokes}
-
+xxx die variablen einfuehren.
 The feature vector for curved strokes contains the following elements:
 \begin{quote}
 \(
@@ -1895,8 +1924,8 @@ The minimal value \( \xi_m \) of each line or column is chosen.
 \(
   C_p := 
   \begin{cases}
-    f_p * \sum\limits_{i=1}^{n_{r,db}} \xi_i \quad \text{if } n \geq m \\
-    f_p * \sum\limits_{i=1}^{n_{r,exp}} \xi_i \quad \text{if } n < m
+    f_p \cdot \sum\limits_{i=1}^{n_{r,db}} \xi_i \quad \text{if } n \geq m \\
+    f_p \cdot \sum\limits_{i=1}^{n_{r,exp}} \xi_i \quad \text{if } n < m
   \end{cases}
 \)
 \end{quote}
@@ -1911,7 +1940,7 @@ All partial confidence values are weighted with the \(w_i\) constants.
 \begin{quote}
 \(
     C := \frac{1}{3}
-    (w_n * C_n + w_p * C_p + 
+    (w_n \cdot C_n + w_p \cdot C_p + 
      \frac{w_c}{n_{r,exp}} \sum\limits_{i=1}^{n_{r,exp}} c_{i} )
 \)
 \end{quote}
