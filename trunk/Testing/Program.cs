@@ -13,8 +13,8 @@ namespace Testing
         static void Main(string[] args)
         {
             //TestTimeWarping();
-            //TestConverter();
-            TestAddZeros();
+            TestConverter();
+            //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
         }
