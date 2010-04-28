@@ -29,10 +29,41 @@ namespace Kanji.DesktopApp.LogicLayer.Helpers
              
             for(int i = power; i>1; i--)
             {
-                if (Math.Pow((double)1, (double)power) >= (double)s)
+                if (Math.Pow((double)10, (double)i - 1) >= (double)s)
                     retval += "0";
+                else break;
             }
             return retval + s.ToString();
         }
+
+        public static string AddZeros(long s, int power)
+        {
+            string retval = string.Empty;
+            while(Math.Pow((double)10, (double)--power) >= (double)s)
+                    retval += "0";
+            return retval + s.ToString();
+        }
+
+        public static string AddZeros(int s, long power)
+        {
+            string retval = string.Empty;
+            long ls = (long)Math.Floor(Math.Log10((double)s));
+            power -= ls;
+            while (--power >0)
+                retval += "0";
+            return retval + s.ToString();
+        }
+
+        public static string AddZeros(long s, long power)
+        {
+            string retval = string.Empty;
+            int len = s.ToString().Length;
+            for (int i = 0; i < power-len; i++)
+                retval += "0";
+            return retval + s.ToString();
+        }
+
+
+        
     }
 }

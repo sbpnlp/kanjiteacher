@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Kanji.DesktopApp.LogicLayer;
 using System.IO;
+using Kanji.DesktopApp.LogicLayer.Helpers;
 
 namespace Testing
 {
@@ -12,7 +13,7 @@ namespace Testing
         static void Main(string[] args)
         {
             //TestTimeWarping();
-            TestConverter();
+            //TestConverter();
             TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
@@ -20,8 +21,29 @@ namespace Testing
 
         private static void TestAddZeros()
         {
-            stringtools test: add zeros.
-            get it right...
+            Console.WriteLine(StringTools.AddZeros(3, 4));
+            Console.WriteLine(StringTools.AddZeros((long)3, 4));
+            Console.WriteLine(StringTools.AddZeros(3, (long)4));
+            Console.WriteLine(StringTools.AddZeros((long)3, (long)4));
+            Console.WriteLine(StringTools.AddZeros(31, 5));
+            Console.WriteLine(StringTools.AddZeros((long)31, 5));
+            Console.WriteLine(StringTools.AddZeros(31, (long)5));
+            Console.WriteLine(StringTools.AddZeros((long)31, (long)5));
+            Console.WriteLine(StringTools.AddZeros(301, 6));
+            Console.WriteLine(StringTools.AddZeros((long)301, 6));
+            Console.WriteLine(StringTools.AddZeros(301, (long)6));
+            Console.WriteLine(StringTools.AddZeros((long)301, (long)6));
+            Console.WriteLine(StringTools.AddZeros(3003, 7));
+            Console.WriteLine(StringTools.AddZeros((long)3003, 7));
+            Console.WriteLine(StringTools.AddZeros(3003, (long)7));
+            Console.WriteLine(StringTools.AddZeros((long)3003, (long)7));
+            Console.WriteLine(StringTools.AddZeros(30303, 8));
+            Console.WriteLine(StringTools.AddZeros((long)30303, 8));
+            Console.WriteLine(StringTools.AddZeros(30303, (long)8));
+            Console.WriteLine(StringTools.AddZeros((long)30303, (long)8));
+
+            //stringtools test: add zeros.
+            //get it right...
         }
 
         private static void TestConverter()
