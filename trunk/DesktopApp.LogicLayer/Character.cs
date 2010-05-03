@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kanji.DesktopApp.Interfaces;
+using System.Xml;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
@@ -72,6 +73,16 @@ namespace Kanji.DesktopApp.LogicLayer
 //xxx                 c.AppController.ReceiveCharacterModels(new List<ICharacter>() { c });
             }
             
+        }
+
+        public void ToXmlNode(XmlDocument doc, XmlElement attachTo)
+        {
+            StrokeList[0].ToXmlNode(doc, attachTo);
+            
+            for (int i = 1; i < StrokeList.Count; i++)
+            {
+                StrokeList[i].ToXmlNode(doc, attachTo, StrokeList[0].BeginPoint.Time);
+            }
         }
     }
 }

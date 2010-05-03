@@ -34,10 +34,12 @@ namespace Kanji.DesktopApp.LogicLayer
                 output = new XmlDocument();
                 output.LoadXml("<ink></ink>");
 
-                for (int i = 0; i < c.StrokeList.Count; i++)
-                {
-                    c.StrokeList[i].ToXmlNode(output, output.DocumentElement);
-                }
+                c.ToXmlNode(output, output.DocumentElement);
+
+                //for (int i = 0; i < c.StrokeList.Count; i++)
+                //{
+                //    c.StrokeList[i].ToXmlNode(output, output.DocumentElement);
+                //}
 
                 DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
                 filename = "char" + StringTools.AddZeros(Int32.Parse(c.SHKK), 5) + ".inkml";
@@ -46,11 +48,6 @@ namespace Kanji.DesktopApp.LogicLayer
                 sw.Flush();
                 sw.Close();
             }
-
-            //outputstream.Write(
-            //    Encoding.UTF8.GetBytes(output.OuterXml), 
-            //    0, 
-            //    Encoding.UTF8.GetByteCount(output.OuterXml));
         }
 
         private static Character ReadElementContentAsCharacter(this XmlTextReader xmlr)

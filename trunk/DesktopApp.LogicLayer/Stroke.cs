@@ -11,12 +11,18 @@ namespace Kanji.DesktopApp.LogicLayer
 
     public class Stroke : IStroke
     {
+        #region Fields
         public Point BeginPoint { get { return AllPoints[0]; } }
         public Point EndPoint { get { return AllPoints[AllPoints.Count - 1]; } }
         public List<Point> IntermediatePoints { get; set; }
         public List<Point> AllPoints { get; set; }
         public string ID { get; set; }
+        #endregion
 
+        #region Constructors
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Stroke"/> class.
+        /// </summary>
         public Stroke() 
         {
             AllPoints = new List<Point>();
@@ -24,37 +30,58 @@ namespace Kanji.DesktopApp.LogicLayer
             ID = string.Empty;
         }
 
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Stroke"/> class.
+        /// </summary>
+        /// <param name="allPoints">All points.</param>
         public Stroke(List<Point> allPoints)
         {
             AllPoints = allPoints;
             SearchIntermediate();
             ID = string.Empty;
         }
+        #endregion
 
-        public XmlNode ToXmlNode(XmlDocument doc, XmlElement attachTo)
+        #region Public methods
+        /// <summary>
+        /// Creates an XML trace node from the current stroke. Attaches a reference time stamp 
+        /// and a trace format element as well.
+        /// </summary>
+        /// <param name="doc">The xml document.</param>
+        /// <param name="attachTo">The xml element to which the trace should be attached to.</param>
+        public void ToXmlNode(XmlDocument doc, XmlElement attachTo)
         {
-            XmlElement elem = doc.CreateElement("timestamp");
-            elem.SetAttribute("xml:id", ID+"_ts");
-            elem.InnerText = BeginPoint.Time.Ticks.ToString();
-            attachTo.AppendChild(elem);
+            string localTimestampID = CreateTimeStampElement(doc, attachTo);
+            CreateTraceFormatElement(doc, attachTo, localTimestampID);
+            ToXmlNode(doc, attachTo, BeginPoint.Time);
+        }
 
-            elem = doc.CreateElement("trace");
+        /// <summary>
+        /// Creates an XML trace node from the current stroke. Does not attach a reference time stamp element,
+        /// but assumes it is already there.
+        /// </summary>
+        /// <param name="doc">The xml document.</param>
+        /// <param name="attachTo">The xml element to which the trace should be attached to.</param>
+        /// <param name="referenceTimestamp">The reference timestamp.</param>
+        public void ToXmlNode(XmlDocument doc, XmlElement attachTo, DateTime referenceTimestamp)
+        {
+            XmlElement elem = doc.CreateElement("trace");
             elem.SetAttribute("id", ID);
 
             StringBuilder sb = new StringBuilder();
             string separator = ", ";
             for (int i = 0; i < AllPoints.Count; i++)
             {
-                string traceString = AllPoints[i].ToTraceString(BeginPoint.Time.Ticks);
+                string traceString = AllPoints[i].ToTraceString(referenceTimestamp.Ticks);
                 sb.Append(traceString + separator);
             }
             elem.InnerText = sb.ToString().TrimEnd(separator.ToCharArray());
 
             attachTo.AppendChild(elem);
-            
-            return attachTo;
         }
+        #endregion
 
+        #region Private Methods
         /// <summary>
         /// Searches intermediate significant points, judged from the angle
         /// of their vector to the general direction of the stroke
@@ -88,6 +115,61 @@ namespace Kanji.DesktopApp.LogicLayer
 
             //intermediatepoints = new list<point>(result);
         }
+
+        /// <summary>
+        /// Creates the time stamp element.
+        /// &lt;timestamp xml:id="#ID"&gt; #long number# &lt;/timestamp&gt;
+        /// </summary>
+        /// <param name="doc">The doc.</param>
+        /// <param name="attachTo">The attach to.</param>
+        /// <returns></returns>
+        private string CreateTimeStampElement(XmlDocument doc, XmlElement attachTo)
+        {
+            string timestampid = ID + "_ts";
+            XmlElement elem = doc.CreateElement("timestamp");
+            elem.SetAttribute("xml:id", timestampid);
+            elem.InnerText = BeginPoint.Time.Ticks.ToString();
+            attachTo.AppendChild(elem);
+            return timestampid;
+        }
+
+        /// <summary>
+        /// Creates the trace format element.
+        /// &lt;traceFormat xml:id="KanjiStrokeTrace"&gt;
+        /// &lt;channel name="X" type="decimal" /&gt;
+        /// &lt;channel name="Y" type="decimal" /&gt;
+        /// &lt;channel name="T" type="integer" units="ns" respectTo="#0001_ts" /&gt;
+        /// &lt;/traceFormat&gt;
+        /// </summary>
+        /// <param name="doc">The doc.</param>
+        /// <param name="attachTo">The attach to.</param>
+        /// <param name="timestampID">The timestamp ID.</param>
+        private void CreateTraceFormatElement(XmlDocument doc, XmlElement attachTo, string timestampID)
+        {
+            XmlElement elem = doc.CreateElement("traceFormat");
+            elem.SetAttribute("xml:id", ID + "_tf");
+
+            XmlElement channel = doc.CreateElement("channel");
+            channel.SetAttribute("name", "X");
+            channel.SetAttribute("type", "decimal");
+            elem.AppendChild(channel);
+
+            channel = doc.CreateElement("channel");
+            channel.SetAttribute("name", "Y");
+            channel.SetAttribute("type", "decimal");
+            elem.AppendChild(channel);
+
+            channel = doc.CreateElement("channel");
+            channel.SetAttribute("name", "T");
+            channel.SetAttribute("type", "integer");
+            channel.SetAttribute("units", "ns");
+            channel.SetAttribute("respectTo", timestampID);
+            elem.AppendChild(channel);
+
+            attachTo.AppendChild(elem);
+        }
+
+        #endregion
 
         #region IStroke Members
 
