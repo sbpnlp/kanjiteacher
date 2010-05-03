@@ -17,7 +17,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#001" />
+        <inkml:traceView traceRef="char00255.inkml#0001" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxGrass_1 -->
 
@@ -27,7 +27,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#002" />
+        <inkml:traceView traceRef="char00255.inkml#0002" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxGrass_2 -->
 
@@ -37,7 +37,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#003" />
+        <inkml:traceView traceRef="char00255.inkml#0003" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxGrass_3 -->
   </hLevel> <!-- EO radical xxGrass -->
@@ -53,7 +53,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#004" />
+        <inkml:traceView traceRef="char00255.inkml#0004" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxMensch_1 -->
 
@@ -63,7 +63,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#005" />
+        <inkml:traceView traceRef="char00255.inkml#0005" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxMensch_2 -->
   </hLevel> <!-- EO radical xxMensch -->
@@ -79,7 +79,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#006" />
+        <inkml:traceView traceRef="char00255.inkml#0006" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxLoeffel_1 -->
 
@@ -89,7 +89,7 @@
       </label>
       
       <hwTraces>
-        <inkml:traceView traceRef="char00255.inkml#007" />
+        <inkml:traceView traceRef="char00255.inkml#0007" />
       </hwTraces>
     </hLevel> <!-- EO stroke xxLoeffel_2 -->
   </hLevel> <!-- EO radical xxLoeffel -->
