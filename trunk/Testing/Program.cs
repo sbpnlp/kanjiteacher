@@ -13,7 +13,7 @@ namespace Testing
         static void Main(string[] args)
         {
             //TestTimeWarping();
-            TestConverter();
+            RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
@@ -46,10 +46,10 @@ namespace Testing
             //get it right...
         }
 
-        private static void TestConverter()
+        private static void RunConverter()
         {
             Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes.txt", FileMode.Open));
-            //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\char255.notQuite.inkml", FileMode.Open));
+            //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\char00255.notQuite.inkml", FileMode.Open));
             //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes2.txt", FileMode.Open));
         }
 
