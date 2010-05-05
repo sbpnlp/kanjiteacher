@@ -128,6 +128,10 @@ namespace Kanji.InputArea.MobileGUI
                     ys.Add(mea.Y);
                 }
 
+                //xxx here, active times are converted into an array.
+                //possibly this is where the Ticks get lost and everything is rounded
+                //to full seconds
+                
                 _client.ReceivePoints(xs.ToArray(), ys.ToArray(), ActiveTimes.ToArray());
             }
             catch (Exception ex)
