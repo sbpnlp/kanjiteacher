@@ -44,8 +44,8 @@ namespace Kanji.InputArea.WinFormGUI
             gfx = Form.CreateGraphics();
             DrawCross(Drawing.Color.LightGray, new Drawing.Point(Form.ClientRectangle.Width / 2, Form.ClientRectangle.Height / 2));
             string myIP = "127.0.0.1"; 
-            myIP = "192.168.1.141"; //e1
-            myIP = "192.168.1.136"; //e2
+            //myIP = "192.168.1.141"; //e1
+            //myIP = "192.168.1.136"; //e2
             //myIP = "192.168.1.108"; //diplom-vm bei wkm
             
             controller = new ClientCommunication(this, myIP); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea

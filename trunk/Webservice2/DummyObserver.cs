@@ -37,7 +37,7 @@ namespace Kanji.Webservice2
                 sw.Write(string.Format("\tStroke[{0}]: ", times[times.Count - 1].Ticks));
                 for (int i = 0; i < xcoords.Count; i++)
                 {
-                    sw.Write(string.Format("<{0},{1}> ", xcoords[i], ycoords[i]));
+                    sw.Write(string.Format("<{0},{1},{2}> ", xcoords[i], ycoords[i], times[i].Ticks));
                 }
                 sw.WriteLine();
 
