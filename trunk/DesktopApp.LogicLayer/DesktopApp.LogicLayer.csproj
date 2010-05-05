@@ -61,6 +61,7 @@
     <Compile Include="Square2D.cs" />
     <Compile Include="Stroke.cs" />
     <Compile Include="TimeWarping.cs" />
+    <Compile Include="UPXReader.cs" />
     <Compile Include="Vector2.cs" />
   </ItemGroup>
   <ItemGroup>

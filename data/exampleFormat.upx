@@ -1,4 +1,7 @@
-
+<upx schemaVersion="0.9.5" 
+     xmlns="http://unipen.nici.ru.nl/upx" 
+     xmlns:inkml="http://www.w3.org/2003/InkML"
+     > 
 <hwData annotationScheme="#annotationScherme_0" writerRef="#w0001">
 
 <hLevel id="CHARACTER_00255" level="character">
@@ -8,12 +11,12 @@
 
   <hLevel id="RADICAL_xxGrass" level="radical">
     <label id="RADICAL_xxGrass">
-      <alternate rank="1" score="1"/>unicodeForRadxxGrass</alternate>
+      <alternate rank="1" score="1">unicodeForRadxxGrass</alternate>
     </label>
    
     <hLevel id="RAD_xxGrass_STROKE_1" level="stroke">
       <label id="RAD_xxGrass_STROKE_1">
-        <alternate rank="1" score="1"/>xxGrass_1</alternate>
+        <alternate rank="1" score="1">xxGrass_1</alternate>
       </label>
       
       <hwTraces>
@@ -23,7 +26,7 @@
 
     <hLevel id="RAD_xxGrass_STROKE_2" level="stroke">
       <label id="RAD_xxGrass_STROKE_2">
-        <alternate rank="1" score="1"/>xxGrass_2</alternate>
+        <alternate rank="1" score="1">xxGrass_2</alternate>
       </label>
       
       <hwTraces>
@@ -33,7 +36,7 @@
 
     <hLevel id="RAD_xxGrass_STROKE_3" level="stroke">
       <label id="RAD_xxGrass_STROKE_3">
-        <alternate rank="1" score="1"/>xxGrass_3</alternate>
+        <alternate rank="1" score="1">xxGrass_3</alternate>
       </label>
       
       <hwTraces>
@@ -44,12 +47,12 @@
 
   <hLevel id="RADICAL_xxMensch" level="radical">
     <label id="RADICAL_xxMensch">
-      <alternate rank="1" score="1"/>unicodeForRadxxMensch</alternate>
+      <alternate rank="1" score="1">unicodeForRadxxMensch</alternate>
     </label>
     
     <hLevel id="RADICAL_xxMensch_STROKE_1" level="stroke">
       <label id="RADICAL_xxMensch_STROKE_1">
-        <alternate rank="1" score="1"/>xxMensch_1</alternate>
+        <alternate rank="1" score="1">xxMensch_1</alternate>
       </label>
       
       <hwTraces>
@@ -59,7 +62,7 @@
 
     <hLevel id="RADICAL_xxMensch_STROKE_2" level="stroke">
       <label id="RADICAL_xxMensch_STROKE_2">
-        <alternate rank="1" score="1"/>xxMensch_2</alternate>
+        <alternate rank="1" score="1">xxMensch_2</alternate>
       </label>
       
       <hwTraces>
@@ -70,12 +73,12 @@
 
   <hLevel id="RADICAL_xxLoeffel" level="radical">
     <label id="RADICAL_xxLoeffel">
-      <alternate rank="1" score="1"/>unicodeForRadxxLoeffel</alternate>
+      <alternate rank="1" score="1">unicodeForRadxxLoeffel</alternate>
     </label>
     
     <hLevel id="RADICAL_xxLoeffel_STROKE_1" level="stroke">
       <label id="RADICAL_xxLoeffel_STROKE_1">
-        <alternate rank="1" score="1"/>xxLoeffel_1</alternate>
+        <alternate rank="1" score="1">xxLoeffel_1</alternate>
       </label>
       
       <hwTraces>
@@ -85,7 +88,7 @@
 
     <hLevel id="RADICAL_xxLoeffel_STROKE_2" level="stroke">
       <label id="RADICAL_xxLoeffel_STROKE_2">
-        <alternate rank="1" score="1"/>xxLoeffel_2</alternate>
+        <alternate rank="1" score="1">xxLoeffel_2</alternate>
       </label>
       
       <hwTraces>
@@ -94,3 +97,5 @@
     </hLevel> <!-- EO stroke xxLoeffel_2 -->
   </hLevel> <!-- EO radical xxLoeffel -->
 </hLevel> <!-- EO char 255-->
+</hwData>
+</upx>

@@ -50,6 +50,11 @@ namespace Kanji.DesktopApp.LogicLayer
             }
         }
 
+        /// <summary>
+        /// Reads the element content as a character from intermediate format.
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns></returns>
         private static Character ReadElementContentAsCharacter(this XmlTextReader xmlr)
         {
             if (xmlr.NodeType == XmlNodeType.Element)
