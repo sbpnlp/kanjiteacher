@@ -48,9 +48,11 @@ namespace Testing
 
         private static void RunConverter()
         {
-            Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes.txt", FileMode.Open));
+            //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes.txt", FileMode.Open));
             //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\char00255.notQuite.inkml", FileMode.Open));
             //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes2.txt", FileMode.Open));
+
+            UPXReader.ParseUPXFile(new FileStream("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open));
         }
 
         private static void TestBoundingBox()
