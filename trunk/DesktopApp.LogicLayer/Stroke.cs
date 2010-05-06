@@ -180,5 +180,25 @@ namespace Kanji.DesktopApp.LogicLayer
         }
 
         #endregion
+
+        public static List<Point> PointListFromInkMLTrace(string trace)
+        {
+            List<Point> retval = new List<Point>();
+
+            string[] traceElements = trace.Split(',');
+            foreach (string point in traceElements)
+            {
+                string[] xyT = point.Trim().Split();
+
+                retval.Add(
+                    new Point(
+                        double.Parse(xyT[0]), 
+                        double.Parse(xyT[1]), 
+                        new DateTime(
+                            Int64.Parse(xyT[2]))));
+            }
+
+            return retval;
+        }
     }
 }

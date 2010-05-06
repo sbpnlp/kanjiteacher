@@ -12,10 +12,44 @@ namespace Kanji.DesktopApp.LogicLayer
     /// </summary>
     public class Character : ICharacter
     {
-        public List<Radical> RadicalList { get; set; }
+        public List<Radical> RadicalList 
+        {
+            get { return _radicallist; }
+
+            set
+            {
+                _radicallist = value;
+                //change strokelist according to combination
+                //of stroke lists of the radicals
+                List<Stroke> temp = new List<Stroke>();
+                foreach (Radical r in RadicalList)
+                {
+                    temp.AddRange(r.StrokeList);
+                }
+                _strokelist = temp;
+            }
+        }
+        private List<Radical> _radicallist;
         public List<List<Point>> ActivePoints { get; set; }
         public IController AppController { get; set; }
-        public List<Stroke> StrokeList { get; set; }
+        public List<Stroke> StrokeList 
+        {
+            get
+            {
+                if ((_strokelist == null) || (_strokelist.Count == 0))
+                {
+                    _strokelist = new List<Stroke>();
+                    foreach (Radical r in RadicalList)
+                    {
+                        _strokelist.AddRange(r.StrokeList);
+                    }
+                }
+                return _strokelist;
+            }
+
+            set { _strokelist = value; }
+        }
+        private List<Stroke> _strokelist;
         public string SHKK { get; set; }
         public string ID { get { return SHKK; } set { SHKK = value; } }
         public string Value { get; set; }
@@ -25,7 +59,7 @@ namespace Kanji.DesktopApp.LogicLayer
             RadicalList = new List<Radical>();
             ActivePoints = new List<List<Point>>();
             AppController = null;
-            StrokeList = new List<Stroke>();
+            _strokelist = new List<Stroke>();
         }
 
         public Character(List<List<Point>> activePoints, IController controller)

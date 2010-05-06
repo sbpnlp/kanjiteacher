@@ -10,40 +10,6 @@ namespace Kanji.DesktopApp.LogicLayer
 {
     public static class UPXReader
     {
-        public static void ReadUPXFile(Stream inputstream)
-        {
-            XmlDocument output = null;
-            //XmlTextReader xmlr = new XmlTextReader(inputstream);
-            XmlDocument input = new XmlDocument();
-            input.Load(inputstream);
-            XmlElement root = input.DocumentElement;
-
-
-            foreach (XmlNode node in input.GetElementsByTagName("hLevel"))
-            {
-                //if it is a character, read it
-                if (IsUPXhLevelCharacter(node))
-                {
-
-                }
-            }
-
-
-           
-            //List<Stroke> strokeList = new List<Stroke>();
-            //List<Character> characterList = new List<Character>();
-
-            //string filename = string.Empty;
-
-            //while (xmlr.Read())
-            //{
-            //    if (UPXReader.IsUPXCharacterElement(xmlr))
-            //    {
-            //        characterList.Add(UPXReader.ReadUPXElementContentAsCharacter(xmlr));
-            //    }
-            //}
-        }
-
         public static void ParseUPXFile(Stream inputstream)
         {
             XmlDocument output = null;
@@ -51,12 +17,35 @@ namespace Kanji.DesktopApp.LogicLayer
             List<Character> characterList = new List<Character>();
             string filename = string.Empty;
 
-            while (xmlr.Read())
+            //if we're hitting and end element that is a hLevel stop reading 
+            //the ones from the strokes should be read within ReadUPXElementContentAsStroke
+            while (xmlr.Read() && (! IsEndElementTypeWithName(xmlr, "hwData")))
             {
                 if (UPXReader.IsUPXhLevelCharacter(xmlr))
                 {
                     characterList.Add(UPXReader.ReadUPXElementContentAsCharacter(xmlr));
                 }
+            }
+
+
+            foreach (Character c in characterList)
+            {
+                output = new XmlDocument();
+                output.LoadXml("<ink></ink>");
+
+                c.ToXmlNode(output, output.DocumentElement);
+
+                //for (int i = 0; i < c.StrokeList.Count; i++)
+                //{
+                //    c.StrokeList[i].ToXmlNode(output, output.DocumentElement);
+                //}
+
+                DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
+                filename = "char" + c.SHKK + ".INOUT.inkml";
+                StreamWriter sw = new StreamWriter(di.FullName + Path.DirectorySeparatorChar + filename);
+                sw.Write(output.OuterXml);
+                sw.Flush();
+                sw.Close();
             }
         }
 
@@ -75,10 +64,9 @@ namespace Kanji.DesktopApp.LogicLayer
             return IsUPXhLevelElement(xmlr, "stroke");
         }
 
-
         public static bool IsUPXhLevelElement(this XmlTextReader xmlr, string level)
         {
-            if (IsElementTypeWithName(xmlr, "hLevel"))
+            if (IsElementTypeWithNameAndAttributes(xmlr, "hLevel"))
             {
                 //read attributes
                 for (int i = 0; i < xmlr.AttributeCount; i++)
@@ -95,11 +83,21 @@ namespace Kanji.DesktopApp.LogicLayer
             return false;
         }
 
+        public static bool IsElementTypeWithNameAndAttributes(this XmlTextReader xmlr, string name)
+        {
+            return (IsElementTypeWithName(xmlr, name) && (xmlr.HasAttributes));
+        }
+
         public static bool IsElementTypeWithName(this XmlTextReader xmlr, string name)
         {
             return ((xmlr.NodeType == XmlNodeType.Element) &&
-                ((xmlr.Name.ToLowerInvariant() == name.ToLowerInvariant()) && 
-                (xmlr.HasAttributes)));
+                (xmlr.Name.ToLowerInvariant() == name.ToLowerInvariant()));
+        }
+
+        public static bool IsEndElementTypeWithName(this XmlTextReader xmlr, string name)
+        {
+            return ((xmlr.NodeType == XmlNodeType.EndElement) &&
+                (xmlr.Name.ToLowerInvariant() == name.ToLowerInvariant()));
         }
 
         public static bool IsUPXhLevelCharacter(this XmlNode node)
@@ -154,17 +152,13 @@ namespace Kanji.DesktopApp.LogicLayer
                 {
                     Character c = new Character();
 
-                    //read attributes, especially ID
-                    for (int i = 0; i < xmlr.AttributeCount; i++)
-                    {
-                        xmlr.MoveToNextAttribute();
-                        if (xmlr.Name.ToLowerInvariant() == "id")
-                            c.SHKK = xmlr.Value; //maybe strip the "CHARACTER_" from the int value
-                    }
+                    c.SHKK = ReadIDAttribute(xmlr);
 
                     //now moving to label and reading it
                     //then the radicals
-                    while (xmlr.Read())
+                    //if we're hitting and end element that is an hLevel stop reading 
+                    //the ones from the Radicals should be eaten within ReadUPXElementContentAsRadical
+                    while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "hLevel")))
                     {
                         if (xmlr.NodeType == XmlNodeType.Element)
                         {
@@ -177,7 +171,10 @@ namespace Kanji.DesktopApp.LogicLayer
                                     break;
                                 case "hLevel":
                                     if (IsUPXhLevelRadical(xmlr))
+                                    {
                                         rTemp = ReadUPXElementContentAsRadical(xmlr);
+                                        c.RadicalList.Add(rTemp);
+                                    }
                                     break;
                             }
                         }
@@ -196,17 +193,13 @@ namespace Kanji.DesktopApp.LogicLayer
             {
                 Stroke s = new Stroke();
 
-                //read attributes, especially ID
-                for (int i = 0; i < xmlr.AttributeCount; i++)
-                {
-                    xmlr.MoveToNextAttribute();
-                    if (xmlr.Name.ToLowerInvariant() == "id")
-                        s.ID = xmlr.Value; //maybe strip the "STROKE_" from the ID
-                }
+                s.ID = ReadIDAttribute(xmlr);
 
                 //now moving to label and reading it
                 //then the strokes
-                while (xmlr.Read())
+                //if we're hitting and end element that is a hLevel stop reading 
+                //when hLevel end element is hit, stroke is finished
+                while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "hLevel")))
                 {
                     if (xmlr.NodeType == XmlNodeType.Element)
                     {
@@ -216,7 +209,7 @@ namespace Kanji.DesktopApp.LogicLayer
                                 s.Value = ReadUPXElementContentAsLabel(xmlr, s.ID);
                                 break;
                             case "hwTraces":
-                                if (IsUPXhLevelStroke(xmlr))
+                                if (IsElementTypeWithName(xmlr, "hwtraces"))
                                     s.AllPoints = ReadUPXElementContentAsPointList(xmlr);
                                 break;
                         }
@@ -227,15 +220,44 @@ namespace Kanji.DesktopApp.LogicLayer
             else throw new Exception(string.Format("Not the correct element. This was a {0}-tag.", xmlr.Name));
         }
 
+        public static string ReadIDAttribute(this XmlTextReader xmlr)
+        {
+            string retval = string.Empty;
+            
+            for (int i = 0; i < xmlr.AttributeCount; i++)
+            {
+                xmlr.MoveToNextAttribute();
+                if (xmlr.Name.ToLowerInvariant() == "id".ToLowerInvariant())
+                    retval = xmlr.Value; 
+            }
+            xmlr.MoveToElement();
+            return retval;
+        }
+
         private static List<Point> ReadUPXElementContentAsPointList(XmlTextReader xmlr)
         {
-/*
- * in here, read
- * hwTraces element, i.e. use the inkml:traceview elements to find the
- * appropriate stroke data.
- * use inkml reader to read the actual inkml file
- */
-            return InkMLReader.ReadInkMLTrace("findthefilename", 42);
+            List<Point> retval = null;
+
+            if (IsElementTypeWithName(xmlr, "hwTraces"))
+            {
+                //now moving to traceview element and reading it
+                //if we're hitting and end element that is a hwTraces stop reading 
+                //the ones from the inkml:traceview should be eaten within InkMLReader.ReadInkMLTrace
+                while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "hwTraces")))
+                {
+                    if ((xmlr.NodeType == XmlNodeType.Element) && (xmlr.Name == "inkml:traceView"))
+                    {
+                        if (IsElementTypeWithName(xmlr, "inkml:traceView"))
+                        {
+                            string traceRef = string.Empty;
+                            traceRef = xmlr.GetAttribute("traceRef");
+                            if (traceRef != string.Empty)
+                                retval = InkMLReader.ReadInkMLTrace(traceRef);
+                        }
+                    }
+                }
+            }
+            return retval;
         }
 
         private static Radical ReadUPXElementContentAsRadical(XmlTextReader xmlr)
@@ -244,17 +266,13 @@ namespace Kanji.DesktopApp.LogicLayer
             {
                 Radical r = new Radical();
 
-                //read attributes, especially ID
-                for (int i = 0; i < xmlr.AttributeCount; i++)
-                {
-                    xmlr.MoveToNextAttribute();
-                    if (xmlr.Name.ToLowerInvariant() == "id")
-                        r.ID = xmlr.Value; //maybe strip the "RADICAL_" from the ID
-                }
+                r.ID = ReadIDAttribute(xmlr);
 
                 //now moving to label and reading it
                 //then the strokes
-                while (xmlr.Read())
+                //if we're hitting and end element that is a hLevel stop reading 
+                //the ones from the strokes should be eaten within ReadUPXElementContentAsStroke
+                while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "hLevel")))
                 {
                     if (xmlr.NodeType == XmlNodeType.Element)
                     {
@@ -266,7 +284,10 @@ namespace Kanji.DesktopApp.LogicLayer
                                 break;
                             case "hLevel":
                                 if (IsUPXhLevelStroke(xmlr))
+                                {
                                     sTemp = ReadUPXElementContentAsStroke(xmlr);
+                                    r.StrokeList.Add(sTemp);
+                                }
                                 break;
                         }
                     }
@@ -282,8 +303,7 @@ namespace Kanji.DesktopApp.LogicLayer
             if ((xmlr.Name == "label") && (xmlr.NodeType == XmlNodeType.Element) && (xmlr.GetAttribute("id").ToLowerInvariant() == ID.ToLowerInvariant()))
             {
                 //if we're hitting and end element that is a label stop reading
-                while ((! ((xmlr.NodeType == XmlNodeType.EndElement) && (xmlr.Name == "label"))) &&
-                    xmlr.Read())
+                while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "label")))
                 {
                     if (xmlr.Name == "alternate")
                     {
