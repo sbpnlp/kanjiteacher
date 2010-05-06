@@ -17,6 +17,7 @@ namespace Kanji.DesktopApp.LogicLayer
         public List<Point> IntermediatePoints { get; set; }
         public List<Point> AllPoints { get; set; }
         public string ID { get; set; }
+        public string Value { get; set; }
         #endregion
 
         #region Constructors
