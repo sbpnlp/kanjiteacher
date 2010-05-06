@@ -53,34 +53,53 @@ namespace Kanji.DesktopApp.LogicLayer
 
             while (xmlr.Read())
             {
-                if (UPXReader.IsUPXCharacterElement(xmlr))
+                if (UPXReader.IsUPXhLevelCharacter(xmlr))
                 {
-                    xxx magical place. continue working on this Method:
                     characterList.Add(UPXReader.ReadUPXElementContentAsCharacter(xmlr));
                 }
             }
         }
 
-
-        public static bool IsUPXCharacterElement(this XmlTextReader xmlr)
+        public static bool IsUPXhLevelCharacter(this XmlTextReader xmlr)
         {
-            if ((xmlr.NodeType == XmlNodeType.Element) &&
-                ((xmlr.Name == "hLevel") && 
-                (xmlr.HasAttributes)))
+            return IsUPXhLevelElement(xmlr, "character");
+        }
+
+        public static bool IsUPXhLevelRadical(this XmlTextReader xmlr)
+        {
+            return IsUPXhLevelElement(xmlr, "radical");
+        }
+
+        public static bool IsUPXhLevelStroke(this XmlTextReader xmlr)
+        {
+            return IsUPXhLevelElement(xmlr, "stroke");
+        }
+
+
+        public static bool IsUPXhLevelElement(this XmlTextReader xmlr, string level)
+        {
+            if (IsElementTypeWithName(xmlr, "hLevel"))
+            {
+                //read attributes
+                for (int i = 0; i < xmlr.AttributeCount; i++)
                 {
-                    //read attributes
-                    for (int i = 0; i < xmlr.AttributeCount; i++)
-                    {
-                        xmlr.MoveToNextAttribute();
-                        if ("level" == xmlr.Name)
-                            if ("character" == xmlr.Value)
-                            {
-                                xmlr.MoveToElement();
-                                return true;
-                            }
-                    }
+                    xmlr.MoveToNextAttribute();
+                    if ("level".ToLowerInvariant() == xmlr.Name.ToLowerInvariant())
+                        if (level.ToLowerInvariant() == xmlr.Value.ToLowerInvariant())
+                        {
+                            xmlr.MoveToElement(); //return to element node
+                            return true;
+                        }
                 }
+            }
             return false;
+        }
+
+        public static bool IsElementTypeWithName(this XmlTextReader xmlr, string name)
+        {
+            return ((xmlr.NodeType == XmlNodeType.Element) &&
+                ((xmlr.Name.ToLowerInvariant() == name.ToLowerInvariant()) && 
+                (xmlr.HasAttributes)));
         }
 
         public static bool IsUPXhLevelCharacter(this XmlNode node)
@@ -129,7 +148,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <returns></returns>
         public static Character ReadUPXElementContentAsCharacter(this XmlTextReader xmlr)
         {
-            if (UPXReader.IsUPXCharacterElement(xmlr))
+            if (UPXReader.IsUPXhLevelCharacter(xmlr))
             {
                 if ((xmlr.Name == "hLevel") && (xmlr.HasAttributes))
                 {
@@ -143,30 +162,27 @@ namespace Kanji.DesktopApp.LogicLayer
                             c.SHKK = xmlr.Value; //maybe strip the "CHARACTER_" from the int value
                     }
 
-                    xmlr.ReadStartElement("hLevel"); //now moving to label
-                    ReadUPXElementContentAsLabel(xmlr);
-
-                    //now we should be at the first stroke
-
-                    while (xmlr.NodeType != XmlNodeType.EndElement)
+                    //now moving to label and reading it
+                    //then the radicals
+                    while (xmlr.Read())
                     {
                         if (xmlr.NodeType == XmlNodeType.Element)
                         {
+                            Radical rTemp = null;
+
                             switch (xmlr.Name)
                             {
-                                case "GeneralInfo":
-                                    c.SHKK = xmlr.ReadElementContentAsString();// +".inkml";
+                                case "label":
+                                    c.Value = ReadUPXElementContentAsLabel(xmlr, c.SHKK);
                                     break;
-
-                                case "stroke":
-                                 //   c.StrokeList.Add(xmlr.ReadElementContentAsStroke());
-                                    c.StrokeList[c.StrokeList.Count - 1].ID = StringTools.AddZeros(c.StrokeList.Count, 4);
+                                case "hLevel":
+                                    if (IsUPXhLevelRadical(xmlr))
+                                        rTemp = ReadUPXElementContentAsRadical(xmlr);
                                     break;
                             }
                         }
-                        else xmlr.Read(); //move on
                     }
-                    xmlr.ReadEndElement();
+                    
                     return c;
                 }
                 else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
@@ -174,9 +190,109 @@ namespace Kanji.DesktopApp.LogicLayer
             else throw new Exception("Not even an element type");
         }
 
-        private static void ReadUPXElementContentAsLabel(XmlTextReader xmlr)
+        private static Stroke ReadUPXElementContentAsStroke(XmlTextReader xmlr)
         {
-            throw new NotImplementedException();
+            if (UPXReader.IsUPXhLevelStroke(xmlr) && (xmlr.HasAttributes))
+            {
+                Stroke s = new Stroke();
+
+                //read attributes, especially ID
+                for (int i = 0; i < xmlr.AttributeCount; i++)
+                {
+                    xmlr.MoveToNextAttribute();
+                    if (xmlr.Name.ToLowerInvariant() == "id")
+                        s.ID = xmlr.Value; //maybe strip the "STROKE_" from the ID
+                }
+
+                //now moving to label and reading it
+                //then the strokes
+                while (xmlr.Read())
+                {
+                    if (xmlr.NodeType == XmlNodeType.Element)
+                    {
+                        switch (xmlr.Name)
+                        {
+                            case "label":
+                                s.Value = ReadUPXElementContentAsLabel(xmlr, s.ID);
+                                break;
+                            case "hwTraces":
+                                if (IsUPXhLevelStroke(xmlr))
+                                    s.AllPoints = ReadUPXElementContentAsPointList(xmlr);
+                                break;
+                        }
+                    }
+                }
+                return s;
+            }
+            else throw new Exception(string.Format("Not the correct element. This was a {0}-tag.", xmlr.Name));
+        }
+
+        private static List<Point> ReadUPXElementContentAsPointList(XmlTextReader xmlr)
+        {
+/*
+ * in here, read
+ * hwTraces element, i.e. use the inkml:traceview elements to find the
+ * appropriate stroke data.
+ * use inkml reader to read the actual inkml file
+ */
+            return InkMLReader.ReadInkMLTrace("findthefilename", 42);
+        }
+
+        private static Radical ReadUPXElementContentAsRadical(XmlTextReader xmlr)
+        {
+            if (UPXReader.IsUPXhLevelRadical(xmlr) && (xmlr.HasAttributes))
+            {
+                Radical r = new Radical();
+
+                //read attributes, especially ID
+                for (int i = 0; i < xmlr.AttributeCount; i++)
+                {
+                    xmlr.MoveToNextAttribute();
+                    if (xmlr.Name.ToLowerInvariant() == "id")
+                        r.ID = xmlr.Value; //maybe strip the "RADICAL_" from the ID
+                }
+
+                //now moving to label and reading it
+                //then the strokes
+                while (xmlr.Read())
+                {
+                    if (xmlr.NodeType == XmlNodeType.Element)
+                    {
+                        Stroke sTemp = null;
+                        switch (xmlr.Name)
+                        {
+                            case "label":
+                                r.Value = ReadUPXElementContentAsLabel(xmlr, r.ID);
+                                break;
+                            case "hLevel":
+                                if (IsUPXhLevelStroke(xmlr))
+                                    sTemp = ReadUPXElementContentAsStroke(xmlr);
+                                break;
+                        }
+                    }
+                }
+                return r;
+            }
+            else throw new Exception(string.Format("Not the correct element. This was a {0}-tag.", xmlr.Name));
+        }
+
+        private static string ReadUPXElementContentAsLabel(XmlTextReader xmlr, string ID)
+        {
+            string retval = string.Empty;
+            if ((xmlr.Name == "label") && (xmlr.NodeType == XmlNodeType.Element) && (xmlr.GetAttribute("id").ToLowerInvariant() == ID.ToLowerInvariant()))
+            {
+                //if we're hitting and end element that is a label stop reading
+                while ((! ((xmlr.NodeType == XmlNodeType.EndElement) && (xmlr.Name == "label"))) &&
+                    xmlr.Read())
+                {
+                    if (xmlr.Name == "alternate")
+                    {
+                        retval = xmlr.ReadElementContentAsString();
+                    }
+                }
+                xmlr.ReadEndElement(); //read label end element
+            }
+            return retval;
         }
     }
 }

@@ -13,6 +13,10 @@ namespace Kanji.DesktopApp.LogicLayer
     {
         public List<Stroke> StrokeList = new List<Stroke>();
         public List<List<Point>> ActivePoints;
+        public string ID { get; set; }
+        public string Value { get; set; }
+
+        public Radical() { }
 
         public Radical(List<List<Point>> activePoints)
         {

@@ -17,6 +17,8 @@ namespace Kanji.DesktopApp.LogicLayer
         public IController AppController { get; set; }
         public List<Stroke> StrokeList { get; set; }
         public string SHKK { get; set; }
+        public string ID { get { return SHKK; } set { SHKK = value; } }
+        public string Value { get; set; }
 
         public Character()
         {
