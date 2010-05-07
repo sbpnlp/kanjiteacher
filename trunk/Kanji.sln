@@ -27,6 +27,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Testing", "Testing\Testing.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StrokeMirrorer", "StrokeMirrorer\StrokeMirrorer.csproj", "{6B69CCCB-1899-4118-A7F6-53A68D65489D}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Kanjibrowser", "Kanjibrowser\Kanjibrowser.csproj", "{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -113,6 +115,12 @@ Global
 		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Discovery|Any CPU.Build.0 = Debug|Any CPU
 		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6B69CCCB-1899-4118-A7F6-53A68D65489D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}.Discovery|Any CPU.ActiveCfg = Debug|Any CPU
+		{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}.Discovery|Any CPU.Build.0 = Debug|Any CPU
+		{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
