@@ -168,7 +168,7 @@ namespace Kanji.InputArea.MobileGUI
         /// Catches the mouse up event, stores the points and raises the OnStrokeFinished event.
         /// </summary>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        internal void MouseUp(MouseEventArgs e)
+        public void MouseUp(MouseEventArgs e)
         {
             //send point list here
             OnStrokeFinished();
@@ -179,7 +179,7 @@ namespace Kanji.InputArea.MobileGUI
         /// Catches the MouseMove event
         /// </summary>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
-        internal void MouseMove(MouseEventArgs e)
+        public void MouseMove(MouseEventArgs e)
         {
             if (e.Button == MouseButtons.Left)
             {
@@ -192,7 +192,7 @@ namespace Kanji.InputArea.MobileGUI
         /// <summary>
         /// Resets the drawing to a blank screen.
         /// </summary>
-        internal void ResetDrawing()
+        public void ResetDrawing()
         {
             gfx.FillRectangle(new Drawing.SolidBrush(Drawing.Color.White), Form.ClientRectangle);
             DrawCross();
@@ -207,7 +207,7 @@ namespace Kanji.InputArea.MobileGUI
         /// Updates the drawing. This is the method that a UI 
         /// should call for getting updated.
         /// </summary>
-        internal void UpdateDrawing()
+        public void UpdateDrawing()
         {
             UpdateDrawing(Drawing.Color.Black);
         }
