@@ -41,6 +41,5 @@ namespace Kanji.InputArea.WinFormGUI
         {
             mouseListener.ResetDrawing();
         }
-
     }
 }

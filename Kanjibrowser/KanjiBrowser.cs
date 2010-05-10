@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kanji.InputArea.WinFormGUI;
+using Kanji.DesktopApp.LogicLayer;
 
 namespace Kanji.Kanjibrowser
 {
@@ -22,6 +23,8 @@ namespace Kanji.Kanjibrowser
             if (mouseListener is MirrorEventListener)
                 plso.MouseListener = mouseListener as MirrorEventListener;
             else throw new Exception("Get your types right");
+            
+            BoundingBox bb = new BoundingBox(mouseListener
         }
     }
 }
