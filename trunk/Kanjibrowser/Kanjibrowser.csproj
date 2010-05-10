@@ -81,6 +81,10 @@
       <Project>{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}</Project>
       <Name>DesktopApp.Interfaces</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DesktopApp.LogicLayer\DesktopApp.LogicLayer.csproj">
+      <Project>{B5F2848B-F62B-4783-BFDB-2B1CB786AA40}</Project>
+      <Name>DesktopApp.LogicLayer</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InputArea.WinFormGUI\InputArea.View.WinForm.csproj">
       <Project>{668D8555-A844-46FE-A9D9-50305AAFF8F6}</Project>
       <Name>InputArea.View.WinForm</Name>

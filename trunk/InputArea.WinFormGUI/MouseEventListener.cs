@@ -8,6 +8,7 @@ using Kanji.DesktopApp;
 using LL = Kanji.DesktopApp.LogicLayer;
 using Drawing = System.Drawing;
 using Kanji.DesktopApp.Interfaces;
+using Kanji.DesktopApp.LogicLayer;
 /* This class should be almost identical to the class
  * with the same name in the namespace:
  * Kanji.WinFormInputArea.MobileGUI
@@ -35,6 +36,7 @@ namespace Kanji.InputArea.WinFormGUI
         protected List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
         private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
         private Drawing.Graphics gfx = null;
+        protected BoundingBox BBox = null;
         #endregion
 
         #region Constructors
@@ -47,6 +49,10 @@ namespace Kanji.InputArea.WinFormGUI
             //myIP = "192.168.1.141"; //e1
             //myIP = "192.168.1.136"; //e2
             //myIP = "192.168.1.108"; //diplom-vm bei wkm
+
+            BBox = new BoundingBox();
+            //put a bounding box around all the points for drawing in a
+            //different size
             
             controller = new ClientCommunication(this, myIP); //xxx todo: this is not correct. the view is desktopApp.Winformgui, not inputarea
             OnlyActiveStrokeFinished = controller.SendPointList;

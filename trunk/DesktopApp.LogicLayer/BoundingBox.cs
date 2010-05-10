@@ -60,6 +60,23 @@ namespace Kanji.DesktopApp.LogicLayer
             _pointList = pointlist;
             Initialisation();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BoundingBox"/> class.
+        /// </summary>
+        /// <param name="pointlist">The pointlist.</param>
+        public BoundingBox(List<List<Point>> pointlist)
+            : base()
+        {
+            /* Remember that the coordinate system begins in the
+             * upper left corner of the screen.
+             * Therefore some calculations seem backwards,
+             * like moving the anchor point around
+             */
+            foreach (List<Point> pList in pointlist)
+                _pointList.AddRange(pList);
+            Initialisation();
+        }
         #endregion
 
         #region Private methods
