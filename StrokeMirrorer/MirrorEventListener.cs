@@ -4,19 +4,37 @@ using System.Linq;
 using System.Text;
 using Kanji.InputArea.WinFormGUI;
 using System.Windows.Forms;
+using Kanji.DesktopApp.LogicLayer;
 
 namespace Kanji.StrokeMirrorer
 {
     internal class MirrorEventListener : MouseEventListener
     {
         public MirrorEventListener(Control control) : base(control) { }
+        protected BoundingBox BBox = null;
 
         internal void LoadPoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
             List<MouseEventArgs> eventargsList = new List<MouseEventArgs>(xcoords.Count);
+            List<Point> pointList = new List<Point>(xcoords.Count);
+
             for (int i = 0; i < xcoords.Count; i++)
             {
-                eventargsList.Add(new MouseEventArgs(MouseButtons.Left, 0, xcoords[i], ycoords[i], 0));
+                //eventargsList.Add(new MouseEventArgs(MouseButtons.Left, 0, xcoords[i], ycoords[i], 0));
+                pointList.Add(new Point(xcoords[i], ycoords[i]));
+            }
+            BBox = new BoundingBox(pointList);
+            double stretchFactor = (double)Form.Size.Width / BBox.Width;
+            BBox.Stretch(stretchFactor);
+            foreach (Vector2 v in BBox.VectorsFromAnchor)
+            {
+                eventargsList.Add(
+                    new MouseEventArgs(
+                        MouseButtons.Left, 
+                        0, 
+                        (int)Math.Floor(v.X), 
+                        (int)Math.Floor(v.Y), 
+                        0));
             }
 
             AllActivePoints.Add(eventargsList);
