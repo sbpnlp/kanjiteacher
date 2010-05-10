@@ -12,18 +12,24 @@ namespace Kanji.StrokeMirrorer
     {
         public MirrorEventListener(Control control) : base(control) { }
         protected BoundingBox BBox = null;
+        List<List<Point>> originalPointlist = new List<List<Point>>();
 
         internal void LoadPoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
             List<MouseEventArgs> eventargsList = new List<MouseEventArgs>(xcoords.Count);
             List<Point> pointList = new List<Point>(xcoords.Count);
 
+
             for (int i = 0; i < xcoords.Count; i++)
             {
                 //eventargsList.Add(new MouseEventArgs(MouseButtons.Left, 0, xcoords[i], ycoords[i], 0));
                 pointList.Add(new Point(xcoords[i], ycoords[i]));
             }
-            BBox = new BoundingBox(pointList);
+
+            originalPointlist.Add(pointList);
+
+            BBox = new BoundingBox(originalPointlist);
+
             double padding = 0.1;
             double stretchFactor = (double)(1-padding) * Form.ClientRectangle.Width / BBox.Width;
             BBox.Stretch(stretchFactor);
@@ -38,6 +44,7 @@ namespace Kanji.StrokeMirrorer
                         0));
             }
 
+            AllActivePoints = new List<List<MouseEventArgs>>();
             AllActivePoints.Add(eventargsList);
         }
 
