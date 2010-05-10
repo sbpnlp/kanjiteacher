@@ -31,11 +31,11 @@ namespace Kanji.InputArea.WinFormGUI
         public event OnlyActiveStrokeEventHandler OnlyActiveStrokeFinished;
 
         protected Control Form { set; get; }
-        private List<MouseEventArgs> ActivePoints = new List<MouseEventArgs>();
-        private List<DateTime> ActiveTimes = new List<DateTime>();
+        protected List<MouseEventArgs> ActivePoints = new List<MouseEventArgs>();
+        protected List<DateTime> ActiveTimes = new List<DateTime>();
         protected List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
-        private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
-        private Drawing.Graphics gfx = null;
+        protected List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
+        protected Drawing.Graphics gfx = null;
         #endregion
 
         #region Constructors
