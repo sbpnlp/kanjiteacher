@@ -18,7 +18,7 @@ namespace Kanji.StrokeMirrorer
 
         protected override void InputArea_Load(object sender, EventArgs e)
         {
-            mouseListener = new MirrorEventListener(this);
+            mouseListener = new MirrorEventListener(this.pnlDrawingArea);
             if (mouseListener is MirrorEventListener)
                 plso.MouseListener = mouseListener as MirrorEventListener;
             else throw new Exception("Get your types right");
