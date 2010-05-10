@@ -30,13 +30,12 @@ namespace Kanji.InputArea.WinFormGUI
         /// </summary>
         public event OnlyActiveStrokeEventHandler OnlyActiveStrokeFinished;
 
-        private Control Form { set; get; }
+        protected Control Form { set; get; }
         private List<MouseEventArgs> ActivePoints = new List<MouseEventArgs>();
         private List<DateTime> ActiveTimes = new List<DateTime>();
         protected List<List<MouseEventArgs>> AllActivePoints = new List<List<MouseEventArgs>>();
         private List<List<DateTime>> AllActiveTimes = new List<List<DateTime>>();
         private Drawing.Graphics gfx = null;
-        protected BoundingBox BBox = null;
         #endregion
 
         #region Constructors
@@ -50,7 +49,6 @@ namespace Kanji.InputArea.WinFormGUI
             //myIP = "192.168.1.136"; //e2
             //myIP = "192.168.1.108"; //diplom-vm bei wkm
 
-            BBox = new BoundingBox();
             //put a bounding box around all the points for drawing in a
             //different size
             

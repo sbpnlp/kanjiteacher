@@ -24,7 +24,7 @@ namespace Kanji.Kanjibrowser
                 plso.MouseListener = mouseListener as MirrorEventListener;
             else throw new Exception("Get your types right");
             
-            BoundingBox bb = new BoundingBox(mouseListener
+            //BoundingBox bb = new BoundingBox(mouseListener
         }
     }
 }
