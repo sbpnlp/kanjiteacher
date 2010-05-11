@@ -27,11 +27,10 @@ namespace Kanji.StrokeMirrorer
             }
 
             originalPointlist.Add(pointList);
-
-            BBox = new BoundingBox(originalPointlist);
-
             double padding = 0.1;
-            double stretchFactor = (double)(1-padding) * Form.ClientRectangle.Width / BBox.Width;
+            BBox = new BoundingBox(originalPointlist, padding);
+
+            double stretchFactor = (double) Form.ClientRectangle.Width / BBox.Width;
             BBox.Stretch(stretchFactor);
             foreach (Vector2 v in BBox.VectorsFromAnchor)
             {
