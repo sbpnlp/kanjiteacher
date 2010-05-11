@@ -13,7 +13,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// The padding factor describes how much whitespace is allowed around the
         /// bounding box
         /// </summary>
-        private const double paddingFactor = 1;
+        private double _paddingFactor = 1;
         private List<Point> _pointList = new List<Point>();
         private List<Vector2> _vectorsFromAnchor = new List<Vector2>();
         #endregion
@@ -21,7 +21,7 @@ namespace Kanji.DesktopApp.LogicLayer
         #region Public fields
         public List<Point> PointList { get { return _pointList; } set { _pointList = value; Initialisation(); } }
         public List<Vector2> VectorsFromAnchor { get { return _vectorsFromAnchor; } }
-
+        public double PaddingFactor { get { return _paddingFactor; } set { _paddingFactor = value; } }
         #endregion
 
         #region Constructors
@@ -77,6 +77,42 @@ namespace Kanji.DesktopApp.LogicLayer
                 _pointList.AddRange(pList);
             Initialisation();
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BoundingBox"/> class.
+        /// </summary>
+        /// <param name="pointlist">The pointlist.</param>
+        public BoundingBox(List<Point> pointlist, double padding)
+            : base()
+        {
+            /* Remember that the coordinate system begins in the
+             * upper left corner of the screen.
+             * Therefore some calculations seem backwards,
+             * like moving the anchor point around
+             */
+
+            _paddingFactor = 1 - padding;
+            _pointList = pointlist;
+            Initialisation();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="BoundingBox"/> class.
+        /// </summary>
+        /// <param name="pointlist">The pointlist.</param>
+        public BoundingBox(List<List<Point>> pointlist, double padding)
+            : base()
+        {
+            /* Remember that the coordinate system begins in the
+             * upper left corner of the screen.
+             * Therefore some calculations seem backwards,
+             * like moving the anchor point around
+             */
+            _paddingFactor = 1 - padding;
+            foreach (List<Point> pList in pointlist)
+                _pointList.AddRange(pList);
+            Initialisation();
+        }
         #endregion
 
         #region Private methods
@@ -119,7 +155,7 @@ namespace Kanji.DesktopApp.LogicLayer
             Width = r.Width;
 
             // additional padding to increase box size
-            double paddedWidth = Width * paddingFactor;
+            double paddedWidth = Width * _paddingFactor;
             //calculate average between the two for movement of anchor point
             double move = (paddedWidth - Width) / 2;
             //set new width
