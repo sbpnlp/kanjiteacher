@@ -108,7 +108,7 @@ namespace Kanji.DesktopApp.LogicLayer
              * Therefore some calculations seem backwards,
              * like moving the anchor point around
              */
-            _paddingFactor = 1 - padding;
+            _paddingFactor = 1 + padding;
             foreach (List<Point> pList in pointlist)
                 _pointList.AddRange(pList);
             Initialisation();
