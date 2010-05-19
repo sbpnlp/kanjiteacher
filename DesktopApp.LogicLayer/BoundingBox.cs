@@ -14,13 +14,13 @@ namespace Kanji.DesktopApp.LogicLayer
         /// bounding box
         /// </summary>
         private double _paddingFactor = 1;
-        private List<Point> _pointList = new List<Point>();
-        private List<Vector2> _vectorsFromAnchor = new List<Vector2>();
+        private List<List<Point>> _pointLists = new List<List<Point>>();
+        private List<List<Vector2>> _vectorsFromAnchor = new List<List<Vector2>>();
         #endregion
 
         #region Public fields
-        public List<Point> PointList { get { return _pointList; } set { _pointList = value; Initialisation(); } }
-        public List<Vector2> VectorsFromAnchor { get { return _vectorsFromAnchor; } }
+        public List<List<Point>> PointList { get { return _pointLists; } set { _pointLists = value; Initialisation(); } }
+        public List<List<Vector2>> VectorsFromAnchor { get { return _vectorsFromAnchor; } }
         public double PaddingFactor { get { return _paddingFactor; } set { _paddingFactor = value; } }
         #endregion
 
@@ -57,7 +57,7 @@ namespace Kanji.DesktopApp.LogicLayer
              * like moving the anchor point around
              */
 
-            _pointList = pointlist;
+            _pointLists.Add(pointlist);
             Initialisation();
         }
 
@@ -73,8 +73,7 @@ namespace Kanji.DesktopApp.LogicLayer
              * Therefore some calculations seem backwards,
              * like moving the anchor point around
              */
-            foreach (List<Point> pList in pointlist)
-                _pointList.AddRange(pList);
+            _pointLists = pointlist;
             Initialisation();
         }
 
@@ -92,7 +91,7 @@ namespace Kanji.DesktopApp.LogicLayer
              */
 
             _paddingFactor = 1 - padding;
-            _pointList = pointlist;
+            _pointLists.Add(pointlist);
             Initialisation();
         }
 
@@ -109,8 +108,7 @@ namespace Kanji.DesktopApp.LogicLayer
              * like moving the anchor point around
              */
             _paddingFactor = 1 + padding;
-            foreach (List<Point> pList in pointlist)
-                _pointList.AddRange(pList);
+            _pointLists = pointlist;
             Initialisation();
         }
         #endregion
@@ -119,18 +117,19 @@ namespace Kanji.DesktopApp.LogicLayer
         private void Initialisation()
         {
             Point uppermost, lowermost, leftmost, rightmost;
-            if (_pointList.Count >= 1)
-                uppermost = lowermost = leftmost = rightmost = _pointList[0];
+            if (HasPoints())
+                uppermost = lowermost = leftmost = rightmost = _pointLists[0][0];
             else throw new ArithmeticException("Bounding Box needs at least one point");
 
             // find uppermost, lowermost, leftmoest and rightmost point of pointlis
-            foreach (Point p in _pointList)
-            {
-                if (p.X > rightmost.X) rightmost = p;
-                if (p.X < leftmost.X) leftmost = p;
-                if (p.Y < uppermost.Y) uppermost = p; //this seems backwards:
-                if (p.Y > lowermost.Y) lowermost = p; //due to upside down screen coordinates
-            }
+            foreach (List<Point> pList in _pointLists)
+                foreach (Point p in pList)
+                {
+                    if (p.X > rightmost.X) rightmost = p;
+                    if (p.X < leftmost.X) leftmost = p;
+                    if (p.Y < uppermost.Y) uppermost = p; //this seems backwards:
+                    if (p.Y > lowermost.Y) lowermost = p; //due to upside down screen coordinates
+                }
 
             //create bounding rectangle for some calculations
             Rectangle2D r = new Rectangle2D(
@@ -165,11 +164,22 @@ namespace Kanji.DesktopApp.LogicLayer
             Anchor.Y -= move; //backwards, due to screen coordinates beginning in upper left corner
 
             //move pointlist into vector list, relative to anchor point
-            _vectorsFromAnchor = new List<Vector2>(_pointList.Count);
-            foreach (Point p in _pointList)
+            //create vectorlist with a capacity of pointlist
+            _vectorsFromAnchor = new List<List<Vector2>>(_pointLists.Count);
+
+            for (int i = 0; i < _pointLists.Count; i++ )
             {
-                _vectorsFromAnchor.Add(new Vector2(Anchor, p));
+                _vectorsFromAnchor.Add(new List<Vector2>());
+                foreach(Point p in _pointLists[i])
+                {
+                    _vectorsFromAnchor[i].Add(new Vector2(Anchor, p));
+                }
             }
+        }
+
+        private bool HasPoints()
+        {
+            return (_pointLists.Count >= 1) && (_pointLists[0].Count >= 1);
         }
         #endregion
 
@@ -183,10 +193,11 @@ namespace Kanji.DesktopApp.LogicLayer
         public new void Stretch(double s)
         {
             Width *= s;
-            for (int i = 0; i < _vectorsFromAnchor.Count; i++)
-            {
-                _vectorsFromAnchor[i] = _vectorsFromAnchor[i] * s;
-            }
+            foreach(List<Vector2> vecList in _vectorsFromAnchor)
+                for (int i = 0; i < vecList.Count; i++)
+                {
+                    vecList[i] = vecList[i] * s;
+                }
         }
         #endregion
     }
