@@ -156,10 +156,10 @@ namespace Kanji.DesktopApp.LogicLayer
         }
 
         /// <summary>
-        /// Finds the smallest element of a list
+        /// Finds the smallest element of a list and returns the index of that element.
         /// </summary>
         /// <param name="list">The list.</param>
-        /// <returns></returns>
+        /// <returns>The index of the smallest element.</returns>
         private int FindMinimum(List<double> list)
         {
             int minimum = 0;
