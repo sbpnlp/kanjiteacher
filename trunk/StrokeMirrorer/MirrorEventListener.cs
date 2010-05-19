@@ -16,7 +16,6 @@ namespace Kanji.StrokeMirrorer
 
         internal void LoadPoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
-            List<MouseEventArgs> eventargsList = new List<MouseEventArgs>(xcoords.Count);
             List<Point> pointList = new List<Point>(xcoords.Count);
 
 
@@ -32,19 +31,11 @@ namespace Kanji.StrokeMirrorer
 
             double stretchFactor = (double) Form.ClientRectangle.Width / BBox.Width;
             BBox.Stretch(stretchFactor);
-            foreach (Vector2 v in BBox.VectorsFromAnchor)
-            {
-                eventargsList.Add(
-                    new MouseEventArgs(
-                        MouseButtons.Left, 
-                        0, 
-                        (int)Math.Floor(v.X), 
-                        (int)Math.Floor(v.Y), 
-                        0));
-            }
 
+            //Convert all
             AllActivePoints = new List<List<MouseEventArgs>>();
-            AllActivePoints.Add(eventargsList);
+            foreach (List<Vector2> vecList in BBox.VectorsFromAnchor)
+                AllActivePoints.Add(ConvertToEventArgs(vecList));
         }
 
         /// <summary>
@@ -58,6 +49,22 @@ namespace Kanji.StrokeMirrorer
         /// </summary>
         /// <param name="e">The <see cref="System.Windows.Forms.MouseEventArgs"/> instance containing the event data.</param>
         internal new void MouseMove(MouseEventArgs e) {/* don't do anything */}
+
+        private List<MouseEventArgs> ConvertToEventArgs(List<Vector2> vecList)
+        {
+            List<MouseEventArgs> eventargsList = new List<MouseEventArgs>(vecList.Count);
+            foreach (Vector2 v in vecList)
+            {
+                eventargsList.Add(
+                    new MouseEventArgs(
+                        MouseButtons.Left,
+                        0,
+                        (int)Math.Floor(v.X),
+                        (int)Math.Floor(v.Y),
+                        0));
+            }
+            return eventargsList;
+        }
 
     }
 }
