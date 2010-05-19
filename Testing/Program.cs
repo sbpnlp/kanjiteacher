@@ -12,8 +12,8 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            //TestTimeWarping();
-            RunConverter();
+            TestTimeWarping();
+            //RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
@@ -133,10 +133,10 @@ namespace Testing
                 bs.Stretch(bs.Width / bp.Width);
             }
 
-            List<Point> newP = Vector2.CreatePointList(bp.VectorsFromAnchor);
-            List<Point> newQ = Vector2.CreatePointList(bq.VectorsFromAnchor);
-            List<Point> newR = Vector2.CreatePointList(br.VectorsFromAnchor);
-            List<Point> newS = Vector2.CreatePointList(bs.VectorsFromAnchor);
+            List<Point> newP = Vector2.CreatePointList(bp.VectorsFromAnchor[0]);
+            List<Point> newQ = Vector2.CreatePointList(bq.VectorsFromAnchor[0]);
+            List<Point> newR = Vector2.CreatePointList(br.VectorsFromAnchor[0]);
+            List<Point> newS = Vector2.CreatePointList(bs.VectorsFromAnchor[0]);
 
             TimeWarping tw2 = new TimeWarping(newR, newQ);
             tw2.CalculateDistances((p1, p2) => p1.Distance(p2));
