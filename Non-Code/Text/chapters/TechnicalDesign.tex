@@ -60,14 +60,14 @@ section deals with the technical aspects of the system design.
 
 The global architecture of the application follows the Model-View-Controller
 (MVC) design pattern. This paradigm is used as a general model, however, 
-it is not designed the strict way proposed by~\shortcite{Krasner1988}.
+it is not designed the strict way proposed by~\shortciteANP{Krasner1988}~\citeyear{Krasner1988}.
 Figure~\ref{fig:modelviewcontroller} shows the general set-up of the 
-MVC design pattern after~\shortcite{Krasner1988} the graphic is borrowed 
-from~\shortcite{Schatten2010}.
+MVC design pattern after~\shortciteANP{Krasner1988}~\citeyear{Krasner1988} the graphic has been borrowed 
+from~\shortciteANP{Schatten2010}~\citeyear{Schatten2010}.
 In the MVC paradigm the \emph{model} is a domain-specific software, 
 an implementation of the central structure of the system. It can be a simple
 integer, representing a counter or it could be a higly complex object structure, 
-even a whole software module. The \emph{view} represents anything graphical. 
+even a whole software module. The \emph{view} presents any graphical information. 
 It requests data from the model and displays the result. The \emph{controller} 
 is the interface between the model and the view. It controls and scheduls the 
 interaction between the input devices, the model and the 
@@ -109,7 +109,7 @@ The system data flow is shown in figure~\ref{fig:systemdataflow}.
 \label{fig:systemdataflow}
 \end{center}
 \end{figure}
-The controller lies in the centre of the application, it runs on the stationary
+The controller is the centre of the application, it runs on the stationary
 device. It contains a web service that is used as an interface to receive data 
 from the handwriting input data view. The desktop view is the main interaction 
 point for the user. The model contains the logic, while the data access layer 
@@ -127,10 +127,11 @@ The communication between the modules that run on different devices
 or at least as a separate process is realised via a web service.
 
 \emph{Loose coupling} is used here as a term to emphasize that different modules 
-in a larger system are only loosely connected and do not depend largely on each 
+in a larger system are only loosely connected and do not depend heavily on each 
 other. \emph{Coupling} can be understood as the degree of knowledge a module or 
-class have of each another. The lesser the knowledge of each other the software 
-modules can manage with, the more loose the coupling.
+class have of each another. The knowledge that different parts of the software
+require about each other in order to work correctly serves as a measurement of
+how loose the coupling is.
 
 In the course of the design and development cycles of the Kanji Coach, 
 it became apparent that it has to be possible to attach different views, 
@@ -154,7 +155,7 @@ main desktop view. When the web service receives a request and accompanying data
 from the handwriting input data view, both request and data are bundled into an 
 encapsulated message and passed to the controller. A similar type of message 
 is used for requests from the controller to the model, for instance a recognition
-task that needs be performed.
+task that needs to be performed.
 
 %xxxs. 12 beachten: WICHTIG: selbstgeschriebenens protokoll als alternative
 %xxx erwaehnen, ausserdem INKML als datenstruktur
@@ -170,8 +171,8 @@ task that needs be performed.
 \label{sec:arch:recognitiondataflow}
 
 The recognition data flow is simply the flow of data occuring in a recognition 
-scenario. It can be described in \ref{recdataflowDisplayResult} steps
-as depicted in figure~\ref{fig:systemdataflow}.
+scenario. It can be described in six %\ref{recdataflowDisplayResult} 
+steps as depicted in figure~\ref{fig:systemdataflow}.
 \begin{enumerate}
   \item \label{recdataflowClear} 
         Clearing the input GUI screen 
@@ -193,7 +194,7 @@ as depicted in figure~\ref{fig:systemdataflow}.
         Displaying recognition result 
         [Controller $\Rightarrow$ Desktop view]
 \end{enumerate}
-When the desktop application requests the use to input a Kanji 
+When the desktop application requests the user to input a Kanji 
 character, it sends a message to the web service advising the handwriting data 
 input view to clear the screen step~\ref{recdataflowClear}. 
 The handwriting data input view receives the information by polling the web 
@@ -240,7 +241,7 @@ in~\ref{learningdataflowDisplayLearningState} steps.
         [Model $\Rightarrow$ Controller] 
   \item \label{learningdataflowDisplayLearningState} %this should be the last label, otherwise seek for the place where it is used as a number and change it to the new last label there
         Displaying learning state 
-        [Controller $\Rightarrow$ Desktop view
+        [Controller $\Rightarrow$ Desktop view]
 \end{enumerate}
 The learning data flow is described in the middle of a user interaction with the
 learning application as it illustrates a typical data flow most appropriately
@@ -283,10 +284,10 @@ view (step~\ref{learningdataflowDisplayLearningState}).
 %xxx and see if they should be merged or resturctured
 
 The handwriting data input view is a graphical user interface. It is designed for
-simplicity and usability. It's main task is data capturing.
+simplicity and usability. Its main task is data capturing.
 It contains only an input area, with a cross in order for the user to better 
 locate the strokes of the character. This follows a common practice in Kanji 
-teaching - a cross departs the writing area in four areas.
+teaching - a cross segments the writing area in four areas.
 
 There is no \emph{commit} or \emph{finish} button on the handwriting data 
 input GUI, since the end of a stroke sequence is handled with a time out in 
@@ -295,9 +296,9 @@ is a problem and help should be offered.
 Therefore, it is sufficient to only display a reset button on the writing area.
 Whenever the reset button is pressed, the controller is notified of that event.
 The current drawing will be removed from the screen. The next user input will
-be treated as a new character
+be treated as a new character.
 
-In the background of the handwriting data input view the user input is sent to 
+In the background of the handwriting data input view, the user input is sent to 
 the controller module. Besides that, a polling mechanism ensures that any 
 messages from the controller to the handwriting input data view are received.
 Whenever the user finishes a stroke, the module sends a message via a web 
@@ -335,9 +336,9 @@ as such is an abstract definition of an interface, it must be implemented by a
 concrete agent. The agent itself then must be a software that sends and receives 
 messages~\shortcite{W3C2004}.
 The web service in the Kanji Coach system is not a web service in the strict 
-sense as intended by the~\shortciteANP{W3C2004}~\citeyear{W3C2004}. It does not 
+sense as intended by~\shortciteANP{W3C2004}~\citeyear{W3C2004}. It does not 
 provide a service as such. The calling client does not receive a reply to a 
-request, just an acknoledge message stating that the data has been received. 
+request, just an acknowledge message stating that the data has been received. 
 A reply with more information is not necessary, since the handwriting data 
 input view does not display any information to the user. 
 In summary, the web service design for the Kanji Coach system is a web service
@@ -389,8 +390,8 @@ The decision of which framework to use depends on the operating system.
 \subsection{Operating System}
 \label{sec:operatingsystem}
 
-Despite the quasi-religious views of which operating system (OS) to use, 
-the choice for the Kanji Coach system was simply user oriented. 
+Despite the controversial views by many programmers of which operating 
+system (OS) to use, the choice for the Kanji Coach system was simply user oriented. 
 The user group 'students of Japanese' consists mainly of non-technical people. 
 They usually use a version of the MS Windows operating system. Therefore, even 
 when attempting to provide for cross-plattform usability, 
@@ -402,7 +403,7 @@ software for a system that most people use.
 \subsection{Framework}
 \label{sec:framework}
 
-The framework to run the system had to fulfill a few criteria.
+The framework to run the system had to fulfill a few criteria:
 \begin{itemize}
 
   \item It should provide an easy-to-use graphical user interface.
@@ -415,7 +416,7 @@ The framework to run the system had to fulfill a few criteria.
 
   \item It should provide cross-device communication.
 
-  \item It should provide a modern high-level programming language
+  \item It should provide a modern high-level programming language.
 
 \end{itemize}
 
@@ -462,7 +463,7 @@ MS Windows forms GUI. Therefore, this kind of system is most suitable for the
 designed system.
 Nevertheless, it is possible to run both the handwriting data input view and
 the desktop application on the same PC - for example a tablet PC.
-The integration could stay exactly the same.
+The software integration could stay exactly the same.
 
 \subsection{Pen Input Device}
 \label{sec:peninputdevice}
@@ -471,7 +472,7 @@ The pen input device has been chosen to be a \emph{Personal Digital Assistant}
 computer (PDA). The reason for that design choice is simple. At the time of
 drawing the user should be able to see what he is drawing on the writing surface.
 At the same time the data should be available to the controller in real-time,
-i.e. after a pen-up movement.
+i.e., after a pen-up movement.
 The main decision had to be made between a graphics tablet and PDA.
 The option of mouse input of charaters was ruled out from the beginning,
 because the mouse is not a useful device to enter handrwitten characters.
@@ -479,11 +480,7 @@ Graphics tablets like a Wacom tablet are cheaper than a PDA, however,
 their distribution on the market and therefore among potential users is small.
 The solution with a PDA leaves room to exchange the device that runs the input
 area with any mobile device that has the ability to connect to a wireless LAN,
-e.g. an iPhone.
-Another possibility would be pens that write on paper and also transmit data
-to a PC. Those, however, either do not perform the transmission in real-time,
-or do not come as plain mouse coordinates but bitmaps or can not connect to
-custom made software at all, but only to their OEM software.
-
+e.g., an iPhone. Another possibility for pen input would be pens that write on paper 
+and also transmit data to a PC. 
 %xxx hier zum beispiel noch bericht ueber recherche nach graphic-tablets?!
 %und deren APIs siehe seite 35

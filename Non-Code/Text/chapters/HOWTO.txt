@@ -25,3 +25,55 @@ and say
 
 that way you should hardly ever get any conflicts.
 
+
+
+When looking for
+"long blanks" that follow after a point as in
+bla bla (Eng. 'blah blah')
+look first for
+"Eng. " and replace with "Eng.~"
+and
+"Jap. " and replace with "Jap.~"
+then for
+"e.g. " and replace with "e.g., "
+and
+"i.e. " and replace with "i.e., "
+only then look for
+". " and replace with ".~"
+
+already cleaned: 
+HandwritingRecognition.tex
+Abstract.tex
+TechnicalDesign.tex
+JapaneseScript.tex
+ConceptualDesign.tex
+Introduction.tex
+Unused.tex
+AppJapanese
+AppTechnicalities
+Conclusions
+E-Learning
+Handwritingrecognition
+HWREngine
+ImplEval
+Outlook
+Title
+TechDesign
+Ref
+RefElearn
+RefJap
+
+Use these regex in Notepad2 for replacing 
+(Author YYYY) 
+to be
+Author (YYYY)
+
+search:
+\\shortcite{\([A-Za-z0-9]*\)}
+\\shortciteA{\([A-Za-z0-9]*\)}
+
+replace:
+\shortciteANP{\1}~\citeyear{\1}
+
+\shortciteANP{Santosh2009}~\citeyear{Santosh2009}
+\shortcite{Santosh2009}
