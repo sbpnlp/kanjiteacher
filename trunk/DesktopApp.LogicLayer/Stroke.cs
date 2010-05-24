@@ -174,7 +174,12 @@ namespace Kanji.DesktopApp.LogicLayer
 
         #region IStroke Members
 
-        public IPoint[] GetAllPoints()
+        public List<IPoint> GetAllPoints()
+        {
+            return new List<IPoint>(AllPoints.ToArray());
+        }
+
+        public IPoint[] ToPointArray()
         {
             return AllPoints.ToArray();
         }

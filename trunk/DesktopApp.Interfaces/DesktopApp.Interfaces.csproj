@@ -61,6 +61,7 @@
     <Compile Include="IRectangle2D.cs" />
     <Compile Include="ISquare2D.cs" />
     <Compile Include="IStroke.cs" />
+    <Compile Include="IStrokeMatcher.cs" />
     <Compile Include="IVector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

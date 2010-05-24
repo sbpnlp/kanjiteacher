@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Kanji.DesktopApp.Interfaces;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
@@ -119,6 +120,19 @@ namespace Kanji.DesktopApp.LogicLayer
         {
             OriginalSequence = originalSequence;
             OtherSequence = otherSequence;
+
+            InitialiseLists();
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="TimeWarping"/> class.
+        /// </summary>
+        /// <param name="originalSequence">The original sequence.</param>
+        /// <param name="otherSequence">The other sequence.</param>
+        public TimeWarping(Stroke originalSequence, Stroke otherSequence)
+        {
+            OriginalSequence = originalSequence.AllPoints;
+            OtherSequence = otherSequence.AllPoints;
 
             InitialiseLists();
         }
