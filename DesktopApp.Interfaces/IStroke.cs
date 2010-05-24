@@ -11,6 +11,7 @@ namespace Kanji.DesktopApp.Interfaces
         /// Gets all points.
         /// </summary>
         /// <returns>Returns a list of all points in the stroke.</returns>
-        IPoint[] GetAllPoints();
+        IPoint[] ToPointArray();
+        List<IPoint> GetAllPoints();
     }
 }
