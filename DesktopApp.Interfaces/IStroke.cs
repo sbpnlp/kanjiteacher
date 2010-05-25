@@ -26,5 +26,13 @@ namespace Kanji.DesktopApp.Interfaces
         /// <param name="strokematcher">An instance of a strokematcher class.</param>
         /// <returns>double: matching value</returns>
         double MatchingScore(IStroke stroke, IStrokeMatcher strokematcher);
+
+        /// <summary>
+        /// Creates an Md5hash of the IStroke point sequence.
+        /// </summary>
+        /// <param name="withTime">if set to <c>true</c> compute 
+        /// the hash including the time information of the points.</param>
+        /// <returns>A byte array with the hash.</returns>
+        byte[] MD5hash(bool withTime);  
     }
 }

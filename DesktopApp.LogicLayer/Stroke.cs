@@ -207,6 +207,17 @@ namespace Kanji.DesktopApp.LogicLayer
             return strokematcher.Match(this, stroke);
         }
 
+        /// <summary>
+        /// Creates an Md5hash of the IStroke point sequence.
+        /// </summary>
+        /// <param name="withTime">if set to <c>true</c> compute
+        /// the hash including the time information of the points.</param>
+        /// <returns>A byte array with the hash.</returns>
+        public byte[] MD5hash(bool withTime)
+        {
+            throw new NotImplementedException();
+        }
+
         #endregion
 
         /// <summary>

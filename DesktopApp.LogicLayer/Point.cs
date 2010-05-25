@@ -6,6 +6,7 @@ using Drawing = System.Drawing;
 using Kanji.DesktopApp.Interfaces;
 using System.Xml;
 using System.Text.RegularExpressions;
+using System.Security.Cryptography;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
@@ -140,8 +141,6 @@ namespace Kanji.DesktopApp.LogicLayer
         #endregion
 
         #region Public methods
-
-        #region My public methods
         /// <summary>
         /// Gets a value indicating whether this instance of Kanji.DesktopApp.LogicLayer.Point is empty.
         /// </summary>
@@ -187,14 +186,57 @@ namespace Kanji.DesktopApp.LogicLayer
             return ((other.X == X) && (other.Y == Y));
         }
 
+        public string ToTraceString(long timestamp)
+        {
+            return string.Format("{0} {1} {2}", X, Y, Time.Ticks - timestamp);
+        }
+
+        #endregion
+
         #region IPoint Members
 
+        /// <summary>
+        /// Creates an XML string representation of the IPoint
+        /// </summary>
+        /// <returns>An XML string</returns>
         public string ToXmlString()
         {
             return String.Format("<point x=\"{0}\" y=\"{1}\" time=\"{2}\" />", X, Y, Time.Ticks);
         }
 
+        /// <summary>
+        /// Creates an Md5hash of the IPoint coordinates.
+        /// </summary>
+        /// <param name="withTime">if set to <c>true</c> compute
+        /// the hash including the time information.</param>
+        /// <returns>A byte array with the hash.</returns>
+        public byte[] Hash(bool withTime)
+        {
+            MD5 md5 = new MD5CryptoServiceProvider();
+            return md5.ComputeHash(ToByteArray(withTime));
+        }
+
         #endregion
+
+        #region IEquatable<Point> Members
+
+        /// <summary>
+        /// Compares this Kanji.DesktopApp.LogicLayer.Point object with another one.
+        /// The result specifies whether the values of the Kanji.DesktopApp.LogicLayer.Point.X 
+        /// Kanji.DesktopApp.LogicLayer.Point.Y and Kanji.DesktopApp.LogicLayer.Point.Time properties 
+        /// of the two Kanji.DesktopApp.LogicLayer.Point objects are equal.
+        /// </summary>
+        /// <param name="other">The Kanji.DesktopApp.LogicLayer.Point to compare.</param>
+        /// <returns>The result of the operator. true if the values of the 
+        /// Kanji.DesktopApp.LogicLayer.Point.X properties, the 
+        /// Kanji.DesktopApp.LogicLayer.Point.Y properties
+        /// and the Kanji.DesktopApp.LogicLayer.Point.Time properties are equal; otherwise, false.</returns>
+        public bool Equals(Point other)
+        {
+            return ((other.Time == this.Time) &&
+                    (other.X == this.X) &&
+                    (other.Y == this.Y));
+        }
 
         #endregion
 
@@ -226,7 +268,7 @@ namespace Kanji.DesktopApp.LogicLayer
         /// </returns>
         public override int GetHashCode()
         {
-            Drawing.PointF pt = new Drawing.PointF((float) X, (float) Y);
+            Drawing.PointF pt = new Drawing.PointF((float)X, (float)Y);
             return pt.GetHashCode() + Time.GetHashCode();
         }
 
@@ -241,28 +283,6 @@ namespace Kanji.DesktopApp.LogicLayer
         {
             return String.Format("Point: X = {0}, Y = {1}, Time = {2}:{3}", X, Y, Time.ToString(), Time.Millisecond);
         }
-        #endregion
-
-        #region IEquatable<Point> Members
-
-        /// <summary>
-        /// Compares this Kanji.DesktopApp.LogicLayer.Point object with another one.
-        /// The result specifies whether the values of the Kanji.DesktopApp.LogicLayer.Point.X 
-        /// Kanji.DesktopApp.LogicLayer.Point.Y and Kanji.DesktopApp.LogicLayer.Point.Time properties 
-        /// of the two Kanji.DesktopApp.LogicLayer.Point objects are equal.
-        /// </summary>
-        /// <param name="other">The Kanji.DesktopApp.LogicLayer.Point to compare.</param>
-        /// <returns>The result of the operator. true if the values of the 
-        /// Kanji.DesktopApp.LogicLayer.Point.X properties, the 
-        /// Kanji.DesktopApp.LogicLayer.Point.Y properties
-        /// and the Kanji.DesktopApp.LogicLayer.Point.Time properties are equal; otherwise, false.</returns>
-        public bool Equals(Point other)
-        {
-            return ((other.Time == this.Time) &&
-                    (other.X == this.X) &&
-                    (other.Y == this.Y));
-        }
-
         #endregion
 
         #region Static methods and operators
@@ -340,11 +360,29 @@ namespace Kanji.DesktopApp.LogicLayer
         }
         #endregion
 
-        #endregion
-
-        public string ToTraceString(long timestamp)
+        #region Private methods
+        /// <summary>
+        /// Creates a byte array from the points coordinates
+        /// </summary>
+        /// <param name="withTime">if set to <c>true</c> 
+        /// include the timestamp information of the points.</param>
+        /// <returns>A byte array of the point coordinates.</returns>
+        private byte[] ToByteArray(bool withTime)
         {
-            return string.Format("{0} {1} {2}", X, Y, Time.Ticks - timestamp);
+            int len = 2;
+            byte[] temp0, temp1, temp2;
+            temp0 = BitConverter.GetBytes(X);
+            temp1 = BitConverter.GetBytes(Y);
+            if (withTime)
+                temp2 = BitConverter.GetBytes(Time.Ticks);
+            else temp2 = new byte[0];
+            len = temp0.Length + temp1.Length + temp2.Length;
+            byte[] r = new byte[len];
+            temp0.CopyTo(r, 0);
+            temp1.CopyTo(r, temp0.Length);
+            temp2.CopyTo(r, temp0.Length + temp1.Length); //this may be of 0 length: no copy operation
+            return r;
         }
+        #endregion
     }
 }

@@ -12,11 +12,55 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            TestTimeWarping();
+            //TestTimeWarping();
+//            TestStrokeHashing();
+            TestPointHashing();
             //RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
+        }
+
+        private static void TestPointHashing()
+        {
+            Point p = new Point(1, 2);
+            Point q = new Point(3, 4);
+            Point r = new Point(500, 600, DateTime.Now);
+            BinaryWriter bw = new BinaryWriter(new FileStream("test", FileMode.Create, FileAccess.Write, FileShare.None));
+            bw.Write(p.Hash(false));
+            //bw.Write((byte)255);
+            bw.Write(q.Hash(false));
+            //bw.Write((byte)255);
+            bw.Write(r.Hash(true));
+            bw.Close();
+        }
+
+        private static void TestStrokeHashing()
+        {
+            List<Point> p = new List<Point>();
+            p.Add(new Point(1, 1));
+            p.Add(new Point(2, 2));
+            p.Add(new Point(4, 2));
+            p.Add(new Point(5, 3));
+            p.Add(new Point(6, 2));
+            p.Add(new Point(6, 3));
+
+            List<Point> q = new List<Point>();
+            q.Add(new Point(2, 4));
+            q.Add(new Point(3, 5));
+            q.Add(new Point(5, 5));
+            q.Add(new Point(6, 6));
+            q.Add(new Point(7, 5));
+            q.Add(new Point(7, 6));
+
+            Stroke s = new Stroke(p);
+            Stroke s2 = new Stroke(p);
+            Stroke r = new Stroke(q);
+
+            int sHash = s.GetHashCode();
+            int s2Hash = s2.GetHashCode();
+            int rHash = r.GetHashCode();
+            Console.WriteLine("Hash: s: {0}, s2: {1} r: {2}", sHash, s2Hash, rHash);
         }
 
         private static void TestAddZeros()
