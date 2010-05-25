@@ -5,6 +5,10 @@ using System.Text;
 
 namespace Kanji.DesktopApp.Interfaces
 {
+    /// <summary>
+    /// The IStrokematcher interface defines the interface to the strokematching
+    /// class. The strokematching class calculates a matching score between two strokes.
+    /// </summary>
     public interface IStrokeMatcher
     {
         /// <summary>
