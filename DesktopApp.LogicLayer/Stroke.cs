@@ -174,18 +174,46 @@ namespace Kanji.DesktopApp.LogicLayer
 
         #region IStroke Members
 
+        /// <summary>
+        /// Gets all points.
+        /// </summary>
+        /// <returns>
+        /// Returns a list of all points in the stroke.
+        /// </returns>
         public List<IPoint> GetAllPoints()
         {
             return new List<IPoint>(AllPoints.ToArray());
         }
 
+        /// <summary>
+        /// Gets all points.
+        /// </summary>
+        /// <returns>
+        /// Returns a list of all points in the stroke.
+        /// </returns>
         public IPoint[] ToPointArray()
         {
             return AllPoints.ToArray();
         }
 
+        /// <summary>
+        /// Calculates the matching score between two IStrokes
+        /// </summary>
+        /// <param name="stroke">The second stroke.</param>
+        /// <param name="strokematcher">An instance of a strokematcher class.</param>
+        /// <returns>double: matching value</returns>
+        public double MatchingScore(IStroke stroke, IStrokeMatcher strokematcher)
+        {
+            return strokematcher.Match(this, stroke);
+        }
+
         #endregion
 
+        /// <summary>
+        /// Creates a List&lt;Point&gt; from an InkML trace.
+        /// </summary>
+        /// <param name="trace">The trace.</param>
+        /// <returns></returns>
         public static List<Point> PointListFromInkMLTrace(string trace)
         {
             List<Point> retval = new List<Point>();
