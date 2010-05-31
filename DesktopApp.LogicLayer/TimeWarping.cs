@@ -187,13 +187,13 @@ namespace Kanji.DesktopApp.LogicLayer
         #endregion
 
         #region Public methods
-        public delegate double AbstractDistanceCalculatorFunction(Point p, Point q);
+        public delegate double DistanceCalculatorDelegate(Point p, Point q);
 
         /// <summary>
         /// Calculates the distances of the points.
         /// </summary>
         /// <returns></returns>
-        public double[,] CalculateDistances(AbstractDistanceCalculatorFunction MeasureDistance)
+        public double[,] CalculateDistances(DistanceCalculatorDelegate MeasureDistance)
         {
             for (int i = 0; i < OriginalSequence.Count; i++)
             {
