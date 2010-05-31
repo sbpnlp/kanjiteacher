@@ -5,6 +5,7 @@ using System.Text;
 using Kanji.DesktopApp.LogicLayer;
 using System.IO;
 using Kanji.DesktopApp.LogicLayer.Helpers;
+using System.IO.IsolatedStorage;
 
 namespace Testing
 {
@@ -12,13 +13,57 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            TestTimeWarping();
+            //TestTimeWarping();
             //TestStrokeHashing();
+            //TestRadicalHashing();
+            //TestCharacterHashing();
+            TestIsolatedStorage();
             //TestPointHashing();
             //RunConverter();
             //TestAddZeros();
-            TestBoundingBox();
+            //TestBoundingBox();
             Console.ReadLine();
+        }
+
+        private static void TestIsolatedStorage()
+        {
+            WriteIsolatedStorage();
+            ReadIsolatedStorage();
+        
+        }
+
+        private static void ReadIsolatedStorage()
+        {
+            // create an isolated storage stream...
+            IsolatedStorageFileStream userDataFile =
+                new IsolatedStorageFileStream("thepath", FileMode.Open);
+
+            // create a reader to the stream...
+            StreamReader readStream = new StreamReader(userDataFile);
+            // write strings to the Isolated Storage file...
+            Console.WriteLine(readStream.ReadToEnd());
+            // Tidy up by closing the streams...
+            readStream.Close();
+            userDataFile.Close();
+        }
+
+        private static void WriteIsolatedStorage()
+        {
+            IsolatedStorageFileStream fs =
+                new IsolatedStorageFileStream(
+                    "thepath",
+                    FileMode.Append,
+                    FileAccess.Write,
+                    FileShare.None);
+
+            StreamWriter sw = new StreamWriter(fs);
+            sw.WriteLine("hallo");
+            sw.Flush();
+            fs.Flush();
+            sw.Close();
+            //            global::System.Windows.Forms.MessageBox.Show("Test");
+            fs.Close(); //null already?
+
         }
 
         private static void TestPointHashing()
@@ -82,6 +127,118 @@ namespace Testing
             bw.Close();
         }
 
+        private static void TestRadicalHashing()
+        {
+            Random rand = new Random();
+            List<Point> p = new List<Point>();
+
+            DateTime now = DateTime.Now;
+
+            int randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(1, 1, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(2, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(4, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(5, 3, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(6, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(6, 3, new DateTime(now.Ticks - randNext)));
+
+            List<Point> q = new List<Point>();
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(2, 4, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(3, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(5, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(6, 6, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(7, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(7, 6, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(8, 7, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(9, 8, new DateTime(now.Ticks - randNext)));
+
+            Stroke s = new Stroke(p);
+            Stroke s2 = new Stroke(p);
+            Stroke r = new Stroke(q);
+
+            List<Stroke> strokelist = new List<Stroke>();
+            strokelist.Add(s);
+            strokelist.Add(s2);
+            strokelist.Add(r);
+
+            Radical rad = new Radical(strokelist);
+
+            BinaryWriter bw = new BinaryWriter(new FileStream("test", FileMode.Create, FileAccess.Write, FileShare.None));
+            bw.Write(rad.Hash(true));
+            bw.Close();
+        }
+
+        private static void TestCharacterHashing()
+        {
+            Random rand = new Random();
+            List<Point> p = new List<Point>();
+
+            DateTime now = DateTime.Now;
+
+            int randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(1, 1, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(2, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(4, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(5, 3, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(6, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(6, 3, new DateTime(now.Ticks - randNext)));
+
+            List<Point> q = new List<Point>();
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(2, 4, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(3, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(5, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(6, 6, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(7, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(7, 6, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(8, 7, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(9, 8, new DateTime(now.Ticks - randNext)));
+
+            Stroke s = new Stroke(p);
+            Stroke s2 = new Stroke(p);
+            Stroke r = new Stroke(q);
+
+            List<Stroke> strokelist = new List<Stroke>();
+            strokelist.Add(s);
+            strokelist.Add(s2);
+            strokelist.Add(r);
+
+            Radical rad1 = new Radical(strokelist);
+            Radical rad2 = new Radical(strokelist);
+            List<Radical> rl = new List<Radical>(2);
+            rl.Add(rad1);
+            rl.Add(rad2);
+            Character ch = new Character(rl);
+
+            BinaryWriter bw = new BinaryWriter(new FileStream("test", FileMode.Create, FileAccess.Write, FileShare.None));
+            bw.Write(ch.Hash(false));
+            bw.Close();
+        }
         private static void TestAddZeros()
         {
             Console.WriteLine(StringTools.AddZeros(3, 4));
