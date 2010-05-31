@@ -13,8 +13,8 @@ namespace Testing
         static void Main(string[] args)
         {
             //TestTimeWarping();
-//            TestStrokeHashing();
-            TestPointHashing();
+            TestStrokeHashing();
+//            TestPointHashing();
             //RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
@@ -23,13 +23,13 @@ namespace Testing
 
         private static void TestPointHashing()
         {
-            Point p = new Point(1, 2);
-            Point q = new Point(3, 4);
+            Point p = new Point(1, 2, new DateTime(0));
+            Point q = new Point(3, 4, DateTime.MinValue);
             Point r = new Point(500, 600, DateTime.Now);
             BinaryWriter bw = new BinaryWriter(new FileStream("test", FileMode.Create, FileAccess.Write, FileShare.None));
-            bw.Write(p.Hash(false));
+            bw.Write(p.Hash(true));
             //bw.Write((byte)255);
-            bw.Write(q.Hash(false));
+            bw.Write(q.Hash(true));
             //bw.Write((byte)255);
             bw.Write(r.Hash(true));
             bw.Close();
@@ -37,30 +37,49 @@ namespace Testing
 
         private static void TestStrokeHashing()
         {
+            Random rand = new Random();
             List<Point> p = new List<Point>();
-            p.Add(new Point(1, 1));
-            p.Add(new Point(2, 2));
-            p.Add(new Point(4, 2));
-            p.Add(new Point(5, 3));
-            p.Add(new Point(6, 2));
-            p.Add(new Point(6, 3));
+
+            DateTime now = DateTime.Now;
+
+            int randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            p.Add(new Point(1, 1, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            p.Add(new Point(2, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            p.Add(new Point(4, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            p.Add(new Point(5, 3, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            p.Add(new Point(6, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            p.Add(new Point(6, 3, new DateTime(now.Ticks - randNext)));
 
             List<Point> q = new List<Point>();
-            q.Add(new Point(2, 4));
-            q.Add(new Point(3, 5));
-            q.Add(new Point(5, 5));
-            q.Add(new Point(6, 6));
-            q.Add(new Point(7, 5));
-            q.Add(new Point(7, 6));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            q.Add(new Point(2, 4, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            q.Add(new Point(3, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            q.Add(new Point(5, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            q.Add(new Point(6, 6, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            q.Add(new Point(7, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10,4), (int)Math.Pow(10,5));
+            q.Add(new Point(7, 6, new DateTime(now.Ticks - randNext)));
 
             Stroke s = new Stroke(p);
             Stroke s2 = new Stroke(p);
             Stroke r = new Stroke(q);
 
-            int sHash = s.GetHashCode();
-            int s2Hash = s2.GetHashCode();
-            int rHash = r.GetHashCode();
-            Console.WriteLine("Hash: s: {0}, s2: {1} r: {2}", sHash, s2Hash, rHash);
+            BinaryWriter bw = new BinaryWriter(new FileStream("test", FileMode.Create, FileAccess.Write, FileShare.None));
+            bw.Write(s.Hash(true));
+            //bw.Write((byte)255);
+            bw.Write(s2.Hash(true));
+            //bw.Write((byte)255);
+            bw.Write(r.Hash(true));
+            bw.Close();
         }
 
         private static void TestAddZeros()
