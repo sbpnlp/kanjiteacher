@@ -12,12 +12,12 @@ namespace Testing
     {
         static void Main(string[] args)
         {
-            //TestTimeWarping();
-            TestStrokeHashing();
-//            TestPointHashing();
+            TestTimeWarping();
+            //TestStrokeHashing();
+            //TestPointHashing();
             //RunConverter();
             //TestAddZeros();
-            //TestBoundingBox();
+            TestBoundingBox();
             Console.ReadLine();
         }
 
@@ -74,11 +74,11 @@ namespace Testing
             Stroke r = new Stroke(q);
 
             BinaryWriter bw = new BinaryWriter(new FileStream("test", FileMode.Create, FileAccess.Write, FileShare.None));
-            bw.Write(s.Hash(true));
+            bw.Write(s.Hash(false));
             //bw.Write((byte)255);
-            bw.Write(s2.Hash(true));
+            bw.Write(s2.Hash(false));
             //bw.Write((byte)255);
-            bw.Write(r.Hash(true));
+            bw.Write(r.Hash(false));
             bw.Close();
         }
 
