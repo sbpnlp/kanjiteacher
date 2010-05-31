@@ -17,7 +17,8 @@ namespace Testing
             //TestStrokeHashing();
             //TestRadicalHashing();
             //TestCharacterHashing();
-            TestIsolatedStorage();
+            //TestIsolatedStorage();
+            TestHashTable();
             //TestPointHashing();
             //RunConverter();
             //TestAddZeros();
@@ -25,11 +26,34 @@ namespace Testing
             Console.ReadLine();
         }
 
+        private static void TestHashTable()
+        {
+            HashSet<Stroke> hs = new HashSet<Stroke>();
+            Dictionary<byte[], Dictionary<byte[], Stroke>> dic =
+                new Dictionary<byte[], Dictionary<byte[], Stroke>>();
+
+            /* Concept:
+             * The dictionary holds all the strokes from the DB (once)
+             * as keys (by their md5 hash)
+             * The value is a dictionary with keys: md5hash of input
+             * and value: input stroke
+             * 
+             * Open question:
+             * where are the real strokes stored?
+             * proposal: in a second dictionary
+             * Dictionary<byte[], Stroke> database = new Dictionary<byte[], Stroke>();
+             */
+
+            Stroke s = new Stroke();
+            s.Hash(false);
+
+            
+        }
+
         private static void TestIsolatedStorage()
         {
             WriteIsolatedStorage();
             ReadIsolatedStorage();
-        
         }
 
         private static void ReadIsolatedStorage()
