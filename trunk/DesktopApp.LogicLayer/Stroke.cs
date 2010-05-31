@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Kanji.DesktopApp.Interfaces;
 using System.Xml;
+using System.Security.Cryptography;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
@@ -16,6 +17,12 @@ namespace Kanji.DesktopApp.LogicLayer
         public Point EndPoint { get { return AllPoints[AllPoints.Count - 1]; } }
         public List<Point> IntermediatePoints { get; set; }
         public List<Point> AllPoints { get; set; }
+        /// <summary>
+        /// Gets or sets the ID. The ID is a human readable and
+        /// human-given name for a stroke. If the stroke has just been
+        /// input by a user the ID may be empty or contain only a stroke number.
+        /// </summary>
+        /// <value>The ID.</value>
         public string ID { get; set; }
         public string Value { get; set; }
         #endregion
@@ -213,9 +220,35 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <param name="withTime">if set to <c>true</c> compute
         /// the hash including the time information of the points.</param>
         /// <returns>A byte array with the hash.</returns>
-        public byte[] MD5hash(bool withTime)
+        public byte[] Hash(bool withTime)
         {
-            throw new NotImplementedException();
+            MD5 md5 = new MD5CryptoServiceProvider();
+            return md5.ComputeHash(ToByteArray(withTime));
+        }
+
+        /// <summary>
+        /// Creates a byte array from the points coordinates
+        /// </summary>
+        /// <param name="withTime">if set to <c>true</c> 
+        /// include the timestamp information of the points.</param>
+        /// <returns>A byte array of the point coordinates.</returns>
+        public byte[] ToByteArray(bool withTime)
+        {
+            
+            //we know that the Point class holds two double values
+            //and a datetime so we're using the size
+            //info in order to create a byte array of the stroke
+
+            int pointNo = AllPoints.Count;
+            int onePointLength = 
+                withTime ? 2 * sizeof(double) + sizeof(long) : 2 * sizeof(double);
+            
+            byte[] r = new byte[pointNo * onePointLength];
+            for (int i = 0; i < pointNo; i++ )
+            {
+                AllPoints[i].ToByteArray(withTime).CopyTo(r, i*onePointLength);
+            }
+            return r;
         }
 
         #endregion

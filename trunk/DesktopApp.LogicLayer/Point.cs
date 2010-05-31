@@ -191,6 +191,29 @@ namespace Kanji.DesktopApp.LogicLayer
             return string.Format("{0} {1} {2}", X, Y, Time.Ticks - timestamp);
         }
 
+        /// <summary>
+        /// Creates a byte array from the points coordinates
+        /// </summary>
+        /// <param name="withTime">if set to <c>true</c> 
+        /// include the timestamp information of the points.</param>
+        /// <returns>A byte array of the point coordinates.</returns>
+        public byte[] ToByteArray(bool withTime)
+        {
+            int len = 2;
+            byte[] temp0, temp1, temp2;
+            temp0 = BitConverter.GetBytes(X);
+            temp1 = BitConverter.GetBytes(Y);
+            if (withTime)
+                temp2 = BitConverter.GetBytes(Time.Ticks);
+            else temp2 = new byte[0];
+            len = temp0.Length + temp1.Length + temp2.Length;
+            byte[] r = new byte[len];
+            temp0.CopyTo(r, 0);
+            temp1.CopyTo(r, temp0.Length);
+            temp2.CopyTo(r, temp0.Length + temp1.Length); //this may be of 0 length: no copy operation
+            return r;
+        }
+
         #endregion
 
         #region IPoint Members
@@ -215,7 +238,6 @@ namespace Kanji.DesktopApp.LogicLayer
             MD5 md5 = new MD5CryptoServiceProvider();
             return md5.ComputeHash(ToByteArray(withTime));
         }
-
         #endregion
 
         #region IEquatable<Point> Members
@@ -357,31 +379,6 @@ namespace Kanji.DesktopApp.LogicLayer
                 return p.IsEmpty;
             }
             else return true; 
-        }
-        #endregion
-
-        #region Private methods
-        /// <summary>
-        /// Creates a byte array from the points coordinates
-        /// </summary>
-        /// <param name="withTime">if set to <c>true</c> 
-        /// include the timestamp information of the points.</param>
-        /// <returns>A byte array of the point coordinates.</returns>
-        private byte[] ToByteArray(bool withTime)
-        {
-            int len = 2;
-            byte[] temp0, temp1, temp2;
-            temp0 = BitConverter.GetBytes(X);
-            temp1 = BitConverter.GetBytes(Y);
-            if (withTime)
-                temp2 = BitConverter.GetBytes(Time.Ticks);
-            else temp2 = new byte[0];
-            len = temp0.Length + temp1.Length + temp2.Length;
-            byte[] r = new byte[len];
-            temp0.CopyTo(r, 0);
-            temp1.CopyTo(r, temp0.Length);
-            temp2.CopyTo(r, temp0.Length + temp1.Length); //this may be of 0 length: no copy operation
-            return r;
         }
         #endregion
     }
