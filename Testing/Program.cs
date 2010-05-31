@@ -32,7 +32,7 @@ namespace Testing
             Dictionary<byte[], Dictionary<byte[], Stroke>> dic =
                 new Dictionary<byte[], Dictionary<byte[], Stroke>>();
 
-            /* Concept:
+            * Concept:
              * The dictionary holds all the strokes from the DB (once)
              * as keys (by their md5 hash)
              * The value is a dictionary with keys: md5hash of input
@@ -85,9 +85,7 @@ namespace Testing
             sw.Flush();
             fs.Flush();
             sw.Close();
-            //            global::System.Windows.Forms.MessageBox.Show("Test");
-            fs.Close(); //null already?
-
+            fs.Close();
         }
 
         private static void TestPointHashing()
