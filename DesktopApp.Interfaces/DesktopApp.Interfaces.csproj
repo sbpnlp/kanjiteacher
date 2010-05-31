@@ -51,6 +51,7 @@
     <Compile Include="AreaCode.cs" />
     <Compile Include="IBoundingBox.cs" />
     <Compile Include="ICharacter.cs" />
+    <Compile Include="ICharacterMatcher.cs" />
     <Compile Include="IControlled.cs" />
     <Compile Include="IController.cs" />
     <Compile Include="IMouseInputEventArgs.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="IObserver.cs" />
     <Compile Include="IPoint.cs" />
     <Compile Include="IRadical.cs" />
+    <Compile Include="IRadicalMatcher.cs" />
     <Compile Include="IRectangle2D.cs" />
     <Compile Include="ISquare2D.cs" />
     <Compile Include="IStroke.cs" />
