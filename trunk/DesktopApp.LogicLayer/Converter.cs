@@ -38,7 +38,7 @@ namespace Kanji.DesktopApp.LogicLayer
 
                 //for (int i = 0; i < c.StrokeList.Count; i++)
                 //{
-                //    c.StrokeList[i].ToXmlNode(output, output.DocumentElement);
+                //    c.StrokeList[i].ToXmlNode(xmldoc, xmldoc.DocumentElement);
                 //}
 
                 DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");

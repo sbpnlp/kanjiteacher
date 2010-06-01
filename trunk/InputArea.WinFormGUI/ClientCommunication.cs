@@ -154,7 +154,7 @@ namespace Kanji.InputArea.WinFormGUI
             }
             catch (Exception ex)
             {
-                System.Windows.Forms.MessageBox.Show(string.Format("File output.config path? probably not in the bin folder. Ex.msg: {0}", ex.Message));
+                System.Windows.Forms.MessageBox.Show(string.Format("File xmldoc.config path? probably not in the bin folder. Ex.msg: {0}", ex.Message));
                 return null;
             }
         }

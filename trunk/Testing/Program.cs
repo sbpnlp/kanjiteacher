@@ -6,6 +6,7 @@ using Kanji.DesktopApp.LogicLayer;
 using System.IO;
 using Kanji.DesktopApp.LogicLayer.Helpers;
 using System.IO.IsolatedStorage;
+using System.Xml;
 
 namespace Testing
 {
@@ -18,9 +19,9 @@ namespace Testing
             //TestRadicalHashing();
             //TestCharacterHashing();
             //TestIsolatedStorage();
-            TestHashTable();
+//            TestHashTable();
             //TestPointHashing();
-            //RunConverter();
+            RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
@@ -32,7 +33,8 @@ namespace Testing
             Dictionary<byte[], Dictionary<byte[], Stroke>> dic =
                 new Dictionary<byte[], Dictionary<byte[], Stroke>>();
 
-            * Concept:
+            UPXReader.ParseUPXFile(new FileStream("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open, FileAccess.Read));
+            /* Concept:
              * The dictionary holds all the strokes from the DB (once)
              * as keys (by their md5 hash)
              * The value is a dictionary with keys: md5hash of input
@@ -294,7 +296,18 @@ namespace Testing
             //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\char00255.notQuite.inkml", FileMode.Open));
             //Converter.ConvertInputToFinalFormat(new FileStream("C:\\Diplom\\kanjiteacher\\data\\strokes2.txt", FileMode.Open));
 
-            UPXReader.ParseUPXFile(new FileStream("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open));
+            List<Character> cList = 
+                UPXReader.ParseUPXFile(
+                new FileStream("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open));
+
+            DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
+
+            foreach (Character c in cList)
+            {
+                XmlDocument doc = UPXReader.CreateXMLDocumentFromCharacter(c);
+                string filename = "char" + c.SHKK + ".INOUT.inkml";                
+                UPXReader.WriteXMLDocumentToFile(doc, Path.Combine(di.FullName, filename));
+            }
         }
 
         private static void TestBoundingBox()
