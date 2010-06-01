@@ -154,6 +154,15 @@ namespace Kanji.DesktopApp.LogicLayer
                 StrokeList[i].ToXmlNode(doc, attachTo, StrokeList[0].BeginPoint.Time);
             }
         }
+
+        /// <summary>
+        /// Creates an XmlDocument from the current character.
+        /// </summary>
+        /// <returns>An instance of the XmlDocument class</returns>
+        public XmlDocument ToXmlDocument()
+        {
+            return UPXReader.CreateXMLDocumentFromCharacter(this);
+        }
         #endregion
 
         #region ICharacter Members

@@ -10,12 +10,15 @@ namespace Kanji.DesktopApp.LogicLayer
 {
     public static class UPXReader
     {
-        public static void ParseUPXFile(Stream inputstream)
+        /// <summary>
+        /// Parses an UPX file.
+        /// </summary>
+        /// <param name="inputstream">The inputstream.</param>
+        /// <returns></returns>
+        public static List<Character> ParseUPXFile(Stream inputstream)
         {
-            XmlDocument output = null;
             XmlTextReader xmlr = new XmlTextReader(inputstream);
             List<Character> characterList = new List<Character>();
-            string filename = string.Empty;
 
             //if we're hitting and end element that is a hLevel stop reading 
             //the ones from the strokes should be read within ReadUPXElementContentAsStroke
@@ -27,43 +30,105 @@ namespace Kanji.DesktopApp.LogicLayer
                 }
             }
 
-
-            foreach (Character c in characterList)
-            {
-                output = new XmlDocument();
-                output.LoadXml("<ink></ink>");
-
-                c.ToXmlNode(output, output.DocumentElement);
-
-                //for (int i = 0; i < c.StrokeList.Count; i++)
-                //{
-                //    c.StrokeList[i].ToXmlNode(output, output.DocumentElement);
-                //}
-
-                DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
-                filename = "char" + c.SHKK + ".INOUT.inkml";
-                StreamWriter sw = new StreamWriter(di.FullName + Path.DirectorySeparatorChar + filename);
-                sw.Write(output.OuterXml);
-                sw.Flush();
-                sw.Close();
-            }
+            return characterList;
         }
 
+        /// <summary>
+        /// Creates an XML document from a character.
+        /// </summary>
+        /// <param name="character">The character.</param>
+        /// <returns></returns>
+        public static XmlDocument CreateXMLDocumentFromCharacter(Character character)
+        {
+            XmlDocument output = null;
+
+            output = new XmlDocument();
+            output.LoadXml("<ink></ink>");
+            character.ToXmlNode(output, output.DocumentElement);
+            //for (int i = 0; i < c.StrokeList.Count; i++)
+            //{
+            //    c.StrokeList[i].ToXmlNode(xmldoc, xmldoc.DocumentElement);
+            //}
+
+            return output;
+        }
+
+        /// <summary>
+        /// Writes the XMLDocument to a file.
+        /// </summary>
+        /// <param name="xmldoc">The xmldoc.</param>
+        /// <param name="path">The path.</param>
+        /// <returns>
+        /// 	<c>true</c> if the writing was successful; otherwise, <c>false</c>.
+        /// </returns>
+        public static bool WriteXMLDocumentToFile(XmlDocument xmldoc, string path)
+        {
+            bool success = false;
+            //debug DirectoryInfo di = Directory.CreateDirectory("C:\\Diplom\\kanjiteacher\\data");
+            //debug path = Path.Combine(di.FullName, "mytestfile.inkml");
+            try
+            {
+                XmlNodeReader xmlReader = new XmlNodeReader(xmldoc);
+
+                XmlTextWriter xmlWriter = new XmlTextWriter(path, Encoding.UTF8)
+                {
+                    Formatting = Formatting.Indented,
+                    Indentation = 4,
+                    IndentChar = (char)0x20
+                };
+
+                xmlWriter.WriteNode(xmlReader, true);
+                xmlWriter.Flush();
+                xmlWriter.Close();
+                success = true;
+            }
+            catch {success = false;}
+            return success;
+        }
+
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is a UPX hLevel character].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified XMLR] [is a UPX hLevel character]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelCharacter(this XmlTextReader xmlr)
         {
             return IsUPXhLevelElement(xmlr, "character");
         }
 
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is a UPX hLevel radical].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified XMLR] [is a UPX hLevel radical]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelRadical(this XmlTextReader xmlr)
         {
             return IsUPXhLevelElement(xmlr, "radical");
         }
 
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is a UPX hLevel stroke].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified XMLR] [is a UPX hLevel stroke]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelStroke(this XmlTextReader xmlr)
         {
             return IsUPXhLevelElement(xmlr, "stroke");
         }
 
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is a UPX hLevel element].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified XMLR] [is a UPX hLevel stroke]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelElement(this XmlTextReader xmlr, string level)
         {
             if (IsElementTypeWithNameAndAttributes(xmlr, "hLevel"))
@@ -83,38 +148,92 @@ namespace Kanji.DesktopApp.LogicLayer
             return false;
         }
 
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is an element type with name and attributes].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        /// 	<c>true</c> if the current node of [the specified XMLR] [is an element type with name and attributes]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsElementTypeWithNameAndAttributes(this XmlTextReader xmlr, string name)
         {
             return (IsElementTypeWithName(xmlr, name) && (xmlr.HasAttributes));
         }
 
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is an element type with a name].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        /// 	<c>true</c> if the current node of [the specified XMLR] [is an element type with a name]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsElementTypeWithName(this XmlTextReader xmlr, string name)
         {
             return ((xmlr.NodeType == XmlNodeType.Element) &&
                 (xmlr.Name.ToLowerInvariant() == name.ToLowerInvariant()));
         }
 
+        /// <summary>
+        /// Determines whether the current node of [the specified XMLR] [is an EndElement type with a name].
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <param name="name">The name.</param>
+        /// <returns>
+        /// 	<c>true</c> if the current node of [the specified XMLR] [is an EndElement type with a name]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsEndElementTypeWithName(this XmlTextReader xmlr, string name)
         {
             return ((xmlr.NodeType == XmlNodeType.EndElement) &&
                 (xmlr.Name.ToLowerInvariant() == name.ToLowerInvariant()));
         }
 
+        /// <summary>
+        /// Determines whether [the specified node] [is an UPX hLevel character].
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified node] [is an UPX hLevel character]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelCharacter(this XmlNode node)
         {
             return IsUPXhLevelElement(node, "character");
         }
 
+        /// <summary>
+        /// Determines whether [the specified node] [is an UPX hLevel radical].
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified node] [is an UPX hLevel radical]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelRadical(this XmlNode node)
         {
             return IsUPXhLevelElement(node, "radical");
         }
 
+        /// <summary>
+        /// Determines whether [the specified node] [is an UPX hLevel stroke].
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified node] [is an UPX hLevel stroke]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelStroke(this XmlNode node)
         {
             return IsUPXhLevelElement(node, "stroke");
         }
 
+
+        /// <summary>
+        /// Determines whether [the specified node] is an UPX hLevel element of [the specified level].
+        /// </summary>
+        /// <param name="node">The node.</param>
+        /// <param name="level">The level.</param>
+        /// <returns>
+        /// 	<c>true</c> if [the specified node] is an UPX hLevel element of [the specified level]; otherwise, <c>false</c>.
+        /// </returns>
         public static bool IsUPXhLevelElement(this XmlNode node, string level)
         {
             if ((node.NodeType == XmlNodeType.Element))
@@ -138,12 +257,11 @@ namespace Kanji.DesktopApp.LogicLayer
             return false;
         }
 
-        
         /// <summary>
         /// Reads the upx element content as a character.
         /// </summary>
         /// <param name="xmlr">The XMLR.</param>
-        /// <returns></returns>
+        /// <returns>An instance of the Character class</returns>
         public static Character ReadUPXElementContentAsCharacter(this XmlTextReader xmlr)
         {
             if (UPXReader.IsUPXhLevelCharacter(xmlr))
@@ -187,7 +305,12 @@ namespace Kanji.DesktopApp.LogicLayer
             else throw new Exception("Not even an element type");
         }
 
-        private static Stroke ReadUPXElementContentAsStroke(XmlTextReader xmlr)
+        /// <summary>
+        /// Reads the upx element content as a character.
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>An instance of the Stroke class</returns>
+        public static Stroke ReadUPXElementContentAsStroke(XmlTextReader xmlr)
         {
             if (UPXReader.IsUPXhLevelStroke(xmlr) && (xmlr.HasAttributes))
             {
@@ -220,6 +343,11 @@ namespace Kanji.DesktopApp.LogicLayer
             else throw new Exception(string.Format("Not the correct element. This was a {0}-tag.", xmlr.Name));
         }
 
+        /// <summary>
+        /// Reads the ID attribute.
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>A string with the ID</returns>
         public static string ReadIDAttribute(this XmlTextReader xmlr)
         {
             string retval = string.Empty;
@@ -234,6 +362,11 @@ namespace Kanji.DesktopApp.LogicLayer
             return retval;
         }
 
+        /// <summary>
+        /// Reads the UPX element content as a list of Points.
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>A list of Points</returns>
         private static List<Point> ReadUPXElementContentAsPointList(XmlTextReader xmlr)
         {
             List<Point> retval = null;
@@ -260,6 +393,11 @@ namespace Kanji.DesktopApp.LogicLayer
             return retval;
         }
 
+        /// <summary>
+        /// Reads the UPX element content as radical.
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <returns>An instance of the Radical class</returns>
         private static Radical ReadUPXElementContentAsRadical(XmlTextReader xmlr)
         {
             if (UPXReader.IsUPXhLevelRadical(xmlr) && (xmlr.HasAttributes))
@@ -297,6 +435,12 @@ namespace Kanji.DesktopApp.LogicLayer
             else throw new Exception(string.Format("Not the correct element. This was a {0}-tag.", xmlr.Name));
         }
 
+        /// <summary>
+        /// Reads the UPX element content as label.
+        /// </summary>
+        /// <param name="xmlr">The XMLR.</param>
+        /// <param name="ID">The ID.</param>
+        /// <returns>An string with the label</returns>
         private static string ReadUPXElementContentAsLabel(XmlTextReader xmlr, string ID)
         {
             string retval = string.Empty;
