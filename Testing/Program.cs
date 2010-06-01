@@ -19,9 +19,9 @@ namespace Testing
             //TestRadicalHashing();
             //TestCharacterHashing();
             //TestIsolatedStorage();
-//            TestHashTable();
+            TestHashTable();
             //TestPointHashing();
-            RunConverter();
+//            RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
@@ -29,14 +29,13 @@ namespace Testing
 
         private static void TestHashTable()
         {
-            HashSet<Stroke> hs = new HashSet<Stroke>();
-            Dictionary<byte[], Dictionary<byte[], Stroke>> dic =
-                new Dictionary<byte[], Dictionary<byte[], Stroke>>();
-
-            UPXReader.ParseUPXFile(new FileStream("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open, FileAccess.Read));
             /* Concept:
-             * The dictionary holds all the strokes from the DB (once)
-             * as keys (by their md5 hash)
+             * The "database" dictionary holds all the strokes from the DB (once)
+             * stored under the name of their md5-hash
+             * 
+             * The "inputlist" List<Stroke> contains all the 
+             * strokes that come in from the user.
+             * 
              * The value is a dictionary with keys: md5hash of input
              * and value: input stroke
              * 
@@ -46,10 +45,56 @@ namespace Testing
              * Dictionary<byte[], Stroke> database = new Dictionary<byte[], Stroke>();
              */
 
-            Stroke s = new Stroke();
-            s.Hash(false);
+            Dictionary<byte[], Dictionary<byte[], double>> matchingscores =
+                new Dictionary<byte[], Dictionary<byte[], double>>();
 
-            
+            List<Character> characterdatabase =
+                UPXReader.ParseUPXFile(
+                    File.Open("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open));
+
+            //Dictionary<byte[], Stroke> database = new Dictionary<byte[], Stroke>();
+
+            List<Stroke> inputlist = new List<Stroke>() { GetAlmostRandomStroke(0), GetAlmostRandomStroke(1) };
+
+            ////fill the stroke database with the strokes from all the characters
+            ////stored under their hash codes
+            //foreach (Character c in characterdatabase)
+            //    foreach (Stroke s in c.StrokeList)
+            //        database.Add(s.Hash(false), s);
+
+            //go through all the strokes in the list of input strokes
+            foreach (Stroke s in inputlist)
+            {
+                //go through all the strokes in the database
+                //foreach (KeyValuePair<byte[], Stroke> pair in database)
+                foreach (Character c in characterdatabase)
+                {
+                    foreach (Stroke dbStroke in c.StrokeList)
+                    {
+
+                        //calculate the matching score
+                        double score = dbStroke.MatchingScore(s, new TWStrokeMatcher());
+
+                        //store the score in big matrix of stroke match values
+                        if (!matchingscores.Keys.Contains(dbStroke.Hash(false)))
+                        {
+                            //create a new dictionary for input stroke and its matching value
+                            //to the current database stroke
+                            Dictionary<byte[], double> temp = new Dictionary<byte[], double>();
+                            //add the score under the correct key
+                            temp.Add(s.Hash(false), score);
+                            //add the whole dictionary under the current strokes key
+                            matchingscores.Add(dbStroke.Hash(false), temp);
+                        }
+                        else
+                        {
+                            //add new score for the input stroke to the
+                            //existing matching dict at the entry of the current database stroke
+                            matchingscores[dbStroke.Hash(false)].Add(s.Hash(false), score);
+                        }
+                    }
+                }
+            }
         }
 
         private static void TestIsolatedStorage()
@@ -104,6 +149,58 @@ namespace Testing
             bw.Close();
         }
 
+        /// <summary>
+        /// Gets the almost random stroke.
+        /// </summary>
+        /// <param name="i">The i. Legal values 0 or 1 for one or the other stroke</param>
+        /// <returns></returns>
+        private static Stroke GetAlmostRandomStroke(int i)
+        {
+            Random rand = new Random();
+            List<Point> p = new List<Point>();
+
+            DateTime now = DateTime.Now;
+
+            int randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(1, 1, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(2, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(4, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(5, 3, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(6, 2, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            p.Add(new Point(6, 3, new DateTime(now.Ticks - randNext)));
+
+            List<Point> q = new List<Point>();
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(2, 4, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(3, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(5, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(6, 6, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(7, 5, new DateTime(now.Ticks - randNext)));
+            randNext = rand.Next((int)Math.Pow(10, 4), (int)Math.Pow(10, 5));
+            q.Add(new Point(7, 6, new DateTime(now.Ticks - randNext)));
+
+
+            Stroke r = null;
+
+            switch (i)
+            {
+                case 0: r = new Stroke(p);
+                    break;
+                case 1: r = new Stroke(q);
+                    break;
+            }
+
+            return r;
+        }
         private static void TestStrokeHashing()
         {
             Random rand = new Random();
