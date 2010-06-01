@@ -11,10 +11,10 @@ namespace Kanji.DesktopApp.LogicLayer
     public static class UPXReader
     {
         /// <summary>
-        /// Parses an UPX file.
+        /// Parses a UPX file.
         /// </summary>
         /// <param name="inputstream">The inputstream.</param>
-        /// <returns></returns>
+        /// <returns>A List&lt;<see cref="Kanji.DesktopApp.LogicLayer.Character"/>&gt;</returns>
         public static List<Character> ParseUPXFile(Stream inputstream)
         {
             XmlTextReader xmlr = new XmlTextReader(inputstream);
