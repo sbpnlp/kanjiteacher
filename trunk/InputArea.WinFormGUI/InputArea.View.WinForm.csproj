@@ -73,23 +73,19 @@
   <ItemGroup>
     <Compile Include="ClientCommunication.cs" />
     <Compile Include="KanjiService.cs" />
-    <Compile Include="WinFormGUI.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="WinFormGUI.Designer.cs">
-      <DependentUpon>WinFormGUI.cs</DependentUpon>
-    </Compile>
     <Compile Include="MouseEventListener.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="WinFormGUI.resx">
-      <DependentUpon>WinFormGUI.cs</DependentUpon>
-      <SubType>Designer</SubType>
-    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormInputArea.resx">
+      <DependentUpon>WinFormInputArea.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="WinFormInputForm.resx">
+      <DependentUpon>WinFormInputForm.cs</DependentUpon>
     </EmbeddedResource>
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -97,7 +93,6 @@
       <DesignTime>True</DesignTime>
     </Compile>
     <None Include="app.config" />
-    <None Include="ClassDiagram1.cd" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -106,6 +101,18 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <Compile Include="WinFormInputArea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormInputArea.designer.cs">
+      <DependentUpon>WinFormInputArea.cs</DependentUpon>
+    </Compile>
+    <Compile Include="WinFormInputForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="WinFormInputForm.Designer.cs">
+      <DependentUpon>WinFormInputForm.cs</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

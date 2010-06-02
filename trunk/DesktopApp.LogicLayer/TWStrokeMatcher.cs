@@ -22,13 +22,13 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <returns>Matching score as a double value.</returns>
         public double Match(IStroke stroke1, IStroke stroke2)
         {
-            double r = 0;
+            double r = double.MaxValue;
             if ((stroke1 is Stroke) && (stroke2 is Stroke))
             {
                 TimeWarping tw = new TimeWarping(stroke1 as Stroke, stroke2 as Stroke);
                 tw.CalculateDistances((p1, p2) => p1.Distance(p2));
                 tw.CalculateCumulativeDistance();
-
+                r = tw.WarpingDistance;
             }
             return r;
         }

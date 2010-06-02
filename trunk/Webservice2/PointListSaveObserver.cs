@@ -8,7 +8,7 @@ using System.Net;
 
 namespace Kanji.Webservice2
 {
-    class DummyObserver : IObserver
+    class PointListSaveObserver : IObserver
     {
         #region IObserver Members
 
@@ -24,7 +24,7 @@ namespace Kanji.Webservice2
         {
             SavePoints(xcoords, ycoords, times);
 
-            Console.WriteLine("This is the Dummy Observer.");
+            Console.WriteLine("This is the PointListSaveObserver.");
 //            Console.WriteLine(string.Format("Received a list of points at {0}", times[times.Count-1].ToLongTimeString()));
             using (StreamWriter sw = new StreamWriter("out.txt", true))
             {

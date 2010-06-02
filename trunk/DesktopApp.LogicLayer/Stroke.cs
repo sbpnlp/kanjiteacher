@@ -25,6 +25,14 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <value>The ID.</value>
         public string ID { get; set; }
         public string Value { get; set; }
+        /// <summary>
+        /// A hash value that represents the stroke with the time information
+        /// </summary>
+        byte[] _hashWithTime = null;
+        /// <summary>
+        /// A hash value that represents the stroke without the time information
+        /// </summary>
+        byte[] _hash = null;
         #endregion
 
         #region Constructors
@@ -222,9 +230,31 @@ namespace Kanji.DesktopApp.LogicLayer
         /// <returns>A byte array with the hash.</returns>
         public byte[] Hash(bool withTime)
         {
-            MD5 md5 = new MD5CryptoServiceProvider();
-            return md5.ComputeHash(ToByteArray(withTime));
+            if (withTime)
+            {
+                if ((_hashWithTime != null) && (_hashWithTime.Length > 0)) 
+                    { return _hashWithTime; }
+                else 
+                {
+                    MD5 md5 = new MD5CryptoServiceProvider();
+                    return _hashWithTime = md5.ComputeHash(ToByteArray(withTime));
+                }
+            }
+            else
+                if ((_hash != null) && (_hash.Length > 0)) 
+                    { return _hash; }
+                else
+                {
+                    MD5 md5 = new MD5CryptoServiceProvider();
+                    return _hash = md5.ComputeHash(ToByteArray(withTime));
+                } 
         }
+
+        /// <summary>
+        /// Creates an Md5hash of the IStroke point sequence, using only the
+        /// point coordinate information, not the time information.
+        /// </summary>
+        public byte[] Hash() { return Hash(false); }
 
         /// <summary>
         /// Creates a byte array from the points coordinates

@@ -20,7 +20,7 @@ namespace Kanji.Webservice2
 
             serv.ShowMetaData = showmetadata;
 
-            serv.Run(new DummyObserver());
+            serv.Run(new PointListSaveObserver());
         }
     }
 }

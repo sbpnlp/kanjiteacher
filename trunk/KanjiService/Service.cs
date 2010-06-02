@@ -98,6 +98,18 @@ namespace Kanji.KanjiService
                 Console.WriteLine("An exception occured: {0}", ce.Message);
                 serviceHost.Abort();
             }
+            catch (ThreadAbortException te)
+            {
+                Console.WriteLine("An exception occured: {0}", te.Message);
+                try
+                {
+                    serviceHost.Close(new TimeSpan(0, 0, 1));
+                }
+                catch
+                {
+                    serviceHost.Abort();
+                }
+            }
         }
     }
 }

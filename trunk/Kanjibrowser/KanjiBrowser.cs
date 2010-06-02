@@ -9,9 +9,10 @@ namespace Kanji.Kanjibrowser
 {
     class MirrorArea : WinFormInputArea
     {
-        PointListSaveObserver plso = null;
+        protected PointLoadObserver plso = null;
 
-        public MirrorArea(PointListSaveObserver observer) : base() 
+        public MirrorArea(PointLoadObserver observer)
+            : base()
         {
             Text = "MirrorArea";
             plso = observer;
@@ -19,12 +20,10 @@ namespace Kanji.Kanjibrowser
 
         protected override void InputArea_Load(object sender, EventArgs e)
         {
-            mouseListener = new MirrorEventListener(this);
+            mouseListener = new MirrorEventListener(this.pnlDrawingArea);
             if (mouseListener is MirrorEventListener)
                 plso.MouseListener = mouseListener as MirrorEventListener;
             else throw new Exception("Get your types right");
-            
-            //BoundingBox bb = new BoundingBox(mouseListener
         }
     }
 }

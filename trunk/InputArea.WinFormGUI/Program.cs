@@ -17,7 +17,8 @@ namespace Kanji.InputArea.WinFormGUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new WinFormInputArea());
+            //Application.Run(new WinFormInputArea());
+            Application.Run(new WinFormInputForm());
         }
     }
 }

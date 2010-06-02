@@ -54,7 +54,7 @@
     <Compile Include="MirrorEventListener.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="PointListSaveObserver.cs" />
+    <Compile Include="PointLoadObserver.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">

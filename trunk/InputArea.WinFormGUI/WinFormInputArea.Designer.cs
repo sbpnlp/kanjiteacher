@@ -52,9 +52,6 @@
             this.pnlDrawingArea.Size = new System.Drawing.Size(300, 300);
             this.pnlDrawingArea.TabIndex = 3;
             this.pnlDrawingArea.Paint += new System.Windows.Forms.PaintEventHandler(this.InputArea_Paint);
-            this.pnlDrawingArea.MouseMove += new System.Windows.Forms.MouseEventHandler(this.InputArea_MouseMove);
-            this.pnlDrawingArea.MouseDown += new System.Windows.Forms.MouseEventHandler(this.InputArea_MouseDown);
-            this.pnlDrawingArea.MouseUp += new System.Windows.Forms.MouseEventHandler(this.InputArea_MouseUp);
             // 
             // WinFormInputArea
             // 

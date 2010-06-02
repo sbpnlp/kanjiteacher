@@ -22,7 +22,7 @@ namespace Kanji.Kanjibrowser
             serv.ShowMetaData = false;
 
             //starting service
-            PointListSaveObserver plso = new PointListSaveObserver();
+            PointLoadObserver plso = new PointLoadObserver();
             ThreadStart tStart = delegate { serv.Run(plso); };
             Thread t = new Thread(tStart);
             t.Start();
@@ -30,7 +30,21 @@ namespace Kanji.Kanjibrowser
             //starting mirror GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MirrorArea(plso));
+
+            MirrorArea ma = new MirrorArea(plso);
+            //if (
+                ma.ShowDialog();// == DialogResult.Cancel)
+            //{
+                ma.DialogResult = DialogResult.OK;
+                ma.Hide();
+                ma.Close();
+                ma.Dispose();
+            //}
+            //else
+            //{
+            //    MessageBox.Show("Test");
+            //}
+//            Application.Run(new MirrorArea(plso));
         }
     }
 }
