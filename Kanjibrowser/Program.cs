@@ -5,6 +5,9 @@ using System.Windows.Forms;
 using Kanji.InputArea.WinFormGUI;
 using KSvc = Kanji.KanjiService;
 using System.Threading;
+using Kanji.DesktopApp.Interfaces;
+using Kanji.DesktopApp.LogicLayer;
+using SM = Kanji.StrokeMirrorer;
 
 namespace Kanji.Kanjibrowser
 {
@@ -22,7 +25,7 @@ namespace Kanji.Kanjibrowser
             serv.ShowMetaData = false;
 
             //starting service
-            PointLoadObserver plso = new PointLoadObserver();
+            SM.PointLoadObserver plso = new SM.PointLoadObserver();
             ThreadStart tStart = delegate { serv.Run(plso); };
             Thread t = new Thread(tStart);
             t.Start();
@@ -31,19 +34,14 @@ namespace Kanji.Kanjibrowser
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            MirrorArea ma = new MirrorArea(plso);
-            //if (
-                ma.ShowDialog();// == DialogResult.Cancel)
-            //{
-                ma.DialogResult = DialogResult.OK;
-                ma.Hide();
-                ma.Close();
-                ma.Dispose();
-            //}
-            //else
-            //{
-            //    MessageBox.Show("Test");
-            //}
+            SM.MirrorArea ma = new SM.MirrorArea(plso);
+            ma.ShowDialog();// == DialogResult.Cancel)
+            ma.DialogResult = DialogResult.OK;
+            ma.Hide();
+            ma.Close();
+            ma.Dispose();
+            t.Abort();
+
 //            Application.Run(new MirrorArea(plso));
         }
     }

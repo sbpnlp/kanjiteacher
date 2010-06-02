@@ -7,7 +7,7 @@ using Kanji.DesktopApp.LogicLayer;
 
 namespace Kanji.Kanjibrowser
 {
-    class MirrorArea : WinFormInputArea
+    class MirrorArea : AbstractWinFormInputArea
     {
         protected PointLoadObserver plso = null;
 

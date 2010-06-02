@@ -94,6 +94,10 @@
       <Project>{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}</Project>
       <Name>KanjiService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\StrokeMirrorer\StrokeMirrorer.csproj">
+      <Project>{6B69CCCB-1899-4118-A7F6-53A68D65489D}</Project>
+      <Name>StrokeMirrorer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

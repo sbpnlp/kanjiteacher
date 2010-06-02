@@ -8,7 +8,7 @@ using System.Threading;
 
 namespace Kanji.StrokeMirrorer
 {
-    class MirrorArea : WinFormInputArea
+    public class MirrorArea : AbstractWinFormInputArea
     {
         protected PointLoadObserver PointLoader = null;
         private Thread ServiceThread = null;
@@ -47,7 +47,8 @@ namespace Kanji.StrokeMirrorer
         /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
-            ServiceThread.Abort();
+            if(ServiceThread != null)
+                ServiceThread.Abort();
             base.Dispose(disposing);
         }
     }

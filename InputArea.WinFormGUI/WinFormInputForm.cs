@@ -8,7 +8,7 @@ using System.Windows.Forms;
 
 namespace Kanji.InputArea.WinFormGUI
 {
-    public partial class WinFormInputForm : Kanji.InputArea.WinFormGUI.WinFormInputArea
+    public partial class WinFormInputForm : Kanji.InputArea.WinFormGUI.AbstractWinFormInputArea
     {
         public WinFormInputForm() : base()
         {
