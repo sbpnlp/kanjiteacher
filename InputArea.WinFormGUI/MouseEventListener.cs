@@ -202,7 +202,7 @@ namespace Kanji.InputArea.WinFormGUI
         /// <summary>
         /// Resets the drawing to a blank screen.
         /// </summary>
-        public void ResetDrawing()
+        public virtual void ResetDrawing()
         {
             gfx.FillRectangle(new Drawing.SolidBrush(Drawing.Color.White), Form.ClientRectangle);
             DrawCross();

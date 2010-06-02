@@ -6,9 +6,9 @@ using Kanji.DesktopApp.Interfaces;
 using System.Net;
 using Kanji.InputArea.WinFormGUI;
 
-namespace Kanji.Kanjibrowser
+namespace Kanji.StrokeMirrorer
 {
-    class PointListSaveObserver : IObserver
+    class PointLoadObserver : IObserver
     {
         public MirrorEventListener MouseListener { get { return mouselistener; } set { mouselistener = value; } }
         MirrorEventListener mouselistener = null;
@@ -21,8 +21,10 @@ namespace Kanji.Kanjibrowser
             mouselistener.UpdateDrawing();
         }
 
-        public void setIP(IPAddress ip){/*do nothing*/}
-
+        public void setIP(IPAddress ip)
+        {
+            System.Windows.Forms.MessageBox.Show("IP: " + ip.ToString());
+        }
         #endregion
     }
 }

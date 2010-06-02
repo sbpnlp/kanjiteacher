@@ -16,21 +16,9 @@ namespace Kanji.StrokeMirrorer
         [STAThread]
         static void Main()
         {
-            KSvc.Service serv = new KSvc.Service();
-
-            //don't show metadata
-            serv.ShowMetaData = false;
-
-            //starting service
-            PointListSaveObserver plso = new PointListSaveObserver();
-            ThreadStart tStart = delegate { serv.Run(plso); };
-            Thread t = new Thread(tStart);
-            t.Start();
-
-            //starting mirror GUI
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new MirrorArea(plso));
+            Application.Run(new MirrorArea());
         }
     }
 }

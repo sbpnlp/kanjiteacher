@@ -26,10 +26,10 @@ namespace Kanji.StrokeMirrorer
             }
 
             originalPointlist.Add(pointList);
-            double padding = 0.1;
+            double padding = 0.04;
             BBox = new BoundingBox(originalPointlist, padding);
 
-            double stretchFactor = (double) Form.ClientRectangle.Width / BBox.Width;
+            double stretchFactor = (double)Form.ClientRectangle.Width / BBox.Width;
             BBox.Stretch(stretchFactor);
 
             //Convert all
@@ -64,6 +64,12 @@ namespace Kanji.StrokeMirrorer
                         0));
             }
             return eventargsList;
+        }
+
+        public override void ResetDrawing()
+        {
+            base.ResetDrawing();
+            originalPointlist = new List<List<Point>>();
         }
 
     }

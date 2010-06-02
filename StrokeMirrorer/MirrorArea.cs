@@ -3,25 +3,52 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Kanji.InputArea.WinFormGUI;
+using KSvc = Kanji.KanjiService;
+using System.Threading;
 
 namespace Kanji.StrokeMirrorer
 {
     class MirrorArea : WinFormInputArea
     {
-        PointListSaveObserver plso = null;
+        protected PointLoadObserver PointLoader = null;
+        private Thread ServiceThread = null;
 
-        public MirrorArea(PointListSaveObserver observer) : base() 
+        public MirrorArea() : base() 
         {
             Text = "MirrorArea";
-            plso = observer;
+            PointLoader = new PointLoadObserver();
+
+            KSvc.Service serv = new KSvc.Service();
+
+            //don't show metadata
+            serv.ShowMetaData = false;
+
+            ThreadStart tStart = delegate { serv.Run(PointLoader); };
+            ServiceThread = new Thread(tStart);
+            ServiceThread.Start();
+        }
+        public MirrorArea(PointLoadObserver observer) : base() 
+        {
+            Text = "MirrorArea";
+            PointLoader = observer;
         }
 
         protected override void InputArea_Load(object sender, EventArgs e)
         {
             mouseListener = new MirrorEventListener(this.pnlDrawingArea);
             if (mouseListener is MirrorEventListener)
-                plso.MouseListener = mouseListener as MirrorEventListener;
+                PointLoader.MouseListener = mouseListener as MirrorEventListener;
             else throw new Exception("Get your types right");
+        }
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            ServiceThread.Abort();
+            base.Dispose(disposing);
         }
     }
 }

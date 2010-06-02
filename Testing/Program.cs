@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,6 +8,7 @@ using System.IO;
 using Kanji.DesktopApp.LogicLayer.Helpers;
 using System.IO.IsolatedStorage;
 using System.Xml;
+
 
 namespace Testing
 {
@@ -62,35 +64,31 @@ namespace Testing
             //    foreach (Stroke s in c.StrokeList)
             //        database.Add(s.Hash(false), s);
 
-            //go through all the strokes in the list of input strokes
-            foreach (Stroke s in inputlist)
+            //go through all the strokes in the database
+            foreach (Character c in characterdatabase)
             {
-                //go through all the strokes in the database
-                //foreach (KeyValuePair<byte[], Stroke> pair in database)
-                foreach (Character c in characterdatabase)
+                //go through all the strokes in the list of input strokes
+                foreach (Stroke s in inputlist)
                 {
                     foreach (Stroke dbStroke in c.StrokeList)
                     {
-
                         //calculate the matching score
                         double score = dbStroke.MatchingScore(s, new TWStrokeMatcher());
 
                         //store the score in big matrix of stroke match values
-                        if (!matchingscores.Keys.Contains(dbStroke.Hash(false)))
+                        if (!matchingscores.Keys.Contains(dbStroke.Hash()))
                         {
-                            //create a new dictionary for input stroke and its matching value
-                            //to the current database stroke
-                            Dictionary<byte[], double> temp = new Dictionary<byte[], double>();
-                            //add the score under the correct key
-                            temp.Add(s.Hash(false), score);
-                            //add the whole dictionary under the current strokes key
-                            matchingscores.Add(dbStroke.Hash(false), temp);
+                            //add the score under the correct key in a new dictionary 
+                            //under the current strokes key
+                            matchingscores.Add(
+                                dbStroke.Hash(), 
+                                new Dictionary<byte[], double>() { {s.Hash(false), score }});
                         }
                         else
                         {
                             //add new score for the input stroke to the
                             //existing matching dict at the entry of the current database stroke
-                            matchingscores[dbStroke.Hash(false)].Add(s.Hash(false), score);
+                            matchingscores[dbStroke.Hash()].Add(s.Hash(), score);
                         }
                     }
                 }

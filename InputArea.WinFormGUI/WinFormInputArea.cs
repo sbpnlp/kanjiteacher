@@ -22,21 +22,6 @@ namespace Kanji.InputArea.WinFormGUI
             mouseListener.UpdateDrawing();
         }
 
-        private void InputArea_MouseMove(object sender, MouseEventArgs e)
-        {            
-            mouseListener.MouseMove(e);
-        }
-
-        private void InputArea_MouseDown(object sender, MouseEventArgs e)
-        {
-            mouseListener.MouseMove(e);
-        }
-
-        private void InputArea_MouseUp(object sender, MouseEventArgs e)
-        {
-            mouseListener.MouseUp(e);
-        }
-
         private void btnReset_Click(object sender, EventArgs e)
         {
             mouseListener.ResetDrawing();
