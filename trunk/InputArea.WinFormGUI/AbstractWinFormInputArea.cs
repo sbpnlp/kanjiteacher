@@ -3,11 +3,11 @@ using System.Windows.Forms;
 
 namespace Kanji.InputArea.WinFormGUI
 {
-    public partial class WinFormInputArea : Form
+    public partial class AbstractWinFormInputArea : Form
     {
         protected MouseEventListener mouseListener;
 
-        public WinFormInputArea()
+        public AbstractWinFormInputArea()
         {
             InitializeComponent();
         }

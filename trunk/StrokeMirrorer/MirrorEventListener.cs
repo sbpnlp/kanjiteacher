@@ -8,7 +8,7 @@ using Kanji.DesktopApp.LogicLayer;
 
 namespace Kanji.StrokeMirrorer
 {
-    internal class MirrorEventListener : MouseEventListener
+    public class MirrorEventListener : MouseEventListener
     {
         public MirrorEventListener(Control control) : base(control) { }
         protected BoundingBox BBox = null;

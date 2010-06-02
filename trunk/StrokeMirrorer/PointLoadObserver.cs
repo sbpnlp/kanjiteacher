@@ -8,7 +8,7 @@ using Kanji.InputArea.WinFormGUI;
 
 namespace Kanji.StrokeMirrorer
 {
-    class PointLoadObserver : IObserver
+    public class PointLoadObserver : IObserver
     {
         public MirrorEventListener MouseListener { get { return mouselistener; } set { mouselistener = value; } }
         MirrorEventListener mouselistener = null;

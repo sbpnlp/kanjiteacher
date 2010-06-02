@@ -1,6 +1,6 @@
 ﻿namespace Kanji.InputArea.WinFormGUI
 {
-    partial class WinFormInputArea
+    partial class AbstractWinFormInputArea
     {
         /// <summary>
         /// Required designer variable.
@@ -53,7 +53,7 @@
             this.pnlDrawingArea.TabIndex = 3;
             this.pnlDrawingArea.Paint += new System.Windows.Forms.PaintEventHandler(this.InputArea_Paint);
             // 
-            // WinFormInputArea
+            // AbstractWinFormInputArea
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(96F, 96F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Dpi;
@@ -61,7 +61,7 @@
             this.ClientSize = new System.Drawing.Size(322, 353);
             this.Controls.Add(this.pnlDrawingArea);
             this.Controls.Add(this.btnReset);
-            this.Name = "WinFormInputArea";
+            this.Name = "AbstractWinFormInputArea";
             this.Text = "KanjiInput - 漢字インプト";
             this.Load += new System.EventHandler(this.InputArea_Load);
             this.ResumeLayout(false);
