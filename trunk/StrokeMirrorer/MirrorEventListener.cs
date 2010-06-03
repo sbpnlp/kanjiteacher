@@ -22,9 +22,13 @@ namespace Kanji.StrokeMirrorer
             for (int i = 0; i < xcoords.Count; i++)
             {
                 //eventargsList.Add(new MouseEventArgs(MouseButtons.Left, 0, xcoords[i], ycoords[i], 0));
-                pointList.Add(new Point(xcoords[i], ycoords[i]));
+                pointList.Add(new Point(xcoords[i], ycoords[i], times[i]));
             }
+            LoadPoints(pointList);
+        }
 
+        internal void LoadPoints(List<Point> pointList)
+        {
             originalPointlist.Add(pointList);
             double padding = 0.04;
             BBox = new BoundingBox(originalPointlist, padding);

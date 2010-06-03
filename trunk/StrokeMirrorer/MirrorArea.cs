@@ -18,6 +18,9 @@ namespace Kanji.StrokeMirrorer
             Text = "MirrorArea";
             PointLoader = new PointLoadObserver();
 
+            mouseListener = new MirrorEventListener(this.pnlDrawingArea);
+            PointLoader.MouseListener = mouseListener as MirrorEventListener;
+
             KSvc.Service serv = new KSvc.Service();
 
             //don't show metadata
@@ -31,14 +34,17 @@ namespace Kanji.StrokeMirrorer
         {
             Text = "MirrorArea";
             PointLoader = observer;
+
+            mouseListener = new MirrorEventListener(this.pnlDrawingArea);
+            PointLoader.MouseListener = mouseListener as MirrorEventListener;
         }
 
         protected override void InputArea_Load(object sender, EventArgs e)
         {
-            mouseListener = new MirrorEventListener(this.pnlDrawingArea);
-            if (mouseListener is MirrorEventListener)
-                PointLoader.MouseListener = mouseListener as MirrorEventListener;
-            else throw new Exception("Get your types right");
+            //mouseListener = new MirrorEventListener(this.pnlDrawingArea);
+            //if (mouseListener is MirrorEventListener)
+            //    PointLoader.MouseListener = mouseListener as MirrorEventListener;
+            //else throw new Exception("Get your types right");
         }
 
         /// <summary>

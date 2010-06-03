@@ -57,6 +57,10 @@ namespace Kanji.DesktopApp.Controller
             throw new NotImplementedException();
         }
 
+        public void ResetSignal()
+        {
+            throw new NotImplementedException();
+        }
         #endregion
     }
 }

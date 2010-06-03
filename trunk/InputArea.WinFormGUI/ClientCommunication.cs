@@ -73,12 +73,12 @@ namespace Kanji.InputArea.WinFormGUI
                 //legacy t.Start(threadParam);
                 //legacy //debug SendPointListThreadWorker(threadParam);
 
-                ThreadStart tStart = delegate { SendPointListThreadWorker(activePoints, activeTimes); };
-                Thread t2 = new Thread(tStart);
-                t2.Start();
-                //debug SendPointListThreadWorker(activePoints, activeTimes);                
+                //ThreadStart tStart = delegate { SendPointListThreadWorker(activePoints, activeTimes); };
+                //Thread t2 = new Thread(tStart);
+                //t2.Start();
 
-                return true;
+//                return true;
+                return SendPointListThreadWorker(activePoints, activeTimes);
             }
             catch { return false; }
         }
@@ -116,7 +116,7 @@ namespace Kanji.InputArea.WinFormGUI
         /// </summary>
         /// <param name="ActivePoints">The active points.</param>
         /// <param name="ActiveTimes">The active times.</param>
-        void SendPointListThreadWorker(List<System.Windows.Forms.MouseEventArgs> ActivePoints, List<DateTime> ActiveTimes)
+        bool SendPointListThreadWorker(List<System.Windows.Forms.MouseEventArgs> ActivePoints, List<DateTime> ActiveTimes)
         {
             try
             {
@@ -128,11 +128,12 @@ namespace Kanji.InputArea.WinFormGUI
                     ys.Add(mea.Y);
                 }
 
-                _client.ReceivePoints(xs.ToArray(), ys.ToArray(), ActiveTimes.ToArray());
+                return _client.ReceivePoints(xs.ToArray(), ys.ToArray(), ActiveTimes.ToArray());
             }
             catch (Exception ex)
             {
                 System.Windows.Forms.MessageBox.Show(ex.Message);
+                return false;
             }
         }
 

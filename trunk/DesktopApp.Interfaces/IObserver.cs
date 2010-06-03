@@ -22,6 +22,11 @@ namespace Kanji.DesktopApp.Interfaces
         /// <param name="times">The times.</param>
         void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times);
 
+        /// <summary>
+        /// Signals that a Reset has been requested.
+        /// </summary>
+        void ResetSignal();
+
         void setIP(IPAddress ip);
     }
 }

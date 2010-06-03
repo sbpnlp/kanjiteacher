@@ -68,7 +68,9 @@ namespace Kanji.InputArea.WinFormGUI
                 //send each point list only once for now...
                 //maybe exchange with 
                 //sending allactivepoints (after calling ArchiveActivePoints !)
-                OnlyActiveStrokeFinished(this, ActivePoints, ActiveTimes);
+                bool successfullySent = OnlyActiveStrokeFinished(this, ActivePoints, ActiveTimes);
+                for (int i = 20; ((i > 0) && (!successfullySent)); i--)
+                    successfullySent = OnlyActiveStrokeFinished(this, ActivePoints, ActiveTimes);
             }
 
             //this deletes the current point lists
