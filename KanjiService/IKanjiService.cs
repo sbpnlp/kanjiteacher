@@ -17,13 +17,6 @@ namespace Kanji.KanjiService
         [OperationContract]
         bool ReceivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times);
 
-        //[OperationContract]
-        //List<int> GetPointsX();
-        //[OperationContract]
-        //List<int> GetPointsY();
-        //[OperationContract]
-        //List<DateTime> GetPointsTime();
-
         ///// <summary>
         ///// Receives the messages for desktop sent by the input area.
         ///// </summary>

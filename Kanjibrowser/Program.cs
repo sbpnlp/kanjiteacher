@@ -7,7 +7,8 @@ using KSvc = Kanji.KanjiService;
 using System.Threading;
 using Kanji.DesktopApp.Interfaces;
 using Kanji.DesktopApp.LogicLayer;
-using SM = Kanji.StrokeMirrorer;
+using Kanji.StrokeMirrorer;
+using System.IO;
 
 namespace Kanji.Kanjibrowser
 {
@@ -25,7 +26,7 @@ namespace Kanji.Kanjibrowser
             serv.ShowMetaData = false;
 
             //starting service
-            SM.PointLoadObserver plso = new SM.PointLoadObserver();
+            PointLoadObserver plso = new PointLoadObserver();
             ThreadStart tStart = delegate { serv.Run(plso); };
             Thread t = new Thread(tStart);
             t.Start();
@@ -34,9 +35,27 @@ namespace Kanji.Kanjibrowser
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
 
-            SM.MirrorArea ma = new SM.MirrorArea(plso);
-            ma.ShowDialog();// == DialogResult.Cancel)
-            ma.DialogResult = DialogResult.OK;
+            //get characters
+            List<Character> characterdatabase =            
+                UPXReader.ParseUPXFile(
+                    File.Open("C:\\Diplom\\kanjiteacher\\data\\exampleFormat.upx", FileMode.Open));
+
+
+            //initialise viewing area
+            MirrorArea ma = new MirrorArea(plso);
+            
+            //go through all the strokes in the database
+            //fill viewing area
+            foreach (Character c in characterdatabase)
+            {
+                foreach (Stroke dbStroke in c.StrokeList)
+                {
+                    plso.ReveivePoints(dbStroke.AllPoints);
+                }
+            }
+
+            //show viewing area
+            ma.ShowDialog();
             ma.Hide();
             ma.Close();
             ma.Dispose();

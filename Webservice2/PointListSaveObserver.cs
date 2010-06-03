@@ -22,7 +22,7 @@ namespace Kanji.Webservice2
         /// <param name="times">The times.</param>
         public void ReveivePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
-            SavePoints(xcoords, ycoords, times);
+            StorePoints(xcoords, ycoords, times);
 
             Console.WriteLine("This is the PointListSaveObserver.");
 //            Console.WriteLine(string.Format("Received a list of points at {0}", times[times.Count-1].ToLongTimeString()));
@@ -49,7 +49,25 @@ namespace Kanji.Webservice2
             }
         }
 
-        private void SavePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
+        public void setIP(IPAddress ip)
+        {
+            Console.WriteLine("IP: " + ip.ToString());
+        }
+
+        public void ResetSignal()
+        {
+            //do nothing, maybe delete some points somewhere
+        }
+
+        #endregion
+
+        /// <summary>
+        /// Stores the points in a file
+        /// </summary>
+        /// <param name="xcoords">The xcoords.</param>
+        /// <param name="ycoords">The ycoords.</param>
+        /// <param name="times">The times.</param>
+        private void StorePoints(List<int> xcoords, List<int> ycoords, List<DateTime> times)
         {
             using (StreamWriter sw = new StreamWriter("strokes.txt", true))
             {
@@ -59,26 +77,19 @@ namespace Kanji.Webservice2
                 {
                     sw.WriteLine("</character>");
                     string s = string.Empty; //InputBoxDialog.InputBox("Please enter information about the character",
-//                        "Character info", string.Empty);
-                    sw.WriteLine("<character><GeneralInfo>{0}</GeneralInfo>", s); 
+                    //                        "Character info", string.Empty);
+                    sw.WriteLine("<character><GeneralInfo>{0}</GeneralInfo>", s);
                 }
                 sw.Write(string.Format("<stroke no=\"{0}\">", times[times.Count - 1].Ticks));
                 for (int i = 0; i < xcoords.Count; i++)
                 {
-                    sw.Write(string.Format("<point><time>{0}</time><x>{1}</x><y>{2}</y></point>", 
+                    sw.Write(string.Format("<point><time>{0}</time><x>{1}</x><y>{2}</y></point>",
                         times[i].Ticks,
-                        xcoords[i], 
+                        xcoords[i],
                         ycoords[i]));
                 }
                 sw.WriteLine("</stroke>");
             }
         }
-
-        public void setIP(IPAddress ip)
-        {
-            Console.WriteLine("IP: " + ip.ToString());
-        }
-
-        #endregion
     }
 }
