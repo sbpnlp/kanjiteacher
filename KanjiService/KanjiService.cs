@@ -10,10 +10,10 @@ namespace Kanji.KanjiService
 {
     public enum KanjiMessage
     {
-        Nothing = 0x00000001,
-        ClearData = 0x00000002,
-        FinishedStroke = 0x00000004,
-        InputCharacter = 0x00000008
+        NOTHING = 0x00000001,
+        CLEARDATA = 0x00000002,
+        FINISHEDSTROKE = 0x00000004,
+        INPUTCHARACTER = 0x00000008
     }
 
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.Single)]
@@ -84,7 +84,7 @@ namespace Kanji.KanjiService
         ///// </returns>
         //public bool MessageForDesktop(int messages)
         //{
-        //    if (MessageContains(DesktopMessages, (int)KanjiMessage.Nothing))
+        //    if (MessageContains(DesktopMessages, (int)KanjiMessage.NOTHING))
         //    {
         //        //replace DesktopMessages with messages
         //        DesktopMessages = messages;
@@ -106,7 +106,7 @@ namespace Kanji.KanjiService
         ///// </returns>
         //public bool MessageForInputArea(int messages)
         //{
-        //    if (MessageContains(InputAreaMessages, (int)KanjiMessage.Nothing))
+        //    if (MessageContains(InputAreaMessages, (int)KanjiMessage.NOTHING))
         //    {
         //        //replace InputAreaMessages with messages
         //        InputAreaMessages = messages;
@@ -126,7 +126,7 @@ namespace Kanji.KanjiService
         //public int GetNewMessagesForMobile()
         //{
         //    int retval = InputAreaMessages;
-        //    InputAreaMessages = (int)KanjiMessage.Nothing;
+        //    InputAreaMessages = (int)KanjiMessage.NOTHING;
         //    return retval;
         //}
 
@@ -137,7 +137,7 @@ namespace Kanji.KanjiService
         //public int GetNewMessagesForDesktop()
         //{
         //    int retval = DesktopMessages;
-        //    DesktopMessages = (int)KanjiMessage.Nothing;
+        //    DesktopMessages = (int)KanjiMessage.NOTHING;
         //    return retval;
         //}
 
