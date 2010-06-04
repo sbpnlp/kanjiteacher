@@ -8,6 +8,10 @@ using System.IO;
 using Kanji.DesktopApp.LogicLayer.Helpers;
 using System.IO.IsolatedStorage;
 using System.Xml;
+using KSvc = Kanji.KanjiService;
+using Kanji.StrokeMirrorer;
+using System.Threading;
+
 
 
 namespace Testing
@@ -47,6 +51,20 @@ namespace Testing
              * Dictionary<byte[], Stroke> database = new Dictionary<byte[], Stroke>();
              */
 
+            KSvc.Service serv = new KSvc.Service();
+
+            //don't show metadata
+            serv.ShowMetaData = false;
+
+            //starting service
+            PointLoadObserver plso = new PointLoadObserver();
+            ThreadStart tStart = delegate { serv.Run(plso); };
+            Thread t = new Thread(tStart);
+            t.Start();
+
+            //initialise viewing area
+            MirrorArea ma = new MirrorArea(plso);
+
             Dictionary<byte[], Dictionary<byte[], double>> matchingscores =
                 new Dictionary<byte[], Dictionary<byte[], double>>();
 
@@ -70,6 +88,9 @@ namespace Testing
                 //go through all the strokes in the list of input strokes
                 foreach (Stroke s in inputlist)
                 {
+                    //print input points
+                    plso.ReveivePoints(s.AllPoints);
+
                     foreach (Stroke dbStroke in c.StrokeList)
                     {
                         //calculate the matching score
@@ -78,6 +99,9 @@ namespace Testing
                         //store the score in big matrix of stroke match values
                         if (!matchingscores.Keys.Contains(dbStroke.Hash()))
                         {
+                            //print database points
+                            plso.ReveivePoints(dbStroke.AllPoints);
+
                             //add the score under the correct key in a new dictionary 
                             //under the current strokes key
                             matchingscores.Add(
@@ -93,6 +117,13 @@ namespace Testing
                     }
                 }
             }
+
+            //show viewing area
+            ma.ShowDialog();
+            ma.Hide();
+            ma.Close();
+            ma.Dispose();
+            t.Abort();
         }
 
         private static void TestIsolatedStorage()
