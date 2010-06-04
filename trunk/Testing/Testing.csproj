@@ -36,6 +36,7 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml.Linq">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
@@ -57,6 +58,18 @@
     <ProjectReference Include="..\DesktopApp.LogicLayer\DesktopApp.LogicLayer.csproj">
       <Project>{B5F2848B-F62B-4783-BFDB-2B1CB786AA40}</Project>
       <Name>DesktopApp.LogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InputArea.WinFormGUI\InputArea.View.WinForm.csproj">
+      <Project>{668D8555-A844-46FE-A9D9-50305AAFF8F6}</Project>
+      <Name>InputArea.View.WinForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\KanjiService\KanjiService.csproj">
+      <Project>{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}</Project>
+      <Name>KanjiService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\StrokeMirrorer\StrokeMirrorer.csproj">
+      <Project>{6B69CCCB-1899-4118-A7F6-53A68D65489D}</Project>
+      <Name>StrokeMirrorer</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
