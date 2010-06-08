@@ -93,7 +93,7 @@ namespace Kanji.InputArea.WinFormGUI
         /// Updates the drawing.
         /// </summary>
         /// <param name="colour">The colour.</param>
-        private void UpdateDrawing(Drawing.Color colour)
+        public void UpdateDrawing(Drawing.Color colour)
         {
             DrawCross();
 

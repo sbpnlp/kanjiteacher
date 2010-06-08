@@ -8,11 +8,10 @@ using System.IO;
 using Kanji.DesktopApp.LogicLayer.Helpers;
 using System.IO.IsolatedStorage;
 using System.Xml;
-using KSvc = Kanji.KanjiService;
 using Kanji.StrokeMirrorer;
+using KSvc = Kanji.KanjiService;
 using System.Threading;
-
-
+using F = System.Windows.Forms;
 
 namespace Testing
 {
@@ -26,11 +25,50 @@ namespace Testing
             //TestCharacterHashing();
             //TestIsolatedStorage();
             TestHashTable();
+            //TestInkMLReading();
             //TestPointHashing();
-//            RunConverter();
+            //RunConverter();
             //TestAddZeros();
             //TestBoundingBox();
             Console.ReadLine();
+        }
+
+        private static void TestInkMLReading()
+        {
+            KSvc.Service serv = new KSvc.Service();
+
+            //don't show metadata
+            serv.ShowMetaData = false;
+
+            //starting service
+            PointLoadObserver plso = new PointLoadObserver();
+            ThreadStart tStart = delegate { serv.Run(plso); };
+            Thread t = new Thread(tStart);
+            t.Start();
+
+            //starting mirror GUI
+            F.Application.EnableVisualStyles();
+            F.Application.SetCompatibleTextRenderingDefault(false);
+
+            //initialise viewing area
+            MirrorArea ma = new MirrorArea(plso);
+//            List<Stroke> strokes = InkMLReader.ReadInkMLFile("char02211.inkml");
+            //List<Stroke> strokes = InkMLReader.ReadInkMLFile("char00846.inkml");
+            List<Stroke> strokes = InkMLReader.ReadInkMLFile("char00555.inkml");
+            
+            //go through all the strokes in the file
+            //fill viewing area
+            foreach (Stroke dbStroke in strokes)
+            {
+                plso.ReveivePoints(dbStroke.AllPoints);
+            }
+
+            //show viewing area
+            ma.ShowDialog();
+            ma.Hide();
+            ma.Close();
+            ma.Dispose();
+            t.Abort();
         }
 
         private static void TestHashTable()
@@ -51,20 +89,6 @@ namespace Testing
              * Dictionary<byte[], Stroke> database = new Dictionary<byte[], Stroke>();
              */
 
-            KSvc.Service serv = new KSvc.Service();
-
-            //don't show metadata
-            serv.ShowMetaData = false;
-
-            //starting service
-            PointLoadObserver plso = new PointLoadObserver();
-            ThreadStart tStart = delegate { serv.Run(plso); };
-            Thread t = new Thread(tStart);
-            t.Start();
-
-            //initialise viewing area
-            MirrorArea ma = new MirrorArea(plso);
-
             Dictionary<byte[], Dictionary<byte[], double>> matchingscores =
                 new Dictionary<byte[], Dictionary<byte[], double>>();
 
@@ -74,7 +98,12 @@ namespace Testing
 
             //Dictionary<byte[], Stroke> database = new Dictionary<byte[], Stroke>();
 
-            List<Stroke> inputlist = new List<Stroke>() { GetAlmostRandomStroke(0), GetAlmostRandomStroke(1) };
+            List<Stroke> inputlist = null;
+
+            //take random strokes as inputlist
+            inputlist = new List<Stroke>() { GetAlmostRandomStroke(0), GetAlmostRandomStroke(1) };
+            //takes strokes of the same character from inputlist
+            inputlist = InkMLReader.ReadInkMLFile("char00255.inkml");
 
             ////fill the stroke database with the strokes from all the characters
             ////stored under their hash codes
@@ -88,9 +117,6 @@ namespace Testing
                 //go through all the strokes in the list of input strokes
                 foreach (Stroke s in inputlist)
                 {
-                    //print input points
-                    plso.ReveivePoints(s.AllPoints);
-
                     foreach (Stroke dbStroke in c.StrokeList)
                     {
                         //calculate the matching score
@@ -99,9 +125,6 @@ namespace Testing
                         //store the score in big matrix of stroke match values
                         if (!matchingscores.Keys.Contains(dbStroke.Hash()))
                         {
-                            //print database points
-                            plso.ReveivePoints(dbStroke.AllPoints);
-
                             //add the score under the correct key in a new dictionary 
                             //under the current strokes key
                             matchingscores.Add(
@@ -118,12 +141,18 @@ namespace Testing
                 }
             }
 
-            //show viewing area
-            ma.ShowDialog();
-            ma.Hide();
-            ma.Close();
-            ma.Dispose();
-            t.Abort();
+            MatrixPrinter m = new MatrixPrinter(matchingscores);
+            Console.WriteLine(m.print());
+
+            Console.WriteLine(
+                "Now find total minimum of these scores" +
+"i.e. go ahead and do some matrix operation in order to find" +
+"the minimum of each row." +
+"if stroke number is identical, consider position within matrix" +
+"each row can only have one best matching column" +
+"each column can only have one best matching row" +
+"find total minimum and return it"
+                );
         }
 
         private static void TestIsolatedStorage()

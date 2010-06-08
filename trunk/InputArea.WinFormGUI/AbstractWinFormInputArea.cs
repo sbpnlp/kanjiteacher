@@ -13,10 +13,7 @@ namespace Kanji.InputArea.WinFormGUI
             mouseListener = new MouseEventListener(this.pnlDrawingArea);
         }
 
-        protected virtual void InputArea_Load(object sender, EventArgs e)
-        {
-//yyy            mouseListener = new MouseEventListener(this.pnlDrawingArea);
-        }
+        protected virtual void InputArea_Load(object sender, EventArgs e){}
 
         private void InputArea_Paint(object sender, PaintEventArgs e)
         {

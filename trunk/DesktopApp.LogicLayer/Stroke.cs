@@ -56,6 +56,18 @@ namespace Kanji.DesktopApp.LogicLayer
             SearchIntermediate();
             ID = string.Empty;
         }
+
+        /// <summary>
+        /// Initializes a new instance of the <see cref="Stroke"/> class.
+        /// </summary>
+        /// <param name="trace">The an InkML trace that contains the point coordinates for this stroke.</param>
+        public Stroke(string trace)
+        {
+            AllPoints = PointListFromInkMLTrace(trace);
+            SearchIntermediate();
+            ID = string.Empty;
+        }
+
         #endregion
 
         #region Public methods
