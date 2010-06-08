@@ -51,6 +51,18 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\DesktopApp.Communication\DesktopApp.Communication.csproj">
+      <Project>{630BE67D-D76F-4890-9AA5-42300CF6A7D3}</Project>
+      <Name>DesktopApp.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesktopApp.Controller\DesktopApp.Controller.csproj">
+      <Project>{5E241DE8-4261-4215-938F-158680AB9343}</Project>
+      <Name>DesktopApp.Controller</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DesktopApp.DAL\DesktopApp.DAL.csproj">
+      <Project>{7C5ACD82-14D1-4DC1-812A-6EE33E707F67}</Project>
+      <Name>DesktopApp.DAL</Name>
+    </ProjectReference>
     <ProjectReference Include="..\DesktopApp.Interfaces\DesktopApp.Interfaces.csproj">
       <Project>{316E6A6F-BCBE-4FEE-A46C-EF48AC580129}</Project>
       <Name>DesktopApp.Interfaces</Name>
@@ -59,9 +71,17 @@
       <Project>{B5F2848B-F62B-4783-BFDB-2B1CB786AA40}</Project>
       <Name>DesktopApp.LogicLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\DesktopApp.WinFormGUI\DesktopApp.View.WinFormGUI.csproj">
+      <Project>{D4521370-DFA1-4B2D-81A7-B8CB74500902}</Project>
+      <Name>DesktopApp.View.WinFormGUI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\InputArea.WinFormGUI\InputArea.View.WinForm.csproj">
       <Project>{668D8555-A844-46FE-A9D9-50305AAFF8F6}</Project>
       <Name>InputArea.View.WinForm</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kanjibrowser\Kanjibrowser.csproj">
+      <Project>{FCBE9A1C-65B9-4D60-82CD-4D8596BE0E1F}</Project>
+      <Name>Kanjibrowser</Name>
     </ProjectReference>
     <ProjectReference Include="..\KanjiService\KanjiService.csproj">
       <Project>{D86F5DAA-72F3-45AA-B75F-26ABB82F746B}</Project>
@@ -70,6 +90,10 @@
     <ProjectReference Include="..\StrokeMirrorer\StrokeMirrorer.csproj">
       <Project>{6B69CCCB-1899-4118-A7F6-53A68D65489D}</Project>
       <Name>StrokeMirrorer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Webservice2\Webservice2.csproj">
+      <Project>{71F29CDF-4FFF-4CBA-BA5F-717C4401522F}</Project>
+      <Name>Webservice2</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

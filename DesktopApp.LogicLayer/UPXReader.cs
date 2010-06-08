@@ -266,43 +266,39 @@ namespace Kanji.DesktopApp.LogicLayer
         {
             if (UPXReader.IsUPXhLevelCharacter(xmlr))
             {
-                if ((xmlr.Name == "hLevel") && (xmlr.HasAttributes))
+                Character c = new Character();
+
+                c.SHKK = XmlTools.ReadIDAttribute(xmlr);
+
+                //now moving to label and reading it
+                //then the radicals
+                //if we're hitting and end element that is an hLevel stop reading 
+                //the ones from the Radicals should be eaten within ReadUPXElementContentAsRadical
+                while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "hLevel")))
                 {
-                    Character c = new Character();
-
-                    c.SHKK = ReadIDAttribute(xmlr);
-
-                    //now moving to label and reading it
-                    //then the radicals
-                    //if we're hitting and end element that is an hLevel stop reading 
-                    //the ones from the Radicals should be eaten within ReadUPXElementContentAsRadical
-                    while (xmlr.Read() && (!IsEndElementTypeWithName(xmlr, "hLevel")))
+                    if (xmlr.NodeType == XmlNodeType.Element)
                     {
-                        if (xmlr.NodeType == XmlNodeType.Element)
-                        {
-                            Radical rTemp = null;
+                        Radical rTemp = null;
 
-                            switch (xmlr.Name)
-                            {
-                                case "label":
-                                    c.Value = ReadUPXElementContentAsLabel(xmlr, c.SHKK);
-                                    break;
-                                case "hLevel":
-                                    if (IsUPXhLevelRadical(xmlr))
-                                    {
-                                        rTemp = ReadUPXElementContentAsRadical(xmlr);
-                                        c.RadicalList.Add(rTemp);
-                                    }
-                                    break;
-                            }
+                        switch (xmlr.Name)
+                        {
+                            case "label":
+                                c.Value = ReadUPXElementContentAsLabel(xmlr, c.SHKK);
+                                break;
+                            case "hLevel":
+                                if (IsUPXhLevelRadical(xmlr))
+                                {
+                                    rTemp = ReadUPXElementContentAsRadical(xmlr);
+                                    c.RadicalList.Add(rTemp);
+                                }
+                                break;
                         }
                     }
-                    
-                    return c;
                 }
-                else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
+
+                return c;
             }
-            else throw new Exception("Not even an element type");
+            else throw new Exception(string.Format("Not the correct element. This was a {0}-tag", xmlr.Name));
         }
 
         /// <summary>
@@ -316,7 +312,7 @@ namespace Kanji.DesktopApp.LogicLayer
             {
                 Stroke s = new Stroke();
 
-                s.ID = ReadIDAttribute(xmlr);
+                s.ID = XmlTools.ReadIDAttribute(xmlr);
 
                 //now moving to label and reading it
                 //then the strokes
@@ -341,25 +337,6 @@ namespace Kanji.DesktopApp.LogicLayer
                 return s;
             }
             else throw new Exception(string.Format("Not the correct element. This was a {0}-tag.", xmlr.Name));
-        }
-
-        /// <summary>
-        /// Reads the ID attribute.
-        /// </summary>
-        /// <param name="xmlr">The XMLR.</param>
-        /// <returns>A string with the ID</returns>
-        public static string ReadIDAttribute(this XmlTextReader xmlr)
-        {
-            string retval = string.Empty;
-            
-            for (int i = 0; i < xmlr.AttributeCount; i++)
-            {
-                xmlr.MoveToNextAttribute();
-                if (xmlr.Name.ToLowerInvariant() == "id".ToLowerInvariant())
-                    retval = xmlr.Value; 
-            }
-            xmlr.MoveToElement();
-            return retval;
         }
 
         /// <summary>
@@ -404,7 +381,7 @@ namespace Kanji.DesktopApp.LogicLayer
             {
                 Radical r = new Radical();
 
-                r.ID = ReadIDAttribute(xmlr);
+                r.ID = XmlTools.ReadIDAttribute(xmlr);
 
                 //now moving to label and reading it
                 //then the strokes

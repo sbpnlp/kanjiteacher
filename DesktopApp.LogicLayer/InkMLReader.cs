@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Xml;
 using System.IO;
+using Kanji.DesktopApp.LogicLayer.Helpers;
 
 namespace Kanji.DesktopApp.LogicLayer
 {
@@ -12,12 +13,51 @@ namespace Kanji.DesktopApp.LogicLayer
     /// </summary>
     public static class InkMLReader
     {
+        //xxx get path from some config file...
+        static string path = "C:\\Diplom\\kanjiteacher\\data";
+
+        /// <summary>
+        /// Reads an InkML file and creates a number list strokes from the traces.
+        /// </summary>
+        /// <param name="pathToInkMLFile">The path to ink ML file.</param>
+        /// <returns></returns>
+        public static List<Stroke> ReadInkMLFile(string pathToInkMLFile)
+        {
+            List<Stroke> r = new List<Stroke>(10);
+            FileStream inputstream = 
+                new FileStream(
+                    path + Path.DirectorySeparatorChar + pathToInkMLFile, 
+                    FileMode.Open);
+
+            XmlTextReader xmlr = new XmlTextReader(inputstream);
+            
+            
+            while ((!UPXReader.IsEndElementTypeWithName(xmlr, "ink")))
+            {
+                if (UPXReader.IsElementTypeWithName(xmlr, "trace"))
+                {
+                    Console.WriteLine(XmlTools.ReadIDAttribute(xmlr));
+                    r.Add(new Stroke(
+                        Stroke.PointListFromInkMLTrace(
+                            xmlr.ReadElementContentAsString())));
+                }
+                else xmlr.Read(); //overread element
+            }
+
+            xmlr.Close();
+            inputstream.Close();
+
+            return r;
+        }
+
+        /// <summary>
+        /// Reads an InkML trace.
+        /// </summary>
+        /// <param name="traceRef">The trace reference to read.</param>
+        /// <returns></returns>
         public static List<Point> ReadInkMLTrace(string traceRef)
         {
             List<Point> retval = null;
-
-            //xxx get path from some config file...
-            string path = "C:\\Diplom\\kanjiteacher\\data";
             string[] pathXmlFile = traceRef.Split('#');
             string filename = path + Path.DirectorySeparatorChar + pathXmlFile[0];
             string ID = pathXmlFile[1];
@@ -36,7 +76,7 @@ namespace Kanji.DesktopApp.LogicLayer
             {
                 if ((UPXReader.IsElementTypeWithName(xmlr, "trace"))
                     &&
-                    (ID == UPXReader.ReadIDAttribute(xmlr)))
+                    (ID == XmlTools.ReadIDAttribute(xmlr)))
                 {
                     trace = xmlr.ReadElementContentAsString();
                     retval = Stroke.PointListFromInkMLTrace(trace);
@@ -47,19 +87,6 @@ namespace Kanji.DesktopApp.LogicLayer
             xmlr.Close();
             inputstream.Close();
          
-            return retval;
-        }
-
-        private static string ReadIDAttribute(this XmlTextReader xmlr)
-        {
-            string retval = string.Empty;
-
-            for (int i = 0; i < xmlr.AttributeCount; i++)
-            {
-                xmlr.MoveToNextAttribute();
-                if (xmlr.Name.ToLowerInvariant() == "id".ToLowerInvariant())
-                    retval = xmlr.Value;
-            }
             return retval;
         }
     }
