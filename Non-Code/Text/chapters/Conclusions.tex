@@ -32,72 +32,55 @@
 %inwieweit ist motivation erfuellt?
 %warum haben wir dass gemacht? was ist das ergebnis?
 
-In the history of Computational Linguistics there have been a several 
-attempts to integrate natural language processing techniques with 
-existing technologies. That task is complex in many aspects, depending on what is
-aimed at exactly.
+\section{Recapitulation}
+\label{sec:conclusion:recapitulation}
 
-In this study, I will attempt to create a handwriting recognition for Japanese 
-Kanji. That seems interesting because Kanji the characters form a morphemic 
-writing system with a large number of characters. Thus, handwriting 
-recognition (HWR) of Kanji follows different patterns than in alphabetical 
-writing systems like Latin script. The overall methodology of HWR system is 
-similar to systems for Latin characters, but the details of analysis vary 
-strongly.
+The goal of this work was the creation of an \emph{analytical} handwriting
+recognition engine for Kanji. A subordinated goal was to study the new 
+possibilities such an system component offers. This has been exemplified for
+a sample e-learning application that includes excercises for handwritten input.
+Only because of the analytical handwriting recognition, the e-learning 
+application can give the learner feedback about the entered character.
 
-Studying Japanese language is a complex task, because a new learner has to get 
-used to a new vocabulary that - coming from a European language - has very 
-little in common with the vocabulary of his mother tongue, unlike in European 
-languages where quite often there are several intersections. The learner also 
-needs to learn a new grammar system. Broadly speaking, most of the central 
-European languages follow a subject-verb-object (SVO) structure. 
-Japanese follows a subject-object-verb (SOV) structure. These create additional 
-difficulty, comparable with German reversed subclause structures that 
-are a source of error for many learners of German. 
-Yet, the most notable difference for a language learner with a central European 
-mother tongue is of course the writing system. The Japanese writing system uses 
-three different scripts. The so-called \emph{Kana} scripts \emph{Hiragana} and 
-\emph{Katakana} are syllabic, each character represents a syllable. Each syllable
-consists of either a vowel, a consonant and a vowel, or a consonant cluster and 
-a vowel. The syllables are called \emph{open}. Hiragana and Katakana represent 
-roughly the same inventory of syllables and both have around 40-50 characters 
-that can be modified with diacritics in order to yield additional syllable 
-representations. Therefore, these scripts are a hurdle for a learner, but 
-relatively unproblematic, due to their limited number of characters. 
-Besides, the two sets of Kana characters look quite distinct, 
-so the problem of confusing one character with another is limited to a relatively
-short learning period of those two scripts.
+This thesis contains a number of topics that do not have a common academic 
+background. The prerequsites for building an analytical handwriting recognition
+and integrate it into an e-learning environment form a common ground for the 
+topics. The thesis started with the basics of Japanese handwriting. The Japanese
+writing system with its three scripts is fairly different from alphabetic 
+writing systems. The structure of the Japanese character system has been 
+introduced in chapter~\ref{chap:japanasescript}.
+Chapter~\ref{chap:onlinehwr} contains a literature review of the topic 
+\emph{handwriting recognition systems}. The general techniques and models
+for handwriting recognition are presented as well as the special techniques
+for online character recognition and the specifics of Japanese and Chinese 
+character recognition.
+Seemingly unrelated to the previous chapters, but required for building an
+e-learning application, chapter~\ref{chap:elearning} presents the general
+methods an techniques for e-learning applications, especially e-learning
+of languages. These chapters build the foundation of the following chapters.
 
-The Kanji, on the contrary, form the largest part of a writing system that has 
-around 3,000 characters, which are built up of around 200 subunits called 
-\emph{Radicals}. 
-One part of the complexity lies in the number of characters. 
-The other part lies in the general method of representing an 
-idea or concept with a character instead of attempting to represent the sounds
-with graphemes in connection with language specific pronunciation rules. 
-Another difficulty lies in cognitively connecting the characters with their 
-pronunciations. Most characters have multiple pronunciations and for a language 
-learner, studying Japanese vocabulary takes at least twice as much effort 
-compared to languages using a Latin or at least some kind of alphabetic writing 
-system. The two tasks of learning the Kanji and studying the vocabulary 
-together can epitomise a very high learning curve. A connected subordinated 
-problem lies in the fact that quite often subjectively 'simple' vocabulary comes 
-with complex Kanji. Some e-learning applications have taken on that issue by 
-creating a learning environment in which a learner can connect learning 
-vocabulary with studying the Kanji characters.
+The following two chapters are concerned with the design of the prototype
+that has been developed during the course of the thesis.
+Chapter~\ref{chap:conceptualdesignofKanjicoach} takes an abstract viewpoint 
+and uses the conceptual insight of the foundational chapters for the 
+design of the application. Chapter~\ref{chap:technicaldesign} presents the 
+technical design choices that implement the concepts developed in the
+precedent chapter.
 
-%xxx: see santosh2009: the statement of need
+The core of the recognition engine is layed out in 
+chapter~\ref{chap:handwritingrecognitionengine}. This chapter contains topics
+that are part of the technical design. However, the viewpoint in this chapter
+is more detailed and magnifies a specific part of the application.
+The evaluation of the analytical handwriting recognition has been
+presented in chapter~\ref{chap:implementationevaluation} and resulted in 
+recognition rates below the ones of non-analytical systems. 
 
-\subsection{Integrating NLP and E-Learning}
-\label{sec:intro:integratingnlpandelearning}
+\section{Discussion}
+\label{sec:conclusion:discussion}
 
-In this project, the main focus lies on the creation of an analytical handwriting
-recognition engine for Kanji. The advantages of such an engine can be applied to
-e-learning applications. This is exemplified with a sample e-learning application
-that includes specialised excercises for handwritten input.
-The novelty about it is a handwriting recognition that gives the learner the 
-ability to actually practise writing the Kanji and get a feedback, instead of 
-the rather limited multiple choice recognition that most other applications use.
+
+That seems due to
+the fact that the detailed analysis increases the recognition options.
 
 The integration of NLP and e-learning relies on the analytical handwriting
 recognition. Since characters are split into sub units, the generated feedback 
