@@ -7,7 +7,7 @@
 % \label{chap:futurework}
 % xxx choose chapter title
 
-\section{Future Work}
+\section{Future Directions}
 \label{sec:conclusion:futurework}
 
 % - Why this section? 
@@ -25,39 +25,89 @@
 %   The next part to write is the actual list of ideas in short,
 %   to I can fill it with something later.
 
-% What can we do for other languages, using similar character sets?
-The same concept of handwriting recognition could be applied to Chinese 
-characters, a very similar concept could be applied to Korean characters
-with a slightly modified database structure.
+%General improvement possibilities
+\subsection{General Considerations for Improvement}
+\label{sec:conclusion:generalconsiderationsforimprovement}
+The performance results shown by the approach presented in this thesis
+open up further research opportunities. The technical status of the recognition
+suggests that the problem of analytical OLCCR is not solved yet.
+In order to reach the recognition performance of non-analytical systems
+the analytical methods should be improved.
+In order to improve the recognition performance, one could combine multiple 
+methods of analysis, probably even non-analytical full character recognition.
+The area of pattern representation leaves room for improvement. 
+The traditional structural representation mirrored in the XML format used
+has an insufficiency because it does not provide additional information about
+the characters. The feature-vector representation generated from the original
+character's stroke sequences could be stored and modified alongside with
+the actual traces.
+Inspired by the research efforts of 
+\shortciteANP{ChenLee1996}~\citeyear{ChenLee1996}, the database size could be
+reduced by storing only parts of characters and their spatial relations
+instead of full character representations. This has been considered 
+a minor issue because of the ready availability of storage space.
+However, that imprivement could also increase recognition speed because
+less patterns would need to be held in RAM and compared with the input.
 
+Additionally, hybrid statistical-structural representations could help choosing
+the best match. Both the stroke and between-strokes relationships can be
+modelled statistically.
+
+
+% What can we do for other languages, using similar character sets?
+\subsection{Additional Research Possibilities}
+\label{sec:conclusion:newresearchpossibilities}
+The handwriting recognition engine developed in this thesis, can conceptually
+be applied to other languages and character sets.
+The same style of handwriting recognition can be applied to Chinese characters, 
+in fact, on an abstract level Chinese and Japanese characters are identical,
+despite their small language specific differences.
+A fairly similar concept of analytical character recognition could be applied 
+to Korean characters with a slightly modified database structure.
+Korean characters bare the potential for an analytical handwriting recognition,
+due to their structured composition. Yet, the composition for Korean characters
+works in a different way than for Chinese and Japanese. A research hypothesis
+for the analysis of Korean characters might be that an analytical recognition
+system could have a higher accuracy, because there are are less combination 
+possibilities for the substructures of Hangul.
 
 % This HWR engine as a product or service for other applications?
 % What can be done with future devices?
 % Idea: Port auf iPhone. Wieviel aufwand?
-The analytical handwriting recognition engine can serve as a service for other 
-applications. Instead of using a GUI on a desktop computer, new devices like
-tablet PCs or the iPad could be deployed.
-
-In the e-learning context, different devices could add to the possibilities
+A different field of additional research opportunities opened up by the
+kind of analytical handwriting recognition engine developed during the
+course of this thesis lies in the area of e-learning.
+Because of the loosely coupled design and the SOAP interface to the engine
+as a web service, the handwriting recognition can easily serve as a service 
+for other applications. 
+Instead of using a GUI on a desktop computer, new devices like tablet PCs or 
+Apple Inc.'s iPad could be deployed.
+In the e-learning context these different devices could add to the possibilities
 of the HWR-engine.
-%With a multi-touch device?
-In a multi-touch environment, the a learner could draw characters and
-command the e-learning environment with his fingers.
+For example, in a multi-touch environment, the a learner could draw characters 
+and command the e-learning environment with his fingers instead of a stylus.
 It could be compared if the learning success is significantly higher, lower or
 stays the same compared to using a stylus.
-Additionally, an educational study could be conducted, comparing the learning 
-success achieved with an e-learning environment to the learning success
-using only pen and paper.
-%With a pressure-sensitive device?
-When using a pressure-sensitive device, the pressure-intensity could be used as
-a recognition feature. However, a study would need to be conducted,
-if pressure-intensity is a feature at all.
-It would be plausible to assume that pressure intensity is even more individual 
-to the writer than the shape of the drawn characters. 
-Therefore, featuring pressure intensity in a HWR application could add more 
-noise to the data. However, the differences in pressure intensity 
-between different characters drawn by the same writer should be analysed.
+Additionally, a fully-fledged educational study could be conducted, 
+comparing the learning success achieved with an e-learning environment to the 
+learning success using only pen and paper.
+For a study like that there would have to be at least two considerably sized 
+randomized groups of learners that would be compared with each other.
 
+%With a pressure-sensitive device?
+Another interesting research topic around the analytical handwriting recognition
+could be pressure intensity.  When using a pressure-sensitive device, 
+the pressure-intensity could be used as an additional recognition feature. 
+Pressure-intensity offers to be a completely new feature that has not been 
+exploited. However, a study would need to show if pressure-intensity 
+is a feature at all. It would be plausible to assume that pressure intensity is 
+very individual to the writer. 
+Thus, featuring pressure intensity in a HWR application could add more 
+noise to the data. However, at least the differences in pressure intensity 
+between different characters drawn by the same writer should be analysed.
+If pressure intensity is more individual to the writer than the shape of the 
+drawn characters it could even lower recognition accuracy, 
+but may be appropriate for writer identification using handwriting recognition.
 
 % ISF - see section~\ref{sec:hwre:msisfformat} and section in 
 % implementation chapter.
@@ -77,14 +127,3 @@ between different characters drawn by the same writer should be analysed.
 % The tolerance thresholds given by the character recognition allow for a
 % interpretation of the character shape, rather than a pure repetition.
 
-% %Zum Beispiel - radikale vorgeben und zeichen schreiben lassen.
-% %und ganz generell: toleranzgrenzen erlauben kreativitaet allein schon deswegen,
-% %weil selbst der zeichenstift benutzt wird.
-
-
-% Outlook:
-% research e-learning.
-
-
-% The user interface for character input with the stylus on a mobile device
-% works similar to a drawing board. That is a more natural input than
