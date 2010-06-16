@@ -6,105 +6,96 @@
 \chapter{Implementation and Evaluation}
 \label{chap:implementationevaluation}
 
-see: ~\shortcite{Chua2004}
-and: Lanzilotti_eLSE_Methodology_a_Systematic_Approach_to_the_Evaluation_of_e-Learning_Systems.pdf
-find references - not in bibtex yet.
+% %see: ~\shortcite{Chua2004}
+% \section{Implementation Details}
+% \label{sec:eval:implementationdetails}
 
-- Why this section? 
-  The purpose of this section is 
-  It would be off purpose, if 
-- What goes into this section?
-  The main content of this section is 
-  * if describing a problem: why is the problem relevant.
-  * if describing a solution to a problem: what alternatives were
-    there to solve it, why was this solution chosen? 
-    what made it the best choice? was it the optimal solution?
-- How will this section be structured and organised?
-  The organisational structure of the section 
-- In what style will it be written?
-  The style of writing will be 
-- Next action - what to write first?
-  The next part to write is
-
-\section{Implementation Details}
-Pointer auf CD und auf Appendix mit Beispielinteraktionen (diese mit Foto).
-Screenshots.
-Zahlen zur Erkennung - z.B. wie lange dauert es, ein zeichen zu erkennen?
-
-wie wurden einzelne dinge realisiert, z.b. vectorielle funktionen?
-was war neu?
-klassen wie box / bounding box, technisch, alles was in HWREngine nicht behandelt
-wurde.
-
-abschnitt ueber optimierung.
-optimierungszyklus inklusive ausprobieren beschreiben.
-s. 51 rueckseite
-
-s 49 rueckseite: interface-optimierung
-entscheidungen herausstellen. 
-
-s 27,28 vectorschnitt
-
-s.11 iPhone - port of input app. checked out objective C and stuff!
-
-see section~\ref{sec:hwre:writingsurfacegui}. describe what was difficult concerning the lists and bloody point objects.
-performance issues! optimisation with try and error!
-
-ISF - see section~\ref{sec:hwre:msisfformat}
-%implementation - windows mobile 6 and ISF 
-%implementation - tablet PC and ISF
-% this nice feature could not be used, because it is only available from
-%windows mobile 6 - not available!
-%also for tablet PC - not available!
-
-dead end of data format description:
-how I first developed my own format and then found that
-UPX was better.
+% % Pointer auf CD und auf Appendix mit Beispielinteraktionen (diese mit Foto).
+% %Screenshots.
+% %Zahlen zur Erkennung - z.B. wie lange dauert es, ein zeichen zu erkennen?
 
 
-%%%%%%%%
-in \ref{sec:hwre:database} there is an undiscussed point:
-   3. Description of the production of the lexicon.
-      it was not just taken from j.b. but it was intervowen?! (verflochten) 
-      with the trajectories. where did I get these from? 
-      how many chars are in the two dictionaries
 
-in section \ref{sec:concept:classificationinelearning} I claim that I am taking the ISO something 'installability' into account.
-this should happen somewhere here.
-from section \ref{sec:concept:classificationinelearning}
-\begin{quote}
-which is defined in ISO9126 as \emph{installability} as 
-well~\shortcite{Chua2004}. 
-The ISO9126 type of installability will be taken into account during the software
-evaluation, which is reported in chapter~\ref{chap:implementationevaluation}.
-  
-\end{quote}
+% wie wurden einzelne dinge realisiert, z.b. vectorielle funktionen?
+% was war neu?
+% klassen wie box / bounding box, technisch, alles was in HWREngine nicht behandelt
+% wurde.
 
+% abschnitt ueber optimierung.
+% optimierungszyklus inklusive ausprobieren beschreiben.
+% s. 51 rueckseite
+
+% s 49 rueckseite: interface-optimierung
+% entscheidungen herausstellen. 
+
+% s 27,28 vectorschnitt
+
+% s.11 iPhone - port of input app. checked out objective C and stuff!
+
+% see section~\ref{sec:hwre:writingsurfacegui}. describe what was difficult concerning the lists and bloody point objects.
+% performance issues! optimisation with try and error!
+
+% ISF - see section~\ref{sec:hwre:msisfformat}
+% %implementation - windows mobile 6 and ISF 
+% %implementation - tablet PC and ISF
+% % this nice feature could not be used, because it is only available from
+% %windows mobile 6 - not available!
+% %also for tablet PC - not available!
+
+% dead end of data format description:
+% how I first developed my own format and then found that
+% UPX was better.
+
+
+% %%%%%%%%
+% in \ref{sec:hwre:database} there is an undiscussed point:
+%    3. Description of the production of the lexicon.
+%       it was not just taken from j.b. but it was intervowen?! (verflochten) 
+%       with the trajectories. where did I get these from? 
+%       how many chars are in the two dictionaries
 
 
 \section{Evaluation of the HWR}
 \subsection{ Evaluation Metrics }
+grundsaetzliches:
+evaluation soll kurz und qualitativ sein.
+plausible fakten muessen nicht unbedingt untermaurert werden.
+
+baseline eval vs. topline eval.
+technik ermoeglicht erst lernmethode, diese methode ist besser als andere methode.
+kriterium fuer qualitative eval:
+reproduzierbarkeit des experiments.
+
 evaluation method: counting precision and recall
 section about precision and recall - the odd numbers.
 how can that be done honest and useful?
 how can I get meaningful numbers at all?
 
+
 s. 12 beachten: WICHTIG: eval kurz und qualitativ.
 
-\subsection{DTW vs.~3-D DTW}
-\label{sec:impl:dtwvs3ddtw} %this section already referenced.
-This section al
+\section{E-Learning Module Evalutation}
+\label{sec:eval:elearning}
+Generally, there are two main directions in the evaluation methodology
+for e-learning applications: the educationalist's approach and the 
+software developer's approach.
+Therefore, the evaluation of an e-learning system is a complex task
+and requires optimisation work on the account of both the conceptual
+designer of an e-learning application as well as the software developer.
 
-\section{Evaluation of E-Learning Application with Integrated HWR}
-qualitative auswertung, keine zahlen, sondern fragebogen.
-fuehlt der lerner sich unterstuetzt? glaubt er, dass es schneller geht als ohne 
-HWR? 
-besser als auf papier?
+The e-learning part of the prototype is a sample module that is used 
+to exemplify one usage scenario of the HWR engine. 
+It mainly shows plausibility of the approach. A detailed analysis of the
+e-learning application using ISO9126~\shortcite{Chua2004} is not useful,
+since the e-learning part of the software has not been optimised in any way.
+The focus of the thesis is not to implement an e-learning application,
+but to create an analytical handwriting recognition engine.
+It might be a prospect for future 
+work\footnote{See section~\ref{sec:conclusion:newresearchpossibilities}}
+to optimise the e-learning part and build a fully-developed e-learning
+application for Japanese characters, but that would be outside the scope of 
+this thesis. For these reasons, there will not be an evaluation of the
+e-learning module.
 
-\section{Evaluation of the Error Hints}
-use cases, inwieweit helfen die fehlerhinweise?
-geht das lernen dann wirklich schneller?
-wie laesst sich der mehrwert bewerten?
-system kann sagen: wo liegt die verwechslung? warum war das falsch?
 
 

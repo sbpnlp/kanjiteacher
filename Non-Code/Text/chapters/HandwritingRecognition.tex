@@ -574,8 +574,8 @@ data, in order to retrieve a more accurate recognition in the next step.
 \shortciteANP{Tappert1990}~\citeyear{Tappert1990} distinguish between the phases \emph{external} and 
 \emph{internal segmentation}, a \emph{noise reduction} step that has several 
 sub steps:\\
-\emph{Smoothing}, \emph{filtering}, \emph{wild point correction}, 
-\emph{dehooking}, \emph{dot reduction} and \emph{stroke connection}.
+\emph{Smoothing}, \emph{filtering}, \emph{dehooking},
+\emph{wild point correction}, \emph{dot reduction} and \emph{stroke connection}.
 Some systems also employ a \emph{normalisation} step, that can include
 \emph{deskewing}, \emph{basline drift correction} and \emph{size normalisation}.
 \shortciteANP{Santosh2009}~\citeyear{Santosh2009} employ a similar perception in their review about several
@@ -659,12 +659,20 @@ interpolation can be used in order to introduce new data points in between and
 achieve equidistant points. Smoothing and filtering can also be performed in one 
 operation for time optimisation~\shortcite{Tappert1990}.
 
-\paragraph{Wild Point Correction}
-\label{sec:wildpointcorrection}
-\emph{Wild Point Correction} is used for elimination of spurious points. Those 
-points occur usually as a result of errors in data capturing. Acceleration and 
-generally any change of velocity of the hand movement can cause the digitiser 
-tablet to falsely report wild points~\shortcite{Tappert1990}.
+% \paragraph{Dehooking}
+% \label{sec:dehooking}
+% Hooks occur at the beginning and more frequently at the end of a stroke. They
+% are recognised by the data capturing device because of inaccurate pen-down 
+% detection or random motion when lifting the stylus off the tablet.
+% \emph{Dehooking} is a technique to remove the hooks at the end and at the 
+% beginning of a stroke~\shortcite{Tappert1990}.
+
+% \paragraph{Wild Point Correction}
+% \label{sec:wildpointcorrection}
+% \emph{Wild Point Correction} is used for elimination of spurious points. Those 
+% points occur usually as a result of errors in data capturing. Acceleration and 
+% generally any change of velocity of the hand movement can cause the digitiser 
+% tablet to falsely report wild points~\shortcite{Tappert1990}.
 
 \paragraph{Dehooking}
 \label{sec:dehooking}
@@ -672,13 +680,43 @@ Hooks occur at the beginning and more frequently at the end of a stroke. They
 are recognised by the data capturing device because of inaccurate pen-down 
 detection or random motion when lifting the stylus off the tablet.
 \emph{Dehooking} is a technique to remove the hooks at the end and at the 
-beginning of a stroke~\shortcite{Tappert1990}.
+beginning of a stroke~\shortcite{Tappert1990}. Figure~\ref{fig:dehooking} shows
+an example of dehooking as a drawing. Electronically, the relevant coordinate
+points would be removed at the ends of the strokes.
+
+\paragraph{Wild Point Correction}
+\label{sec:wildpointcorrection}
+\emph{Wild Point Correction} is used for elimination of spurious points. Those 
+points occur usually as a result of errors in data capturing. Acceleration and 
+generally any change of velocity of the hand movement can cause the digitiser 
+tablet to falsely report wild points~\shortcite{Tappert1990}.
+Figure~\ref{fig:wildpointcorrection} shows an example of wild point correction.
+The underlying maths can be a direction vector or a strong deviance from the
+average distance of the points of one stroke.
+
+ \begin{figure}[htbp]
+   \begin{center}
+ \includegraphics[scale=1.5]{images/Foriginal.png}
+ \includegraphics[scale=1.5]{images/F1hooks.png}
+ \includegraphics[scale=1.5]{images/F2afterDehooking.png}
+ \caption{Dehooking}
+ \label{fig:dehooking}
+   \end{center}
+ \end{figure}
+ \begin{figure}[htbp]
+   \begin{center}
+ \includegraphics[scale=1.5]{images/F3afterDehookingBeforeWildPointCorrection.png}
+ \includegraphics[scale=1.5]{images/F4afterDehookingAndAfterWildPointCorrection.png}
+ \caption{Wild point correction}
+ \label{fig:wildpointcorrection}
+   \end{center}
+ \end{figure}
 
 \paragraph{Repetition Removal}
 \label{sec:repetitionremoval}
 \emph{Repetition removal} or \emph{dot reduction} reduces dots to single 
-points~\shortcite{Tappert1990}. Points that are accumulated on a very close area and 
-form a dot, do not improve recognition quality, but rather distort the 
+points~\shortcite{Tappert1990}. Points that are accumulated on a very close 
+area and form a dot, do not improve recognition quality, but rather distort the 
 trajectory. There can even be co-occurring points. Slow handwriting will generate
 repeating points, and those are generally at the dominant points, such as
 corners~\shortcite{Santosh2009}.
