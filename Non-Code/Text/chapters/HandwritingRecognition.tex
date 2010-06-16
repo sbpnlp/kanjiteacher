@@ -113,7 +113,7 @@ an ascender.
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.5]{images/expandingcursiveletters.png}
+\includegraphics[scale=0.3]{images/expandingcursiveletters.png}
 \caption{Expanding cursive letters}
 \label{fig:expandingcursiveletters}
 \end{center}
@@ -336,7 +336,7 @@ by the accelerator device, but does not transform the strokes into characters.
 %xxx: if you want to add more technical details here, 
 %see Santosh2009:Digitizer Technology. :xxx
 
-\subsection{Recognition vs Identification}
+\subsection{Recognition vs.\ Identification}
 \label{sec:recognitionvsidentification}
 
 Handwriting recognition is the task of transforming a spatial language 
@@ -900,10 +900,10 @@ some details of HMM analysis, embedded into the actual classification process.
 
 When the recognition process is finished, some systems start another process
 that takes as input the output of the character recognition. In this 
-postprocessing step, language information can be used to improve the recognition
+postprocessing step, language information can be used to improve the overall
 accuracy. Postprocessing is mainly used for continuous character recognition,
 where more than a single characters is recognised. Since some systems yield a 
-single string of characters others yield a number of alternative recognitions,
+single string of characters others yield a number of alternative matches,
 often in addition with a certainty measure.
 A postprocessing unit can use the information to calculate estimates for words
 or even sentences. When the character recogniser yields single choices for 
@@ -965,6 +965,7 @@ The coarse classification is done to reduce the candidate set, the fine
 classification is used to find the best match. There are systems that 
 include another step, \emph{contextual processing}, which can be regarded 
 as an equivalent to postprocessing~\shortcite{LiuJaegerNakagawa2004}.
+In the following, the different methods are reviewed in greater detail.
 
 \subsection{Character Segmentation}
 \label{sec:olccr:charactersegmentation}
@@ -1083,7 +1084,7 @@ the Japanese script. Creating a character representation for each one of them
 is a considerable effort however, using a structured approach can lessen that 
 labour-intensive task. \shortciteANP{Breen2004}~\citeyear{Breen2004} proposed 
 a multi-index dictionary that bears the potential to support the creation of 
-structured character databases. Besides the alleviation of the database creation, 
+structured character databases. Besides the alleviation of the database creation,
 the storage space used is limited, which will be advantageous when building a 
 system for small computing devices.
 
@@ -1119,8 +1120,8 @@ network~\shortcite{LiuJaegerNakagawa2004}.
 Classifying an input pattern representation as an entry found in a pattern 
 database is the kernel of each pattern recognition application.
 Representing data in the same format as the original patterns 
-(see~\ref{sec:olccr:patterndescription} is another key task, however the actual
-classification is the main piece of software.
+(see section~\ref{sec:olccr:patterndescription} is another key task, however 
+the actual classification is the main piece of software.
 In this section, different kinds of classification are reviewed to fit with
 the different kinds of pattern description. The two main groups of 
 classification methods are reviewed: \emph{structural classification} and 
@@ -1149,12 +1150,12 @@ coarse classification is \emph{dynamic candidate
 selection}~\shortcite{LiuJaegerNakagawa2004}.
 
 \paragraph{Class Set Partitioning} methods divide the large set of characters  
-into smaller groups - character classes. These groups can be completely disjoint 
-or sometimes overlap. The system assigns the input pattern to one or more 
-character classes. After that, in the next step of the recognition process, 
-the input pattern is compared to the members of the character class it has been 
-assigned to. The groups are devised in the database design 
-phase~\shortcite{LiuJaegerNakagawa2004}.
+into smaller groups, so-called \emph{character classes}. These groups can be 
+completely disjoint or sometimes overlap. The system assigns the input pattern 
+to one or more character classes. After that, in the next step of the 
+recognition process, the input pattern is compared to the members of 
+the character class it has been assigned to. The groups are devised in the 
+database design phase~\shortcite{LiuJaegerNakagawa2004}.
 
 \paragraph{Dynamic Candidate Selection} methods calculate a matching score between 
 the input pattern and each character class. A subset of character classes is 
@@ -1196,9 +1197,8 @@ character model in the character database. Elastic matching is performed on
 ordered stroke sequences and contains stroke deformation techniques. 
 Relational matching considers the strokes and the interstroke relationships, 
 whereas stroke matching only considers the strokes, but not their relations 
-to each other. \emph{Hierarchical matching} and \emph{deformation methods} are 
-connected to these approaches in an orthogonal fashion, i.e., they can be combined
-with the approaches mentioned above.
+to each other. \emph{Hierarchical matching} and \emph{deformation methods} can
+be combined with the matching approaches mentioned above.
 
 \paragraph{Hierarchical Matching} can improve recognition speed, because parts 
 of the recognition and representation are done only once for several characters.
@@ -1230,7 +1230,7 @@ techniques described in section~\ref{sec:curvematching}. Elastic matching
 searches for the ordered correspondence between primitive symbols, such as 
 coordinate points or line segments. During that process the algorithm seeks to
 minimise the edit distance (\emph{Levenshtein distance}). A popular elastic 
-matching technique is called \emph{Dynamic time warping} (DTW), which is used by
+matching technique is called \emph{Dynamic Time Warping} (DTW), which is used by
 many different systems, especially the systems concerned with HWR for scripts that
 have rather curvy characters like Tamil~\shortcite{Joshi2004b,Niels2005} or 
 Devanāgarī~\shortcite{Joshi2005}, but has also been applied to HWR of
@@ -1241,10 +1241,11 @@ that task at all. Both conclude that the method bears advantages, because
 certain problems concerning handwritten input, such as stroke length, or number 
 of sample points can be dealt with.
 
-\paragraph{Relational Matching} systems search for correspondences between element sets. 
-That is, for example the spatial relationships between strokes in a set of 
-strokes in a character representation. Since the stroke order within radicals
-tends to be invariant, it is possible to perform elastic matching for the strokes
+\paragraph{Relational Matching} systems search for correspondences between 
+element sets. That is, for example the spatial relationship between the 
+individual strokes in a set of strokes in a character representation. 
+Since the stroke order within radicals tends to be invariant, 
+it is possible to perform elastic matching for the strokes
 within the radical and use relational matching for the strokes on a character 
 level. Just like elastic matching and stroke matching, relational matching can
 be performed by systems focusing on character patterns or radicals.
@@ -1279,10 +1280,10 @@ matching score of an input pattern respective to a character model can be
 computed using the joint probability of constituent 
 strokes~\shortcite{LiuJaegerNakagawa2004}.
 
-\paragraph{HMM-based Classification} has been a popular method in recent years of
+\paragraph{HMM-based Classification} has been used frequently in recent years of
 research in OLCCR systems. The recognition task is the decoding of the 
 observed sequence (i.e., the input sequence) into the most probable state 
-sequence. This is done with the Viterbi algorithm, that is very popular for
+sequence. This is done with the Viterbi algorithm that is very popular for
 these types of decoding tasks, such as automated 
 translation~\shortcite{KoehnHoang2007}. Radicals can be represented in HMMs and 
 therefore be shared between different characters in the character database.
