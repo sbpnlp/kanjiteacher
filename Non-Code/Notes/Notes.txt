@@ -7,3 +7,10 @@ What if I put the point coordinates into a byte stream?
 
 Bibliography links:
 http://users.erols.com/rwservices/pens/biblio70.html#GoldbergHE15
+
+idea for changing the algorithm:
+input strokes come in
+look for radicals that match
+use that as a coarse classifiaction
+characters that have matching radicals will be analysed further
+
