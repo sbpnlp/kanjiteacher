@@ -216,13 +216,13 @@ contains 50 characters.
 \end{itemize}
 
 The overall recognition accuracy will be calculated as a measure of
-the \(n\)-best matches for a character input. \(N\) is defined as the number
-of the \(n\)-best match that will still be considered.
-That is, if \(N = 1\) only the best match will be considered, if \(N = 3\)
-the best three matches will be taken into account.
+the \(n\)-best matches for a character input. \(N\) is defined as the
+lowest position in the list of \(n\)-best matches that will still be considered 
+as a match of a character. That is, if \(N = 1\) only the best match will 
+be considered, if \(N = 3\) the best three matches will be taken into account.
 The overall recognition accuracy \(A_{N}\) is defined as the weighted 
-percentage of correctly recognised characters when taking the \(n\)-best 
-matches up to \(N\) into account. The number of samples will be called \(S\).
+percentage of correctly recognised characters when taking the \(N\) best 
+matches account. The number of samples will be called \(S\).
 \(n\) is an integer between \(1\) and \(N\). If a character has a 
 confidence value high enough to be the \(n\)-best match, \(\frac{1}{n}\) will
 be added to the number of correctly recognised characters.
@@ -232,20 +232,25 @@ correct matches. If the correct character is the second best match,
 \(\frac{1}{2}\) will be added. If the character has been recognised as the 
 \(n\)-best match, but \(n > N\) or the character has not been recognised at all,
 nothing will be added. \(f\) is a helper function that returns a value
-according to the relation between \(n\) and \(N\).
- \(A_N\) will be calculated as follows:
+according to the relation between \(n\) and \(N\). The variable
+\(n_{i}\) denotes the position of the \(i^{\text{th}}\) input character in
+the list of best matches for that character. \(n_{i}\) serves as an input
+value for \(f\). \(A_N\) will be calculated as follows:
+\begin{quote}
+  \(
+    f(n):=
+    \begin{cases}
+      \frac{1}{n} & \quad \text{if $n \leq N$} \\
+      0 & \quad \text{if $n > N$}
+    \end{cases}
+  \)
+\end{quote}
+\begin{quote}
+  \(
+    A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(n_{i})}
+  \)
+\end{quote}
 
- \begin{quote}
- \(
-f(n):=
-  \begin{cases}
-    \frac{1}{n} & \quad \text{if $n \leq N$}\\
-    0 & \quad \text{if $n > N$}
-  \end{cases}
-
-     A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(n)} 
- \)
- \end{quote}
 
  % \begin{quote}
  % \(
