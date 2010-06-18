@@ -205,21 +205,24 @@ be interesting to see the accuracy of a Radical recognition.
 \subsubsection{Metrics Details}
 \label{sec:eval:metricsdetails}
 
+The lexicon is a sample lexicon that contains 50 characters. That circumstance
+has to be kept in mind when comparing the evaluation results to other
+systems. Creating a lexicon entry for a single character is a labourious task.
+It would be outside the scope of the thesis to create a large lexicon.
 Three experiments will be conducted in order to evaluate the analytical
-handwriting recognition engine. The lexicon so far is a sample lexicon that 
-contains 50 characters.
+handwriting recognition engine:
+\begin{enumerate}
+  \item \textbf{Overall recognition accuracy} \label{eval:enum:overall}
+  \item \textbf{Error recognition accuracy} \label{eval:enum:errorrecognition}
+  \item \textbf{Substructure recognition accuracy} \label{eval:enum:substructure}
+\end{enumerate}
 
-\begin{itemize}
-  \item \textbf{Overall recognition accuracy}
-  \item \textbf{Error recognition}
-  \item \textbf{Substructure recognition accuracy}
-\end{itemize}
-
-The overall recognition accuracy will be calculated as a measure of
-the \(n\)-best matches for a character input. \(N\) is defined as the
-lowest position in the list of \(n\)-best matches that will still be considered 
-as a match of a character. That is, if \(N = 1\) only the best match will 
-be considered, if \(N = 3\) the best three matches will be taken into account.
+The overall recognition accuracy (experiment~\ref{eval:enum:overall}) will 
+be calculated as a measure of the \(n\)-best matches for a character input. 
+\(N\) is defined as the lowest position in the list of \(n\)-best matches 
+that will still be considered as a match of a character. 
+That is, if \(N = 1\) only the best match will be considered, 
+if \(N = 3\) the best three matches will be taken into account.
 The overall recognition accuracy \(A_{N}\) is defined as the weighted 
 percentage of correctly recognised characters when taking the \(N\) best 
 matches account. The number of samples will be called \(S\).
@@ -238,7 +241,7 @@ the list of best matches for that character. \(n_{i}\) serves as an input
 value for \(f\). \(A_N\) will be calculated as follows:
 \begin{quote}
   \(
-    f(n):=
+    f(n, N):=
     \begin{cases}
       \frac{1}{n} & \quad \text{if $n \leq N$} \\
       0 & \quad \text{if $n > N$}
@@ -250,33 +253,43 @@ value for \(f\). \(A_N\) will be calculated as follows:
     A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(n_{i})}
   \)
 \end{quote}
+Different possibilities exist for the definition of a baseline for that 
+experiment. A baseline based on pure randomness would be \(\frac{1}{C}\) with
+\(C\) representing the number of characters in the database. For \(C = 50\) 
+the baseline would then be \(\frac{1}{C} = \frac{1}{50} = 0.02\).
+That is already a very low baseline. The larger the lexicon grows the
+lower the baseline for evaluation. For a lexicon that contains around 2,000 
+characters and covers the Jōyō Kanji the baseline would come down to
+\(\frac{1}{C} = \frac{1}{2000} = 0.0005\).
+This baseline is certainly not sufficient to measure the quality of a 
+recognition system. However, a significant baseline can be defined 
+with the formula for the computation of \(A_N\) and generous assumptions
+about the accuracy of the recognition: \\
+Assume, \(N = 3\) and all the sample characters are among the first three 
+matches in the list of matches, equally partitioned.
+Then one third would yield \(n = 1\) with \(f(n) = 1\),
+another third yield \(n = 2\) with \(f(n) = \frac{1}{2}\),
+and the last third yield \(n = 3\) with \(f(n) = \frac{1}{3}\).
+That leads to a baseline (\(B\)) calculation as follows:
+\begin{quote}
+  \(
+    B := \frac{1}{S} \cdot (\sum\limits_{i=1}^{\frac{S}{3}}{f(1,3)} + \sum\limits_{i=1}^{\frac{S}{3}}{f(2,3)} + \sum\limits_{i=1}^{\frac{S}{3}}{f(3,3)}) \\
+       = \frac{1}{S} \cdot (\sum\limits_{i=1}^{\frac{S}{3}}{1} + \sum\limits_{i=1}^{\frac{S}{3}}{\frac{1}{2}} + \sum\limits_{i=1}^{\frac{S}{3}}{\frac{1}{3}}) \\
+       = \frac{1}{S} (\frac{S}{3} + \frac{S}{3 \cdot 2} + \frac{S}{3 \cdot 3}) 
+       = \frac{1}{3} + \frac{1}{6} + \frac{1}{9}
+       = \frac{11}{18} = 0.61
+  \)
+\end{quote}
 
+It would be interesting to define
 
- % \begin{quote}
- % \(
- %     A_N := \sqrt{(x_{i+1}-x_{i})^2+(y_{i+1}-y_{i})^2}\\
- %     l := \sum\limits_{i=1}^{N-1}{d_i} \\
- %     <x_{min} - \frac{s-w}{2},y_{min}> & \quad \text{if $s$ equals $h$}\\
- % \)
- % \end{quote}
-
-
-
-
-
+The error recognition accuracy (experiment~\ref{eval:enum:errorrecognition}) 
+will 
 
         For the experiment concerning the overall recognition accuracy 
         two writers wrote all 50 characters as input for the system.
         The overall will be calculated as the average of the 
         The percentage of correctly recognised characters
-
-
-
-
-
-
-\subsubsection{Baseline Definition}
-\label{sec:eval:baselinedefinition}
 
 
 % grundsaetzliches:
