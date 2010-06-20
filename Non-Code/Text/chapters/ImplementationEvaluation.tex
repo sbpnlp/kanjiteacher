@@ -221,16 +221,19 @@ The overall recognition accuracy (experiment~\ref{eval:enum:overall}) will
 be calculated as a measure of the \(n\)-best matches for a character input. 
 \(N\) is defined as the lowest position in the list of \(n\)-best matches 
 that will still be considered as a match of a character. 
-That is, if \(N = 1\) only the best match will be considered, 
-if \(N = 3\) the best three matches will be taken into account.
+That is, if \(N\) is set to \(1\), then only the best match will be considered.
+If \(N = 3\), the best three matches will be taken into account.
 The overall recognition accuracy \(A_{N}\) is defined as the weighted 
 percentage of correctly recognised characters when taking the \(N\) best 
 matches account. The number of samples will be called \(S\).
-\(n\) is an integer between \(1\) and \(N\). If a character has a 
-confidence value high enough to be the \(n\)-best match, \(\frac{1}{n}\) will
-be added to the number of correctly recognised characters.
-That means if a character is the best match, then \(n = 1\). 
-Therefore \(\frac{1}{n} = \frac{1}{1} = 1\) will be added to the nuber of 
+\(n\) is an integer that marks the position in the list of \(n\)-best matches.
+The values for \(n\) that will be considered for the evaluation lie 
+on the open interval \(]1,N[\). If an input produces a confidence value 
+for a character recognition high enough to be in a position where \(n \leq N\), 
+then \(\frac{1}{n}\) will be added to the number of correctly 
+recognised characters.
+That means, if a character is the best match, then \(n = 1\). 
+Therefore \(\frac{1}{n} = \frac{1}{1} = 1\) will be added to the number of 
 correct matches. If the correct character is the second best match, 
 \(\frac{1}{2}\) will be added. If the character has been recognised as the 
 \(n\)-best match, but \(n > N\) or the character has not been recognised at all,
@@ -253,6 +256,20 @@ value for \(f\). \(A_N\) will be calculated as follows:
     A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(n_{i})}
   \)
 \end{quote}
+An example for the application of that term would be to set \(N = 1\).
+Only the best match will be considered for an input.
+If 100 input sequences are tested, then \(S=100\). 
+Say, the input yields a high confidence value for the correct character,
+so that the character becomes the most salient in the list of best matches
+and occupies the first position. Then \(f(1,1)\) yields \(1\).
+Therefore, in the summation of the \(f(n_{i}\) the value \(1\) will be added
+for each correctly recognised character.
+If \(69\) of the \(100\) input characters are correctly recognised,
+then \(A_{N} = A_{1} = \frac{1}{100} \cdot 69\). That would equal a 
+result of \(69\%\). The key to this evaluation method is of course the 
+value of \(N\). Multiple experiments with different \(N\)-values will be 
+conducted for best comparability.
+
 Different possibilities exist for the definition of a baseline for that 
 experiment. A baseline based on pure randomness would be \(\frac{1}{C}\) with
 \(C\) representing the number of characters in the database. For \(C = 50\) 
