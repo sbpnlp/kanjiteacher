@@ -24,8 +24,8 @@ namespace Testing
             //TestRadicalHashing();
             //TestCharacterHashing();
             //TestIsolatedStorage();
-            TestHashTable();
-            //TestInkMLReading();
+            //TestHashTable();
+            TestInkMLReading();
             //TestPointHashing();
             //RunConverter();
             //TestAddZeros();
@@ -52,9 +52,14 @@ namespace Testing
 
             //initialise viewing area
             MirrorArea ma = new MirrorArea(plso);
-//            List<Stroke> strokes = InkMLReader.ReadInkMLFile("char02211.inkml");
-            //List<Stroke> strokes = InkMLReader.ReadInkMLFile("char00846.inkml");
-            List<Stroke> strokes = InkMLReader.ReadInkMLFile("char00555.inkml");
+            List<Stroke> strokes = new List<Stroke>();
+            //strokes = InkMLReader.ReadInkMLFile("char02211.inkml");
+            //strokes = InkMLReader.ReadInkMLFile("char00846.inkml");
+            //strokes = InkMLReader.ReadInkMLFile("char00555.inkml");
+            //strokes = InkMLReader.ReadInkMLFile("char00117.inkml");
+            //strokes = InkMLReader.ReadInkMLFile("char00935.inkml");
+            strokes = InkMLReader.ReadInkMLFile("char00117vs935hybrid.inkml");
+            
             
             //go through all the strokes in the file
             //fill viewing area

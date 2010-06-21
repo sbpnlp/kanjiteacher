@@ -453,10 +453,11 @@ that is with decreasing strictness the recognition results rise.
 The range of the weighted accuracy results goes from 70\% for \(N=1\) 
 up to 81\% for \(N=5\). Taking into account even greater ranks up 
 to \(N = 10\) in the list of \(n\)-best matches increased the result slightly
-to 82\%.
+to 82\%. This development can also be seen in the chart in 
+figure~\ref{fig:eval:overallrecognitionresults}.
 \begin{table}[htbp]
 \begin{center}
-  \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|p{200pt}|}
+  \begin{tabular}{|c|c|c|c|c|c|c|c|c|c|c|c|c|p{200pt}|}
     \hline
 N & A_N  &WNRC/90&  1 & 2 & 3 & 4  & 5 & 6 & 7 & 8 & 9 & 10 \\
     \hline
@@ -485,6 +486,14 @@ N & A_N  &WNRC/90&  1 & 2 & 3 & 4  & 5 & 6 & 7 & 8 & 9 & 10 \\
 \caption{Overall recognition results.}
 \label{table:eval:overallrecognitionresults}
 \end{table}
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[scale=0.5]{images/weightedAccuracyOverall.png}
+    \caption{Overall recognition results chart}
+    \label{fig:eval:overallrecognitionresults}
+  \end{center}
+\end{figure}
+
 \paragraph{Result Interpretation.}
 As mentioned earlier, the characters bear a lot of potential for confusion,
 since many of the database characters have been chosen by their key Radical
@@ -542,12 +551,15 @@ The metrics for the substructure recognition are essentially the same as for
 the overall evaluation.
 The difference is that only the first three entries in the \(n\)-best list
 will be considered. The structures are smaller, need less analysis, do not
-have further substructures exept the individual strokes. The expectancy
-is that the evaluation results are higher than those of the overall recognition
-accuracy.
+have further substructures exept the individual strokes. 
+As expected, the evaluation results are higher than those of the overall 
+recognition accuracy. The general trend can be seen in 
+figure~\ref{fig:eval:substructurerecognitionresults}, the complete data is
+layed out in table~\ref{table:eval:substructurerecognitionresults}.
+
 \begin{table}[htbp]
 \begin{center}
-  \begin{tabular}{|l|l|l|l|l|l|p{200pt}|}
+  \begin{tabular}{|c|c|c|c|c|c|p{200pt}|}
     \hline
 N &  A_N & WNRC/75&  1 & 2 & 3 \\
     \hline
@@ -562,6 +574,15 @@ N &  A_N & WNRC/75&  1 & 2 & 3 \\
 \caption{Substructure recognition results.}
 \label{table:eval:substructurerecognitionresults}
 \end{table}
+
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[scale=0.5]{images/weightedAccuracySubstructures.png}
+    \caption{Substructure recognition results chart}
+    \label{fig:eval:substructurerecognitionresults}
+  \end{center}
+\end{figure}
+
 \paragraph{Result Interpretation.}
 As expected, the accuracy of the recognition results for the substructures
 was higher than the overall character recogniton accuracy.
@@ -569,7 +590,54 @@ The substructure recognition is more robust as it does not have a segmentation
 problem. Each input sequence is known to be a full substructure. 
 During the recognition process the database needs to be searched for 
 substructures. If a matching structure is found the process is completed.
+The same pattern like in overall recognition accuracy can be observed 
+concerning the lower positions in the list of \(n\)-best matches.
+
 
 \subsubsection{Error Recognition Accuracy Results}
 \label{sec:eval:resulterrorrecognition}
 
+The error recognition evaluation required more manual work than the overall 
+recognition or substructure recognition evaluation. This is due to the fact
+that errors had to be produced intelligently in order for the error recognition
+to pick them up. Therefore, this evaluation type has to be seen more as a 
+qualitative analysis, rather than a pure quantitative evaluation.
+One writer created 30 characters, including 20 characters with errors,
+i.e.\ 20 characters where one Radical had been replaced with another one
+or with garbled input. Figure~\ref{fig:eval:botsuumiprintvsdrawn} shows the
+characters~\cjk{没} (Jap.\ pron.\ \emph{botsu}; Eng.\ 'sink') %935
+and~\cjk{海} (Jap.\ pron.\ \emph{umi}; Eng.\ 'sea') %117
+both in print and handwritten versions.
+The two characters share the same key Radical the 'water'-Radical, on the left
+side (marked in red). On the right side, the lower Radical is fairly distinct
+and therefore no cause of confusion. In fact~\cjk{海} contains the 
+'mother'-Radical~\cjk{母} (marked in purple), 
+while~\cjk{没} contains the 'again'-Radical~\cjk{又} (marked in purple), 
+which looks very similar to the 'father'-Radical~\cjk{父}.
+This fact could be a cause for semantic confusion but not for a 
+graphical confusion.
+The upper Radical on the right in both characters is a small two-stroke
+Radical that can easily be confused with another small two-stroke 
+Radical (marked in green). This danger of confusion exists both for a user 
+and for the character recogniser. 
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[scale=0.75]{images/char935vsChar117HandwrittenMarked.png}
+    \caption{Characters \cjk{没} (\emph{botsu}, 'sink') and \cjk{海} (\emph{umi}, 'sea')}
+    \label{fig:eval:botsuumiprintvsdrawn}
+  \end{center}
+\end{figure}
+In case of a confusion of the two Radicals in the upper right corner of 
+the character the user might produce an input like the one in 
+figure~\ref{fig:eval:hybrid935and117}.
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[scale=0.57]{images/char935and117HybridMarked.png}
+    \caption{Confusion between the characters \cjk{没} (\emph{botsu}, 'sink') and \cjk{海} (\emph{umi}, 'sea')}
+    \label{fig:eval:hybrid935and117}
+  \end{center}
+\end{figure}
+Non-existing blended characters like the one shown in 
+figure~\ref{fig:eval:hybrid935and117} have been created as erroneous input.
+
+xxx ein kleines bisschen mehr kommt hier noch xxx
