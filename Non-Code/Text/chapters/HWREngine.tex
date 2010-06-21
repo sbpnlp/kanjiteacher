@@ -696,87 +696,89 @@
 % handwriting recognition for Kanji characters in a learning environment.
 % The section describes both the file format and the run-time data structure.
 
-% \subsubsection{Point Data Format}
-% \label{sec:hwre:pointdataformat}
+\subsubsection{Point Data Format}
+\label{sec:hwre:pointdataformat}
 
-% In UPX, points are not represented directly, but in an outsourced InkML file,
-% where they are part of the InkML standard pen trajectory definition. In InkML
-% files, points are stored in traces as specified in the InkML format description.
-% \begin{xmlcode}
-%   \begin{lstlisting}[emph={traceFormat,channel,timestamp},
-%                      emphstyle=\color{blue}\textbf,
-%                      emph={[2]name,type,units,respectTo,id,time},
-%                      emphstyle={[2]\color{red}},
-%                      caption={Definition of the trace format},
-%                      label=lst:traceformat]
-%     <timestamp xml:id="ts001" 
-%                time="1265122414000"/>
-%     <traceFormat xml:id="KanjiStrokeTrace">
-%       <channel name="X" type="decimal" />
-%       <channel name="Y" type="decimal" />
-%       <channel name="T" type="integer"
-%                         units="ms"
-%                         respectTo="#ts001" />
-%     </traceFormat>
-%   \end{lstlisting}
-% \end{xmlcode}
-% Listing~\ref{lst:traceformat} shows the trace format description as used in
-% the system. The format consists of three channels that are given in ordered 
-% sequence. There are no intermittent channels. The first two channels are \emph{X}
-% and \emph{Y} for the pen coordinates. The third channel is \emph{T} for a time 
-% stamp. The pen coordinates can be given as \emph{decimal} numbers, while the
-% time stamp (in milliseconds) must be an \emph{integer}.
-% The \emph{respectTo} attribute in the time channel indicates that all values
-% must be interpreted as offsets to the time stamp with the id \emph{ts001}.
+In UPX, points are not represented directly, but in an outsourced InkML file,
+where they are part of the InkML standard pen trajectory definition. In InkML
+files, points are stored in traces as specified in the InkML format description.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={traceFormat,channel,timestamp},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]name,type,units,respectTo,id,time},
+                     emphstyle={[2]\color{red}},
+                     caption={Definition of the trace format},
+                     label=lst:traceformat]
+    <timestamp xml:id="ts001" 
+               time="1265122414000"/>
+    <traceFormat xml:id="KanjiStrokeTrace">
+      <channel name="X" type="decimal" />
+      <channel name="Y" type="decimal" />
+      <channel name="T" type="integer"
+                        units="ms"
+                        respectTo="#ts001" />
+    </traceFormat>
+  \end{lstlisting}
+\end{xmlcode}
+Listing~\ref{lst:traceformat} shows the trace format description as used in
+the system. The format consists of three channels that are given in ordered 
+sequence. There are no intermittent channels. The first two channels are \emph{X}
+and \emph{Y} for the pen coordinates. The third channel is \emph{T} for a time 
+stamp. The pen coordinates can be given as \emph{decimal} numbers, while the
+time stamp (in milliseconds) must be an \emph{integer}.
+The \emph{respectTo} attribute in the time channel indicates that all values
+must be interpreted as offsets to the time stamp with the id \emph{ts001}.
 
-% An actual trace would then contain three values, each value triple separated by
-% a comma. The trace format definition ensures the correct interpretation of the 
-% values.
-% \begin{xmlcode}
-%   \begin{lstlisting}[emph={trace,channel},
-%                      emphstyle=\color{blue}\textbf,
-%                      emph={[2]name,type,units,respectTo,id},
-%                      emphstyle={[2]\color{red}},
-%                      caption={A sample trace},
-%                      label=lst:traceinterpreation]
-%     <trace id="id123abc">
-%       45 76 0, 3 5 100, 4 -8 200, 4 -5 300,
-%       9 -2 400, ...
-%     </trace>
-%   \end{lstlisting}
-% \end{xmlcode}
-% Listing~\ref{lst:traceinterpreation} shows a trace. Given the file contains
-% the trace format definition shown in listing~\ref{lst:traceformat}, the trace 
-% in listing~\ref{lst:traceinterpreation} is interpreted in 
-% table~\ref{table:sampletraceinterpretation}. 
+An actual trace would then contain three values, each value triple separated by
+a comma. The trace format definition ensures the correct interpretation of the 
+values.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={trace,channel},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]name,type,units,respectTo,id},
+                     emphstyle={[2]\color{red}},
+                     caption={A sample trace},
+                     label=lst:traceinterpreation]
+    <trace id="id123abc">
+      45 76 0, 3 5 100, 4 -8 200, 4 -5 300,
+      9 -2 400, ...
+    </trace>
+  \end{lstlisting}
+\end{xmlcode}
+Listing~\ref{lst:traceinterpreation} shows a trace. Given the file contains
+the trace format definition shown in listing~\ref{lst:traceformat}, the trace 
+in listing~\ref{lst:traceinterpreation} is interpreted in 
+table~\ref{table:sampletraceinterpretation}. 
 
-% \begin{table}[htbp]
-%   \begin{tabular}{|l||l|l|l|p{200pt}|}
-%     \hline
-%     Trace & Channel X & Channel Y & Channel T & Comment \\
-%     \hline
-%     45 76 0 & 45 & 76  & 1265122414000 & The first trace initialises 
-%                                          the values. The time stamp value is
-%                                          read from timestamp \emph{ts001}. \\
-%     \hline
-%     3 5 100 & 48 & 81 &  1265122414100 & The delta values are added to the
-%                                          existing data. \\
-%     \hline
-%     4 -8 200 & 52 & 73 &  1265122414200 & The time stamp values are relative to
-%                                           \emph{ts001}, not to the last time 
-%                                           stamp, unlike the pen coordinate 
-%                                           deltas that are added to the current 
-%                                           value trace by trace. \\
-%     \hline
-%     4 -5 300 & 56 & 68 &  1265122414300 & Negative values are treated as regular
-%                                           delta values. \\
-%     \hline
-%     9 -2 400 & 65 & 66 &  1265122414400 & The values change as expected. \\
-%     \hline
-%   \end{tabular}
-% \caption{Sample trace interpretation}
-% \label{table:sampletraceinterpretation}
-% \end{table}
+\begin{table}[htbp]
+\begin{center}
+  \begin{tabular}{|l||l|l|l|p{200pt}|}
+    \hline
+    Trace & Channel X & Channel Y & Channel T & Comment \\
+    \hline
+    45 76 0 & 45 & 76  & 1265122414000 & The first trace initialises 
+                                         the values. The time stamp value is
+                                         read from timestamp \emph{ts001}. \\
+    \hline
+    3 5 100 & 48 & 81 &  1265122414100 & The delta values are added to the
+                                         existing data. \\
+    \hline
+    4 -8 200 & 52 & 73 &  1265122414200 & The time stamp values are relative to
+                                          \emph{ts001}, not to the last time 
+                                          stamp, unlike the pen coordinate 
+                                          deltas that are added to the current 
+                                          value trace by trace. \\
+    \hline
+    4 -5 300 & 56 & 68 &  1265122414300 & Negative values are treated as regular
+                                          delta values. \\
+    \hline
+    9 -2 400 & 65 & 66 &  1265122414400 & The values change as expected. \\
+    \hline
+  \end{tabular}
+\end{center}
+\caption{Sample trace interpretation}
+\label{table:sampletraceinterpretation}
+\end{table}
 
 % \paragraph{The run-time data structure} for a point holds the coordinate values 
 % and an integer value for the time stamp. The conversion between the run-time 
@@ -1314,7 +1316,7 @@
 % A \emph{bounding box} is the smallest box surrounding a graphic object.
 % In this prototype, bounding boxes are rectangles with the same height and width.
 % Rectangles are defined as a 3-tuple of a handle point, a height and a width.
-% \(R:= <<x,y>, w, y>\) where the 2-tuple \(<x,y>\) is a point in the coordinate
+% \(R:= \langle \langle x,y \rangle , w, y \rangle \rangle \) where the 2-tuple \(\langle x,y \rangle \) is a point in the coordinate
 % system with the decimal values \(x\) and \(y\) as coordinates, 
 % \(h\) is the \(y\)-height of the rectangle and \(w\) is the \(x\)-width.
 % In order to find an extended square bounding box of any sequence of points,
@@ -1322,17 +1324,17 @@
 % values for \(x\) and \(y\). 
 % \begin{quote}
 % \(
-%   C_{x_{min}} := <x_{min}, y_1> \\
-%   C_{x_{max}} := <x_{max}, y_2> \\
-%   C_{y_{min}} := <x_1, y_{min}> \\
-%   C_{y_{max}} := <x_2, y_{max}> 
+%   C_{x_{min}} := \langle x_{min}, y_1 \rangle \\
+%   C_{x_{max}} := \langle x_{max}, y_2 \rangle  \\
+%   C_{y_{min}} := \langle x_1, y_{min} \rangle  \\
+%   C_{y_{max}} := \langle x_2, y_{max} \rangle  
 % \)
 % \end{quote}
 % The intermediate handle point \(H_{intermediate}\), the width \(w\) and 
 % height \(h\) of the minimal bounding box \(B'\) can be calculated as follows: 
 % \begin{quote}
 % \(
-%   H_{intermediate} := <x_{min}, y_{min}>  \\
+%   H_{intermediate} := \langle x_{min}, y_{min} \rangle   \\
 %   w := x_{max} - x_{min} \\
 %   h := y_{max} - y_{min} \\
 %   s := \operatorname{arg\,max}(w,h)
@@ -1343,19 +1345,19 @@
 % \(
 %   H := 
 %   \begin{cases}
-%    <x_{min} - \frac{s-w}{2},y_{min}> & \quad \text{if $s$ equals $h$}\\
-%    <x_{min}, y_{min} - \frac{s-h}{2}> & \quad \text{if $s$ equals $w$}\\
+%    \langle x_{min} - \frac{s-w}{2},y_{min} \rangle  & \quad \text{if $s$ equals $h$}\\
+%    \langle x_{min}, y_{min} - \frac{s-h}{2} \rangle  & \quad \text{if $s$ equals $w$}\\
 %   \end{cases}
 % \)
 % \end{quote}
 % The minimal bounding box \(B'\) is a rectangle with the following values:
 % \begin{quote}
-%   \(B' := <H_{intermediate}, w, h>\).
+%   \(B' := \langle H_{intermediate}, w, h \rangle \).
 % \end{quote}
 % The extended, square bounding box \(B\) is a rectangle with the 
 % following values:
 % \begin{quote}
-%   \(B := <H, s, s>\)
+%   \(B := \langle H, s, s \rangle \)
 % \end{quote}
 % The use of boxing has more than one function in the prototype. One of the uses 
 % is distortion-free scaling (see section~\ref{sec:hwre:scaling}). Another function
@@ -1399,7 +1401,7 @@
 % vectorial projection. In a stroke data structure that consists of a point
 % sequence \(p_1, \ldots, p_n\)  a number of vectors 
 % \(\vec{v}_1, \ldots, \vec{v}_n\) is created. Each vector is defined by the
-% handle point \(H = <x_h, y_h>\) of a square bounding box and the \(p_i\).
+% handle point \(H = \langle x_h, y_h \rangle \) of a square bounding box and the \(p_i\).
 % \begin{quote}
 % \(
 %   \vec{v}_k := p_k-H = \binom{x_{p_k}-x_h}{y_{p_k}-y_h}
@@ -1774,7 +1776,7 @@ third dimension is a different type of coordinate.
   d_i := \sqrt{(x_{i,db}-x_{i,exp})^2+(y_{i,db}-y_{i,exp})^2+(z_{i,db}-z_{i,exp})^2} 
 \)
 \end{quote}
-\(<x_i, y_i>\) are the regular 2-dimensional point coordinates, 
+\(\langle x_i, y_i \rangle \) are the regular 2-dimensional point coordinates, 
 while the \(z_i\) are the relative times from the beginning of the stroke.
 The actual DTW algorithm works exactly the same, the difference lies in 
 the distance calculation.
@@ -1839,7 +1841,7 @@ and \(F_{exp} \), the following values are considered:
         \text{Position of bounding box} & P \\
         \text{Size of bounding box} & S \\
         \text{Stroke matching values} & m_{i,j} \\ 
-        \text{Stroke sequence} & <s_1,\ldots,s_n> \\
+        \text{Stroke sequence} & \langle s_1,\ldots,s_n \rangle  \\
     \end {array} 
     \right)
 \)
@@ -1889,7 +1891,7 @@ If two identical stroke sequences are analysed, the ideal is fulfilled.
 Any deviance from these constraints will be penalised and leads to a lower
 confidence value for the Radical match. The matrix is the source for both 
 the features of the stroke matching values \(m_{i,j}\)) and the stroke sequence
-\(<s_1,\ldots,s_n>\). A deviance from the diagonal path means deviance from the 
+\(\langle s_1,\ldots,s_n \rangle \). A deviance from the diagonal path means deviance from the 
 ideal stroke sequence.
 
 % - Why this section? 
@@ -1995,8 +1997,8 @@ The confidence value \(C_n\) for the number of Radicals is computed as follows:
 \end{quote}
 The confidence value \(C_p\) for the Radical positions is extracted from a 
 matrix of Euclidean distances between the Radical handles 
-\(P_{i,db} = <x_{i,db},y_{i,db}> \) and 
-\(P_{i,exp} = <x_{i,exp}, y_{i,exp}> \). All the distance values \( \mu_{i,j}\) are 
+\(P_{i,db} = \langle x_{i,db},y_{i,db} \rangle  \) and 
+\(P_{i,exp} = \langle x_{i,exp}, y_{i,exp} \rangle  \). All the distance values \( \mu_{i,j}\) are 
 computed first to generate a Matrix of Radical position distances 
 \( M_{m,n}\), where
 \( n = n_{r,db} \) and \( m = n_{r,exp} \).

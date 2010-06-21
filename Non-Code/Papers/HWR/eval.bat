@@ -13,11 +13,7 @@ sumatra joshi2005machinerecognition.pdf c5
 sumatra NegussieMaster2006.pdf s40
 sumatra Nakai_2003_10.1.1.58.4029.pdf c42
 sumatra Okumura2005_10.1.1.78.8777.pdf c53
-x tappert1990_pen-tappert_TheStateArtHandWriting.pdf s802
-x JaegerOnlineReco2004.pdf c82 s10
-x joshi2004.pdf c6
+sumatra tappert1990_pen-tappert_TheStateArtHandWriting.pdf s802
+sumatra JaegerOnlineReco2004.pdf c82 s10
+sumatra joshi2004.pdf c6
 
-
-
-
-25 innen , 13 aussen

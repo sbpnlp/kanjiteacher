@@ -53,8 +53,49 @@
 %       it was not just taken from j.b. but it was intervowen?! (verflochten) 
 %       with the trajectories. where did I get these from? 
 %       how many chars are in the two dictionaries
+% grundsaetzliches:
+% evaluation soll kurz und qualitativ sein.
+% plausible fakten muessen nicht unbedingt untermaurert werden.
 
-\section{E-Learning Module Evalutation}
+% baseline eval vs.\ topline eval.
+% technik ermoeglicht erst lernmethode, diese methode ist besser als andere methode.
+% kriterium fuer qualitative eval:
+% reproduzierbarkeit des experiments.
+
+% evaluation method: counting precision and recall
+% section about precision and recall - the odd numbers.
+% how can that be done honest and useful?
+% how can I get meaningful numbers at all?
+
+
+\section{Evaluation of Other HWR Systems}
+\label{sec:eval:othersystems}
+
+The recognition rates reported in the literature are shown in 
+figure~\ref{fig:recognitionratesreported} borrowed 
+from~\shortciteANP{LiuJaegerNakagawa2004}~\citeyear{LiuJaegerNakagawa2004}.
+As a general trend it can be noted that the recognition rate of most systems
+lies between 85\% and 95\%. They believe that it is possible to achieve a 
+recognition rate of up to 98\% for regular scripts. On fluent scripts, however,
+they regard it as difficult to achieve a recognition rate above 90\%.
+The systems marked with an asterisk in figure~\ref{fig:recognitionratesreported}
+perform recognition for Chinese or Japanese characters. All of their recognition
+rates lie below 90\%. That performance measure sets a general context in which 
+the prototype system developed in this work might be arranged.
+However, the results of other systems are only comparable to the overall 
+recognition accuracy of the present system. Due to the different technical
+background and the aim of the system it is difficult to draw conclusions
+from the sheer comparisons of numbers. 
+(See section~\ref{sec:eval:overallrecognitionaccuracy} for more information.)
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[scale=0.6]{images/recognitionRatesLiuJaeger.png}
+    \caption{Recognition rates reported in the literature}
+    \label{fig:recognitionratesreported}
+  \end{center}
+\end{figure}
+
+\section{E-Learning Module Evaluation}
 \label{sec:eval:elearning}
 Generally, there are two main directions in the evaluation methodology
 for e-learning applications: the educationalist's approach and the 
@@ -95,7 +136,7 @@ Additionally, since the system is not just a structural but an analytical
 recognition system, the speed might be even lower.
 
 The factors memory requirements and speed are not of great interest in
-the context of this system. The system is an online system, but it
+the context of this system. The system is an on-line system, but it
 exclusively performs single character recognition. The focus lies a lot more on
 a detailed analysis of one character, rather than the high-speed recognition
 of a stream of characters. The system is an interactive system. 
@@ -123,29 +164,6 @@ recognition.
 
 For the reasons given above, the evaluation of the analytical handwriting 
 recognition engine will be limited to different types of accuracy measurements.
-
-
-\subsection{Evaluation of Other Systems}
-\label{sec:eval:othersystems}
-
-The recognition rates reported in the literature are shown in 
-figure~\ref{fig:recognitionratesreported} borrowed 
-from~\shortciteANP{LiuJaegerNakagawa2004}~\citeyear{LiuJaegerNakagawa2004}.
-As a general trend it can be noted that the recognition rate of most systems
-lies between 85\% and 95\%. They believe that it is possible to achieve a 
-recognition rate of up to 98\% for regular scripts. On fluent scripts, however,
-they regard it as difficult to achive a recognition rate above 90\%.
-The systems marked with an asterisk in figure~\ref{fig:recognitionratesreported}
-perform recognition for Chinese or Japanese characters. All of their recognition
-rates lie below 90\%. That performance measure sets a general context in which 
-the prototype system developed in this work might be arranged.
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[scale=0.6]{images/recognitionRatesLiuJaeger.png}
-    \caption{Recognition rates reported in the literature}
-    \label{fig:recognitionratesreported}
-  \end{center}
-\end{figure}
 
 \subsection{Development of Appropriate Evaluation Metrics}
 \label{sec:eval:developmentofevalmetrics}
@@ -193,7 +211,6 @@ as a substructure confusion error type.
 This detailed analysis creates a unique requirement for evaluation. Not only
 recognition accuracy must be measured and compared to other systems,
 but a new evaluation for the recognition of substructures is needed.
-
 It seems reasonable to measure the recognition accuracy in a plain 
 percentage of correctly recognised characters. 
 Precision and recall are the correct measurement for the recognition of 
@@ -202,78 +219,90 @@ true negatives and false negatives can be distinguished.
 Since the system can recognise pure substructures as well, it would 
 be interesting to see the accuracy of a Radical recognition.
 
-\subsubsection{Metrics Details}
-\label{sec:eval:metricsdetails}
-
 The lexicon is a sample lexicon that contains 50 characters. That circumstance
 has to be kept in mind when comparing the evaluation results to other
-systems. Creating a lexicon entry for a single character is a labourious task.
+systems. Creating a lexicon entry for a single character is a laborious task.
 It would be outside the scope of the thesis to create a large lexicon.
+Nevertheless, the characters have been chosen by graphic and
+semantic criteria in order to create more possiblities for confusion.
+There are many characters using the same key Radical, other characters
+that simply look similar, which might evoke difficulties 
+for both the learner and the system.
 Three experiments will be conducted in order to evaluate the analytical
 handwriting recognition engine:
 \begin{enumerate}
   \item \textbf{Overall recognition accuracy} \label{eval:enum:overall}
-  \item \textbf{Error recognition accuracy} \label{eval:enum:errorrecognition}
   \item \textbf{Substructure recognition accuracy} \label{eval:enum:substructure}
+  \item \textbf{Error recognition accuracy} \label{eval:enum:errorrecognition}
 \end{enumerate}
+The metrics details for these experiments will be presented in the following 
+sections.
+
+\subsubsection{Overall Recognition Accuracy}
+\label{sec:eval:overallrecognitionaccuracy}
 
 The overall recognition accuracy (experiment~\ref{eval:enum:overall}) will 
 be calculated as a measure of the \(n\)-best matches for a character input. 
 \(N\) is defined as the lowest position in the list of \(n\)-best matches 
-that will still be considered as a match of a character. 
+that will still be considered as a \emph{match} of a character. 
 That is, if \(N\) is set to \(1\), then only the best match will be considered.
 If \(N = 3\), the best three matches will be taken into account.
-The overall recognition accuracy \(A_{N}\) is defined as the weighted 
+The overall recognition accuracy \(A_{N}\) is defined here as the weighted 
 percentage of correctly recognised characters when taking the \(N\) best 
-matches account. The number of samples will be called \(S\).
-\(n\) is an integer that marks the position in the list of \(n\)-best matches.
-The values for \(n\) that will be considered for the evaluation lie 
+matches into account. The number of samples will be called \(S\).
+\(r\) is an integer that marks the position in the list of \(n\)-best matches.
+The values for \(r\) that will be considered for the evaluation lie 
 on the open interval \(]1,N[\). If an input produces a confidence value 
-for a character recognition high enough to be in a position where \(n \leq N\), 
-then \(\frac{1}{n}\) will be added to the number of correctly 
+for a character recognition high enough to be in a list position \(r \leq N\), 
+then \(\frac{1}{r}\) will be added to the number of correctly 
 recognised characters.
-That means, if a character is the best match, then \(n = 1\). 
-Therefore \(\frac{1}{n} = \frac{1}{1} = 1\) will be added to the number of 
+That means, if a character is the best match in the list of \(n\)-best matches,
+then it is ranked on top, therefore \(r = 1\). 
+Hence, \(\frac{1}{r} = \frac{1}{1} = 1\) will be added to the number of 
 correct matches. If the correct character is the second best match, 
-\(\frac{1}{2}\) will be added. If the character has been recognised as the 
-\(n\)-best match, but \(n > N\) or the character has not been recognised at all,
-nothing will be added. \(f\) is a helper function that returns a value
-according to the relation between \(n\) and \(N\). The variable
-\(n_{i}\) denotes the position of the \(i^{\text{th}}\) input character in
-the list of best matches for that character. \(n_{i}\) serves as an input
+\(\frac{1}{2}\) will be added and so forth. If the input has been correctly 
+recognised as the \(r\)-best match, but \(r > N\) or, alternatively,
+the input has not been recognised at all, nothing will be added. 
+\(f\) is a helper function that returns a value
+according to the relation between \(r\) and \(N\). The variable
+\(r_{i}\) denotes the position of the \(i^{\text{th}}\) input character in
+the list of \(n\)-best matches for that input sequence and character. \(r_{i}\) serves as an input
 value for \(f\). \(A_N\) will be calculated as follows:
 \begin{quote}
   \(
-    f(n, N):=
+    f(r, N):=
     \begin{cases}
-      \frac{1}{n} & \quad \text{if $n \leq N$} \\
-      0 & \quad \text{if $n > N$}
+      \frac{1}{r} & \quad \text{if $r \leq N$} \\
+      0 & \quad \text{if $r > N$}
     \end{cases}
   \)
 \end{quote}
 \begin{quote}
   \(
-    A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(n_{i})}
+    A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(r_{i},N)}
   \)
-\end{quote}
+\end{quote}\label{eval:accuracycalculation}
 An example for the application of that term would be to set \(N = 1\).
 Only the best match will be considered for an input.
 If 100 input sequences are tested, then \(S=100\). 
-Say, the input yields a high confidence value for the correct character,
-so that the character becomes the most salient in the list of best matches
-and occupies the first position. Then \(f(1,1)\) yields \(1\).
-Therefore, in the summation of the \(f(n_{i}\) the value \(1\) will be added
-for each correctly recognised character.
-If \(69\) of the \(100\) input characters are correctly recognised,
+If, for example, one of the \(S_{i}\) input sequences yields a high 
+confidence value for the character the sequence is supposed to represent and 
+the character becomes the most salient in the list of best matches
+and occupies the first position. Then \(r_{i} = 1\) and \(f(r_{i},N) = f(1,1)\) 
+yields \(1\).
+Therefore, in the summation of all the \(f(r_{i},N)\) the value \(1\) 
+will be added for each correctly recognised character.
+Say, \(69\) of the \(100\) input characters were correctly recognised,
 then \(A_{N} = A_{1} = \frac{1}{100} \cdot 69\). That would equal a 
 result of \(69\%\). The key to this evaluation method is of course the 
 value of \(N\). Multiple experiments with different \(N\)-values will be 
 conducted for best comparability.
 
-Different possibilities exist for the definition of a baseline for that 
-experiment. A baseline based on pure randomness would be \(\frac{1}{C}\) with
-\(C\) representing the number of characters in the database. For \(C = 50\) 
-the baseline would then be \(\frac{1}{C} = \frac{1}{50} = 0.02\).
+\paragraph{Baseline.} Different possibilities exist for the definition of a 
+baseline for that experiment. A baseline based on pure randomness would 
+be \(\frac{1}{C}\) with \(C\) representing the number of characters 
+in the database. 
+For \(C = 50\) the baseline would then be \(\frac{1}{C} = \frac{1}{50} = 0.02\).
 That is already a very low baseline. The larger the lexicon grows the
 lower the baseline for evaluation. For a lexicon that contains around 2,000 
 characters and covers the Jōyō Kanji the baseline would come down to
@@ -284,9 +313,9 @@ with the formula for the computation of \(A_N\) and generous assumptions
 about the accuracy of the recognition: \\
 Assume, \(N = 3\) and all the sample characters are among the first three 
 matches in the list of matches, equally partitioned.
-Then one third would yield \(n = 1\) with \(f(n) = 1\),
-another third yield \(n = 2\) with \(f(n) = \frac{1}{2}\),
-and the last third yield \(n = 3\) with \(f(n) = \frac{1}{3}\).
+Then one third would yield \(r = 1\) with \(f(r,N)=f(1,3)=1\),
+another third yield \(r = 2\) with \(f(r,N)=f(2,3)=\frac{1}{2}\),
+and the last third yield \(r = 3\) with \(f(r,N)=f(3,3)=\frac{1}{3}\).
 That leads to a baseline (\(B\)) calculation as follows:
 \begin{quote}
   \(
@@ -297,30 +326,250 @@ That leads to a baseline (\(B\)) calculation as follows:
        = \frac{11}{18} = 0.61
   \)
 \end{quote}
+The baseline value of \(0.61\) will be used for the overall recognition accuracy
+experiment.
 
-It would be interesting to define
+\subsubsection{Substructure Recognition Accuracy}
+\label{sec:eval:substructurerecognitionaccuracy}
+
+The substructure recognition accuracy (experiment~\ref{eval:enum:substructure}
+will be measured in a similar way as the overall recognition accuracy.
+In fact the same metrics will be used. See the previous section for details
+on the metrics. The accuracy \(A_{N}\) will be measured as a percentage value
+of correct recognition results, where the recognition as second-best or 
+third-best (generally n-best, with \(n>1\)) will be devaluated. %xxx \emph{devaluate}?!? \textbf{abwerten}, \textbf{weniger gewichten}, \emph{nicht} komplett \textbf{entwerten}! xxx
+This reduction of value is expressed mathematically by using the multiplicative 
+inverse \(r^{-1}\) of the rank \(r\) in the list of \(n\)-best 
+matches as a summand for the weighted sum of correct recognitions.
+The equations for calculating the accuracy have been given in 
+section~\ref{sec:eval:overallrecognitionaccuracy}
+on page~\pageref{eval:accuracycalculation}.
+
+The main difference is that many substructures occur in more than one 
+character. In order to account for a substructure recognition will be regarded 
+as \emph{correct}, if the input yields the intended substructure from
+one of the characters that contain the substructure.
+That fairly generous interpretation of what is correct considers the fact
+that the substructures should be recognised for any of the characters.
+During the recognition process it does not matter, what character needs to be
+recognised the substructure recognition should work independently.
+In a future version of the database the substructures should be stored only once
+and then be shared among all characters that contain it.
+The \emph{baseline} for the substructure recognition will be \(0.61\), 
+the same number and using the same line of argument from 
+section~\ref{sec:eval:overallrecognitionaccuracy}.
+
+\subsubsection{Error Recognition Accuracy}
+\label{sec:eval:errorrecognitionaccuracy}
 
 The error recognition accuracy (experiment~\ref{eval:enum:errorrecognition}) 
-will 
+is more difficult to evaluate than the pure accuracy.
+The question arises, what kind of errors are expected to be found
+and what kind of error corrections should be provided.
+Error recognition here means that the system compares a known character with 
+a given input stroke sequence. The input can contain flaws that do not 
+represent the character appropriately. The prototype is expected to find the flaw
+and propose a correction.
+The evaluation method will be a classical \emph{precision and recall} method.
+There are two possible cases in the input stroke sequence:
+\begin{itemize}
+  \item There is an error in the input with respect to the desired character.
+  \item There is no error in the input.
+\end{itemize}
+There are two possibilities for the system to react:
+\begin{itemize}
+  \item The system identifies an error in the input with respect to the desired
+        character and gives feedback on that error.
+  \item The system does not identify an error in the input with respect to the
+        desired character.
+\end{itemize}
+Those possiblities yield a \(2 \times 2\)-matrix:
+Table~\ref{table:eval:resultsforprecisionandrecall} gives an overview about 
+the possible results combined with the reality of the sample.
 
-        For the experiment concerning the overall recognition accuracy 
-        two writers wrote all 50 characters as input for the system.
-        The overall will be calculated as the average of the 
-        The percentage of correctly recognised characters
+\begin{table}[htbp]
+\begin{center}
+  \begin{tabular}{|l|l|l|p{200pt}|}
+    \hline
+                           & Error in input      & No error in input \\
+    \hline
+    Found error (TP+FP)    & true positive (TP)  & false positive (FP) \\
+    \hline
+    No error found (FN+TN) & false negative (FN) & true negative (TN) \\
+    \hline
+  \end{tabular}
+\end{center}
+\caption{Possible results as a basis for precision and recall analysis.}
+\label{table:eval:resultsforprecisionandrecall}
+\end{table}
+The precision \(P\) and recall \(R\) of the error recognition are computed 
+with the standard formulas:
+\begin{quote}
+\(
+P=tp \cdot (tp+fp)^{-1} \\
+R=tp \cdot (tp+fn)^{-1} \\
+\)  
+\end{quote}
+Additionally, the \emph{F-measure} will be used, however only for an equally 
+important interpretation of precision and recall. Therefore, \(\beta = 1\) will
+be fixed:
+\begin{quote}
+\(
+F_{\beta} = (1 + \beta^2) \cdot \frac{P \cdot R }{ \beta^2 \cdot P + R} \\
+F_{1} = 2 \cdot \frac{P \cdot R }{P + R} \\
+\)
+\end{quote}
 
+\subsection{Experimental Results}
+\label{sec:eval:experimentalresults}
 
-% grundsaetzliches:
-% evaluation soll kurz und qualitativ sein.
-% plausible fakten muessen nicht unbedingt untermaurert werden.
+Having presented the experimental metrics in the previous sections, 
+the experimental results and the conclusions drawn will be presented in this 
+section.
 
-% baseline eval vs.\ topline eval.
-% technik ermoeglicht erst lernmethode, diese methode ist besser als andere methode.
-% kriterium fuer qualitative eval:
-% reproduzierbarkeit des experiments.
+\subsubsection{Overall Recognition Accuracy Results}
+\label{sec:eval:resultsoverallrecognition}
 
-% evaluation method: counting precision and recall
-% section about precision and recall - the odd numbers.
-% how can that be done honest and useful?
-% how can I get meaningful numbers at all?
+For the experiment concerning the overall recognition accuracy two test writers 
+wrote all 50 characters from the database as an input sequence for the system.
+That process yielded 100 input stroke sequences.
+The input was stored in order for the experiment to be repeated without
+physically re-entering the characters. Five sample characters from each 
+writer haven been removed from the test set for detailed analysis.
+With five characters from each writer in the development set, there were 
+90 characters for the test set.
+The test set characters have been used only for testing, not for 
+detailed analyses. The development set characters have been tested as well
+and the recognition process as well as the recognition result have been 
+examined in order to improve the recognition engine.
 
+The final evaluative run of the test set has been repeated 10 times, 
+with different values for \(N\). All of the integers from 1 to 10 have
+been used. The weighted number of recognised characters (WNCR) changes 
+according to the number of characters recognised in each rank in the
+list of \(n\)-best matches. Table~\ref{table:eval:overallrecognitionresults}
+shows the results in greater detail. With each incrementation of \(N\),
+that is with decreasing strictness the recognition results rise.
+The range of the weighted accuracy results goes from 70\% for \(N=1\) 
+up to 81\% for \(N=5\). Taking into account even greater ranks up 
+to \(N = 10\) in the list of \(n\)-best matches increased the result slightly
+to 82\%.
+\begin{table}[htbp]
+\begin{center}
+  \begin{tabular}{|l|l|l|l|l|l|l|l|l|l|l|l|l|p{200pt}|}
+    \hline
+N & A_N  &WNRC/90&  1 & 2 & 3 & 4  & 5 & 6 & 7 & 8 & 9 & 10 \\
+    \hline
+1 & 0.70 & 63.00 & 63 & - & - & -  & - & - & - & - & - & -  \\
+    \hline
+2 & 0.74 & 67.00 & 63 & 8 & - & -  & - & - & - & - & - & -  \\
+    \hline
+3 & 0.77 & 69.33 & 63 & 8 & 7 & -  & - & - & - & - & - & -  \\
+    \hline
+4 & 0.80 & 71.83 & 63 & 8 & 7 & 10 & - & - & - & - & - & -  \\
+    \hline
+5 & 0.81 & 72.63 & 63 & 8 & 7 & 10 & 4 & - & - & - & - & -  \\
+    \hline
+6 & 0.81 & 72.80 & 63 & 8 & 7 & 10 & 4 & 1 & - & - & - & -  \\
+    \hline
+7 & 0.81 & 73.23 & 63 & 8 & 7 & 10 & 4 & 1 & 3 & - & - & -  \\
+    \hline
+8 & 0.82 & 73.35 & 63 & 8 & 7 & 10 & 4 & 1 & 3 & 1 & - & -  \\
+    \hline
+9 & 0.82 & 73.58 & 63 & 8 & 7 & 10 & 4 & 1 & 3 & 1 & 2 & -  \\
+    \hline
+10& 0.82 & 73.68 & 63 & 8 & 7 & 10 & 4 & 1 & 3 & 1 & 2 & 1  \\
+    \hline
+  \end{tabular}
+\end{center}
+\caption{Overall recognition results.}
+\label{table:eval:overallrecognitionresults}
+\end{table}
+\paragraph{Result Interpretation.}
+As mentioned earlier, the characters bear a lot of potential for confusion,
+since many of the database characters have been chosen by their key Radical
+or by similar graphical appearance to other characters already in the database.
+That special choice of characters seems to explain why there is such an
+increase in accuracy when more ranks are taken into account.
+The similar characters will be confused by the system and appear in
+the lower ranks (higher \(r\)-values) in the list of \(n\)-best matches.
+Even though all the results, even the one with \(N = 1\) are sizably above
+the baseline of 61\%.
+But generally, the accuracy results are considerably lower than those of other
+systems (see section~\ref{sec:eval:othersystems}). 
+However, it has to be noted that the aim of this system is not 
+to provide a handwriting recognition hightly optimised for speed and accuracy.
+Hence, there is little comparability for these results. 
+The prototype of the analytical handwriting recognition fulfils an additional 
+task that the other systems do not aim at. That obviously leads to a trade-off
+concerning pure recognition performance.
+The aim is to create a deep analysis of a character structure and
+be able to provide feedback on the input. These abilities of the system will
+be evaluated in the following sections.
+
+The analysis of recognition errors among the development set characters 
+revealed that there are two main types of errors: 
+\begin{enumerate}
+\item \textbf{Different stroke order}\label{eval:strokeordererrortype}
+\item \textbf{Similar characters}    \label{eval:similarcharactererrortype}
+\item \textbf{Segmentation ambiguity}\label{eval:segmentationambiguityerrortype}
+\end{enumerate}
+The type~\ref{eval:strokeordererrortype} and 
+type~\ref{eval:similarcharactererrortype} errors errors probably occur for
+all handwriting systems, but especially for overlaid or continuous handwriting.
+Those typesof error might be resolved if the recognition engine
+was using a statistical model like a \emph{Hidden Markov Model.}
+The segmentation ambiguity is a problem that occurs in overlaid handwriting
+recognition for full characters. In analytical handwriting recognition
+the problem occurs for substructures. The beginning and the end
+of a substructure can only be found by completely analysing the substructure.
+That is a time consuming process but must be solved.
+
+\subsubsection{Substructure Recognition Accuracy Results}
+\label{sec:eval:resultssubstructurerecognition}
+For the evaluation of the recognition of substructures it would have been
+desirable to use the same input data with which the overall evaluation
+had been conducted. That was not possible, because it would have required
+to analyise the input data and split it into substructures manually.
+The input data for the evaluation of the substructures has been provided by
+three writers each of whom entered 25 substructers, i.e.\ a total of 75
+Radicals and Graphemes. That means 75 different tokens, not 75 different types.
+But each type has only been written once by each writer.
+This input set is a pure test set it has not been split or used for
+development work. The results of the substructure recognition evaluati
+might be more comparable to the results of other system.
+The metrics for the substructure recognition are essentially the same as for
+the overall evaluation.
+The difference is that only the first three entries in the \(n\)-best list
+will be considered. The structures are smaller, need less analysis, do not
+have further substructures exept the individual strokes. The expectancy
+is that the evaluation results are higher than those of the overall recognition
+accuracy.
+\begin{table}[htbp]
+\begin{center}
+  \begin{tabular}{|l|l|l|l|l|l|p{200pt}|}
+    \hline
+N &  A_N & WNRC/75&  1 & 2 & 3 \\
+    \hline
+1 & 0.85 & 64     & 64 & - & - \\
+    \hline
+2 & 0.89 & 67     & 64 & 6 & - \\
+    \hline
+3 & 0.90 & 67.33  & 64 & 6 & 1 \\
+    \hline
+  \end{tabular}
+\end{center}
+\caption{Substructure recognition results.}
+\label{table:eval:substructurerecognitionresults}
+\end{table}
+\paragraph{Result Interpretation.}
+As expected, the accuracy of the recognition results for the substructures
+was higher than the overall character recogniton accuracy.
+The substructure recognition is more robust as it does not have a segmentation
+problem. Each input sequence is known to be a full substructure. 
+During the recognition process the database needs to be searched for 
+substructures. If a matching structure is found the process is completed.
+
+\subsubsection{Error Recognition Accuracy Results}
+\label{sec:eval:resulterrorrecognition}
 
