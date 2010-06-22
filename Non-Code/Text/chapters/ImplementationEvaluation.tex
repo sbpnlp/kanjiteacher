@@ -213,8 +213,9 @@ recognition accuracy must be measured and compared to other systems,
 but a new evaluation for the recognition of substructures is needed.
 It seems reasonable to measure the recognition accuracy in a plain 
 percentage of correctly recognised characters. 
-Precision and recall are the correct measurement for the recognition of 
-incorrect substructures. That way, true positives, false positives, 
+Precision and recall are the correct measurement for the error recognition,
+where characters with incorrect substructures should be analysed. 
+That way, true positives, false positives, 
 true negatives and false negatives can be distinguished.
 Since the system can recognise pure substructures as well, it would 
 be interesting to see the accuracy of a Radical recognition.
@@ -602,24 +603,35 @@ recognition or substructure recognition evaluation. This is due to the fact
 that errors had to be produced intelligently in order for the error recognition
 to pick them up. Therefore, this evaluation type has to be seen more as a 
 qualitative analysis, rather than a pure quantitative evaluation.
+
+\paragraph{Test Data Creation.}
 One writer created 30 characters, including 20 characters with errors,
 i.e.\ 20 characters where one Radical had been replaced with another one
 or with garbled input. Figure~\ref{fig:eval:botsuumiprintvsdrawn} shows the
-characters~\cjk{没} (Jap.\ pron.\ \emph{botsu}; Eng.\ 'sink') %935
+characters~\cjk{没} (Jap.\ pron.\ \emph{botsu}; Eng.\ 'to sink') %935
 and~\cjk{海} (Jap.\ pron.\ \emph{umi}; Eng.\ 'sea') %117
 both in print and handwritten versions.
-The two characters share the same key Radical the 'water'-Radical, on the left
-side (marked in red). On the right side, the lower Radical is fairly distinct
-and therefore no cause of confusion. In fact~\cjk{海} contains the 
+The two characters share the same key Radical. It is the 'water'-Radical 
+on the left side (marked in red). 
+On the right side, the lower Radical is fairly distinct
+and therefore no cause of confusion. In fact~\cjk{海}~(umi/'sea') contains the 
 'mother'-Radical~\cjk{母} (marked in purple), 
-while~\cjk{没} contains the 'again'-Radical~\cjk{又} (marked in purple), 
-which looks very similar to the 'father'-Radical~\cjk{父}.
-This fact could be a cause for semantic confusion but not for a 
-graphical confusion.
+while~\cjk{没}~(botsu/'to sink') contains the 
+'again'-Radical~\cjk{又} (marked in purple), 
+which looks very similar to the 
+'father'-Radical~\cjk{父} (not contained in the figure).
+This mother/father-analogy has nothing to do with the true meaning
+of the characters, it can just serve as a mnemonic for a learner.
+This fact could be a cause for semantic confusion due to the 
+mnemonic trick, but clearly those two Radicals offer little features 
+for a graphical confusion between the two.
 The upper Radical on the right in both characters is a small two-stroke
-Radical that can easily be confused with another small two-stroke 
-Radical (marked in green). This danger of confusion exists both for a user 
+Radical that can easily be confused graphically with another small two-stroke 
+Radical (marked in green). This danger of confusion exists both for a human
 and for the character recogniser. 
+Non-existent blended characters like the one shown in 
+figure~\ref{fig:eval:hybrid935and117} have been created as erroneous input
+for the error recognition evaluation test set.
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[scale=0.75]{images/char935vsChar117HandwrittenMarked.png}
@@ -637,25 +649,66 @@ figure~\ref{fig:eval:hybrid935and117}.
     \label{fig:eval:hybrid935and117}
   \end{center}
 \end{figure}
-Non-existing blended characters like the one shown in 
-figure~\ref{fig:eval:hybrid935and117} have been created as erroneous input.
 
+\paragraph{Error Recognition Result Data Set.}
+Table~\ref{table:eval:resultsprecisionandrecallnumbers} shows the results 
+of the error recognition test run. 
+In section~\ref{sec:eval:errorrecognitionaccuracy} it has been argued that the
+correct evaluation method for the error recognition was a precision and recall
+measurement.
+The problem with a pure precision and recall analysis is that the results
+in table~\ref{table:eval:resultsprecisionandrecallnumbers} are not 2-way 
+but 3-way. The unrecognised characters could be regarded as incorrect or
+correct. 
+If there was an error in the input character and the character could 
+not be recognised, this could be regarded as a \emph{true positive}. 
+This would increase the error recognition performance undeservedly. 
+On the other hand, if the input was a correct character,
+then assuming the result to be an error message would add 
+to the number of \emph{false positives}, 
+lowering the performance result of the error recognition.
+The error recognition is a sub-component of the character recognition engine.
+It cannot work independently from it. 
+Therefore it would not be a fair judgement to include the unrecognised
+characters at all into the evaluation of the error recognition.
+Firstly, in order to ensure a fair evaluation but also in order to provide 
+a result set qualified for a 2-way evaluation, the unrecognised characters are 
+exempt from the evaluation of the error recognition.
+Table~\ref{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}
+shows the data set that was used for the calculation of precision and recall
+without the unrecognised characters. The total input set consisted of 30 characters, 20 with errors in the characters, 10 correct characters.
+After exempting the unrecognised characters from the evaluation there is a total
+of 25 characters, 17 of which containing errors, 8 correct characters.
 \begin{table}[htbp]
 \begin{center}
   \begin{tabular}{|l|l|l|p{200pt}|}
     \hline
-                           & Error in input      & No error in input \\
+    Total of 30 chars (20/10) & Error in input      & No error in input \\
     \hline
-    16 (TP+FP)             & 14 (TP)             & 2 (FP) \\
+    16 found error (TP+FP)    & 14 (TP)             & 2 (FP) \\
     \hline
-    5 unrecognised (TP+FP) & 3 (TP)              & 2 (FP) \\
+    9 no error found (FN+TN)  & 6 (FN)              & 3 (TN) \\
     \hline
-    9 (FN+TN)              & 6 (FN)              & 3 (TN) \\
+    5 unrecognised (?)        & 3 (?)               & 2 (?) \\
     \hline
   \end{tabular}
 \end{center}
-\caption{Possible results as a basis for precision and recall analysis.}
+\caption{Error recognition results as a basis for precision and recall analysis.}
 \label{table:eval:resultsprecisionandrecallnumbers}
 \end{table}
-The general direction of the evaluation considers characters that haven
-an xxx
+\begin{table}[htbp]
+\begin{center}
+  \begin{tabular}{|l|l|l|p{200pt}|}
+    \hline
+    Total of 25 chars (17/8)  & Error in input      & No error in input \\
+    \hline
+    16 found error (TP+FP)    & 14 (TP)             & 2 (FP) \\
+    \hline
+    9 no error found (FN+TN)  & 6 (FN)              & 3 (TN) \\
+    \hline
+  \end{tabular}
+\end{center}
+\caption{Error recognition results excluding the unrecognised characters as a
+basis for a 2-way precision and recall analysis.}
+\label{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}
+\end{table}
