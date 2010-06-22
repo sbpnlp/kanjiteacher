@@ -126,13 +126,14 @@ e-learning module.
 
 The performance of a recognition system can be measured in terms of speed,
 accuracy and memory requirement.
-While statistical systems offer high speed but have large requirements on memory,
-structural methods have lower speed but require only a smaller 
+While statistical systems offer high speed, 
+but have large requirements on memory,
+structural methods have lower speed, but require only a smaller 
 memory~\shortcite{LiuJaegerNakagawa2004}.
 The system developed and evaluated in this thesis is a structural system.
 It can be expected that the system has a relatively low performance speed,
 but moderate memory requirements. 
-Additionally, since the system is not just a structural but an analytical
+Additionally, since the system is not just a structural, but an analytical
 recognition system, the speed might be even lower.
 
 The factors memory requirements and speed are not of great interest in
@@ -225,7 +226,7 @@ has to be kept in mind when comparing the evaluation results to other
 systems. Creating a lexicon entry for a single character is a laborious task.
 It would be outside the scope of the thesis to create a large lexicon.
 Nevertheless, the characters have been chosen by graphic and
-semantic criteria in order to create more possiblities for confusion.
+semantic criteria in order to create more possibilities for confusion.
 There are many characters using the same key Radical, other characters
 that simply look similar, which might evoke difficulties 
 for both the learner and the system.
@@ -384,7 +385,7 @@ There are two possibilities for the system to react:
   \item The system does not identify an error in the input with respect to the
         desired character.
 \end{itemize}
-Those possiblities yield a \(2 \times 2\)-matrix:
+Those possibilities yield a \(2 \times 2\)-matrix:
 Table~\ref{table:eval:resultsforprecisionandrecall} gives an overview about 
 the possible results combined with the reality of the sample.
 
@@ -404,7 +405,7 @@ the possible results combined with the reality of the sample.
 \label{table:eval:resultsforprecisionandrecall}
 \end{table}
 The precision \(P\) and recall \(R\) of the error recognition are computed 
-with the standard formulas:
+with the standard formulae:
 \begin{quote}
 \(
 P=tp \cdot (tp+fp)^{-1} \\
@@ -446,7 +447,7 @@ examined in order to improve the recognition engine.
 
 The final evaluative run of the test set has been repeated 10 times, 
 with different values for \(N\). All of the integers from 1 to 10 have
-been used. The weighted number of recognised characters (WNCR) changes 
+been used. The \emph{weighted number of recognised characters} (WNCR) changes 
 according to the number of characters recognised in each rank in the
 list of \(n\)-best matches. Table~\ref{table:eval:overallrecognitionresults}
 shows the results in greater detail. With each incrementation of \(N\),
@@ -503,12 +504,12 @@ That special choice of characters seems to explain why there is such an
 increase in accuracy when more ranks are taken into account.
 The similar characters will be confused by the system and appear in
 the lower ranks (higher \(r\)-values) in the list of \(n\)-best matches.
-Even though all the results, even the one with \(N = 1\) are sizably above
+Even though all the results, even the one with \(N = 1\) are sizeably above
 the baseline of 61\%.
-But generally, the accuracy results are considerably lower than those of other
+Generally, the accuracy results are considerably lower than those of other
 systems (see section~\ref{sec:eval:othersystems}). 
 However, it has to be noted that the aim of this system is not 
-to provide a handwriting recognition hightly optimised for speed and accuracy.
+to provide a handwriting recognition highly optimised for speed and accuracy.
 Hence, there is little comparability for these results. 
 The prototype of the analytical handwriting recognition fulfils an additional 
 task that the other systems do not aim at. That obviously leads to a trade-off
@@ -527,36 +528,37 @@ revealed that there are two main types of errors:
 The type~\ref{eval:strokeordererrortype} and 
 type~\ref{eval:similarcharactererrortype} errors errors probably occur for
 all handwriting systems, but especially for overlaid or continuous handwriting.
-Those typesof error might be resolved if the recognition engine
+Those types of error might be resolved if the recognition engine
 was using a statistical model like a \emph{Hidden Markov Model.}
 The segmentation ambiguity is a problem that occurs in overlaid handwriting
 recognition for full characters. In analytical handwriting recognition
 the problem occurs for substructures. The beginning and the end
-of a substructure can only be found by completely analysing the substructure.
-That is a time consuming process but must be solved.
+of a substructure can only be found by completely analysing the substructure,
+the previous and the following substructure. That process has
+shown to be time-consuming.
 
 \subsubsection{Substructure Recognition Accuracy Results}
 \label{sec:eval:resultssubstructurerecognition}
 For the evaluation of the recognition of substructures it would have been
 desirable to use the same input data with which the overall evaluation
 had been conducted. That was not possible, because it would have required
-to analyise the input data and split it into substructures manually.
+to analyse the input data and split it into substructures manually.
 The input data for the evaluation of the substructures has been provided by
-three writers each of whom entered 25 substructers, i.e.\ a total of 75
+three writers each of whom entered 25 substructures, i.e.\ a total of 75
 Radicals and Graphemes. That means 75 different tokens, not 75 different types.
-But each type has only been written once by each writer.
+Each type has only been written once by each writer.
 This input set is a pure test set it has not been split or used for
-development work. The results of the substructure recognition evaluati
+development work. The results of the substructure recognition evaluation
 might be more comparable to the results of other system.
 The metrics for the substructure recognition are essentially the same as for
 the overall evaluation.
 The difference is that only the first three entries in the \(n\)-best list
 will be considered. The structures are smaller, need less analysis, do not
-have further substructures exept the individual strokes. 
+have further substructures except the individual strokes. 
 As expected, the evaluation results are higher than those of the overall 
 recognition accuracy. The general trend can be seen in 
 figure~\ref{fig:eval:substructurerecognitionresults}, the complete data is
-layed out in table~\ref{table:eval:substructurerecognitionresults}.
+laid out in table~\ref{table:eval:substructurerecognitionresults}.
 
 \begin{table}[htbp]
 \begin{center}
@@ -586,7 +588,7 @@ N &  A_N & WNRC/75&  1 & 2 & 3 \\
 
 \paragraph{Result Interpretation.}
 As expected, the accuracy of the recognition results for the substructures
-was higher than the overall character recogniton accuracy.
+was higher than the overall character recognition accuracy.
 The substructure recognition is more robust as it does not have a segmentation
 problem. Each input sequence is known to be a full substructure. 
 During the recognition process the database needs to be searched for 
@@ -656,29 +658,6 @@ of the error recognition test run.
 In section~\ref{sec:eval:errorrecognitionaccuracy} it has been argued that the
 correct evaluation method for the error recognition was a precision and recall
 measurement.
-The problem with a pure precision and recall analysis is that the results
-in table~\ref{table:eval:resultsprecisionandrecallnumbers} are not 2-way 
-but 3-way. The unrecognised characters could be regarded as incorrect or
-correct. 
-If there was an error in the input character and the character could 
-not be recognised, this could be regarded as a \emph{true positive}. 
-This would increase the error recognition performance undeservedly. 
-On the other hand, if the input was a correct character,
-then assuming the result to be an error message would add 
-to the number of \emph{false positives}, 
-lowering the performance result of the error recognition.
-The error recognition is a sub-component of the character recognition engine.
-It cannot work independently from it. 
-Therefore it would not be a fair judgement to include the unrecognised
-characters at all into the evaluation of the error recognition.
-Firstly, in order to ensure a fair evaluation but also in order to provide 
-a result set qualified for a 2-way evaluation, the unrecognised characters are 
-exempt from the evaluation of the error recognition.
-Table~\ref{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}
-shows the data set that was used for the calculation of precision and recall
-without the unrecognised characters. The total input set consisted of 30 characters, 20 with errors in the characters, 10 correct characters.
-After exempting the unrecognised characters from the evaluation there is a total
-of 25 characters, 17 of which containing errors, 8 correct characters.
 \begin{table}[htbp]
 \begin{center}
   \begin{tabular}{|l|l|l|p{200pt}|}
@@ -696,6 +675,36 @@ of 25 characters, 17 of which containing errors, 8 correct characters.
 \caption{Error recognition results as a basis for precision and recall analysis.}
 \label{table:eval:resultsprecisionandrecallnumbers}
 \end{table}
+The problem with a pure precision and recall analysis is that the results
+in table~\ref{table:eval:resultsprecisionandrecallnumbers} are not 2-way, 
+but 3-way. The error recognition engine returned the three result sets 
+\emph{character contains error}, \emph{characters does not contain error}
+and \emph{character could not be recognised}.
+Now the question arises whether the unrecognised characters should be 
+regarded as incorrect or correct. 
+If there was an error in the input character and the character could 
+not be recognised, this could be regarded as a \emph{true positive}.
+If no recognition is possible that could mean there is an error in 
+the character, therefore an error has been found.
+However, that is just an interpretation of the results and
+would increase the error recognition performance undeservedly. 
+On the other hand, if the input was a correct character,
+then assuming the result to be an error message would add 
+to the number of \emph{false positives}, 
+lowering the performance result of the error recognition.
+The error recognition is a sub-component of the character recognition engine,
+it cannot work independently from it. 
+Hence, either way it would be an unfair to include the unrecognised
+characters into the evaluation of the error recognition.
+
+In order to ensure a fair evaluation, but also in order to provide 
+a result set qualified for a 2-way evaluation, the unrecognised characters are 
+exempt from the evaluation of the error recognition.
+Table~\ref{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}
+shows the data set that was used for the calculation of precision and recall
+without the unrecognised characters. The total input set consisted of 30 characters, 20 with errors in the characters, 10 correct characters.
+After exempting the unrecognised characters from the evaluation there is a total
+of 25 characters, 17 of which containing errors, 8 correct characters.
 \begin{table}[htbp]
 \begin{center}
   \begin{tabular}{|l|l|l|p{200pt}|}
@@ -712,3 +721,58 @@ of 25 characters, 17 of which containing errors, 8 correct characters.
 basis for a 2-way precision and recall analysis.}
 \label{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}
 \end{table}
+
+\paragraph{Result Interpretation.}
+The precision \(P\) and recall \(R\) can be computed from the values given in 
+table~\ref{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}.
+Precision:
+\begin{quote}
+\(
+P=tp \cdot (tp+fp)^{-1} \\
+= 14 \cdot (14+2)^{-1} \\
+= 0.875
+\)
+\end{quote}
+Recall:
+\begin{quote}
+\(
+R=tp \cdot (tp+fn)^{-1} \\
+=14 \cdot (14+6)^{-1} \\
+=0.7
+\)  
+\end{quote}
+Additionally, the \emph{F-measure} will be used, however only for an equally 
+important interpretation of precision and recall. Therefore, \(\beta = 1\) will
+be fixed:
+\begin{quote}
+\(
+F_{1} = 2 \cdot \frac{P \cdot R }{P + R} \\
+ = 2 \cdot \frac{0.875 \cdot 0.7 }{0.875 + 0.7} \\
+ = 0.78
+\)
+\end{quote}
+The results are difficult to interpret because there are no other systems for 
+comparison that perform a similar analytical handwriting recognition.
+Precision is slightly below 90\%, meaning if an error had been recognised,
+it had been recognised correctly most of the times.
+That is valuable for the sample application the e-learning environment.
+The number of falsely detected errors is low.
+The recall is not impressively high, 
+but well above the obvious 50\% baseline for a 2-way precision calculation,
+that would result from a random assignment of \emph{error} or \emph{no error}
+to all characters in the test set.
+
+\section{Conclusions}
+\label{sec:eval:conclusions}
+
+In this chapter, the evaluation of the handwriting recognition engine has 
+been presented. The overall recognition had an accuracy of 70\%-82\%.
+That is below highly optimised recognition system and shows the trade-off that
+had to be taken in order to perform a detailed internal analysis of the 
+characters.
+The recognition of substructures had better results, the accuracy lied around
+85\%-90\%. That value is more comparable to other recognition systems that do
+not perform a detailed analysis of substructures.
+The error recognition showed a satisfying result of 87.5\% precision at a recall 
+rate of 70\%.
+The next chapter of the thesis draws overall conclusions from the work.
