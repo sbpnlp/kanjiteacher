@@ -6,696 +6,697 @@
 \chapter{Handwriting Recognition Engine}
 \label{chap:handwritingrecognitionengine}
 
-% %- Why this section? 
-% %   The purpose of this section is to describe the software module of the 
-% %   HWR engine.
-% %   Any important of the software should be described.~This is the core of the
-% %   HWR part of the software and therefore needs description.
-% %   It would be off purpose, if non-technical aspects of the HWR Engine would be 
-% %   described.
-% % - What goes into this section?
-% %   The main content of this section is the complete functionality of the 
-% %   HWR engine.
-% %   It should become apparent how the HWR engine works.
-% %   * if describing a problem: why is the problem relevant.
-% %     The problem of HWR is relevant, because it is the crucial novelty of the
-% %     application.~The combination of a Kanji learning tool and a HWR is a new 
-% %     thing.~It enables user to practice writing Kanji.~(maybe too high-level for
-% %     this section, move to intro / motivation section).
-% %   * if describing a solution to a problem: 
-% %     what alternatives were there to solve it?    
-% %     Instead of a HWR engine, the user could either not have a HWR engine and
-% %     write on paper or not practice writing the Kanji.
-% %     why was this solution chosen? 
-% %     because it creates an additional benefit, that was not available before.
-% %     what made it the best choice? 
-% %     the fact that it writing on paper is impractical and not practicing does
-% %     not lead to the desired result.
+%- Why this section? 
+%   The purpose of this section is to describe the software module of the 
+%   HWR engine.
+%   Any important of the software should be described.~This is the core of the
+%   HWR part of the software and therefore needs description.
+%   It would be off purpose, if non-technical aspects of the HWR Engine would be 
+%   described.
+% - What goes into this section?
+%   The main content of this section is the complete functionality of the 
+%   HWR engine.
+%   It should become apparent how the HWR engine works.
+%   * if describing a problem: why is the problem relevant.
+%     The problem of HWR is relevant, because it is the crucial novelty of the
+%     application.~The combination of a Kanji learning tool and a HWR is a new 
+%     thing.~It enables user to practice writing Kanji.~(maybe too high-level for
+%     this section, move to intro / motivation section).
+%   * if describing a solution to a problem: 
+%     what alternatives were there to solve it?    
+%     Instead of a HWR engine, the user could either not have a HWR engine and
+%     write on paper or not practice writing the Kanji.
+%     why was this solution chosen? 
+%     because it creates an additional benefit, that was not available before.
+%     what made it the best choice? 
+%     the fact that it writing on paper is impractical and not practicing does
+%     not lead to the desired result.
 
-% %     was it the optimal solution? given there is only not practicing and
-% %     practicing on paper: yes.
+%     was it the optimal solution? given there is only not practicing and
+%     practicing on paper: yes.
 
-% % - How will this section be structured and organised?
-% %   The organisational structure of the section is already layed out in the
-% %   sections and subsections.
-% % - In what style will it be written?
-% %   The style of writing will be technical.~A technical description, using
-% %   pseudocode.
-% % - Next action - what to write first?
-% %   The next part to write is the general introduction to this chapter
+% - How will this section be structured and organised?
+%   The organisational structure of the section is already layed out in the
+%   sections and subsections.
+% - In what style will it be written?
+%   The style of writing will be technical.~A technical description, using
+%   pseudocode.
+% - Next action - what to write first?
+%   The next part to write is the general introduction to this chapter
 
-% %xxx always: what alternatives were there?
+%xxx always: what alternatives were there?
 
-% In this chapter the core of the recognition system is going to be presented.
-% The other chapters concerning with the system design have a more general focus.
-% The present chapter gives an insight into the details of how the handwriting
-% recognition is implemented.~The chapter has several sections.~The first section
-% briefly presents the data capturing module.~Section~\ref{sec:hwre:dataformat}
-% discusses the choice of the data format for both run-time and storage.
-% The next section,~\ref{sec:hwre:database} describes the database structure.
-% The sections after that are concerned with the actual recognition process.
-% The different kinds of stroke matching are discussed in 
-% section~\ref{sec:hwre:strokerecognitionprocess}, including dynamic time warping.
-% The Radical recognition depends on the stroke matchning and is presented in
-% section~\ref{sec:hwre:radicalrecognitionprocess}.
-% The character recognition is then a combination of the stroke matching and
-% the Radical recognition.~Section~\ref{sec:hwre:characterrecognitionprocess}
-% informs about the character recognition.
-% The last section~\ref{sec:hwre:errorhandling} of the chapter contains the 
-% discussion of the error handling in the system.
+In this chapter the core of the recognition system is going to be presented.
+The other chapters concerning with the system design have a more general focus.
+The present chapter gives an insight into the details of how the handwriting
+recognition is implemented.~The chapter has several sections.~The first section
+briefly presents the data capturing module.~Section~\ref{sec:hwre:dataformat}
+discusses the choice of the data format for both run-time and storage.
+The next section,~\ref{sec:hwre:database} describes the database structure.
+The sections after that are concerned with the actual recognition process.
+The different kinds of stroke matching are discussed in 
+section~\ref{sec:hwre:strokerecognitionprocess}, including dynamic time warping.
+The Radical recognition depends on the stroke matchning and is presented in
+section~\ref{sec:hwre:radicalrecognitionprocess}.
+The character recognition is then a combination of the stroke matching and
+the Radical recognition.~Section~\ref{sec:hwre:characterrecognitionprocess}
+informs about the character recognition.
+The last section~\ref{sec:hwre:errorhandling} of the chapter contains the 
+discussion of the error handling in the system.
 
-% \section{Data Capturing}
-% \label{sec:hwre:datacapturing}
+\section{Data Capturing}
+\label{sec:hwre:datacapturing}
 
-% Each handwriting recognition process begins with data capturing.
-% The user's handwriting must be captured and fed into the system.~The data 
-% capturing is therefore a crucial part of the whole process.~In this system 
-% a GUI is used for the capturing of the pen movements on a writing surface.
+Each handwriting recognition process begins with data capturing.
+The user's handwriting must be captured and fed into the system.~The data 
+capturing is therefore a crucial part of the whole process.~In this system 
+a GUI is used for the capturing of the pen movements on a writing surface.
 
-% %this should deal with how the data are captured during the process
-% %mouse coordinates and stuff
+%this should deal with how the data are captured during the process
+%mouse coordinates and stuff
 
-% %- Why this section? 
-% %  The purpose of this section is to describe the data capturing process.
-% %  It would be off purpose, if it describes to much around - the devices, the
-% %  transmission.~This should focus on the capturing as such.
-% %  It should not go into great deail.
-% %  
-% %- What goes into this section?
-% %  The main content of this section is the technical data capturing.
-% %  A description of how to
-% %  programmatically generate a pen trajectory from reading mouse coordinates.
-% %  
-% %  * if describing a problem: why is the problem relevant.
-% %    The relevance of the problem is evident: Without the user's writing,
-% %    there would not be any handwriting recognition.
-% %
-% %  * if describing a solution to a problem: what alternatives were
-% %    there to solve it, why was this solution chosen? 
-% %    The alternatives are not massively relevant here, since they come down
-% %    to using different input devices, which is discussed elsewhere.
-% %
-% %    what made it the best choice? 
-% %    the fact that this is just how it is done.
-% %    was it the optimal solution?
-% %    yes.
-% %
-% %- How will this section be structured and organised?
-% %  The organisational structure of the section begins with describing the mobile 
-% %  input GUI from a technical level.
-% %  Then the class in the background that actually captures the mouse events.
-% %  the capturing of the mouse events.
-% %  the storing of the data points in lists.
-% % 
-% %- In what style will it be written?
-% %  The style of writing will be technical.~using pseudocode if required.
-% %  however the algorithm is not relevant here.
-% %
-% %- Next action - what to write first?
-% %  The next part to write is the one about the GUI
-% %  also the substructuring needs to be done as required.~DONE
+%- Why this section? 
+%  The purpose of this section is to describe the data capturing process.
+%  It would be off purpose, if it describes to much around - the devices, the
+%  transmission.~This should focus on the capturing as such.
+%  It should not go into great deail.
+%  
+%- What goes into this section?
+%  The main content of this section is the technical data capturing.
+%  A description of how to
+%  programmatically generate a pen trajectory from reading mouse coordinates.
+%  
+%  * if describing a problem: why is the problem relevant.
+%    The relevance of the problem is evident: Without the user's writing,
+%    there would not be any handwriting recognition.
+%
+%  * if describing a solution to a problem: what alternatives were
+%    there to solve it, why was this solution chosen? 
+%    The alternatives are not massively relevant here, since they come down
+%    to using different input devices, which is discussed elsewhere.
+%
+%    what made it the best choice? 
+%    the fact that this is just how it is done.
+%    was it the optimal solution?
+%    yes.
+%
+%- How will this section be structured and organised?
+%  The organisational structure of the section begins with describing the mobile 
+%  input GUI from a technical level.
+%  Then the class in the background that actually captures the mouse events.
+%  the capturing of the mouse events.
+%  the storing of the data points in lists.
+% 
+%- In what style will it be written?
+%  The style of writing will be technical.~using pseudocode if required.
+%  however the algorithm is not relevant here.
+%
+%- Next action - what to write first?
+%  The next part to write is the one about the GUI
+%  also the substructuring needs to be done as required.~DONE
 
-% \subsection{Writing Surface} %the mobile GUI
-% \label{sec:hwre:writingsurface}
-% %NEXT ACTION - describe writing surface and it's GUI
+\subsection{Writing Surface} %the mobile GUI
+\label{sec:hwre:writingsurface}
+%NEXT ACTION - describe writing surface and it's GUI
 
-% The writing surface module, the view is split into two parts: The writing 
-% surface GUI and the writing surface background module. The technical design of 
-% the data input GUI is described in 
-% section~\ref{sec:arch:handwritingdatainputview}.
+The writing surface module, the view is split into two parts: The writing 
+surface GUI and the writing surface background module. The technical design of 
+the data input GUI is described in 
+section~\ref{sec:arch:handwritingdatainputview}.
 
-% \subsubsection{Writing Surface GUI}
-% \label{sec:hwre:writingsurfacegui}
-% The GUI works with pen-down and pen-up events. It has a cross in the middle in 
-% order to partition the writing surface the same way that character practising 
-% paper sheets are usually partitioned.~The GUI class is listening to 
-% \emph{pen-down}, \emph{pen-up} and \emph{pen-move} events.
-% These are the equivalent events on 
-% mobile devices for regular mouse-down, mouse-up and mouse-move events.~
-% However, there is one difference - the pen-move event can only be captured 
-% between a pen-down and a pen-up event.~
-% An earlier conceptual idea for the HWR engine included using the
-% mouse-move events during the input of a character between the strokes.~This 
-% could not be realised, however, because the series of pen-move events can only 
-% be captured when there has been a previous pen-down event before a pen-up event.~
+\subsubsection{Writing Surface GUI}
+\label{sec:hwre:writingsurfacegui}
+The GUI works with pen-down and pen-up events. It has a cross in the middle in 
+order to partition the writing surface the same way that character practising 
+paper sheets are usually partitioned.~The GUI class is listening to 
+\emph{pen-down}, \emph{pen-up} and \emph{pen-move} events.
+These are the equivalent events on 
+mobile devices for regular mouse-down, mouse-up and mouse-move events.~
+However, there is one difference - the pen-move event can only be captured 
+between a pen-down and a pen-up event.~
+An earlier conceptual idea for the HWR engine included using the
+mouse-move events during the input of a character between the strokes.~This 
+could not be realised, however, because the series of pen-move events can only 
+be captured when there has been a previous pen-down event before a pen-up event.~
 
-% xxx
-% why could it not be realised?
-% physical contact of pen to writign surface.
+xxx
+why could it not be realised?
+physical contact of pen to writign surface.
 
-% The GUI captures the events and passes the point coordinates on to 
-% the background class.
+The GUI captures the events and passes the point coordinates on to 
+the background class.
 
-% \subsubsection{Writing Surfaces Background Module}
-% \label{sec:hwre:writingsurfacebackground}
+\subsubsection{Writing Surfaces Background Module}
+\label{sec:hwre:writingsurfacebackground}
 
-% When a pen-down event is detected, the background class of the GUI starts 
-% listening for the pen movement.~All point coordinates and the time of their 
-% capturing are stored in two separate lists with the same indices.
-% An alternative solution would have been to store a number of instances of a 
-% custom-made encapsulated \emph{Point} 
+When a pen-down event is detected, the background class of the GUI starts 
+listening for the pen movement.~All point coordinates and the time of their 
+capturing are stored in two separate lists with the same indices.
+An alternative solution would have been to store a number of instances of a 
+custom-made encapsulated \emph{Point} 
 
-% xxx look for class names in whole chapter and make them cursive.
+xxx look for class names in whole chapter and make them cursive.
 
 
-% class including the time stamp in one 
-% list only, however, using two separate lists resulted in increased speed.
-% Therefore, the point coordinates are stored in the frameworks Point class that 
-% does not account for time stamps.~Therefore a separate list is used for the 
-% timestamps only.
+class including the time stamp in one 
+list only, however, using two separate lists resulted in increased speed.
+Therefore, the point coordinates are stored in the frameworks Point class that 
+does not account for time stamps.~Therefore a separate list is used for the 
+timestamps only.
 
-% The background module of the writing surface mainly administrates the capturing 
-% of the pen trajectory and sends it to the recognition module as soon as a 
-% stroke is finished.~Therefore the system does not receive a separate signal 
-% indicating that the drawing of the character is finished.~That design creates 
-% segmentation problem that is solved with the \emph{clear} button and the 
-% \emph{clear} message.~The segmentation of characters is left undetermined - only 
-% the beginning of it is determined through the \emph{clear} message that is sent 
-% to the mobile view from the controller - or the clear message that is sent to 
-% the controller because the user clicked the \emph{reset} button.
-% After a stroke is finished the corresponding point and timestamp sequences are 
-% passed to the main part of the HWR engine.~
+The background module of the writing surface mainly administrates the capturing 
+of the pen trajectory and sends it to the recognition module as soon as a 
+stroke is finished.~Therefore the system does not receive a separate signal 
+indicating that the drawing of the character is finished.~That design creates 
+segmentation problem that is solved with the \emph{clear} button and the 
+\emph{clear} message.~The segmentation of characters is left undetermined - only 
+the beginning of it is determined through the \emph{clear} message that is sent 
+to the mobile view from the controller - or the clear message that is sent to 
+the controller because the user clicked the \emph{reset} button.
+After a stroke is finished the corresponding point and timestamp sequences are 
+passed to the main part of the HWR engine.~
 
-% \section{Data Format}
-% \label{sec:hwre:dataformat}
+\section{Data Format}
+\label{sec:hwre:dataformat}
 
-% % - Why this section? 
-% %   The purpose of this section is to give the reader an idea of how the captured
-% %   data is structured.~That means concretely the character format, describing
-% %   the HW trajectories.~This is necessary in order to be able to explain the
-% %   mode of operation of the HWR engine in detail.
+% - Why this section? 
+%   The purpose of this section is to give the reader an idea of how the captured
+%   data is structured.~That means concretely the character format, describing
+%   the HW trajectories.~This is necessary in order to be able to explain the
+%   mode of operation of the HWR engine in detail.
 
-% %   It would be off purpose, if the section contained a description of the 
-% %   lexical data, which is described in a different section.
+%   It would be off purpose, if the section contained a description of the 
+%   lexical data, which is described in a different section.
 
-% % - What goes into this section?
-% %   The main content of this section is what is stated under purpose:
-% %   A description of how the captured data is structured.
+% - What goes into this section?
+%   The main content of this section is what is stated under purpose:
+%   A description of how the captured data is structured.
 
-% %   * if describing a problem: why is the problem relevant.
-% %     The task of handwriting recognition is essentially a task 
-% %     working with data.
-% %     Therefore the structure of the data is one of the crucial points.
+%   * if describing a problem: why is the problem relevant.
+%     The task of handwriting recognition is essentially a task 
+%     working with data.
+%     Therefore the structure of the data is one of the crucial points.
     
-% %   * if describing a solution to a problem: what alternatives were
-% %     there to solve it, why was this solution chosen? 
+%   * if describing a solution to a problem: what alternatives were
+%     there to solve it, why was this solution chosen? 
 
-% %     The solution was chosen because of its clarity, simplicity and 
-% %     accessibility, also because of its interoperability with potential 
-% %     other systems.
-% %     what made it the best choice? was it the optimal solution?
-% %     For the purpose followed with the system - yes, it was the optimal solution,
-% %     because it does not require much effort to parse the stored data
-% %     and it contains all necessary information in a structured manner.
+%     The solution was chosen because of its clarity, simplicity and 
+%     accessibility, also because of its interoperability with potential 
+%     other systems.
+%     what made it the best choice? was it the optimal solution?
+%     For the purpose followed with the system - yes, it was the optimal solution,
+%     because it does not require much effort to parse the stored data
+%     and it contains all necessary information in a structured manner.
     
-% % - How will this section be structured and organised?
-% %   The organisational structure of the section contains:
+% - How will this section be structured and organised?
+%   The organisational structure of the section contains:
 
-% %   A general description of the XML format - why it was used as opposed to
-% %   other possible formats like unipen and inkml.
-% %   show requirements!
-% %   show process of how I came to current data formats.
-% %   include character models 1-4 on pages.~- however, not everything in one go,
-% %   but rather in the individual sections if possible.
-% %   in the end, a radical has its own format that is unchanged, even
-% %   if internal structure of a stroke is changed.
-% %   (unipen is only text based, inkml does not help here, but the system allows
-% %   for exchange of the custom format with those)
+%   A general description of the XML format - why it was used as opposed to
+%   other possible formats like unipen and inkml.
+%   show requirements!
+%   show process of how I came to current data formats.
+%   include character models 1-4 on pages.~- however, not everything in one go,
+%   but rather in the individual sections if possible.
+%   in the end, a radical has its own format that is unchanged, even
+%   if internal structure of a stroke is changed.
+%   (unipen is only text based, inkml does not help here, but the system allows
+%   for exchange of the custom format with those)
 
-% %   data format of and representation of 
-% %   point, stroke, box, radical, character s.~20-23, 25f
+%   data format of and representation of 
+%   point, stroke, box, radical, character s.~20-23, 25f
 
-% % - In what style will it be written?
-% %   The style of writing will be technical - a description of the XML format.
-% %   Pointer to code sample in Appendix.
+% - In what style will it be written?
+%   The style of writing will be technical - a description of the XML format.
+%   Pointer to code sample in Appendix.
 
-% % - Next action - what to write first?
-% %   The next part to write is the actual subsection 
-% %   structure of this section.~DONE
-% %   Think about requirements and write them down.
+% - Next action - what to write first?
+%   The next part to write is the actual subsection 
+%   structure of this section.~DONE
+%   Think about requirements and write them down.
 
 
-% \subsection{Requirements of the Data Format}
-% \label{sec:hwre:requirementsofdataformat}
+\subsection{Requirements of the Data Format}
+\label{sec:hwre:requirementsofdataformat}
 
-% %show requirements!
-% %think about differences between static data format and runtime data format.
+%show requirements!
+%think about differences between static data format and runtime data format.
 
-% The data format for the recognition process underlies a number of requirements.
-% Firstly, it has to be stated that two main data formats are necessary.~
-% One for the actual recognition process as a data structure in RAM.
-% Secondly, there needs to be a storage format for the data base that represents
-% the handwriting of a character, radical, stroke, point list or simple point.
-% The requirements for both data structures are:
-% \begin{itemize}
-%   \item \textbf{Expressiveness}: The data structure should be able to 
-%         fully represent a complete character and all sub-elements that belong 
-%         to it.~That requirement is due to the structural approach to handwriting
-%         recognition that is the basis for the error handling.
+The data format for the recognition process underlies a number of requirements.
+Firstly, it has to be stated that two main data formats are necessary.~
+One for the actual recognition process as a data structure in RAM.
+Secondly, there needs to be a storage format for the data base that represents
+the handwriting of a character, radical, stroke, point list or simple point.
+The requirements for both data structures are:
+\begin{itemize}
+  \item \textbf{Expressiveness}: The data structure should be able to 
+        fully represent a complete character and all sub-elements that belong 
+        to it.~That requirement is due to the structural approach to handwriting
+        recognition that is the basis for the error handling.
 
-%   \item \textbf{Well-definedness}: The information structure should be 
-%         unambiguous, two different characters must have a different structure.
-% \end{itemize}
-% The storage structure has some additional requirements:
-% \begin{itemize}
-%   \item \textbf{Accessibility}: The data should be formatted in a way that a 
-%         human editor can access the data, but it should also be prepared for 
-%         programmatic access.
-%   \item \textbf{Well-formedness}: There should be a way to check if the data is 
-%         well-formed
-%   \item \textbf{Parsabilty}: It should be possible to create the run-time data 
-%         structure from the storage data structure.
-% \end{itemize}
-% The run-time data structure should in addition provide
-% \begin{itemize}
-%   \item \textbf{Serialisability}: It must be possible to create the storage 
-%         data structure from the run-time data structure.
-% \end{itemize}
-% Any combination of two formats used should meet the above requirements, 
-% at best in a uniform way.~That is, any combination of storage format and 
-% run-time format should ideally be compatible without the need of a complex
-% data format converter.
+  \item \textbf{Well-definedness}: The information structure should be 
+        unambiguous, two different characters must have a different structure.
+\end{itemize}
+The storage structure has some additional requirements:
+\begin{itemize}
+  \item \textbf{Accessibility}: The data should be formatted in a way that a 
+        human editor can access the data, but it should also be prepared for 
+        programmatic access.
+  \item \textbf{Well-formedness}: There should be a way to check if the data is 
+        well-formed
+  \item \textbf{Parsabilty}: It should be possible to create the run-time data 
+        structure from the storage data structure.
+\end{itemize}
+The run-time data structure should in addition provide
+\begin{itemize}
+  \item \textbf{Serialisability}: It must be possible to create the storage 
+        data structure from the run-time data structure.
+\end{itemize}
+Any combination of two formats used should meet the above requirements, 
+at best in a uniform way.~That is, any combination of storage format and 
+run-time format should ideally be compatible without the need of a complex
+data format converter.
 
-% %xxx how much do I really have to say about the unipen format?
-% %xxx does it really not meet the requirements?
+%xxx how much do I really have to say about the unipen format?
+%xxx does it really not meet the requirements?
 
-% % Both:
-% % \emph{expressiveness}
-% % \emph{well-definedness}
+% Both:
+% \emph{expressiveness}
+% \emph{well-definedness}
 
-% % Storage:
-% % \emph{accessibility}
-% % \emph{well-formedness}
-% % \emph{parsabilty}
+% Storage:
+% \emph{accessibility}
+% \emph{well-formedness}
+% \emph{parsabilty}
 
-% % Run-time:
-% % \emph{serialisability}
+% Run-time:
+% \emph{serialisability}
 
-% \subsection{Existing Handwriting Formats}
-% \label{sec:hwre:existingformats}
+\subsection{Existing Handwriting Formats}
+\label{sec:hwre:existingformats}
 
-% There are some existing formats for the description of handwriting.~Their 
-% intended use is for handwriting recognition systems.~The formats that will be
-% reviewed in this section are the \emph{Microsoft ISF} format in 
-% section~\ref{sec:hwre:msisfformat}, which is a binary format.
-% The other formats are text based and human-readable.~In this short review,
-% the formats will be checked against the requirements defined in 
-% section~\ref{sec:hwre:requirementsofdataformat}. We will consider 
-% \emph{InkML} in section~\ref{sec:hwre:inkml}, 
-% \emph{UNIPEN} in section~\ref{sec:hwre:standardunipenformat}, 
-% \emph{hwDataset} in section~\ref{sec:hwre:hwdataset} and 
-% \emph{UPX} in section~\ref{sec:hwre:unipenformatupx}.
-% The central question is, if one of these formats meets the above requirements in 
-% a sufficient way.~This is unclear, because the most of the formats have been 
-% originally developed mainly for alphabetic scripts or for usage scenarios 
-% different from the one proposed in this chapter.
+There are some existing formats for the description of handwriting.~Their 
+intended use is for handwriting recognition systems.~The formats that will be
+reviewed in this section are the \emph{Microsoft ISF} format in 
+section~\ref{sec:hwre:msisfformat}, which is a binary format.
+The other formats are text based and human-readable.~In this short review,
+the formats will be checked against the requirements defined in 
+section~\ref{sec:hwre:requirementsofdataformat}. We will consider 
+\emph{InkML} in section~\ref{sec:hwre:inkml}, 
+\emph{UNIPEN} in section~\ref{sec:hwre:standardunipenformat}, 
+\emph{hwDataset} in section~\ref{sec:hwre:hwdataset} and 
+\emph{UPX} in section~\ref{sec:hwre:unipenformatupx}.
+The central question is, if one of these formats meets the above requirements in 
+a sufficient way.~This is unclear, because the most of the formats have been 
+originally developed mainly for alphabetic scripts or for usage scenarios 
+different from the one proposed in this chapter.
 
-% \subsubsection{The Microsoft Ink Serialized Format (\emph{ISF})}
-% \label{sec:hwre:msisfformat}
+\subsubsection{The Microsoft Ink Serialized Format (\emph{ISF})}
+\label{sec:hwre:msisfformat}
 
-% The \emph{Ink Serialized Format} (ISF) format is owned by the 
-% Microsoft Corporation.~However, it is not a proprietary format, the 
-% specification is freely available.~Since the format is purely binary, 
-% it can not meet one of the requirements for the storage data structure:
-% It is not feasible for a human to read and write files in that format,
-% therefore ISF does not provide the necessary 
-% \emph{accessibility}~\shortcite{Microsoft2007}.~The format could still be used 
-% as a run-time data structure, if it meets the requested criteria.
-% The requirement of \emph{serialisability} is generally met.~A binary format 
-% allows for fast and reliable programmatic access to the data, it can be stored
-% in binary files on a data storage medium.~The problem that accrues from this 
-% type of serialisation is that the storage format, the format used in a file or 
-% database, would again not be human-editable and therefore fail to meet the 
-% \emph{accessibility} requirement.~
-% In order to provide a serialisation that results in a human-readable format, 
-% a format converter would be needed.~Another problem originates from the 
-% ISF format specification: \\
-% It accounts only for the description of mouse coordinates or pen trajectories, 
-% but does not offer any structures for linguistic information.~
-% It fails to meet the ideal, a unified format for linguistic and graphic 
-% information, as it is lacking some degree of \emph{expressiveness}.
+The \emph{Ink Serialized Format} (ISF) format is owned by the 
+Microsoft Corporation.~However, it is not a proprietary format, the 
+specification is freely available.~Since the format is purely binary, 
+it can not meet one of the requirements for the storage data structure:
+It is not feasible for a human to read and write files in that format,
+therefore ISF does not provide the necessary 
+\emph{accessibility}~\shortcite{Microsoft2007}.~The format could still be used 
+as a run-time data structure, if it meets the requested criteria.
+The requirement of \emph{serialisability} is generally met.~A binary format 
+allows for fast and reliable programmatic access to the data, it can be stored
+in binary files on a data storage medium.~The problem that accrues from this 
+type of serialisation is that the storage format, the format used in a file or 
+database, would again not be human-editable and therefore fail to meet the 
+\emph{accessibility} requirement.~
+In order to provide a serialisation that results in a human-readable format, 
+a format converter would be needed.~Another problem originates from the 
+ISF format specification: \\
+It accounts only for the description of mouse coordinates or pen trajectories, 
+but does not offer any structures for linguistic information.~
+It fails to meet the ideal, a unified format for linguistic and graphic 
+information, as it is lacking some degree of \emph{expressiveness}.
 
-% \subsubsection{InkML}
-% \label{sec:hwre:inkml}
+\subsubsection{InkML}
+\label{sec:hwre:inkml}
 
-% InkML is a markup language for describing electronic pen trajectories.~
-% Hence the name \emph{Ink}. The letter combination \emph{ML} stands for markup 
-% language, as is customary 
-% for XML-based and SGML-based languages.~The specification is currently in a 
-% draft status, maintained by the World Wide Web Consortium 
-% (W3C)~\shortcite{W3C2006}.
-% Judged from the viewpoint of the defined requirements, InkML is a candidate
-% for the storage format. As an XML format with an XML schema it fulfils the 
-% criterion of \emph{well-formedness} by design: 
-% Any piece of InkML code can be evaluated automatically with common techniques, 
-% since InkML has a well-defined scheme description.
+InkML is a markup language for describing electronic pen trajectories.~
+Hence the name \emph{Ink}. The letter combination \emph{ML} stands for markup 
+language, as is customary 
+for XML-based and SGML-based languages.~The specification is currently in a 
+draft status, maintained by the World Wide Web Consortium 
+(W3C)~\shortcite{W3C2006}.
+Judged from the viewpoint of the defined requirements, InkML is a candidate
+for the storage format. As an XML format with an XML schema it fulfils the 
+criterion of \emph{well-formedness} by design: 
+Any piece of InkML code can be evaluated automatically with common techniques, 
+since InkML has a well-defined scheme description.
 
-% The main XML elements in the simplest form of InkML are 
-% the \textbf{<ink>}- and the \textbf{<trace>}-element.
-% These elements allow for a very simple form of a pen trajectory, 
-% basically a flat list of point coordinates.
-% The <ink>-element is the root element of any InkML code. 
-% The <trace>-element holds point coordinates.
-% \begin{xmlcode}
-%   \begin{lstlisting}[emph={trace,timestamp,channel},
-%                      emphstyle=\color{blue}\textbf,
-%                      emph={[2]name,type,units,respectTo,time,
-%                               timeOffset,timestampRef},
-%                      caption={Demonstration of the \emph{time channel} and the \emph{trace} tag},
-%                      label=lst:TraceTag]
-%     <ink>
-%       <timestamp xml:id="ts001" 
-%                  time="1265122414000"/>
+The main XML elements in the simplest form of InkML are 
+the \textbf{<ink>}- and the \textbf{<trace>}-element.
+These elements allow for a very simple form of a pen trajectory, 
+basically a flat list of point coordinates.
+The <ink>-element is the root element of any InkML code. 
+The <trace>-element holds point coordinates.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={trace,timestamp,channel},
+                     emphstyle=\color{blue}\textbf,
+                     emph={[2]name,type,units,respectTo,time,
+                              timeOffset,timestampRef},
+                     caption={Demonstration of the \emph{time channel} and the \emph{trace} tag},
+                     label=lst:TraceTag]
+    <ink>
+      <timestamp xml:id="ts001" 
+                 time="1265122414000"/>
 
-%       <timestamp xml:id="ts002" 
-%                  timeOffset="600000" 
-%                  timestampRef="#ts001"/>
+      <timestamp xml:id="ts002" 
+                 timeOffset="600000" 
+                 timestampRef="#ts001"/>
 
-%       <traceFormat xml:id="0001_tf">
-%         <channel name="X" type="decimal" />
-%         <channel name="Y" type="decimal" />
-%         <channel name="T" 
-%                  type="integer" 
-%                  units="ms" 
-%                  respectTo="#ts001" />
-%       </traceFormat>
+      <traceFormat xml:id="0001_tf">
+        <channel name="X" type="decimal" />
+        <channel name="Y" type="decimal" />
+        <channel name="T" 
+                 type="integer" 
+                 units="ms" 
+                 respectTo="#ts001" />
+      </traceFormat>
 
-%       <trace>
-%         282  45 100, 281  59 100, 284  73 200, 285  87 200, 287 101 300, 
-%         288 115 300, 290 129 400, 291 143 500, 294 157 500, 294 171 600
-%       </trace>
-%     </ink>
-%   \end{lstlisting}
-% \end{xmlcode}
-% Listing~\ref{lst:TraceTag} covers the general gist of the InkML format.
-% Despite being an XML format, it is a flat format, each value triple, 
-% separated by commas, represents one point in a coordinate notation and
-% an offset to a time stamp.
+      <trace>
+        282  45 100, 281  59 100, 284  73 200, 285  87 200, 287 101 300, 
+        288 115 300, 290 129 400, 291 143 500, 294 157 500, 294 171 600
+      </trace>
+    </ink>
+  \end{lstlisting}
+\end{xmlcode}
+Listing~\ref{lst:TraceTag} covers the general gist of the InkML format.
+Despite being an XML format, it is a flat format, each value triple, 
+separated by commas, represents one point in a coordinate notation and
+an offset to a time stamp.
 
-% In order to add \emph{time} information to the trace,
-% a time channel needs to be defined. Listing \ref{lst:TraceTag} shows the 
-% definition and use of a time channel in the beginning. 
-% The example shows a time channel whose values for a given point are the 
-% relative to the timestamp referred to by 
-% \emph{\#ts001}~\shortcite{W3C2006}. There are two \emph{timestamp} tags.
-% The first one has the ID \emph{ts001} and is referred to by both the
-% time channel and the second time stamp that defines a time offset to time stamp
-% \emph{ts001} with the \emph{timeOffset} attribute.
-% The possibility to define time channels enables the InkML format to hold 
-% information about the time at which a sample point has been taken.
-% This is useful for the recognition mechanism used in this application,
-% because it compares point coordinates as well as time stamps.
-% The InkML data structure fulfils several of the requirements necessary for a 
-% storage data structure.~InkML is 
-% \begin{itemize}
-%   \item \textbf{well-defined}: Any point sequence that has different coordinate
-%         values than another point sequence can be distinguished from the other.
+In order to add \emph{time} information to the trace,
+a time channel needs to be defined. Listing \ref{lst:TraceTag} shows the 
+definition and use of a time channel in the beginning. 
+The example shows a time channel whose values for a given point are the 
+relative to the timestamp referred to by 
+\emph{\#ts001}~\shortcite{W3C2006}. There are two \emph{timestamp} tags.
+The first one has the ID \emph{ts001} and is referred to by both the
+time channel and the second time stamp that defines a time offset to time stamp
+\emph{ts001} with the \emph{timeOffset} attribute.
+The possibility to define time channels enables the InkML format to hold 
+information about the time at which a sample point has been taken.
+This is useful for the recognition mechanism used in this application,
+because it compares point coordinates as well as time stamps.
+The InkML data structure fulfils several of the requirements necessary for a 
+storage data structure.~InkML is 
+\begin{itemize}
+  \item \textbf{well-defined}: Any point sequence that has different coordinate
+        values than another point sequence can be distinguished from the other.
         
-%   \item \textbf{accessible}: As an XML format it can be handled programmatically,
-%         but is also human-readable and can be edited by a human with a simple
-%         interface like a text editor.
+  \item \textbf{accessible}: As an XML format it can be handled programmatically,
+        but is also human-readable and can be edited by a human with a simple
+        interface like a text editor.
 
-%   \item \textbf{well-formed}: As an XML format it can be validated according to 
-%         it's specification.
+  \item \textbf{well-formed}: As an XML format it can be validated according to 
+        it's specification.
 
-%   \item \textbf{parsabale}: As an XML format, InkML does not need to be parsed 
-%         with custom-made methods, since most modern high-level languages offer
-%         an access method to XML tree structures.
-% \end{itemize}
-% However, InkML is lacking some \emph{expressiveness}. Only pen trajectories and
-% their time stamps can be expressed in the InkML format. InkML is not designed 
-% to hold any of the other information compulsory for the structural handwriting
-% recognition.~In the case of character recognition, it needs to be able to 
-% account for more than coordinate points and time stamps.~There needs to be a 
-% way to encode structural information about the characters and sub-elements of 
-% the characters. InkML does not seem to be a sufficient format for the given task.
+  \item \textbf{parsabale}: As an XML format, InkML does not need to be parsed 
+        with custom-made methods, since most modern high-level languages offer
+        an access method to XML tree structures.
+\end{itemize}
+However, InkML is lacking some \emph{expressiveness}. Only pen trajectories and
+their time stamps can be expressed in the InkML format. InkML is not designed 
+to hold any of the other information compulsory for the structural handwriting
+recognition.~In the case of character recognition, it needs to be able to 
+account for more than coordinate points and time stamps.~There needs to be a 
+way to encode structural information about the characters and sub-elements of 
+the characters. InkML does not seem to be a sufficient format for the given task.
 
-% \subsubsection{The Standard UNIPEN Format}
-% \label{sec:hwre:standardunipenformat}
+\subsubsection{The Standard UNIPEN Format}
+\label{sec:hwre:standardunipenformat}
 
-% The standard UNIPEN format specification is a file format definition for a flat
-% text file.~It contains tags in dot-notation. For example the tag \emph{.COMMENT}
-% means that the following free text should be ignored, the tag \emph{.KEYWORD} 
-% is used to define a new keyword, while the tag \emph{RESERVED} states that
-% the text that comes after that tag is a reserved word within the UNIPEN format.
-% The format is self-defined with the three keywords above. Any new keyword is
-% defined with \emph{.KEYWORD}~\shortcite{Guyon1994,Unipen}.
+The standard UNIPEN format specification is a file format definition for a flat
+text file.~It contains tags in dot-notation. For example the tag \emph{.COMMENT}
+means that the following free text should be ignored, the tag \emph{.KEYWORD} 
+is used to define a new keyword, while the tag \emph{RESERVED} states that
+the text that comes after that tag is a reserved word within the UNIPEN format.
+The format is self-defined with the three keywords above. Any new keyword is
+defined with \emph{.KEYWORD}~\shortcite{Guyon1994,Unipen}.
 
-% As a data structure for the purpose of a handwriting recognition, UNIPEN can 
-% serve as a storage format, which is the primary purpose for the existence of the
-% format. The UNIPEN format accounts for both pen trajectories as well as 
-% information about the characters that have been written.
-% \begin{xmlcode}
-%   \begin{lstlisting}[emph={COMMENT,COORD,SEGMENT},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
-% .COMMENT #################################################################### 
-% .COORD   X Y
+As a data structure for the purpose of a handwriting recognition, UNIPEN can 
+serve as a storage format, which is the primary purpose for the existence of the
+format. The UNIPEN format accounts for both pen trajectories as well as 
+information about the characters that have been written.
+\begin{xmlcode}
+  \begin{lstlisting}[emph={COMMENT,COORD,SEGMENT},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
+.COMMENT #################################################################### 
+.COORD   X Y
 
-% .SEGMENT TEXT 235:0-297:9 OK "Kurosu Masaaki"
-% .SEGMENT CHARACTER 235:0-255:9 OK  "JISx3975_'Kuro'"
+.SEGMENT TEXT 235:0-297:9 OK "Kurosu Masaaki"
+.SEGMENT CHARACTER 235:0-255:9 OK  "JISx3975_'Kuro'"
 
-% .PEN_DOWN 
-%   486 -1456 
-%   488 -1454 
-%   490 -1452 
-%   488 -1450 
-%   488 -1450 
-%   486 -1452 
-%   480 -1456 
-%   474 -1466 
-%   464 -1480 
-%   452 -1492 
-%   440 -1506 
-%   428 -1524
-% .PEN_UP 
-%   406 -1556 
-%   394 -1574 
-%   384 -1590 
-%   374 -1602
-% .PEN_DOWN 
-%   \end{lstlisting}
-% \end{xmlcode}
-% Listing~\ref{lst:unipen} is an excerpt from a data file created 
-% by~\shortciteANP{Unipen}~\citeyear{Unipen}. It shows an example of a UNIPEN data structure.
-% The \emph{.COORD} tag defines the structure of the pen coordinates. 
-% The \emph{.SEGMENT} tag with the \emph{TEXT} modifier informs about the
-% full text of the next number of segments. The \emph{.SEGMENT} tag with the
-% \emph{CHARACTER} modifier informs about the character that is represented
-% with the sequence of pen coordinates. The other information given is the
-% start and end position within the file and the character code in JIS encoding.
-% The \emph{.PEN\_DOWN} tag can be understood as a flag. All pen coordinates 
-% following this tag have been captured as \emph{pen down} coordinates.
-% The tag \emph{.PEN\_UP} sets the opposite flag: The coordinates stated after 
-% this tag were captured while the pen was not touching the writing surface.
-% The last \emph{.PEN\_DOWN} tag is the beginning of a new coordinate sequence
-% for the next stroke. From a requirements point of view the UNIPEN provides a
-% high standard, as it meets a great number of requirements for the storage 
-% structure. \\
-% The UNIPEN format is:
-% \begin{itemize}
-%   \item partially \textbf{expressive}: UNIPEN can represent a complete character
-%         and the pen trajectory along with it. It does however, not account for
-%         capturing the time information. At a constant sample rate the time stamps
-%         of the individual points could theoretically be calculated, 
-%         if time stamp of the first point is encoded in the meta information. 
-%         However, that solution is not optimal, because it needs constant
-%         sampling, even between a \emph{pen-up} and a \emph{pen-down} event.
-%         There are input devices that do not offer those coordinates and the 
-%         recognition system presented here does not rely on them for that reason.
-%         The examples given are encoded in JIS, but it seems possible and feasible
-%         to use the format with Unicode encoding.
+.PEN_DOWN 
+  486 -1456 
+  488 -1454 
+  490 -1452 
+  488 -1450 
+  488 -1450 
+  486 -1452 
+  480 -1456 
+  474 -1466 
+  464 -1480 
+  452 -1492 
+  440 -1506 
+  428 -1524
+.PEN_UP 
+  406 -1556 
+  394 -1574 
+  384 -1590 
+  374 -1602
+.PEN_DOWN 
+  \end{lstlisting}
+\end{xmlcode}
+Listing~\ref{lst:unipen} is an excerpt from a data file created 
+by~\shortciteANP{Unipen}~\citeyear{Unipen}. It shows an example of a UNIPEN data structure.
+The \emph{.COORD} tag defines the structure of the pen coordinates. 
+The \emph{.SEGMENT} tag with the \emph{TEXT} modifier informs about the
+full text of the next number of segments. The \emph{.SEGMENT} tag with the
+\emph{CHARACTER} modifier informs about the character that is represented
+with the sequence of pen coordinates. The other information given is the
+start and end position within the file and the character code in JIS encoding.
+The \emph{.PEN\_DOWN} tag can be understood as a flag. All pen coordinates 
+following this tag have been captured as \emph{pen down} coordinates.
+The tag \emph{.PEN\_UP} sets the opposite flag: The coordinates stated after 
+this tag were captured while the pen was not touching the writing surface.
+The last \emph{.PEN\_DOWN} tag is the beginning of a new coordinate sequence
+for the next stroke. From a requirements point of view the UNIPEN provides a
+high standard, as it meets a great number of requirements for the storage 
+structure. \\
+The UNIPEN format is:
+\begin{itemize}
+  \item partially \textbf{expressive}: UNIPEN can represent a complete character
+        and the pen trajectory along with it. It does however, not account for
+        capturing the time information. At a constant sample rate the time stamps
+        of the individual points could theoretically be calculated, 
+        if time stamp of the first point is encoded in the meta information. 
+        However, that solution is not optimal, because it needs constant
+        sampling, even between a \emph{pen-up} and a \emph{pen-down} event.
+        There are input devices that do not offer those coordinates and the 
+        recognition system presented here does not rely on them for that reason.
+        The examples given are encoded in JIS, but it seems possible and feasible
+        to use the format with Unicode encoding.
 
-%   \item \textbf{well-defined}: The UNIPEN is unambiguous, two different 
-%         characters do have a different data structure, because the JIS code 
-%         can serve as an ID.
+  \item \textbf{well-defined}: The UNIPEN is unambiguous, two different 
+        characters do have a different data structure, because the JIS code 
+        can serve as an ID.
 
-%   \item \textbf{accessible}: The data resides in flat text files, designed for 
-%         human editing. It is accessible programmatically, too, but has a weakness
-%         on that requirement compared to an XML-based format.
+  \item \textbf{accessible}: The data resides in flat text files, designed for 
+        human editing. It is accessible programmatically, too, but has a weakness
+        on that requirement compared to an XML-based format.
 
-%   \item \textbf{parsable}: The flat file format can be parsed easily. Due to its
-%         procedural nature it is also possible to create a run-time data structure
-%         that is conceptually based on the storage structure and therefore
-%         serialisable.
-% \end{itemize}
-% The main weakness of the flat format file is the lack of \emph{well-formedness}.
-% There is no automatic way to check a document against a predefined format 
-% specification. It can not be assessed if a file is well-formed.
-% Additionally, the expressive power of the UNIPEN format would be seriously 
-% challenged if it should provide for sub-structures of characters.
-% In order to do so, it would be necessary to create new tag definitions for the 
-% Radicals of the Kanji.~\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} 
-% describe some more shortcomings of the UNIPEN format. It can be concluded that 
-% the standard UNIPEN format is not suitable for the task given. 
+  \item \textbf{parsable}: The flat file format can be parsed easily. Due to its
+        procedural nature it is also possible to create a run-time data structure
+        that is conceptually based on the storage structure and therefore
+        serialisable.
+\end{itemize}
+The main weakness of the flat format file is the lack of \emph{well-formedness}.
+There is no automatic way to check a document against a predefined format 
+specification. It can not be assessed if a file is well-formed.
+Additionally, the expressive power of the UNIPEN format would be seriously 
+challenged if it should provide for sub-structures of characters.
+In order to do so, it would be necessary to create new tag definitions for the 
+Radicals of the Kanji.~\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} 
+describe some more shortcomings of the UNIPEN format. It can be concluded that 
+the standard UNIPEN format is not suitable for the task given. 
 
-% \subsubsection{Handwriting Dataset (\emph{hwDataset})}
-% \label{sec:hwre:hwdataset}
+\subsubsection{Handwriting Dataset (\emph{hwDataset})}
+\label{sec:hwre:hwdataset}
 
-% The \emph{Handwriting Dataset} (hwDataset) is an XML format that is a complement
-% to InkML. It is inspired by the UNIPEN format. The \emph{hwDataset} format 
-% attempts to close the gap between pure ink data and the annotations that are 
-% needed for handwriting recognition~\shortcite{Bhaskarabhatla2004}. 
-% The format contains three main parts. The \emph{datasetInfo}, 
-% the \emph{datasetDefs} and the \emph{hwData}. The datasetInfo element holds
-% any metadata, like \emph{name}, \emph{category} and the like.
-% The dataSetDefs encompasses information about \emph{data sources}, different
-% \emph{writers} and their features like \emph{handedness}, \emph{gender}, 
-% \emph{age}. The \emph{hwData} element in the XML code organises the 
-% handwriting data hierarchically. Each hierarchy level contains one or 
-% more \emph{hwTrace} elements. The hwTrace element refers to an InkML file, 
-% containing the actual handwriting data. A detailed description of the hwDataset 
-% format can be found in~\shortciteANP{Bhaskarabhatla2004}~\citeyear{Bhaskarabhatla2004}. 
+The \emph{Handwriting Dataset} (hwDataset) is an XML format that is a complement
+to InkML. It is inspired by the UNIPEN format. The \emph{hwDataset} format 
+attempts to close the gap between pure ink data and the annotations that are 
+needed for handwriting recognition~\shortcite{Bhaskarabhatla2004}. 
+The format contains three main parts. The \emph{datasetInfo}, 
+the \emph{datasetDefs} and the \emph{hwData}. The datasetInfo element holds
+any metadata, like \emph{name}, \emph{category} and the like.
+The dataSetDefs encompasses information about \emph{data sources}, different
+\emph{writers} and their features like \emph{handedness}, \emph{gender}, 
+\emph{age}. The \emph{hwData} element in the XML code organises the 
+handwriting data hierarchically. Each hierarchy level contains one or 
+more \emph{hwTrace} elements. The hwTrace element refers to an InkML file, 
+containing the actual handwriting data. A detailed description of the hwDataset 
+format can be found in~\shortciteANP{Bhaskarabhatla2004}~\citeyear{Bhaskarabhatla2004}. 
 
-% The format provides an XML scheme description and thus meets the 
-% \emph{well-formedness} requirement. It is \emph{well-defined}, 
-% because it accounts for unique structures. The \emph{parsabilty} is not an 
-% issue for any XML format, since methods for accessing XML trees are provided 
-% by modern programming libraries.
-% The \emph{accessibility} is provided, the format has a clearly defined structure
-% that can easily be understood by humans.
-% The hwDataset format can structure many desirable information for the handwriting
-% learning system proposed in this chapter. 
-% From an \emph{expressiveness} viewpoint it can create substructures for 
-% different parts of a sequence of pen trajectories. The \emph{hierarchy level} (H)
-% of a trace accounts for the expressive power necessary. The H(n) elements 
-% of the hwData elements are designed to hold meaningful names like 
-% \emph{PARAGRAPH} or \emph{WORD}. It may be possible to use the format even to 
-% denote different parts of the same character. There is no reason why one should
-% not introduce an H(n) definition for \emph{RADICAL} or \emph{GRAPHEME}.
+The format provides an XML scheme description and thus meets the 
+\emph{well-formedness} requirement. It is \emph{well-defined}, 
+because it accounts for unique structures. The \emph{parsabilty} is not an 
+issue for any XML format, since methods for accessing XML trees are provided 
+by modern programming libraries.
+The \emph{accessibility} is provided, the format has a clearly defined structure
+that can easily be understood by humans.
+The hwDataset format can structure many desirable information for the handwriting
+learning system proposed in this chapter. 
+From an \emph{expressiveness} viewpoint it can create substructures for 
+different parts of a sequence of pen trajectories. The \emph{hierarchy level} (H)
+of a trace accounts for the expressive power necessary. The H(n) elements 
+of the hwData elements are designed to hold meaningful names like 
+\emph{PARAGRAPH} or \emph{WORD}. It may be possible to use the format even to 
+denote different parts of the same character. There is no reason why one should
+not introduce an H(n) definition for \emph{RADICAL} or \emph{GRAPHEME}.
 
-% \subsubsection{The UNIPEN XML Format (\emph{UPX})}
-% \label{sec:hwre:unipenformatupx}
+\subsubsection{The UNIPEN XML Format (\emph{UPX})}
+\label{sec:hwre:unipenformatupx}
 
-% The format \emph{Unipen for XML} (UPX) can be seen as an XML version of the
-% UNIPEN format. The UNIPEN standard described in 
-% section~\ref{sec:hwre:standardunipenformat} does not bear any resemblance
-% with the InkML format shown in section~\ref{sec:hwre:inkml}.
-% Both formats fulfil a number of the requirements presented in 
-% section~\ref{sec:hwre:requirementsofdataformat}, but both formats fail to 
-% fulfil them all. The hwDataset format described in 
-% section~\ref{sec:hwre:hwdataset} solves many of the problems UNIPEN faces,
-% as it brings together a superset of the expressiveness of UNIPEN with
-% the well-defined InkML format in a uniform way.
-% According to~\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} hwDataset
-% was designed to support new data collection. The motivation to create another
-% format came about from the fact that existing UNIPEN resources should be made
-% available in a modern XML-based format that unifies InkML and UNIPEN.
-% hwDataset comes very close to this aim, but does not necessarily account for a 
-% conversion of UNIPEN resources. 
-% \shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} attempt to create a format 
-% that allows for a well-defined conversion from UNIPEN.
-% The UNIPEN foundation considers UPX as the new de facto standard format for 
-% storing annotated databases of on-line pen input~\shortcite{UnipenConsortium2006}.
+The format \emph{Unipen for XML} (UPX) can be seen as an XML version of the
+UNIPEN format. The UNIPEN standard described in 
+section~\ref{sec:hwre:standardunipenformat} does not bear any resemblance
+with the InkML format shown in section~\ref{sec:hwre:inkml}.
+Both formats fulfil a number of the requirements presented in 
+section~\ref{sec:hwre:requirementsofdataformat}, but both formats fail to 
+fulfil them all. The hwDataset format described in 
+section~\ref{sec:hwre:hwdataset} solves many of the problems UNIPEN faces,
+as it brings together a superset of the expressiveness of UNIPEN with
+the well-defined InkML format in a uniform way.
+According to~\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} hwDataset
+was designed to support new data collection. The motivation to create another
+format came about from the fact that existing UNIPEN resources should be made
+available in a modern XML-based format that unifies InkML and UNIPEN.
+hwDataset comes very close to this aim, but does not necessarily account for a 
+conversion of UNIPEN resources. 
+\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} attempt to create a format 
+that allows for a well-defined conversion from UNIPEN.
+The UNIPEN foundation considers UPX as the new de facto standard format for 
+storing annotated databases of on-line pen input~\shortcite{UnipenConsortium2006}.
 
-% UPX is a multi file format. It resembles hwDataset in the way that it comprises 
-% both meta information and data annotations as well as pure InkML data in 
-% separate files. Within the UPX \emph{hwData} element there can be any number
-% of \emph{hLevel} elements in order to define the hierarchy of the trajectory.
-% Listing~\ref{lst:hLevelinupx} shows an example 
-% after~\shortciteANP{UnipenConsortium2006}~\citeyear{UnipenConsortium2006}. In the listing, the \emph{hLevel} tag
-% is demonstrated. The word \emph{sexy} is described hierarchically.
-% Firstly, in the outermost \emph{hLevel} tag, the \emph{level} attribute specifies
-% a \emph{WORD}. Then the inner \emph{hLevel} elements specify a lower level
-% of hierarchy, the characters. Note that not all characters are defined
-% individually in this example.
-% The \emph{hwTraces} elements surround a number of \emph{traceView} elements that
-% in turn point to the corresponding positions in an InkML file that holds the 
-% pen trajectory. The meta data information that can be stored in UPX has a 
-% similar expressive power as the hwDataset format.
-% \shortciteANP{Madhvanath2006}~\citeyear{Madhvanath2006} give a full format 
-% description of the UPX format in their technical report.
+UPX is a multi file format. It resembles hwDataset in the way that it comprises 
+both meta information and data annotations as well as pure InkML data in 
+separate files. Within the UPX \emph{hwData} element there can be any number
+of \emph{hLevel} elements in order to define the hierarchy of the trajectory.
+Listing~\ref{lst:hLevelinupx} shows an example 
+after~\shortciteANP{UnipenConsortium2006}~\citeyear{UnipenConsortium2006}. In the listing, the \emph{hLevel} tag
+is demonstrated. The word \emph{sexy} is described hierarchically.
+Firstly, in the outermost \emph{hLevel} tag, the \emph{level} attribute specifies
+a \emph{WORD}. Then the inner \emph{hLevel} elements specify a lower level
+of hierarchy, the characters. Note that not all characters are defined
+individually in this example.
+The \emph{hwTraces} elements surround a number of \emph{traceView} elements that
+in turn point to the corresponding positions in an InkML file that holds the 
+pen trajectory. The meta data information that can be stored in UPX has a 
+similar expressive power as the hwDataset format.
+\shortciteANP{Madhvanath2006}~\citeyear{Madhvanath2006} give a full format 
+description of the UPX format in their technical report.
 
-% \begin{xmlcode}
-%   \begin{lstlisting}[emph={hLevel,hwTraces},
-%                      emphstyle={\color{blue}\textbf},
-%                      emph={[2]id,level},
-%                      emphstyle={[2]\color{red}},
-%                      caption={Demonstration of the \emph{hLevel} tag in UPX},
-%                      label=lst:hLevelinupx]
-%     <hLevel id="WORD_0" level="WORD">
-%       <label id="WORD_0">
-%         <alternate rank="1" score="1"/>sexy</alternate>
-%       </label>
-%       <hwTraces> 
-%         <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
-%                          from="22" 
-%                          to="24"/>
-%       </hwTraces>
+\begin{xmlcode}
+  \begin{lstlisting}[emph={hLevel,hwTraces},
+                     emphstyle={\color{blue}\textbf},
+                     emph={[2]id,level},
+                     emphstyle={[2]\color{red}},
+                     caption={Demonstration of the \emph{hLevel} tag in UPX},
+                     label=lst:hLevelinupx]
+    <hLevel id="WORD_0" level="WORD">
+      <label id="WORD_0">
+        <alternate rank="1" score="1"/>sexy</alternate>
+      </label>
+      <hwTraces> 
+        <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
+                         from="22" 
+                         to="24"/>
+      </hwTraces>
 
-%       <hLevel id="CHAR_0" level="CHAR">
-%         <label id="CHAR_0">
-%           <alternate rank="1" score="1"/>e</alternate>
-%         </label>
-%         <hwTraces> 
-%           <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
-%                            from="22:91" 
-%                            to="22:161"/>
-%         </hwTraces>
-%       </hLevel>
+      <hLevel id="CHAR_0" level="CHAR">
+        <label id="CHAR_0">
+          <alternate rank="1" score="1"/>e</alternate>
+        </label>
+        <hwTraces> 
+          <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
+                           from="22:91" 
+                           to="22:161"/>
+        </hwTraces>
+      </hLevel>
 
-%       <hLevel id="CHAR_1" level="CHAR">
-%         <label id="CHAR_1">
-%           <alternate rank="1" score="1"/>y</alternate>
-%         </label>
-%         <hwTraces> 
-%           <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
-%                            from="24:61" 
-%                            to="24:162"/>
-%         </hwTraces>
-%       </hLevel>
-%     </hLevel>
-%   \end{lstlisting}
-% \end{xmlcode}
+      <hLevel id="CHAR_1" level="CHAR">
+        <label id="CHAR_1">
+          <alternate rank="1" score="1"/>y</alternate>
+        </label>
+        <hwTraces> 
+          <inkml:traceView traceRef="w0629.inkml#dataSet_0_traces" 
+                           from="24:61" 
+                           to="24:162"/>
+        </hwTraces>
+      </hLevel>
+    </hLevel>
+  \end{lstlisting}
+\end{xmlcode}
 
-% It seems as if the UPX format was able to fulfil all requirements.
-% The UPX format fulfils the requirements of
-% \begin{itemize}
-%   \item \textbf{Well-definedness}: As an XML structure providing IDs and names 
-%         for each element and substructure, the format is well-defined.
+It seems as if the UPX format was able to fulfil all requirements.
+The UPX format fulfils the requirements of
+\begin{itemize}
+  \item \textbf{Well-definedness}: As an XML structure providing IDs and names 
+        for each element and substructure, the format is well-defined.
 
-%   \item \textbf{Accessibility}: As an XML format it is both human and machine
-%         readable and editable.
+  \item \textbf{Accessibility}: As an XML format it is both human and machine
+        readable and editable.
 
-%   \item \textbf{Well-formedness}: As an XML format with a defined scheme it can
-%         be validated for its syntactic features.
+  \item \textbf{Well-formedness}: As an XML format with a defined scheme it can
+        be validated for its syntactic features.
 
-%   \item \textbf{Parsabilty}: As an XML format it can be easily parsed into a
-%         tree structure.
+  \item \textbf{Parsabilty}: As an XML format it can be easily parsed into a
+        tree structure.
 
-%   \item \textbf{Expressiveness}: The format provides the missing link between the
-%         standard UNIPEN format and the InkML format. Additionally, it can 
-%         describe hierarchical structures.
-% \end{itemize}
-% Since any XML format translates directly into a tree structure, the data 
-% structure for the run-time does not need to be defined separately.
-% Converting pen trajectories in InkML format into a data stream has been 
-% studied~\shortcite{Keshari2008}. These techniques however, are not necessary 
-% for the proposed system. The data exchange is provided as technique available
-% within the framework without any conversion (see 
-% section~\ref{sec:arch:webservice}).
+  \item \textbf{Expressiveness}: The format provides the missing link between the
+        standard UNIPEN format and the InkML format. Additionally, it can 
+        describe hierarchical structures.
+\end{itemize}
+Since any XML format translates directly into a tree structure, the data 
+structure for the run-time does not need to be defined separately.
+Converting pen trajectories in InkML format into a data stream has been 
+studied~\shortcite{Keshari2008}. These techniques however, are not necessary 
+for the proposed system. The data exchange is provided as technique available
+within the framework without any conversion (see 
+section~\ref{sec:arch:webservice}).
 
-% \subsection{Data Format Description}
-% \label{sec:hwre:dataformatdescription}
+\subsection{Data Format Description}
+\label{sec:hwre:dataformatdescription}
 
-%   % A general description of the XML format - why it was used that way,
-%   % given the requirements
+  % A general description of the XML format - why it was used that way,
+  % given the requirements
 
-%   % data format of and representation of 
-%   % point, stroke, box, radical, character s. 20-23, 25f
+  % data format of and representation of 
+  % point, stroke, box, radical, character s. 20-23, 25f
 
-%   % show process of how I came to current data formats.
-%   % include character models 1-4 on pages. - however, not everything in one go,
-%   % but rather in the individual sections if possible.
-%   % in the end, a radical has its own format that is unchanged, even
-%   % if internal structure of a stroke is changed.
-%   % (unipen is only text based, inkml does not help here, but the system allows
-%   % for exchange of the custom format with those)
+  % show process of how I came to current data formats.
+  % include character models 1-4 on pages. - however, not everything in one go,
+  % but rather in the individual sections if possible.
+  % in the end, a radical has its own format that is unchanged, even
+  % if internal structure of a stroke is changed.
+  % (unipen is only text based, inkml does not help here, but the system allows
+  % for exchange of the custom format with those)
 
-% The data format description could trivially be described with the UPX 
-% description. In this case however, UPX needs to be adapted to the special needs.
-% This section describes the adaption of UPX to the requirements of an on-line
-% handwriting recognition for Kanji characters in a learning environment.
-% The section describes both the file format and the run-time data structure.
+The data format description could trivially be described with the UPX 
+description. In this case however, UPX needs to be adapted to the special needs.
+This section describes the adaption of UPX to the requirements of an on-line
+handwriting recognition for Kanji characters in a learning environment.
+The section describes both the file format and the run-time data structure.
 
+xxx further corrections from here downwards xxx
 \subsubsection{Point Data Format}
 \label{sec:hwre:pointdataformat}
 
