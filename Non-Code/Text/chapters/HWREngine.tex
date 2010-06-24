@@ -56,10 +56,10 @@
 % The sections after that are concerned with the actual recognition process.
 % The different kinds of stroke matching are discussed in 
 % section~\ref{sec:hwre:strokerecognitionprocess}, including dynamic time warping.
-% The Radical recognition depends on the stroke matchning and is presented in
+% The radical recognition depends on the stroke matchning and is presented in
 % section~\ref{sec:hwre:radicalrecognitionprocess}.
 % The character recognition is then a combination of the stroke matching and
-% the Radical recognition.~Section~\ref{sec:hwre:characterrecognitionprocess}
+% the radical recognition.~Section~\ref{sec:hwre:characterrecognitionprocess}
 % informs about the character recognition.
 % The last section~\ref{sec:hwre:errorhandling} of the chapter contains the 
 % discussion of the error handling in the system.
@@ -523,7 +523,7 @@
 % Additionally, the expressive power of the UNIPEN format would be seriously 
 % challenged if it should provide for sub-structures of characters.
 % In order to do so, it would be necessary to create new tag definitions for the 
-% Radicals of the Kanji.~\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} 
+% radicals of the Kanji.~\shortciteANP{Agrawal2005}~\citeyear{Agrawal2005} 
 % describe some more shortcomings of the UNIPEN format. It can be concluded that 
 % the standard UNIPEN format is not suitable for the task given. 
 
@@ -818,7 +818,7 @@ table~\ref{table:sampletraceinterpretation}.
 %                               represented in UPX},
 %                      label=lst:strokeasindividualelement]
 %     <hLevel level="stroke" id="STROKE1">
-%     <!-- The first stroke in this Radical of handwriting. -->
+%     <!-- The first stroke in this radical of handwriting. -->
 %       <label id="STROKE1label" labelSrcRef="labelref_DW" labelType="truth">
 %         <alternate>[unicode value]</alternate>
 %       </label>
@@ -840,13 +840,13 @@ table~\ref{table:sampletraceinterpretation}.
 % \subsubsection{Radical Data Format}
 % \label{sec:hwre:radicaldataformat}
 
-% The Radical data format is a data structure that works with the UPX \emph{hLevel}
+% The radical data format is a data structure that works with the UPX \emph{hLevel}
 % element for hierarchical description.
-% Conceptually, a Radical is a hierarchical element in the composition of a Kanji
+% Conceptually, a radical is a hierarchical element in the composition of a Kanji
 % character. With the UPX format specification in hand it is fairly 
 % straightforward to define an appropriate data structure.
-% Listing~\ref{lst:radicaldataformat} shows a UPX data structure for a Radical.
-% The Radical \cjk{木} consists of four strokes.
+% Listing~\ref{lst:radicaldataformat} shows a UPX data structure for a radical.
+% The radical \cjk{木} consists of four strokes.
 % Since strokes are not represented explicitly in the data format,
 % there are four \emph{traceView} elements under the \emph{hwTraces} tag.
 % \begin{xmlcode}
@@ -854,10 +854,10 @@ table~\ref{table:sampletraceinterpretation}.
 %                      emphstyle=\color{blue}\textbf,
 %                      emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
 %                      emphstyle={[2]\color{red}},
-%                      caption={A Radical representation in UPX},
+%                      caption={A radical representation in UPX},
 %                      label=lst:radicaldataformat]
 %     <hLevel level="radical" id="RADICAL75">
-%     <!-- The first Radical in this Kanji character of handwriting. -->
+%     <!-- The first radical in this Kanji character of handwriting. -->
 %       <label id="RADICAL75label" labelSrcRef="labelref_DW" labelType="truth">
 %           <alternate>U+6728</alternate><-- Unicode value -->
 %       </label>
@@ -871,10 +871,10 @@ table~\ref{table:sampletraceinterpretation}.
 %   \end{lstlisting}
 % \end{xmlcode}
 
-% \paragraph{The run-time data structure} of a Radical is a collection stroke instances.
-% All values for recognition of a Radical are computed from the strokes instances
+% \paragraph{The run-time data structure} of a radical is a collection stroke instances.
+% All values for recognition of a radical are computed from the strokes instances
 % by using different permutations of the strokes to match a database entry. A more
-% detailed description of the Radical recognition process will be given in
+% detailed description of the radical recognition process will be given in
 % section~\ref{sec:hwre:radicalrecognitionprocess}.
 
 % \subsubsection{Character Data Format}
@@ -888,20 +888,20 @@ table~\ref{table:sampletraceinterpretation}.
 % advantages of the UPX format.
 % In the concrete example, the outermost \emph{hLevel} element is used for the 
 % character and additional descriptions, the two inner \emph{hLevel} elements are 
-% used for the two Radicals of that character. Each \emph{traceView} tag within 
-% the Radicals represents a stroke. Thus, the data structure implicitly encodes
-% the stroke number of a Radical. Here, both the Radicals~\cjk{日} and~\cjk{木}
+% used for the two radicals of that character. Each \emph{traceView} tag within 
+% the radicals represents a stroke. Thus, the data structure implicitly encodes
+% the stroke number of a radical. Here, both the radicals~\cjk{日} and~\cjk{木}
 % have four strokes each, the Kanji character~\cjk{東} is comprised of 
 % eight strokes in total.
 
 % The stroke order of~\cjk{東} is shown in figure \ref{fig:strokeorderofEAST}.
-% Notice, that the Radicals of this Kanji are not drawn one after another.
-% The very first stroke is a part of the~\cjk{木}-Radical, the four following
-% strokes constitute the complete~\cjk{日}-Radical and the last three strokes,
-% again, are part of the~\cjk{木}-Radical.
+% Notice, that the radicals of this Kanji are not drawn one after another.
+% The very first stroke is a part of the~\cjk{木}-radical, the four following
+% strokes constitute the complete~\cjk{日}-radical and the last three strokes,
+% again, are part of the~\cjk{木}-radical.
 % The UPX structure shown in listing~\ref{lst:charaterdataformat} accounts for
-% that by not specifying a total order of Radicals, but rather a preferred order.
-% The traces are spatialised to their Radical, the order of drawing does effect
+% that by not specifying a total order of radicals, but rather a preferred order.
+% The traces are spatialised to their radical, the order of drawing does effect
 % the InkML traces and ultimately the recognition process, 
 % but not the UPX data structure.
 
@@ -913,13 +913,13 @@ table~\ref{table:sampletraceinterpretation}.
 %                      caption={A character representation in UPX},
 %                      label=lst:charaterdataformat]
 %     <hLevel level="character" id="CHARACTER71">
-%     <!-- The character 71 consists of the Radicals 72 and 75 -->
+%     <!-- The character 71 consists of the radicals 72 and 75 -->
 %       <label id="CHARACTER71label" labelSrcRef="labelref_DW" labelType="truth">
 %         <alternate>U+6771</alternate><-- Unicode value -->
 %       </label>
 
 %       <hLevel level="radical" id="RADICAL72">
-%       <!-- The first Radical in this Kanji character of handwriting. -->
+%       <!-- The first radical in this Kanji character of handwriting. -->
 %         <label id="RADICAL72label" 
 %                labelSrcRef="labelref_DW" 
 %                labelType="truth">
@@ -934,7 +934,7 @@ table~\ref{table:sampletraceinterpretation}.
 %       </hLevel>
 
 %       <hLevel level="radical" id="RADICAL75">
-%       <!-- The second Radical in this Kanji character of handwriting. -->
+%       <!-- The second radical in this Kanji character of handwriting. -->
 %         <label id="RADICAL75label" 
 %                labelSrcRef="labelref_DW" 
 %                labelType="truth">
@@ -1026,12 +1026,12 @@ table~\ref{table:sampletraceinterpretation}.
 % around handwriting information about characters and their substructures, 
 % the second part is concerned with lexical information only.
 % The \textbf{handwriting part} is a UPX file structure that holds character 
-% descriptions, Kanji character unicode values, as well as Radical descriptions 
+% descriptions, Kanji character unicode values, as well as radical descriptions 
 % and pointers to InkML files holding pen trajectories representing the
 % data structures given in the UPX file.
 % The \textbf{lexical part} is an XML file in a format described 
 % by~\shortciteANP{Breen2004}~\citeyear{Breen2004}. The XML file contains 
-% lexical information about characters, such as their key Radicals, their Readings,
+% lexical information about characters, such as their key radicals, their Readings,
 % and their translation into a number of languages.
 % The handwriting part of the database has been discussed in 
 % section~\ref{sec:hwre:dataformatdescription}. The storage data structure laid
@@ -1046,7 +1046,7 @@ table~\ref{table:sampletraceinterpretation}.
 % JIS0208 ~\shortcite{Unicode2000,JIS1997}. 
 % The \emph{radical} element holds the number of the key radical of the character.
 % In the current example for the character \cjk{東} the key radical is \cjk{木},
-% which is number 75 in the classical Radical index.
+% which is number 75 in the classical radical index.
 % Miscellaneous information that may help a human in finding the character in a 
 % paper-based dictionary are stored in the \emph{misc} element.
 % The file format provides room for the character index in different paper-based
@@ -1363,23 +1363,23 @@ table~\ref{table:sampletraceinterpretation}.
 % The use of boxing has more than one function in the prototype. One of the uses 
 % is distortion-free scaling (see section~\ref{sec:hwre:scaling}). Another function
 % is the comparison of positions of the recognised substructures of a character 
-% or Radical (see section~\ref{sec:hwre:radicalrecognitionprocess}).
-% Figure~\ref{fig:boxing} shows the bounding boxes around the Radicals for
+% or radical (see section~\ref{sec:hwre:radicalrecognitionprocess}).
+% Figure~\ref{fig:boxing} shows the bounding boxes around the radicals for
 % the character~\cjk{消} (pron.~\emph{shou}; Eng.~'extinguish'). The character 
 % consists of two or three substructures, depending on the viewpoint. 
-% The left part is a graphical variant of the \emph{water}-Radical~\cjk{水}, 
-% the right part is the Radical~\cjk{肖} (pron.~\emph{shou}, Eng.~'similar') 
+% The left part is a graphical variant of the \emph{water}-radical~\cjk{水}, 
+% the right part is the radical~\cjk{肖} (pron.~\emph{shou}, Eng.~'similar') 
 % that is used as a pronunciaton marker.
-% The Radical~\cjk{肖} has two substructures, the upper one is a writing
+% The radical~\cjk{肖} has two substructures, the upper one is a writing
 % variant of~\cjk{小} (pron.~\emph{ko}, Eng.~'small') and the lower one is the 
-% Radical~\cjk{月} (pron.~\emph{gatsu}, Eng.~'moon'). The three structures,
+% radical~\cjk{月} (pron.~\emph{gatsu}, Eng.~'moon'). The three structures,
 % \emph{left}, \emph{upper right}, \emph{lower right} are surrounded by their
 % minimal bounding boxes.
 % \begin{figure}[htbp]
 %   \begin{center}
 %     \includegraphics[scale=0.2]{images/characterMinimalBoxes1.png}
 %     \includegraphics[scale=0.2]{images/characterMinimalBoxes2.png}
-%     \caption{Minimal bounding boxes for the Radicals of the character~\cjk{消}}
+%     \caption{Minimal bounding boxes for the radicals of the character~\cjk{消}}
 %     \label{fig:boxing}
 %   \end{center}
 % \end{figure}
@@ -1396,7 +1396,7 @@ table~\ref{table:sampletraceinterpretation}.
 % typically monospace fonts.
 % In order to account for that, scaling is done with respect to the ideal of a 
 % square shape of a character. That concept is used for full characters, as well
-% as Radicals and strokes.
+% as radicals and strokes.
 % Before scaling the size of a stroke, a square bounding box is constructed.
 % The handle point of the square bounding box is used as a vanishing point for
 % vectorial projection. In a stroke data structure that consists of a point
@@ -1823,9 +1823,9 @@ dynamic time warping is used as a fall-back option.
 \subsection{Radical Recognition Features}
 \label{sec:hwre:radicalrecognitionfeatures}
 
-The recognition of a Radical is a search process. The data format of Radicals is 
+The recognition of a radical is a search process. The data format of radicals is 
 described in section~\ref{sec:hwre:radicaldataformat}.
-Essentially, a Radical is an ordered collection of strokes.
+Essentially, a radical is an ordered collection of strokes.
 In order to recognise a radical, the sequence of strokes from the database
 is compared to an input sequence.
 The measure of similarity is a feature vector that consists of the number of
@@ -1859,12 +1859,12 @@ can support or refute assumptions about the general shape and size of a radical.
 {Exploitation of the Stroke Recognition Process}
 \label{sec:hwre:exploitationofstrokerecogition}
 
-Stroke matching forms the core of the Radical recognition process.
-Each input stroke is matched against all the strokes of the Radical. 
+Stroke matching forms the core of the radical recognition process.
+Each input stroke is matched against all the strokes of the radical. 
 A matrix of matching values will be generated by comparing each input stroke 
-to each database stroke for a Radical.
+to each database stroke for a radical.
 The confidence values in the stroke matching matrix \(M\) are used to analyse 
-if the input stroke sequence signifies the currently analysed Radical.
+if the input stroke sequence signifies the currently analysed radical.
 \begin{quote}
 \(
  M_{m,n} = 
@@ -1876,8 +1876,8 @@ if the input stroke sequence signifies the currently analysed Radical.
  \end{pmatrix}
 \)
 \end{quote}
-The matrix \(M\) forms the basis of the Radical recognition. The maximal 
-confidence value for a Radical will be achieved if
+The matrix \(M\) forms the basis of the radical recognition. The maximal 
+confidence value for a radical will be achieved if
 \begin{itemize}
   \item \( m = n \) 
   \item the maximal matching value \(\mu_{i,j}\) for each stroke is above a
@@ -1890,13 +1890,13 @@ confidence value for a Radical will be achieved if
 \end{itemize}
 If two identical stroke sequences are analysed, the ideal is fulfilled.
 Any deviance from these constraints will be penalised and leads to a lower
-confidence value for the Radical match. The matrix is the source for both 
+confidence value for the radical match. The matrix is the source for both 
 the features of the stroke matching values \(m_{i,j}\)) and the stroke sequence
 \(\langle s_1,\ldots,s_n \rangle \). A deviance from the diagonal path means deviance from the 
 ideal stroke sequence.
 
 % - Why this section? 
-%   The purpose of this section is to explain the Radical recognition process in
+%   The purpose of this section is to explain the radical recognition process in
 %   detail. It is a crucial part of the structural recognition process.
 %   Therefore the purpose is evident - see purpose of chapter.
 
@@ -1953,12 +1953,12 @@ ideal stroke sequence.
 \section{Character Recognition Process}
 \label{sec:hwre:characterrecognitionprocess}
 
-The character recognition process relies on the Radical recognition process.
-Each character is comprised of a set of Radicals the position of their 
+The character recognition process relies on the radical recognition process.
+Each character is comprised of a set of radicals the position of their 
 bounding boxes.
 In order to determine if a stroke sequence represents a certain character,
-firstly the individual Radicals are recognised. For character matching,
-the recognised Radicals are compared with the Radicals of the character.
+firstly the individual radicals are recognised. For character matching,
+the recognised radicals are compared with the radicals of the character.
 If they match with a confidence values above the threshold and their position 
 within the character is correct and the character is recognised correctly.
 Generally, the confidence value of a character depends on the confidence values
@@ -1969,24 +1969,24 @@ to the database entry. A feature vector \(F \) here is defined as:
     F :=
     \left( 
     \begin {array} {l c} 
-        \text{Number of Radicals} & n_{r} \\
-        \text{Position of Radical bounding boxes} & 
+        \text{Number of radicals} & n_{r} \\
+        \text{Position of radical bounding boxes} & 
                                    P_i \quad i = 1, \ldots, n_{r} \\
-%        \text{Size of Radical bounding boxes} & 
+%        \text{Size of radical bounding boxes} & 
 %                                   S_i \quad i = 1, \ldots, n_{r} \\
-        \text{Radical confidence values} & c_{i} \quad i = 1, \ldots, n_{r} \\
+        \text{radical confidence values} & c_{i} \quad i = 1, \ldots, n_{r} \\
     \end {array} 
     \right)
 \)
 \end{quote}
 The \(n_{r,db} \) and \(n_{r,exp} \) are compared numerically, as they are real 
-numbers. The positions of the Radical bounding boxes \(P_{i,db} \) and 
+numbers. The positions of the radical bounding boxes \(P_{i,db} \) and 
 \(P_{i,exp} \) are compared by their Euclidean distance.
-%The sizes of the Radical bounding boxes \(S_{i,db} \) and \(S_{i,exp} \) are 
+%The sizes of the radical bounding boxes \(S_{i,db} \) and \(S_{i,exp} \) are 
 %compared numerically. 
-The Radical confidence values \(c_i\) are averaged.
+The radical confidence values \(c_i\) are averaged.
 The confidence value \(C\) for a character is calculated in several steps.
-The confidence value \(C_n\) for the number of Radicals is computed as follows:
+The confidence value \(C_n\) for the number of radicals is computed as follows:
 \begin{quote}
 \(
    C_n := 
@@ -1996,11 +1996,11 @@ The confidence value \(C_n\) for the number of Radicals is computed as follows:
    \end{cases}
 \)
 \end{quote}
-The confidence value \(C_p\) for the Radical positions is extracted from a 
-matrix of Euclidean distances between the Radical handles 
+The confidence value \(C_p\) for the radical positions is extracted from a 
+matrix of Euclidean distances between the radical handles 
 \(P_{i,db} = \langle x_{i,db},y_{i,db} \rangle  \) and 
 \(P_{i,exp} = \langle x_{i,exp}, y_{i,exp} \rangle  \). All the distance values \( \mu_{i,j}\) are 
-computed first to generate a Matrix of Radical position distances 
+computed first to generate a Matrix of radical position distances 
 \( M_{m,n}\), where
 \( n = n_{r,db} \) and \( m = n_{r,exp} \).
 \begin{quote}
@@ -2030,13 +2030,13 @@ The minimal value \( \xi_m \) of each line or column is chosen.
   \end{cases}
 \)
 \end{quote}
-%The confidence value \(C_s\) for the size of the Radical bounding boxes 
+%The confidence value \(C_s\) for the size of the radical bounding boxes 
 %is computed as follows:
 The confidence value \( C \) is the averaged sum of the other confidence
 values. The sum consists of the confidence
 values for the number of characters \( C_n\),
-for the position of the Radical bounding boxes \( C_p\)
-and the averaged sum of the Radical confidence values.
+for the position of the radical bounding boxes \( C_p\)
+and the averaged sum of the radical confidence values.
 All partial confidence values are weighted with the \(w_i\) constants.
 \begin{quote}
 \(
@@ -2219,7 +2219,7 @@ is performed during the recognition process focuses on detecting minor errors.
 character was below the threshold. The cause of the low confidence value will be 
 ascertained top down, checking the confidence values of the substructures.
 If a character recognition failed because of a low confidence value of
-a specific Radical, that Radical will be examined further.
+a specific radical, that radical will be examined further.
 Outside in error detection is performed after the recognition process is 
 completed and focuses on detecting the major errors.
 
@@ -2229,13 +2229,13 @@ completed and focuses on detecting the major errors.
 %focus on technical aspects
 After the error detection and localisation, a feedback is generated 
 depending on the primary source of the errors. Major errors contain incorrect 
-characters and incorrect Radicals within characters.
-Missing or additional strokes within Radicals are regarded es intermediate
+characters and incorrect radicals within characters.
+Missing or additional strokes within radicals are regarded es intermediate
 errors. Minor errors are strokes that are recognisable but vary in shape from 
 the database standard. The error location and type are returned together with 
 the recognition result. In case a character incorrect and no error could be 
 recognised, a standard character recognition process is performed.
-In analogy to that, if a Radical within a character was deemed incorrect by
+In analogy to that, if a radical within a character was deemed incorrect by
 the system, the substructure undergoes a new recognition process.
 In case of incorrect strokes the system generates an error description based
 on the shape of the stroke.
