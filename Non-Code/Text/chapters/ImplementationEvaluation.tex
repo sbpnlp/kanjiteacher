@@ -71,8 +71,8 @@
 \section{Evaluation of Other HWR Systems}
 \label{sec:eval:othersystems}
 
-The recognition rates reported in the literature are shown in 
-figure~\ref{fig:recognitionratesreported} borrowed 
+The recognition rates reported in the literature for other HWR systems are 
+shown in figure~\ref{fig:recognitionratesreported} borrowed 
 from~\shortciteANP{LiuJaegerNakagawa2004}~\citeyear{LiuJaegerNakagawa2004}.
 As a general trend it can be noted that the recognition rate of most systems
 lies between 85\% and 95\%. 
@@ -111,7 +111,7 @@ designer of an e-learning application as well as the software developer.
 
 The e-learning part of the prototype is a sample module that is used 
 to exemplify one usage scenario of the HWR engine. 
-It mainly shows plausibility of the approach. A detailed analysis of the
+It mainly shows the plausibility of the approach. A detailed analysis of the
 e-learning application using ISO9126~\shortcite{Chua2004} is not applicable,
 since the e-learning part of the software has not been optimised in any way.
 The focus of the thesis is not to implement a full e-learning application,
@@ -191,6 +191,12 @@ The prototype that is subject to this evaluation performs a different
 task than most of the other recognition systems. It analyses the characters
 not only for the purpose of recognition, but attempts to create feedback on
 how well the input matched the character model in structural terms.
+That means concretely, the system can analyse an input with an expected result
+and can perform the same for an unknown input by assuming the best match
+as the expected result. The analysis yields an output that includes more
+information than pure pattern matching. It rather includes structural linguistic 
+information.
+
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[scale=0.4]{images/simlarCharaters.png}
@@ -198,11 +204,6 @@ how well the input matched the character model in structural terms.
     \label{fig:similarcharactersforuserconfusion}
   \end{center}
 \end{figure}
-That means concretely, the system can analyse an input with an expected result
-and can perform the same for an unknown input by assuming the best match
-as the expected result. The analysis yields an output that includes more
-information than pure pattern matching. It rather includes structural linguistic 
-information.
 
 For example, the characters 
 \cjk{埖}, \cjk{椛}, \cjk{硴}, \cjk{糀} and \cjk{錵} all share the substructure
@@ -227,7 +228,7 @@ but a new evaluation for the recognition of substructures is needed.
 It seems reasonable to measure the recognition accuracy in a plain 
 percentage of correctly recognised characters. 
 Precision and recall are the correct measurements for the error recognition,
-where characters with incorrect substructures should be analysed. 
+where characters with incorrect substructures are identified. 
 That way, true positives, false positives, 
 true negatives and false negatives can be distinguished.
 Since the system can recognise pure substructures as well, it would 
@@ -299,10 +300,10 @@ value for \(f\). \(A_N\) will be calculated as follows:
 An example for the application of that term would be to set \(N = 1\).
 Only the best match will be considered for an input.
 If 100 input sequences are tested, then \(S=100\). 
-If, for example, one of the \(S_{i}\) input sequences yields a high 
+If, for example, the \(k^{th}\) sample of the \(S_{i}\) yields a high 
 confidence value for the character the sequence is supposed to represent and 
 the character becomes the most salient in the list of best matches
-and occupies the first position. Then \(r_{i} = 1\) and \(f(r_{i},N) = f(1,1)\) 
+and occupies the first position. Then \(r_{k} = 1\) and \(f(r_{k},N) = f(1,1)\) 
 yields \(1\).
 Therefore, in the summation of all the \(f(r_{i},N)\) the value \(1\) 
 will be added for each correctly recognised character.
@@ -333,7 +334,7 @@ a handwritten text, so that the baseline system could yield a good result
 within it's technical limits.
 
 Since there is no method to create a baseline for comparability of this system,
-I am defining an \emph{idealised ficticious baseline} (IFB) value based on 
+I am defining an \emph{idealised fictitious baseline} (IFB) value based on 
 the formula for the computation of \(A_N\) including generous assumptions 
 about the accuracy of the recognition of an IFB system that always hits: \\
 Assume, \(N = 3\) and all the sample characters are among the first three 
@@ -344,8 +345,8 @@ and the last third would yield \(r = 3\) with \(f(r,N)=f(3,3)=\frac{1}{3}\).
 That leads to the calculation of an IFB value (\(B\)):
 \begin{quote}
   \(
-    B := \frac{1}{S} \cdot (\sum\limits_{k=1}^{\frac{S}{3}}{f(1,3)} + \sum\limits_{k=1}^{\frac{S}{3}}{f(2,3)} + \sum\limits_{k=1}^{\frac{S}{3}}{f(3,3)}) \\
-       = \frac{1}{S} \cdot (\sum\limits_{k=1}^{\frac{S}{3}}{1} + \sum\limits_{k=1}^{\frac{S}{3}}{\frac{1}{2}} + \sum\limits_{k=1}^{\frac{S}{3}}{\frac{1}{3}}) \\
+    B := \frac{1}{S} \cdot (\sum\limits_{j=1}^{\frac{S}{3}}{f(1,3)} + \sum\limits_{j=1}^{\frac{S}{3}}{f(2,3)} + \sum\limits_{j=1}^{\frac{S}{3}}{f(3,3)}) \\
+       = \frac{1}{S} \cdot (\sum\limits_{j=1}^{\frac{S}{3}}{1} + \sum\limits_{j=1}^{\frac{S}{3}}{\frac{1}{2}} + \sum\limits_{j=1}^{\frac{S}{3}}{\frac{1}{3}}) \\
        = \frac{1}{S} (\frac{S}{3} + \frac{S}{3 \cdot 2} + \frac{S}{3 \cdot 3}) 
        = \frac{1}{3} + \frac{1}{6} + \frac{1}{9}
        = \frac{11}{18} = 0.61
@@ -362,25 +363,25 @@ most simple system would be like.
 The substructure recognition accuracy (experiment~\ref{eval:enum:substructure})
 will be measured in a similar way as the overall recognition accuracy.
 In fact the same metrics will be used. See the previous section for details
-on the metrics. The accuracy \(A_{N}\) will be measured as a percentage value
-of correct recognition results, where the recognition as second-best or 
+on the metrics. The accuracy \(A_{N}\) will be measured as a weighted percentage 
+value of correct recognition results, where the recognition as second-best or 
 third-best (generally n-best, with \(n>1\)) will be devaluated. %xxx \emph{devaluate}?!? \textbf{abwerten}, \textbf{weniger gewichten}, \emph{nicht} komplett \textbf{entwerten}! xxx
 This reduction of value is expressed mathematically by using the multiplicative 
 inverse \(r^{-1}\) of the rank \(r\) in the list of \(n\)-best 
 matches as a summand for the weighted sum of correct recognitions.
 The equations for calculating the accuracy have been given in 
-section~\ref{sec:eval:overallrecognitionaccuracy}
-on page~\pageref{eval:accuracycalculation}.
+section~\ref{sec:eval:overallrecognitionaccuracy}.
 
 The main difference is that many substructures occur in more than one 
-character. In order to account for a substructure recognition will be regarded 
-as \emph{correct}, if the input yields the intended substructure from
+character. In order to account for that, 
+a substructure recognition will be regarded as \emph{correct}, 
+if the input yields the intended substructure from
 one of the characters that contain the substructure.
 That fairly generous interpretation of what is correct considers the fact
 that the substructures should be recognised for any of the characters.
 In a future version of the database the substructures should be stored only once
 and then be shared among all characters that contain it.
-The \emph{baseline} for the substructure recognition will be \(0.61\), 
+The IFB value for the substructure recognition will be \(0.61\), 
 the same number and using the same line of argument from 
 section~\ref{sec:eval:overallrecognitionaccuracy}.
 
@@ -388,7 +389,7 @@ section~\ref{sec:eval:overallrecognitionaccuracy}.
 \label{sec:eval:errorrecognitionaccuracy}
 
 The error recognition accuracy (experiment~\ref{eval:enum:errorrecognition}) 
-is more difficult to evaluate than the pure accuracy.
+is more difficult to evaluate than the pure recognition accuracy.
 The question arises, what kind of errors are expected to be found
 and what kind of error corrections should be provided.
 Error recognition here means that the system compares a known character with 
@@ -464,9 +465,9 @@ writer haven been removed from the test set for detailed analysis.
 With five characters from each writer in the development set, there were 
 90 characters for the test set.
 The test set characters have been used only for testing, not for 
-detailed analyses. The development set characters have been tested as well
-and the recognition process as well as the recognition result have been 
-examined in order to improve the recognition engine.
+detailed analyses. The development set characters have been tested as well.
+The recognition process and the recognition results have been 
+examined in order to improve the recognition quality.
 
 The final evaluative run of the test set has been repeated 10 times, 
 with different values for \(N\). All of the integers from 1 to 10 have
@@ -527,7 +528,7 @@ That special choice of characters seems to explain why there is such an
 increase in accuracy when more ranks are taken into account.
 The similar characters will be confused by the system and appear in
 the lower ranks (higher \(r\)-values) in the list of \(n\)-best matches.
-Even though all the results, even the one with \(N = 1\) are sizeably above
+Even though all the results, even the one with \(N = 1\) are considerably above
 the IFB value of 0.61.
 Generally, the accuracy results are considerably lower than those of other
 systems (see section~\ref{sec:eval:othersystems}). 
@@ -536,7 +537,7 @@ to provide a handwriting recognition highly optimised for speed and accuracy.
 Hence, there is little comparability for these results. 
 The prototype of the analytical handwriting recognition fulfils an additional 
 task that the other systems do not aim at. That obviously leads to a trade-off
-concerning pure recognition performance.
+between recognition performance and accuracy of the analysis.
 The aim is to create a deep analysis of a character structure and
 be able to provide feedback on the input. These abilities of the system will
 be evaluated in the following sections.
@@ -549,30 +550,32 @@ revealed that there are two main types of errors:
 \item \textbf{Segmentation ambiguity}\label{eval:segmentationambiguityerrortype}
 \end{enumerate}
 The type~\ref{eval:strokeordererrortype} and 
-type~\ref{eval:similarcharactererrortype} errors errors probably occur for
-all handwriting systems, but especially for overlaid or continuous handwriting.
-Those types of error might be resolved if the recognition engine
-was using a statistical model like a \emph{Hidden Markov Model.}
-The segmentation ambiguity is a problem that occurs in overlaid handwriting
-recognition for full characters. In analytical handwriting recognition
-the problem occurs for substructures. The beginning and the end
-of a substructure can only be found by completely analysing the substructure,
-the previous and the following substructure. That process has
-shown to be time-consuming.
+type~\ref{eval:similarcharactererrortype} errors probably occur for
+all handwriting systems. But type~\ref{eval:strokeordererrortype} errors 
+are problematic especially for overlaid or continuous handwriting recognition.
+Those types of error can be resolved by using a statistical model like a 
+\emph{Hidden Markov Model.}
+The type~\ref{eval:segmentationambiguityerrortype} error, 
+segmentation ambiguity is a problem that occurs mainly in overlaid 
+handwriting recognition for full characters. 
+In analytical handwriting recognition the problem occurs for substructures. 
+The beginning and the end of a substructure can only be found by completely 
+analysing the substructure, the previous and the following substructure. 
+That process has shown to be time-consuming.
 
 \subsubsection{Substructure Recognition Accuracy Results}
 \label{sec:eval:resultssubstructurerecognition}
-For the evaluation of the recognition of substructures it would have been
+For the evaluation of the substructure recognition it would have been
 desirable to use the same input data with which the overall evaluation
-had been conducted. That was not possible, because it would have required
+had been conducted. That was not possible because it would have required
 to analyse the input data and split it into substructures manually.
 The input data for the evaluation of the substructures has been provided by
 three writers each of whom entered 25 substructures, i.e.\ a total of 75
 radicals and Graphemes. That means 75 different tokens, not 75 different types.
-Each type has only been written once by each writer.
+Each type has been written once by each writer.
 This input set is a pure test set it has not been split or used for
 development work. The results of the substructure recognition evaluation
-might be more comparable to the results of other system.
+are more comparable to the results of other systems.
 The metrics for the substructure recognition are essentially the same as for
 the overall evaluation.
 The difference is that only the first three entries in the \(n\)-best list
@@ -625,7 +628,7 @@ concerning the lower positions in the list of \(n\)-best matches.
 
 The error recognition evaluation required more manual work than the overall 
 recognition or substructure recognition evaluation. This is due to the fact
-that erroroneous characters had to be produced.
+that erroneous characters had to be produced.
 Therefore, this evaluation type has to be seen more as a 
 qualitative analysis, rather than a pure quantitative evaluation.
 
@@ -633,12 +636,12 @@ qualitative analysis, rather than a pure quantitative evaluation.
 One writer created 30 characters, including 20 characters with errors,
 i.e.\ 20 characters where one radical had been replaced with another one
 or with garbled input. Figure~\ref{fig:eval:botsuumiprintvsdrawn} shows the
-characters~\cjk{没} (Jap.\ pron.\ \emph{botsu}; Eng.\ 'to sink') %935
-and~\cjk{海} (Jap.\ pron.\ \emph{umi}; Eng.\ 'sea') %117
+characters~\cjk{没}~(Jap.\ pron.\ \emph{botsu}; Eng.\ 'to sink') %935
+and~\cjk{海}~(Jap.\ pron.\ \emph{umi}; Eng.\ 'sea') %117
 both in print and handwritten versions.
-The two characters share the same key radical. It is the 'water'-radical 
-on the left side (marked in red). 
-On the right side, the lower radical is fairly distinct
+The two characters share the same key radical. It is variant of the 
+'water'-radical~\cjk{水} on the left side (marked in red). 
+The two radicals on the lower right side are fairly distinct
 and therefore no cause of confusion. In fact~\cjk{海}~(umi/'sea') contains the 
 'mother'-radical~\cjk{母} (marked in purple), 
 while~\cjk{没}~(botsu/'to sink') contains the 
@@ -648,8 +651,9 @@ which looks very similar to the
 This mother/father-analogy has nothing to do with the true meaning
 of the characters, it can just serve as a mnemonic for a learner.
 This fact could be a cause for semantic confusion due to the 
-mnemonic trick, but clearly those two radicals offer little features 
-for a graphical confusion between the two.
+mnemonic, but clearly the two radicals 
+'mother'~\cjk{母} and 'again'~\cjk{又}
+offer little room for a graphical confusion between them.
 The upper radical on the right in both characters is a small two-stroke
 radical that can easily be confused graphically with another small two-stroke 
 radical (marked in green). This danger of confusion exists both for a human
@@ -657,6 +661,9 @@ and for the character recogniser.
 Non-existent blended characters like the one shown in 
 figure~\ref{fig:eval:hybrid935and117} have been created as erroneous input
 for the error recognition evaluation test set.
+In case of a confusion of the two radicals in the upper right corner of 
+the character the user might produce an input like the one in 
+figure~\ref{fig:eval:hybrid935and117}.
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[scale=0.75]{images/char935vsChar117HandwrittenMarked.png}
@@ -664,9 +671,6 @@ for the error recognition evaluation test set.
     \label{fig:eval:botsuumiprintvsdrawn}
   \end{center}
 \end{figure}
-In case of a confusion of the two radicals in the upper right corner of 
-the character the user might produce an input like the one in 
-figure~\ref{fig:eval:hybrid935and117}.
 \begin{figure}[htbp]
   \begin{center}
     \includegraphics[scale=0.57]{images/char935and117HybridMarked.png}
@@ -706,28 +710,29 @@ and \emph{character could not be recognised}.
 Now the question arises whether the unrecognised characters should be 
 regarded as incorrect or correct. 
 If there was an error in the input character and the character could 
-not be recognised, this could be regarded as a \emph{true positive}.
-If no recognition is possible that could mean there is an error in 
-the character, therefore an error has been found.
+not be recognised, this could be regarded as a \emph{true positive}
+because implicitly the system states that an error was found.
+Arguably, if no recognition is possible that means that there is an 
+error in the character, therefore an error has been found.
 However, that is just an interpretation of the results and
 would increase the error recognition performance undeservedly. 
-On the other hand, if the input was a correct character,
-then assuming the result to be an error message would add 
-to the number of \emph{false positives}, 
+On the other hand, if the input was a correct character that 
+could be not recognised, then assuming the undefined result to be an error 
+message would add to the number of \emph{false positives}, 
 lowering the performance result of the error recognition.
 The error recognition is a sub-component of the character recognition engine,
 it cannot work independently from it. 
 Hence, either way it would be unfair to include the unrecognised
 characters into the evaluation of the error recognition.
 
-In order to ensure a fair evaluation, but also in order to provide 
+In order to ensure a fair evaluation, but also to provide 
 a result set qualified for a 2-way evaluation, the unrecognised characters are 
 exempt from the evaluation of the error recognition.
 Table~\ref{table:eval:resultsprecisionandrecallnumbersunrecognisedexempt}
 shows the data set that was used for the calculation of precision and recall
-without the unrecognised characters. The total input set consisted of 30 characters, 20 with errors in the characters, 10 correct characters.
-After exempting the unrecognised characters from the evaluation there is a total
-of 25 characters, 17 of which containing errors, 8 correct characters.
+without the unrecognised characters. The total input set consisted of 30 characters, 20 of which contained errors, i.e.\ 10 correct characters.
+After exempting the unrecognised characters from the evaluation, 
+there is a total of 25 characters, 17 with errors, 8 correct characters.
 \begin{table}[htbp]
 \begin{center}
   \begin{tabular}{|l|l|l|p{200pt}|}
@@ -764,8 +769,9 @@ R=tp \cdot (tp+fn)^{-1} \\
 =0.7
 \)  
 \end{quote}
-Additionally, the \emph{F-measure} will be used, however only for an equally 
-important interpretation of precision and recall. Therefore, \(\beta = 1\) will
+Since there are no comparable evaluation results, 
+the \emph{F-measure} will be used only for an interpretation of precision and 
+recall. Therefore, \(\beta = 1\) will
 be fixed:
 \begin{quote}
 \(
@@ -781,9 +787,9 @@ it had been recognised correctly most of the times.
 That is valuable for the sample application, the e-learning environment.
 The number of falsely detected errors is low.
 The recall is not impressively high, 
-but well above the obvious 50\% baseline for a 2-way precision calculation,
-that would result from a random assignment of \emph{error} or \emph{no error}
-to all characters in the test set.
+but well above the obvious 50\% baseline for a 2-way precision 
+and recall calculation, that would result from an equally distributed assignment 
+of \emph{error} or \emph{no error} to all characters in the test set.
 
 \section{Conclusions}
 \label{sec:eval:conclusions}
