@@ -34,9 +34,12 @@ usually two phonemes.
 In this chapter, the development of the script will be reviewed in 
 section~\ref{sec:ashorthistoryofjapanesewritingsystem}.
 In section~\ref{sec:modernjapanesewritingsystem} the current Japanese writing 
-system will be exemplified, with a focus on the Kanji in 
-section~\ref{sec:compositionofKanji}. Hiragana and Katakana will be reviewed in
+system will be exemplified.
+Hiragana and Katakana will be reviewed in
 section~\ref{sec:kana}, which centres around the Kana scripts. 
+Kanji are focused on in section~\ref{sec:compositionofKanji}. 
+The structure of the writing system is shown in 
+section~\ref{sec:structureofwritingsystem}.
 Machine processing of the different Japanese scripts and the difficulties that
 go along with them will be demonstrated in 
 section~\ref{sec:machinewritingofjapanese}.
@@ -56,7 +59,7 @@ referred to as \emph{Hànzì} (simplified Chinese: \cjk{汉字};
 trad.\ Chinese: \cjk{漢字}).
 Note that the first character \cjk{漢} (Chin.~'han', Jap.~'kan', Eng.~'Han') 
 of both the words \emph{Han dynasty} and \emph{Kanji} is identical in Japanese 
-and traditional Chinese, even though it has a different reading in the 
+and traditional Chinese, regardless of its different pronunciation in the 
 Chinese and Japanese language. In traditional Chinese the character with
 the same meaning (\cjk{汉}) has a different shape. This apparent oddity will be 
 explained in greater detail in 
@@ -73,9 +76,11 @@ The Kanji script as developed and coined by the Han is in principle still valid
 today. It is used alone or in combination with phonetic spelling in China, Japan,
 Taiwan, Hong Kong. In Vietnam it was used before it was replaced with the 
 Vietnamese alphabet (Viet.~'quốc ngữ', Eng.~lit.~'national language',
-Eng.~'national script'), a script based on the Latin alphabet. In South Korea the Han 
-characters were in use until they were replaced with 
-Hangul~(Kor.~with Han characters \cjk{韓國語}; Eng.~'Korean')~\shortcite{Foljanty1984}.
+Eng.~'national script'), a script based on the Latin alphabet. In South Korea 
+the Han characters were in use even in modern times until they were 
+replaced with 
+Hangul~(Kor.~with Han characters 
+\cjk{韓國語}; Eng.~'Korean')~\shortcite{Foljanty1984}.
 
 The Kanji characters were brought to Japan by Koreans living in Japan around 
 300-400 A.D. Since the Kanji were used by the Koreans to write 
@@ -88,14 +93,14 @@ invention by Japanese Nationalists in the early
 (Jap.~\cjk{古語拾遺}; a historical record of the Inbe clan),
 which was written around 800 B.C., denies the presence of a Japanese native
 script before the introduction of the Han characters. However, the question
-seems irrelevant in the sense, that no longer text or document has been found
-written in that script~\shortcite{Lange1922}.
+seems irrelevant in the sense, that no longer text or document written in 
+that script has been found~\shortcite{Lange1922}.
 
 In 712 A.D.~an ancestral act of writing was performed at 
 Japanese emperor Temmu's court. Hieda~no~Are, a member of the guild of the 
-\emph{Kataribe} or reciters, basically a Japanese Griot, dictates the 
+\emph{Kataribe} or reciters, basically a Japanese griot, dictated the 
 \emph{Kojiki} (Jap.~\cjk{古事記}; Eng.~'Record of Ancient Matters') to 
-Ō~no~Yasumaro. Ō~no~Yasumaro wrote the Kojiki, which is not the first written 
+Ō~no~Yasumaro. Ō~no~Yasumaro wrote the Kojiki, which is not the oldest written 
 document found in Japan, however it is Japan's oldest attempt to write down 
 spoken Japanese~\shortcite{Grassmuck1997,Chamberlain1982}.
 
@@ -130,10 +135,11 @@ common characters~\shortcite{Foljanty1984}.
 The Japanese Ministry of Education issued a list of 1,850 standard Kanji in 1946
 under the name of \emph{Tōyō Kanjihyō} (Jap.~\cjk{当用漢字表};
 Eng.~'list of Kanji for general use'). The list of Tōyō Kanji was slightly 
-revised and extended in 1981 and comprised 1,945 Kanji as the Jōyō Kanji
+revised and extended in 1981 and comprised 1,945 Kanji. The new list is 
+called Jōyō Kanji
 (Jap.~\cjk{常用漢字}; Eng.~'often used Kanji')~\shortcite{Foljanty1984}.
 As of 2010 a revised list of 2,131 characters is in official 
-use~\shortcite{Noguchi2009}. 
+use. They are still called Jōyō Kanji~\shortcite{Noguchi2009}. 
 
 In China there had been a spelling reform in the 1950s, affecting many of the
 general use characters, resulting in simplified Chinese. In Japan, the Ministry
@@ -249,12 +255,15 @@ detail. Their composition and use will be discussed.
 \subsection{Kana \cjk{かな}}
 \label{sec:kana}
 
+Kana are syllabic characters, the two main types are called \emph{Hiragana}
+and \emph{Katakana}.
 If the Japanese had abolished the Chinese characters after formation of the
 syllabic scripts and used only those, studying the Japanese script would be
 a less complex task.
 \shortciteANP{Lange1922}~\citeyear{Lange1922} reports 
-on attempts to remove the Kanji from Japanese and use the Kana, or even 
-Latin script, so called \cjk{ロマジ} (\emph{Romaji}, a Latin or 'Roman' 
+on attempts to remove the Kanji from Japanese and use the 
+only the syllabic Kana characters, or even Latin script, 
+so called \cjk{ロマジ} (\emph{Romaji}, a Latin or 'Roman' 
 transcription of Japanese; Eng.~lit.~'Roman characters'). 
 However, none of those attempts succeeded and both Kana scripts serve as 
 auxiliary scripts to the predominant Kanji characters. 
@@ -275,6 +284,7 @@ reduction is shown in figure~\ref{fig:reductiontohiragana}.
 \label{fig:reductiontohiragana}
 \end{center}
 \end{figure}
+
 The other method of reduction uses only one of the character's graphemes in
 order to represent the whole character. That reduction process (see 
 figure~\ref{fig:reductiontokatakana}) led to the development of the
@@ -302,8 +312,9 @@ complete list of characters.
 \subsubsection{Hiragana \cjk{ひらがな}}
 \label{sec:hiragana}
 
-Hiragana is one of the three syllabic scripts. The third one, 
-\emph{Hentaigana} can be neglected, as it is not in active use any more. %xxx citation missing here
+Hiragana is one of the three syllabic scripts. \emph{Hiragana}, \emph{Katakana} 
+and \emph{Hentaigana}. Hentaigana can be neglected, as it is not in active use 
+any more. %xxx citation missing here
 In principle each character represents a syllable, which can contain either a 
 vowel (like 'u', \cjk{う}), a consonant and a vowel (like 'ta', \cjk{た}) or the 
 nasal consonant \cjk{ん} ('n').
@@ -313,9 +324,12 @@ particle \cjk{を} (\emph{wo}, works like a case marker).
 Additionally, Hiragana are used, when the Kanji is not known to the writer or 
 reader~\shortcite{Foljanty1984}. 
 
-For instance, a writer may even passively know a Kanji, but not be able
-to actively produce it. Say the Kanji in question was \cjk{新}~(Jap.~pron.~
-atara/\cjk{あたら} and shin/\cjk{シン}; Eng.~'new'). Example~(\ref{exe:newKanji})
+Many Kanji have more than one pronunciation.
+For instance, a writer may passively know a Kanji, but not be able to actively 
+produce it in writing. Say, the Kanji in question was~\cjk{新}~(Jap.~pron.~
+both: atara/\cjk{あたら} and shin/\cjk{シン}; Eng.~'new'), which is one of the 
+Kanji with multiple pronunciations.
+Example~(\ref{exe:newKanji})
 shows first the spelling with the Kanji character 
 in~(\ref{exe:newKanjispelling}), where the Hiragana parts are underlined,
 then the alternative spelling without the Kanji character 
@@ -368,30 +382,37 @@ ta $\rightarrow$ da, ki $\rightarrow$ gi, fu $\rightarrow$ bu, he $\rightarrow$ 
 ha $\rightarrow$ pa, hi $\rightarrow$ pi, fu $\rightarrow$ pu, he $\rightarrow$ pe, ho $\rightarrow$ po \\
 \end{xlist}
 \end{exe}
-Example~(\ref{exe:dakuten}) shows the dakuten in use. 
+Example~(\ref{exe:dakuten}) shows the dakuten and handakuten in use. 
 In~(\ref{exe:standarddakuten}) the turbidity, i.e., the transformation from a 
 fortis to a lenis consonant is exemplified. 
 The dakuten can only be applied to characters that begin with the sounds 
-/k/, /s/, /t/ and /h/. For the consonants 'k', 's' and 't' this is natural in the
+/k/, /s/, /t/ and /h/. In Romaji, the Latin transcript of Japanese, it is
+the consonants 'k', 's' and 't'. This is natural in the
 way that the place of articulation remains the same for the consonants 'g', 'z' 
 and 'd' and their corresponding sounds /g/, /z/, /d/, 
 compared to /k/, /s/ and /t/.
 The place of articulation, a changed intensity, and use or no use of the vocal 
 cords can be assumend as the natural connection between the characters with and 
-without a \emph{ten-ten}. There is a difference for the sound /b/, since there is
-no Hiragana character to match a /p/ sound:\\
-The characters with an /h/ sound serve as a basis to form the modified 
-characters with a /b/ sound.
-Quite logically, since the Handakuten only yields a /p/ sound, the same set of
-characters, namely, the 'h'-row in the Hiragana character set, is modified in 
-order to obtain the 'p'-row. In example~\ref{exe:handakuten}, the transformations
+without a \emph{ten-ten}. 
+Following this logic based on the Latin script, 
+there would have to be a character denoting a /p/ sound,
+to which a dakuten could be applied in order to yield the sound /b/.
+However, since there is no Hiragana character to match a /p/ sound,
+the characters with an /h/ sound serve as a basis to form the modified 
+characters with a /b/ sound, when applying dakuten.
+
+Correspondingly, since the Handakuten only yields a /p/ sound, 
+the same set of characters, namely, the 'h'-row in the Hiragana character set, 
+is modified in order to obtain the 'p'-row. 
+In example~\ref{exe:handakuten}, the transformations
 from the /h/ and /f/ sounds to /p/ are shown in a complete list\footnote{
 %xxx citation missing - this is my very own assumption. plausible, but true?!
 The /f/ sound in Japanese is 'lighter' than in English. Concretely, the place of
 articulation for /f/ in English is labio-dental, whereas in Japanese it is 
 virtually bi-labial. Therefore, the phonation stream creates less friction and
 the allophone of the /f/ phoneme that is typical for the Japanese language sounds
-similar to an /h/ sound.}.
+similar to an /h/ sound. Having a bi-labial articulation it is natural to use 
+the h-row characters as a basis for the b-row and p-row.}.
 
 \subsubsection{Katakana \cjk{カタカナ}}
 \label{sec:katakana}
@@ -418,10 +439,10 @@ applied to Katakana as well and have the same meaning.
 \label{sec:typologyoftheKanji}
 
 In order to study the Kanji and their composition, it is useful to know how they
-were first indented and built. Integrated as the integral part of the Japanese
-writing system, despite the reform and the choice different subsets from what is 
-considered the standard character set, the characters are still mainly composed
-as intended by the scholars of the Han period.
+were first indented and built. The Kanji are an integral part of the Japanese
+writing system, despite the reform and the choice of different subsets from what 
+is considered the standard character set, the characters are still mainly 
+composed as intended by the scholars of the Han period.
 
 From the religious writings on the oracle bones mentioned in 
 section~\ref{sec:historicaldevelopmentofjapanesescript} a secular script 
@@ -522,8 +543,9 @@ The Kanji can be classified according to their building principle:
  \item \textbf{Phonograms} are combinations of two Kanji characters. One
        refers to a concept class (for \emph{class characters} or \emph{radicals},
        see section~\ref{sec:radicals}), 
-       while the other character exclusively bears a phonetic value. The content
-       of the second part of a phonogram is not relevant and can be ignored.
+       while the other character exclusively bears a phonetic value. The 
+       semantic content of the second part of a phonogram is not relevant 
+       and can be ignored.
 
        In table~\ref{table:kicombinations} the character 
        \cjk{奇} (Jap.~pron.~\cjk{き}/ki, Eng.~'strange') is used for the purpose
@@ -630,6 +652,7 @@ their very own ways. There are two main readings of the Kanji: \\
         Eng.~'concept reading, native reading'), which represents the original 
         Japanese word that happens to be written with a Chinese character. 
         The Kun'yomi are further classified into different types of readings.
+        Kun'yomi is also called \emph{kun-reading}.
 \end{itemize}
 Because of this, the Kanji that have been developed in Japan only have a 
 Kun-reading. More than half of the official Jōyō-Kanji (999 of 1945)
@@ -743,6 +766,10 @@ Firstly, there was only one printing office in Germany that was able to print
 these kind of things at all. Also, there were technical issues, 
 like incompatible letter size and missing characters among the letters 
 available. The manufacturing of the appropriate letters delayed the publication.
+The following quote from~\shortciteANP{Lange1922}~\citeyear{Lange1922} shows the 
+difficulties an author was facing when trying to print a book. 
+It describes the difficulties of printing a book with Japanese characters
+in 1896 in Germany, in the foreword of the first edition of the book:
 \begin{quote}
 Bei der Drucklegung des Werkes in der Reichsdruckerei, der einzigen Druckerei 
 in Deutschland, welche dergleichen zu drucken im stande ist, stellten sich 
@@ -755,7 +782,8 @@ Diese mussten entweder aus den vorhandenen Teilzeichen,
 die eine andere Form als die übrigen Typen haben, zusammengesetzt werden oder 
 sie mussten erst geschnitten werden; 
 haupsächlich durch den letzteren Umstand hat sich die Fertigstellung des Werkes 
-verzögert.
+verzögert.\\
+\shortcite{Lange1922}
 \end{quote}
 
 \begin{quote}
@@ -768,10 +796,10 @@ the 10000 Chinese characters that came from Shanghai.
 The missing characters had to be composed from the partial characters that
 had a different shape then the other types, others had to be manufactured.
 Mainly because of the last-mentioned circumstances the completion of the
-act has been decelerated.
+act has been decelerated.\\
+\shortcite{Lange1922}, translation by the author of this thesis.
 \end{quote}
-This quote from~\shortciteANP{Lange1922} shows the difficulties an author
-was facing when trying to print a book. 
+
 Difficulties in machine writing Japanese also occurred at later stages. The 
 technical and practical problems remain to this day, because of the great number
 of characters. \shortciteANP{Foljanty1984}~\citeyear{Foljanty1984} reports that 
@@ -807,14 +835,14 @@ for Japanese.
 %the%several other methods exist
 
 There are at least four ways to learn the Japanese Script. 
-With \emph{learning the Japanese script} we mean \emph{learning the Kanji}.
-For the Hiragana and Katakana are only small sets of syllabic characters,
-the effort to study those is only slightly larger than learning the Latin 
-alphabet. The number of different learning methods and the diversity of advice
-that can be found on this topic on the Internet and in teaching books suggests
-that learning the Kanji is regarded as a difficult issue.
+With \emph{learning the Japanese script} concretely  \emph{learning the Kanji}
+is meant. For the Hiragana and Katakana are only small sets of syllabic 
+characters, the effort to study those is only slightly larger than learning 
+the Latin alphabet. The number of different learning methods and the diversity 
+of advice that can be found on this topic on the Internet and in teaching books 
+suggests that learning the Kanji is regarded as as a difficult issue.
 It is apparent that the difficulties lie in the complexity of the Kanji, 
-but also on the structure of the writing system as such. 
+but also in the structure of the writing system as such. 
 \shortciteANP{Stahlmann2004}~\citeyear{Stahlmann2004} reports the subjective 
 impression of many learners that Chinese is among the most challenging languages
 and even seems daunting. Japanese is no different, as most of the difficulties 
@@ -866,7 +894,7 @@ The four groups of learning methods are:
 \end{enumerate}
 
 
-\subsection{Learner's Problems}
+\subsection{Learners' Problems}
 \label{sec:learnersproblems}
 
 \begin{enumerate}
@@ -880,8 +908,8 @@ The four groups of learning methods are:
   \item \textbf{Compounds.} Often, new vocabulary is studied, rather than new 
         Kanji. The vocabulary are often composed of Kanji characters that are 
         already known. Studying time is needed in order to study the vocabulary 
-        and compounds. Therefore it is difficult to study new Kanji at the same
-        time.
+        and compounds together. Therefore it is difficult to study new Kanji 
+        at the same time.
 
   \item \textbf{Unusual readings.} Since Kanji have several readings, 
         it is useful for a learner to study the most frequent ones.
@@ -903,6 +931,7 @@ The four groups of learning methods are:
         Eng.~'heavy snow') and
         \cjk{雪合戦}~(Jap.~reading \cjk{ユキガッセン}/\emph{yuki}gassen; 
         Eng.~'snowball fight'). 
+
         Similarly, the Kanji \cjk{崩}~(Eng.~'break down, destroy') 
         has two standard readings:\\
         The Chinese reading (\emph{on-reading}) is \cjk{ホウ}/hou, 
