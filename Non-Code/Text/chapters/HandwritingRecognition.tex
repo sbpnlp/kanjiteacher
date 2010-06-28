@@ -47,17 +47,33 @@
 
 Handwriting is a very personal skill to individuals. It consists of graphical
 marks on a surface and can be used to identify a person. 
-Communication is the main purpose and this is achieved by drawing letters or other 
-\emph{graphemes}, which in turn represent parts of a language.
+Communication is the main purpose and this is achieved by drawing letters 
+or other \emph{graphemes}, which in turn represent parts of a language.
 The characters have a certain basic shape, which must be recognisable
 for a human in order for the communication process to function.
-There are rules for the combination of letters, which have the ability - if
-known to the reader - to help recognise a character or word.
+There are rules for the combination of letters that help recognise a character 
+or word.
 
-Handwriting was developed as a means of communication and to expand one's own
-memory. With the advent of each new technologies the question arose, 
-if handwriting was going to survive. However, the opposite seems to be the 
-truth: For example, the printing press increased the number of documents
+On-line handwriting recognition is a pattern-recognition problem that is centred
+around handwriting. The characters written on a surface with a pen or stylus
+device are recognised during the time of writing.
+On-line handwriting recognition is different from 
+off-line handwriting recognition, a special form of 
+\emph{optical character recognition} (OCR) dealing with handwritten texts.
+OCR typically deals with printed characters, while handwriting recognition
+works with handwritten input data.
+
+
+\subsection{Survival of Handwriting}
+\label{sec:survivalofhandwriting}
+
+Handwriting developed as a means of communication and to expand one's own
+memory. With the advent of each new technology, the question arose, 
+wether handwriting was going to survive. 
+If handwriting was deteriorating it would not be useful to develop new
+technologies centred around the human ability of handwriting.
+The opposite seems to be true: \\
+For example, the printing press increased the number of documents
 available and therefore increased the number of people who learnt to read
 and write. Through the increased rate of alphabetisation, naturally there was
 an increased use of handwriting as a means of communication.
@@ -74,14 +90,16 @@ handwriting increases~\shortcite{Plamondon2000}.
 \label{sec:handwritingfeatures}
 
 Any script of any language has a number of features. The fundamental 
-characteristic of a script is that the differences between the features
+characteristic of a script is that \emph{the differences between the features
 of different characters are more decisive than the different features of 
-drawing variants of the same letter in individual handwriting styles.
-There might be exceptions, because \emph{0} (number between '-1' and '1') and 
+drawing variants of the same letter in individual handwriting styles}.
+There might be exceptions, as \emph{0} (number between '-1' and '1') and 
 \emph{O} (letter between 'n' and 'p') or \emph{1} (number between '0' and '2') 
-and \emph{I} (letter between 'h' and 'j') respectively, can be written alike. 
+and \emph{I} (letter between 'h' and 'j') respectively, can be written alike
+in handwriting. It is possible to write a short vertical stroke for either
+\emph{1} or \emph{I}. Likewise, a circle can represent both \emph{0} or \emph{O}.
 However, in those cases, context makes clear which one was intended by the 
-writer. Despite the exception, written communication can only work with that
+writer. Despite the exceptions, written communication can only work with that
 fundamental quality~\shortcite{Tappert1990}.
 
 \subsection{Handwriting Properties of Latin Script}
@@ -101,7 +119,7 @@ line (like lowercase \emph{g, j, p, q, y}). In handwritten cursive script,
 there are writing variants where also some lowercase letters (\emph{f, z}) and
 certain uppercase characters (\emph{G, J}) expand below the ground line.
 For all latin-based alphabets, usually one character is finished before the 
-next one starts, however, there are exceptions:
+next one starts. However, there are exceptions:
 In cursive handwriting, the dots on \emph{i} and \emph{j} and the crosses
 of \emph{t} might be delayed until the underlying portions of all 
 the characters of the word are completed. 
@@ -123,16 +141,18 @@ an ascender.
 \label{sec:handwritingpropertieseastasian}
 
 % xxx: see tappert1990 IV handwriting properties and recognition problems
-Generally, a handwriting is a formed of a number of strokes, that are drawn
-in a time sequence. Opposed to the latin-based alphabets, consider Chinese and
-Japanese script. Chinese has a larger alphabet, up to 50.000 characters, 
-3.000-5.000 of which are in active use. There are also two writing styles,
+Generally, handwriting is formed of a number of strokes, that are drawn
+in a temporal sequence. Opposed to the latin-based alphabets, consider Chinese and
+Japanese script. Chinese has a larger alphabet, up to 50,000 characters, 
+3,000-5,000 of which are in active use. There are also two writing styles,
 block style - which corresponds to printed characters in Latin alphabets,
 even if handwritten. The other style is cursive style. In block style the
 individual parts of the character are usually written in proper stroke order,
 and abide by the proper stroke number. In cursive style the characters are
 written faster, with less care and don't necessarily abide to stroke
-number or order. In fact, they are usually written with fewer strokes,
+number or order. Figure~\ref{fig:differenthandwritingstyles}
+shows some different writing styles.
+Cursive letters are usually written with fewer strokes,
 connecting some block-style strokes by using simpler radical 
 shapes~\shortcite{Tappert1990}.
 
@@ -165,7 +185,7 @@ by machines has been around for many years. The quality of the systems
 recognising handwriting has improved over the decades. It is the key 
 technology to pen-based computer systems. The first research papers 
 concerned with \emph{pattern recognition} on computers were published 
-in the late 1950s, \emph{Handwriting recognition} as an individual subject in 
+in the late 1950s, handwriting recognition as an individual subject in 
 the early 1960s. In a U.S.\ Patent~\shortciteANP{Goldberg1915}~\citeyear{Goldberg1915} describes 
 a machine that can recognise alphanumeric characters as early as 1915. 
 However, despite the surprise of how early such a device was invented,
@@ -211,7 +231,7 @@ The general problem of \emph{pattern recognition} is to take a non-symbolic
 representation of some pattern, like mouse or pen coordinates and transform
 it into a symbolic representation like a \emph{rectangle} with its coordinates,
 or in the case of handwriting recognition, a character. Pattern recognition is 
-a symbol manipulation procedure, that tries to generate discrete structures or 
+a procedure where symbols are manipulated. It to generate discrete structures or 
 sub-sets of discrete structures. Some see it as a game theory problem, 
 where machine 'players' try to match the interpretation of an input produced 
 by machine 'experts'~\shortcite{Zanibbi2005}.
@@ -270,7 +290,7 @@ the correct character. This could be used as an advantage in automated pattern
 recognition, as well. However, the other characters nearby would have to be
 recognised first, which creates a (solvable) hen and egg problem.
 In the Japanese script the problem is taken to another dimension. 
-Consider \cjk{本}~(root) and \cjk{木}~(tree) those two characters are only a 
+Consider \cjk{本}~(root) and \cjk{木}~(tree). Those two characters are only a 
 very basic sample of characters that might lead to confusion of the different 
 symbols. However, due to the hierarchical organisation of the characters 
 with their radicals (see section~\ref{sec:modernjapanesewritingsystem}) there 
@@ -294,7 +314,7 @@ input device.
 
 Several different hardware commercial products are available in order to
 capture the x-y coordinates of a stylus or pen. Graphics tablet like the
-products of the Wacom Co., Ltd.\footnote{www.wacom.com} are popular input
+products of the Wacom Co., Ltd.\footnote{www.wacom.com}\ are popular input
 devices for hand motions and hand gestures. The use of pen-like input devices 
 has also been recommended, since 42\% of mouse users report feelings of 
 weakness, stiffness and general discomfort in the wrist and hand when 
@@ -303,8 +323,18 @@ The sampling rates of digital pens are usually around 50-200 Hz. The higher the
 sampling rate the finer the resolution of the resulting co-ordinates,
 which leads to more accurate measurement of fast strokes. 
 
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[scale=0.1]{images/Apple_Newton_MP100.png}
+\caption{A PDA with a stylus}
+\label{fig:apdawithastylus}
+\end{center}
+\end{figure}
+
 Moreover there are PDAs and Tablet PCs, where the writing surface serves 
-as an output device, i.e., an display at the same time.
+as an output device, i.e., a display at the same time.
+Figure~\ref{fig:apdawithastylus} shows a PDA with a stylus which enables
+a user to input handwriting.
 If the pen capturing area is transparent and has an instantaneous display behind
 that shows immediately whatever input the user drew with the stylus,
 a high level of interactivity can be reached~\shortcite{Santosh2009}. 
@@ -324,8 +354,8 @@ Another rather new development are real-ink digital pens. With those,
 a user can write on paper with real ink, and the pen stores the 
 movements of the pen-tip on the paper. The movements are transferred to a 
 computer later. 
-It can be expected that with technologies like Bluetooth it may be possible 
-to transfer those data in real-time, not delayed.
+With technologies like Bluetooth it is possible to transfer those data in 
+real-time, not delayed.
 In a fairly new development accelerometer technology has been used 
 for handwriting recognition, using a mobile phone as a device to write 
 in the air~\shortcite{Agrawal2009}. That approach can be regarded as an area 
@@ -339,13 +369,13 @@ by the accelerator device, but does not transform the strokes into characters.
 \subsection{Recognition vs.\ Identification}
 \label{sec:recognitionvsidentification}
 
-Handwriting recognition is the task of transforming a spatial language 
+Handwriting recognition is the task of transforming a temporal-spatial language 
 representation into a symbolic representation. In the English language
-(and many others) the symbolic representation is typically 8-bit ASCII.
+(and many others) the symbolic representation is typically ASCII.
 However, with \emph{Unicode} being around for more than a decade now,
 storage space on hard disks not being as much of an issue any more and
 \emph{RAM} being readily available to the Gigabytes, it has become more 
-common to use a \emph{UTF-8}  encoding, which is a variable-length character 
+common to use a \emph{UTF-8} encoding, which is a variable-length character 
 encoding for Unicode~\shortcite{Unicode2000}.
 Akin disciplines to handwriting recognition are 
 \emph{handwriting identification}, which is the task of identifying the author
@@ -375,14 +405,15 @@ is \emph{beans}, the likelihood for the interpretation of the first word
 as \emph{broad} rises, because the collocation \emph{broad beans} is a
 sequence that is likely on a shopping list, at least more likely than
 having the interpretation \emph{bread} and then \emph{beans} without a
-clear separation between the two. Even with non-handwritten, 
-but printed characters, the human mind can be tricked because of the 
-brain's ability to perform these interpretations within milliseconds 
-without conscious thinking. An example of that are modern T-Shirt inscriptions
-that state things like \emph{Pozilei} in a white font on a green ground 
-(the German police colours in most federal states are green and white), 
-which German native speakers usually read as \emph{Polizei} (police),
-because that is the most likely interpretation.
+clear separation between the two. 
+% Even with non-handwritten, 
+% but printed characters, the human mind can be tricked because of the 
+% brain's ability to perform these interpretations within milliseconds 
+% without conscious thinking. An example of that are modern T-Shirt inscriptions
+% that state things like \emph{Pozilei} in a white font on a green ground 
+% (the German police colours in most federal states are green and white), 
+% which German native speakers usually read as \emph{Polizei} (police),
+% because that is the most likely interpretation.
 
 \subsection{On-Line vs.\ Off-Line Recognition}
 \label{sec:onlinevsoffline}
@@ -422,8 +453,8 @@ pixels are either 1 or 0~\shortcite{Santosh2009}.
 \label{sec:similaritiesanddifferences}
 
 There are two main differences between on-line and off-line handwriting
-recognition. Firstly, off-line recognition happens, hence the name, 
-after the time of writing. Therefore, a complete piece of writing can be 
+recognition. Firstly, off-line recognition happens
+after the time of writing. A complete piece of writing can be 
 expected as an input by the machine. Secondly, on-line devices also get the
 dynamic information of the writing as input, since each point coordinate 
 is captured at a specific point of time, which can be provided to the 
@@ -434,19 +465,22 @@ pieces of information are not readily available, but can be partially
 reconstructed from the off-line data~\shortcite{Santosh2009}.
 
 All these information can be an advantage for an on-line system, however, 
-off-line systems have used algorithms of line-thinning, such that the data 
-consists of point coordinates, similar to the input of on-line 
-systems~\shortcite{Tappert1990}. When line thinning has been applied, an off-line 
+off-line systems have used algorithms of line-thinning, in order to
+transform the bitmap into a trace of assumed point coordinates, 
+similar to the input of on-line systems~\shortcite{Tappert1990}. 
+When line thinning has been applied, an off-line 
 system could estimate the trajectory of the writing and then use the same 
 algorithm as an on-line system~\shortcite{Plamondon2000}. 
 Vice versa, an on-line system can employ algorithms of off-line systems, 
-since it is possible to construct a binary image from mouse coordinates 
+since it is easy to construct a binary image from mouse coordinates 
 of points. However, only few systems of that kind have been developed. 
 A promising approach was developed in the middle of the 1990s 
-by~\shortciteANP{Nishida1995}~\citeyear{Nishida1995}, where an on-line and and off-line system are 
+by~\shortciteANP{Nishida1995}~\citeyear{Nishida1995}, 
+where an on-line and and off-line system are 
 fully integrated with each other as a \emph{blend system}.
-\shortciteANP{Velek2002a}~\citeyear{Velek2002a} determine the likelihood of different classifiers in
-a multi-classifier system, before they are combined and yield a result.
+\shortciteANP{Velek2002a}~\citeyear{Velek2002a} determine the likelihood of 
+different classifiers in a multi-classifier system, 
+before they are combined and yield a result.
 
 On-line systems can refer interactively to the user in case of an unsuccessful 
 or uncertain recognition. Along these lines, an on-line system can adapt to 
@@ -490,23 +524,26 @@ character modelling.
 \label{sec:atypicalonlinehwrapplication}
 
 A typical HWR application has several parts that follow up on each other in a
-procedural fashion. The main parts of such an application are the following:
+pipeline architechture. The main parts of such an application are the following:
 \begin{itemize}
 \item \textbf{Data capturing}: The data is captured through an input device 
   like a writing surface and a stylus. Data capturing is described in
   section~\ref{sec:datacapturing}.
-\item \textbf{Preprocessing}: The data is segmented, noise reduction like 
+\item \textbf{Preprocessing}: The data is segmented, noise reduction 
+  methods like 
   smoothing and filtering are applied. Preprocessing is described in 
   section~\ref{sec:preprocessing}.
-\item \textbf{Character Recognition}: Feature analysis, stroke matching, time, 
-  direction and curve matching. A description of character recognition can be 
+\item \textbf{Character Recognition}: The data undergoes a feature analysis, 
+  and the system performs stroke matching, using subcomponents for
+  time-, direction- and curve matching. 
+  A description of character recognition can be 
   found in section~\ref{sec:characterrecognition}.
 \end{itemize}
 In a typical HWR application there are some intermediate steps that can be 
 regarded as partial processes of the ones mentioned above. In preprocessing,
 there is often a segmentation step (see~\ref{sec:segmentation}), most systems 
 perform one or several methods of noise reduction (see~\ref{sec:noisereduction}) and it is common to employ a data normalisation step 
-(see~\ref{sec:normalisation}). Additionally, some systems that employ a 
+(see~\ref{sec:normalisation}). Additionally, some systems employ a 
 postprocessing step (see~\ref{sec:postprocessing}). 
 
 \subsection{Data Capturing}
@@ -518,16 +555,19 @@ Special hardware is needed in order to capture the data necessary
 for on-line HWR. It is possible to input data with a regular mouse on 
 a regular computer, however the data will be less \emph{noisy}, 
 if a stylus is used for input of the handwriting. 
-See section~\ref{sec:hardwarerequirements} for more information on the hardware 
-requirements of HWR. The data that is served by a device driver or the operating
-system is structured as mouse coordinates. In case of pressure-sensitive input 
-devices the device driver also returns the pressure intensity. 
+See figure~\ref{fig:apdawithastylus} on page~\pageref{fig:apdawithastylus} 
+in section~\ref{sec:hardwarerequirements} for more an example of an input device.
+For more information on the hardware requirements of HWR also consider 
+section~\ref{sec:hardwarerequirements}. The data that is served by a device 
+driver or the operating system is structured as mouse coordinates. 
+In case of pressure-sensitive input devices the device driver also returns 
+the pressure intensity. 
 However, a typical on-line HWR application uses only the mouse coordinates,
 not the pressure intensity. Generally, HWR applications work with mouse
 coordinates, thus the trajectory of the stylus, in accordance with the 
-appropriate time information for each of the sampling points. 
+corresponding time information for each of the sampling points. 
 
-%xxx: 
+%xxx:
 %if you want to add more here, see~\shortcite{Santosh2009}:
 %\emph{Digitizer Technology} as well as~\shortcite{Tappert1990}:
 %\emph{Digitizer Technology} but don't repeat to much stuff 
@@ -537,11 +577,12 @@ appropriate time information for each of the sampling points.
 \subsubsection{Sampling}
 \label{sec:sampling}
 
-The pen-up and pen-down information is a central part in data capturing. 
+Capturing the pen-up and the pen-down information is a central part 
+of the data capturing. 
 Depending on the sampling rate, there will be between 50 and 200 points per 
 second. Those can be viewed as a function of time.
-With theses pieces of information, it is possible to track the number and order
-of strokes drawn by the user. According to the writing speed, the number of 
+With these pieces of information, it is possible to track the number and order
+of strokes drawn by the user. Depending on the writing speed, the number of 
 coordinates per distance can vary. A fast stroke will have fewer point samples,
 even if the same distance was covered on the writing surface.
 Some see this as a problem and \emph{re-sample} the points to be of equal 
@@ -578,7 +619,7 @@ sub steps:\\
 \emph{wild point correction}, \emph{dot reduction} and \emph{stroke connection}.
 Some systems also employ a \emph{normalisation} step, that can include
 \emph{deskewing}, \emph{basline drift correction} and \emph{size normalisation}.
-\shortciteANP{Santosh2009}~\citeyear{Santosh2009} employ a similar perception in their review about several
+\shortciteANP{Santosh2009}~\citeyear{Santosh2009} summarise a similar perception in their review about several
 on-line HWR systems. Their \emph{noise elimination} corresponds to 
 \emph{noise reduction} and the aforementioned \emph{normalisation} describes 
 roughly the same techniques that~\shortciteANP{Tappert1990}~\citeyear{Tappert1990} depict.
