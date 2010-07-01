@@ -46,36 +46,42 @@
 %   The next part to write is the abstract. there are some lines already,
 %   apply structure 1,2,3 and finalise.
 
-In this work, a Japanese handwriting recognition system is being developed.
-The system is integrated into an e-learning environment in order to provide 
-a Kanji teaching application with automated error correction.
+In this work, a Japanese handwriting recognition system has been developed.
+The system is integrated into an e-learning environment 
+in order to provide a Kanji teaching application with automated 
+detailed error recognition.
 Conceptually, the application is an e-learning environment for Japanese 
 characters, intended for the western learner of the Japanese language. 
 Most e-learning systems of Japanese Kanji provide only a multiple choice method
 for the learner to reproduce characters. The present prototype offers the
 ability to enter characters with a stylus on a touch screen system.
 
-The study seeks to determine to what extent it is possible to use modern NLP 
-methods for language learning. While other studies mainly focus on grammatical
+The thesis determined to what extent it is possible to use NLP for 
+language learning. While other studies mainly focus on grammatical
 correction, this application is targeted on the Kanji characters. It will be 
 examined if a handwriting recognition engine can generate informed feedback,
-suitable for a learner. Additionally, the study examines if that feedback helps 
+suitable for a learner. Additionally, the study shows that feedback helps 
 obtaining the ability to actively reproduce the Kanji characters.
+It is possible to use a handwriting recognition engine for the generation of 
+informed feedback based on the errors made and use the feedback
+in an e-learning context.
+The handwriting recognition has an accuracy from 70\% for the best match
+and 81\% for the 1^{st}-5^{th}-best match for full characters.
+For substructure recognition the accuracy lies between 85\% for the best match
+and 90\% for the 1^{st}-3^{rd}-best match.
+The error detection had a precision of 0.875 at a recall rate of 0.7.
 
 The prototype developed in this work combines e-learning methods with natural
 language processing applied to the Japanese script. In order to prepare the 
-task of creating an interdisciplinary software that spans across the aforementioned 
-fields of study, the work reviews the structure of the Japanese script, 
-the current state of the art in handwriting recognition methods and e-learning 
-techniques.
+task of creating an interdisciplinary software that spans across the 
+aforementioned fields of study, the work reviews the structure 
+of the Japanese script, the current state of the art in handwriting 
+recognition methods and e-learning techniques.
 The recognition engine implements a structural approach to Kanji character 
 identification. The recognition performs partial analysis of substructures
 and binds the recognised elements together to form a character.
 Because of the structural approach it becomes possible to create an informed
 error recognition that considers linguistic units of the Kanji characters.
-
-The study resulted in the knowledge that it is indeed possible to use a handwriting
-recognition engine for the generation of informed feedback based on the errors made.
 
 \chapter*{Zusammenfassung}
 \label{chap:zusammenfassung}
@@ -83,26 +89,37 @@ recognition engine for the generation of informed feedback based on the errors m
 
 In dieser Arbeit wird eine Handschriftenerkennung für japanische Kanji 
 entwickelt. Der Handschriftenerkenner ist in eine E-Learning-Umgebung integriert 
-und liefert eine automatisch generierte Fehlerkorrektur für Lernende.
-
+und liefert eine detaillierte automatische Fehlererkennung für Lernende.
 Das System ist in konzeptioneller Hinsicht eine E-Learning-Anwendung für das 
 Erlernen der japanischen Schrift. Letztere weist aufgrund ihrer morphemischen 
 Struktur einen hohen Komplexitätsgrad auf und benötigt daher besonderen 
-Lernaufwand. Die meisten E-Learning-Systeme für asiatische Schriftzeichen bieten 
+Lernaufwand. Viele E-Learning-Systeme für asiatische Schriftzeichen bieten 
 Zeichenabfrage als Multiple-Choice an, da die Eingabe der Zeichen für einen 
 Lernenden sonst ein technisches Problem darstellen würde.
-Der in dieser Arbeit erstellte Prototyp bietet die Möglichkeit 
-zur handschriftlichen Eingabe von Zeichen auf einer dafür geeigneten 
-Bildschirmoberfläche. Das ist ein Alleinstellungsmerkmal unter den 
-E-Learning-Anwendungen für die japanische Sprache.
+Der in dieser Arbeit entwickelte Prototyp erlaubt die
+handschriftliche Eingabe von Zeichen auf einem druckempfindlichen Bildschirm.
+Das ist ein Alleinstellungsmerkmal unter den E-Learning-Anwendungen 
+für die japanische Sprache.
 
-Die Studie untersucht, inwieweit es im Bereich des Schrifterwerbs möglich ist, 
+Die Arbeit untersucht, ob es im Bereich des Schrifterwerbs möglich ist, 
 NLP und Lernmethoden zusammenzubringen. Dabei wird nicht mit Parsing-Methoden 
 die grammatische Struktur der Sprache untersucht, sondern vielmehr die interne 
 Struktur der Kanji zugrunde gelegt und durch einen Handschriftenerkenner erfasst.
 Dabei sollen Schreibfehler strukturell erkannt werden. Intelligentes Feedback 
 soll dem Lernenden dabei helfen, die Fähigkeit der aktiven Reproduktion der 
 Kanji zu erwerben.
+Das Ergebnis der Studie zeigt, dass es möglich ist, eine Handschriftenerkennung
+nutzbar zu machen, um einem Lernenden intelligentes Feedback zu geben,
+basierend auf den Fehlern, die bei der Eingabe gemacht wurden.
+
+Der Handschriftenerkenner hat eine \emph{Accuracy} von 70\% für den Zeichen mit der
+höchsten Übereinstimmung mit der Eingabe und
+81\% für die erst- bis fünft-beste Übereinstimmung für vollständige Zeichen.
+Für die Erkennnung von Substrukturen liegt die \emph{Accuracy} zwischen
+85\% für das Radikal mit der höchsten Übereinstimmung und
+90\% für das erst- bis drittbeste Radikal.
+Die Fehlererkennung hat eine \emph{Precision} von 0.875 bei einer 
+\emph{Recall}-Rate von 0.7.
 
 Da der Prototyp eine disziplinübergreifende Software ist, 
 die in den Bereichen Handschriftenerkennung und E-Learning angesiedelt ist,
@@ -112,26 +129,22 @@ dargestellt. Die Kombination der drei Disziplinen in einer Studie führt dazu,
 dass die Substrukturen der Kanji überhaupt programmatisch analysiert werden 
 können, wodurch die Fehlererkennung ermöglicht wird.
 
-Das Ergebnis der Studie zeigt, dass es möglich ist, eine Handschriftenerkennung
-nutzbar zu machen, um einem Lernenden intelligentes Feedback zu geben,
-basierend auf den Fehlern, die bei der Eingabe gemacht wurden.
-
 % \chapter*{Danksagungen}
 % \label{chap:danksagungen}
 % \addcontentsline{toc}{chapter}{Danksagungen}
 
-% Ich möchte mich bei allen bedanken, die mir bei der Erstellung dieser Arbeit 
-% geholfen haben. Jeder hat einen wertvollen Beitrag geleistet, 
+% Ich möchte mich bei allen bedanken, die mich bei der Erstellung dieser Arbeit 
+% unterstützt haben. Jeder hat einen wertvollen Beitrag geleistet, 
 % den ich sehr zu schätzen weiß. Besonders bedanken möchte ich mich bei 
 % Dr.~Tilman Becker, der mir über die gesamte Zeit wertvolle Hinweise gegeben hat, mit dem ich 
 % hochinteressante fachliche Diskussionen hatte, die diese Arbeit vorangetrieben
-% und verbessert haben. Weiterhin bedanke ich mich bei Prof.~Wahlster, in dessen 
-% Abteilung \emph{Intelligente Benutzerschnittstellen} am DFKI ich längere Zeit als HiWi 
+% und verbessert haben. Weiterhin bedanke ich mich bei Prof.~Dr.~Dr.~h.c.~mult.~Wahlster, 
+% in dessen Abteilung \emph{Intelligente Benutzerschnittstellen} am DFKI ich längere Zeit als HiWi 
 % und als Diplomand tätig war, für das Ermöglichen dieser Diplomstudie.
 % Mein besonderer Dank gilt allen Korrekturlesern, die mich vor dem ein oder anderen
-% Rechtschreibfehler und inhaltlichen Unstimmigkeiten bewahrt haben, sowie allen,
-% die mir mit Rat und Tat zur Seite gestanden haben. Diejenigen, 
-% die ich vergessen habe, mögen mir verzeihen.
+% Rechtschreibfehler bewahrt haben, oder mich auf inhaltlichen Unstimmigkeiten hingewiesen haben.
+% Weiterhin natürlich allen, die mir mit Rat und Tat zur Seite gestanden haben. 
+% Diejenigen, die ich vergessen habe, mögen mir verzeihen.
 % Ich bedanke mich herzlich bei:\\
 % Matthew Brown,
 % Özgür Demir,
