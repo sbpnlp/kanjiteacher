@@ -85,12 +85,12 @@ perform recognition for Chinese or Japanese characters.
 The other systems recognise Latin script, hence, they are not an optimal
 comparison measure for the HWR engine developed in this thesis.
 The recognition rates of the Chinese and Japanese systems lie below 90\%. 
-That performance measure sets a general context in which 
+That performance measure sets a sets the general order of magnitude in which 
 the prototype system developed in this work is evaluated.
 However, the results of other systems are only comparable to the overall 
 recognition accuracy of the present system. Due to the different technical
-background and the aim of the system it is difficult to draw conclusions
-from the sole comparisons of numbers. 
+background and the objectives of the system to be accomplished
+it is difficult to draw conclusions solely from the comparisons of numbers. 
 (See section~\ref{sec:eval:overallrecognitionaccuracy} for more information.)
 \begin{figure}[htbp]
   \begin{center}
@@ -114,14 +114,14 @@ to exemplify one usage scenario of the HWR engine.
 It mainly shows the plausibility of the approach. A detailed analysis of the
 e-learning application using ISO9126~\shortcite{Chua2004} is not applicable,
 since the e-learning part of the software has not been optimised in any way.
-The focus of the thesis is not to implement a full e-learning application,
+The focus of the thesis is not to implement a complete e-learning application,
 but to create an analytical handwriting recognition engine.
 It might be a prospect for future 
 work\footnote{See section~\ref{sec:conclusion:newresearchpossibilities}}
 to optimise the e-learning part and build a fully-developed e-learning
 application for Japanese characters, but that would be outside the scope of 
-this thesis. For these reasons, there will only be an evaluation of the
-HWR module.
+this thesis. For these reasons, only an evaluation of the HWR module
+will be presented in this thesis.
 
 \section{Evaluation of the HWR Engine}
 \label{sec:eval:hwreval}
@@ -132,11 +132,11 @@ HWR module.
 The performance of a recognition system can be measured in terms of speed,
 accuracy and memory requirement.
 While statistical systems offer high speed, 
-but have large requirements on memory,
+but have large memory requirements,
 structural methods have lower speed, but have a smaller 
 memory footprint~\shortcite{LiuJaegerNakagawa2004}.
 The system developed and evaluated in this thesis is a structural system.
-It can be expected that the system has a relatively low performance speed,
+It can be expected that the system possesses a relatively low performance speed,
 but moderate memory requirements compared to other systems,
 since the system is not just a structural, but an analytical
 recognition system.
@@ -145,38 +145,40 @@ The factors memory requirements and speed are not of great interest in
 the context of this system. The system is an on-line system, but it
 exclusively performs single character recognition. The focus lies a lot more on
 a detailed analysis of one character, rather than the high-speed recognition
-of a stream of characters. The system is an interactive system. 
+of a stream of characters. Moreover, the system is an interactive system. 
 The recognition of a single character is an in-depth analysis of the
 structure of that character and returns a profound feedback to the user.
 Especially in an interactive learning context, the user is supposed to
 work with the system's feedback. Recognition speed is interesting for evaluation
-if the user enters a stream of characters. In that case recognition speed
+if the user enters a stream of characters. In the latter case recognition speed
 can be expressed as a factor that relates recognition speed with input speed.
 \shortciteANP{Tappert1990}~\citeyear{Tappert1990} state that on-line
 recognition systems need only be fast enough to keep up with the writing. 
 Further, they report average writing rates of  1.5-2.5  characters/s  for 
 English  alphanumerics  and 0.2-2.5  characters/s  for  Chinese  characters.  
-In a system that performs single character recognition the user has the 
-impression of instant recognition. The recognition speed of a single character 
-is below 1 second, thus below average writing speed for Kanji characters. 
+The prototype system performs single character recognition fast enought
+for the user to get the impression of instant recognition. 
+The recognition speed of a single character is below 1 second, 
+thus below the average writing speed for Kanji characters. 
 
 Memory requirements are negligible in this system for a similar reason.
 The recognition of one character does not require much memory compared to
 the recognition of a stream of characters. Additionally, the main system engine
 does not run on a small mobile computing device with low memory capacity,
-but runs as a service on a standard PC. With the advanced memory capacities
-of today memory is not an issue. Nevertheless, even mobile devices are 
+but runs as a service on a standard PC. Nevertheless, due to the advanced 
+memory capacities of today memory is not an issue. Even mobile devices are 
 equipped with enough memory to enable the system to perform analytical character
 recognition.
 
 For the reasons given above, the evaluation of the analytical handwriting 
-recognition engine will be limited to different types of accuracy measurements.
+recognition engine will be limited to different degrees of accuracy measurements.
 The memory footprint of the e-learning and recognition system is around 35MB,
-including an overhead the .NET framework. It is difficult to measure the
+including an overhead for the .NET framework. It is difficult to measure the
 exact memory consumption without the .NET overhead. In a minimised state 
-where the UI does not need to be shown the memory footprint drops to
-1,200KB. The memory footprint of the recogniser lies around 25MB, including the
-.NET overhead, the estimated consumption without is 800KB.
+where the UI does not need to be shown, the memory footprint drops to
+1,200KB. The memory footprint of the recogniser amounts to around 25MB, 
+including the .NET overhead, the estimated consumption without the overhead
+is significantly lower at 800KB.
 
 \subsection{Development of Appropriate Evaluation Metrics}
 \label{sec:eval:developmentofevalmetrics}
@@ -194,8 +196,8 @@ how well the input matched the character model in structural terms.
 That means concretely, the system can analyse an input with an expected result
 and can perform the same for an unknown input by assuming the best match
 as the expected result. The analysis yields an output that includes more
-information than pure pattern matching. It rather includes structural linguistic 
-information.
+information than achievable by pure pattern matching. 
+It rather includes structural linguistic information.
 
 \begin{figure}[htbp]
   \begin{center}
@@ -220,19 +222,26 @@ figure~\ref{fig:similarcharactersforuserconfusion} is known to
 the recognition system because of the identical substructures.
 If the system identifies the input as a character with identical parts
 with respect to the expected character the output will contain the information
-as a substructure confusion error type.
+as a \emph{substructure confusion} error type.
 
 This detailed analysis creates a unique requirement for evaluation. Not only
 recognition accuracy must be measured and compared to other systems,
 but a new evaluation for the recognition of substructures is needed.
-It seems reasonable to measure the recognition accuracy in a plain 
-percentage of correctly recognised characters. 
+It seems reasonable to measure the recognition accuracy as a plain
+percentage of correctly recognised characters.
+However, the result of the recogniser is not just one character,
+but a list of matches. The one character that is seen as the result character
+is the one with the closet proximity to the input and therefore the most salient
+in the list of matches. Thus, it is also reasonable to consider the 2^{nd}-, 3^{rd}- or \(n\)-best
+matches and give those a lower value than a full match that is first in the
+result list.
+
 Precision and recall are the correct measurements for the error recognition,
 where characters with incorrect substructures are identified. 
-That way, true positives, false positives, 
+In that way, true positives, false positives, 
 true negatives and false negatives can be distinguished.
 Since the system can recognise pure substructures as well, it would 
-be interesting to see the accuracy of a radical recognition.
+be interesting to analyse the accuracy of a radical recognition.
 
 The lexicon is a sample lexicon that contains 50 characters. That circumstance
 has to be kept in mind when comparing the evaluation results to other
