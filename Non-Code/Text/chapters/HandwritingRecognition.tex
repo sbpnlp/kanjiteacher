@@ -89,23 +89,24 @@ handwriting increases~\shortcite{Plamondon2000}.
 \section{Handwriting Features}
 \label{sec:handwritingfeatures}
 
-Any script of any language has a number of features. The fundamental 
+Every script has a number individual of features. The fundamental 
 characteristic of a script is that \emph{the differences between the features
 of different characters are more decisive than the different features of 
 drawing variants of the same letter in individual handwriting styles}.
-There might be exceptions, as \emph{0} (number between '-1' and '1') and 
-\emph{O} (letter between 'n' and 'p') or \emph{1} (number between '0' and '2') 
-and \emph{I} (letter between 'h' and 'j') respectively, can be written alike
-in handwriting. It is possible to write a short vertical stroke for either
+There might be exceptions, as \emph{0} (zero, the number between '-1' and '1') 
+and \emph{O} (the letter between 'n' and 'p') or \emph{1} (one, the number 
+between '0' and '2') and \emph{I} (the letter between 'h' and 'j') respectively, 
+can be written alike in handwriting. 
+It is possible to write a short vertical stroke for either
 \emph{1} or \emph{I}. Likewise, a circle can represent both \emph{0} or \emph{O}.
-However, in those cases, context makes clear which one was intended by the 
+However, in those cases, the context makes clear which one was intended by the 
 writer. Despite the exceptions, written communication can only work with that
 fundamental quality~\shortcite{Tappert1990}.
 
 \subsection{Handwriting Properties of Latin Script}
 \label{sec:handwritingpropertieslatin}
 
-In the Latin script we have 26 letters, each of which has two variants, 
+There are 26 letters in the Latin script, each of which has two basic forms, 
 a capital and a lowercase variant. When writing a character 
 in the Latin script, there are four main areas, in which the character 
 can reside. All characters have their main part between a top line and a 
@@ -120,8 +121,8 @@ there are writing variants where also some lowercase letters (\emph{f, z}) and
 certain uppercase characters (\emph{G, J}) expand below the ground line.
 For all latin-based alphabets, usually one character is finished before the 
 next one starts. However, there are exceptions:
-In cursive handwriting, the dots on \emph{i} and \emph{j} and the crosses
-of \emph{t} might be delayed until the underlying portions of all 
+In cursive handwriting, the dots on '\emph{i}' and '\emph{j}' and the cross
+of the letter '\emph{t}' might be delayed until the underlying portions of all 
 the characters of the word are completed. 
 Figure~\ref{fig:expandingcursiveletters} shows examples of letters that expand 
 below the ground line with their descender or stretch up to the top line with
@@ -142,15 +143,16 @@ an ascender.
 
 % xxx: see tappert1990 IV handwriting properties and recognition problems
 Generally, handwriting is formed of a number of strokes, that are drawn
-in a temporal sequence. Opposed to the latin-based alphabets, consider Chinese and
-Japanese script. Chinese has a larger alphabet, up to 50,000 characters, 
+in a temporal sequence. Opposed to the latin-based alphabets, consider Chinese 
+and Japanese script. Chinese has a larger alphabet, up to 50,000 characters, 
 3,000-5,000 of which are in active use. There are also two writing styles,
 block style - which corresponds to printed characters in Latin alphabets,
-even if handwritten. The other style is cursive style. In block style the
-individual parts of the character are usually written in proper stroke order,
-and abide by the proper stroke number. In cursive style the characters are
-written faster, with less care and don't necessarily abide to stroke
-number or order. Figure~\ref{fig:differenthandwritingstyles}
+even if they are handwritten. The other style is the cursive style. In block 
+style the individual parts of the character are usually written in proper 
+stroke order, and abide by the proper stroke number. In cursive style 
+the characters are written faster, with less care and do not necessarily abide 
+to stroke number or stroke order. 
+Figure~\ref{fig:differenthandwritingstyles}
 shows some different writing styles.
 Cursive letters are usually written with fewer strokes,
 connecting some block-style strokes by using simpler radical 
@@ -173,6 +175,18 @@ are the Hiragana characters '\cjk{べ}' \emph{be} and '\cjk{る}' \emph{ru},
 which are there for conjugation only as well as for phonetic reasons. 
 Without them, the character '\cjk{食}' still bears the meaning of the concept 
 \emph{eat}, but the character alone does not result in the verb \emph{taberu}.
+
+In sum, in Asian scripts, especially Japanese, there is a combination of 
+two factors that can have an impact on handwriting recognition: 
+\begin{itemize}
+\item Blended scripts
+\item A large alphabet
+\end{itemize}
+The first factor creates additional difficulty for a handwriting recognition 
+because when a character is entered, the recogniser first needs to determine 
+which script the characer belongs to. 
+It is evident why the second factor is problematic: The larger the alphabet,
+the more characters the system needs to distinguish.
 
 \section{Automated Recognition of Handwriting}
 \label{sec:autorecoofhandwriting}
@@ -206,10 +220,11 @@ are shown in figure~\ref{fig:goldbergspatent}.
 \end{center}
 \end{figure}
 
-\shortciteANP{Tappert1990}~\citeyear{Tappert1990} describe in their review the development of 
-handwriting recognition, which was a popular research topic in the early 
-1970s and then again in the 1980s, due to the increased availability 
-of pen-input devices. Generally speaking, handwriting recognition (HWR) 
+\shortciteANP{Tappert1990}~\citeyear{Tappert1990} describe in their review 
+the development of handwriting recognition, which was a popular research 
+topic in the early 1970s and then again in the 1980s, 
+due to the increased availability of pen-input devices. 
+Generally speaking, handwriting recognition (HWR) 
 involves automatic conversion of handwritten text into a machine readable 
 character encoding like ASCII or UTF-8. Typical HWR-environments include 
 a pen or stylus that is used for the handwriting, a touch-sensitive surface, 

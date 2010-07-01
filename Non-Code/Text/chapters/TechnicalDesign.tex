@@ -101,7 +101,7 @@ The
 \subsection{System Data Flow}
 \label{sec:arch:systemdataflow}
 The system data flow is shown in figure~\ref{fig:systemdataflow}.
-%xxx Make this a graphic, not a photographic image of a graphic 
+
 \begin{figure}[htbp]
 \begin{center}
 \includegraphics[scale=0.7]{images/TechnicalDesign/SystemDataFlow.png}
@@ -118,7 +118,7 @@ figure~\ref{fig:systemdataflow} are described in subsequent
 sections~\ref{sec:arch:recognitiondataflow} and~\ref{sec:arch:learningdataflow}.
 
 \subsubsection{Communication}
-\label{sec:communication} %xxx grep this label, see if it is in use and replace by sec:arch:communication
+\label{sec:arch:communication}
 
 The communication between the different parts of the application is realised 
 in two independet and distinct ways. The communication between the 
@@ -318,8 +318,6 @@ and a test mode.
 \subsubsection{Web Service}
 \label{sec:arch:webservice}
 
-%xxx just for the record: see page 50 in booklet to see if this section needs anything else
-
 The main communication module between the handwriting data input view and the 
 controller is a web service that runs on the main part of the application
 as a subprocess of the controller. When the desktop application requests the 
@@ -482,5 +480,4 @@ The solution with a PDA leaves room to exchange the device that runs the input
 area with any mobile device that has the ability to connect to a wireless LAN,
 e.g., an iPhone. Another possibility for pen input would be pens that write on paper 
 and also transmit data to a PC. 
-%xxx hier zum beispiel noch bericht ueber recherche nach graphic-tablets?!
-%und deren APIs siehe seite 35
+
