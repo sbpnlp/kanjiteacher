@@ -251,11 +251,12 @@ sub-sets of discrete structures. Some see it as a game theory problem,
 where machine 'players' try to match the interpretation of an input produced 
 by machine 'experts'~\shortcite{Zanibbi2005}.
 
-\subsubsection{Related Problems}
+\subsubsection{Problem Categorisation}
 \label{sec:relatedproblems}
 
-There are several related problems, the recognition of equations, line 
-drawings and gestures symbols. The recognition of language symbols includes 
+There are several problems that fall under 'pattern recognition', 
+like for instance the recognition of equations, line drawings and 
+gestures symbols. The recognition of language symbols includes 
 the different large alphabets of Chinese, the different scripts of Japanese, 
 alphabetic scripts like Greek, or Arabic and other non-alphabetic scripts like
 the Korean  Hangul, but also various writing styles of the latin-based 
@@ -293,16 +294,17 @@ between the characters becomes a more difficult task. Some parts of the writing
 may be delayed, like the crosses of \emph{t} or the dots on \emph{i} or \emph{j}.
 Besides the segmentation, the discrimination of shapes is often not trivial.
 Humans may or may not be able to decipher somebody else's handwriting and clearly
-distinguish between, say \emph{U-V}, but most of the times, context helps with 
-that task. Other characters have similar shapes, too, like \emph{C-L}, \emph{a-d}
-and \emph{n-h}. Confusion can arise between characters and numbers like 
+distinguish between, say \emph{U-V}, but most of the times, the context helps 
+with that task. Other characters have similar shapes, too, 
+like \emph{C-L}, \emph{a-d} and \emph{n-h}. 
+Confusion can arise between characters and numbers like 
 \emph{O-0}, \emph{I-1}, \emph{l-1}, \emph{Z-2}, \emph{S-5}, \emph{G-6}, 
 \emph{I-1}, \emph{Z-2}. Lowercase and uppercase are hard to distinguish in the
 cases of \emph{C-c}, \emph{K-k}, \emph{O-o}, others are mainly distinguished 
 by their position relative to the base line of the rest of the text: 
 \emph{P-p}, \emph{Y-y}. Therefore, context helps the human reader to identify
 the correct character. This could be used as an advantage in automated pattern
-recognition, as well. However, the other characters nearby would have to be
+recognition, as well. In that case, the other characters nearby would have to be
 recognised first, which creates a (solvable) hen and egg problem.
 In the Japanese script the problem is taken to another dimension. 
 Consider \cjk{本}~(root) and \cjk{木}~(tree). Those two characters are only a 
@@ -327,8 +329,8 @@ be captured in some way. Special hardware is necessary to perform the task of
 capturing both the x-y coordinates and the time information of the handwriting
 input device.
 
-Several different hardware commercial products are available in order to
-capture the x-y coordinates of a stylus or pen. Graphics tablet like the
+Several different commercial hardware products are available in order to
+capture the x-y coordinates of a stylus or pen. Graphics tablets like the
 products of the Wacom Co., Ltd.\footnote{www.wacom.com}\ are popular input
 devices for hand motions and hand gestures. The use of pen-like input devices 
 has also been recommended, since 42\% of mouse users report feelings of 
@@ -387,7 +389,7 @@ by the accelerator device, but does not transform the strokes into characters.
 Handwriting recognition is the task of transforming a temporal-spatial language 
 representation into a symbolic representation. In the English language
 (and many others) the symbolic representation is typically ASCII.
-However, with \emph{Unicode} being around for more than a decade now,
+With \emph{Unicode} being around for more than a decade now,
 storage space on hard disks not being as much of an issue any more and
 \emph{RAM} being readily available to the Gigabytes, it has become more 
 common to use a \emph{UTF-8} encoding, which is a variable-length character 
@@ -439,11 +441,11 @@ clear separation between the two.
 \subsubsection{Basic Features of On-Line Recognition}
 \label{sec:basicfeaturesofonlinerecognition}
 
-\emph{On-line} HWR means that the input is converted in \emph{real-time}, 
-\emph{dynamically}, while the user is writing. This recognition can lag behind
-the user's writing speed. \shortciteANP{Tappert1990}~\citeyear{Tappert1990} report 
-average writing rates of 1.5-2.5~characters/s for English alphanumerics and
-0.2-2.5~characters/s for Chinese characters. In on-line systems, 
+\emph{On-line} HWR means that the input is converted \emph{dynamically} in 
+\emph{real-time}, while the user is writing. This recognition can lag behind
+the user's writing speed. \shortciteANP{Tappert1990}~\citeyear{Tappert1990} 
+report average writing rates of 1.5-2.5~characters/s for English alphanumerics 
+and 0.2-2.5~characters/s for Chinese characters. In on-line systems, 
 the data usually comes in as a sequence of coordinate points. 
 Essentially, an on-line system accepts as input a stream of x-y coordinates 
 from an input device that captures those data
@@ -479,8 +481,8 @@ the stroke direction and the speed of the writing. In the off-line case these
 pieces of information are not readily available, but can be partially 
 reconstructed from the off-line data~\shortcite{Santosh2009}.
 
-All these information can be an advantage for an on-line system, however, 
-off-line systems have used algorithms of line-thinning, in order to
+All these information can be an advantage for an on-line system,
+but off-line systems have used algorithms of line-thinning, in order to
 transform the bitmap into a trace of assumed point coordinates, 
 similar to the input of on-line systems~\shortcite{Tappert1990}. 
 When line thinning has been applied, an off-line 
@@ -517,7 +519,7 @@ way a system expects characters to be written distinctively.
 % \end{itemize}
 
 The HWR of the Chinese Hànzì (\cjk{汉字}) and the Japanese Kanji (\cjk{漢字}) 
-in practise are merged as \emph{On-line Chinese Character Recognition} (OLCCR). 
+in practice are merged as \emph{On-line Chinese Character Recognition} (OLCCR). 
 The techniques are essentially the same, only the language models differ. 
 Hereafter, I'm going to use the term OLCCR for on-line character recognition of 
 both Chinese and Japanese characters.
@@ -546,8 +548,8 @@ pipeline architechture. The main parts of such an application are the following:
   section~\ref{sec:datacapturing}.
 \item \textbf{Preprocessing}: The data is segmented, noise reduction 
   methods like 
-  smoothing and filtering are applied. Preprocessing is described in 
-  section~\ref{sec:preprocessing}.
+  \emph{smoothing} and \emph{filtering} are applied. 
+  Preprocessing is described in section~\ref{sec:preprocessing}.
 \item \textbf{Character Recognition}: The data undergoes a feature analysis, 
   and the system performs stroke matching, using subcomponents for
   time-, direction- and curve matching. 
@@ -632,7 +634,7 @@ data, in order to retrieve a more accurate recognition in the next step.
 sub steps:\\
 \emph{Smoothing}, \emph{filtering}, \emph{dehooking},
 \emph{wild point correction}, \emph{dot reduction} and \emph{stroke connection}.
-Some systems also employ a \emph{normalisation} step, that can include
+Some systems also employ a \emph{normalisation} step that can include
 \emph{deskewing}, \emph{basline drift correction} and \emph{size normalisation}.
 \shortciteANP{Santosh2009}~\citeyear{Santosh2009} summarise a similar perception in their review about several
 on-line HWR systems. Their \emph{noise elimination} corresponds to 
@@ -655,7 +657,7 @@ individual characters or strokes from each other.
 single strokes, characters or words respectively. In alphabetic scripts it is 
 sometimes difficult to segment each character externally. In CJK (Chinese, 
 Japanese and Korean) cursive script it is difficult to distinguish individual 
-strokes, however, since it is common to write in boxes, usually each character 
+strokes, but as it is common to write in imaginary boxes, usually each character 
 can be isolated without much processing.
 The earliest method of external segmentation is an explicit signal from the user,
 other work used the projection of the trajectories on the X-axis for spatial
@@ -685,11 +687,12 @@ Any stroke drawn on a device with a pen input contains noise. Digitising errors
 like limited accuracy of the tablet or erratic pen-down indication or hand 
 fluctuation are sources of noise in the input data.  There are different types 
 of noise and different types of filters for elimination of the noise from the 
-data~\shortcite{Santosh2009}.
+data~\shortcite{Santosh2009}. Some of the filter types are described in the 
+following paragraphs.
 
-\paragraph{Smoothing}
+\paragraph{Smoothing.}
 \label{sec:smoothing}
-\emph{Smoothing} is usually a technique that averages a point with its 
+\emph{Smoothing} is a technique that averages a point with its 
 neighbour point. A common variant of that is only averaging a point with its
 previous point. That ensures that the recognition can proceed as the input
 is received~\shortcite{Tappert1990}. 
@@ -698,7 +701,7 @@ pass Gaussian filter in order to smoothen the data. Today, Gaussian filters are
 often used as a means of smoothing data, despite the fact that \emph{filtering}
 usually refers to reducing the number of samples in a sequence of points.
 
-\paragraph{Filtering}
+\paragraph{Filtering.}
 \label{sec:filtering}
 \emph{Filtering} describes a technique that thins out the number of samples in 
 a point sequence. It is sometimes referred to as \emph{thinning} but should not 
@@ -715,22 +718,7 @@ interpolation can be used in order to introduce new data points in between and
 achieve equidistant points. Smoothing and filtering can also be performed in one 
 operation for time optimisation~\shortcite{Tappert1990}.
 
-% \paragraph{Dehooking}
-% \label{sec:dehooking}
-% Hooks occur at the beginning and more frequently at the end of a stroke. They
-% are recognised by the data capturing device because of inaccurate pen-down 
-% detection or random motion when lifting the stylus off the tablet.
-% \emph{Dehooking} is a technique to remove the hooks at the end and at the 
-% beginning of a stroke~\shortcite{Tappert1990}.
-
-% \paragraph{Wild Point Correction}
-% \label{sec:wildpointcorrection}
-% \emph{Wild Point Correction} is used for elimination of spurious points. Those 
-% points occur usually as a result of errors in data capturing. Acceleration and 
-% generally any change of velocity of the hand movement can cause the digitiser 
-% tablet to falsely report wild points~\shortcite{Tappert1990}.
-
-\paragraph{Dehooking}
+\paragraph{Dehooking.}
 \label{sec:dehooking}
 Hooks occur at the beginning and more frequently at the end of a stroke. They
 are recognised by the data capturing device because of inaccurate pen-down 
@@ -740,7 +728,7 @@ beginning of a stroke~\shortcite{Tappert1990}. Figure~\ref{fig:dehooking} shows
 an example of dehooking as a drawing. Electronically, the relevant coordinate
 points would be removed at the ends of the strokes.
 
-\paragraph{Wild Point Correction}
+\paragraph{Wild Point Correction.}
 \label{sec:wildpointcorrection}
 \emph{Wild Point Correction} is used for elimination of spurious points. Those 
 points occur usually as a result of errors in data capturing. Acceleration and 
@@ -768,7 +756,7 @@ average distance of the points of one stroke.
    \end{center}
  \end{figure}
 
-\paragraph{Repetition Removal}
+\paragraph{Repetition Removal.}
 \label{sec:repetitionremoval}
 \emph{Repetition removal} or \emph{dot reduction} reduces dots to single 
 points~\shortcite{Tappert1990}. Points that are accumulated on a very close 
@@ -777,7 +765,7 @@ trajectory. There can even be co-occurring points. Slow handwriting will generat
 repeating points, and those are generally at the dominant points, such as
 corners~\shortcite{Santosh2009}.
 
-\paragraph{Stroke Connection}
+\paragraph{Stroke Connection.}
 \label{sec:strokeconnection}
 A \emph{stroke connection} preprocessing method can eliminate pen-up movements
 that are suspected to be accidental or inaccurately measured. There are different
@@ -838,7 +826,7 @@ The most common methods include
   \item \textbf{Curve Matching} is a method that comes from signal processing
     and is essentially independent of the alphabet (see~\ref{sec:curvematching}).
   \item \textbf{Hidden Markov Model (HMM) Analysis} is independent of the other methods.
-    Basically HMM analysis performs a statistical analysis of the features used, 
+    Basically, HMM analysis performs a statistical analysis of the features used, 
     regardless of what they are, i.e., curves, time sequences or writing features
     of the characters themselves (see~\ref{sec:hmmanalysis}).
 \end{itemize}
@@ -852,12 +840,14 @@ systems use features like descender or not descender, dot or no
 dot~\shortcite{Tappert1990}. Some systems use a decision tree for 
 \textbf{binary features}. 
 If there is a descender, for lowercase characters, the recognition choice is 
-reduced to \emph{f, g, j, p, q, y, z}. If an ascender is present, for lowercase 
-characters, the choice is reduced to \emph{b, d, f, h, k, l, t}. In case there
+reduced to the set \{\emph{f, g, j, p, q, y, z}\}. If an ascender is present, 
+for lowercase characters, the choice is reduced to the 
+set \{\emph{b, d, f, h, k, l, t}\}. In case there
 is an ascender and a descender, the intersection of the two sets leaves only 
-one element, namely the character \emph{f}. A HWR system can come to similar 
-conclusions by checking if a dot is present \emph{i, j}, if the character has an 
-open line \emph{c, u, v, w, y} or a closed line \emph{a, b, d, e, g, o, p, q}. 
+one element, namely the character '\emph{f}'. An HWR system can come to similar 
+conclusions by checking if a dot is present \{\emph{i, j}\}, 
+if the character has an open line \{\emph{c, u, v, w, y}\} or a closed 
+line \{\emph{a, b, d, e, g, o, p, q}\}. 
 Systems that perform feature analysis have the potential to use psycholinguistic 
 knowledge and drive the recognition process along the lines humans distinguish 
 characters from each other. The feature analysis method has the disadvantage that
@@ -936,18 +926,15 @@ with diverse kinds of pruning~\shortcite{Keogh2001,Chu2002,Bashir2008}.
 \subsubsection{HMM Analysis}
 \label{sec:hmmanalysis}
 
-%xxx: write a short note on hmm analysis. how is it done?
-%what's the gist of it?
 HMM analysis is a technique that is not uncommon among modern systems.
 It generally follows the standard procedures described in the literature.
-A detailed description of how On-Line Chinese character recognition can be
-done using HMM analysis can be found in the works of 
-\shortciteANP{Hu2000}~\citeyear{Hu2000},
-\shortciteANP{Hu1996}~\citeyear{Hu1996} and also 
+A detailed description of how OLCCR can be
+accomplished by using HMM analysis can be found in the works of 
+\shortciteANP{Hu1996}~\citeyear{Hu1996},
+\shortciteANP{Hu2000}~\citeyear{Hu2000} and also 
 \shortciteANP{BahlmannBurkhardt2004}~\citeyear{BahlmannBurkhardt2004}.
-In this paper consider section~\ref{sec:olccr:probabilisticclassification} for
+In this thesis consider section~\ref{sec:olccr:probabilisticclassification} for
 some details of HMM analysis, embedded into the actual classification process.
-%:xxx
 
 \subsection{Postprocessing}
 \label{sec:postprocessing}
@@ -958,7 +945,7 @@ When the recognition process is finished, some systems start another process
 that takes as input the output of the character recognition. In this 
 postprocessing step, language information can be used to improve the overall
 accuracy. Postprocessing is mainly used for continuous character recognition,
-where more than a single characters is recognised. Since some systems yield a 
+where more than one character is recognised. Since some systems yield a 
 single string of characters others yield a number of alternative matches,
 often in addition with a certainty measure.
 A postprocessing unit can use the information to calculate estimates for words
@@ -1001,9 +988,9 @@ the Chinese characters (see section~\ref{sec:handwritingpropertieseastasian}).
 A typical OLCCR system is depicted 
 after~\shortciteANP{LiuJaegerNakagawa2004}~\citeyear{LiuJaegerNakagawa2004} in 
 figure~\ref{fig:olccrsystemoverview}.
-The first two steps, character segmentation and preprocessing are virtually
+The first two steps, character segmentation and preprocessing, are virtually
 identical to systems dealing with Latin script. The next step, pattern 
-representation is not only different from Latin script systems, but it has
+representation, is not only different from Latin script systems, but it has
 great diversity among the different OLCCR systems.
 The pattern description is naturally more alike in the systems focusing on 
 Latin characters. This is due to the fact that the Latin alphabet is quite 
@@ -1013,8 +1000,8 @@ write a character. The reason for that is that it is widely agreed upon a
 standard stroke sequence for a character, even across country 
 borders~\shortcite{Nakai2003}.
 The next step after the pattern representation is the actual character 
-recognition or classification. Different flavours of comparison methods are
-applied in different systems, but some systems employ coarse classification 
+recognition or classification. Different kinds of comparison methods are
+applied in different systems, some systems employ coarse classification 
 first, then a fine classification, whereas other systems try to find the 
 corresponding character model in a model database in just one step.
 The coarse classification is done to reduce the candidate set, the fine 
@@ -1042,11 +1029,13 @@ Essentially, the system uses a boxed writing approach,
 but because of the small display, there is only one box in which 
 all characters have to be drawn. The system can therefore be regarded as a
 continuous character recognition system. In that system, character segmentation 
-is not done as a preprocessing step, but during recognition. The system uses 
+is not done as a preprocessing step, but during recognition. That is 
+necessary to blank the screen for the user between the characters.
+The system uses 
 HMM technique, based on substrokes and segments the characters alongside the 
 recognition process.
 
-The system developed by~\shortciteANP{Nakagawa2008} in~\citeyearNP{Nakagawa2008}
+The system developed by~\shortciteANP{Nakagawa2008}~\citeyearNP{Nakagawa2008}
 performs continuous character recognition, regardless of the text orientation.
 The average character size is estimated from all strokes drawn and the estimate
 defines a threshold for the separation of characters.
@@ -1059,7 +1048,7 @@ ones described in section~\ref{sec:preprocessing}, described
 by~\shortciteANP{Tappert1990}~\citeyear{Tappert1990}
 and by~\shortciteANP{Santosh2009}~\citeyear{Santosh2009}. 
 However, since the input devices offer higher 
-quality input, less noise reduction is necessary and smoothing is enough to 
+quality input, less noise reduction is necessary. For smoothing is often enough to 
 remove undesirable points from the input trajectory. Therefore, many OLCCR 
 systems limit preprocessing to the other techniques. Data points are reduced
 by one of two methods: approximation of lines (by feature points) or 
@@ -1096,8 +1085,8 @@ can also be mapped into a 2D image, in order to apply off-line recognition
 features. An on-line version of the direction feature, commonly used in 
 off-line recognition systems, can be found in several 
 systems~\shortcite{Suen2003}. 
-Generally, using features and a statistical representation, 
-enables the use of several feature extraction techniques that have been 
+Generally, the use of features and statistical representation, 
+enables the employment of several feature extraction techniques that have been 
 developed for off-line systems~\shortcite{LiuJaegerNakagawa2004}.
 
 \subsubsection{Structural Character Representation}
@@ -1137,7 +1126,7 @@ characters, reducing the dictionary size
 immensely~\shortcite{LiuJaegerNakagawa2004}. 
 There are around 200 radicals but around 3000 Kanji characters in active use in 
 the Japanese script. Creating a character representation for each one of them 
-is a considerable effort however, using a structured approach can lessen that 
+is a considerable effort. However, using a structured approach can lessen that 
 labour-intensive task. \shortciteANP{Breen2004}~\citeyear{Breen2004} proposed 
 a multi-index dictionary that bears the potential to support the creation of 
 structured character databases. Besides the alleviation of the database creation,
@@ -1161,7 +1150,7 @@ are represented in a probabilistic model.
 Most of the substroke systems use HMMs. The substrokes are represented by nodes
 and the transition between strokes is measured probabilistically. Some systems
 use points or line segments. Other systems use full strokes or even radicals.
-Attempting to avoid stroke-order dependence of the system, often multiple HMMs
+Attempting to avoid stroke-order dependence of the system.Mmultiple HMMs
 are generated with stroke-order variations.
 The substroke approach responds to that by hierarchical character models,
 such that the stroke order variations can be stored in a 
@@ -1176,16 +1165,17 @@ network~\shortcite{LiuJaegerNakagawa2004}.
 Classifying an input pattern representation as an entry found in a pattern 
 database is the kernel of each pattern recognition application.
 Representing data in the same format as the original patterns 
-(see section~\ref{sec:olccr:patterndescription} is another key task, however 
-the actual classification is the main piece of software.
+(see section~\ref{sec:olccr:patterndescription}) is another key task, but 
+the actual classification is the main part of te recognition.
 In this section, different kinds of classification are reviewed to fit with
-the different kinds of pattern description. The two main groups of 
-classification methods are reviewed: \emph{structural classification} and 
-\emph{probabilistic classification}.
-Additionally, a short section about \emph{coarse classification} shows how to
+the different kinds of pattern description. 
+A short section about \emph{coarse classification} shows how to
 speed up the classification process by preprocessing in the sense of 
 classification preprocessing, not to be confused with the data preprocessing
 described in section~\ref{sec:preprocessing}.
+The two main groups of 
+classification methods are reviewed: \emph{structural classification} and 
+\emph{probabilistic classification}.
 
 \subsubsection{Coarse Classification}
 \label{sec:olccr:coarseclassification}
@@ -1206,7 +1196,7 @@ coarse classification is \emph{dynamic candidate
 selection}~\shortcite{LiuJaegerNakagawa2004}.
 
 \paragraph{Class Set Partitioning} methods divide the large set of characters  
-into smaller groups, so-called \emph{character classes}. These groups can be 
+into smaller groups: \emph{character classes}. These groups can be 
 completely disjoint or sometimes overlap. The system assigns the input pattern 
 to one or more character classes. After that, in the next step of the 
 recognition process, the input pattern is compared to the members of 
@@ -1222,7 +1212,7 @@ choosing a variable number of classes according to a confidence value.
 The dynamic grouping can be based on several different factors. For instance
 the overall character structure, the basic stroke substructure, the stroke 
 sequence~\shortcite{LiuJaegerNakagawa2004}.
-Selection the partition classes dynamically is less labour-intensive, because it
+Selecting the partition classes dynamically is less labour-intensive because it
 avoids the training process or manual division of the character classes.
 Stroke number of the input pattern can also be used as a preselection of
 characters. Systems that employ structured character representations (see 
@@ -1256,7 +1246,7 @@ whereas stroke matching only considers the strokes, but not their relations
 to each other. \emph{Hierarchical matching} and \emph{deformation methods} can
 be combined with the matching approaches mentioned above.
 
-\paragraph{Hierarchical Matching} can improve recognition speed, because parts 
+\paragraph{Hierarchical Matching} can improve recognition speed because parts 
 of the recognition and representation are done only once for several characters.
 That approach would of course not be possible without the hierarchical 
 composition of the Kanji characters. The accuracy of that approach is limited in
