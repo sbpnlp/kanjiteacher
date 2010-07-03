@@ -245,12 +245,12 @@ be interesting to analyse the accuracy of a radical recognition.
 
 The lexicon is a sample lexicon that contains 50 characters. That circumstance
 has to be kept in mind when comparing the evaluation results to other
-systems. Creating a lexicon entry for a single character is a laborious task.
-It would be outside the scope of the thesis to create a large lexicon.
+systems. Creating a lexicon entry for a single character is a tedious task.
+It would be outside the scope of this thesis to create a large lexicon.
 Nevertheless, the characters have been chosen by graphic and
 semantic criteria in order to create more possibilities for confusion.
-There are many characters using the same key radical, other characters
-that simply look similar, which might evoke difficulties 
+There are many characters using the same key radical, whereas other characters
+simply look similar, which may evoke difficulties 
 for both the learner and the system.
 Three experiments will be conducted in order to evaluate the analytical
 handwriting recognition engine:
@@ -272,26 +272,36 @@ that will still be considered as a \emph{match} of a character.
 That is, if \(N\) is set to \(1\), then only the best match will be considered.
 If \(N = 3\), the best three matches will be taken into account.
 The overall recognition accuracy \(A_{N}\) is defined here as the weighted 
-percentage of correctly recognised characters when taking the \(N\) best 
-matches into account. The number of samples will be called \(S\).
+percentage of correctly recognised characters when taking the first \(N\) 
+of the \(n\)-best matches into account. 
+The number of samples will be called \(S\).
 \(r\) is an integer that marks the position in the list of \(n\)-best matches.
 The values for \(r\) that will be considered for the evaluation lie 
-on the interval \([1,N]\). If an input produces a confidence value 
+in the interval \([1,N]\). If an input produces a confidence value 
 for a character recognition high enough to be in a list position \(r \leq N\), 
 then \(\frac{1}{r}\) will be added to the number of correctly 
 recognised characters.
 That means, if a character is the best match in the list of \(n\)-best matches,
-then it is ranked on top, therefore \(r = 1\). 
+then it is ranked on top and therefore \(r = 1\). 
 Hence, \(\frac{1}{r} = \frac{1}{1} = 1\) will be added to the number of 
-correct matches. If the correct character is the second best match, 
+correct matches. If the correct character is the second-best match, 
 \(\frac{1}{2}\) will be added and so forth. If the input has been correctly 
-recognised as the \(r\)-best match, but \(r > N\) or, alternatively,
-the input has not been recognised at all, nothing will be added. 
-\(f\) is a helper function that returns a value
-according to the relation between \(r\) and \(N\). The variable
-\(r_{i}\) denotes the position of the \(i^{\text{th}}\) input character in
-the list of \(n\)-best matches for that input sequence and character. \(r_{i}\) serves as an input
-value for \(f\). \(A_N\) will be calculated as follows:
+recognised as the \(r\)-best match but \(r > N\) or, alternatively,
+the input has not been recognised at all, nothing will be added and
+\(A_N\) remains un-altered.
+\(f\) is a helper function that returns a value depending on the relation 
+between \(r\) and \(N\). \(f\) returns \( 0 \) if \(r > N\) or \(\frac{1}{r}\)
+if \(r \leq N \).
+The variable \(r_{i}\) denotes the position of the \(i^{\text{th}}\) input 
+character in the list of \(n\)-best matches for that input sequence and 
+character. \(r_{i}\) serves as an input value for \(f\). \(A_N\) will be 
+calculated as follows for \( i \in {1,2,\dots,S}\):
+\begin{quote}
+  \(
+    A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(r_{i},N)}
+  \)
+\end{quote}\label{eval:accuracycalculation}
+with \(f\) given by:
 \begin{quote}
   \(
     f(r, N):=
@@ -301,35 +311,31 @@ value for \(f\). \(A_N\) will be calculated as follows:
     \end{cases}
   \)
 \end{quote}
-\begin{quote}
-  \(
-    A_N := \frac{1}{S} \cdot \sum\limits_{i=1}^{S}{f(r_{i},N)}
-  \)
-\end{quote}\label{eval:accuracycalculation}
 An example for the application of that term would be to set \(N = 1\).
 Only the best match will be considered for an input.
 If 100 input sequences are tested, then \(S=100\). 
-If, for example, the \(k^{th}\) sample of the \(S_{i}\) yields a high 
-confidence value for the character the sequence is supposed to represent and 
-the character becomes the most salient in the list of best matches
-and occupies the first position. Then \(r_{k} = 1\) and \(f(r_{k},N) = f(1,1)\) 
-yields \(1\).
+Let's assume, for example, the \(k^{th}\) sample with (\(1 \leq k \leq S\)) 
+yields a high confidence value for the character the sequence is supposed 
+to represent and the character becomes the most salient in the list of 
+best matches and occupies the first position. 
+Then \(r_{k} = 1\) and \(f(r_{k},N) = f(1,1)\) yields \(1\).
 Therefore, in the summation of all the \(f(r_{i},N)\) the value \(1\) 
 will be added for each correctly recognised character.
 Say, \(69\) of the \(100\) input characters were correctly recognised,
-then \(A_{N} = A_{1} = \frac{1}{100} \cdot 69\). That would equal a 
-result of \(69\%\). The key to this evaluation method is of course the 
-value of \(N\). Multiple experiments with different \(N\)-values will be 
+then \(A_{N} = A_{1} = \frac{1}{100} \cdot 69\). That would result in a value 
+of \(69\%\). The key to this evaluation method is of course the 
+value of \(N\). Thus, multiple experiments with different \(N\)-values will be 
 conducted for best comparability.
 
-\paragraph{Baseline.} Different possibilities exist for the definition of a 
-baseline for that experiment. A baseline based on equal distribution would 
-be \(\frac{1}{C}\) with \(C\) representing the number of characters 
-in the database. 
+\paragraph{Baseline.} There exist different possibilities for the definition of a 
+baseline for that experiment. A baseline corresponding to equal distribution 
+would be given by \(\frac{1}{C}\) with \(C\) representing the number of 
+characters in the database. 
 For \(C = 50\) the baseline would then be \(\frac{1}{C} = \frac{1}{50} = 0.02\).
 That is already a very low baseline. The larger the lexicon grows the
-lower the baseline for evaluation. For a lexicon that contains around 2,000 
-characters and covers the Jōyō Kanji the baseline would come down to
+lower the baseline for evaluation will get. 
+For a lexicon that contains around 2,000 
+characters and covers the Jōyō Kanji the baseline would decrease to
 \(\frac{1}{C} = \frac{1}{2000} = 0.0005\).
 This baseline is certainly not helpful to measure the quality of a 
 recognition system. A natural baseline could be created by using 
@@ -337,31 +343,33 @@ a corpus study to determine the most frequent characters and always use
 the most frequent one as a result for the system's recognition.
 The flaw of that idea is that the database of the system does not
 include all characters yet, so it would again not be very helpful to use
-a baseline like that. The test set of characters for both the prototype
+such a baseline. The test set of characters for both the prototype
 system here and the baseline system would have to be 
 a handwritten text, so that the baseline system could yield a good result
-within it's technical limits.
+within its technical limits.
 
-Since there is no method to create a baseline for comparability of this system,
-I am defining an \emph{idealised fictitious baseline} (IFB) value based on 
-the formula for the computation of \(A_N\) including generous assumptions 
+Since there is no unique method to create a baseline for comparability of 
+this system, I am defining an \emph{idealised fictitious baseline} (IFB) 
+value based on the formula for the computation of \(A_N\) 
+including generous assumptions 
 about the accuracy of the recognition of an IFB system that always hits: \\
-Assume, \(N = 3\) and all the sample characters are among the first three 
-matches in the list of matches, equally partitioned. 
+Assume, \(N = 3\) and all the sample characters were among the first three 
+matches in the list of matches, being equally partitioned. 
 Then one third would yield \(r = 1\) with \(f(r,N)=f(1,3)=1\),
 another third would yield \(r = 2\) with \(f(r,N)=f(2,3)=\frac{1}{2}\),
 and the last third would yield \(r = 3\) with \(f(r,N)=f(3,3)=\frac{1}{3}\).
-That leads to the calculation of an IFB value (\(B\)):
+That would lead to the calculation of a weighted accuracy \(A_{3}\),
+which is used as a definition of the IFB value (\(B\)):
 \begin{quote}
   \(
-    B := \frac{1}{S} \cdot (\sum\limits_{j=1}^{\frac{S}{3}}{f(1,3)} + \sum\limits_{j=1}^{\frac{S}{3}}{f(2,3)} + \sum\limits_{j=1}^{\frac{S}{3}}{f(3,3)}) \\
+    B := A_{3} = \frac{1}{S} \cdot (\sum\limits_{j=1}^{\frac{S}{3}}{f(1,3)} + \sum\limits_{j=1}^{\frac{S}{3}}{f(2,3)} + \sum\limits_{j=1}^{\frac{S}{3}}{f(3,3)}) \\
        = \frac{1}{S} \cdot (\sum\limits_{j=1}^{\frac{S}{3}}{1} + \sum\limits_{j=1}^{\frac{S}{3}}{\frac{1}{2}} + \sum\limits_{j=1}^{\frac{S}{3}}{\frac{1}{3}}) \\
        = \frac{1}{S} (\frac{S}{3} + \frac{S}{3 \cdot 2} + \frac{S}{3 \cdot 3}) 
        = \frac{1}{3} + \frac{1}{6} + \frac{1}{9}
        = \frac{11}{18} = 0.61
   \)
 \end{quote}
-The defined baseline value of \(0.61\) will be used for the overall 
+The IFB value \(B\) being defined as \(0.61\) will be used for the overall 
 recognition accuracy experiment. However, it is important to note that the 
 IFB value is not a natural baseline in the sense of what the performance of a 
 most simple system would be like.
@@ -390,7 +398,7 @@ That fairly generous interpretation of what is correct considers the fact
 that the substructures should be recognised for any of the characters.
 In a future version of the database the substructures should be stored only once
 and then be shared among all characters that contain it.
-The IFB value for the substructure recognition will be \(0.61\), 
+The IFB value for the substructure recognition will be \(B=0.61\), 
 the same number and using the same line of argument from 
 section~\ref{sec:eval:overallrecognitionaccuracy}.
 
@@ -418,7 +426,17 @@ There are two possibilities for the system to react:
   \item The system does not identify an error in the input with respect to the
         desired character.
 \end{itemize}
-Those possibilities yield a \(2 \times 2\)-matrix:
+Those possibilities yield a \(2 \times 2\)-matrix, containing:
+\begin{itemize}
+  \item \emph{true positives}(tp), where there is an error and the error has 
+    been found.
+  \item \emph{false positives} (fp), where there was no error and an error
+    has been detected.
+  \item \emph{true negatives} (tn), where there was no error in the input and
+    no error was detected.
+  \item \emph{false negatives} (fn), where there was an error in the input,
+    but no error could be detected by the system.
+\end{itemize}
 Table~\ref{table:eval:resultsforprecisionandrecall} gives an overview about 
 the possible results combined with the reality of the sample.
 
@@ -428,9 +446,9 @@ the possible results combined with the reality of the sample.
     \hline
                            & Error in input      & No error in input \\
     \hline
-    Found error (TP+FP)    & true positive (TP)  & false positive (FP) \\
+    Found error (tp+fp)    & true positive (tp)  & false positive (fp) \\
     \hline
-    No error found (FN+TN) & false negative (FN) & true negative (TN) \\
+    No error found (fn+tn) & false negative (fn) & true negative (tn) \\
     \hline
   \end{tabular}
 \end{center}
@@ -459,8 +477,8 @@ F_{1} = 2 \cdot \frac{P \cdot R }{P + R} \\
 \label{sec:eval:experimentalresults}
 
 Having presented the experimental metrics in the previous sections, 
-the experimental results and the conclusions drawn will be presented in this 
-section.
+the experimental results and the conclusions drawn from them will be 
+presented in this section.
 
 \subsubsection{Overall Recognition Accuracy Results}
 \label{sec:eval:resultsoverallrecognition}
@@ -484,11 +502,11 @@ been used. The \emph{weighted number of recognised characters} (WNRC) changes
 according to the number of characters recognised in each rank in the
 list of \(n\)-best matches. Table~\ref{table:eval:overallrecognitionresults}
 shows the results in greater detail. With each increment of \(N\),
-that is with decreasing strictness the recognition results rise.
+that is to say with decreasing strictness, the recognition results rise.
 The range of the weighted accuracy results goes from 0.70 for \(N=1\) 
 up to 0.81 for \(N=5\). Taking into account even greater ranks up 
-to \(N = 10\) in the list of \(n\)-best matches increased the result slightly
-to 0.82. This development can also be seen in the chart in 
+to \(N = 10\) in the list of \(n\)-best matches the result slightly increased
+to 0.82. This development can also be seen in the chart presented in 
 figure~\ref{fig:eval:overallrecognitionresults}.
 \begin{table}[htbp]
 \begin{center}
@@ -532,13 +550,14 @@ N & A_N  &WNRC/90&  1 & 2 & 3 & 4  & 5 & 6 & 7 & 8 & 9 & 10 \\
 \paragraph{Result Interpretation.}
 As mentioned earlier, the characters bear a lot of potential for confusion,
 since many of the database characters have been chosen by their key radical
-or by similar graphical appearance to other characters already in the database.
+or by similar graphical appearance to other characters already selected for 
+the database.
 That special choice of characters seems to explain why there is such an
 increase in accuracy when more ranks are taken into account.
 The similar characters will be confused by the system and appear in
-the lower ranks (higher \(r\)-values) in the list of \(n\)-best matches.
-Even though all the results, even the one with \(N = 1\) are considerably above
-the IFB value of 0.61.
+the lower ranks (higher \(r\)-values) in the list of \(n\)-best matches,
+even though all the results, even the one with \(N = 1\) are considerably above
+the IFB value \(B=0.61\).
 Generally, the accuracy results are considerably lower than those of other
 systems (see section~\ref{sec:eval:othersystems}). 
 However, it has to be noted that the aim of this system is not 
@@ -700,9 +719,9 @@ measurement.
     \hline
     Total of 30 chars (20/10) & Error in input      & No error in input \\
     \hline
-    16 found error (TP+FP)    & 14 (TP)             & 2 (FP) \\
+    16 found error (tp+fp)    & 14 (tp)             & 2 (fp) \\
     \hline
-    9 no error found (FN+TN)  & 6 (FN)              & 3 (TN) \\
+    9 no error found (fn+tn)  & 6 (fn)              & 3 (tn) \\
     \hline
     5 unrecognised (?)        & 3 (?)               & 2 (?) \\
     \hline
@@ -719,7 +738,7 @@ and \emph{character could not be recognised}.
 Now the question arises whether the unrecognised characters should be 
 regarded as incorrect or correct. 
 If there was an error in the input character and the character could 
-not be recognised, this could be regarded as a \emph{true positive}
+not be recognised, this could be regarded as a \emph{true positive} (tp)
 because implicitly the system states that an error was found.
 Arguably, if no recognition is possible that means that there is an 
 error in the character, therefore an error has been found.
@@ -727,7 +746,7 @@ However, that is just an interpretation of the results and
 would increase the error recognition performance undeservedly. 
 On the other hand, if the input was a correct character that 
 could be not recognised, then assuming the undefined result to be an error 
-message would add to the number of \emph{false positives}, 
+message would add to the number of \emph{false positives} (fp), 
 lowering the performance result of the error recognition.
 The error recognition is a sub-component of the character recognition engine,
 it cannot work independently from it. 
@@ -748,9 +767,9 @@ there is a total of 25 characters, 17 with errors, 8 correct characters.
     \hline
     Total of 25 chars (17/8)  & Error in input      & No error in input \\
     \hline
-    16 found error (TP+FP)    & 14 (TP)             & 2 (FP) \\
+    16 found error (tp+fp)    & 14 (tp)             & 2 (fp) \\
     \hline
-    9 no error found (FN+TN)  & 6 (FN)              & 3 (TN) \\
+    9 no error found (fn+tn)  & 6 (fn)              & 3 (tn) \\
     \hline
   \end{tabular}
 \end{center}
@@ -779,7 +798,8 @@ R=tp \cdot (tp+fn)^{-1} \\
 \)  
 \end{quote}
 Since there are no comparable evaluation results, 
-the \emph{F-measure} will be used only for an interpretation of precision and 
+the \emph{F-measure} will be used, however, it will only be used
+for an interpretation of precision and 
 recall. Therefore, \(\beta = 1\) will
 be fixed:
 \begin{quote}
@@ -805,7 +825,8 @@ of \emph{error} or \emph{no error} to all characters in the test set.
 
 In this chapter, the evaluation of the handwriting recognition engine has 
 been presented. The overall recognition has an accuracy of 70\%-82\%,
-depending on what ranks (\(r \leq N\)) is considered among the n-best matches.
+depending on what ranks (\(r \leq N\)) is considered among the \(n\)-best 
+matches.
 That is below highly optimised recognition system and shows the trade-off that
 had to be taken in order to perform a detailed internal analysis of the 
 characters.
