@@ -69,8 +69,12 @@ discussion of the error handling in the system.
 
 Each handwriting recognition process begins with data capturing.
 The user's handwriting must be captured and fed into the system. The data 
-capturing is therefore a crucial part of the whole process. In this system 
-a GUI is used for the capturing of the pen movements on a writing surface.
+capturing is therefore a crucial part of the whole process. 
+For offline systems this could be work differently, but the prototype system
+is designed to be an on-line HWR system, i.e., the user's input is processed
+instantaneously.
+In this system a GUI is used for the capturing of the pen movements on a 
+writing surface.
 
 %this should deal with how the data are captured during the process
 %mouse coordinates and stuff
@@ -119,7 +123,7 @@ a GUI is used for the capturing of the pen movements on a writing surface.
 \label{sec:hwre:writingsurface}
 %NEXT ACTION - describe writing surface and it's GUI
 
-The writing surface module, the view, is split into two parts: The writing 
+The writing surface module, split into two parts: The writing 
 surface GUI and the writing surface background module. The technical design of 
 the data input GUI is described in 
 section~\ref{sec:arch:handwritingdatainputview}.
@@ -148,9 +152,9 @@ the background class.
 \subsubsection{Writing Surface Background Module}
 \label{sec:hwre:writingsurfacebackground}
 
-When a pen-down event is detected, the background class of the GUI starts 
-listening for the pen movement. All point coordinates and the time of their 
-capturing are stored in two separate lists with the same indices.
+When a pen-down event has been detected detected, the background class of 
+the GUI starts listening for the pen movement. All point coordinates and the 
+time of their capturing are stored in two separate lists with the same indices.
 An alternative solution would have been to store a number of instances of a 
 custom-made encapsulated \emph{Point} class including the time stamp in one 
 list only. The resulting advantage of using two separate lists is an 
@@ -159,15 +163,16 @@ Therefore, the point coordinates are stored in the frameworks \emph{Point} class
 that does not account for time stamps. A separate list is used for the
 timestamps only.
 
-The background module of the writing surface mainly administrates the capturing 
+The background module of the writing surface administrates the capturing 
 of the pen trajectory and sends it to the recognition module as soon as a 
-stroke is finished. Therefore the system does not receive a separate signal 
+stroke is finished. The system does not receive a separate signal 
 indicating that the drawing of the character is finished. That design creates a
 segmentation problem that is solved with the \emph{clear} button and the 
-\emph{clear} message. The segmentation of characters is left undetermined - only 
-the beginning of it is determined through the \emph{clear} message that is sent 
-to the mobile view from the controller - or the clear message that is sent to 
-the controller because the user clicked the \emph{reset} button.
+\emph{clear} message. The segmentation of characters is left undetermined.
+However, the beginning of each character is determined through the \emph{clear} 
+message that is sent to the mobile view from the controller - or the clear 
+message that is sent to the controller because the user clicked the 
+\emph{reset} button.
 After a stroke is finished the corresponding point and timestamp sequences are 
 passed to the main part of the HWR engine.
 
@@ -238,7 +243,7 @@ passed to the main part of the HWR engine.
 
 The data format for the recognition process underlies a number of requirements.
 Firstly, it has to be stated that two main data formats are necessary. 
-One for the actual recognition process as a data structure in RAM.
+One format is needed for the recognition process as a data structure in RAM.
 Secondly, there needs to be a storage format for the data base that represents
 the handwriting of a character, radical, stroke, point list or simple point.
 The requirements for both data structures are:
@@ -254,14 +259,14 @@ The requirements for both data structures are:
 The storage structure has some additional requirements:
 \begin{itemize}
   \item \textbf{Accessibility}: The data should be formatted in a way that a 
-        human editor can access the data, but it should also be prepared for 
+        human editor can access the data but it should also be prepared for 
         programmatic access.
-  \item \textbf{Well-formedness}: There should be a way to check if the data is 
-        well-formed
-  \item \textbf{Parsabilty}: It should be possible to create the run-time data 
+  \item \textbf{Well-formedness}: There should be a way to evaluate if the data 
+        is well-formed.
+  \item \textbf{Parsability}: It should be possible to create the run-time data 
         structure from the storage data structure.
 \end{itemize}
-The run-time data structure should in addition provide
+The run-time data structure should in addition provide:
 \begin{itemize}
   \item \textbf{Serialisability}: It must be possible to create the storage 
         data structure from the run-time data structure.
@@ -290,7 +295,7 @@ data format converter.
 \label{sec:hwre:existingformats}
 
 There are some existing formats for the description of handwriting.
-Their intended use is for handwriting recognition systems.
+They are intended to be used in conncection with handwriting recognition systems.
 The formats that will be reviewed in this section are the 
 binary \emph{Microsoft ISF} format (section~\ref{sec:hwre:msisfformat})
 and other non-binary formats that are text based and human-readable.
@@ -301,7 +306,7 @@ We will consider
 \emph{UNIPEN} in section~\ref{sec:hwre:standardunipenformat}, 
 \emph{hwDataset} in section~\ref{sec:hwre:hwdataset} and 
 \emph{UPX} in section~\ref{sec:hwre:unipenformatupx}.
-The central question is, if one of these formats meets the above requirements in 
+The central question is, wether one of these formats meets the above requirements in 
 a sufficient way. This is unclear because most of the formats have been 
 originally developed mainly for alphabetic scripts or for usage scenarios 
 different from the one proposed in this chapter.
@@ -326,16 +331,16 @@ database, would again not be human-editable and therefore fail to meet the
 In order to provide a serialisation that results in a human-readable format, 
 a format converter would be needed. Another problem originates from the 
 ISF format specification: \\
-It accounts only for the description of mouse coordinates or pen trajectories, 
-but does not offer any structures for linguistic information.
+It accounts only for the description of mouse coordinates or pen trajectories 
+but it does not offer any structures for linguistic information.
 It fails to meet the ideal, a unified format for linguistic and graphic 
 information, as it is lacking some degree of \emph{expressiveness}.
 
 \subsubsection{InkML}
 \label{sec:hwre:inkml}
 
-InkML is a markup language for describing electronic pen trajectories. 
-Hence the name \emph{Ink}. The letter combination \emph{ML} stands for markup 
+InkML is a markup language for describing electronic pen trajectories,
+hence the name \emph{Ink}. The letter combination \emph{ML} stands for markup 
 language, as is customary 
 for XML-based and SGML-based languages. The specification is currently in a 
 draft status, maintained by the World Wide Web Consortium 
@@ -399,7 +404,7 @@ time channel and the second time stamp that defines a time offset to time stamp
 \emph{ts001} with the \emph{timeOffset} attribute.
 The possibility to define time channels enables the InkML format to hold 
 information about the time at which a sample point has been taken.
-This is useful for the recognition mechanism used in this application,
+This is useful for the recognition mechanism used in this application
 because it compares point coordinates as well as time stamps.
 The InkML data structure fulfils several of the requirements necessary for a 
 storage data structure. InkML is 
@@ -412,16 +417,16 @@ storage data structure. InkML is
         interface like a text editor.
 
   \item \textbf{well-formed}: As an XML format it can be validated according to 
-        it's specification.
+        its specification.
 
   \item \textbf{parsabale}: As an XML format, InkML does not need to be parsed 
         with custom-made methods, since most modern high-level languages offer
         an access method to XML tree structures.
 \end{itemize}
 However, InkML is lacking some \emph{expressiveness}. Only pen trajectories and
-their time stamps can be expressed in the InkML format. InkML is not designed 
+their time stamps can be stored in the InkML format. InkML is not designed 
 to hold any of the other information compulsory for the structural handwriting
-recognition. In the case of character recognition, it needs to be able to 
+recognition. In the case of character recognition, it would need to be able to 
 account for more than coordinate points and time stamps. There needs to be a 
 way to encode structural information about the characters and sub-elements of 
 the characters. InkML does not seem to be a sufficient format for the given task.
@@ -439,8 +444,9 @@ defined with \emph{.KEYWORD}~\shortcite{Guyon1994,Unipen}.
 
 As a data structure for the purpose of a handwriting recognition, UNIPEN can 
 serve as a storage format, which is the primary purpose for the existence of the
-format. The UNIPEN format accounts for both pen trajectories as well as 
+format. The UNIPEN format accounts for both pen trajectories and 
 information about the characters that have been written.
+
 \begin{xmlcode}
   \begin{lstlisting}[emph={COMMENT,COORD,SEGMENT},emphstyle=\textbf,caption={Demonstration of the \emph{UNIPEN} format},label=lst:unipen]
 .COMMENT #################################################################### 
@@ -489,11 +495,11 @@ structure. \\
 The UNIPEN format is:
 \begin{itemize}
   \item partially \textbf{expressive}: UNIPEN can represent a complete character
-        and the pen trajectory along with it. It does however, not account for
-        capturing the time information. At a constant sample rate the time stamps
+        and the pen trajectory along with it. It does not, however, account for
+        capturing the time information. At a constant sample rate the timestamps
         of the individual points could theoretically be calculated, 
-        if time stamp of the first point is encoded in the meta information. 
-        However, that solution is not optimal, because it needs constant
+        if the timestamp of the first point is encoded in the meta information. 
+        However, that solution is not optimal because it needs constant
         sampling, even between a \emph{pen-up} and a \emph{pen-down} event.
         There are input devices that do not offer those coordinates and the 
         recognition system presented here does not rely on them for that reason.
@@ -501,8 +507,8 @@ The UNIPEN format is:
         to use the format with Unicode encoding.
 
   \item \textbf{well-defined}: The UNIPEN is unambiguous, two different 
-        characters do have a different data structure, because the JIS code 
-        can serve as an ID.
+        characters do have a different data structures because the JIS code 
+        serves as an ID.
 
   \item \textbf{accessible}: The data resides in flat text files, designed for 
         human editing. It is accessible programmatically, too, but has a weakness
@@ -545,8 +551,8 @@ containing the actual handwriting data. A detailed description of the hwDataset
 format can be found in~\shortciteANP{Bhaskarabhatla2004}~\citeyear{Bhaskarabhatla2004}. 
 
 The format provides an XML scheme description and thus meets the 
-\emph{well-formedness} requirement. It is \emph{well-defined}, 
-because it accounts for unique structures. The \emph{parsabilty} is not an 
+\emph{well-formedness} requirement. It is \emph{well-defined} 
+as it accounts for unique structures. The \emph{parsabilty} is not an 
 issue for any XML format, since methods for accessing XML trees are provided 
 by modern programming libraries.
 The \emph{accessibility} is provided, the format has a clearly defined structure
@@ -561,6 +567,11 @@ of the hwData elements are designed to hold meaningful names like
 denote different parts of the same character. There is no reason why one should
 not introduce an H(n) definition for \emph{RADICAL} or \emph{GRAPHEME}.
 hwDataset fulfils the criteria for a file format for the prototype system.
+Thus, the hwDataset format is feasible as a storage format that can easily be 
+translated into corresponding data structures.
+Before a format is chosen to be used in the prototype system, all available 
+formats should be reviewed. Hence, even though hwDataset meets the requirements,
+another alternative, UPX will be reviewed in the following section.
 
 \subsubsection{The UNIPEN XML Format (\emph{UPX})}
 \label{sec:hwre:unipenformatupx}
@@ -592,7 +603,8 @@ both meta information and data annotations as well as pure InkML data in
 separate files. Within the UPX \emph{hwData} element there can be any number
 of \emph{hLevel} elements in order to define the hierarchy of the trajectory.
 Listing~\ref{lst:hLevelinupx} shows an example 
-after~\shortciteANP{UnipenConsortium2006}~\citeyear{UnipenConsortium2006}. 
+similar to the one given 
+by~\shortciteANP{UnipenConsortium2006}~\citeyear{UnipenConsortium2006}. 
 In the listing, the \emph{hLevel} tag is demonstrated. 
 The word \emph{cat} is described hierarchically.
 Firstly, in the outermost \emph{hLevel} tag, the \emph{level} attribute specifies
@@ -681,7 +693,7 @@ The UPX format fulfils the requirements of
 Since any XML format translates directly into a tree structure, the data 
 structure for the run-time does not need to be defined separately.
 Converting pen trajectories in InkML format into a data stream has been 
-studied~\shortcite{Keshari2008}. These techniques however, are not necessary 
+studied~\shortcite{Keshari2008}. These techniques are not necessary 
 for the proposed system. The data exchange is provided as technique available
 within the framework without any conversion (see 
 section~\ref{sec:arch:webservice}).
@@ -728,6 +740,7 @@ files, points are stored in traces as specified in the InkML format description.
                      label=lst:traceformat]
     <timestamp xml:id="ts001" 
                time="1265122414000"/>
+                   
     <traceFormat xml:id="KanjiStrokeTrace">
       <channel name="X" type="decimal" />
       <channel name="Y" type="decimal" />
@@ -817,20 +830,21 @@ and they can be grouped together as a \emph{tracegroup} element in InkML.
 It would be possible to create a separate level for strokes, as demonstrated
 in listing~\ref{lst:strokeasindividualelement}. However, since every 
 \emph{hLevel} element for a stroke would contain exactly one \emph{hwTrace} 
-element, it seem redundant to do so.
+element, it seems redundant to do so.
 Listing~\ref{lst:strokeasindividualelement} shows a potential data structure
 for a stroke. As stated before, this data structure is redundant in the way, 
 that an \emph{hLevel} definition would contain only exactly one trace.
-If a trace is interpreted as a stroke, the additional \emph{hLevel} for strokes
-becomes unnecessary.
+Nevertheless, the additional \emph{hLevel} for strokes is not unnecessary
+because even though a trace can be interpreted as a stroke,
+the meta information for each stroke are held in the \emph{hLevel} element.
 
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
                      emph={[2]level,labelSrcRef,labelType,traceRef,from,to},
                      emphstyle={[2]\color{red}},
-                     caption={An example of how a stroke could be 
-                              represented in UPX},
+                     caption={An example of a stroke 
+                              representation in UPX},
                      label=lst:strokeasindividualelement]
     <hLevel level="stroke" id="STROKE1">
     <!-- The first stroke in this radical of handwriting. -->
@@ -861,7 +875,9 @@ Conceptually, a radical is a hierarchical element in the composition of a Kanji
 character. With the UPX format specification in hand it is fairly 
 straightforward to define an appropriate data structure.
 Listing~\ref{lst:radicaldataformat} shows a UPX data structure for a radical.
-The radical \cjk{木} consists of four strokes.
+The 
+radical~\cjk{木}~(Jap.\ pron.\ \cjk{キ}/ki; Eng.\ 'tree'), 
+consists of four strokes.
 Since strokes are not represented explicitly in the data format,
 there are four \emph{traceView} elements under the \emph{hwTraces} tag.
 \begin{xmlcode}
@@ -886,7 +902,8 @@ there are four \emph{traceView} elements under the \emph{hwTraces} tag.
   \end{lstlisting}
 \end{xmlcode}
 
-\paragraph{The run-time data structure} of a radical is a collection stroke instances.
+\paragraph{The run-time data structure} of a radical is a collection of instances
+of the \emph{Stroke} class.
 All values for recognition of a radical are computed from the strokes instances
 by using different permutations of the strokes to match a database entry. A more
 detailed description of the radical recognition process will be given in
@@ -897,8 +914,13 @@ section~\ref{sec:hwre:radicalrecognitionprocess}.
 
 The character data format is an ordered list of radicals, according to their
 standard sequence of writing within the character. In 
-listing~\ref{lst:charaterdataformat} the character~\cjk{東} is shown.
-It consists of the radicals~\cjk{日} and~\cjk{木}. The storage data structure 
+listing~\ref{lst:charaterdataformat} the 
+character~\cjk{東}~(Jap.\ pron.\ \cjk{ヒガシ}/higashi; Eng.\ 'east') 
+is shown.
+It consists of the 
+radicals~\cjk{日}~(Jap.\ pron.\ \cjk{ヒ}/hi; Eng.\ 'sun')
+and~\cjk{木}~(Jap.\ pron.\ \cjk{キ}/ki; Eng.\ 'tree').
+The storage data structure 
 for characters in general is totally straightforward and exploits the 
 advantages of the UPX format.
 In the concrete example, the outermost \emph{hLevel} element is used for the 
@@ -918,7 +940,8 @@ The UPX structure shown in listing~\ref{lst:charaterdataformat} accounts for
 that by not specifying a total order of radicals, but rather a preferred order.
 The traces are spatialised to their radical, the order of drawing does effect
 the InkML traces and ultimately the recognition process, 
-but not the UPX data structure.
+but not the UPX data structure. In the UPX data structure each radical is kept
+separate.
 
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
@@ -1046,7 +1069,7 @@ The first part is centred around handwriting information,
 about the graphical layout of the characters and their substructures.
 The second part is concerned with lexical information only.
 The \textbf{handwriting part} is a UPX file structure that holds character 
-descriptions, Kanji character unicode values, as well as radical descriptions 
+descriptions, Kanji character unicode values, radical descriptions 
 and pointers to InkML files holding pen trajectories representing the
 data structures given in the UPX file.
 The \textbf{lexical part} is an XML file in a format described 
@@ -1074,7 +1097,8 @@ paper-based dictionary are stored in the \emph{misc} element.
 The file format provides room for the character index in different paper-based
 dictionaries and study books in the \emph{dic\_number} element. For example 
 the \emph{dic\_ref} with the attribute \emph{dr\_type="sh\_kk"} holds the
-character index in~\shortciteANP{Hadamitzky1995}~\citeyear{Hadamitzky1995}. This information can be very
+character index in~\shortciteANP{Hadamitzky1995}'s~\citeyear{Hadamitzky1995} 
+Kanji lexicon. This information can be very
 useful for a learner when referring to study books. The \emph{reading\_meaning}
 element holds information about the pronunciation of the character and 
 translations into a number of different languages. The \emph{nanori} elements
@@ -1084,7 +1108,7 @@ With this organisational approach it is possible for different parties to work
 on different information structures simultaneously. These can be accessed,
 modified and improved separately. This is due to the encapsulation of the 
 different data structures.
-
+\newpage %this is not necessary, if the listing can be placed variably by latex because it is shorter than one page now
 \begin{xmlcode}
   \lstinputlisting[emph={character,literal,codepoint,radical},
                    emphstyle=\color{blue}\textbf,
@@ -1109,23 +1133,24 @@ Using KanjiDict2 unaltered provides reliability.
 The same is true for for UPX and InkML: UNIPEN has been the de facto standard
 for handwriting data exchange for a long time and UPX is considered the
 official successor of UNIPEN and InkML is a W3C recommendation\footnote{
-However, until the end of 2009 InkML has not been standardised by the W3C and
+However, until mid 2010 InkML has not been standardised by the W3C and
 UPX is still in a planning stage concerning standardisation.}.
 
 \subsubsection{A Unified File Format}
 \label{sec:hwre:aunifiedfileformat}
 
-An alternative solution to the split information approach would be to
-establish a unified file format for the pen trajectories, the UPX metadata
-and the lexical information. 
-The advantage of that approach is that all data would be in one single 
-place. However, a number of disadvantages would emerge from that approach, too.
+An alternative solution to the chosen approach of information splitting 
+would have been to establish a unified file format for the pen trajectories, 
+the UPX metadata and the lexical information. 
+The advantage of such an approach would be that all data were stored in one 
+single place. However, a number of disadvantages would emerge from 
+that approach, too.
 The file formats, InkML, UPX and KanjiDict2 already exist.
-Creating a new file format based on those would on one hand not create much 
-additional value, but on the other hand lead to not using available de facto
-standards. Every time, a new version of the lexical data is issued or every
-time one would want to update the gold standard pen trajectory of a character,
-the formats would have to be linked together. 
+Creating another new non-standardised file format based on 
+the aforementioned available de-facto standards would not create much 
+additional value. Every time, a new version of the lexical data is issued or 
+every time one would want to update the gold standard pen trajectory 
+of a character, the formats would have to be linked together. 
 
 \subsubsection{Relational Database}
 \label{sec:hwre:relationaldatabase}
@@ -1134,7 +1159,7 @@ Establishing a relational database to hold the different data structures
 sounds like a feasible plan. With consideration of the three formats
 InkML, UPX and KanjiDict2 it should be possible to design a relational database
 that holds the different information in a structured manner.
-However, again the same problem arises. Updates and extensions of the formants
+However, a problem arises: Updates and extensions of the formats
 of the data would create the need for a conversion tool.
 If the XML specification of one of the formats changes, the table structure
 in the relational database would have to be adapted, too.
@@ -1142,10 +1167,10 @@ Alternatively, the actual XML code could be stored in relational database
 tables. That approach however seem awkward. XML is a format for structuring
 data in human readable text files. All three formats, InkML, UPX and KanjiDict2
 have been designed to be human-editable and therefore accessible without
-any special software or tools but a text editor.
+any special software or tools but just a text editor.
 Storing these XML structures in a relational database would compromise the 
 advantage of a relational database that lies in querying and would also
-make editing the data a more complex task.
+make editing the data a more complex task than opening a file in a text editor.
 Additionally, the application is a desktop application for a single user 
 environment. Depending on the relational database that were used,
 one could be forced to ship the database software along with the Kanji 
@@ -1155,7 +1180,7 @@ therefore more reliable formats it could be beneficial to design a relational
 database structure that mirrors these formats.
 Then, the relational database could be used in an on-line environment, 
 where a server application performs the recognition for a web client.
-For the time being and the technical equipment given it does not seem
+For the time being and the technical equipment given it is not 
 useful to employ a relational database.
 
   %\section{Recognition Architecture}
@@ -1320,8 +1345,8 @@ useful to employ a relational database.
 \label{sec:hwre:normalisation}
 
 Many handwriting recognition systems perform some kind of normalisation.
-See section~\ref{sec:normalisation} for a review of common techniques.
-In this system, only size normalisation is performed. Other normalisation 
+Section~\ref{sec:normalisation} contains a review of common techniques.
+In this system, only \emph{size normalisation} is performed. Other normalisation 
 techniques reported in the literature are often necessary, when the input 
 devices return insufficient data. With modern input devices many of the 
 normalisation techniques that were used to clean the data from different

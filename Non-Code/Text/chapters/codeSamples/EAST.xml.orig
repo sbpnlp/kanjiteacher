@@ -18,7 +18,20 @@
     <dic_number>
       <dic_ref dr_type="nelson_c">213</dic_ref>
       <dic_ref dr_type="nelson_n">2596</dic_ref>
+      <dic_ref dr_type="halpern_njecd">3568</dic_ref>
+      <dic_ref dr_type="halpern_kkld">2221</dic_ref>
+      <dic_ref dr_type="heisig">504</dic_ref>
+      <dic_ref dr_type="gakken">11</dic_ref>
+      <dic_ref dr_type="oneill_names">771</dic_ref>
+      <dic_ref dr_type="oneill_kk">27</dic_ref>
+      <dic_ref dr_type="moro" m_vol="6" m_page="0172">14499</dic_ref>
+      <dic_ref dr_type="henshall">184</dic_ref>
       <dic_ref dr_type="sh_kk">71</dic_ref>
+      <dic_ref dr_type="sakade">121</dic_ref>
+      <dic_ref dr_type="jf_cards">63</dic_ref>
+      <dic_ref dr_type="henshall3">201</dic_ref>
+      <dic_ref dr_type="tutt_cards">164</dic_ref>
+      <dic_ref dr_type="crowley">108</dic_ref>
       <dic_ref dr_type="kanji_in_context">39</dic_ref>
       <dic_ref dr_type="busy_people">2.10</dic_ref>
       <dic_ref dr_type="kodansha_compact">1053</dic_ref>
@@ -46,5 +59,12 @@
       <nanori>あがり</nanori>
       <nanori>あずま</nanori>
       <nanori>あづま</nanori>
+      <nanori>こ</nanori>
+      <nanori>さき</nanori>
+      <nanori>しの</nanori>
+      <nanori>とお</nanori>
+      <nanori>はる</nanori>
+      <nanori>ひが</nanori>
+      <nanori>もと</nanori>
     </reading_meaning>
   </character>

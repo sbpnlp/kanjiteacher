@@ -38,9 +38,8 @@ architecture in section~\ref{sec:globalarchitecture}, the data flow in within
 the system in section~\ref{sec:arch:systemdataflow} and describes the design
 of the individual modules in section~\ref{sec:arch:softwaremodules}.
 Section~\ref{sec:frameworkanddevices} describes the technical set-up and 
-framework choices. However, the handwriting recognition engine is described 
-in detail in a separate 
-section.\footnote{See chapter~\ref{chap:handwritingrecognitionengine}.}
+framework choices. The handwriting recognition engine is described 
+in detail in chapter~\ref{chap:handwritingrecognitionengine}.
 
 \section{System Architecture}
 \label{sec:systemarchitecture}
@@ -60,18 +59,20 @@ section deals with the technical aspects of the system design.
 
 The global architecture of the application follows the Model-View-Controller
 (MVC) design pattern. This paradigm is used as a general model, however, 
-it is not designed the strict way proposed by~\shortciteANP{Krasner1988}~\citeyear{Krasner1988}.
-Figure~\ref{fig:modelviewcontroller} shows the general set-up of the 
-MVC design pattern after~\shortciteANP{Krasner1988}~\citeyear{Krasner1988} the graphic has been borrowed 
+it is not designed the strict way proposed 
+by~\shortciteANP{Krasner1988}~\citeyear{Krasner1988}.
+Figure~\ref{fig:modelviewcontroller} 
+shows~\shortciteANP{Krasner1988}'s~\citeyear{Krasner1988} 
+general set-up of the MVC design pattern. The graphic has been borrowed 
 from~\shortciteANP{Schatten2010}~\citeyear{Schatten2010}.
 In the MVC paradigm the \emph{model} is a domain-specific software, 
 an implementation of the central structure of the system. It can be a simple
 integer, representing a counter or it could be a higly complex object structure, 
-even a whole software module. The \emph{view} presents any graphical information. 
-It requests data from the model and displays the result. The \emph{controller} 
-is the interface between the model and the view. It controls and scheduls the 
-interaction between the input devices, the model and the 
-view~\shortcite{Krasner1988}.
+even a whole software module. The \emph{view} presents any graphical information.
+The view requests data from the model and displays the result. 
+The \emph{controller} is the interface between the model and the view. 
+It controls and scheduls the interaction between the input devices, 
+the model and the view~\shortcite{Krasner1988}.
 A global overview of the system architecture is shown in 
 figure~\ref{fig:globalarchitecture}.
 There are two main architecture areas and two devices:
@@ -84,7 +85,7 @@ The
 
 \begin{figure}[htbp]
 \begin{center}
-\includegraphics[scale=0.7]{images/TechnicalDesign/MVC2.png}
+\includegraphics[scale=0.5]{images/TechnicalDesign/MVC2.png}
 \caption{The Model-View-Controller paradigm}
 \label{fig:modelviewcontroller}
 \end{center}
@@ -126,10 +127,11 @@ modules running under the same process is realised via a messaging system.
 The communication between the modules that run on different devices
 or at least as a separate process is realised via a web service.
 
-\emph{Loose coupling} is used here as a term to emphasize that different modules 
-in a larger system are only loosely connected and do not depend heavily on each 
-other. \emph{Coupling} can be understood as the degree of knowledge a module or 
-class have of each another. The knowledge that different parts of the software
+The communication can be described as \emph{loose coupling} because different 
+modules  in a larger system are only loosely connected and do not depend 
+heavily on each other. \emph{Coupling} can be understood as the degree 
+of knowledge a module or class have of each another. 
+The knowledge that different parts of the software
 require about each other in order to work correctly serves as a measurement of
 how loose the coupling is.
 
@@ -137,11 +139,12 @@ In the course of the design and development cycles of the Kanji Coach,
 it became apparent that it has to be possible to attach different views, 
 input devices and data storage systems to the controller. This is due to the 
 distributed nature of the application. 
-In order to ensure that the handwriting data input view, which currently runs 
+In order to ensure that the handwriting data input view that currently runs 
 on a mobile device, can run on a different device, it had to be loosly coupled 
-to the main controller. Therefore, the communication between the handwriting 
+to the main controller of the desktop application. 
+Therefore, the communication between the handwriting 
 input data view and the main controller is realised via a web service. 
-Because of this communication structure, it is possible to exchange the 
+Because of this communication structure it is possible to exchange the 
 handwriting data input view with a different one, for instance when running 
 the application on a device like a tablet PC. The design of the communication 
 structure within the web service is described in greater detail 
@@ -229,11 +232,11 @@ in~\ref{learningdataflowDisplayLearningState} steps.
         request to the desktop view.
         [Controller $\Rightarrow$ Desktop view]
   \item \label{learningdataflowRequestStoring} 
-        After recognition process: Request storing recognised character in 
+        After recognition process: Storing recognised character in 
         learning profile.
         [Controller $\Rightarrow$ Model]
   \item \label{learningdataflowStoring} 
-        Calculation of error points for a character (creation of new data) and
+        Calculating error points for a character (creation of new data) and
         storage.
         [Model $\Rightarrow$ Data access layer]
   \item \label{learningdataflowReturningLearningState} 
@@ -285,12 +288,13 @@ view (step~\ref{learningdataflowDisplayLearningState}).
 
 The handwriting data input view is a graphical user interface. It is designed for
 simplicity and usability. Its main task is data capturing.
-It contains only an input area, with a cross in order for the user to better 
-locate the strokes of the character. This follows a common practice in Kanji 
-teaching - a cross segments the writing area in four areas.
+Thus, it contains only an input area, with a cross in the middle, 
+in order for the user to better locate the strokes of the character. 
+This follows a common practice in Kanji 
+teaching - a cross segments the writing area into four areas.
 
 There is no \emph{commit} or \emph{finish} button on the handwriting data 
-input GUI, since the end of a stroke sequence is handled with a time out in 
+input GUI, since the end of a stroke sequence is handled with a timeout in 
 the learning module. When the user needs too long to input a character there 
 is a problem and help should be offered.
 Therefore, it is sufficient to only display a reset button on the writing area.
@@ -299,7 +303,7 @@ The current drawing will be removed from the screen. The next user input will
 be treated as a new character.
 
 In the background of the handwriting data input view, the user input is sent to 
-the controller module. Besides that, a polling mechanism ensures that any 
+the controller module. Besides that a polling mechanism ensures that any 
 messages from the controller to the handwriting input data view are received.
 Whenever the user finishes a stroke, the module sends a message via a web 
 service\footnote{See section~\ref{sec:arch:webservice}.} to the controller.
@@ -308,12 +312,13 @@ service\footnote{See section~\ref{sec:arch:webservice}.} to the controller.
 \label{sec:arch:mainview}
 
 %xxx graphic of UI design here, maybe a sketch and maybe a screenshot.
-The main view of the system is a graphical user interface. It contains a simple
-learning environment, a display area for the characters that have been drawn
-in the handwriting input area an information area that displays addidional 
-information about a character. In a configuration area the user can choose 
-between the different lessons the system offers and between a training mode
-and a test mode.
+The main view of the system is a graphical user interface. It contains 
+a simple learning environment, a display area for the characters that have 
+been drawn in the handwriting input area, an information area that displays 
+addidional information about a character. In a configuration area the user can 
+choose between the different lessons the system offers and between a training 
+mode and a test mode. This view is the central entry point to the system for
+the user.
 
 \subsubsection{Web Service}
 \label{sec:arch:webservice}
@@ -335,8 +340,9 @@ concrete agent. The agent itself then must be a software that sends and receives
 messages~\shortcite{W3C2004}.
 The web service in the Kanji Coach system is not a web service in the strict 
 sense as intended by~\shortciteANP{W3C2004}~\citeyear{W3C2004}. It does not 
-provide a service as such. The calling client does not receive a reply to a 
-request, just an acknowledge message stating that the data has been received. 
+provide a service as such because the calling client does not receive a reply 
+to a request, just an acknowledge message stating that the data has been 
+received. 
 A reply with more information is not necessary, since the handwriting data 
 input view does not display any information to the user. 
 In summary, the web service design for the Kanji Coach system is a web service
@@ -350,12 +356,14 @@ accessed from within the .NET framework, the concrete SOAP XML messages will
 be created and unpacked into instances of \emph{Common Language Runtime} (CLR) 
 objects automatically by the WCF 
 framework~\shortcite{Kennedy2001,W3C2007,Smith2007}.
+Nevertheless, the web service can be accessed from any client that implements
+the standard SOAP protocol. Hence, .NET is not needed on the client side.
 
 \subsubsection{Recognition Module}
 \label{sec:arch:recognitionmodule}
 As a part of the model within the MVC paradigm the recognition module plays
 a crucial role. From an abstract viewpoint it functions as a black box.
-A set of pen trajectories is passed to to the recogniser and a set of
+A set of pen trajectories is passed to the recogniser and a set of
 characters is returned as a result, sorted by their matching value.
 Additionally, an intended character can be passed to the recognition engine,
 such that the recognising module can generate an error analysis based on the 
@@ -368,12 +376,18 @@ chapter~\ref{chap:handwritingrecognitionengine}.
 \subsubsection{Learning Module}
 \label{sec:arch:learningmodule}
 
-The learning module is designed as a basic module, mainly for the purpose of 
+The learning module is designed as a very basic module, mainly for the purpose of 
 demonstration. It performs user and character administration tasks.
 Each user has a personalised character set, containing the lessons that have been
 studied and the error points of each character.
-The application is therefore not a vocabulary teaching application, 
-but rather a Kanji teaching application. The error point system is rather simple,
+The application is not a vocabulary teaching application 
+but rather a Kanji teaching application. That stands 
+against~\shortciteANP{}'s~\citeyear{} claim that it is didactically useful 
+to study  vocabulary and characters together. However,
+the learning module is not fully developed because it only serves to demonstrate
+the recogniser in an applicaton context. This part would have to be revised
+if one intended to create a complete e-learning environment.
+The error point system is simple:\\
 the more error points a character has, the more often it will be repeated.
 Similarly, the character repetition depends on a vocabulary training method,
 that is employed in a systematic fashion. For details see 
@@ -394,14 +408,15 @@ The user group 'students of Japanese' consists mainly of non-technical people.
 They usually use a version of the MS Windows operating system. Therefore, even 
 when attempting to provide for cross-plattform usability, 
 the windows platform is chosen as the basis for the implementation. 
-Neither the author nor the application seek to convince anyone of using one 
-or the other operating system, therefore it is a logical choice to provide 
-software for a system that most people use.
+The author does not seek to convince anyone of using one 
+or the other operating system, the choice has been made in order to provide
+software for therefore it is a logical choice in order to provide 
+software for a the operation system that most potential users run on their PCs.
 
 \subsection{Framework}
 \label{sec:framework}
 
-The framework to run the system had to fulfill a few criteria:
+The framework to run the system had to fulfill a number of criteria:
 \begin{itemize}
 
   \item It should provide an easy-to-use graphical user interface.
@@ -424,20 +439,23 @@ to a different platform become laborious tasks. That rules out the choice of
 \emph{C++}.
 Generally, the design ideas and framework criteria seem to apply well to both 
 the Java platform and the .NET framework. Both provide functionality for an 
-easy-to-use GUI. .NET does not mirror the natural look-and-feel of the windows
+easy-to-use GUI. Java has the ability to adopt the look-and-feel of different systems it runs on, MS Windows as well. 
+.NET does not mirror the natural look-and-feel of the windows
 operating system, it \emph{is} the natural look-and-feel on Windows.
-Java has the ability to adopt the look-and-feel of different systems it runs on,
-MS Windows as well. The Java virtual machine has long been known to run on 
+The Java virtual machine has long been known to run on 
 different platforms, most importantly Linux and Windows, 
 while the .NET framework has been implemented for X-Systems by Novell and is 
 called \emph{Mono}.
 The two differences that gave the .NET framework a slight advantage over Java 
 was the comfort and ease the Windows Communication Foundation offers.
+The possibility for integration of different parts of the system.
 The web service functions can be called exactly the way as if they were methods 
-of a local software module. The integration of the different parts of the system,
-namely the handwriting data input view and the controller does not require much
-additional effort. Another advantage of the .NET framework is the programming
-language \emph{C\#} that combines many features of the Java with some of C++.
+of a local software module. Thus, the integration of the different parts of the 
+system, namely the handwriting data input view on the mobile device and 
+the desktop application with the learning environment does not 
+require much additional effort. Another advantage of the .NET framework is the 
+programming language \emph{C\#} that combines many features of the Java with 
+some of C++.
 Additionally, C\# offers a smoother handling of generic lists, which is useful
 when dealing with lists of mouse coordinates, lists of strokes that are lists
 of mouse coordinates and ultimately lists of characters.
@@ -452,8 +470,9 @@ programming language on any framework and operating system.
 \subsection{Desktop Computer}
 \label{sec:desktopcomputer}
 
-The choice for a stationary computing device is driven by the kind of user
-the learning application is aimed at. A notebook computer the way it can be 
+The choice for a stationary computing device is driven by the kind of 
+computing device a user of the learning application is likely to use. 
+A notebook computer the way it can be 
 bought in any computer store is the closest match to what a user of the system  
 most probably will be running. 
 The learning system is a standard desktop application with a standard 
@@ -461,7 +480,7 @@ MS Windows forms GUI. Therefore, this kind of system is most suitable for the
 designed system.
 Nevertheless, it is possible to run both the handwriting data input view and
 the desktop application on the same PC - for example a tablet PC.
-The software integration could stay exactly the same.
+The software integration with the web service could stay exactly the same.
 
 \subsection{Pen Input Device}
 \label{sec:peninputdevice}
@@ -472,12 +491,22 @@ drawing the user should be able to see what he is drawing on the writing surface
 At the same time the data should be available to the controller in real-time,
 i.e., after a pen-up movement.
 The main decision had to be made between a graphics tablet and PDA.
-The option of mouse input of charaters was ruled out from the beginning,
+The option of mouse input of charaters was ruled out from the beginning
 because the mouse is not a useful device to enter handrwitten characters.
 Graphics tablets like a Wacom tablet are cheaper than a PDA, however,
 their distribution on the market and therefore among potential users is small.
 The solution with a PDA leaves room to exchange the device that runs the input
 area with any mobile device that has the ability to connect to a wireless LAN,
-e.g., an iPhone. Another possibility for pen input would be pens that write on paper 
-and also transmit data to a PC. 
+e.g., an iPhone. Another possibility for pen input would be pens that write on 
+paper and also transmit data to a PC. 
 
+\section{Technical Design Summary}
+\label{sec:techdesignsummary}
+
+The technical design of the prototype system has been presented in this chapter.
+It uses the conceptual findings of 
+chapter~\ref{chap:conceptualdesignofKanjicoach} and presents the design
+choices made, concerning system architecture and framework.
+The different software modules and their interplay are shown.
+The core module that performs the handwriting recognition will be presented
+separately in the next chapter.
