@@ -5,7 +5,8 @@
 
 \documentclass[a4paper]{book}
 %\usepackage{a4wide}
-\usepackage[margin=2cm]{geometry}
+%\usepackage[margin=2cm]{geometry} %2cm everywhere instructions in kanjiteacher\Non-Code\Papers\Latex-geometry-doc.pdf
+\usepackage[inner=2.5cm,outer=2cm,vmargin=2cm]{geometry}
 \usepackage{fontspec}
 \usepackage[english]{babel}
 \usepackage{multirow}
@@ -92,16 +93,16 @@ Saarbrücken, den \the\day.\the\month.\the\year}
 % CHECK3: Korrekturen eingebaut
 % CHECK4: Endabnahme als individualkapitel
 % CHECK5: Endabnahme im Gesamtzusammenhang der Arbeit
-% CHECK6: Native speaker language check
+% CHECK6: Native speaker language check or additional spell check
 
 
-\input chapters/TitlepageContents.tex            %CHECK1 CHECK2 CHECK3 CHECK4 
-\input chapters/Abstract.tex                     %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/Introduction.tex                 %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/JapaneseScript.tex               %CHECK1 CHECK2ab CHECK3a CHECK3b CHECK4
+\input chapters/TitlepageContents.tex            %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/Abstract.tex                     %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/Introduction.tex                 %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/JapaneseScript.tex               %CHECK1 CHECK2ab CHECK3a CHECK3b CHECK4 CHECK6
 \input chapters/HandwritingRecognition.tex       %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/E-Learning.tex                   %CHECK1 CHECK2 CHECK3a CHECK3b
-\input chapters/ConceptualDesign.tex             %CHECK1 CHECK2 CHECK3 CHECK4
+\input chapters/E-Learning.tex                   %CHECK1 CHECK2 CHECK3a CHECK3b CHECK4
+ \input chapters/ConceptualDesign.tex             %CHECK1 CHECK2 CHECK3 CHECK4
 \input chapters/TechnicalDesign.tex              %CHECK1 CHECK2 CHECK3 CHECK4
 \input chapters/HWREngine.tex                    %CHECK1 CHECK2 CHECK3 CHECK4
 \input chapters/ImplementationEvaluation.tex     %CHECK1 CHECK2ab CHECK3ab CHECK4
