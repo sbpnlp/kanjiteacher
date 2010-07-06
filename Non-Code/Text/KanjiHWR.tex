@@ -95,29 +95,23 @@ Saarbrücken, den \the\day.\the\month.\the\year}
 % CHECK5: Endabnahme im Gesamtzusammenhang der Arbeit
 % CHECK6: Native speaker language check or additional spell check
 
-
 \input chapters/TitlepageContents.tex            %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
 \input chapters/Abstract.tex                     %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
 \input chapters/Introduction.tex                 %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
 \input chapters/JapaneseScript.tex               %CHECK1 CHECK2ab CHECK3a CHECK3b CHECK4 CHECK6
-\input chapters/HandwritingRecognition.tex       %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/E-Learning.tex                   %CHECK1 CHECK2 CHECK3a CHECK3b CHECK4
- \input chapters/ConceptualDesign.tex             %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/TechnicalDesign.tex              %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/HWREngine.tex                    %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/ImplementationEvaluation.tex     %CHECK1 CHECK2ab CHECK3ab CHECK4
-\input chapters/Conclusions.tex                  %CHECK1 CHECK2 CHECK3 CHECK4
-\input chapters/Outlook.tex                      %CHECK1 CHECK2 CHECK3 CHECK4
+\input chapters/HandwritingRecognition.tex       %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/E-Learning.tex                   %CHECK1 CHECK2 CHECK3a CHECK3b CHECK4 CHECK6
+ \input chapters/ConceptualDesign.tex             %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/TechnicalDesign.tex              %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/HWREngine.tex                    %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/ImplementationEvaluation.tex     %CHECK1 CHECK2ab CHECK3ab CHECK4 CHECK6
+\input chapters/Conclusions.tex                  %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
+\input chapters/Outlook.tex                      %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
 \appendix
-\input chapters/AppJapaneseScript.tex            %CHECK1 CHECK2 CHECK3 CHECK4
-
+\input chapters/AppJapaneseScript.tex            %CHECK1 CHECK2 CHECK3 CHECK4 CHECK6
  \listoffigures
  \lstlistoflistings
  \listoftables
  \bibliography{chapters/References,chapters/ReferencesE-Learning,chapters/ReferencesJapanese}
-\chapter*{Document created on \today~at \xxivtime}
-
-
-
-
+%\chapter*{Document created on \today~at \xxivtime}
 \end{document}

@@ -69,7 +69,7 @@ works with handwritten input data.
 
 Handwriting developed as a means of communication and to expand one's own
 memory. With the advent of each new technology, the question arose, 
-wether handwriting was going to survive. 
+whether handwriting was going to survive. 
 If handwriting was deteriorating it would not be useful to develop new
 technologies centred around the human ability of handwriting.
 The opposite seems to be true: \\
@@ -184,7 +184,7 @@ two factors that can have an impact on handwriting recognition:
 \end{itemize}
 The first factor creates additional difficulty for a handwriting recognition 
 because when a character is entered, the recogniser first needs to determine 
-which script the characer belongs to. 
+which script the character belongs to. 
 It is evident why the second factor is problematic: The larger the alphabet,
 the more characters the system needs to distinguish.
 
@@ -541,7 +541,7 @@ character modelling.
 \label{sec:atypicalonlinehwrapplication}
 
 A typical HWR application has several parts that follow up on each other in a
-pipeline architechture. The main parts of such an application are the following:
+pipeline architecture. The main parts of such an application are the following:
 \begin{itemize}
 \item \textbf{Data capturing}: The data is captured through an input device 
   like a writing surface and a stylus. Data capturing is described in
@@ -635,7 +635,7 @@ sub steps:\\
 \emph{Smoothing}, \emph{filtering}, \emph{dehooking},
 \emph{wild point correction}, \emph{dot reduction} and \emph{stroke connection}.
 Some systems also employ a \emph{normalisation} step that can include
-\emph{deskewing}, \emph{basline drift correction} and \emph{size normalisation}.
+\emph{deskewing}, \emph{baseline drift correction} and \emph{size normalisation}.
 \shortciteANP{Santosh2009}~\citeyear{Santosh2009} summarise a similar perception in their review about several
 on-line HWR systems. Their \emph{noise elimination} corresponds to 
 \emph{noise reduction} and the aforementioned \emph{normalisation} describes 
@@ -782,8 +782,9 @@ position or length of an input.
 \paragraph{Deskewing}
 is a technique that modifies the slant of an input. Deskewing 
 algorithms can be applied to individual characters or 
-whole words~\shortcite{Tappert1990}. In Chinese and Japanese character recognition, 
-slant correction can be applied in a similar fashion like with latin-based alphabets.
+whole words~\shortcite{Tappert1990}. In Chinese and Japanese character 
+recognition, slant correction can be applied in a similar fashion like with 
+latin-based alphabets.
 
 \paragraph{Baseline Drift Correction} 
 detects a baseline or horizontal line relative
@@ -1150,7 +1151,7 @@ are represented in a probabilistic model.
 Most of the substroke systems use HMMs. The substrokes are represented by nodes
 and the transition between strokes is measured probabilistically. Some systems
 use points or line segments. Other systems use full strokes or even radicals.
-Attempting to avoid stroke-order dependence of the system.Mmultiple HMMs
+Attempting to avoid stroke-order dependence of the system. Multiple HMMs
 are generated with stroke-order variations.
 The substroke approach responds to that by hierarchical character models,
 such that the stroke order variations can be stored in a 
@@ -1166,7 +1167,7 @@ Classifying an input pattern representation as an entry found in a pattern
 database is the kernel of each pattern recognition application.
 Representing data in the same format as the original patterns 
 (see section~\ref{sec:olccr:patterndescription}) is another key task, but 
-the actual classification is the main part of te recognition.
+the actual classification is the main part of the recognition.
 In this section, different kinds of classification are reviewed to fit with
 the different kinds of pattern description. 
 A short section about \emph{coarse classification} shows how to
@@ -1185,7 +1186,7 @@ to match an input pattern, before the detailed or fine classification is done.
 There are different coarse classification methods, but nevertheless the overall
 goal of coarse classification remains the same: Increasing the speed of the
 classification process.
-Effecient classification algorithms have shown to be necessary due to the 
+Efficient classification algorithms have shown to be necessary due to the 
 large vocabulary size. Comparing an input pattern with each pattern in the 
 pattern database is a time-consuming process.
 Therefore, many system designers subdivide their database into \emph{character
@@ -1214,7 +1215,7 @@ the overall character structure, the basic stroke substructure, the stroke
 sequence~\shortcite{LiuJaegerNakagawa2004}.
 Selecting the partition classes dynamically is less labour-intensive because it
 avoids the training process or manual division of the character classes.
-Stroke number of the input pattern can also be used as a preselection of
+Stroke number of the input pattern can also be used as a pre-selection of
 characters. Systems that employ structured character representations (see 
 section~\ref{sec:olccr:structuralcharacterrepresentation}) can also use radical 
 detection. All characters in the database that do not contain the confidently 
