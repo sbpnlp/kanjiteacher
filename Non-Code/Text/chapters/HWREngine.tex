@@ -491,7 +491,7 @@ this tag were captured while the pen was not touching the writing surface.
 The last \emph{.PEN\_DOWN} tag is the beginning of a new coordinate sequence
 for the next stroke. From a requirements point of view the UNIPEN provides a
 high standard, as it meets a great number of requirements for the storage 
-structure. \\
+structure.\\
 The UNIPEN format is:
 \begin{itemize}
   \item partially \textbf{expressive}: UNIPEN can represent a complete character
@@ -670,9 +670,8 @@ description of the UPX format in their technical report.
     </hLevel>
   \end{lstlisting}
 \end{xmlcode}
-
 It seems as if the UPX format was able to fulfil all requirements.
-The UPX format fulfils the requirements of
+The UPX format fulfils the requirements of:
 \begin{itemize}
   \item \textbf{Well-definedness}: As an XML structure providing IDs and names 
         for each element and substructure, the format is well-defined.
@@ -880,6 +879,7 @@ radical~\cjk{木}~(Jap.\ pron.\ \cjk{キ}/ki; Eng.\ 'tree'),
 consists of four strokes.
 Since strokes are not represented explicitly in the data format,
 there are four \emph{traceView} elements under the \emph{hwTraces} tag.
+\newpage
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
@@ -943,6 +943,14 @@ the InkML traces and ultimately the recognition process,
 but not the UPX data structure. In the UPX data structure each radical is kept
 separate.
 
+\begin{figure}[htbp]
+  \begin{center}
+    \includegraphics[scale=1.75]{images/radicalStructure/EAST-strokeorder.png}
+    \caption{Stroke order of the Kanji \cjk{東}}
+    \label{fig:strokeorderofEAST}
+  \end{center}
+\end{figure}
+
 \begin{xmlcode}
   \begin{lstlisting}[emph={hLevel,hwTraces,label,alternative},
                      emphstyle=\color{blue}\textbf,
@@ -988,14 +996,6 @@ separate.
     </hLevel>
   \end{lstlisting}
 \end{xmlcode}
-
-\begin{figure}[htbp]
-  \begin{center}
-    \includegraphics[scale=1.75]{images/radicalStructure/EAST-strokeorder.png}
-    \caption{Stroke order of the Kanji \cjk{東}}
-    \label{fig:strokeorderofEAST}
-  \end{center}
-\end{figure}
 
 \section{Database}
 \label{sec:hwre:database}
