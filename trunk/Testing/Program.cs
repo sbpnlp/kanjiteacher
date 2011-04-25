@@ -76,6 +76,9 @@ namespace Testing
             t.Abort();
         }
 
+        /// <summary>
+        /// Tests the hash table.
+        /// </summary>
         private static void TestHashTable()
         {
             /* Concept:
